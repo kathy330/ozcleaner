@@ -80,10 +80,7 @@ kangkang 2021.1.18
 ## 18/01/2021 yanbo 
 Kathy new 2021.1.18
 20:54 new
-<<<<<<< HEAD
 wystan 2021.1.18
-=======
 9:01 new by mengxuan
 
->>>>>>> 241344a372a73e03df57f7ef794ccb372d4e28a2
 

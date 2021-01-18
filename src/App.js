@@ -1,10 +1,11 @@
 // import logo from './logo.svg';
 import './App.css';
 import React from "react";
+import {Route, Switch} from "react-router";
 import Home from "./pages/Home/Home";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
-import {Route, Switch} from "react-router";
+
 
 function App() {
   return (

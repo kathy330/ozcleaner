@@ -102,8 +102,6 @@ test 1/19
 test - 3
 test - 5
 testtest
-<<<<<<< HEAD
 testest!!!!
-=======
 test - 6
->>>>>>> 5821e91849e73633507fffe8b3bd5464e99e1387
+1/19 so hot today

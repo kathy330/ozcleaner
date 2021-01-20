@@ -80,19 +80,30 @@ Kathy 2021.1.18
 Dongyu 2021.1.18
 Mengxuan 2021.1.18
 kangkang 2021.1.18
+Erik 2021.1.18
 
-<<<<<<< HEAD
 ## 18/01/2021 yanbo 
-## 18/01/2021 Erik
-=======
 testing check
-
-## 18/01/2021 yanbo
->>>>>>> 90fc132edf28e31aaa1ec2a246acd7607717901a
-
 Kathy new 2021.1.18
 20:54 new
 wystan 2021.1.18
 
 9:01 new by mengxuan
 12345678
+
+------------------------
+dongyu 2021.1.19
+
+test - 1
+test - 2
+test - 3
+test - 5
+test - 6
+
+Mengxuan 1/19 so hot today
+
+kangkang add a conflict -- 15:18
+
+Olivia This is a test.
+
+test - 9

@@ -13,7 +13,6 @@
 
 # ignore cache
 .eslintcache
-testing want to revert
 
 # misc
 .DS_Store

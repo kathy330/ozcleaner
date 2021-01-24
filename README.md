@@ -121,11 +121,23 @@ Yanbo testing3
 
 =======
 1.23 wystan
-1.23 Erik Test
+1.23 Erik
+1.23 olivia
+1.23 mengxuan
 1.23 DOngyu
+1.23 kangkang
+1.23 Yanbo
+1.23 Kathy
 
 ========1.24========
-
+1.24 Yanbo
+1.24 wystan
+1.24 mengxuan
+1.24 D0ngyu
+1.24 Kathy
+1.24 kangkang
+1.24 olivia
+1.24 Erik
 
 ========1.25========
 

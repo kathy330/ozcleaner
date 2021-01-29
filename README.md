@@ -182,16 +182,25 @@ Yanbo testing3
 1.28 Erik
 
 ========1.29========
-
+1.29 wystan
 1.29 kangkang
 1.29 ghost
 1.29 ghost2
 1.29 Erik
 1.29 dongyu
+1.29 conflict-test1
 1.29 Yanbo
+1.29 conflict-test1
 1.29 mengxuan
 1.29 kathy
 
+<<<<<<< HEAD
 1.29 test test
+=======
+
+1.29 conflict1
+1.29 conflict2
+1.29 conflict3
+>>>>>>> e9e8771ee9145861d1264f33de7ed3a4b40012ef
 
 ========1.30========

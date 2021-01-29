@@ -202,7 +202,6 @@ testss
 1.29 conflict3
 1.29 conflict4
 
-1.29 new test
+1.29 test
 
 ========1.30========
-test

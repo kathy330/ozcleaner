@@ -184,13 +184,8 @@ Yanbo testing3
 ========1.29========
 1.29 wystan
 1.29 kangkang
-1.29 ghost
-<<<<<<< HEAD
-1.29 Hi I am Erik  
-=======
 1.29 ghost2
 1.29 Erik
->>>>>>> 837feba1db5b83e768be49663d324b3d4c3d395e
 1.29 dongyu
 1.29 Yanbo
 1.29 mengxuan

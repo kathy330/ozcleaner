@@ -208,6 +208,9 @@ ssssssssssss
 1.29 test
 
 ========1.30========
+1.30 try some conflict
+1.30 wystan-1 This change should word
+1.30 Kathy
 1.30 try some conflict - cause problem
 1.30 wystan-1 This change should work
 

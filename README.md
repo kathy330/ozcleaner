@@ -201,6 +201,8 @@ ssssssssssss
 1.29 conflict1
 1.29 conflict2
 1.29 conflict3
+1.29 sourcetree
+=======
 1.29 conflict4
 
 1.29 test
@@ -209,6 +211,8 @@ ssssssssssss
 1.30 try some conflict
 1.30 wystan-1 This change should word
 1.30 Kathy
+1.30 try some conflict - cause problem
+1.30 wystan-1 This change should work
 
 
 

@@ -212,6 +212,8 @@ ssssssssssss
 1.30 wystan-1 This change should work
 1.30 mengxuan
 ========1.31========
+<<<<<<< HEAD
+1.31 kangkang
 1.31 this is conflict
 1.31 dongyu
 1.31 Erik

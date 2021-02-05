@@ -8,7 +8,6 @@ import DongyuPage from "./pages/Dongyu/Dongyu"
 import KangkangPage from "./pages/Kangkang/Kangkang"
 import WystanPage from './pages/Wystan/Wystan'
 
-
 function App() {
   return (
     <Switch>

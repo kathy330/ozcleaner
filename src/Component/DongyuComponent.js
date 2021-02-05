@@ -1,14 +1,43 @@
 import React  from 'react';
+import axios from 'axios';
+import getWebApi from '../Api/DongyuApi'
 
+export const getImage = () => axios.get(getWebApi());
 
-const Message =  () => (
-  <div>
-    <h2>This message comes from Component floder/DongyuComponent </h2>
-    <h2>Get the image from api:</h2>
-    {/* <img src={message} alt="dog" /> */}
-    {/* <img src="https://images.dog.ceo/breeds/setter-gordon/n02101006_714.jpg" alt="dog" /> */}
-  </div>
-  )
+class Message extends React.Component {
+  constructor(){
+    super()
+    this.state={
+      webMessage:''
+    }
+  }
+
+  componentDidMount(){
+    this.getApi()
+  }
+
+  async getApi() {
+    const apiUrl = await (await getImage()).config.url;
+    console.log(apiUrl)
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    const {message} = data// 解构
+    this.setState({
+      webMessage:message
+    })
+  }
+
+  render(){
+    const{webMessage} = this.state
+    return(
+      <div>
+        <h2>This message comes from Component floder/DongyuComponent </h2>
+        <h2>Get the image from  api:</h2>
+        <img src={webMessage} alt="dog" />
+      </div>
+    )
+  }
+}
 
 export default Message
 

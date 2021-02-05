@@ -6,6 +6,9 @@ import Home from "./pages/Home/Home";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import DongyuPage from "./pages/Dongyu/Dongyu"
 import KangkangPage from "./pages/Kangkang/Kangkang"
+import YanboPage from "./pages/Yanbo/Yanbo"
+
+
 
 
 function App() {
@@ -14,6 +17,8 @@ function App() {
       <Route path="/" exact component={Home} />
       <Route path="/dongyu" exact component={DongyuPage} />
       <Route path="/Kangkang" exact component={KangkangPage} />
+      <Route path="/Yanbo" exact component={YanboPage} />
+     
 
 
 

@@ -1,6 +1,8 @@
 import React  from 'react';
 import axios from 'axios';
 import getWebApi from '../Api/DongyuApi'
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-console */
 
 export const getImage = () => axios.get(getWebApi());
 
@@ -17,14 +19,18 @@ class Message extends React.Component {
   }
 
   async getApi() {
-    const apiUrl = await (await getImage()).config.url;
-    console.log(apiUrl)
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    const {message} = data// 解构
-    this.setState({
-      webMessage:message
-    })
+    try {
+      const apiUrl = await (await getImage()).config.url;
+      console.log(apiUrl)
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      const {message} = data// 解构
+      this.setState({
+        webMessage:message
+      })
+    }catch{(e) => {
+      console.error(e)
+    }}
   }
 
   render(){

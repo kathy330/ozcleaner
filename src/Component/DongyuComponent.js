@@ -1,10 +1,14 @@
 import React  from 'react';
 
-const Message = () => (
+
+const Message =  () => (
   <div>
     <h2>This message comes from Component floder/DongyuComponent </h2>
+    <h2>Get the image from api:</h2>
+    {/* <img src={message} alt="dog" /> */}
+    {/* <img src="https://images.dog.ceo/breeds/setter-gordon/n02101006_714.jpg" alt="dog" /> */}
   </div>
-)
+  )
 
 export default Message
 

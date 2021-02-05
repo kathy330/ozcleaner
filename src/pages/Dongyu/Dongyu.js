@@ -6,8 +6,9 @@ function DongyuPage(){
     return (
       <div>
         <h1>This is Dongyu&apos;s page</h1>
-        <h1>从本地后端取回的信息为：</h1>
         <DongyuComponent />
+
+        <h1>从后端api取回的信息为：</h1>
       </div>
     )
 }

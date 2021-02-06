@@ -1,6 +1,6 @@
 import React  from 'react';
 import axios from 'axios';
-import getWebApi from '../api/DongyuApi'
+import getWebApi from '../../api/DongyuApi'
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 

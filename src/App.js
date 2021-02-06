@@ -9,6 +9,7 @@ import KangkangPage from "./pages/Kangkang/Kangkang"
 import YanboPage from "./pages/Yanbo/Yanbo"
 import WystanPage from './pages/Wystan/Wystan'
 import KathyPage from './pages/Kathy/Kathy'
+import ErikPage from './pages/Erik/Erik'
 
 import MengxuanPage from './pages/Mengxuan/Mengxuan'
 
@@ -21,7 +22,11 @@ function App() {
       <Route path="/Yanbo" exact component={YanboPage} />
       <Route path="/wystan" exact component={WystanPage} />
       <Route path="/kathy" exact component={KathyPage} />
+<<<<<<< HEAD
+      <Route path="/erik" exact component={ErikPage} />
+=======
       <Route path='/mengxuan' exact component={MengxuanPage} />
+>>>>>>> 06a7c82df83f929d31f537f93b1c50d9714fd405
       <Route component={ErrorPage} />
     </Switch>
   );

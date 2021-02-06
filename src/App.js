@@ -7,9 +7,7 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import DongyuPage from "./pages/Dongyu/Dongyu"
 import KangkangPage from "./pages/Kangkang/Kangkang"
 import YanboPage from "./pages/Yanbo/Yanbo"
-
-
-
+import WystanPage from './pages/Wystan/Wystan'
 
 function App() {
   return (
@@ -18,11 +16,7 @@ function App() {
       <Route path="/dongyu" exact component={DongyuPage} />
       <Route path="/Kangkang" exact component={KangkangPage} />
       <Route path="/Yanbo" exact component={YanboPage} />
-     
-
-
-
-
+      <Route path="/wystan" exact component={WystanPage} />
       <Route component={ErrorPage} />
     </Switch>
   );

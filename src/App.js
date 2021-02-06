@@ -9,6 +9,8 @@ import KangkangPage from "./pages/Kangkang/Kangkang"
 import WystanPage from './pages/Wystan/Wystan'
 import KathyPage from './pages/Kathy/Kathy'
 
+import MengxuanPage from './pages/Mengxuan/Mengxuan'
+
 function App() {
   return (
     <Switch>
@@ -17,6 +19,7 @@ function App() {
       <Route path="/Kangkang" exact component={KangkangPage} />
       <Route path="/wystan" exact component={WystanPage} />
       <Route path="/kathy" exact component={KathyPage} />
+      <Route path='/mengxuan' exact component={MengxuanPage} />
       <Route component={ErrorPage} />
     </Switch>
   );

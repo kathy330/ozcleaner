@@ -6,7 +6,6 @@ import getWebApi from '../Api/DongyuApi'
 
 export const getImage = () => axios.get(getWebApi());
 
-
 class Message extends React.Component {
   constructor(){
     super()

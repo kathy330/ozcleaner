@@ -1,6 +1,6 @@
 // import axios from 'axios';
 import React from 'react'
-import YanboApi from '../Api/YanboApi'
+import YanboApi from '../../api/yanbo/YanboApi'
 
 
 function YanboComponent(){

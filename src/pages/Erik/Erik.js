@@ -1,5 +1,5 @@
 import React from "react";
-import ErikComponent from "../../../public/ErikComponent";
+import ErikComponent from "../../components/Erik/ErikComponent";
 
 const ErikPage = () => (
   <ErikComponent />

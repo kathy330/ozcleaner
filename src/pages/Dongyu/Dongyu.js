@@ -1,6 +1,6 @@
 import './Dongyu.css';
 import React from "react";
-import DongyuComponent from "../../component/Dongyu/DongyuComponent"
+import DongyuComponent from "../../components/Dongyu/DongyuComponent"
 
 function DongyuPage(){
     return (

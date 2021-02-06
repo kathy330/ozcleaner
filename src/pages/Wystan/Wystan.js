@@ -1,5 +1,5 @@
 import React from "react";
-import WystanComponent from "../../component/Wystan/WystanComponent"
+import WystanComponent from "../../components/Wystan/WystanComponent"
 
 function WytanPage() {
     return <WystanComponent />

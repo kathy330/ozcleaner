@@ -1,5 +1,5 @@
 import React from 'react'
-import MengxuanComponent from '../../Component/MengxuanComponent'
+import MengxuanComponent from '../../component/MengxuanComponent'
 
 function MengxuanPage (){
     return <MengxuanComponent />

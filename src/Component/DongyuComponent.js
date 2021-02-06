@@ -17,19 +17,18 @@ class Message extends React.Component {
   componentDidMount(){
     this.getApi()
   }
-
-  async getApi() {
-    try {
-      const apiUrl = await (await getImage()).config.url;
-      console.log(apiUrl)
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-      const {message} = data// 解构
+  
+  getApi = async() =>{
+    try{
+      const response = await (getImage())
+      console.log(response)
+      const {data:{message}} = response
+      console.log(message)
       this.setState({
-        webMessage:message
+            webMessage:message
       })
     }catch{(e) => {
-      console.error(e)
+        console.error(e)
     }}
   }
 

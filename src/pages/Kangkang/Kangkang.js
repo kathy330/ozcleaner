@@ -1,6 +1,6 @@
 import './Kangkang.css';
 import React from "react";
-import KangkangComponent from "../../component/Dongyu/KangkangComponent";
+import KangkangComponent from "../../component/Kangkang/KangkangComponent";
 
 function KangkangPage(){
     return (

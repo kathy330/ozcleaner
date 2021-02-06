@@ -25,7 +25,7 @@ function App() {
       <Route path="/kathy" exact component={KathyPage} />
       <Route path="/erik" exact component={ErikPage} />
       <Route path='/mengxuan' exact component={MengxuanPage} />
-      <Route path="/Olivia" exact component={OliviaPage}/>
+      <Route path="/Olivia" exact component={OliviaPage} />
 
       
       <Route component={ErrorPage} />

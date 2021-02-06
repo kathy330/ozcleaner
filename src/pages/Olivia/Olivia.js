@@ -1,5 +1,5 @@
 import { React } from "react";
-import OliviaComponent from "../../component/Olivia/OliviaComponent";
+import OliviaComponent from "../../components/Olivia/OliviaComponent";
 
 function Olivia() {
   return (

@@ -8,6 +8,7 @@ import DongyuPage from "./pages/Dongyu/Dongyu"
 import KangkangPage from "./pages/Kangkang/Kangkang"
 import WystanPage from './pages/Wystan/Wystan'
 import KathyPage from './pages/Kathy/Kathy'
+import ErikPage from './pages/Erik/Erik'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/Kangkang" exact component={KangkangPage} />
       <Route path="/wystan" exact component={WystanPage} />
       <Route path="/kathy" exact component={KathyPage} />
+      <Route path="/erik" exact component={ErikPage} />
       <Route component={ErrorPage} />
     </Switch>
   );

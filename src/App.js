@@ -22,11 +22,10 @@ function App() {
       <Route path="/Yanbo" exact component={YanboPage} />
       <Route path="/wystan" exact component={WystanPage} />
       <Route path="/kathy" exact component={KathyPage} />
-<<<<<<< HEAD
       <Route path="/erik" exact component={ErikPage} />
-=======
       <Route path='/mengxuan' exact component={MengxuanPage} />
->>>>>>> 06a7c82df83f929d31f537f93b1c50d9714fd405
+
+      
       <Route component={ErrorPage} />
     </Switch>
   );

@@ -1,8 +1,12 @@
 // import axios from 'axios';
+
 /* eslint-disable */
 import React  from 'react';
 import axios from 'axios';
-import getWebApi from '../../Api/yanbo/YanboApi'
+import getWebApi from '../../api/yanbo/YanboApi'
+
+
+
 
 export const getImage = () => axios.get(getWebApi());
 

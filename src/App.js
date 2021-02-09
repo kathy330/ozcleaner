@@ -11,7 +11,6 @@ import WystanPage from './pages/Wystan/Wystan'
 import KathyPage from './pages/Kathy/Kathy'
 import ErikPage from './pages/Erik/Erik'
 import OliviaPage from './pages/Olivia/Olivia'
-
 import MengxuanPage from './pages/Mengxuan/Mengxuan'
 
 function App() {
@@ -26,7 +25,6 @@ function App() {
       <Route path="/erik" exact component={ErikPage} />
       <Route path='/mengxuan' exact component={MengxuanPage} />
       <Route path="/Olivia" exact component={OliviaPage} />
-
       
       <Route component={ErrorPage} />
     </Switch>

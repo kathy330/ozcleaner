@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios from 'axios';
 import React  from 'react';
 import Api from '../../api/Wystan/WystanApi'

@@ -1,10 +1,8 @@
-import React from 'react'
+const YanboKey = process.env.REACT_APP_YANBO_KEY;
 
-function YanboApi(){
-    return(
-      <h2>This is Yanbo API from `../Api/YanboApp`</h2>
-    )
-  }
+const getWebApi = () => `https://dog.ceo/api/breed/${YanboKey}/images/random`;
 
 
-export default YanboApi
+
+
+export default getWebApi

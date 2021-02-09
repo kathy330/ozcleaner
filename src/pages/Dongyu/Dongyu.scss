@@ -1,0 +1,26 @@
+.dongyuPage{
+    
+    &__image-api{
+
+        & h2:nth-child(1){
+            color:darkorange
+        }
+        & img:nth-child(2){
+            width: 35rem;
+            height: 100%;
+        }
+    }
+
+    &__backend-message{
+
+        & h2:nth-child(1){
+            color:darkgoldenrod;
+        }
+
+        & span{
+            font-size: 2rem;
+
+        }
+
+    }
+}

@@ -3,7 +3,7 @@
 /* eslint-disable */
 import React  from 'react';
 import axios from 'axios';
-import getWebApi from '../../api/yanbo/YanboApi'
+import getWebApi from '../../api/Yanbo/YanboApi'
 
 
 

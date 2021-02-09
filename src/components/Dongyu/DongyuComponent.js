@@ -8,7 +8,7 @@ import {getWebApi,getBackendApi1,getBackendApi2} from '../../api/Dongyu/DongyuAp
 export const getImage = () => axios.get(getWebApi());
 export const getName = () => axios.get(getBackendApi1());
 export const getBookName = () => axios.get(getBackendApi2());
-
+// export const getPostName = () => axios.get(postBackendApi());
 
 class Message extends React.Component {
   constructor(){
@@ -17,7 +17,7 @@ class Message extends React.Component {
       webMessage:'',
       backEndNameMessage:'',
       backEndBookMessage:'',
-      // backEndPostMessage:''
+      backEndPostMessage:''
     }
   }
 
@@ -25,7 +25,7 @@ class Message extends React.Component {
     this.getImageApi()
     this.getUserName()
     this.getBookName()
-    // this.getPostInfo()
+    this.getPostInfo()
   }
   
   // 1.直接从网络api获取信息
@@ -74,25 +74,26 @@ class Message extends React.Component {
   }
 
   // 4.从后端api POST
-  // getPostInfo = async() => {
-  //   const response = await axios.post("http://localhost:8000/dy/users");
-  //   const {status} = response;
-  //   console.log(response.data)
+  getPostInfo = async() => {
+    const response = await axios.post("http://localhost:8000/dy/users");
+    const {status} = response;
+    console.log(response.data) // 如何能得到postman里面post的数据呢？
   
-  //   if(status===200)
-  //   {
-  //     const {data} = response;
-  //     this.setState({
-  //       backEndPostMessage:data
-  //     });
-  //   }
-  // }
+    if(status===200)
+    {
+      const {data} = response;
+      console.log(data)
+      this.setState({
+        backEndPostMessage:data
+      });
+    }
+  }
 
   render(){
     const{webMessage} = this.state
     const{backEndNameMessage} = this.state
     const{backEndBookMessage} = this.state
-    // const{backEndPostMessage} = this.state
+    const{backEndPostMessage} = this.state
     return(
       <>
         <div className="dongyuPage__image-api">
@@ -107,7 +108,6 @@ class Message extends React.Component {
             {backEndNameMessage}
           </span>
           <br />
-          <br />
           <span>
             Message2:
             {backEndBookMessage[0]}
@@ -116,12 +116,11 @@ class Message extends React.Component {
             ,
             {backEndBookMessage[2]}
           </span>
-          {/* <br />
           <br />
           <span>
             Message3(POST message):
             {backEndPostMessage}
-          </span> */}
+          </span>
         </div>
         
       </>

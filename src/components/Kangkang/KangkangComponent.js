@@ -1,11 +1,39 @@
+/* eslint-disable */
+import axios from "axios";
 import React from "react";
+import Api from "../../api/Kangkang/KangkangApi";
 
-const Welcome = () => (
-  <div className="Welcome">
-    <h1>(From KangkangComponent.js) Hi! This line is from Kangkang&apos;s component.</h1>
-    <h2>(From KangkangComponent.js)You can check it from: </h2>
-    <h2>(From KangkangComponent.js)src/Component/KangkangComponent.js</h2>
-  </div>
-)
+class KangkangComponent extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      image: ""
+    }
+  }
 
-export default Welcome;
+  componentDidMount() {
+    this.getApi();
+  }
+
+  getApi = async() => {
+    try {
+      const response = await axios.get(Api());
+      const image = response.data.message;
+      this.setState({
+        image: image
+      })
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  render() {
+    return(
+      <div>
+        <img src = {this.state.image} alt="dogs" />
+      </div>
+    )
+  }
+}
+
+export default KangkangComponent;

@@ -103,7 +103,7 @@ class Message extends React.Component {
 
         <div className="dongyu-page__backend-message">
           <h2>2. Get the message from back-end:</h2>
-          <br></br>
+          <br />
           <span>
             Message1:
             {backEndNameMessage}

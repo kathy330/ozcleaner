@@ -30,10 +30,11 @@ class WystanComponent extends React.Component {
     }
 
     render() {
+        const {image} = this.state;
         return (
           <div> 
             This is built from wystan
-            <img src={this.state.image} alt="dog" />
+            <img src={image} alt="dog" />
           </div>
 )
     }

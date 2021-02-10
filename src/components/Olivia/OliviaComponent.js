@@ -1,40 +1,47 @@
-import React, { Component } from "react";
 
-import axios from "axios";
 
-class OliviaComponent extends Component {
-  constructor() {
-    super();
-    this.state = {
-    result:"",
-    };
-    this.loadInfo = this.loadInfo.bind(this);
-  }
+import React from "react";
+import axios from 'axios';
+import getWebApi from '../../api/Olivia/OliviaApi'
 
-  componentDidMount() {
-    this.loadInfo();
-  }
 
-  async loadInfo() {
-    const promise = await axios.get("http://localhost:8000/users");
-    const {status} = promise;
-  
-    if(status===200)
-    {
-      const {data} = promise;
-      this.setState({result:data});
+// export const getImage = () => axios.get(getWebApi());
+
+class OliviaComponent extends React.Component {
+  constructor(){
+    super()
+    this.state={
+      ImageURL:''
     }
   }
 
-  render() {
-    const {result} = this.state;
+  componentDidMount(){
+    this.getApi()
+  }
+  
+  getApi = async() =>{
+    try{
+      const response = await axios.get(getWebApi())
+      const {data:{message}} = response
+      this.setState({
+            ImageURL:message
+      })
+    } catch(e){
+        // eslint-disable-next-line no-console
+        console.error(e)
+    }
+  }
+
+  render(){
+    const{ImageURL} = this.state
     return(
       <div>
-        <h1>Result</h1>
-        {result}
+        <h1>This is a view created by Oliviacomponent</h1>
+        <img src={ImageURL} alt=" " />
       </div>
     )
   }
 }
 
-export default OliviaComponent;
+export default OliviaComponent
+

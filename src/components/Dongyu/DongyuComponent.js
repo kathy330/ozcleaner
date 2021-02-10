@@ -1,25 +1,35 @@
 import React  from 'react';
 import axios from 'axios';
-import getWebApi from '../../api/Dongyu/DongyuApi'
+import {getWebApi,getBackendApi1,getBackendApi2} from '../../api/Dongyu/DongyuApi'
 
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 
 export const getImage = () => axios.get(getWebApi());
+export const getName = () => axios.get(getBackendApi1());
+export const getBookName = () => axios.get(getBackendApi2());
+// export const getPostName = () => axios.get(postBackendApi());
 
 class Message extends React.Component {
   constructor(){
     super()
     this.state={
-      webMessage:''
+      webMessage:'',
+      backEndNameMessage:'',
+      backEndBookMessage:'',
+      backEndPostMessage:''
     }
   }
 
   componentDidMount(){
-    this.getApi()
+    this.getImageApi()
+    this.getUserName()
+    this.getBookName()
+    this.getPostInfo()
   }
   
-  getApi = async() =>{
+  // 1.直接从网络api获取信息
+  getImageApi = async() =>{
     try{
       const response = await (getImage())
       console.log(response)
@@ -33,14 +43,87 @@ class Message extends React.Component {
     }}
   }
 
+  // 2.从后端api GET
+  getUserName = async() => {
+    const response = await (getName())
+    const {status} = response;
+    console.log(response.data)
+
+    if(status===200)
+    {
+      const {data} = response;
+      this.setState({
+        backEndNameMessage:data
+      });
+    }
+  }
+
+  // 3.从后端api GET
+  getBookName = async() => {
+    const response = await (getBookName());
+    const {status} = response;
+    console.log(response.data)
+  
+    if(status===200)
+    {
+      const {data} = response;
+      this.setState({
+        backEndBookMessage:data
+      });
+    }
+  }
+
+  // 4.从后端api POST
+  getPostInfo = async() => {
+    const response = await axios.post("http://localhost:8000/dy/users");
+    const {status} = response;
+    console.log(response.data) // 如何能得到postman里面post的数据呢？
+  
+    if(status===200)
+    {
+      const {data} = response;
+      console.log(data)
+      this.setState({
+        backEndPostMessage:data
+      });
+    }
+  }
+
   render(){
     const{webMessage} = this.state
+    const{backEndNameMessage} = this.state
+    const{backEndBookMessage} = this.state
+    const{backEndPostMessage} = this.state
     return(
-      <div>
-        <h2>This message comes from Component floder/DongyuComponent </h2>
-        <h2>Get the image from  api:</h2>
-        <img src={webMessage} alt="dog" />
-      </div>
+      <>
+        <div className="dongyuPage__image-api">
+          <h2>1. Get the image from api:</h2>
+          <img src={webMessage} alt="dog" />
+        </div>
+
+        <div className="dongyuPage__backend-message">
+          <h2>2. Get the message from back-end:</h2>
+          <span>
+            Message1:
+            {backEndNameMessage}
+          </span>
+          <br />
+          <span>
+            Message2:
+            {backEndBookMessage[0]}
+            ,
+            {backEndBookMessage[1]}
+            ,
+            {backEndBookMessage[2]}
+          </span>
+          <br />
+          <span>
+            Message3(POST message):
+            {backEndPostMessage}
+          </span>
+        </div>
+        
+      </>
     )
   }
 }

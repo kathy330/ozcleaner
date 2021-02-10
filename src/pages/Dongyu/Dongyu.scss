@@ -1,26 +1,23 @@
-.dongyuPage{
-    
-    &__image-api{
-
-        & h2:nth-child(1){
-            color:darkorange
-        }
-        & img:nth-child(2){
-            width: 35rem;
-            height: 100%;
-        }
+/* stylelint-disable max-nesting-depth*/
+.dongyu-page {
+  &__image-api {
+    h2:nth-child(1) {
+      color: rgb(250, 137, 0);
     }
 
-    &__backend-message{
-
-        & h2:nth-child(1){
-            color:darkgoldenrod;
-        }
-
-        & span{
-            font-size: 2rem;
-
-        }
-
+    img:nth-child(2) {
+      height: 100%;
+      width: 35rem;
     }
+  }
+
+  &__backend-message {
+    h2:nth-child(1) {
+      color: rgb(180, 132, 10);
+    }
+
+    span {
+      font-size: 2rem;
+    }
+  }
 }

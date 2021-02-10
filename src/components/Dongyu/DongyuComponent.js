@@ -96,12 +96,12 @@ class Message extends React.Component {
     const{backEndPostMessage} = this.state
     return(
       <>
-        <div className="dongyuPage__image-api">
+        <div className="dongyu-page__image-api">
           <h2>1. Get the image from api:</h2>
           <img src={webMessage} alt="dog" />
         </div>
 
-        <div className="dongyuPage__backend-message">
+        <div className="dongyu-page__backend-message">
           <h2>2. Get the message from back-end:</h2>
           <span>
             Message1:

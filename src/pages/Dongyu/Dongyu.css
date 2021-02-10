@@ -1,16 +1,17 @@
-.dongyuPage__image-api h2:nth-child(1) {
-  color: darkorange;
+/* stylelint-disable max-nesting-depth*/
+.dongyu-page__image-api h2:nth-child(1) {
+  color: #fa8900;
 }
 
-.dongyuPage__image-api img:nth-child(2) {
-  width: 35rem;
+.dongyu-page__image-api img:nth-child(2) {
   height: 100%;
+  width: 35rem;
 }
 
-.dongyuPage__backend-message h2:nth-child(1) {
-  color: darkgoldenrod;
+.dongyu-page__backend-message h2:nth-child(1) {
+  color: #b4840a;
 }
 
-.dongyuPage__backend-message span {
+.dongyu-page__backend-message span {
   font-size: 2rem;
 }

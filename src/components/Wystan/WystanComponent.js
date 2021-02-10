@@ -1,4 +1,3 @@
-/* eslint-disable */
 import axios from 'axios';
 import React  from 'react';
 import Api from '../../api/Wystan/WystanApi'
@@ -22,7 +21,7 @@ class WystanComponent extends React.Component {
             const image = response.data.message;
             console.log(image);
             this.setState({
-                image:image
+                image
             })
             console.log(image)
         } catch (e) {
@@ -31,9 +30,12 @@ class WystanComponent extends React.Component {
     }
 
     render() {
-        return <div> This is built from wystan
-            <img src = {this.state.image} alt = "dog" />
-        </div>
+        return (
+          <div> 
+            This is built from wystan
+            <img src={this.state.image} alt="dog" />
+          </div>
+)
     }
 }
 

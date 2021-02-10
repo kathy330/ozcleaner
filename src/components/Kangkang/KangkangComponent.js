@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios from "axios";
 import React from "react";
 import Api from "../../api/Kangkang/KangkangApi";
@@ -29,7 +30,7 @@ class KangkangComponent extends React.Component {
   render() {
     return(
       <div>
-        <img src = {this.state.image} alt="dogs" />
+        <img src = {this.state.image} alt="random" />
       </div>
     )
   }

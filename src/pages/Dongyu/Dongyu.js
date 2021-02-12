@@ -1,6 +1,6 @@
-import './Dongyu.css';
-import React from "react";
-import DongyuComponent from "../../components/Dongyu/DongyuComponent";
+import './Dongyu.css'
+import React from "react"
+import DongyuComponent from "../../components/Dongyu/DongyuComponent"
 
 
 function DongyuPage(){
@@ -12,4 +12,4 @@ function DongyuPage(){
     )
 }
 
-export default DongyuPage;
+export default DongyuPage

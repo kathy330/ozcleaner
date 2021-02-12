@@ -1,9 +1,9 @@
 // import logo from './logo.svg';
-import './App.css';
-import React from "react";
-import {Route, Switch} from "react-router";
-import Home from "./pages/Home/Home";
-import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import './App.css'
+import React from "react"
+import {Route, Switch} from "react-router"
+import Home from "./pages/Home/Home"
+import ErrorPage from "./pages/ErrorPage/ErrorPage"
 import DongyuPage from "./pages/Dongyu/Dongyu"
 import KangkangPage from "./pages/Kangkang/Kangkang"
 import YanboPage from "./pages/Yanbo/Yanbo"
@@ -28,7 +28,7 @@ function App() {
       
       <Route component={ErrorPage} />
     </Switch>
-  );
+  )
 }
 
-export default App;
+export default App

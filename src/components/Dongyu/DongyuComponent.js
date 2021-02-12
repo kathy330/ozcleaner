@@ -1,13 +1,12 @@
-import React  from 'react';
-import axios from 'axios';
+import React  from 'react'
+import axios from 'axios'
 import {getWebApi,getBackendApi1,getBackendApi2} from '../../api/Dongyu/DongyuApi'
 
 /* eslint-disable no-unused-expressions */
-/* eslint-disable no-console */
 
-export const getImage = () => axios.get(getWebApi());
-export const getName = () => axios.get(getBackendApi1());
-export const getBookName = () => axios.get(getBackendApi2());
+export const getImage = () => axios.get(getWebApi())
+export const getName = () => axios.get(getBackendApi1())
+export const getBookName = () => axios.get(getBackendApi2())
 // export const getPostName = () => axios.get(postBackendApi());
 
 class Message extends React.Component {
@@ -46,46 +45,46 @@ class Message extends React.Component {
   // 2.从后端api GET
   getUserName = async() => {
     const response = await (getName())
-    const {status} = response;
+    const {status} = response
     console.log(response.data)
 
     if(status===200)
     {
-      const {data} = response;
+      const {data} = response
       this.setState({
         backEndNameMessage:data
-      });
+      })
     }
   }
 
   // 3.从后端api GET
   getBookName = async() => {
-    const response = await (getBookName());
-    const {status} = response;
+    const response = await (getBookName())
+    const {status} = response
     console.log(response.data)
   
     if(status===200)
     {
-      const {data} = response;
+      const {data} = response
       this.setState({
         backEndBookMessage:data
-      });
+      })
     }
   }
 
   // 4.从后端api POST
   getPostInfo = async() => {
-    const response = await axios.post("http://localhost:8000/dy/users");
-    const {status} = response;
+    const response = await axios.post("http://localhost:8000/dy/users")
+    const {status} = response
     console.log(response.data) // 如何能得到postman里面post的数据呢？
   
     if(status===200)
     {
-      const {data} = response;
+      const {data} = response
       console.log(data)
       this.setState({
         backEndPostMessage:data
-      });
+      })
     }
   }
 

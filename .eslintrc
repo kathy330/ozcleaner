@@ -15,6 +15,9 @@
     "prefer-promise-reject-errors": ["off"],
     "react/jsx-filename-extension": ["off"],
     "react/prop-types": ["off"],
-    "no-return-assign": ["off"]
+    "no-return-assign": ["off"],
+    //2代表报错，不能运行；1代表warn可以运行,但是会提示在控制台
+    "semi": [1, "never"], //js文件 结尾无分号
+    "no-console":["off"] //暂时关闭noconsole 的 warn
   }
 } 

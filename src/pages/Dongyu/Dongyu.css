@@ -12,6 +12,11 @@
   color: #b4840a;
 }
 
-.dongyu-page__backend-message span {
-  font-size: 2rem;
+.dongyu-page__backend-message ul {
+  list-style: none;
+}
+
+.dongyu-page__backend-message span,
+.dongyu-page__backend-message li {
+  font-size: 1.3rem;
 }

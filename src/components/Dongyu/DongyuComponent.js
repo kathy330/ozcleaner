@@ -95,7 +95,7 @@ class Message extends React.Component {
         // dbMessage:data[0].email //取回email
         // dbMessage:JSON.stringify(data[0]) // 如果取回整个对象需要加上 JSON.stringify(),否则报错
         dbMessage:data[0],// 取回整个对象，在下面render先转化成数组在用map遍历
-        dbAddress:data[0].address
+        dbAddress:data[0].address // 取回address对象，下面转化成数组在map遍历
       })
     }
   }
@@ -110,7 +110,7 @@ class Message extends React.Component {
     {
       const {data} = response
       this.setState({
-        dbRegRoom:data[0]
+        dbRegRoom:data[0] // 取回整个对象，在下面render先转化成数组在用map遍历
       })
     }
   }
@@ -125,7 +125,7 @@ class Message extends React.Component {
     {
       const {data} = response
       this.setState({
-        dbEndRoom:data[0]
+        dbEndRoom:data[0] // 取回整个对象，在下面render先转化成数组在用map遍历
       })
     }
   }
@@ -182,7 +182,9 @@ class Message extends React.Component {
           <h2>3.Get User List Table By User Id (From MongoDB):</h2>
           <ul>
             {result.map((item)=>(
-              <li key={item[0]}>
+              // Keys do not have to be unique globally. 
+              // They just need to be unique across sibling elements.
+              <li key={item[0]}> 
                 {item[0]} 
                 {' : '}
                 {item[1]}

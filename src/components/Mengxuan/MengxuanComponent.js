@@ -17,13 +17,13 @@ class MengxuanComponent extends React.Component{
         try {
             const response = await axios.get(getWebApi())
             // console.log(response);
-            const image = response.data.message;
+            const image = response.data.message
             // console.log(image);
             this.setState({
                 webImage:image
             })
         } catch (e) {
-            console.log(e);
+            console.log(e)
         }
 
     }
@@ -62,4 +62,4 @@ class MengxuanComponent extends React.Component{
 
 
 }
-export default MengxuanComponent;
+export default MengxuanComponent

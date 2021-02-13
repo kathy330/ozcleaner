@@ -1,6 +1,6 @@
-import './Kangkang.css';
-import React from "react";
-import KangkangComponent from "../../components/Kangkang/KangkangComponent";
+import './Kangkang.css'
+import React from "react"
+import KangkangComponent from "../../components/Kangkang/KangkangComponent"
 
 function KangkangPage(){
     return (
@@ -13,4 +13,4 @@ function KangkangPage(){
     )
 }
 
-export default KangkangPage;
+export default KangkangPage

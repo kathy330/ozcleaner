@@ -5,4 +5,4 @@ function MengxuanPage (){
     return <MengxuanComponent />
 }
 
-export default MengxuanPage;
+export default MengxuanPage

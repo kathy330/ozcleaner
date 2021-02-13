@@ -4,7 +4,7 @@ import getWebApi from '../../api/Erik/ErikApi'
 
 class ErikComponent extends React.Component {
     constructor(){
-      super();
+      super()
       this.state = {
           displayImgUrl: ''
       }
@@ -18,7 +18,7 @@ class ErikComponent extends React.Component {
             displayImgUrl: message
         })
     } catch (e) {
-        console.log(e);
+        console.log(e)
     }
   }
 
@@ -38,4 +38,4 @@ class ErikComponent extends React.Component {
 }
 
 
-export default ErikComponent;
+export default ErikComponent

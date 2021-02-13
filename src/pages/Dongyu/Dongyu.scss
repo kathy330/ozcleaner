@@ -15,9 +15,18 @@
     h2:nth-child(1) {
       color: rgb(180, 132, 10);
     }
+    
+    // h2:nth-child(7) {
+    //   color: rgb(24, 122, 207);
+    // }
+    
+    ul {
+      list-style: none;
+    }
 
-    span {
-      font-size: 2rem;
+    span,
+    li {
+      font-size: 1.3rem;
     }
   }
 }

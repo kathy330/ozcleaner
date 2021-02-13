@@ -4,7 +4,7 @@ import getWebApi from '../../api/Kathy/KathyApi'
 
 class KathyComponent extends React.Component{
     constructor(){
-        super();
+        super()
         this.state = {
             displayImgUrl: ''
         }

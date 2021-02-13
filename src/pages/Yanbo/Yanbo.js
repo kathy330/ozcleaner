@@ -1,5 +1,5 @@
-import React from "react";
-import YanboComponent from "../../components/Yanbo/YanboComponent";
+import React from "react"
+import YanboComponent from "../../components/Yanbo/YanboComponent"
 
 function YanboPage(){
     return (
@@ -10,4 +10,4 @@ function YanboPage(){
     )
 }
 
-export default YanboPage;
+export default YanboPage

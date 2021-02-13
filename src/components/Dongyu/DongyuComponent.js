@@ -74,7 +74,7 @@ class Message extends React.Component {
 
   // 4.从后端api POST
   getPostInfo = async() => {
-    const response = await axios.post("http://localhost:8000/dy/users")
+    const response = await axios.get("http://localhost:8000/dy/users")
     const {status} = response
     console.log(response.data) // 如何能得到postman里面post的数据呢？
   

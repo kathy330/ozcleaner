@@ -2,6 +2,6 @@
 
 // const getWebApi = () => `https://dog.ceo/api/breed/images/random/${OliviaKey}`;
 
-const getWebApi = () => "https://dog.ceo/api/breeds/image/random";
+const getWebApi = () => "https://dog.ceo/api/breeds/image/random"
 
 export default getWebApi

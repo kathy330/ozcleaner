@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { getWebApi, getBackendApi } from '../../api/Kathy/KathyApi';
+import { getWebApi, getBackendApi } from '../../api/Kathy/KathyApi'
 
 class KathyComponent extends React.Component{
     constructor(){
@@ -26,11 +26,11 @@ class KathyComponent extends React.Component{
     
     getBackendCtx = async() =>{
         try{
-            const res = await axios.get(getBackendApi());
+            const res = await axios.get(getBackendApi())
             const { data } = res
             this.setState({
-              backendCtx: data,
-            });
+              backendCtx: JSON.stringify(data),
+            })
         } catch (e){
             // eslint-disable-next-line
             console.log(e)

@@ -1,6 +1,7 @@
 const KathyKey = process.env.REACT_APP_KATHY_KEY
 
 const getWebApi = () => `https://dog.ceo/api/breeds/image/${KathyKey}`
-const getBackendApi = () => 'http://localhost:8000/kathy/staff'
+const getOneEmployee = (id) => `http://localhost:8000/employees/${id}`
+const getAllEmployees = () => 'http://localhost:8000/employees/'
 
-export { getWebApi , getBackendApi}
+export { getWebApi, getOneEmployee, getAllEmployees }

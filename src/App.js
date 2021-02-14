@@ -12,6 +12,7 @@ import KathyPage from './pages/Kathy/Kathy'
 import ErikPage from './pages/Erik/Erik'
 import OliviaPage from './pages/Olivia/Olivia'
 import MengxuanPage from './pages/Mengxuan/Mengxuan'
+import YanboForm from './pages/Yanbo/YanboForm'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/dongyu" exact component={DongyuPage} />
       <Route path="/Kangkang" exact component={KangkangPage} />
       <Route path="/Yanbo" exact component={YanboPage} />
+      <Route path="/Yanbo/form" exact component={YanboForm} />
       <Route path="/wystan" exact component={WystanPage} />
       <Route path="/kathy" exact component={KathyPage} />
       <Route path="/erik" exact component={ErikPage} />

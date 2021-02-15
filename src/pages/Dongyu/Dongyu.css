@@ -20,3 +20,11 @@
 .dongyu-page__backend-message li {
   font-size: 1.3rem;
 }
+
+.get-regular-list {
+  color: #2353ac;
+}
+
+.get-regular-list li {
+  font-size: 1.5rem;
+}

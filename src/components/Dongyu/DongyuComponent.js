@@ -20,8 +20,8 @@ class Message extends React.Component {
       webMessage:'',
       backEndNameMessage:'',
       backEndBookMessage:'',
-      dbMessage:'',
-      dbAddress:'',
+      // dbMessage:'',
+      // dbAddress:'',
       dbRegRoom:'',
       dbEndRoom:''
     }
@@ -31,7 +31,7 @@ class Message extends React.Component {
     this.getImageApi()
     this.getUserName()
     this.getBookName()
-    this.getUserDBInfo()
+    // this.getUserDBInfo()
     this.getRegDBInfo()
     this.getEndDBInfo()
   }
@@ -82,23 +82,23 @@ class Message extends React.Component {
   }
 
   // 4.从MongoDB GET User List by id
-  getUserDBInfo = async() => {
-    const response = await (getUserData())
-    const {status} = response
-    // console.log(response)
-    console.log(response.data[0]) // 全部信息
-    // console.log(response.data[0].email) // 取回email
-    if(status===200)
-    {
-      const {data} = response
-      this.setState({
-        // dbMessage:data[0].email //取回email
-        // dbMessage:JSON.stringify(data[0]) // 如果取回整个对象需要加上 JSON.stringify(),否则报错
-        dbMessage:data[0],// 取回整个对象，在下面render先转化成数组在用map遍历
-        dbAddress:data[0].address // 取回address对象，下面转化成数组在map遍历
-      })
-    }
-  }
+  // getUserDBInfo = async() => {
+  //   const response = await (getUserData())
+  //   const {status} = response
+  //   // console.log(response)
+  //   console.log(response.data[0]) // 全部信息
+  //   // console.log(response.data[0].email) // 取回email
+  //   if(status===200)
+  //   {
+  //     const {data} = response
+  //     this.setState({
+  //       // dbMessage:data[0].email //取回email
+  //       // dbMessage:JSON.stringify(data[0]) // 如果取回整个对象需要加上 JSON.stringify(),否则报错
+  //       dbMessage:data[0],// 取回整个对象，在下面render先转化成数组在用map遍历
+  //       dbAddress:data[0].address // 取回address对象，下面转化成数组在map遍历
+  //     })
+  //   }
+  // }
 
   // 5.从MongoDB get Regular room list by task id
   getRegDBInfo = async() => {
@@ -134,14 +134,14 @@ class Message extends React.Component {
   render(){
     const{webMessage,backEndNameMessage,backEndBookMessage} = this.state
     // 1. 取回User List
-    const{dbMessage} = this.state
-    const result = Object.entries(dbMessage)// 先把object转化成Array数组，下面才可以map遍历
-    result.shift() // 移除第一个address对象，因为这里面是Object，无法直接打印
-    // console.log(result) // 此时result是移除address后的数组了
+    // const{dbMessage} = this.state
+    // const result = Object.entries(dbMessage)// 先把object转化成Array数组，下面才可以map遍历
+    // result.shift() // 移除第一个address对象，因为这里面是Object，无法直接打印
+    // // console.log(result) // 此时result是移除address后的数组了
 
-    const{dbAddress} = this.state // address因为有嵌套，放在这里单独打印
-    const address = Object.entries(dbAddress) // 先把object转化成Array数组，下面才可以map遍历
-    // console.log(address)
+    // const{dbAddress} = this.state // address因为有嵌套，放在这里单独打印
+    // const address = Object.entries(dbAddress) // 先把object转化成Array数组，下面才可以map遍历
+    // // console.log(address)
 
     // 2. 取回RegRoom List
     const{dbRegRoom} = this.state
@@ -178,7 +178,7 @@ class Message extends React.Component {
           </span>
         </div>
 
-        <div className="dongyu-page__backend-message">
+        {/* <div className="dongyu-page__backend-message">
           <h2>3.Get User List Table By User Id (From MongoDB):</h2>
           <ul>
             {result.map((item)=>(
@@ -200,9 +200,9 @@ class Message extends React.Component {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
 
-        <div className="dongyu-page__backend-message">
+        <div className="dongyu-page__backend-message get-regular-list">
           <h2>4.Get Regular Order List Table By Task Id (From MongoDB):</h2>
           <ul>
             {regRoomList.map((item)=>(
@@ -215,7 +215,7 @@ class Message extends React.Component {
           </ul>
         </div>
 
-        <div className="dongyu-page__backend-message">
+        <div className="dongyu-page__backend-message get-end-list">
           <h2>5.Get End of Lease Order List Table By Task Id (From MongoDB):</h2>
           <ul>
             {endRoomList.map((item)=>(
@@ -227,6 +227,9 @@ class Message extends React.Component {
             ))}
           </ul>
         </div>
+      
+        <div className="dongyu-page__backend-message send-post" /> 
+      
       </>
     )
   }

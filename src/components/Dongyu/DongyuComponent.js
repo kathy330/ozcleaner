@@ -23,7 +23,8 @@ class Message extends React.Component {
       // dbMessage:'',
       // dbAddress:'',
       dbRegRoom:'',
-      dbEndRoom:''
+      dbEndRoom:'',
+      dbTaskId:''
     }
   }
 
@@ -32,7 +33,7 @@ class Message extends React.Component {
     this.getUserName()
     this.getBookName()
     // this.getUserDBInfo()
-    this.getRegDBInfo()
+    // this.getRegDBInfo()
     this.getEndDBInfo()
   }
   
@@ -101,19 +102,19 @@ class Message extends React.Component {
   // }
 
   // 5.从MongoDB get Regular room list by task id
-  getRegDBInfo = async() => {
-    const response = await (getRegRoomData())
-    const {status} = response
-    // console.log(response)
-    console.log(response.data[0]) // 全部信息
-    if(status===200)
-    {
-      const {data} = response
-      this.setState({
-        dbRegRoom:data[0] // 取回整个对象，在下面render先转化成数组在用map遍历
-      })
-    }
-  }
+  // getRegDBInfo = async() => {
+  //   const response = await (getRegRoomData())
+  //   const {status} = response
+  //   // console.log(response)
+  //   console.log(response.data[0]) // 全部信息
+  //   if(status===200)
+  //   {
+  //     const {data} = response
+  //     this.setState({
+  //       dbRegRoom:data[0] // 取回整个对象，在下面render先转化成数组在用map遍历
+  //     })
+  //   }
+  // }
 
   // 6.从MongoDB get End of room list by task id
   getEndDBInfo = async() => {
@@ -130,6 +131,37 @@ class Message extends React.Component {
     }
   }
 
+    // 7.用前端信息搜索DB数据库
+    submitHandler = (e) => {
+      e.preventDefault()
+      const {dbTaskId} = this.state
+  
+      axios.get(`http://localhost:8000/endOfLease/${dbTaskId}`)// 对koa传参
+      .then(response=>{
+          console.log(response)
+          const {status} = response
+          if(status===200) {
+            const {data} = response
+            this.setState({
+              dbRegRoom:data[0] // 取回整个对象，在下面render先转化成数组在用map遍历
+            })
+          }
+      })
+      .catch(error => { // 因为定义了ctx.status = 404;所以直接会走到这里，不执行上面的then
+          console.log(error)
+          this.setState({
+            dbRegRoom:{"DATA":"Not found"}
+          })
+      })
+  
+    }
+  
+    changeHandler = (e) => {
+      this.setState({
+        dbTaskId : e.target.value
+      })
+    }
+
 
   render(){
     const{webMessage,backEndNameMessage,backEndBookMessage} = this.state
@@ -143,7 +175,7 @@ class Message extends React.Component {
     // const address = Object.entries(dbAddress) // 先把object转化成Array数组，下面才可以map遍历
     // // console.log(address)
 
-    // 2. 取回RegRoom List
+    // 2. 取回Reg Room List
     const{dbRegRoom} = this.state
     const regRoomList = Object.entries(dbRegRoom)// 先把object转化成Array数组，下面才可以map遍历
     // console.log(regRoomList)
@@ -202,19 +234,6 @@ class Message extends React.Component {
           </ul>
         </div> */}
 
-        <div className="dongyu-page__backend-message get-regular-list">
-          <h2>4.Get Regular Order List Table By Task Id (From MongoDB):</h2>
-          <ul>
-            {regRoomList.map((item)=>(
-              <li key={item[0]}>
-                {item[0]}
-                {' : '}
-                {item[1]}
-              </li>
-            ))}
-          </ul>
-        </div>
-
         <div className="dongyu-page__backend-message get-end-list">
           <h2>5.Get End of Lease Order List Table By Task Id (From MongoDB):</h2>
           <ul>
@@ -227,9 +246,34 @@ class Message extends React.Component {
             ))}
           </ul>
         </div>
+
+        <div className="dongyu-page__backend-message get-regular-list">
+          <h2>4.Get Regular Order List Table By Task Id (From MongoDB):</h2>
+          <ul>
+            {regRoomList.map((item)=>(
+              <li key={item[0]}>
+                {item[0]}
+                {' : '}
+                {item[1]}
+              </li>
+            ))}
+          </ul>
+        </div>
       
-        <div className="dongyu-page__backend-message send-post" /> 
-      
+        <div className="dongyu-page__backend-message send-post">
+          <h2>5.Search regular-clean list by input id:</h2>
+
+          <form onSubmit={this.submitHandler}>
+            <p>Insert your Search task id:</p>
+            <input
+              type="number"
+              name="dbTaskId"
+              // value={dbTaskId}
+              onChange={this.changeHandler}
+            />
+            <button type="submit">Submit</button>
+          </form>
+        </div> 
       </>
     )
   }

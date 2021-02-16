@@ -2,15 +2,15 @@
 
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
-import React  from 'react';
-import axios from 'axios';
+import React  from 'react'
+import axios from 'axios'
 import {getWebApi,getBackendApi} from '../../api/Yanbo/YanboApi'
 
 
 
 
-export const getImage = () => axios.get(getWebApi());
-export const getName = () => axios.get(getBackendApi());
+export const getImage = () => axios.get(getWebApi())
+export const getName = () => axios.get(getBackendApi())
 class YanboComponent extends React.Component {
   constructor(){
     super()
@@ -39,15 +39,15 @@ class YanboComponent extends React.Component {
   
   getMessage = async() => {
       const response = await (getName())
-      const {status} = response;
+      const {status} = response
       // console.log(response)
   
       if(status===200)
       {
-        const {data} = response;
+        const {data} = response
         this.setState({
           backendMessage:data
-        });
+        })
       }
     }
   

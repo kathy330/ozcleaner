@@ -142,7 +142,7 @@ class Message extends React.Component {
       e.preventDefault()
       const {dbTaskId} = this.state
   
-      axios.get(`http://localhost:8000/endOfLease/${dbTaskId}`)// 对koa传参
+      axios.get(`http://localhost:8000/endOfLease/${dbTaskId}`)
       .then(response=>{
           console.log(response)
           const {status} = response

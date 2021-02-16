@@ -49,7 +49,7 @@ class YanboForm extends Component{
     submitHandler = e =>{
         e.preventDefault()
         console.log(this.state)
-        axios.post('http://localhost:8000/yanbo',this.state)// 对koa传参
+        axios.post('http://localhost:8000/users/store',this.state)// 对koa传参
             .then(response=>{
                 console.log(response)
             })

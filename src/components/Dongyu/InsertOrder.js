@@ -161,7 +161,7 @@ class InsertOder extends React.Component {
 
     return(
       <div className="insert-order">
-        <p>Input your order information:</p>
+        <p>Input your order information:（*为必填）</p>
         <p>{ErrorMessage}</p>
       
         <form onSubmit={this.submitHandler}>
@@ -237,7 +237,7 @@ class InsertOder extends React.Component {
 
           <div className="order-page__input">
             <h4>2. 下订单页面 输入的信息:</h4>
-            <h5>2.1 第一栏Extra Clean(这里oven fridge是不是单选选项？有或者没有)</h5>
+            <h5>2.1 第一栏Extra Clean(这里oven/fridge都是单选选项-不管多少个oven都是一个价格)</h5>
             <label htmlFor="oven-number">
               Oven number
               <select name="OvenNum" onChange={this.changeHandler}>

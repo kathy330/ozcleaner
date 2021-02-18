@@ -21,10 +21,73 @@
   font-size: 1.3rem;
 }
 
-.get-regular-list {
+.get-end-list {
   color: #2353ac;
 }
 
-.get-regular-list li {
+.get-end-list li {
   font-size: 1.5rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+input [type='number'] {
+  appearance: textfield;
+}
+
+.insert-order {
+  background-color: #f1f8ff;
+  height: 1100px;
+  font-size: 1.5rem;
+}
+
+.insert-order p,
+.insert-order form,
+.insert-order input,
+.insert-order button,
+.insert-order select,
+.insert-order label {
+  font-size: 1.3rem;
+}
+
+.insert-order label {
+  margin: 30px;
+}
+
+.insert-order p {
+  margin-top: 0;
+  margin-left: 10px;
+  margin-bottom: 0;
+  color: #ff2d2d;
+  font-size: 2rem;
+}
+
+.insert-order p:nth-child(2) {
+  color: #4f4ff1;
+}
+
+.insert-order h4,
+.insert-order h5 {
+  background-color: #f1f8ff;
+  margin-left: 10px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.insert-order button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.insert-order input {
+  margin: 10px;
 }

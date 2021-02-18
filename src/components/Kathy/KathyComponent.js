@@ -27,7 +27,7 @@ class KathyComponent extends React.Component{
     
     getEmployeeInfo = async() =>{
         try{
-            const res = await axios.get(getOneEmployee(999999))
+            const res = await axios.get(getOneEmployee(999909))
             const { data } = res
             this.setState({
               oneEmployee: data,
@@ -58,8 +58,12 @@ class KathyComponent extends React.Component{
     render(){
         const { oneEmployee } = this.state
         const { allEmployees } = this.state
-        console.log(allEmployees)
-        if (oneEmployee !== 0) {
+        // eslint-disable-next-line array-callback-return
+        const listResult = Object.keys(allEmployees).map((keyName, keyIndex)=> {
+          console.log(keyIndex, allEmployees[keyName])
+        })
+        console.log(listResult)
+        if (oneEmployee !== '') {
           return (
             <main>
               <h1>Kathy&apos;s Page</h1>
@@ -107,9 +111,13 @@ class KathyComponent extends React.Component{
                 </li>
               </ul>
             </main>
-          );
+          )
         } 
-        return <h1>Employee not found!</h1>
+        return (
+          <main>
+            <h1>Employee not found!</h1>
+          </main>
+        )
     }
 }
 

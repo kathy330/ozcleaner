@@ -1,7 +1,7 @@
 import React  from 'react'
 import axios from 'axios'
-import {getWebApi,getBackendApi1,getBackendApi2,
-  getUserListApi,getEndRoomApi} from '../../api/Dongyu/DongyuApi'
+import {getWebApi,getBackendApi1,getBackendApi2,getRegRoomApi,
+  getUserListApi} from '../../api/Dongyu/DongyuApi'
 
 /* eslint-disable no-unused-expressions */
 
@@ -9,8 +9,8 @@ export const getImage = () => axios.get(getWebApi())
 export const getName = () => axios.get(getBackendApi1())
 export const getBookName = () => axios.get(getBackendApi2())
 export const getUserData = () => axios.get(getUserListApi())
-// export const getRegRoomData = () => axios.get(getRegRoomApi())
-export const getEndRoomrData = () => axios.get(getEndRoomApi())
+export const getRegRoomData = () => axios.get(getRegRoomApi())
+// export const getEndRoomrData = () => axios.get(getEndRoomApi())
 
 
 class Message extends React.Component {
@@ -20,8 +20,8 @@ class Message extends React.Component {
       webMessage:'',
       backEndNameMessage:'',
       backEndBookMessage:'',
-      dbMessage:'',
-      dbAddress:'',
+      // dbMessage:'',
+      // dbAddress:'',
       dbRegRoom:'',
       dbEndRoom:'',
       dbTaskId:'',
@@ -33,9 +33,9 @@ class Message extends React.Component {
     this.getImageApi()
     this.getUserName()
     this.getBookName()
-    this.getUserDBInfo()
-    // this.getRegDBInfo()
-    this.getEndDBInfo()
+    // this.getUserDBInfo()
+    this.getRegDBInfo()
+    // this.getEndDBInfo()
   }
   
   // 1.直接从网络api获取信息
@@ -84,47 +84,31 @@ class Message extends React.Component {
   }
 
   // 4.从MongoDB GET User List by id
-  getUserDBInfo = async() => {
-    const response = await (getUserData())
-    const {status} = response
-
-    console.log(response)
-    console.log(response.data[0]) // 全部信息
-    console.log(response.data[0].email) // 取回email
-    console.log(response.data[0].name) // 取回name
-    console.log(response.data[0].address) // 取回address
-
-
-    if(status===200)
-    {
-      const {data} = response
-      this.setState({
-        // dbMessage:data[0].email //取回email
-        // dbMessage:JSON.stringify(data[0]) // 如果取回整个对象需要加上 JSON.stringify(),否则报错
-        dbMessage:data[0],// 取回整个对象，在下面render先转化成数组在用map遍历
-        dbAddress:data[0].address // 取回address对象，下面转化成数组在map遍历
-      })
-    }
-  }
-
-  // 5.从MongoDB get Regular room list by task id
-  // getRegDBInfo = async() => {
-  //   const response = await (getRegRoomData())
+  // getUserDBInfo = async() => {
+  //   const response = await (getUserData())
   //   const {status} = response
-  //   // console.log(response)
+
+  //   console.log(response)
   //   console.log(response.data[0]) // 全部信息
+  //   console.log(response.data[0].email) // 取回email
+  //   console.log(response.data[0].name) // 取回name
+  //   console.log(response.data[0].address) // 取回address
+
   //   if(status===200)
   //   {
   //     const {data} = response
   //     this.setState({
-  //       dbRegRoom:data[0] // 取回整个对象，在下面render先转化成数组在用map遍历
+  //       // dbMessage:data[0].email //取回email
+  //       // dbMessage:JSON.stringify(data[0]) // 如果取回整个对象需要加上 JSON.stringify(),否则报错
+  //       dbMessage:data[0],// 取回整个对象，在下面render先转化成数组在用map遍历
+  //       dbAddress:data[0].address // 取回address对象，下面转化成数组在map遍历
   //     })
   //   }
   // }
 
-  // 6.从MongoDB get End of room list by task id
-  getEndDBInfo = async() => {
-    const response = await (getEndRoomrData())
+  // 5.从MongoDB get Regular room list by task id
+  getRegDBInfo = async() => {
+    const response = await (getRegRoomData())
     const {status} = response
     // console.log(response)
     console.log(response.data[0]) // 全部信息
@@ -132,10 +116,25 @@ class Message extends React.Component {
     {
       const {data} = response
       this.setState({
-        dbEndRoom:data[0] // 取回整个对象，在下面render先转化成数组在用map遍历
+        dbRegRoom:data[0] // 取回整个对象，在下面render先转化成数组在用map遍历
       })
     }
   }
+
+  // 6.从MongoDB get End of room list by task id
+  // getEndDBInfo = async() => {
+  //   const response = await (getEndRoomrData())
+  //   const {status} = response
+  //   // console.log(response)
+  //   console.log(response.data[0]) // 全部信息
+  //   if(status===200)
+  //   {
+  //     const {data} = response
+  //     this.setState({
+  //       dbEndRoom:data[0] // 取回整个对象，在下面render先转化成数组在用map遍历
+  //     })
+  //   }
+  // }
 
     // 7.用前端信息搜索DB数据库
     submitHandler = (e) => {
@@ -151,12 +150,12 @@ class Message extends React.Component {
             if(typeof data === 'string') { // 判断后端传回的ctx.body是字符串还是object，如果是字符串必为error
               console.log(data)
               this.setState({
-                dbRegRoom:{"":""},
+                dbEndRoom:{"":""},
                 errorMessage:data
               })
             }else{
               this.setState({
-                dbRegRoom:data[0], // 取回整个对象，在下面render先转化成数组在用map遍历
+                dbEndRoom:data[0], // 取回整个对象，在下面render先转化成数组在用map遍历
                 errorMessage:"None error" // 恢复没error状态
               })
             }
@@ -182,23 +181,27 @@ class Message extends React.Component {
   render(){
     const{webMessage,backEndNameMessage,backEndBookMessage} = this.state
     // 1. 取回User List
-    const{dbMessage} = this.state
-    const result = Object.entries(dbMessage)// 先把object转化成Array数组，下面才可以map遍历
-    result.shift() // 移除第一个address对象，因为这里面是Object，无法直接打印
-    // console.log(result) // 此时result是移除address后的数组了
+    // const{dbMessage} = this.state
+    // const result = Object.entries(dbMessage)// 先把object转化成Array数组，下面才可以map遍历
+    // result.shift() // 移除第一个address对象，因为这里面是Object，无法直接打印
+    // // console.log(result) // 此时result是移除address后的数组了
 
-    const{dbAddress} = this.state // address因为有嵌套，放在这里单独打印
-    const address = Object.entries(dbAddress) // 先把object转化成Array数组，下面才可以map遍历
-    // console.log(address)
+    // const{dbAddress} = this.state // address因为有嵌套，放在这里单独打印
+    // const address = Object.entries(dbAddress) // 先把object转化成Array数组，下面才可以map遍历
+    // // console.log(address)
 
     // 2. 取回Reg Room List
     const{dbRegRoom} = this.state
     const regRoomList = Object.entries(dbRegRoom)// 先把object转化成Array数组，下面才可以map遍历
-    // console.log(regRoomList)
+    regRoomList.shift() // 现在address第一项是object先删掉
+    regRoomList.shift() // 现在address第二项是object先删掉
+    console.log(regRoomList)
 
     // 3. 取回End Leese List
     const{dbEndRoom} = this.state
     const endRoomList = Object.entries(dbEndRoom)// 先把object转化成Array数组，下面才可以map遍历
+    endRoomList.shift() // 现在address第一项是object先删掉
+    endRoomList.shift() // 现在address第二项是object先删掉
     // console.log(endRoomList)
 
     // 4.取回error报错
@@ -208,7 +211,8 @@ class Message extends React.Component {
       <>
         <div className="dongyu-page__image-api">
           <h2>1. Get the image from api:</h2>
-          <img src={webMessage} alt="dog" />
+          {/* <img src={webMessage} alt="dog" /> */}
+          {webMessage}
         </div>
 
         <div className="dongyu-page__backend-message">
@@ -229,7 +233,7 @@ class Message extends React.Component {
           </span>
         </div>
 
-        <div className="dongyu-page__backend-message">
+        {/* <div className="dongyu-page__backend-message">
           <h2>3.Get User List Table By User Id (From MongoDB):</h2>
           <ul>
             {result.map((item)=>(
@@ -252,12 +256,12 @@ class Message extends React.Component {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
 
-        <div className="dongyu-page__backend-message get-end-list">
-          <h2>5.Get End of Lease Order List Table By Task Id (From MongoDB):</h2>
+        <div className="dongyu-page__backend-message get-reg-list">
+          <h2>4.Get Reg of Lease Order List Table By Task Id (From MongoDB):</h2>
           <ul>
-            {endRoomList.map((item)=>(
+            {regRoomList.map((item)=>(
               <li key={item[0]}>
                 {item[0]}
                 {' : '}
@@ -267,10 +271,10 @@ class Message extends React.Component {
           </ul>
         </div>
 
-        <div className="dongyu-page__backend-message get-regular-list">
-          <h2>4.Get End of lease Order List Table By Task Id (From MongoDB):</h2>
+        <div className="dongyu-page__backend-message get-end-list">
+          <h2>5.1 Get End of lease Order List Table By Task Id (From MongoDB):</h2>
           <ul>
-            {regRoomList.map((item)=>(
+            {endRoomList.map((item)=>(
               <li key={item[0]}>
                 {item[0]}
                 {' : '}
@@ -286,7 +290,7 @@ class Message extends React.Component {
         </div>
       
         <div className="dongyu-page__backend-message send-post">
-          <h2>5.Search End of lease list by input id:</h2>
+          <h2>5.2 Search End of lease list by input id:</h2>
 
           <form onSubmit={this.submitHandler}>
             <p>Insert your Search task id:</p>

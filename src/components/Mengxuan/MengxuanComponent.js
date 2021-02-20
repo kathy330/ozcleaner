@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-import {getWebApi,getBackendApi} from "../../api/Mengxuan/MengxuanApi";
+import {getWebApi,getBackendApi} from "../../api/Mengxuan/MengxuanApi"
 
 
 class MengxuanComponent extends React.Component{
@@ -32,13 +32,13 @@ class MengxuanComponent extends React.Component{
         try {
             const response = await axios.get(getBackendApi())
             // console.log(response);
-            const message= response.data;
+            const message= response.data
             // console.log(image);
             this.setState({
                 backMessage: message
             })
         } catch (e) {
-            console.log(e);
+            console.log(e)
         }
 
     }

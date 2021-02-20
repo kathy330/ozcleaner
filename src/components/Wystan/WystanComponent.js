@@ -1,25 +1,25 @@
-import axios from 'axios';
-import React  from 'react';
+import axios from 'axios'
+import React  from 'react'
 import Api from '../../api/Wystan/WystanApi'
 
 class WystanComponent extends React.Component {
     constructor() {
-        super();
+        super()
         this.state = {
             image:''
         }
     }
     
     componentDidMount() {
-        this.getApi();
+        this.getApi()
     }
 
     getApi = async() => {
         try {
             const response = await axios.get(Api())
             console.log(response)
-            const image = response.data.message;
-            console.log(image);
+            const image = response.data.message
+            console.log(image)
             this.setState({
                 image
             })
@@ -30,7 +30,7 @@ class WystanComponent extends React.Component {
     }
 
     render() {
-        const {image} = this.state;
+        const {image} = this.state
         return (
           <div> 
             This is built from wystan
@@ -40,4 +40,4 @@ class WystanComponent extends React.Component {
     }
 }
 
-export default WystanComponent;
+export default WystanComponent

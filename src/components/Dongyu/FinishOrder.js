@@ -60,8 +60,6 @@ class FinishOrder extends React.Component {
             {' '}
             {`${isFinish}`}
           </h2>
-
-          
           
           <button 
             type="button"

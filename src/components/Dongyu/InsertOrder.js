@@ -23,8 +23,8 @@ class InsertOder extends React.Component {
       FridgeNum:0,
       OvenNum:0,
       WindowsNum:0,
-      UserId:'',
-      EmployeeId:'',
+      UserId:0, // 数字如果不定义初始default，传信息的时候也不写这个值的话DB里显示就会为null属性
+      EmployeeId:0, // 如果后期强制这两个为必输入 这里就可以不用设置为0了
       Review:'',
       Rating:0,
       FirstName:'',

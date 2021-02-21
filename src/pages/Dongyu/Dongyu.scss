@@ -15,11 +15,11 @@
     h2:nth-child(1) {
       color: rgb(180, 132, 10);
     }
-    
+
     // h2:nth-child(7) {
     //   color: rgb(24, 122, 207);
     // }
-    
+
     ul {
       list-style: none;
     }
@@ -33,7 +33,7 @@
 
 .get-end-list {
   color: rgb(35, 83, 172);
-  
+
   li {
     font-size: 1.5rem;
   }
@@ -50,11 +50,10 @@ input [type='number'] {
 }
 //-----------------------------
 
-
 .insert-order {
   background-color: rgb(241, 248, 255);
-  height: 1100px;
   font-size: 1.5rem;
+  height: 1100px;
 
   p,
   form,
@@ -71,11 +70,11 @@ input [type='number'] {
   }
 
   p {
-    margin-top: 0;
-    margin-left: 10px;
-    margin-bottom: 0;
     color: rgb(255, 45, 45);
     font-size: 2rem;
+    margin-bottom: 0;
+    margin-left: 10px;
+    margin-top: 0;
   }
 
   p:nth-child(2) {
@@ -85,20 +84,20 @@ input [type='number'] {
   h4,
   h5 {
     background-color: rgb(241, 248, 255);
-    margin-left: 10px;
     margin-bottom: 0;
+    margin-left: 10px;
     margin-top: 0;
   }
 
   button {
-    background-color: #4CAF50;
+    background-color: #4caf50;
     border: none;
     color: white;
+    cursor: pointer;
+    margin: 4px 2px;
+    margin: 10px;
     padding: 16px 32px;
     text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
-    margin: 10px;
   }
 
   input {
@@ -110,6 +109,44 @@ input [type='number'] {
   //   width: 50%;
   //   margin-top: 6px;
   // }
-  
+}
 
+.finish-order {
+  background-color: rgb(245, 245, 217);
+  height: 200px;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  .finish {
+    // display: none;
+  }
+
+  .not-finish {
+  }
+
+  button {
+    background-color: rgb(222, 184, 135);
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin: 4px 2px;
+    margin: 10px;
+    padding: 16px 32px;
+    text-decoration: none;
+  }
+
+  input {
+    font-size: 1rem;
+    height: 20px;
+    margin-left: 20px;
+    width: 80px;
+  }
+
+  .order {
+    display: flex;
+    margin: 20px;
+  }
 }

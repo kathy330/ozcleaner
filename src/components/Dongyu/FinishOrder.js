@@ -66,7 +66,7 @@ class FinishOrder extends React.Component {
             onClick={this.checkFinish}
             // className={isFinish ? "finish":"not-finish"}
           >
-            Confirm Finished
+            Finished
           </button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React  from 'react'
-import Api from '../../../api/Wystan/WystanApi'
+import Api from '../../../api/practice/Wystan/WystanApi'
 
 class WystanComponent extends React.Component {
     constructor() {

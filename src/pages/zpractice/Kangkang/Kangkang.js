@@ -1,6 +1,6 @@
 import './Kangkang.css'
 import React from "react"
-import KangkangComponent from "../../../components/practice/Kangkang/KangkangComponent"
+import KangkangComponent from "../../../components/zpractice/Kangkang/KangkangComponent"
 
 function KangkangPage(){
     return (

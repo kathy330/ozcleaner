@@ -1,5 +1,5 @@
 import React from "react"
-import YanboComponent from "../../../components/practice/Yanbo/YanboComponent"
+import YanboComponent from "../../../components/zpractice/Yanbo/YanboComponent"
 
 function YanboPage(){
     return (

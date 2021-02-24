@@ -2,18 +2,18 @@
 import './App.css'
 import React from "react"
 import {Route, Switch} from "react-router"
-import Home from "./pages/Home/Home"
+import Home from "./pages/HomePage/Home"
 import ErrorPage from "./pages/ErrorPage/ErrorPage"
 
-import DongyuPage from "./pages/practice/Dongyu/Dongyu"
-import KangkangPage from "./pages/practice/Kangkang/Kangkang"
-import YanboPage from "./pages/practice/Yanbo/Yanbo"
-import WystanPage from './pages/practice/Wystan/Wystan'
-import KathyPage from './pages/practice/Kathy/Kathy'
-import ErikPage from './pages/practice/Erik/Erik'
-import OliviaPage from './pages/practice/Olivia/Olivia'
-import MengxuanPage from './pages/practice/Mengxuan/Mengxuan'
-import YanboForm from './pages/practice/Yanbo/YanboForm'
+import DongyuPage from "./pages/zpractice/Dongyu/Dongyu"
+import KangkangPage from "./pages/zpractice/Kangkang/Kangkang"
+import YanboPage from "./pages/zpractice/Yanbo/Yanbo"
+import WystanPage from './pages/zpractice/Wystan/Wystan'
+import KathyPage from './pages/zpractice/Kathy/Kathy'
+import ErikPage from './pages/zpractice/Erik/Erik'
+import OliviaPage from './pages/zpractice/Olivia/Olivia'
+import MengxuanPage from './pages/zpractice/Mengxuan/Mengxuan'
+import YanboForm from './pages/zpractice/Yanbo/YanboForm'
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import React from "react"
-import OliviaComponent from "../../../components/practice/Olivia/OliviaComponent"
+import OliviaComponent from "../../../components/zpractice/Olivia/OliviaComponent"
 
 function Olivia() {
   return (

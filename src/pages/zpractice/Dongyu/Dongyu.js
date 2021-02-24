@@ -1,7 +1,7 @@
 import React from "react"
-import DongyuComponent from "../../../components/practice/Dongyu/DongyuComponent"
-import InsertOrder from "../../../components/practice/Dongyu/InsertOrder"
-import FinishOrder from "../../../components/practice/Dongyu/FinishOrder"
+import DongyuComponent from "../../../components/zpractice/Dongyu/DongyuComponent"
+import InsertOrder from "../../../components/zpractice/Dongyu/InsertOrder"
+import FinishOrder from "../../../components/zpractice/Dongyu/FinishOrder"
 import "./Dongyu.scss"
 
 function DongyuPage(){

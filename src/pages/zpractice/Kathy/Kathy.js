@@ -1,5 +1,5 @@
 import React from 'react'
-import KathyComponent from "../../../components/practice/Kathy/KathyComponent"
+import KathyComponent from "../../../components/zpractice/Kathy/KathyComponent"
 
 const KathyPage = () => (
   <KathyComponent />

@@ -4,7 +4,7 @@
 /* eslint-disable no-console */
 import React  from 'react'
 import axios from 'axios'
-import {getWebApi,getBackendApi} from '../../../api/Yanbo/YanboApi'
+import {getWebApi,getBackendApi} from '../../../api/practice/Yanbo/YanboApi'
 
 
 

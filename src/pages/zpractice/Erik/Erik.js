@@ -1,5 +1,5 @@
 import React from "react"
-import ErikComponent from "../../../components/practice/Erik/ErikComponent"
+import ErikComponent from "../../../components/zpractice/Erik/ErikComponent"
 
 const ErikPage = () => (
   <ErikComponent />

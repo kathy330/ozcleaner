@@ -2,7 +2,7 @@
 import './App.css'
 import React from "react"
 import {Route, Switch} from "react-router"
-import Home from "./pages/HomePage/HomePage"
+import HomePage from "./pages/HomePage/HomePage"
 import OrderPage from "./pages/OrderPage/OrderPage"
 import ProfilePage from "./pages/ProfilePage/ProfilePage"
 import AdminPage from "./pages/AdminPage/AdminPage"
@@ -22,7 +22,7 @@ import YanboForm from './pages/zpractice/Yanbo/YanboForm'
 function App() {
   return (
     <Switch>
-      <Route path="/" exact component={Home} />
+      <Route path="/" exact component={HomePage} />
       <Route path="/order" exact component={OrderPage} />
       <Route path="/profile" exact component={ProfilePage} />
       <Route path="/admin" exact component={AdminPage} />

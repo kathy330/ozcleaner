@@ -60,8 +60,8 @@ class FinishOrder extends React.Component {
             {' '}
             {`${isFinish}`}
           </h2>
-          
-          <button 
+         
+          <button
             type="button"
             onClick={this.checkFinish}
             // className={isFinish ? "finish":"not-finish"}

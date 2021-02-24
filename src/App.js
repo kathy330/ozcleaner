@@ -3,7 +3,11 @@ import './App.css'
 import React from "react"
 import {Route, Switch} from "react-router"
 import Home from "./pages/HomePage/HomePage"
+import OrderPage from "./pages/OrderPage/OrderPage"
+import ProfilePage from "./pages/ProfilePage/ProfilePage"
+import AdminPage from "./pages/AdminPage/AdminPage"
 import ErrorPage from "./pages/ErrorPage/ErrorPage"
+// import ....Page from ....
 
 import DongyuPage from "./pages/zpractice/Dongyu/Dongyu"
 import KangkangPage from "./pages/zpractice/Kangkang/Kangkang"
@@ -19,6 +23,13 @@ function App() {
   return (
     <Switch>
       <Route path="/" exact component={Home} />
+      <Route path="/order" exact component={OrderPage} />
+      <Route path="/profile" exact component={ProfilePage} />
+      <Route path="/admin" exact component={AdminPage} />
+
+
+
+
       <Route path="/dongyu" exact component={DongyuPage} />
       <Route path="/Kangkang" exact component={KangkangPage} />
       <Route path="/Yanbo" exact component={YanboPage} />

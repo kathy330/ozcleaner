@@ -2,7 +2,7 @@
 import './App.css'
 import React from "react"
 import {Route, Switch} from "react-router"
-import Home from "./pages/HomePage/Home"
+import Home from "./pages/HomePage/HomePage"
 import ErrorPage from "./pages/ErrorPage/ErrorPage"
 
 import DongyuPage from "./pages/zpractice/Dongyu/Dongyu"

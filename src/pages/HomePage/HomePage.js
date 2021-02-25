@@ -1,14 +1,15 @@
 import React from "react"
-import HomeBackground from "../../components/HomeComponents/HomeBackground"
-
+import HomeTitle from "../../components/HomeComponents/HomeTitle"
+import HomeSelectForm from "../../components/HomeComponents/HomeSelectForm"
 
 function Home(){
   return (
     <div className="homepage">
       {/* <navbar /> */}
 
-      <HomeBackground />
-
+      <HomeTitle />
+      <HomeSelectForm />
+      
       {/* <footer /> */}
     </div>
   )

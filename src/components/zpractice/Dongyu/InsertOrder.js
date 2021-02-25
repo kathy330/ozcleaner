@@ -16,7 +16,7 @@ class InsertOder extends React.Component {
       BathroomNum:'',
       PropertyType:'unknown',
       Price:'',
-      Date:'',
+      date:'',
       StartTime:'',
       EndTime:'',
       CabinetsNum:0,
@@ -48,7 +48,7 @@ class InsertOder extends React.Component {
     const{TaskId,Title,Type,Status} = this.state
     const{Address,AptName,Suburb,State,Postcode,LocationLat,LocationLng} = this.state
     const{BedroomNum,BathroomNum,PropertyType,Price} = this.state
-    const{Date,StartTime,EndTime} = this.state
+    const{date,StartTime,EndTime} = this.state
     const{CabinetsNum,FridgeNum,OvenNum,WindowsNum} = this.state
     const{FirstName,LastName,PhoneNumber} = this.state
     const{UserId,EmployeeId} = this.state
@@ -57,8 +57,8 @@ class InsertOder extends React.Component {
     const addressObj = {"address1":Address,"address2":AptName,"suburb":Suburb,
     "state":State,"postcode":Postcode}
     const locationObj = {"lat":LocationLat,"lon":LocationLng}
-    const startDateAndTime = `${Date} ${StartTime}`
-    const endDateAndTime = `${Date} ${EndTime}`
+    const startDateAndTime = `${date} ${StartTime}`
+    const endDateAndTime = `${date} ${EndTime}`
 
     const OrderMessage = {
       "taskID": TaskId,
@@ -207,7 +207,7 @@ class InsertOder extends React.Component {
               Choose the date:
               <input
                 type="date"
-                name="Date"
+                name="date"
                 onChange={this.changeHandler}
               />
             </label>

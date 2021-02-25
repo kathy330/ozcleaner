@@ -1,5 +1,5 @@
 import React from "react"
-import DongyuComponent from "../../../components/zpractice/Dongyu/DongyuComponent"
+// import DongyuComponent from "../../../components/zpractice/Dongyu/DongyuComponent"
 import InsertOrder from "../../../components/zpractice/Dongyu/InsertOrder"
 import FinishOrder from "../../../components/zpractice/Dongyu/FinishOrder"
 import "./Dongyu.scss"
@@ -10,7 +10,7 @@ function DongyuPage(){
         {/* <h1>This is Dongyu&apos;s page</h1> */}
         <InsertOrder />
         <FinishOrder />
-        <DongyuComponent />
+        {/* <DongyuComponent /> */}
       </div>
     )
 }

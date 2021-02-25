@@ -3,21 +3,15 @@ import HomeBackground from "../../components/HomeComponents/HomeBackground"
 
 
 function Home(){
-    return (
-      <div className="homepage">
-        {/* <div className="homepage__navbar">
-          <navbar />
-        </div> */}
+  return (
+    <div className="homepage">
+      {/* <navbar /> */}
 
-        <div className="homepage__background">
-          <HomeBackground />
-        </div>
+      <HomeBackground />
 
-        {/* <div className="homepage__footer">
-          <footer />
-        </div> */}
-      </div>
-    )
+      {/* <footer /> */}
+    </div>
+  )
 }
 
 export default Home

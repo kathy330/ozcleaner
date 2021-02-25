@@ -1,0 +1,57 @@
+.content {
+  font-family: 'Roboto', sans-serif;
+  // font-family: Poppins;
+}
+
+.background_image {
+  // background: rgb(250, 244, 244);
+  background-image: url(../../../assets/cleaner1.jpg); //https://www.pexels.com/photo/man-in-red-jacket-standing-beside-black-leather-chair-6197108/
+  background-size: cover;
+  height: 100%;
+  opacity: 0.3;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+.title {
+  color: #131523;
+  font-size: 3.4375rem;
+  // -webkit-filter: blur(10px);
+  // filter: blur(10px);
+  // font-size: 55px;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: bold;
+  height: 77px;
+  left: 55%;
+  letter-spacing: normal;
+  line-height: 1.51;
+  // margin: 0 70.5px;
+  position: absolute;
+  text-align: left;
+  top: 45%;
+  transform: translate(-55%, -45%);
+  width: 573px;
+}
+
+.subtitle {
+  color: #131523;
+  font-size: 1.875rem;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: normal;
+  height: 43px;
+  left: 55%;
+  letter-spacing: normal;
+  line-height: 1.53;
+  // margin: 77px 101px 68.7px;
+  // -webkit-filter: blur(10px);
+  // filter: blur(10px);
+  // font-size: 30px;
+  position: absolute;
+  text-align: left;
+  top: 52%;
+  transform: translate(-55%, -52%);
+  width: 512px;
+}

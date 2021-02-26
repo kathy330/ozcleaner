@@ -6,7 +6,7 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import HomePage from "./pages/HomePage/HomePage"
 import OrderPage from "./pages/OrderPage/OrderPage"
 import ProfilePage from "./pages/ProfilePage/ProfilePage"
-import AdminPage from "./pages/AdminPage/AdminPage"
+import AdminCustomersPage from "./pages/AdminPage/AdminCustomersPage"
 import ErrorPage from "./pages/ErrorPage/ErrorPage"
 import theme from "./styles/theme"
 // import ....Page from ....
@@ -28,7 +28,7 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/order" exact component={OrderPage} />
         <Route path="/profile" exact component={ProfilePage} />
-        <Route path="/admin" exact component={AdminPage} />
+        <Route path="/admin/customers" exact component={AdminCustomersPage} />
 
 
 

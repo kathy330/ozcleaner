@@ -6,14 +6,14 @@ const HomeComponentStyle = makeStyles({
   // diy方法2在timePicker
   datePicker: {
     marginLeft: '5px',
-    width: '150px',
+    width: '210px',
   },
 
   // 🌟diy样式方法3: 嵌套<& p>  需要引用的地方：className={classes.root},下面的<p>自动
   // diy方法2在TimePicker
   postCode: {
     marginLeft: '5px',
-    width: '150px',
+    width: '140px',
 
     '& p': {
       color: 'rgb(252, 142, 142)',
@@ -21,6 +21,24 @@ const HomeComponentStyle = makeStyles({
     }
   },
   
+  button: {
+    // background: "#007bf5",
+    backgroundColor: '#007bf5',
+    borderRadius: '5px',
+    color: 'rgb(255, 255, 255)',
+    left: '50%',
+    marginInline: "20px",
+    padding: '11px 12px',
+    position: 'absolute',
+    top: '78%',
+    transform: 'translate(-50%, -78%)',
+
+    "&:hover": {
+      backgroundColor: "#2196f3",
+      boxShadow: "0px 2px 10px #888",
+    },
+  }
+
 })
 
 export default HomeComponentStyle

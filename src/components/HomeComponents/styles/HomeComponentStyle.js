@@ -30,8 +30,8 @@ const HomeComponentStyle = makeStyles({
     marginInline: "20px",
     padding: '11px 12px',
     position: 'absolute',
-    top: '78%',
-    transform: 'translate(-50%, -78%)',
+    top: '74%',
+    transform: 'translate(-50%, -74%)',
 
     "&:hover": {
       backgroundColor: "#2196f3",

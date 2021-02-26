@@ -1,19 +1,22 @@
 import 'date-fns'
 import React from 'react'
 // import Grid from '@material-ui/core/Grid';
+import { styled } from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
 } from '@material-ui/pickers'
 
-const diyStyle = {
-  timeStyle: {
-    // marginTop:'8px',
-    marginLeft:'5px',
-    width:'150px'
-  }
-}
+
+// 🌟diy样式方法2: styled（里面放要被改变的组件名字），
+// KeyboardTimePicker重命名为MyKeyboardTimePicker;在下面引用 <MyKeyboardTimePicker/ >
+// 法1在DatePicker 嵌套方法在postcodeInput
+const MyKeyboardTimePicker = styled(KeyboardTimePicker)({
+  // marginTop:'8px',
+  marginLeft: '5px',
+  width: '150px'
+})
 
 export default function MaterialUIPickers() {
   const year = new Date().getFullYear()
@@ -31,7 +34,6 @@ export default function MaterialUIPickers() {
   `T${hour<10?(`0${hour}`):hour}`+
   `:${minute<10?(`0${minute}`):minute}`+
   `:${seconds<10?(`0${seconds}`):seconds}`
-  // console.log(month)
   const [selectedDate, setSelectedDate] = React.useState(new Date(`${timeNow}`))
 
   const handleDateChange = (date) => {
@@ -41,9 +43,9 @@ export default function MaterialUIPickers() {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       {/* <Grid container justify="space-around"> */}
-      <KeyboardTimePicker
-          // margin="normal"
-        style={diyStyle.timeStyle}
+      {/* <KeyboardTimePicker */}
+      <MyKeyboardTimePicker
+        // margin="normal"
         id="time-picker"
         label="Time picker"
         value={selectedDate}

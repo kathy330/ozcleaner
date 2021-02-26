@@ -2,21 +2,27 @@ import 'date-fns'
 import React from 'react'
 // import Grid from '@material-ui/core/Grid'
 import DateFnsUtils from '@date-io/date-fns'
+import { makeStyles } from '@material-ui/core/styles'
+
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers'
 
-const diyStyle = {
-  dateStyle: {
+// 🌟diy样式方法1: 需要引用的地方：className={classes.root}，
+// 并且需要引入 const classes = useStyles()
+// 法2在timePicker；嵌套方法在postcodeInput
+const useStyles = makeStyles({
+  root: {
     // marginTop:'8px',
-    marginLeft:'5px',
-    width:'150px',
-  }
-}
+    marginLeft: '5px',
+    width: '150px',
+  },
+})
 
 export default function MaterialUIPickers() {
-
+  const classes = useStyles()
+  
   const year = new Date().getFullYear()
   const month = new Date().getMonth()
   const day = new Date().getDate()
@@ -46,7 +52,8 @@ export default function MaterialUIPickers() {
       {/* <Grid container justify="space-around"> 日历框框周围间距 */}
       <KeyboardDatePicker
         // margin="normal"
-        style={diyStyle.dateStyle}
+        // style={diyStyle.dateStyle}
+        className={classes.root}
         id="date-picker-dialog"
         label="Date picker dialog"
         format="MM/dd/yyyy"

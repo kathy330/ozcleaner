@@ -7,14 +7,14 @@ import MenuItem from '@material-ui/core/MenuItem'
 import DatePicker from "./DatePicker"
 import TimePicker from "./TimePicker"
 import InsertPostcode from "./PostcodeInput"
-
 // import { makeStyles } from '@material-ui/core/styles'
-
 import styles from './scss/HomeSelectForm.module.scss' // scss 
 
-// 下面放了material的diy，使用方法 style={diyStyle.button}。位置信息放在scss里了，使用方法 className={styles.position}
-// 遇见button位置bug 直接出现屏幕最上方，先注释scss里的button，在解除
-// 🌟不能在css里设置material ui 组件的样式，每次重启都会失灵，放在这里不会
+// 🌟不能在css里设置material ui 组件的样式，每次重启都会失灵，放在这里可以用
+// 官方文档diy的方式在DatePicker,TimePicker,PostcodeInput里有三种
+
+// scss Module里的引用方法 className={styles.position}
+// 下面放了material的diy，使用方法 style={diyStyle.button}
 const diyStyle = {
   button: {
     backgroundColor:'#007bf5',
@@ -48,8 +48,6 @@ class HomeSelectForm extends React.Component {
       date:'',
       StartTime:'',
       Postcode:'',
-      // TimeList:["","9:00","9:30","10:00","10:30","11:00","11:30","12:00","12:30",
-      // "13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00"],
     }
   }
 
@@ -65,7 +63,6 @@ class HomeSelectForm extends React.Component {
     console.log("type: ",Type)
     console.log("start time: ",startDateAndTime)
     console.log("postcode: ",Postcode)
-
   }
 
   changeHandler = (e) => {
@@ -77,18 +74,15 @@ class HomeSelectForm extends React.Component {
   }
   
   render() {
-    // const {TimeList} = this.state
-    // console.log(TimeList)
     const{BedRoomNum,BathRoomNum,Type} = this.state
     return(
       <div className={styles.content}>
-
+      
         <div className={styles.select__position}>
-
           {/* variant="filled"是背景填充Standard/filled/outlined */}
           {/* <FormControl variant="filled" style={diyStyle.select}> */}
-          <FormControl style={diyStyle.select}>
 
+          <FormControl style={diyStyle.select} onSubmit={this.submitHandler}>
             <InputLabel id="demo-simple-select-filled-label">Bedroom</InputLabel>
             <Select
               labelId="demo-simple-select-filled-label"
@@ -104,6 +98,7 @@ class HomeSelectForm extends React.Component {
               <MenuItem value="4">4</MenuItem>
               <MenuItem value="5">5</MenuItem>
             </Select>
+            {/* <button type="submit">ss</button> */}
           </FormControl>
 
           <FormControl style={diyStyle.select}>
@@ -148,6 +143,7 @@ class HomeSelectForm extends React.Component {
           className={styles.button__position}
           variant="contained"
           color="primary"
+          type="submit"
         >
           Booking from $80
         </Button>

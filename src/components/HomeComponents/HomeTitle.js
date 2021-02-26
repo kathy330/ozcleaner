@@ -4,7 +4,7 @@ import styles from './scss/HomeTitle.module.scss'
 const HomeTitle = () => (
   <div className={styles.content}>
 
-    <div className={styles.background_image} />
+    <div className={styles.background__image} />
 
     <div className={styles.title}>
       We Clean. You Relax

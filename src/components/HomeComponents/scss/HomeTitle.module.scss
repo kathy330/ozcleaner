@@ -3,15 +3,17 @@
   // font-family: Poppins;
 }
 
-.background_image {
-  // background: rgb(250, 244, 244);
-  background-image: url(../../../assets/cleaner1.jpg); //https://www.pexels.com/photo/man-in-red-jacket-standing-beside-black-leather-chair-6197108/
-  background-size: cover;
-  height: 100%;
-  opacity: 0.3;
-  position: absolute;
-  width: 100%;
-  z-index: -1;
+.background {
+  &__image {
+    // background: rgb(250, 244, 244);
+    background-image: url(../../../assets/cleaner1.jpg); //https://www.pexels.com/photo/man-in-red-jacket-standing-beside-black-leather-chair-6197108/
+    background-size: cover;
+    height: 100%;
+    opacity: 0.3;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
 }
 
 .title {

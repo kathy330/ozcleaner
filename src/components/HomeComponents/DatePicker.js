@@ -14,7 +14,6 @@ import {
 // 法2在timePicker；嵌套方法在postcodeInput
 const useStyles = makeStyles({
   root: {
-    // marginTop:'8px',
     marginLeft: '5px',
     width: '150px',
   },
@@ -55,7 +54,7 @@ export default function MaterialUIPickers() {
         // style={diyStyle.dateStyle}
         className={classes.root}
         id="date-picker-dialog"
-        label="Date picker dialog"
+        label="Choose your date"
         format="MM/dd/yyyy"
         value={selectedDate}
         onChange={handleDateChange}

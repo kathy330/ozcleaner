@@ -7,14 +7,15 @@ import MenuItem from '@material-ui/core/MenuItem'
 import DatePicker from "./DatePicker"
 import TimePicker from "./TimePicker"
 import InsertPostcode from "./PostcodeInput"
-// import { makeStyles } from '@material-ui/core/styles'
 import styles from './scss/HomeSelectForm.module.scss' // scss 
+// import HomeComponentStyle from './styles/HomeComponentStyle' // 1/3在这里引用其他js style文件会出bug🐛🐛？
 
 // 🌟不能在css里设置material ui 组件的样式，每次重启都会失灵，放在这里可以用
-// 官方文档diy的方式在DatePicker,TimePicker,PostcodeInput里有三种
+// 🌟官方文档diy的方式在TimePicker,style/HomeComponentStyle.js里有三种
 
-// scss Module里的引用方法 className={styles.position}
-// 下面放了material的diy，使用方法 style={diyStyle.button}
+// 🌟scss Module里的引用方法 className={styles.position}
+// 🌟material的其他js文件设置diy的引用方法 className={diyStyle.button}
+// 🌟material的本页面设置diy的引用方法 style={diyStyle.button}
 const diyStyle = {
   button: {
     backgroundColor:'#007bf5',
@@ -42,9 +43,9 @@ class HomeSelectForm extends React.Component {
   constructor(){
     super()
     this.state={
-      BedRoomNum:'',
-      BathRoomNum:'',
-      Type:'',
+      bedRoomNum:'',
+      bathRoomNum:'',
+      type:'',
       date:'',
       StartTime:'',
       Postcode:'',
@@ -74,7 +75,9 @@ class HomeSelectForm extends React.Component {
   }
   
   render() {
-    const{BedRoomNum,BathRoomNum,Type} = this.state
+    // const classes = HomeComponentStyle() //2/3在这里引用其他js style文件会出bug🐛🐛？
+
+    const{bedRoomNum,bathRoomNum,type} = this.state
     return(
       <div className={styles.content}>
       
@@ -87,8 +90,8 @@ class HomeSelectForm extends React.Component {
             <Select
               labelId="demo-simple-select-filled-label"
               id="demo-simple-select-filled"
-              value={BedRoomNum}
-              name="BedRoomNum"
+              value={bedRoomNum}
+              name="bedRoomNum"
               onChange={this.changeHandler}
             >
               <MenuItem value="0">0</MenuItem>
@@ -106,8 +109,8 @@ class HomeSelectForm extends React.Component {
             <Select
               labelId="demo-simple-select-filled-label"
               id="demo-simple-select-filled"
-              value={BathRoomNum}
-              name="BathRoomNum"
+              value={bathRoomNum}
+              name="bathRoomNum"
               onChange={this.changeHandler}
             >
               <MenuItem value="0">0</MenuItem>
@@ -124,8 +127,8 @@ class HomeSelectForm extends React.Component {
             <Select
               labelId="demo-simple-select-filled-label"
               id="demo-simple-select-filled"
-              value={Type}
-              name="Type"
+              value={type}
+              name="type"
               onChange={this.changeHandler}
             >
               <MenuItem value="RC">Regular</MenuItem>
@@ -140,7 +143,7 @@ class HomeSelectForm extends React.Component {
       
         <Button 
           style={diyStyle.button} 
-          className={styles.button__position}
+          // className={classes.datePicker} // 3/3在这里引用其他js style文件会出bug🐛🐛？
           variant="contained"
           color="primary"
           type="submit"

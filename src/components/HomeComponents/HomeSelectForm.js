@@ -1,14 +1,14 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
-import DatePicker from "./DatePicker"
+import DatePicker from "./components/DatePicker"
 import TimePicker from "./TimePicker"
-import InsertPostcode from "./PostcodeInput"
+import InsertPostcode from "./components/PostcodeInput"
 import styles from './scss/HomeSelectForm.module.scss' // scss 
-// import HomeComponentStyle from './styles/HomeComponentStyle' // 1/3在这里引用其他js style文件会出bug🐛🐛？
+import HomeButton from './components/HomeButton'
 
 // 🌟不能在css里设置material ui 组件的样式，每次重启都会失灵，放在这里可以用
 // 🌟官方文档diy的方式在TimePicker,style/HomeComponentStyle.js里有三种
@@ -17,25 +17,14 @@ import styles from './scss/HomeSelectForm.module.scss' // scss
 // 🌟material的其他js文件设置diy的引用方法 className={diyStyle.button}
 // 🌟material的本页面设置diy的引用方法 style={diyStyle.button}
 const diyStyle = {
-  button: {
-    backgroundColor:'#007bf5',
-    borderRadius: '5px',
-    fontSize:'1.1rem',
-    padding: '11px 12px 11px 12px',
-    position: 'absolute',
-    top: '78%',
-    left: '50%',
-    transform: 'translate(-50%, -78%)'
-  },
-  select: {
-    width:'110px',
+  roomSelect: {
+    width:'140px',
     marginLeft:'5px',
   },
-  bigSelect: {
-    width:'140px',
+  typeSelect: {
+    width:'170px',
     marginLeft:'5px'
   },
-
 }
 
 class HomeSelectForm extends React.Component {
@@ -75,8 +64,6 @@ class HomeSelectForm extends React.Component {
   }
   
   render() {
-    // const classes = HomeComponentStyle() //2/3在这里引用其他js style文件会出bug🐛🐛？
-
     const{bedRoomNum,bathRoomNum,type} = this.state
     return(
       <div className={styles.content}>
@@ -85,7 +72,7 @@ class HomeSelectForm extends React.Component {
           {/* variant="filled"是背景填充Standard/filled/outlined */}
           {/* <FormControl variant="filled" style={diyStyle.select}> */}
 
-          <FormControl style={diyStyle.select} onSubmit={this.submitHandler}>
+          <FormControl style={diyStyle.roomSelect} onSubmit={this.submitHandler}>
             <InputLabel id="demo-simple-select-filled-label">Bedroom</InputLabel>
             <Select
               labelId="demo-simple-select-filled-label"
@@ -104,7 +91,7 @@ class HomeSelectForm extends React.Component {
             {/* <button type="submit">ss</button> */}
           </FormControl>
 
-          <FormControl style={diyStyle.select}>
+          <FormControl style={diyStyle.roomSelect}>
             <InputLabel id="demo-simple-select-filled-label">Bathroom</InputLabel>
             <Select
               labelId="demo-simple-select-filled-label"
@@ -122,7 +109,7 @@ class HomeSelectForm extends React.Component {
             </Select>
           </FormControl>
 
-          <FormControl style={diyStyle.bigSelect}>
+          <FormControl style={diyStyle.typeSelect}>
             <InputLabel id="demo-simple-select-filled-label">Type</InputLabel>
             <Select
               labelId="demo-simple-select-filled-label"
@@ -140,16 +127,8 @@ class HomeSelectForm extends React.Component {
           <TimePicker />
           <InsertPostcode />
         </div>
-      
-        <Button 
-          style={diyStyle.button} 
-          // className={classes.datePicker} // 3/3在这里引用其他js style文件会出bug🐛🐛？
-          variant="contained"
-          color="primary"
-          type="submit"
-        >
-          Booking from $80
-        </Button>
+
+        <HomeButton />
       </div>
     )
   }

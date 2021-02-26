@@ -1,6 +1,6 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
-import HomeComponentStyle from './styles/HomeComponentStyle'
+import HomeComponentStyle from '../styles/HomeComponentStyle'
 
 export default function BasicTextFields() {
   const classes = HomeComponentStyle()

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './scss/HomeTitle.module.scss'
+import styles from '../scss/HomeTitle.module.scss'
 
 const HomeTitle = () => (
   <div className={styles.content}>

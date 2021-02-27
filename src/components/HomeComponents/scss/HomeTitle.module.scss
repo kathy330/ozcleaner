@@ -1,17 +1,21 @@
 .content {
-  font-family: 'Roboto', sans-serif;
+  // font-family: 'Roboto', sans-serif;
   // font-family: Poppins;
+  // font-family: 'museo-sans, sans-serif';
 }
 
-.background_image {
-  // background: rgb(250, 244, 244);
-  background-image: url(../../../assets/cleaner1.jpg); //https://www.pexels.com/photo/man-in-red-jacket-standing-beside-black-leather-chair-6197108/
-  background-size: cover;
-  height: 100%;
-  opacity: 0.3;
-  position: absolute;
-  width: 100%;
-  z-index: -1;
+.background {
+  &__image {
+    // background: rgb(250, 244, 244);
+    background-image: url(../../../assets/cleaner1.jpg); //https://www.pexels.com/photo/man-in-red-jacket-standing-beside-black-leather-chair-6197108/
+    background-size: cover;
+    height: 95%;
+    opacity: 0.3;
+    position: absolute;
+    top: 5%;
+    width: 100%;
+    z-index: -1;
+  }
 }
 
 .title {
@@ -30,8 +34,8 @@
   // margin: 0 70.5px;
   position: absolute;
   text-align: left;
-  top: 45%;
-  transform: translate(-55%, -45%);
+  top: 40%;
+  transform: translate(-55%, -40%);
   width: 573px;
 }
 
@@ -51,7 +55,7 @@
   // font-size: 30px;
   position: absolute;
   text-align: left;
-  top: 52%;
-  transform: translate(-55%, -52%);
+  top: 48%;
+  transform: translate(-55%, -48%);
   width: 512px;
 }

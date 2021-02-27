@@ -1,8 +1,8 @@
 import 'date-fns'
 import React from 'react'
-// import Grid from '@material-ui/core/Grid'
 import DateFnsUtils from '@date-io/date-fns'
-import {MuiPickersUtilsProvider,KeyboardDatePicker} from '@material-ui/pickers'
+import {MuiPickersUtilsProvider,KeyboardDatePicker} from "@material-ui/pickers"
+
 import HomeComponentStyle from '../styles/HomeComponentStyle'
 import getTime from './getTime'
 
@@ -25,7 +25,6 @@ export default function MaterialUIPickers() {
       {/* <Grid container justify="space-around"> 日历框框周围间距 */}
       <KeyboardDatePicker
         // margin="normal"
-        // style={diyStyle.dateStyle}
         className={classes.datePicker}
         id="date-picker-dialog"
         label="Choose your date"

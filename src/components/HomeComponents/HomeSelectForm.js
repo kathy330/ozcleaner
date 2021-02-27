@@ -1,7 +1,6 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import styles from './scss/HomeSelectForm.module.scss'
-
+import styles from './scss/HomeSelectForm.module.scss' 
 
 class HomeSelectForm extends React.Component {
 

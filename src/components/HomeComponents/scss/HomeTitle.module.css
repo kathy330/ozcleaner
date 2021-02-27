@@ -1,0 +1,50 @@
+.content {
+  font-family: 'Roboto', sans-serif;
+}
+
+.background_image {
+  background-image: url(../../../assets/cleaner1.jpg);
+  background-size: cover;
+  height: 100%;
+  opacity: 0.3;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+.title {
+  color: #131523;
+  font-size: 3.4375rem;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: bold;
+  height: 77px;
+  left: 55%;
+  letter-spacing: normal;
+  line-height: 1.51;
+  position: absolute;
+  text-align: left;
+  top: 45%;
+  -webkit-transform: translate(-55%, -45%);
+          transform: translate(-55%, -45%);
+  width: 573px;
+}
+
+.subtitle {
+  color: #131523;
+  font-size: 1.875rem;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: normal;
+  height: 43px;
+  left: 55%;
+  letter-spacing: normal;
+  line-height: 1.53;
+  position: absolute;
+  text-align: left;
+  top: 52%;
+  -webkit-transform: translate(-55%, -52%);
+          transform: translate(-55%, -52%);
+  width: 512px;
+}
+/*# sourceMappingURL=HomeTitle.module.css.map */

@@ -11,7 +11,7 @@ export default function HeaderNavigation() {
   const style = navBarStyle()
   return (
     <div>
-      <AppBar position="static" className={style.AppBar}>
+      <AppBar position="fixed" className={style.AppBar}>
         <Grid item className={style.container}>
           <Toolbar m={9}>
             <Grid className={style.grow} m={9}>

@@ -3,6 +3,7 @@ import './App.css'
 import React from "react"
 import {Route, Switch} from "react-router"
 import { ThemeProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
 import HomePage from "./pages/HomePage/HomePage"
 import OrderPage from "./pages/OrderPage/OrderPage"
 import ProfilePage from "./pages/ProfilePage/ProfilePage"
@@ -22,13 +23,21 @@ import MengxuanPage from './pages/zpractice/Mengxuan/Mengxuan'
 import YanboForm from './pages/zpractice/Yanbo/YanboForm'
 
 function App() {
+// 使用theme方法：
+// https://kitson-broadhurst.medium.com/quickly-set-up-a-theme
+// -in-material-ui-and-access-it-in-your-components-ba0565304887
+
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/order" exact component={OrderPage} />
         <Route path="/profile" exact component={ProfilePage} />
         <Route path="/admin/customers" exact component={AdminCustomersPage} />
+        {/* <Route path="/admin/order" exact component={AdminOrderPage} />
+        <Route path="/admin/overview" exact component={AdminOverviewPage} />
+        <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
 
 
 

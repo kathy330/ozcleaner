@@ -1,0 +1,65 @@
+.background {
+  // font-family: 'Roboto', sans-serif;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+    url(../../../assets/cleaner1.jpg);
+  background-size: cover;
+  min-height: 100vh; //不会脱离文档了👍
+}
+
+.title {
+  color: #131523;
+  font-size: 3.4375rem;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: bold;
+  height: 77px;
+  left: 55%;
+  letter-spacing: normal;
+  line-height: 1.51;
+  // margin: 0 70.5px;
+  position: absolute;
+  text-align: left;
+  top: 40%;
+  transform: translate(-55%, -40%);
+  width: 573px;
+}
+
+.subtitle {
+  color: #131523;
+  font-size: 1.875rem;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: normal;
+  height: 43px;
+  left: 55%;
+  letter-spacing: normal;
+  line-height: 1.53;
+  position: absolute;
+  text-align: left;
+  top: 48%;
+  transform: translate(-55%, -48%);
+  width: 512px;
+}
+
+.select {
+  &__position {
+    display: flex;
+    left: 50%;
+    position: absolute;
+    top: 60%;
+    transform: translate(-50%, -60%);
+  }
+
+  &__button {
+    left: 50%;
+    position: absolute;
+    top: 74%;
+    transform: translate(-50%, -74%);
+  }
+}
+
+.feedback {
+  background-color: rgb(233, 222, 212);
+  height: 1200px;
+  width: 100%;
+}

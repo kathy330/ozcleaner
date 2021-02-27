@@ -1,5 +1,5 @@
 import React from "react"
-import AdminCustomersLeft from "../../components/AdminComponents/AdminCustomersLeft"
+// import AdminCustomersLeft from "../../components/AdminComponents/AdminCustomersLeft"
 import AdminCustomersRight from "../../components/AdminComponents/AdminCustomersRight"
 
 function AdminCustomersPage(){
@@ -7,7 +7,7 @@ function AdminCustomersPage(){
     <div className="admin-customers-page">
       {/* <NavBar /> */}
 
-      <AdminCustomersLeft />
+      {/* <AdminCustomersLeft /> */}
       <AdminCustomersRight />
 
       {/* <footer /> */}

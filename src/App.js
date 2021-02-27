@@ -5,6 +5,7 @@ import {Route, Switch} from "react-router"
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import HomePage from "./pages/HomePage/HomePage"
+import ButtonPage from "./pages/ButtonPage/ButtonPage"
 import OrderPage from "./pages/OrderPage/OrderPage"
 import ProfilePage from "./pages/ProfilePage/ProfilePage"
 import AdminCustomersPage from "./pages/AdminPage/AdminCustomersPage"
@@ -39,6 +40,7 @@ function App() {
         <Route path="/admin/overview" exact component={AdminOverviewPage} />
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
 
+        <Route path="/button" exact component={ButtonPage} />
 
 
 

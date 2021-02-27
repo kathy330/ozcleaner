@@ -13,14 +13,13 @@
   font-style: normal;
   font-weight: bold;
   height: 77px;
-  left: 55%;
+  left: 50%;
   letter-spacing: normal;
   line-height: 1.51;
-  // margin: 0 70.5px;
-  position: absolute;
-  text-align: left;
-  top: 40%;
-  transform: translate(-55%, -40%);
+  position: relative;
+  text-align: center;
+  top: 38vh;
+  transform: translate(-50%);
   width: 573px;
 }
 
@@ -31,30 +30,33 @@
   font-style: normal;
   font-weight: normal;
   height: 43px;
-  left: 55%;
+  left: 50%;
   letter-spacing: normal;
   line-height: 1.53;
-  position: absolute;
-  text-align: left;
-  top: 48%;
-  transform: translate(-55%, -48%);
+  position: relative;
+  text-align: center;
+  top: 40vh;
+  transform: translate(-50%);
   width: 512px;
 }
 
 .select {
   &__position {
     display: flex;
-    left: 50%;
-    position: absolute;
-    top: 60%;
-    transform: translate(-50%, -60%);
+    // flex-direction: row; //默认就是row排序
+    // flex-wrap: wrap; //屏幕缩小自动换行
+    flex-flow: row wrap; //上面两个方法合并
+    justify-content: center; //配合flex使用
+    position: relative;
+    top: 45vh;
   }
 
   &__button {
-    left: 50%;
-    position: absolute;
-    top: 74%;
-    transform: translate(-50%, -74%);
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 55vh;
+    // transform: translate(-50%);
   }
 }
 

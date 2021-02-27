@@ -1,5 +1,5 @@
 import React from "react"
-import HomeTitle from "../../components/HomeComponents/components/HomeTitle"
+import HomeTitle from "../../components/HomeComponents/HomeTitle"
 import HomeSelectForm from "../../components/HomeComponents/HomeSelectForm"
 import HeaderNavigation from "../../components/NavBarComponents/NavBar"
 

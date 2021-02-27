@@ -5,7 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import DatePicker from "./components/DatePicker"
-import TimePicker from "./TimePicker"
+import TimePicker from "./components/TimePicker"
 import InsertPostcode from "./components/PostcodeInput"
 import styles from './scss/HomeSelectForm.module.scss' // scss 
 import HomeButton from './components/HomeButton'
@@ -71,7 +71,6 @@ class HomeSelectForm extends React.Component {
         <div className={styles.select__position}>
           {/* variant="filled"是背景填充Standard/filled/outlined */}
           {/* <FormControl variant="filled" style={diyStyle.select}> */}
-
           <FormControl style={diyStyle.roomSelect} onSubmit={this.submitHandler}>
             <InputLabel id="demo-simple-select-filled-label">Bedroom</InputLabel>
             <Select
@@ -88,7 +87,6 @@ class HomeSelectForm extends React.Component {
               <MenuItem value="4">4</MenuItem>
               <MenuItem value="5">5</MenuItem>
             </Select>
-            {/* <button type="submit">ss</button> */}
           </FormControl>
 
           <FormControl style={diyStyle.roomSelect}>

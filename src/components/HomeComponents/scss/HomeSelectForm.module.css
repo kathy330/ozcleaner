@@ -1,106 +1,19 @@
-.position {
+.select__position {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   left: 50%;
   position: absolute;
-  top: 65%;
-  -webkit-transform: translate(-50%, -65%);
-          transform: translate(-50%, -65%);
+  top: 60%;
+  -webkit-transform: translate(-50%, -60%);
+          transform: translate(-50%, -60%);
 }
 
-.selection {
-  background-color: #fff;
-  border: solid 0.1px #707070;
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.16);
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.16);
-  height: 45px;
-  padding: 12px 10px;
-  width: 110px;
-}
-
-.selection.aa {
-  padding: 0;
-}
-
-.selection__aa {
-  padding: 0;
-}
-
-.selection__date {
-  background-color: #fff;
-  border: solid 0.1px #707070;
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.16);
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.16);
-  height: 43px;
-  padding: 0 15px;
-  width: 125px;
-}
-
-.selection__postcode {
-  background-color: #fff;
-  border: solid 0.1px #707070;
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.16);
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.16);
-  height: 43px;
-  padding: 0 15px;
-  text-align: center;
-  width: 100px;
-}
-
-.button1 {
-  background-color: #007bf5;
-  border-radius: 5px;
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.16);
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.16);
-  color: white;
-  height: 45px;
+.select__button {
   left: 50%;
-  padding: 12px 13px 12px 14px;
   position: absolute;
-  top: 90%;
-  -webkit-transform: translate(-50%, -90%);
-          transform: translate(-50%, -90%);
-  width: 160px;
-}
-
-.button2 {
-  background-color: #0aa8dd;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.3rem;
-  left: 50%;
-  margin: 4px 2px;
-  padding: 15px 32px;
-  position: absolute;
-  text-align: center;
-  text-decoration: none;
-  top: 80%;
-  -webkit-transform: translate(-50%, -80%);
-          transform: translate(-50%, -80%);
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-          appearance: none;
-}
-
-input [type='number'] {
-  -webkit-appearance: textfield;
-     -moz-appearance: textfield;
-          appearance: textfield;
-}
-
-.aaa {
-  left: 50%;
-  padding: 12px 32px;
-  position: absolute;
-  top: 76%;
-  -webkit-transform: translate(-50%, -76%);
-          transform: translate(-50%, -76%);
+  top: 74%;
+  -webkit-transform: translate(-50%, -74%);
+          transform: translate(-50%, -74%);
 }
 /*# sourceMappingURL=HomeSelectForm.module.css.map */

@@ -6,7 +6,11 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 // import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import { makeStyles } from '@material-ui/core/styles'
+import './scss/Style.css'
+import {makeStyles} from '@material-ui/core/styles'
+
+import PopupButton from './Button'
+// import {buttonStyle} from '../../../styles/styles'
 
 export default function FormDialog() {
     const [open, setOpen] = React.useState(false)
@@ -18,61 +22,107 @@ export default function FormDialog() {
     const handleClose = () => {
       setOpen(false)
     }
-    const useStyles = makeStyles({
-        root: {
-          // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-          fontSize:'3.8rem',
-          fontWeight:'bold',
-          textAlign:'center',
-          borderRadius:60,
-          input:{
-            borderRadius:30
-        }
-        },
+    
+    // const style = buttonStyle()
+    /*
+    const StyledInput = withStyles({
+      root: {
         
-      })
+        borderRadius: 6,
+        border: 0,
+        marginBottom:'20px',
+      },
+    })(TextField) */
+/*
+    const useStyles = makeStyles((theme) => ({
+      root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        textAlign:'center',
+        borderRadius: "50px 50px 0 0"
+      },
+      margin: {
+        margin: theme.spacing(1),
+      },
+      withoutLabel: {
+        marginTop: theme.spacing(3),
+      },
+      textField: {
+        width: 300,
+        [`& fieldset`]: {
+      borderRadius: 30
+    }
+      },
+    }))
 
-    const classes = useStyles()
+  */  
+ const useStyles = makeStyles({
+  textField: {
+    marginLeft:'40px',
+    marginRight:'40px',
+    width: 330,
+    marginBottom:"15px"
+  },
   
+})
+const Divider = ({ children }) => (
+  <div className="container">
+    <div className="border" />
+    <span className="content">
+      {children}
+    </span>
+    <div className="border" />
+  </div>
+)
+const classes = useStyles()   
+    
     return (
-        
+            
       <div>
         <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-          黑猫警长向您致敬
+          Join Us
         </Button>
         
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle className={classes.root}>Join us</DialogTitle>
+          <DialogTitle className="Dialog-title">Join us</DialogTitle>
           <DialogContent>
-            <DialogTitle>Email</DialogTitle>
-            <TextField
-              className={classes.root}
-              autoFocus
-              margin="dense"
-              id="outlined-basic"
-              label="Email"
-              type="email"
-              fullWidth
-              variant="outlined"
-            />
-            <DialogTitle>Password</DialogTitle>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="outlined-basic"
-              label="Password"
-              type="password"
-              fullWidth
-              variant="outlined"
-            />
+            <h3 className="Dialog-title_email">Email</h3>
+            <div className="Dialog-input">
+              <TextField
+                className={classes.textField}
+                margin="dense"
+                id="outlined-basic"
+                label="Email"
+                type="Email"
+                variant="outlined"
+              />
+            </div>
+            <h3 className="Dialog-title_email">Password</h3>
+            <div className="Dialog-input">
+              <TextField
+                className={classes.textField}
+                margin="dense"
+                id="outlined-basic"
+                label="Password"
+                type="password"
+                variant="outlined"
+              />
+            </div>
+            <a className="Dialog-mention" href="/password">Forgot Password?</a>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <div className="Dialog-Button">
+              <PopupButton  />
+              <Divider>Or</Divider>
+            </div>
+            
+            
+            {/* <Button onClick={handleClose} color="primary">
               Login
             </Button>
             <Button onClick={handleClose} color="primary">
               Registration
-            </Button>
+            </Button> */}
           </DialogActions>
         </Dialog>
       </div>

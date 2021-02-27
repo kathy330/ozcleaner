@@ -1,5 +1,54 @@
-.title {
+.Dialog-title {
   font-weight: bold;
-  background-color: "lightblue";
+  text-align: center;
+  font-family: "museo-sans, sans-serif";
+}
+
+.Dialog-title_email {
+  font-family: "museo-sans, sans-serif";
+  font-weight: bold;
+  font-size: 22px;
+  margin-left: 45px;
+}
+
+.Dialog-input fieldset {
+  border-radius: 30px;
+}
+
+.Dialog-mention {
+  font-family: "museo-sans, sans-serif";
+  font-weight: bold;
+  color: #007bf5;
+  float: right;
+  margin-right: 40px;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+.Dialog-Button {
+  margin-left: 40px;
+  margin-Right: 40px;
+  width: 360px;
+  margin-Bottom: 15px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.border {
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+.content {
+  padding: 0 30px 0 30px;
 }
 /*# sourceMappingURL=Style.css.map */

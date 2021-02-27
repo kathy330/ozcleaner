@@ -1,6 +1,5 @@
 import 'date-fns'
 import React from 'react'
-// import Grid from '@material-ui/core/Grid';
 import { styled } from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import {MuiPickersUtilsProvider, KeyboardTimePicker} from '@material-ui/pickers'
@@ -10,7 +9,6 @@ import getTime from './getTime'
 // KeyboardTimePicker重命名为MyKeyboardTimePicker;在下面引用 <MyKeyboardTimePicker/ >
 // 法1和嵌套方法在 style/HomeComponentStyle.js
 const MyKeyboardTimePicker = styled(KeyboardTimePicker)({
-  // marginTop:'8px',
   marginLeft: '5px',
   width: '210px'
 })

@@ -1,18 +1,17 @@
 import React from 'react'
-// import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
-import DatePicker from "./components/DatePicker"
+import DatePicker from './components/DatePicker'
 import TimePicker from "./components/TimePicker"
 import InsertPostcode from "./components/PostcodeInput"
 import styles from './scss/HomeSelectForm.module.scss' // scss 
 import HomeButton from './components/HomeButton'
+// import HomeComponentStyle from './styles/HomeComponentStyle' //开会🐛 1/3
 
 // 🌟不能在css里设置material ui 组件的样式，每次重启都会失灵，放在这里可以用
 // 🌟官方文档diy的方式在TimePicker,style/HomeComponentStyle.js里有三种
-
 // 🌟scss Module里的引用方法 className={styles.position}
 // 🌟material的其他js文件设置diy的引用方法 className={diyStyle.button}
 // 🌟material的本页面设置diy的引用方法 style={diyStyle.button}
@@ -26,6 +25,7 @@ const diyStyle = {
     marginLeft:'5px'
   },
 }
+// const classes = HomeComponentStyle() //开会🐛 2/3
 
 class HomeSelectForm extends React.Component {
   
@@ -69,8 +69,11 @@ class HomeSelectForm extends React.Component {
       <div className={styles.content}>
       
         <div className={styles.select__position}>
+          {/* <div className={classes.datePicker}> //开会🐛 2/3 */}
+
           {/* variant="filled"是背景填充Standard/filled/outlined */}
           {/* <FormControl variant="filled" style={diyStyle.select}> */}
+          {/* 🌟这三个FormControl等会saga后，也拆分出去，暂时放这里 */}
           <FormControl style={diyStyle.roomSelect} onSubmit={this.submitHandler}>
             <InputLabel id="demo-simple-select-filled-label">Bedroom</InputLabel>
             <Select
@@ -124,6 +127,10 @@ class HomeSelectForm extends React.Component {
           <DatePicker />
           <TimePicker />
           <InsertPostcode />
+        </div>
+
+        <div className={styles.select__button}>
+          <HomeButton />
         </div>
 
         <HomeButton />

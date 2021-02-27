@@ -4,7 +4,7 @@ import React from 'react'
 import { styled } from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import {MuiPickersUtilsProvider, KeyboardTimePicker} from '@material-ui/pickers'
-import getTime from './components/getTime'
+import getTime from './getTime'
 
 // 🌟diy样式方法2: styled（里面放要被改变的组件名字），
 // KeyboardTimePicker重命名为MyKeyboardTimePicker;在下面引用 <MyKeyboardTimePicker/ >

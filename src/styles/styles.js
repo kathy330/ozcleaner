@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core"
 
 export const navBarStyle = makeStyles((theme) => ({
     AppBar: {
-      backgroundColor: "white",
+      backgroundColor: theme.palette.primary.white,
     },
     grow:{
       flexGrow:1,
@@ -15,7 +15,7 @@ export const navBarStyle = makeStyles((theme) => ({
       margin: "auto",
     },
     bookingButton: {
-      color: "white",
+      color: theme.palette.primary.white,
       background: theme.palette.primary.main, // #007bf5
       borderRadius: "25px",
       marginInline: "20px",
@@ -29,7 +29,7 @@ export const navBarStyle = makeStyles((theme) => ({
 export const buttonStyle = makeStyles((theme) => ({
   // 🔥这个名字 改成navbar booking button？
     bookingButton: {
-        color: "white",
+        color: theme.palette.primary.white,
         background: theme.palette.primary.main,
         borderRadius: "25px",
         marginInline: "25px",
@@ -55,7 +55,7 @@ export const buttonStyle = makeStyles((theme) => ({
     // admin 所有绿色按钮配色和字体和样式，不负责位置
     adminGreenButton: {
       background: theme.palette.secondary.green, // #89b153
-      color: "white",
+      color: theme.palette.primary.white,
       // width:'300px',
       // .....
       // ....

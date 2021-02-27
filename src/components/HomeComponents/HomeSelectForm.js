@@ -8,7 +8,7 @@ import TimePicker from "./components/TimePicker"
 import InsertPostcode from "./components/PostcodeInput"
 import HomeButton from './components/HomeButton'
 
-import scssStyle from './scss/HomeSelectForm.module.scss' // scss 
+import scssStyle from './scss/HomeContent.module.scss' // scss 
 
 // 🌟官方文档diy的方式在TimePicker,style/HomeComponentStyle.js里有三种
 // 🌟scss Module/material style的引用方法 className={styles.position}

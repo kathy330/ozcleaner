@@ -41,6 +41,23 @@
   width: 512px;
 }
 
+.select {
+  &__position {
+    display: flex;
+    left: 50%;
+    position: absolute;
+    top: 60%;
+    transform: translate(-50%, -60%);
+  }
+
+  &__button {
+    left: 50%;
+    position: absolute;
+    top: 74%;
+    transform: translate(-50%, -74%);
+  }
+}
+
 .feedback {
   background-color: rgb(233, 222, 212);
   height: 1200px;

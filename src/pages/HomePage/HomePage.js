@@ -1,18 +1,20 @@
 import React from "react"
-import HomeTitle from "../../components/HomeComponents/HomeTitle"
-import HomeSelectForm from "../../components/HomeComponents/HomeSelectForm"
 import HeaderNavigation from "../../components/NavBarComponents/NavBar"
+import HomeContent from "../../components/HomeComponents/HomeContent"
+import HomeFeedback from "../../components/HomeComponents/HomeFeedback"
 
 function Home(){
   return (
     <div className="homepage">
+
       <HeaderNavigation />
 
-      <HomeTitle />
-      <HomeSelectForm />
-    
+      <HomeContent />
 
-      {/* <footer /> */}
+      <HomeFeedback />
+      
+      
+      
     </div>
   )
 }

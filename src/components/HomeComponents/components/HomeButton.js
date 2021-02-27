@@ -6,6 +6,7 @@ import {buttonStyle} from '../../../styles/styles'
 
 export default function HomeButton() {
   const classes = buttonStyle()
+
   return(
     <>
       <Button

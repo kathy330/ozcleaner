@@ -1,14 +1,14 @@
 import React from 'react'
 
-import BedroomPicker from './components/BedroomPicker'
-import BathroomPicker from './components/BathroomPicker'
-import TypePicker from './components/TypePicker'
-import DatePicker from "./components/DatePicker"
-import TimePicker from "./components/TimePicker"
-import InsertPostcode from "./components/PostcodeInput"
-import HomeButton from './components/HomeButton'
+import BedroomPicker from './BedroomPicker'
+import BathroomPicker from './BathroomPicker'
+import TypePicker from './TypePicker'
+import DatePicker from "./DatePicker"
+import TimePicker from "./TimePicker"
+import InsertPostcode from "./PostcodeInput"
+import HomeButton from './HomeButton'
 
-import scssStyle from './scss/HomeContent.module.scss' // scss 
+import scssStyle from '../scss/HomeContent.module.scss' // scss 
 
 // 🌟官方文档diy的方式在TimePicker,style/HomeComponentStyle.js里有三种
 // 🌟scss Module/material style的引用方法 className={styles.position}

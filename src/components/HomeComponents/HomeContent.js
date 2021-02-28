@@ -2,7 +2,7 @@ import React from 'react'
 // import Grid from '@material-ui/core/Grid'
 // import { makeStyles } from '@material-ui/core/styles'
 import { Container } from '@material-ui/core'
-import HomeSelectForm from './HomeSelectForm'
+import HomeSelectForm from './components/HomeSelectForm'
 
 import scssStyle from './scss/HomeContent.module.scss'
 

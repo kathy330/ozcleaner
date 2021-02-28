@@ -13,6 +13,7 @@ export default function HomeButton() {
         className={classes.homeBookingButton}
         variant="contained"
         type="submit"
+        id="back-to-top-anchor" // 此id为了首页BackToTop按钮定位设计的
       >
         Booking from $80
       </Button>

@@ -1,22 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-// styles
-const navBarStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-  button: {
-    width: 50,
-    fontSize: 20,
-    fontWeight: 50,
-    margin: 10,
-  }
-}))
-
-
-
 const priceStyles = makeStyles({
   root: {
     minWidth: 100,
@@ -31,4 +14,4 @@ const priceStyles = makeStyles({
 
 })
 
-export default { navBarStyles, priceStyles }
+export default priceStyles

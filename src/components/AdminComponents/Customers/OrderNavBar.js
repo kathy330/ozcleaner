@@ -13,29 +13,44 @@
 // }
 
 import React from 'react'
-import Button from '@material-ui/core/Button'
-
-import { navBarStyles } from '../styles/AdminComponentStyle'
-
+import { Button, makeStyles } from '@material-ui/core'
 import style from '../scss/Admin.module.scss'
+
+// styles
+const navBarStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  button: {
+    width: 150,
+    fontSize: 20,
+    fontWeight: 50,
+    margin: 10,
+    backgroundColor: "red"
+  }
+}))
 
 
 // navbars
 export default function ContainedButtons() {
-  const classes = navBarStyles
+  const classes = navBarStyles()
+
+
 
   return (
     <div className={style.button}>
-      <Button variant="contained" color="primary" className={classes.navBarStyles}>
+      <Button variant="contained" color="primary" className={classes.button}>
         UNCONFIRMED
       </Button>
-      <Button variant="contained" color="primary" className={classes.navBarStyles}>
+      <Button variant="contained" color="primary" className={classes.button}>
         CONFIRMED
       </Button>
-      <Button variant="contained" color="primary" className={classes.navBarStyles}>
+      <Button variant="contained" color="primary" className={classes.button}>
         COMPLETED
       </Button>
-      <Button variant="contained" color="primary" className={classes.navBarStyles}>
+      <Button variant="contained" color="primary" className={classes.button}>
         CANCELLED
       </Button>
     </div>

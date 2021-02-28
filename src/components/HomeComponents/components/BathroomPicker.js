@@ -30,6 +30,17 @@ export default function BathroomPicker() {
           value={bathRoomNum}
           name="bedRoomNum"
           onChange={changeHandler}
+          MenuProps={{
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "left"
+            },
+            transformOrigin: {
+              vertical: "top",
+              horizontal: "left"
+            },
+            getContentAnchorEl: null
+          }}
         >
           <MenuItem value="0">0</MenuItem>
           <MenuItem value="1">1</MenuItem>

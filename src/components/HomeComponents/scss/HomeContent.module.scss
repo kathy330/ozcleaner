@@ -13,14 +13,12 @@
   font-style: normal;
   font-weight: bold;
   height: 77px;
-  left: 50%;
   letter-spacing: normal;
   line-height: 1.51;
+  // padding-bottom: 30px;
   position: relative;
   text-align: center;
   top: 38vh;
-  transform: translate(-50%);
-  width: 573px;
 }
 
 .subtitle {
@@ -30,14 +28,12 @@
   font-style: normal;
   font-weight: normal;
   height: 43px;
-  left: 50%;
   letter-spacing: normal;
   line-height: 1.53;
+  margin-top: 30px;
   position: relative;
   text-align: center;
-  top: 40vh;
-  transform: translate(-50%);
-  width: 512px;
+  top: 38vh;
 }
 
 .select {
@@ -60,13 +56,36 @@
   }
 }
 
-// .feedback {
-//   background-color: rgb(233, 222, 212);
-//   flex-grow: 1;
-//   height: 1200px;
-//   width: 100%;
+// .title {
+//   color: #131523;
+//   font-size: 3.4375rem;
+//   font-stretch: normal;
+//   font-style: normal;
+//   font-weight: bold;
+//   height: 77px;
+//   left: 50%;
+//   letter-spacing: normal;
+//   line-height: 1.51;
+//   position: relative;
+//   text-align: center;
+//   top: 38vh;
+//   transform: translate(-50%);
+//   // width: 573px; //有这个就不能自动缩小
+// }
 
-//   img {
-//     // width: 400px;
-//   }
+// .subtitle {
+//   color: #131523;
+//   font-size: 1.875rem;
+//   font-stretch: normal;
+//   font-style: normal;
+//   font-weight: normal;
+//   height: 43px;
+//   left: 50%;
+//   letter-spacing: normal;
+//   line-height: 1.53;
+//   position: relative;
+//   text-align: center;
+//   top: 40vh;
+//   transform: translate(-50%);
+//   // width: 512px;
 // }

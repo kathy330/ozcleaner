@@ -10,8 +10,8 @@ import scssStyle from './scss/HomeContent.module.scss'
 
 const HomeTitle = () => (
   <div className={scssStyle.background}>
-
-    <Container maxWidth="lg">
+    {/* Container 小于lg的话，form排不下最后一个picker */}
+    <Container maxWidth="lg"> 
       <div className={scssStyle.title}>
         We Clean. You Relax.
       </div>

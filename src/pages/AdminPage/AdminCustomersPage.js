@@ -1,16 +1,49 @@
 import React from "react"
-// import AdminCustomersLeft from "../../components/AdminComponents/AdminCustomersLeft"
+import { makeStyles, Container, Grid } from '@material-ui/core'
+import AdminCustomersLeft from "../../components/AdminComponents/AdminCustomersLeft"
 import AdminCustomersRight from "../../components/AdminComponents/AdminCustomersRight"
+import AdminCustomersTop from "../../components/AdminComponents/AdminCustomersTop"
+import NavBar from '../../components/NavBarComponents/NavBar'
 
-function AdminCustomersPage(){
+// import style from '../../components/AdminComponents/scss/Admin.module.scss'
+
+// style
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+  left: {
+    backgroundColor: "lightblue",
+
+  },
+  right: {
+    // padding: '20px 40px'
+
+  },
+  adminCustomersPage: {
+    backgroundColor: "grey",
+    height: "100vh",
+  }
+}))
+
+function AdminCustomersPage() {
+  const classes = useStyles()
   return (
-    <div className="admin-customers-page">
-      {/* <NavBar /> */}
-
-      {/* <AdminCustomersLeft /> */}
-      <AdminCustomersRight />
-
-      {/* <footer /> */}
+    <div>
+      <NavBar />
+      <Container maxWidth="md" className={classes.test}>
+        <AdminCustomersTop />
+        <Grid container>
+          <AdminCustomersLeft />
+          <AdminCustomersRight />
+        </Grid>
+      </Container>
+      {/* <Footer /> */}
     </div>
   )
 }

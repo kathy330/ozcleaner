@@ -1,10 +1,10 @@
 import React from 'react'
-// import styles from './scss/HomeTitle.module.scss'
+import style from './scss/Admin.module.scss'
 import Price from './Customers/Price'
 import CancelOrderButton from './Customers/CancelOrderButton'
 
 const AdminCustomersRight = () => (
-  <div>
+  <div className={style.right}>
     <Price />
     <CancelOrderButton />
   </div>

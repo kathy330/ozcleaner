@@ -1,6 +1,11 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core'
 // 🌟这个文件的style只负责material UI 组件的 配色和字体和样式（从theme引用），不负责位置
 // 🌟位置需要给组件加上<div calssName=""></div>，并在scss中定义
+
+// 三种星星：
+// import StarIcon from '@material-ui/icons/Star';
+// import StarBorderIcon from '@material-ui/icons/StarBorder';
+// import StarHalfIcon from '@material-ui/icons/StarHalf';
 
 export const navBarStyle = makeStyles((theme) => ({
   AppBar: {
@@ -36,7 +41,7 @@ export const navBarStyle = makeStyles((theme) => ({
       display: 'block',
     },
   },
-}));
+}))
 
 export const buttonStyle = makeStyles((theme) => ({
   // 🔥这个名字 改成navbar booking button？
@@ -106,4 +111,4 @@ export const buttonStyle = makeStyles((theme) => ({
       // ....
     },
   },
-}));
+}))

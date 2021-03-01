@@ -1,5 +1,8 @@
 import React from 'react'
 
+import Grid from '@material-ui/core/Grid'
+import { Container , Box } from '@material-ui/core'
+
 import BedroomPicker from './BedroomPicker'
 import BathroomPicker from './BathroomPicker'
 import TypePicker from './TypePicker'
@@ -7,6 +10,7 @@ import DatePicker from "./DatePicker"
 import TimePicker from "./TimePicker"
 import InsertPostcode from "./PostcodeInput"
 import HomeButton from './HomeButton'
+
 
 import scssStyle from '../scss/HomeContent.module.scss' // scss 
 
@@ -52,20 +56,36 @@ class HomeSelectForm extends React.Component {
   
   render() {
     return(
-      <div>
+      <Box>
         <div className={scssStyle.select__position}>
-          <BedroomPicker />
-          <BathroomPicker />
-          <TypePicker />
-          <DatePicker />
-          <TimePicker />
-          <InsertPostcode />
+          <Container maxWidth="lg">
+            <Grid container spacing={1}>
+              <Grid item xs={12} md={2}>
+                <BedroomPicker />
+              </Grid>
+              <Grid item xs={12} md={2}>
+                <BathroomPicker />
+              </Grid>
+              <Grid item xs={12} md={2}>
+                <TypePicker />
+              </Grid>
+              <Grid item xs={12} md={2}>
+                <InsertPostcode />
+              </Grid>
+              <Grid item xs={12} md={2}>
+                <DatePicker />
+              </Grid>
+              <Grid item xs={12} md={2}>
+                <TimePicker />
+              </Grid>
+            </Grid>
+          </Container>
         </div>
 
         <div className={scssStyle.select__button}>
           <HomeButton />
         </div>
-      </div>
+      </Box>
     )
   }
 }

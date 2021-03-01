@@ -41,6 +41,7 @@
             "off"
         ], //暂时关闭noconsole 的 warn
         "object-shorthand": 0,
-        "import/no-unresolved": "off",
+        //Unable to resolve path to module '@material-ui'.eslintimport/no-
+        "import/no-unresolved": "off"
     }
 }

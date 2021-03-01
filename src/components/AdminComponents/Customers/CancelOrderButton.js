@@ -4,8 +4,6 @@ import style from '../scss/Admin.module.scss'
 
 export default function CancelOrderButton() {
   return (
-    <div>
-      <Button variant="contained" color="primary" className={style.button1}>CANCEL ORDER</Button>
-    </div>
+    <Button variant="contained" color="primary" className={style.button1}>CANCEL ORDER</Button>
   )
 }

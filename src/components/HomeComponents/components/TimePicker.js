@@ -15,10 +15,11 @@ const MyKeyboardTimePicker = styled(KeyboardTimePicker)({
 
 export default function MaterialUIPickers() {
   const time = getTime()
-  const [selectedDate, setSelectedDate] = React.useState(new Date(`${time}`))
+  const [selectedTime, setSelectedTime] = React.useState(new Date(`${time}`))
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date)
+  const changeHandler = (date) => {
+    setSelectedTime(date)
+    console.log(date)
   }
 
   return (
@@ -29,8 +30,8 @@ export default function MaterialUIPickers() {
         // margin="normal"
         id="time-picker"
         label="Choose your time"
-        value={selectedDate}
-        onChange={handleDateChange}
+        value={selectedTime}
+        onChange={changeHandler}
         KeyboardButtonProps={{
             'aria-label': 'change time',
           }}

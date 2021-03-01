@@ -15,8 +15,9 @@ export default function MaterialUIPickers() {
   const time = getTime()
   const [selectedDate, setSelectedDate] = React.useState(new Date(`${time}`))
 
-  const handleDateChange = (date) => {
+  const changeHandler = (date) => {
     setSelectedDate(date)
+    console.log(date)
   }
 
   return (
@@ -29,7 +30,7 @@ export default function MaterialUIPickers() {
         label="Choose your date"
         format="MM/dd/yyyy"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={changeHandler}
         KeyboardButtonProps={{
             'aria-label': 'change date',
           }}

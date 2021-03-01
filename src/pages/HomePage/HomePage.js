@@ -27,6 +27,7 @@ function Home(){
       <HomeHowWeWorks src1={works1} src2={works2} src3={works3} />
 
       <BackToTop />
+      
       <Footer />
     </div>
   )

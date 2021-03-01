@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react"
-import { makeStyles, Box, Container, Grid, Typography, Link } from '@material-ui/core';
+import { makeStyles, Box, Container, Grid, Typography, Link } from '@material-ui/core'
 
 const useStyles = makeStyles({
   footer: {
@@ -34,7 +34,7 @@ function Footer(){
 
   return (
     <Box component="footer" className={classes.footer}>
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Grid container spacing={4} justify="space-evenly">
           {footers.map((footer) => (
             <Grid item xs={12} sm={3} key={footer.title}>

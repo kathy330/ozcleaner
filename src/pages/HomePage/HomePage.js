@@ -4,6 +4,7 @@ import HomeContent from "../../components/HomeComponents/HomeContent"
 import HomeFeedback from "../../components/HomeComponents/HomeFeedback"
 import HomeHowWeWorks from "../../components/HomeComponents/HomeHowWeWorks"
 import BackToTop from '../../components/BackToTopComponents/BackToTop'
+import Footer from '../../components/FooterComponents/Footer'
 
 import user1 from '../../assets/user1.jpg'  // https://www.pexels.com/zh-cn/photo/4350228/
 import user2 from '../../assets/user2.jpg'  // https://www.pexels.com/zh-cn/photo/4350057/

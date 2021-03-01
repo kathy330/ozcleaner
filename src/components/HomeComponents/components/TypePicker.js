@@ -30,6 +30,17 @@ export default function TypePicker() {
           value={type}
           name="bedRoomNum"
           onChange={changeHandler}
+          MenuProps={{
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "left"
+            },
+            transformOrigin: {
+              vertical: "top",
+              horizontal: "left"
+            },
+            getContentAnchorEl: null
+          }}
         >
           <MenuItem value="RC">Regular</MenuItem>
           <MenuItem value="EC">End of lease</MenuItem>

@@ -30,6 +30,17 @@ export default function BedroomPicker() {
           value={bedRoomNum}
           name="bedRoomNum"
           onChange={changeHandler}
+          MenuProps={{ // 设置点开选项后的下拉样式
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "left"
+            },
+            transformOrigin: {
+              vertical: "top",
+              horizontal: "left"
+            },
+            getContentAnchorEl: null
+          }}
         >
           <MenuItem value="0">0</MenuItem>
           <MenuItem value="1">1</MenuItem>

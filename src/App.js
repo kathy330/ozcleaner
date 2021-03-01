@@ -9,6 +9,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage"
 import AdminCustomersPage from "./pages/AdminPage/AdminCustomersPage"
 import ErrorPage from "./pages/ErrorPage/ErrorPage"
 import theme from "./styles/theme"
+import AdminStaffPage from "./pages/AdminPage/AdminStaffPage"
 // import ....Page from ....
 
 import DongyuPage from "./pages/zpractice/Dongyu/Dongyu"
@@ -29,6 +30,7 @@ function App() {
         <Route path="/order" exact component={OrderPage} />
         <Route path="/profile" exact component={ProfilePage} />
         <Route path="/admin/customers" exact component={AdminCustomersPage} />
+        <Route path="/admin/staffs" exact component={AdminStaffPage} />
 
 
 

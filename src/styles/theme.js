@@ -29,7 +29,9 @@ const theme = createMuiTheme({
         redHover: '#ba1138', // 订单红色hover按钮
         green: '#89b153', // 订单绿色按钮
         greenHover: '#598125', // 订单绿色hover按钮
-        yellow: '#f4c465' // 订单黄色星级
+        yellow: '#f4c465' ,// 订单黄色星级
+        darkBlue:'#405592',// popUp facrbook登录按钮 
+        black:'#131523'
       },
     },
 

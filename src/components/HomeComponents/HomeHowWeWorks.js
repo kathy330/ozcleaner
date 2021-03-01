@@ -12,10 +12,6 @@ import Typography from '@material-ui/core/Typography'
 
 
 const useStyles = makeStyles(() => ({
-  minHeight: {
-    minHeight: '93vh',
-  },
-
   img: {
     padding: 0,
   },
@@ -35,7 +31,7 @@ export default function HomeFeedback({src1,src2,src3}) {
 
     // 🌟如果单纯想居中还可以用<Container />套着<Grid item {12}/>
 
-    <Container maxWidth="xl" className={classes.minHeight}>
+    <Container maxWidth="xl">
 
       <CardContent className={classes.textDetail}>
         <Typography 
@@ -45,7 +41,7 @@ export default function HomeFeedback({src1,src2,src3}) {
           How we works.
         </Typography>
       </CardContent>
-
+      
       <Grid container spacing={4}>
         <Grid item xs={12} md={4}>
           <CardActionArea className={classes.img}>

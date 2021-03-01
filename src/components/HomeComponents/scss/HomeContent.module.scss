@@ -1,0 +1,91 @@
+.background {
+  // font-family: 'Roboto', sans-serif;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+    url(../../../assets/cleaner1.jpg); //单独设置背景图片透明度，不用opacity整体设置透明度了。0deg渐变方向，rgba 0.7代表透明度
+  background-size: cover;
+  min-height: 100vh; //不会脱离文档了👍
+}
+
+.title {
+  color: #131523;
+  font-size: 3.4375rem;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: bold;
+  height: 77px;
+  letter-spacing: normal;
+  line-height: 1.51;
+  // padding-bottom: 30px;
+  position: relative;
+  text-align: center;
+  top: 38vh;
+}
+
+.subtitle {
+  color: #131523;
+  font-size: 1.875rem;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: normal;
+  height: 43px;
+  letter-spacing: normal;
+  line-height: 1.53;
+  margin-top: 30px;
+  position: relative;
+  text-align: center;
+  top: 38vh;
+}
+
+.select {
+  &__position {
+    display: flex;
+    // flex-direction: row; //默认就是row排序
+    // flex-wrap: wrap; //屏幕缩小自动换行
+    flex-flow: row wrap; //上面两个方法合并
+    justify-content: center; //配合flex使用
+    position: relative;
+    top: 45vh;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 55vh;
+    // transform: translate(-50%);
+  }
+}
+
+// .title {
+//   color: #131523;
+//   font-size: 3.4375rem;
+//   font-stretch: normal;
+//   font-style: normal;
+//   font-weight: bold;
+//   height: 77px;
+//   left: 50%;
+//   letter-spacing: normal;
+//   line-height: 1.51;
+//   position: relative;
+//   text-align: center;
+//   top: 38vh;
+//   transform: translate(-50%);
+//   // width: 573px; //有这个就不能自动缩小
+// }
+
+// .subtitle {
+//   color: #131523;
+//   font-size: 1.875rem;
+//   font-stretch: normal;
+//   font-style: normal;
+//   font-weight: normal;
+//   height: 43px;
+//   left: 50%;
+//   letter-spacing: normal;
+//   line-height: 1.53;
+//   position: relative;
+//   text-align: center;
+//   top: 40vh;
+//   transform: translate(-50%);
+//   // width: 512px;
+// }

@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core"
 
 export const navBarStyle = makeStyles((theme) => ({
     AppBar: {
-      backgroundColor: "white",
+      backgroundColor: theme.palette.primary.white,
     },
     grow:{
       flexGrow:1,
@@ -15,7 +15,7 @@ export const navBarStyle = makeStyles((theme) => ({
       margin: "auto",
     },
     bookingButton: {
-      color: "white",
+      color: theme.palette.primary.white,
       background: theme.palette.primary.main, // #007bf5
       borderRadius: "25px",
       marginInline: "20px",
@@ -29,10 +29,10 @@ export const navBarStyle = makeStyles((theme) => ({
 export const buttonStyle = makeStyles((theme) => ({
   // 🔥这个名字 改成navbar booking button？
     bookingButton: {
-        color: "white",
+        color: theme.palette.primary.white,
         background: theme.palette.primary.main,
         borderRadius: "25px",
-        marginInline: "20px",
+        marginInline: "25px",
         "&:hover": {
           background: theme.palette.primary.main,
           boxShadow: "0px 2px 10px #888888",
@@ -44,7 +44,7 @@ export const buttonStyle = makeStyles((theme) => ({
       borderRadius: '5px',
       color: theme.palette.primary.white,
       marginInline: "20px",
-      padding: '11px 12px',
+      paddingInline: '100px',
   
       "&:hover": {
         background: theme.palette.primary.dark, // #0050c1
@@ -55,39 +55,42 @@ export const buttonStyle = makeStyles((theme) => ({
     // admin 所有绿色按钮配色和字体和样式，不负责位置
     adminGreenButton: {
       background: theme.palette.secondary.green, // #89b153
+      color: theme.palette.primary.white,
       // width:'300px',
       // .....
       // ....
 
       "&:hover": {
         background: theme.palette.secondary.greenHover,
-        // .....
+        boxShadow: "0px 2px 10px #888888",
         // ....
       }
     },
 
     // admin 所有红色按钮配色和字体和样式，不负责位置
     adminRedButton: {
+      color: "white",
       background: theme.palette.secondary.red, // #f35162
       // .....
       // ....
 
       "&:hover": {
         background: theme.palette.secondary.redHover, 
-        // .....
+        boxShadow: "0px 2px 10px #888888",
         // ....
       }
     },
 
     // admin 所有蓝色按钮配色和字体和样式，不负责位置
     adminBlueButton: {
+      color: "white",
       background: theme.palette.secondary.main, // #007bf5
       // .....
       // ....
 
       "&:hover": {
-        background: theme.palette.secondary.blueHover, 
-        // .....
+        background: theme.palette.secondary.main, 
+        boxShadow: "0px 2px 10px #888888",
         // ....
       }
     }

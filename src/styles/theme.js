@@ -4,7 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles'
 const theme = createMuiTheme({
     typography: {
       "fontFamily": "museo-sans, sans-serif",
-      "fontSize": 20,
+      "fontSize": 15,
       "fontWeightLight": 300,
       "fontWeightRegular": 500,
       "fontWeightMedium": 700,
@@ -24,7 +24,7 @@ const theme = createMuiTheme({
       // 次要配色，订单界面 绿色/红色/浅蓝按钮按钮
       secondary: {
         main: '#007bf5', // 订单浅蓝按钮
-        mainHover: '#0050c1', // 订单蓝色hover按钮
+        mainHover: '#0001F5', // 订单蓝色hover按钮
         red: '#f35162', // 订单红色按钮
         redHover: '#ba1138', // 订单红色hover按钮
         green: '#89b153', // 订单绿色按钮

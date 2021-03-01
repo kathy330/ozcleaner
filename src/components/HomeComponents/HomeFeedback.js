@@ -114,7 +114,6 @@ export default function HomeFeedback({src}) {
             </Grid>
           </Container>
         </Grid>
-
       </Card>
       
     </Container>

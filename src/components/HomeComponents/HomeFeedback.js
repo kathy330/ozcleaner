@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   img: {
-    // marginBottom: '25px',
-    marginTop: '102px',
+    // marginTop: '102px',
+    marginTop: '95px',
     padding: '0px',
     
     '& img': {
@@ -37,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     height: '75vh',
     justifyContent: 'center',
-    marginTop: '102px',
+    // marginTop: '102px',
+    marginTop: '95px',
     textAlign: "right",
   },
 

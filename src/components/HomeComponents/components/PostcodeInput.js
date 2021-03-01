@@ -22,7 +22,13 @@ export default function BasicTextFields() {
       autoComplete="off"
       onSubmit={submitHandler}
     >
-      <TextField value={postcode} id="standard-basic" label="Post Code" onChange={changeHandler} />
+      <TextField
+        value={postcode} 
+        id="standard-basic"
+        label="Post Code"
+        className={classes.postCodeLength}
+        onChange={changeHandler}
+      />
     </form>
   )
 }

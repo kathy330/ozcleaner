@@ -4,6 +4,7 @@ import AdminCustomersLeft from "../../components/AdminComponents/AdminCustomersL
 import AdminCustomersRight from "../../components/AdminComponents/AdminCustomersRight"
 import AdminCustomersTop from "../../components/AdminComponents/AdminCustomersTop"
 import NavBar from '../../components/NavBarComponents/NavBar'
+// import Footer from '../../components/FooterComponents/Footer'
 
 // import style from '../../components/AdminComponents/scss/Admin.module.scss'
 
@@ -28,13 +29,20 @@ const useStyles = makeStyles((theme) => ({
   adminCustomersPage: {
     backgroundColor: "grey",
     height: "100vh",
+  },
+  bg: {
+    backgroundColor: "grey"
+  },
+  test: {
+    backgroundColor: "white",
+    height: "100vh"
   }
 }))
 
 function AdminCustomersPage() {
   const classes = useStyles()
   return (
-    <div>
+    <div className={classes.bg}>
       <NavBar />
       <Container maxWidth="md" className={classes.test}>
         <AdminCustomersTop />

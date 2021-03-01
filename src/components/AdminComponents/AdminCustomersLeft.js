@@ -5,17 +5,18 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import OrderTitle from './Customers/OrderTitle'
 import CreatedBy from './Customers/CreatedBy'
-import AssginedTo from './Customers/AssginedTo'
+// import AssginedTo from './Customers/AssginedTo'
 import Location from './Customers/Location'
 import DueDate from './Customers/DueDate'
 import Extra from './Customers/Extra'
 import Review from './Customers/Review'
-
+import user1 from '../../assets/user1.jpg'
 
 // style
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    backgroundColor: 'lightgreen'
   },
   paper: {
     padding: theme.spacing(2),
@@ -40,8 +41,10 @@ const AdminCustomersLeft = () => {
   return (
     <Grid item xs={12} sm={9} className={classes.root}>
       <OrderTitle />
-      <CreatedBy />
-      <AssginedTo />
+      <CreatedBy image={user1} name='Odas Pdsad' time='2020.03.02T18:00:00' title='CREATED BY' />
+      <CreatedBy image='BJ' name='Ben Jack' time='2020.03.02T19:00:00' title='Assgined To' />
+
+      {/* <AssginedTo /> */}
       <Location />
       <DueDate />
       <Extra />

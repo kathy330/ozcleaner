@@ -24,10 +24,12 @@ const navBarStyles = makeStyles((theme) => ({
     },
   },
   button: {
-    width: 150,
-    fontSize: 20,
+    width: 100,
+    fontSize: 10,
     fontWeight: 50,
-    margin: 10,
+    margin: 55,
+    marginLeft: 1,
+    marginBottom: 10,
     backgroundColor: "red"
   }
 }))

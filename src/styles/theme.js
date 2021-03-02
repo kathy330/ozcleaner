@@ -33,6 +33,10 @@ const theme = createMuiTheme({
       },
     },
 
+    iconSize: {
+      
+    }
+
 
 })
 

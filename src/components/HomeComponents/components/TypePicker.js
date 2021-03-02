@@ -23,7 +23,12 @@ export default function TypePicker() {
   return (
     <div>
       <FormControl className={classes.typePicker} onSubmit={submitHandler}>
-        <InputLabel id="demo-simple-select-filled-label">Type</InputLabel>
+        <InputLabel
+          id="demo-simple-select-filled-label"
+          className={classes.roomPicker}
+        >
+          Type
+        </InputLabel>
         <Select
           labelId="demo-simple-select-filled-label"
           id="demo-simple-select-filled"

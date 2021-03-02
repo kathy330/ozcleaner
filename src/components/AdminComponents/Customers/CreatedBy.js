@@ -1,8 +1,16 @@
 import React from 'react'
-import { Grid, makeStyles, Box } from '@material-ui/core'
-import Avatar from '@material-ui/core/Avatar'
-import { deepPurple } from '@material-ui/core/colors'
-import style from '../scss/Admin.module.scss'
+import {
+  makeStyles,
+  Box,
+  Grid,
+  Typography,
+  Link,
+  Avatar,
+  Divider,
+} from '@material-ui/core'
+import { deepPurple, deepOrange } from '@material-ui/core/colors'
+// import style from '../scss/Admin.module.scss'
+
 
 // styles
 const styles = makeStyles((theme) => ({
@@ -14,38 +22,72 @@ const styles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-  modifiedTime: {
-    marginTop: 50,
-  },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
+  orange: {
+    color: theme.palette.getContrastText(deepOrange[500]),
+    backgroundColor: deepOrange[500],
+  },
+  icon: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // fontSize: '20px',
+  },
+  text: {
+    marginLeft: 10
+  },
+  divider: {
+    marginTop: 10,
+    border: 'solid 1px #e8ebfa',
+  }
 }))
 
-export default function CreatBy({ image, name, time, title }) {
+export default function CreatBy() {
   const classes = styles()
   return (
-    <Grid container spacing={0} className={classes.root}>
-      <Grid item xs={2}>
-        <Box>
-          <Avatar className={classes.purple}>{image}</Avatar>
+    <Grid container>
+      <Grid item xs={12} sm={9} className={classes.root}>
+        <Box display="flex" flexDirection="row" m={1}>
+          <Grid item xs={2} sm={1} className={classes.icon}>
+            <Avatar className={classes.purple}>J</Avatar>
+          </Grid>
+          <Grid item justify="center" xs={9} sm={10} className={classes.text}>
+            <Typography variant="subtitle2">
+              CREATE BY
+            </Typography>
+            <Grid container direction="row" justify="space-between" space={5}>
+              <Link href="/kathy" variant="subtitle2">
+                Jack P.
+              </Link>
+              <Typography variant="subtitle2">
+                23 hours ago
+              </Typography>
+            </Grid>
+            <Divider className={classes.divider} />
+          </Grid>
+        </Box>
+
+        <Box display="flex" flexDirection="row" m={1}>
+          <Grid item xs={2} sm={1} className={classes.icon}>
+            <Avatar className={classes.orange}>M</Avatar>
+          </Grid>
+          <Grid item justify="center" xs={9} sm={10} className={classes.text}>
+            <Typography variant="subtitle2">ASSIGNED TO</Typography>
+            <Grid container direction="row" justify="space-between" space={5}>
+              <Link href="/kathy" variant="subtitle2">
+                Michael J.
+              </Link>
+              <Typography variant="subtitle2">
+                21 hours ago
+              </Typography>
+            </Grid>
+            <Divider className={classes.divider} />
+          </Grid>
         </Box>
       </Grid>
-      <Grid item xs={3}>
-        <Box>
-          {title}
-        </Box>
-        <Box>
-          {name}
-        </Box>
-      </Grid>
-      <Grid item xs={7} className={classes.modifiedTime}>
-        <div>
-          {time}
-        </div>
-      </Grid>
-      <hr className={style.hrs} />
     </Grid>
   )
 }

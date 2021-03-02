@@ -4,8 +4,7 @@ import AdminCustomersLeft from "../../components/AdminComponents/AdminCustomersL
 import AdminCustomersRight from "../../components/AdminComponents/AdminCustomersRight"
 import AdminCustomersTop from "../../components/AdminComponents/AdminCustomersTop"
 import NavBar from '../../components/NavBarComponents/NavBar'
-// import Footer from '../../components/FooterComponents/Footer'
-
+import Footer from '../../components/FooterComponents/Footer'
 // import style from '../../components/AdminComponents/scss/Admin.module.scss'
 
 // style
@@ -18,41 +17,46 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-  left: {
-    backgroundColor: "lightblue",
-
-  },
-  right: {
-    // padding: '20px 40px'
-
-  },
-  adminCustomersPage: {
-    backgroundColor: "grey",
-    height: "100vh",
-  },
   bg: {
-    backgroundColor: "grey"
+    backgroundColor: '#eaeaea'
   },
   test: {
     backgroundColor: "white",
-    height: "100vh"
-  }
+    height: "100vh",
+  },
+  top: {
+    order: 1,
+    [theme.breakpoints.up('xs')]: {
+      order: 1,
+    },
+  },
+  left: {
+    order: 2,
+    [theme.breakpoints.up('xs')]: {
+      order: 3,
+    },
+  },
+  right: {
+    order: 3, [theme.breakpoints.up('xs')]: {
+      order: 2,
+    },
+  },
 }))
 
 function AdminCustomersPage() {
-  const classes = useStyles()
+  const classes = useStyles()// 往下滚动才会出现navbar
   return (
-    <div className={classes.bg}>
+    <Grid className={classes.bg}>
       <NavBar />
       <Container maxWidth="md" className={classes.test}>
-        <AdminCustomersTop />
+        <AdminCustomersTop className={classes.top} />
         <Grid container>
-          <AdminCustomersLeft />
-          <AdminCustomersRight />
+          <AdminCustomersLeft className={classes.left} />
+          <AdminCustomersRight className={classes.right} />
         </Grid>
       </Container>
-      {/* <Footer /> */}
-    </div>
+      <Footer />
+    </Grid>
   )
 }
 

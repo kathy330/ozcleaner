@@ -9,7 +9,8 @@ import {
   Link,
   Avatar,
 } from '@material-ui/core'
-import { LocationOn , Today } from '@material-ui/icons'
+import { LocationOn, Today } from '@material-ui/icons'
+
 // class KathyComponent extends React.Component{
 //     constructor(){
 //         super()
@@ -144,7 +145,9 @@ function KathyComponent() {
 
   return (
     <Container maxWidth="md">
+
       <Grid container>
+
         <Button>UNCONFIRMED</Button>
         <Button>IN PROGRESS</Button>
         <Button>COMPLETED</Button>

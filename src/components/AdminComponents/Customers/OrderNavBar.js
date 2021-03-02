@@ -13,8 +13,8 @@
 // }
 
 import React from 'react'
-import { Button, makeStyles } from '@material-ui/core'
-import style from '../scss/Admin.module.scss'
+import { Grid, Button, makeStyles } from '@material-ui/core'
+// import style from '../scss/Admin.module.scss'
 
 // styles
 const navBarStyles = makeStyles((theme) => ({
@@ -27,8 +27,8 @@ const navBarStyles = makeStyles((theme) => ({
     width: 100,
     fontSize: 10,
     fontWeight: 50,
-    margin: 55,
-    marginLeft: 1,
+    margin: 25,
+    marginLeft: 10,
     marginBottom: 10,
     backgroundColor: "red"
   }
@@ -42,7 +42,7 @@ export default function ContainedButtons() {
 
 
   return (
-    <div className={style.button}>
+    <Grid container>
       <Button variant="contained" color="primary" className={classes.button}>
         UNCONFIRMED
       </Button>
@@ -55,6 +55,6 @@ export default function ContainedButtons() {
       <Button variant="contained" color="primary" className={classes.button}>
         CANCELLED
       </Button>
-    </div>
+    </Grid>
   )
 }

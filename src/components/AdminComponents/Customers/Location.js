@@ -1,13 +1,54 @@
+import { Grid, Box, Typography, makeStyles, Divider } from '@material-ui/core'
 import React from 'react'
-import style from '../scss/Admin.module.scss'
+import { LocationOn, Today } from '@material-ui/icons'
+// import style from '../scss/Admin.module.scss'
+
+const useStyles = makeStyles(() => ({
+  root: {
+    border: '1px solid red',
+  },
+  icon: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // fontSize: '20px',
+  },
+  text: {
+    marginLeft: 10
+  },
+  divider: {
+    marginTop: 10,
+    border: 'solid 1px #e8ebfa',
+  }
+}))
 
 export default function Location() {
+  const classes = useStyles()
   return (
-    <div>
-      <div>Icon</div>
-      <div>LOCATION</div>
-      <div>Unit 302, 27 Buchanan Street, West End, QLD 4101</div>
-      <hr className={style.hrs} />
-    </div>
+    <Grid item xs={12} sm={9}>
+      <Box display="flex" flexDirection="row" m={1}>
+        <Grid item xs={2} sm={1} className={classes.icon}>
+          <LocationOn />
+        </Grid>
+        <Grid item justify="center" xs={10} sm={11} className={classes.text}>
+          <Typography variant="subtitle2">LOCATION</Typography>
+          <Typography variant="body2">
+            Unit 302, 27 Buchanan Street, West End, QLD 4101
+          </Typography>
+          <Divider className={classes.divider} />
+        </Grid>
+      </Box>
+
+      <Box display="flex" flexDirection="row" m={1}>
+        <Grid item xs={2} sm={1} className={classes.icon}>
+          <Today />
+        </Grid>
+        <Grid item justify="center" xs={10} sm={11} className={classes.text}>
+          <Typography variant="subtitle2">DUE DATE</Typography>
+          <Typography variant="body2">11:30AM, Sunday, 24th Jan 2021</Typography>
+          <Divider className={classes.divider} />
+        </Grid>
+      </Box>
+    </Grid>
   )
 }

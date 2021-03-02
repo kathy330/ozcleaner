@@ -17,29 +17,12 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-  bg: {
-    backgroundColor: '#eaeaea'
-  },
+  // bg: {
+  //   backgroundColor: '#eaeaea'
+  // },
   test: {
     backgroundColor: "white",
-    height: "100vh",
-  },
-  top: {
-    order: 1,
-    [theme.breakpoints.up('xs')]: {
-      order: 1,
-    },
-  },
-  left: {
-    order: 2,
-    [theme.breakpoints.up('xs')]: {
-      order: 3,
-    },
-  },
-  right: {
-    order: 3, [theme.breakpoints.up('xs')]: {
-      order: 2,
-    },
+    minHeight: "85vh",
   },
 }))
 
@@ -49,10 +32,10 @@ function AdminCustomersPage() {
     <Grid className={classes.bg}>
       <NavBar />
       <Container maxWidth="md" className={classes.test}>
-        <AdminCustomersTop className={classes.top} />
+        <AdminCustomersTop />
         <Grid container>
-          <AdminCustomersLeft className={classes.left} />
-          <AdminCustomersRight className={classes.right} />
+          <AdminCustomersLeft />
+          <AdminCustomersRight />
         </Grid>
       </Container>
       <Footer />

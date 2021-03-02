@@ -4,42 +4,36 @@ import { LocationOn, Today } from '@material-ui/icons'
 // import style from '../scss/Admin.module.scss'
 
 const useStyles = makeStyles(() => ({
-  root: {
-    border: '1px solid red',
-  },
   icon: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    // fontSize: '20px',
   },
   text: {
     marginLeft: 10
   },
   divider: {
     marginTop: 10,
-    border: 'solid 1px #e8ebfa',
+    borderBottom: 'solid 1px #e8ebfa',
   }
 }))
 
 export default function Location() {
   const classes = useStyles()
   return (
-    <Grid item xs={12} sm={9}>
-      <Box display="flex" flexDirection="row" m={1}>
+    <>
+      <Box display="flex" flexDirection="row">
         <Grid item xs={2} sm={1} className={classes.icon}>
           <LocationOn />
         </Grid>
         <Grid item justify="center" xs={10} sm={11} className={classes.text}>
           <Typography variant="subtitle2">LOCATION</Typography>
-          <Typography variant="body2">
-            Unit 302, 27 Buchanan Street, West End, QLD 4101
-          </Typography>
-          <Divider className={classes.divider} />
+          <Typography variant="body2">Unit 302, 27 Buchanan Street, West End, QLD 4101</Typography>
         </Grid>
+        <Divider className={classes.divider} />
       </Box>
 
-      <Box display="flex" flexDirection="row" m={1}>
+      <Box display="flex" flexDirection="row">
         <Grid item xs={2} sm={1} className={classes.icon}>
           <Today />
         </Grid>
@@ -49,6 +43,6 @@ export default function Location() {
           <Divider className={classes.divider} />
         </Grid>
       </Box>
-    </Grid>
+    </>
   )
 }

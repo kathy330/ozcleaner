@@ -13,21 +13,17 @@ import {
 // import Price from './Customers/Price'
 // import CancelOrderButton from './Customers/CancelOrderButton'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    // border: '1px solid red',
+    [theme.breakpoints.down('xs')]: {
+      order: 1,
+    },
   },
   card: {
     border: '1px solid',
     marginBottom: 50,
     borderRadius: 40,
     width: 200,
-  },
-  icon: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    // fontSize: '20px',
   },
   text: {
     textAlign: 'center',

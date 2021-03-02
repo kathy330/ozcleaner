@@ -14,24 +14,26 @@ import Review from './Customers/Review'
 // style
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
     // backgroundColor: 'lightgreen'
+    [theme.breakpoints.down('xs')]: {
+      order: 2,
+    },
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-  left: {
-    // margin: "0 800px"
-    position: "relative",
-    left: "2vh",
-
-  },
-  page: {
-    display: 'flex',
-    justifyContent: 'center',
-  }
+  // left: {
+  //   // margin: "0 800px"
+  //   position: 'relative',
+  //   left: '2vh',
+  // },
+  // page: {
+  //   display: 'flex',
+  //   justifyContent: 'center',
+  // },
 }))
 
 

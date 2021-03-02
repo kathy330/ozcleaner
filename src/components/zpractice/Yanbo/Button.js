@@ -13,7 +13,7 @@ export function PopupButton() {
     <>
       <Button
         className={classes.homeBookingButton}
-        variant="contained"
+        // variant="contained"
         type="submit"
       >
         Sign Up

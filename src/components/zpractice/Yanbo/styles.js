@@ -31,8 +31,8 @@ export const buttonStyle = makeStyles((theme) => ({
   homeBookingButton: {
       background: theme.palette.primary.main, // #007bf5
       borderRadius: '30px',
-      width: '332px',
-      height:'43px',
+      height:42,
+      width:250,
       color: theme.palette.primary.white,
       marginInline: "-88px",
       marginBottom:'15px',

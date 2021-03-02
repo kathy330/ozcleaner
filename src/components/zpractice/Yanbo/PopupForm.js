@@ -7,10 +7,11 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 // import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import './scss/Style.css'
+// import './scss/Style.css'
 // import Divider from '@material-ui/core/Divider'
 import {makeStyles} from '@material-ui/core/styles'
-import {PopupButton,FbButton,GoogleButton} from './Button'
+import DividerWithText from './Divider'
+import {PopupButton} from './Button'
 // import {buttonStyle} from '../../../styles/styles'
 
 export default function FormDialog() {
@@ -28,7 +29,8 @@ export default function FormDialog() {
     [`& fieldset`]: {
       borderRadius: '30px',
     },
-  
+    height:30,
+    width:250,
     marginBottom:"15px",
   },
   text:{
@@ -41,10 +43,10 @@ export default function FormDialog() {
     float: 'right',
     marginBottom: '10px',
     textDecoration: 'none',
-    marginRight:'7%'
+    marginLeft:'7%'
   }
 })
-const DividerText = ({ children }) => (
+/* const DividerText = ({ children }) => (
   <div className="container">
     <div className="border" />
     <span className="content">
@@ -52,7 +54,7 @@ const DividerText = ({ children }) => (
     </span>
     <div className="border" />
   </div>
-)
+) */
 const classes = useStyles()   
     
     return (
@@ -100,23 +102,19 @@ const classes = useStyles()
               </Grid>
             </DialogContent>
             <DialogActions>
-              <div className="Dialog-Actions">
-                <PopupButton  />
-                <DividerText>Or sign up with</DividerText>
-                <FbButton />
-                <GoogleButton />
-                {/* <p className="text">By signing up, I agree to Terms & Conditions</p>
-              <Divider /> */}
+              <Grid container justify="center">
+                <PopupButton />  
+              </Grid> 
+            </DialogActions>
+            <Grid container justify="center">
+              <DividerWithText>or sign up with</DividerWithText>
+            </Grid>
+            <DialogActions>
+              <Grid container justify="center">
+                <PopupButton />  
+              </Grid> 
               
-              </div>
-            
-            
-              {/* <Button onClick={handleClose} color="primary">
-              Login
-            </Button>
-            <Button onClick={handleClose} color="primary">
-              Registration
-            </Button> */}
+
             </DialogActions>
           </Grid>
           

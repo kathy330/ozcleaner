@@ -23,7 +23,13 @@ export default function BathroomPicker() {
   return (
     <div>
       <FormControl className={classes.roomPicker} onSubmit={submitHandler}>
-        <InputLabel id="demo-simple-select-filled-label">Bathroom</InputLabel>
+        <InputLabel
+          id="demo-simple-select-filled-label"
+          className={classes.roomPicker}
+        >
+          Bathroom
+        </InputLabel>
+        
         <Select
           labelId="demo-simple-select-filled-label"
           id="demo-simple-select-filled"

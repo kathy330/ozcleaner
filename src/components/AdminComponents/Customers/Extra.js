@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, Grid, Typography, Container, Divider } from '@material-ui/core'
+import { makeStyles, Grid, Typography,  Divider } from '@material-ui/core'
 // import style from '../scss/Admin.module.scss'
 
 // style
@@ -18,20 +18,14 @@ const useStyles = makeStyles({
 export default function Extra() {
   const classes = useStyles()
   return (
-    <Container>
-      <Grid container direction="column">
-        <Grid item xs className={classes.paper}>
-          <Typography variant="subtitle2">
-            Extra
-          </Typography>
-        </Grid>
-        <Grid item xs className={classes.paper}>
-          <Typography variant="body2">
-            Oven, Fridge
-          </Typography>
-        </Grid>
-        <Divider className={classes.divider} />
-      </Grid>
-    </Container>
+    <Grid container direction="column">
+      <Typography variant="subtitle2">
+        Extra
+      </Typography>
+      <Typography variant="body2">
+        Oven, Fridge
+      </Typography>
+      <Divider className={classes.divider} />
+    </Grid>
   )
 }

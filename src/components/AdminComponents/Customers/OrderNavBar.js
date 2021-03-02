@@ -28,7 +28,7 @@ const navBarStyles = makeStyles((theme) => ({
     fontSize: 10,
     fontWeight: 50,
     margin: 25,
-    marginLeft: 10,
+    marginLeft: 0,
     marginBottom: 10,
     backgroundColor: "red"
   }

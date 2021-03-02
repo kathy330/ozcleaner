@@ -1,36 +1,29 @@
 /* eslint-disable max-len */
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles,createMuiTheme, ThemeProvider,responsiveFontSizes } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import ButtonBase from '@material-ui/core/ButtonBase'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faStar} from '@fortawesome/free-solid-svg-icons'
+import StarIcon from '@material-ui/icons/Star'
+import StarBorderIcon from '@material-ui/icons/StarBorder'
+import StarHalfIcon from '@material-ui/icons/StarHalf'
+import amber from '@material-ui/core/colors/amber'
 
-const useStyles = makeStyles((theme) => ({
+let theme = createMuiTheme()
+theme = responsiveFontSizes(theme)
+
+
+const useStyles = makeStyles((themes) => ({
   root: {
     flexGrow: 1,
 
   },
-  title: {
-    fontFamily:"Poppins",
-    fontSize:15,
-    color:"#354052"
-  },
-  num:{
-    fontFamily:"Poppins",
-    fontWeight:'bold',
-    color:'#11141a'
-  },
   paper: {
-    padding: theme.spacing(2),
+    padding: themes.spacing(2),
     textAlign:'left',
-    color: theme.palette.text.secondary,
-  },
-  image: {
-    width: "100%",
-    height: "90%",
+    margin:" 0 5%"
+    // color: theme.palette.text.secondary,
   },
 }))
 
@@ -40,20 +33,24 @@ export default function AutoGrid() {
   return (
     <div className={classes.root}>
       {/* Total Orders,Ongoing Orders */}
-      <Grid container spacing={2} xs={12}>
+      <Grid container spacing={5}>
         {/* Total Orders */}
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography className={classes.title}>
-                  Total Orders
-                </Typography>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    Total Orders
+                  </Typography>
+                </ThemeProvider>              
               </Grid>
               <Grid item>
-                <Typography className={classes.num}>
-                  4231
-                </Typography>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5">
+                    4231
+                  </Typography>
+                </ThemeProvider>              
               </Grid>
             </Grid>
           </Paper>
@@ -62,18 +59,23 @@ export default function AutoGrid() {
 
 
         {/* Onging Orders */}
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography className={classes.title}>
-                  Ongoing Orders
-                </Typography>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    Ongoing Orders
+                  </Typography>
+                </ThemeProvider>             
               </Grid>
-              <Grid item>
-                <Typography className={classes.num}>
-                  2
-                </Typography>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5">
+                    2
+                  </Typography>
+                </ThemeProvider>
+               
               </Grid>
             </Grid>
           </Paper>
@@ -82,28 +84,34 @@ export default function AutoGrid() {
         {/* Total Earns,Reviews */}
 
         {/* Reviews */}
-        <Grid item xs>
+        <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography className={classes.title}>
-                  Reviews
-                </Typography>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    Reviews
+                  </Typography>
+                </ThemeProvider>
+
               </Grid>
               <Grid item container direction="row" spacing={2}>
-                <Grid item xs={5} sm={4}>
-                  <Typography className={classes.num}>
-                    5.0
-                  </Typography>
+                <Grid item>
+                  <ThemeProvider theme={theme}>
+                    <Typography variant="h5">
+                      5.0
+                    </Typography>
+                  </ThemeProvider>
+       
                 </Grid> 
                 {/* Stars */}
-                <Grid item xs={7} sm={8}>
-                  <ButtonBase className={classes.image}>
-                    <FontAwesomeIcon icon={faStar} style={{color:'#e9a52d'}} />
-                    <FontAwesomeIcon icon={faStar} style={{color:'#e9a52d'}} />
-                    <FontAwesomeIcon icon={faStar} style={{color:'#e9a52d'}} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
+                <Grid item>
+                  <ButtonBase>
+                    <StarIcon style={{ color: amber[600] , fontSize: 20 }} />
+                    <StarIcon style={{ color: amber[600] , fontSize: 20 }} />
+                    <StarIcon style={{ color: amber[600] , fontSize: 20 }} />
+                    <StarHalfIcon style={{ color: amber[600] , fontSize: 20 }} />
+                    <StarBorderIcon style={{ color: amber[600] , fontSize: 20 }} />
                   </ButtonBase>              
                 </Grid>
               </Grid>            
@@ -114,18 +122,23 @@ export default function AutoGrid() {
           </Paper>
         </Grid>
         {/* Total Earns */}
-        <Grid item xs>
+        <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography className={classes.title}>
-                  Total Earns
-                </Typography>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    Total Earns
+                  </Typography>
+                </ThemeProvider>
               </Grid>
               <Grid item>
-                <Typography className={classes.num}>
-                  $8238.00
-                </Typography>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5">
+                    $8238.00
+                  </Typography>
+                </ThemeProvider>
+                
               </Grid>
             </Grid>
           </Paper>

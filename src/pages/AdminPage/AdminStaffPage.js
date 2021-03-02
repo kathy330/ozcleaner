@@ -1,16 +1,22 @@
 import React from "react"
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Container from '@material-ui/core/Container'
+import { Box } from "@material-ui/core"
 import Display from "../../components/AdminComponents/Staffs/Display"
-import ButtonGroup from "../../components/AdminComponents/Staffs/ButtonGroup"
-import Profile from "../../components/AdminComponents/Staffs/Profile"
-
 
 function AdminStaffPage(){
   return (
-    <div className="StaffPage">
-      <Display />
-      <ButtonGroup />
-      <Profile />
-    </div>
+    
+    <Box bgcolor="#eaeaea">
+      <CssBaseline />
+      <Container maxWidth="md">
+        <Box bgcolor="white">
+          <Display />
+        </Box>
+      </Container>
+       
+    </Box>
+
   )
 }
 

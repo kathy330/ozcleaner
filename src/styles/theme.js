@@ -33,10 +33,34 @@ const theme = createMuiTheme({
       },
     },
 
-    iconSize: {
-      
-    }
+    // 统一字体：
+    caption:{ // 首页最大标题（We clean)
 
+    },
+    subtitle:{ // 首页小标题（Get your)
+     
+    },
+    button:{
+      
+    },
+    h1: { // 首页（User feedback title/How we works）
+      
+    },
+
+    h2:{ // 首页（User feedback here）
+     
+    },
+
+    h3:{ // 首页（-User name）
+
+    },
+    h4:{
+
+    },
+    h5:{
+
+    },
+    
 
 })
 

@@ -1,8 +1,9 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Container } from '@material-ui/core'
+import { Container , Box } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
+
 // import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -23,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   img: {
-    // marginBottom: '25px',
-    marginTop: '102px',
+    // marginTop: '102px',
+    marginTop: '95px',
     padding: '0px',
     
     '& img': {
@@ -37,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     height: '75vh',
     justifyContent: 'center',
-    marginTop: '102px',
+    // marginTop: '102px',
+    marginTop: '95px',
     textAlign: "right",
   },
 
@@ -53,71 +55,71 @@ export default function HomeFeedback({src}) {
   const classes = useStyles()
 
   return (
-    <Container maxWidth="xl" className={classes.root}>
-      <Card>
-        <Grid container spacing={0}>
-          <Grid item xs={12} sm={6}>
-            {/* Container： 为了让user图片在6/12那侧也居中 */}
-            <Container maxWidth="sm">
-              <CardContent className={classes.img}>
-                <CardMedia
-                  component="img"
-                  alt="User Image"
-                  image={src}
-                  title="User Image"
-                />
-              </CardContent>
-            </Container>
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            {/* Container： 为了让右侧侧也居中 */}
-            <Container maxWidth="sm">
-              <CardContent className={classes.text}>
-                <Typography 
-                  variant="h3"
-                  component="p"
-                >
-                  User feedback Title.
-                </Typography>
-
-                <Typography 
-                  variant="h4"
-                  component="p"
-                >
-                  User feedback here.
-                </Typography>
-
-                <Typography
-                  variant="h5"
-                  color="textSecondary"
-                  component="p" 
-                >
-                  - User Name
-                </Typography>
-              </CardContent>
-            </Container>
-          </Grid>
-
-          {/* Container： 为了让下方button居中 */}
-          <Container maxWidth="sm">
-            <Grid item xs={12} sm={12}>
-              <CardActions className={classes.button}>
-                <Button color="primary" className={classes.arrowIcon}>
-                  <KeyboardArrowLeftIcon />
-                </Button>
-
-                <Button color="primary" className={classes.arrowIcon}>
-                  <KeyboardArrowRightIcon />
-                </Button>
-              </CardActions>
+    <Box>
+      <Container maxWidth="xl" className={classes.root}>
+        <Card>
+          <Grid container spacing={0}>
+            <Grid item xs={12} sm={6}>
+              {/* Container： 为了让user图片在6/12那侧也居中 */}
+              <Container maxWidth="sm">
+                <CardContent className={classes.img}>
+                  <CardMedia
+                    component="img"
+                    alt="User Image"
+                    image={src}
+                    title="User Image"
+                  />
+                </CardContent>
+              </Container>
             </Grid>
-          </Container>
-        </Grid>
 
-      </Card>
-      
-    </Container>
+            <Grid item xs={12} sm={6}>
+              {/* Container： 为了让右侧侧也居中 */}
+              <Container maxWidth="sm">
+                <CardContent className={classes.text}>
+                  <Typography 
+                    variant="h3"
+                    component="h3"
+                  >
+                    User feedback Title.
+                  </Typography>
+
+                  <Typography 
+                    variant="h4"
+                    component="h4"
+                  >
+                    User feedback here.
+                  </Typography>
+
+                  <Typography
+                    variant="h5"
+                    color="textSecondary"
+                    component="h5"
+                  >
+                    - User Name
+                  </Typography>
+                </CardContent>
+              </Container>
+            </Grid>
+
+            {/* Container： 为了让下方button居中 */}
+            <Container maxWidth="sm">
+              <Grid item xs={12} sm={12}>
+                <CardActions className={classes.button}>
+                  <Button color="primary" className={classes.arrowIcon}>
+                    <KeyboardArrowLeftIcon />
+                  </Button>
+
+                  <Button color="primary" className={classes.arrowIcon}>
+                    <KeyboardArrowRightIcon />
+                  </Button>
+                </CardActions>
+              </Grid>
+            </Container>
+          </Grid>
+        </Card>
+      </Container>
+    </Box>
   )
 }
 

@@ -12,6 +12,7 @@ import AdminCustomersPage from './pages/AdminPage/AdminCustomersPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import theme from './styles/theme';
 import AdminStaffPage from './pages/AdminPage/AdminStaffPage';
+import AdminDashboardPage from "./pages/AdminPage/AdminDashboardPage";
 // import ....Page from ....
 
 import DongyuPage from './pages/zpractice/Dongyu/Dongyu';
@@ -40,6 +41,10 @@ function App() {
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />
         <Route path="/admin/overview" exact component={AdminOverviewPage} />
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
+        <Route path="/admin/dashboard" exact component={AdminDashboardPage} />
+
+
+
         <Route path="/admin/staffs" exact component={AdminStaffPage} />
 
         <Route path="/ui" exact component={UI} />

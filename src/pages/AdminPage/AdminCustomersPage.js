@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   body: {
     backgroundColor: "white",
     minHeight: "85vh",
+    
   },
 }))
 

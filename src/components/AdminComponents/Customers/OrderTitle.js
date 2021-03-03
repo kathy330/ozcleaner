@@ -1,11 +1,11 @@
 import React from 'react'
-// import styles from './scss/HomeTitle.module.scss'
+import { Typography } from '@material-ui/core'
+// import style from '../scss/Admin.module.scss'
 
-
-const OrderTitle = () => (
-  <div>
-    <p>Three bed</p>
-  </div>
-)
-
-export default OrderTitle
+export default function OrderTitle() {
+  return (
+    <Typography variant="h4">
+      Three bedroom apartment bond cleaning
+    </Typography>
+  )
+}

@@ -79,47 +79,47 @@ export const buttonStyle = makeStyles((theme) => ({
   },
 
   // admin 所有绿色按钮配色和字体和样式，不负责位置
-  adminGreenButton: {
-    background: theme.palette.secondary.green, // #89b153
-    color: theme.palette.primary.white,
-    // width:'300px',
-    // .....
-    // ....
+  // adminGreenButton: {
+  //   background: theme.palette.secondary.green, // #89b153
+  //   color: theme.palette.primary.white,
+  //   // width:'300px',
+  //   // .....
+  //   // ....
 
-    '&:hover': {
-      background: theme.palette.secondary.greenHover,
-      boxShadow: '0px 2px 10px #888888',
-      // ....
-    },
-  },
+  //   '&:hover': {
+  //     background: theme.palette.secondary.greenHover,
+  //     boxShadow: '0px 2px 10px #888888',
+  //     // ....
+  //   },
+  // },
 
-  // admin 所有红色按钮配色和字体和样式，不负责位置
-  adminRedButton: {
-    color: 'white',
-    background: theme.palette.secondary.red, // #f35162
-    // .....
-    // ....
+  // // admin 所有红色按钮配色和字体和样式，不负责位置
+  // adminRedButton: {
+  //   color: 'white',
+  //   background: theme.palette.secondary.red, // #f35162
+  //   // .....
+  //   // ....
 
-    '&:hover': {
-      background: theme.palette.secondary.redHover,
-      boxShadow: '0px 2px 10px #888888',
-      // ....
-    },
-  },
+  //   '&:hover': {
+  //     background: theme.palette.secondary.redHover,
+  //     boxShadow: '0px 2px 10px #888888',
+  //     // ....
+  //   },
+  // },
 
-  // admin 所有蓝色按钮配色和字体和样式，不负责位置
-  adminBlueButton: {
-    color: 'white',
-    background: theme.palette.secondary.main, // #007bf5
-    // .....
-    // ....
+  // // admin 所有蓝色按钮配色和字体和样式，不负责位置
+  // adminBlueButton: {
+  //   color: 'white',
+  //   background: theme.palette.secondary.main, // #007bf5
+  //   // .....
+  //   // ....
 
-    '&:hover': {
-      background: theme.palette.secondary.main,
-      boxShadow: '0px 2px 10px #888888',
-      // ....
-    },
-  },
+  //   '&:hover': {
+  //     background: theme.palette.secondary.main,
+  //     boxShadow: '0px 2px 10px #888888',
+  //     // ....
+  //   },
+  // },
 }));
 
 export const statusStyle = makeStyles((theme) => ({

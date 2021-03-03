@@ -11,12 +11,18 @@ import {
   MenuItem,
   Typography,
   Slide,
+  Drawer,
 } from '@material-ui/core';
 
 import MenuIcon from '@material-ui/icons/Menu';
 
 import { navBarStyle } from '../../styles/styles';
 
+const styleq = {
+  display: 'inline',
+  float: 'left',
+  width: '25%',
+};
 export default function HeaderNavigation(props) {
   const { trigger } = props;
   const style = navBarStyle();
@@ -49,17 +55,18 @@ export default function HeaderNavigation(props) {
               <Button>Sign Up</Button>
               <Button>Login</Button>
             </Box>
-            <Menu
+            <Drawer
               id="simple-menu"
               anchorEl={anchorEl}
               keepMounted
               open={Boolean(anchorEl)}
               onClose={handleClose}
+              anchor="right"
             >
               <MenuItem onClick={handleClose}>Booking Now</MenuItem>
               <MenuItem onClick={handleClose}>Sign Up</MenuItem>
               <MenuItem onClick={handleClose}>Login</MenuItem>
-            </Menu>
+            </Drawer>
           </Toolbar>
         </Grid>
       </AppBar>

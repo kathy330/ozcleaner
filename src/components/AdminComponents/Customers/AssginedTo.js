@@ -1,8 +1,6 @@
 import React from 'react'
-import { Grid, makeStyles, Box } from '@material-ui/core'
-import Avatar from '@material-ui/core/Avatar'
-import { deepOrange } from '@material-ui/core/colors'
-import style from '../scss/Admin.module.scss'
+import { makeStyles, Box, Grid, Typography, Link, Avatar } from '@material-ui/core'
+import { deepPurple, deepOrange } from '@material-ui/core/colors'
 
 // styles
 const styles = makeStyles((theme) => ({
@@ -14,39 +12,46 @@ const styles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-  modifiedTime: {
-    marginTop: 50,
+  purple: {
+    color: theme.palette.getContrastText(deepPurple[500]),
+    backgroundColor: deepPurple[500],
   },
   orange: {
     color: theme.palette.getContrastText(deepOrange[500]),
     backgroundColor: deepOrange[500],
   },
+  icon: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // fontSize: '20px',
+  },
+  text: {
+    marginLeft: 10
+  },
+  divider: {
+    marginTop: 10,
+    border: 'solid 1px #e8ebfa',
+  }
 }))
 
 
 export default function AssginedTo() {
   const classes = styles()
   return (
-    <Grid container spacing={0} className={classes.root}>
-      <Grid item xs={2}>
-        <Box>
-          <Avatar className={classes.orange}>N</Avatar>
-        </Box>
+    <Box display="flex" flexDirection="row">
+      <Grid item xs={2} sm={1} className={classes.icon}>
+        <Avatar className={classes.orange}>M</Avatar>
       </Grid>
-      <Grid item xs={3}>
-        <Box>
-          ASSGINED TO
-        </Box>
-        <Box>
-          Name
-        </Box>
+      <Grid item justify="center" xs={9} sm={10} className={classes.text}>
+        <Typography variant="subtitle2">ASSIGNED TO</Typography>
+        <Grid container direction="row" justify="space-between" space={5}>
+          <Link href="/admin/staffs" variant="subtitle2">
+            Michael J.
+          </Link>
+          <Typography variant="subtitle2">21 hours ago</Typography>
+        </Grid>
       </Grid>
-      <Grid item xs={3} className={classes.modifiedTime}>
-        <div>
-          Modified Time
-        </div>
-      </Grid>
-      <hr className={style.hrs} />
-    </Grid>
+    </Box>
   )
 }

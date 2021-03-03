@@ -9,19 +9,19 @@ import {
   CardContent,
   Divider,
 } from '@material-ui/core'
-// import style from './scss/Admin.module.scss'
-// import Price from './Customers/Price'
-// import CancelOrderButton from './Customers/CancelOrderButton'
 
+// style
 const useStyles = makeStyles((theme) => ({
   root: {
     [theme.breakpoints.down('xs')]: {
       order: 1,
     },
+    paddingLeft: 10,
   },
   card: {
     border: '1px solid',
-    marginBottom: 50,
+    marginTop: 20,
+    marginBottom: 40,
     borderRadius: 40,
     width: 200,
   },
@@ -32,8 +32,11 @@ const useStyles = makeStyles((theme) => ({
     color: '#007bf5',
     textAlign: 'center',
   },
+  button: {
+    marginBottom: 20,
+    backgroundColor: '#cc584e',
+  }
 }))
-
 
 function AdminCustomersRight() {
   const classes = useStyles()
@@ -62,9 +65,7 @@ function AdminCustomersRight() {
       </Card>
 
       <Container>
-        <Grid item xs={12}>
-          <Button variant="contained" color="primary">CANCEL ORDER</Button>
-        </Grid>
+        <Button variant="contained" color="primary" className={classes.button}>CANCEL ORDER</Button>
       </Container>
     </Grid>
   )

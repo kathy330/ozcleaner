@@ -11,6 +11,7 @@ const useStyles = makeStyles({
 })
 
 export default function Extra() {
+  const classes = useStyles()
   return (
     <Grid container direction="column" className={classes.root}>
       <Typography variant="subtitle2">

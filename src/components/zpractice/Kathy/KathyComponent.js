@@ -10,6 +10,8 @@ import {
   Avatar,
 } from '@material-ui/core'
 import { LocationOn , Today } from '@material-ui/icons'
+import Footer from "../../FooterComponents/Footer"
+
 // class KathyComponent extends React.Component{
 //     constructor(){
 //         super()
@@ -128,98 +130,124 @@ import { LocationOn , Today } from '@material-ui/icons'
 //     }
 // }
 
-const useStyles = makeStyles(() => ({
-  root: {
+const useStyles = makeStyles((theme) => ({
+  left: {
+    padding: '20px',
     border: '1px solid red',
+    [theme.breakpoints.down('sm')]: {
+      order: 2,
+    },
+  },
+  right: {
+    border: '1px solid red',
+    [theme.breakpoints.down('sm')]: {
+      order: 1,
+    },
   },
   icon: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    // fontSize: '20px',
+  },
+  bottom: {
+    position: 'relative',
+    '&::after': {
+      content: "",
+      background: 'red',
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      width:'50%',
+      height: '2px',
+    }
   },
 }))
+
 function KathyComponent() {
   const classes = useStyles()
 
   return (
-    <Container maxWidth="md">
-      <Grid container>
-        <Button>UNCONFIRMED</Button>
-        <Button>IN PROGRESS</Button>
-        <Button>COMPLETED</Button>
-      </Grid>
-      <Grid container>
-        <Grid item xs={12} sm={9} className={classes.root}>
-          <Box display="flex" flexDirection="row" m={1}>
-            <Grid item xs={2} sm={1} className={classes.icon}>
-              <Avatar>J</Avatar>
-            </Grid>
-            <Grid item justify="center" xs={9} sm={10}>
-              <Typography variant="subtitle2">
-                CREATE BY
-              </Typography>
-              <Grid container direction="row" justify="space-between" space={5}>
-                <Link href="/kathy" variant="subtitle2">
-                  Jack P.
-                </Link>
-                <Typography variant="subtitle2">
-                  23 hours ago
+    <>
+      <Container maxWidth="md">
+        <Grid container>
+          <Button>UNCONFIRMED</Button>
+          <Button>IN PROGRESS</Button>
+          <Button>COMPLETED</Button>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12} sm={9} spacing={3} className={classes.left}>
+            <Typography variant="h4">Three bedroom apartment bond cleaning</Typography>
+            <Box display="flex" flexDirection="row" className={classes.bottom} mt={1.5} mb={1.5}>
+              <Grid item xs={2} sm={1} className={classes.icon}>
+                <Avatar>J</Avatar>
+              </Grid>
+              <Grid item justify="center" xs={9} sm={10}>
+                <Typography variant="subtitle2">CREATE BY</Typography>
+                <Grid container direction="row" justify="space-between" space={5}>
+                  <Link href="/kathy" variant="subtitle2">
+                    Jack P.
+                  </Link>
+                  <Typography variant="subtitle2">23 hours ago</Typography>
+                </Grid>
+              </Grid>
+            </Box>
+
+            <Box display="flex" flexDirection="row" mt={1} mb={1}>
+              <Grid item xs={2} sm={1} className={classes.icon}>
+                <Avatar>J</Avatar>
+              </Grid>
+              <Grid item justify="center" xs={9} sm={10}>
+                <Typography variant="subtitle2">ASSIGNED TO</Typography>
+                <Grid container direction="row" justify="space-between" space={5}>
+                  <Link href="/kathy" variant="subtitle2">
+                    Michael J.
+                  </Link>
+                  <Typography variant="subtitle2">21 hours ago</Typography>
+                </Grid>
+              </Grid>
+            </Box>
+
+            <Box display="flex" flexDirection="row" mt={1} mb={1}>
+              <Grid item xs={2} sm={1} className={classes.icon}>
+                <LocationOn />
+              </Grid>
+              <Grid item justify="center" xs={10} sm={11}>
+                <Typography variant="subtitle2">LOCATION</Typography>
+                <Typography variant="body2">
+                  Unit 302, 27 Buchanan Street, West End, QLD 4101
                 </Typography>
               </Grid>
-            </Grid>
-          </Box>
+            </Box>
 
-          <Box display="flex" flexDirection="row" m={1}>
-            <Grid item xs={2} sm={1} className={classes.icon}>
-              <Avatar>J</Avatar>
-            </Grid>
-            <Grid item justify="center" xs={9} sm={10}>
-              <Typography variant="subtitle2">ASSIGNED TO</Typography>
-              <Grid container direction="row" justify="space-between" space={5}>
-                <Link href="/kathy" variant="subtitle2">
-                  Michael J.
-                </Link>
-                <Typography variant="subtitle2">
-                  21 hours ago
-                </Typography>
+            <Box display="flex" flexDirection="row" mt={1} mb={1}>
+              <Grid item xs={2} sm={1} className={classes.icon}>
+                <Today />
               </Grid>
-            </Grid>
-          </Box>
+              <Grid item justify="center" xs={10} sm={11}>
+                <Typography variant="subtitle2">DUE DATE</Typography>
+                <Typography variant="body2">11:30AM, Sunday, 24th Jan 2021</Typography>
+              </Grid>
+            </Box>
 
-          <Box display="flex" flexDirection="row" m={1}>
-            <Grid item xs={2} sm={1} className={classes.icon}>
-              <LocationOn />
-            </Grid>
-            <Grid item justify="center" xs={10} sm={11}>
-              <Typography variant="subtitle2">LOCATION</Typography>
-              <Typography variant="body2">
-                Unit 302, 27 Buchanan Street, West End, QLD 4101
-              </Typography>
-            </Grid>
-          </Box>
+            <div>
+              <div>Review from Customer</div>
+              <div>5.0 ⭐⭐⭐⭐⭐</div>
+              <div>Review Message</div>
+            </div>
+          </Grid>
 
-          <Box display="flex" flexDirection="row" m={1}>
-            <Grid item xs={2} sm={1} className={classes.icon}>
-              <Today />
-            </Grid>
-            <Grid item justify="center" xs={10} sm={11}>
-              <Typography variant="subtitle2">DUE DATE</Typography>
-              <Typography variant="body2">11:30AM, Sunday, 24th Jan 2021</Typography>
-            </Grid>
-          </Box>
+          <Grid item xs={12} sm={3} className={classes.right}>
+            <Typography variant="subtitle2" align="center">
+              Price
+            </Typography>
+            <Typography variant="h2" align="center">
+              800
+            </Typography>
+          </Grid>
         </Grid>
-
-        <Grid item xs={12} sm={3} className={classes.root}>
-          <Typography variant="subtitle2" align="center">
-            Price
-          </Typography>
-          <Typography variant="h2" align="center">
-            800
-          </Typography>
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+      <Footer />
+    </>
   )
 }
 export default KathyComponent

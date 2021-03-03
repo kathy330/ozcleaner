@@ -3,6 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
 import { Box } from "@material-ui/core"
 import Display from "../../components/AdminComponents/Staffs/Display"
+import Table from "../../components/AdminComponents/Staffs/Table"
 
 function AdminStaffPage(){
   return (
@@ -11,11 +12,15 @@ function AdminStaffPage(){
       <CssBaseline />
       <Container maxWidth="md">
         <Box bgcolor="white">
-          <Display />
+          <Display />         
         </Box>
-      </Container>
-       
+        <Box>
+          <Table />
+        </Box>        
+      </Container> 
     </Box>
+
+   
 
   )
 }

@@ -1,11 +1,9 @@
 import React from 'react'
-// import styles from './scss/HomeTitle.module.scss'
+import Button from '@material-ui/core/Button'
+import style from '../scss/Admin.module.scss'
 
-
-const CancelOrderButton = () => (
-  <div>
-    <button type="submit">cancel order</button>
-  </div>
-)
-
-export default CancelOrderButton
+export default function CancelOrderButton() {
+  return (
+    <Button variant="contained" color="primary" className={style.button1}>CANCEL ORDER</Button>
+  )
+}

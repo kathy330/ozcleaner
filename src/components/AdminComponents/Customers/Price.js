@@ -1,11 +1,37 @@
 import React from 'react'
-// import styles from './scss/HomeTitle.module.scss'
+// import style from '../scss/Admin.module.scss'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+import priceStyles from '../styles/AdminComponentStyle'
 
+// export default function Price() {
+//   return (
+//     <div className={style.price}>
+//       <p className={style.price__name}>PRICE</p>
+//       <hr className={style.price__hr} />
+//       <p className={style.price__number}>$800</p>
+//       <hr className={style.price__hr} />
+//     </div>
+//   )
+// }
 
-const Price = () => (
-  <div>
-    <p>$800</p>
-  </div>
-)
+export default function SimpleCard() {
+  const classes = priceStyles
 
-export default Price
+  return (
+    <Card className={classes.root}>
+      <CardContent>
+        <Typography className={classes.title} color="textSecondary" gutterBottom>
+          PRICE
+        </Typography>
+        <hr />
+        <Typography className={classes.pos} color="textSecondary">
+          $800
+        </Typography>
+        <hr />
+      </CardContent>
+
+    </Card>
+  )
+}

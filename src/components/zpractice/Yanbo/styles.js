@@ -32,10 +32,11 @@ export const buttonStyle = makeStyles((theme) => ({
       background: theme.palette.primary.main, // #007bf5
       borderRadius: '30px',
       height:42,
-      width:250,
+      width:250,// vh//button 外面设置一个container
       color: theme.palette.primary.white,
       marginInline: "-88px",
-      marginBottom:'15px',
+      marginTop:'-5px',
+      marginBottom:'8px',
       // marginLeft:'40px',
       // marginRight:'40px',
       // paddingInline: '130px',

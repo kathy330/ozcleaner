@@ -4,6 +4,9 @@ import { Star, StarHalf, StarBorder } from '@material-ui/icons/'
 
 // style
 const useStyles = makeStyles({
+  root: {
+    paddingLeft: 10,
+  },
   stars: {
     color: 'rgb(255, 191, 0)',
   },
@@ -11,8 +14,10 @@ const useStyles = makeStyles({
 
 export default function Review() {
   const classes = useStyles()
+  // example
+  const rating = 3.5
   return (
-    <Grid container direction="column">
+    <Grid container direction="column" className={classes.root}>
       <Grid item xs>
         <Typography variant="subtitle2">
           Review From Customer
@@ -22,7 +27,7 @@ export default function Review() {
         <Grid container direction="row">
           <Grid item xs={1}>
             <Typography variant="subtitle1">
-              1.5
+              {rating}
             </Typography>
           </Grid>
           <Grid item xs>

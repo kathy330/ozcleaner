@@ -5,7 +5,8 @@ import { makeStyles, Grid, Typography } from '@material-ui/core'
 // style
 const useStyles = makeStyles({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    paddingLeft: 10,
   },
 })
 

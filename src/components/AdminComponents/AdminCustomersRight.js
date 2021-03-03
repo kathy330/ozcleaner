@@ -4,7 +4,6 @@ import {
   Typography,
   makeStyles,
   Button,
-  Container,
   Card,
   CardContent,
   Divider,
@@ -13,17 +12,19 @@ import {
 // style
 const useStyles = makeStyles((theme) => ({
   root: {
+    textAlign: 'center',
     [theme.breakpoints.down('xs')]: {
       order: 1,
     },
-    paddingLeft: 10,
+
   },
   card: {
     border: '1px solid',
     marginTop: 20,
-    marginBottom: 40,
+    marginBottom: 50,
     borderRadius: 40,
-    width: 200,
+    maxWidth: 200,
+    margin: 'auto',
   },
   text: {
     textAlign: 'center',
@@ -33,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   button: {
+    margin: 'auto',
     marginBottom: 20,
     backgroundColor: '#cc584e',
   }
@@ -43,30 +45,28 @@ function AdminCustomersRight() {
   return (
     <Grid item xs={12} sm={3} className={classes.root}>
       <Card className={classes.card}>
-
         <CardContent>
-          <Container>
-            <Grid item xs={12}>
-              <Typography className={classes.text} variant="subtitle2" gutterBottom>
-                PRICE
-              </Typography>
-            </Grid>
+          <Grid item xs={12}>
+            <Typography className={classes.text} variant="subtitle2" gutterBottom>
+              PRICE
+            </Typography>
+          </Grid>
 
-            <Divider />
+          <Divider />
 
-            <Grid item xs={12}>
-              <Typography className={classes.price} variant="h3" color="textSecondary">
-                $800
-              </Typography>
-            </Grid>
-            <Divider />
-          </Container>
+          <Grid item xs={12}>
+            <Typography className={classes.price} variant="h3" color="textSecondary">
+              $800
+            </Typography>
+          </Grid>
+          <Divider />
         </CardContent>
       </Card>
 
-      <Container>
-        <Button variant="contained" color="primary" className={classes.button}>CANCEL ORDER</Button>
-      </Container>
+      <Button variant="contained" color="primary" className={classes.button}>
+        CANCEL ORDER
+      </Button>
+
     </Grid>
   )
 }

@@ -6,6 +6,7 @@ import { Typography, makeStyles } from '@material-ui/core'
 const useStyles = makeStyles({
   root: {
     marginBottom: 10,
+    paddingLeft: 10,
   }
 })
 export default function OrderTitle() {

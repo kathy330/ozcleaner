@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 10,
     marginBottom: 10,
     border: 'solid 1px #e8ebfa',
-    maxWidth: '95%'
+    maxWidth: '95%',
+    marginLeft: 5,
 
   },
 }))

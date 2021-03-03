@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Grid } from '@material-ui/core'
+import { Grid, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import OrderTitle from './Customers/OrderTitle'
@@ -25,6 +25,12 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  divider: {
+    marginTop: 10,
+    border: 'solid 1px #e8ebfa',
+    maxWidth: '80%',
+    // marginLeft: 33
+  },
   // left: {
   //   // margin: "0 800px"
   //   position: 'relative',
@@ -43,10 +49,13 @@ const AdminCustomersLeft = () => {
     <Grid item xs={12} sm={9} className={classes.root}>
       <OrderTitle />
       <CreatedBy />
+      <Divider className={classes.divider} />
       {/* <CreatedBy image='BJ' name='Ben' time='2020.03.02' title='Assgined To' /> */}
       {/* <AssginedTo /> */}
       <Location />
+      <Divider className={classes.divider} />
       <Extra />
+      <Divider className={classes.divider} />
       <Review />
     </Grid>
   )

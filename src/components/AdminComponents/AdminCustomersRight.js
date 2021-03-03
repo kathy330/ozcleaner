@@ -40,7 +40,6 @@ function AdminCustomersRight() {
   return (
     <Grid item xs={12} sm={3} className={classes.root}>
       <Card className={classes.card}>
-
         <CardContent>
           <Container>
             <Grid item xs={12}>

@@ -1,4 +1,4 @@
-import { Grid, Box, Typography, makeStyles, Divider } from '@material-ui/core'
+import { Grid, Box, Typography, makeStyles } from '@material-ui/core'
 import React from 'react'
 import { LocationOn, Today } from '@material-ui/icons'
 // import style from '../scss/Admin.module.scss'
@@ -30,7 +30,6 @@ export default function Location() {
           <Typography variant="subtitle2">LOCATION</Typography>
           <Typography variant="body2">Unit 302, 27 Buchanan Street, West End, QLD 4101</Typography>
         </Grid>
-        <Divider className={classes.divider} />
       </Box>
 
       <Box display="flex" flexDirection="row">
@@ -40,7 +39,6 @@ export default function Location() {
         <Grid item justify="center" xs={10} sm={11} className={classes.text}>
           <Typography variant="subtitle2">DUE DATE</Typography>
           <Typography variant="body2">11:30AM, Sunday, 24th Jan 2021</Typography>
-          <Divider className={classes.divider} />
         </Grid>
       </Box>
     </>

@@ -6,7 +6,6 @@ import {
   Typography,
   Link,
   Avatar,
-  Divider,
 } from '@material-ui/core'
 import { deepPurple, deepOrange } from '@material-ui/core/colors'
 // import style from '../scss/Admin.module.scss'
@@ -61,7 +60,6 @@ export default function CreatBy() {
             </Link>
             <Typography variant="subtitle2">23 hours ago</Typography>
           </Grid>
-          <Divider className={classes.divider} />
         </Grid>
       </Box>
 
@@ -77,7 +75,6 @@ export default function CreatBy() {
             </Link>
             <Typography variant="subtitle2">21 hours ago</Typography>
           </Grid>
-          <Divider className={classes.divider} />
         </Grid>
       </Box>
     </>

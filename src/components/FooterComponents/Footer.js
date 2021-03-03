@@ -42,7 +42,11 @@ function Footer(){
               <ul>
                 {footer.submenu.map((item) => (
                   <li key={item}>
-                    <Link href="#" variant="subtitle1" className={classes.subMenuLink}>
+                    <Link
+                      href={item.replace(/\s+/g, '-').toLowerCase()} 
+                      variant="subtitle1" 
+                      className={classes.subMenuLink}
+                    >
                       {item}
                     </Link>
                   </li>

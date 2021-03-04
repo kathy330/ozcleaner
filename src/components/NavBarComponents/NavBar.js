@@ -34,8 +34,13 @@ export default function HeaderNavigation(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
-    <Slide appear={false} in={!trigger} direction="down">
+    <Slide
+      appear={false}
+      in={trigger === null || trigger === undefined ? true : trigger}
+      direction="down"
+    >
       <AppBar className={style.AppBar}>
         <Grid item className={style.container}>
           <Toolbar>

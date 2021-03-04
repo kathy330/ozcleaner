@@ -55,7 +55,6 @@ function App() {
         <Route path="/erik" exact component={ErikPage} />
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />
-
         <Route component={ErrorPage} />
       </Switch>
     </ThemeProvider>

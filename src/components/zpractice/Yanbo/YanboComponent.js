@@ -7,8 +7,6 @@ import axios from 'axios'
 import {getWebApi,getBackendApi} from '../../../api/practice/Yanbo/YanboApi'
 
 
-
-
 export const getImage = () => axios.get(getWebApi())
 export const getName = () => axios.get(getBackendApi())
 class YanboComponent extends React.Component {
@@ -61,6 +59,7 @@ class YanboComponent extends React.Component {
         <img src={webMessage} alt="比熊" />
         <h1>This message is getting from koa backend</h1>
         <h1>{backendMessage}</h1>
+       
       </div>
     )
   }

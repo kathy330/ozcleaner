@@ -15,8 +15,7 @@ import works2 from '../../assets/work2.jpg'; // https://www.pexels.com/zh-cn/pho
 import works3 from '../../assets/work3.jpg'; // https://www.pexels.com/zh-cn/photo/6197124/
 
 function Home() {
-  const trigger = useScrollTrigger();
-
+  const trigger = useScrollTrigger({ disableHysteresis: true });
   return (
     <>
       <HeaderNavigation trigger={trigger} />

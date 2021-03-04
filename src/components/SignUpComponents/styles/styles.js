@@ -33,7 +33,7 @@ export const buttonStyle = makeStyles((theme) => ({
       borderRadius: '30px',
       height:42,
       width:250,// vh//button 外面设置一个container
-      color: theme.palette.primary.white,
+      color: theme.palette.primary.contrastText,
       marginInline: "-88px",
       marginTop:'-5px',
       marginBottom:'8px',
@@ -52,7 +52,7 @@ export const buttonStyle = makeStyles((theme) => ({
       borderRadius: '30px',
       height:42,
       width:250,// vh//button 外面设置一个container
-      color: theme.palette.primary.white,
+      color: theme.palette.primary.contrastText,
       marginInline: "-88px",
       marginBottom:'5px',
       paddingRight:'20px',
@@ -66,7 +66,7 @@ export const buttonStyle = makeStyles((theme) => ({
     },
 
     googleButton: {
-      background: theme.palette.primary.white, // #007bf5theme.palette.primary.white
+      background: theme.palette.primary.contrastText, // #007bf5theme.palette.primary.white
       borderRadius: '30px',
       height:42,
       width:250,// vh//button 外面设置一个container

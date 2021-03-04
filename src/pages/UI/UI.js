@@ -9,7 +9,7 @@ export default function UI() {
   return (
     <>
       <HeaderNavigation />
-      <Box mt={8} p={2}>
+      <Box p={2}>
         <Grid container spacing={2} direction="row" jus>
           <Grid item xs={12} sm={3}>
             <Box bgcolor="primary.main" color="white" p={2}>

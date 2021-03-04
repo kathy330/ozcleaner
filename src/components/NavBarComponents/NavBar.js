@@ -24,7 +24,9 @@ const styleq = {
   width: '25%',
 };
 export default function HeaderNavigation(props) {
-  const { trigger } = props;
+  // const { trigger } = props;
+  const trigger = null;
+
   const style = navBarStyle();
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
@@ -41,7 +43,7 @@ export default function HeaderNavigation(props) {
       in={trigger === null || trigger === undefined ? true : trigger}
       direction="down"
     >
-      <AppBar className={style.AppBar}>
+      <AppBar position="static" className={style.AppBar}>
         <Grid item className={style.container}>
           <Toolbar>
             <Grid className={style.grow}>

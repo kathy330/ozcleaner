@@ -10,7 +10,7 @@ export default function HomeButton() {
   return(
     <>
       <Button
-        className={classes.homeBookingButton}
+        className={classes.bookingButton}
         variant="contained"
         type="submit"
         id="back-to-top-anchor" // 此id为了首页BackToTop按钮定位设计的

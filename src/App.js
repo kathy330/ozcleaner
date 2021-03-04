@@ -42,9 +42,6 @@ function App() {
         <Route path="/admin/overview" exact component={AdminOverviewPage} />
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
         <Route path="/admin/dashboard" exact component={AdminDashboardPage} />
-
-
-
         <Route path="/admin/staffs" exact component={AdminStaffPage} />
 
         <Route path="/ui" exact component={UI} />

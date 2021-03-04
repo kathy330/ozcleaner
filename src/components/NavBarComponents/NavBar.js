@@ -25,6 +25,7 @@ const styleq = {
 };
 export default function HeaderNavigation(props) {
   const { trigger } = props;
+
   const style = navBarStyle();
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
@@ -34,9 +35,17 @@ export default function HeaderNavigation(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
-    <Slide appear={false} in={!trigger} direction="down">
-      <AppBar className={style.AppBar}>
+    <Slide
+      appear={false}
+      in={trigger === null || trigger === undefined ? true : trigger}
+      direction="down"
+    >
+      <AppBar
+        position={trigger === null || trigger === undefined ? 'static' : 'fixed'}
+        className={style.AppBar}
+      >
         <Grid item className={style.container}>
           <Toolbar>
             <Grid className={style.grow}>

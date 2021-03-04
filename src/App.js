@@ -1,29 +1,29 @@
 // import logo from './logo.svg';
-import './App.css';
-import React from 'react';
-import { Route, Switch } from 'react-router';
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import HomePage from './pages/HomePage/HomePage';
-import UI from './pages/UI/UI';
-import OrderPage from './pages/OrderPage/OrderPage';
-import ProfilePage from './pages/ProfilePage/ProfilePage';
-import AdminCustomersPage from './pages/AdminPage/AdminCustomersPage';
-import ErrorPage from './pages/ErrorPage/ErrorPage';
-import theme from './styles/theme';
-import AdminStaffPage from './pages/AdminPage/AdminStaffPage';
-import AdminDashboardPage from "./pages/AdminPage/AdminDashboardPage";
+import './App.css'
+import React from 'react'
+import { Route, Switch } from 'react-router'
+import { ThemeProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import HomePage from './pages/HomePage/HomePage'
+import UI from './pages/UI/UI'
+import OrderPage from './pages/OrderPage/OrderPage'
+import ProfilePage from './pages/ProfilePage/ProfilePage'
+import AdminCustomersPage from './pages/AdminPage/AdminCustomersPage'
+import ErrorPage from './pages/ErrorPage/ErrorPage'
+import theme from './styles/theme'
+import AdminStaffPage from './pages/AdminPage/AdminStaffPage'
+import AdminDashboardPage from "./pages/AdminPage/AdminDashboardPage"
 // import ....Page from ....
 
-import DongyuPage from './pages/zpractice/Dongyu/Dongyu';
-import KangkangPage from './pages/zpractice/Kangkang/Kangkang';
-import YanboPage from './pages/zpractice/Yanbo/Yanbo';
-import WystanPage from './pages/zpractice/Wystan/Wystan';
-import KathyPage from './pages/zpractice/Kathy/Kathy';
-import ErikPage from './pages/zpractice/Erik/Erik';
-import OliviaPage from './pages/zpractice/Olivia/Olivia';
-import MengxuanPage from './pages/zpractice/Mengxuan/Mengxuan';
-import YanboForm from './pages/zpractice/Yanbo/YanboForm';
+import DongyuPage from './pages/zpractice/Dongyu/Dongyu'
+import KangkangPage from './pages/zpractice/Kangkang/Kangkang'
+import YanboPage from './pages/zpractice/Yanbo/Yanbo'
+import WystanPage from './pages/zpractice/Wystan/Wystan'
+import KathyPage from './pages/zpractice/Kathy/Kathy'
+import ErikPage from './pages/zpractice/Erik/Erik'
+import OliviaPage from './pages/zpractice/Olivia/Olivia'
+import MengxuanPage from './pages/zpractice/Mengxuan/Mengxuan'
+import YanboForm from './pages/zpractice/Yanbo/YanboForm'
 
 function App() {
   // 使用theme方法：
@@ -58,11 +58,10 @@ function App() {
         <Route path="/erik" exact component={ErikPage} />
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />
-
         <Route component={ErrorPage} />
       </Switch>
     </ThemeProvider>
-  );
+  )
 }
 
-export default App;
+export default App

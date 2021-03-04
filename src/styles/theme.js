@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles'
 
 const theme = createMuiTheme({
   typography: {
@@ -25,6 +25,9 @@ const theme = createMuiTheme({
     secondary: {
       main: '#F35162',
       hover: '#E55766',
+      darkBlue:'#405592',// popUp facrbook登录按钮 
+      black:'#131523'// 黑色字体色
+
     },
     green: {
       main: '#89B153',
@@ -67,7 +70,7 @@ const theme = createMuiTheme({
 
   }
 
-});
+})
 
 
 
@@ -76,4 +79,4 @@ const theme = createMuiTheme({
 
 
 
-export default theme;
+export default theme

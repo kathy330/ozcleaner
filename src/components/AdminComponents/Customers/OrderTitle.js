@@ -1,10 +1,18 @@
 import React from 'react'
-import { Typography } from '@material-ui/core'
+import { Typography, makeStyles } from '@material-ui/core'
 // import style from '../scss/Admin.module.scss'
 
+// style 
+const useStyles = makeStyles({
+  root: {
+    marginBottom: 10,
+    paddingLeft: 10,
+  }
+})
 export default function OrderTitle() {
+  const classes = useStyles()
   return (
-    <Typography variant="h4">
+    <Typography variant="h4" className={classes.root}>
       Three bedroom apartment bond cleaning
     </Typography>
   )

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAKG,AAAD,iBAAW,CAAC;EACV,OAAO,EAAE,IAAI;EACb,IAAI,EAAE,GAAG;EACT,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,GAAG;EACR,SAAS,EAAE,qBAAqB;CACjC;;AAEA,AAAD,eAAS,CAAC;EACR,IAAI,EAAE,GAAG;EACT,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,GAAG;EACR,SAAS,EAAE,qBAAqB;CACjC",
-    "sources": [
-        "HomeSelectForm.module.scss"
-    ],
-    "names": [],
-    "file": "HomeSelectForm.module.css"
-}

@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import {buttonStyle} from './styles/styles'
-import './styles/Style.css'
+import './styles/Style.scss'
 import GoogleLogo from './resource/google.png'
 
 

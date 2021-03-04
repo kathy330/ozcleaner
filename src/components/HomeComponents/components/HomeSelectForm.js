@@ -13,9 +13,9 @@ import InsertPostcode from "./PostcodeInput"
 import HomeButton from './HomeButton'
 // import scssStyle from '../scss/HomeContent.module.scss' // scss 
 
-// 🌟官方文档diy的方式在TimePicker,style/HomeComponentStyle.js里有三种
-// 🌟scss Module/material style的引用方法 className={styles.position}
-// 🌟material的本页面设置diy的引用方法 style={diyStyle.button}
+// 官方文档diy的方式在TimePicker,style/HomeComponentStyle.js里有三种
+// scss Module/material style的引用方法 className={styles.position}
+// material的本页面设置diy的引用方法 style={diyStyle.button}
 
 
 const useStyles = makeStyles((theme) => ({

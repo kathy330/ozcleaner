@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
   Grid,
   Button,
@@ -12,29 +12,30 @@ import {
   Typography,
   Slide,
   Drawer,
-} from '@material-ui/core';
+} from '@material-ui/core'
 
-import MenuIcon from '@material-ui/icons/Menu';
+import MenuIcon from '@material-ui/icons/Menu'
+import FormDialog from '../SignUpComponents/PopupForm'
 
-import { navBarStyle } from '../../styles/styles';
+import { navBarStyle } from '../../styles/styles'
 
 const styleq = {
   display: 'inline',
   float: 'left',
   width: '25%',
-};
+}
 export default function HeaderNavigation(props) {
-  const { trigger } = props;
+  const { trigger } = props
 
-  const style = navBarStyle();
-  const [anchorEl, setAnchorEl] = useState(null);
+  const style = navBarStyle()
+  const [anchorEl, setAnchorEl] = useState(null)
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   return (
     <Slide
@@ -61,7 +62,7 @@ export default function HeaderNavigation(props) {
             </IconButton>
             <Box className={style.buttonsBox}>
               <Button className={style.bookingButton}>Booking Now</Button>
-              <Button>Sign Up</Button>
+              <FormDialog />
               <Button>Login</Button>
             </Box>
             <Drawer
@@ -80,5 +81,5 @@ export default function HeaderNavigation(props) {
         </Grid>
       </AppBar>
     </Slide>
-  );
+  )
 }

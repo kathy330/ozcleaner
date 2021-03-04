@@ -5,6 +5,7 @@ import PopupForm from "../../../components/zpractice/Yanbo/PopupForm"
 function YanboPage(){
     return (
       <div>
+        hi
         <PopupForm />
       </div>
     )

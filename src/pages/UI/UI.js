@@ -4,8 +4,8 @@ import { Grid, Box, Typography } from '@material-ui/core';
 import KingBedIcon from '@material-ui/icons/KingBed';
 import BathtubIcon from '@material-ui/icons/Bathtub';
 import NoteIcon from '@material-ui/icons/Note';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import RoomIcon from '@material-ui/icons/Room';
 import { GreenStatus, GreyStatus, RedStatus } from './Status';
 import { BookingButton, PrimaryButton, SecondaryButton } from './Buttons';
 import HeaderNavigation from '../../components/NavBarComponents/NavBar';
@@ -77,8 +77,8 @@ export default function UI() {
             <KingBedIcon />
             <BathtubIcon />
             <NoteIcon />
-            <LocationOnIcon />
             <CalendarTodayIcon />
+            <RoomIcon />
           </Grid>
 
           <Grid item xs={12} sm={12}>

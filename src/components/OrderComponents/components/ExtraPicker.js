@@ -91,40 +91,12 @@ export default function ExtraPicker() {
 
   // 这里是点击CardActionArea也会触发checkbox属性变化的函数
   const areaClickChange = (event) => { 
-    // console.log(event.target)
-    // 点击icon上面，就会有alt属性，点击actionArea上面，就会有name属性
-    if(event.target.name==='oven'||event.target.alt==='oven') {
-      const newState = !state.oven
-      console.log('you choose even: ',newState)
+    console.log(event.target)
 
-      setState({
-        ...state, 'oven': newState
-      })
-    }
-    else if(event.target.name==='fridge'||event.target.alt==='fridge') {
-      const newState = !state.fridge
-      console.log('you choose fridge: ',newState)
-
-      setState({
-        ...state, 'fridge': newState
-      })
-    }
-    else if(event.target.name==='windows'||event.target.alt==='windows') {
-      const newState = !state.windows
-      console.log('you choose windows: ',newState)
-
-      setState({
-        ...state, 'windows': newState
-      })
-    }
-    else if(event.target.name==='cabinet'||event.target.alt==='cabinet') {
-      const newState = !state.cabinet
-      console.log('you choose cabinet: ',newState)
-
-      setState({
-        ...state, 'cabinet': newState
-      })
-  }
+    // 点击icon上面，就会有alt属性，点击actionArea上面，就会有name属性  
+    const key = event.target.name || event.target.alt
+    const newState = !state[key]
+    setState({...state,[key]:newState})
   }
   const { oven,fridge, windows,cabinet } = state
 
@@ -265,11 +237,4 @@ export default function ExtraPicker() {
     </Grid>
   )
 }
-
-
-
-
-
-
-
 

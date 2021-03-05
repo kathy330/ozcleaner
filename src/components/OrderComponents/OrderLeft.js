@@ -98,7 +98,9 @@ export default function OrderLeft() {
               </Typography>
             </Grid>
 
-            <AddressInfo />
+            <Grid item xs={6} sm={12}>
+              <AddressInfo />
+            </Grid>
           </Grid>
         </Container>
 

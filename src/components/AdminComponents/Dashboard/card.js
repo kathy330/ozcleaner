@@ -29,11 +29,11 @@ export default function DemoCard() {
     <Card className={classes.root} elevation={0}>
       <CardContent>
 
-        <Typography  color="textSecondary">
+        <Typography color="textSecondary">
           Total Orders
         </Typography>
-        <Typography variant="h5" component="h2" >
-            <Box  fontWeight="fontWeightBold">
+        <Typography variant="h5" component="h2">
+          <Box fontWeight="fontWeightBold">
             28,350
           </Box>
         </Typography>

@@ -1,24 +1,24 @@
 import React from 'react'
 import { Grid, Container} from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+// import { makeStyles } from '@material-ui/core/styles'
 
 import Card from './card'
 
 
-const useStyles = makeStyles(() => ({
+// const useStyles = makeStyles(() => ({
 
 
-}))
+// }))
 
 export default function Overview() {
-  const classes = useStyles()
+  // const classes = useStyles()
 
   return (
     <Container maxWidth="md">
       Quick status
       <Grid container spacing={6}>
 
-        {[1,2,3,4].map((x:any, i:any) => 
+        {[1,2,3,4].map((x, i) => 
             (
               <Grid item>
                 <Card key={x} other={i} />

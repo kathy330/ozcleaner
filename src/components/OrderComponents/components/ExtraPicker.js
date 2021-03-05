@@ -106,31 +106,25 @@ export default function ExtraPicker() {
       console.log('you choose fridge: ',newState)
 
       setState({
-        'oven':state.oven,
-        'fridge':newState,
-        'windows':state.windows,
-        'cabinet':state.cabinet})
+        ...state, 'fridge': newState
+      })
     }
     else if(event.target.name==='windows'||event.target.alt==='windows') {
       const newState = !state.windows
       console.log('you choose windows: ',newState)
 
       setState({
-        'oven':state.oven,
-        'fridge':state.fridge,
-        'windows':newState,
-        'cabinet':state.cabinet})
+        ...state, 'windows': newState
+      })
     }
     else if(event.target.name==='cabinet'||event.target.alt==='cabinet') {
       const newState = !state.cabinet
       console.log('you choose cabinet: ',newState)
 
       setState({
-        'oven':state.oven,
-        'fridge':state.fridge,
-        'windows':state.windows,
-        'cabinet':newState})
-    }
+        ...state, 'cabinet': newState
+      })
+  }
   }
   const { oven,fridge, windows,cabinet } = state
 

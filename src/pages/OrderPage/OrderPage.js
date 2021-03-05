@@ -8,7 +8,7 @@ import {BookingButton } from '../UI/Buttons'
 import HeaderNavigation from '../../components/NavBarComponents/NavBar'
 import OrderLeft from "../../components/OrderComponents/OrderLeft"
 import OrderRight from "../../components/OrderComponents/OrderRight"
-
+import Footer from '../../components/FooterComponents/Footer'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -93,6 +93,8 @@ function Order(){
           </Grid>
         </Grid>
       </Container>
+
+      <Footer />
     </Box>
   )
 }

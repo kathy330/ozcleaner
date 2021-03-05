@@ -23,109 +23,106 @@ export default function AddressInfo() {
   const classes = useStyles()
 
   return (
-    <Box>
-      <Grid container direction="column" spacing={0} className={classes.root}>
-        
-        <Grid container direction="row" spacing={2}>
-          <Grid item xs={6} sm={6}>
-            <TextField
-              id=""
-              label="First Name"
+    <Box className={classes.root}>
+      <Grid container direction="row" spacing={2}>
+        <Grid item xs={6} sm={6}>
+          <TextField
+            id=""
+            label="First Name"
               // type="number"
-              InputLabelProps={{ // label在输入框顶部固定
+            InputLabelProps={{ // label在输入框顶部固定
                 shrink: true,
               }}
-              variant="outlined"
-              className={classes.input}
-            />
-          </Grid>
-
-          <Grid item xs={6} sm={6}>
-            <TextField
-              id=""
-              label="Last Name"
-              InputLabelProps={{ 
-                shrink: true,
-              }}
-              variant="outlined"
-              className={classes.input}
-            />
-          </Grid>
+            variant="outlined"
+            className={classes.input}
+          />
         </Grid>
 
-        <Grid container direction="row" spacing={2}>
-          <Grid item xs={6} sm={6}>
-            <TextField
-              id=""
-              label="Street Address"
-              InputLabelProps={{ 
+        <Grid item xs={6} sm={6}>
+          <TextField
+            id=""
+            label="Last Name"
+            InputLabelProps={{ 
                 shrink: true,
               }}
-              variant="outlined"
-              className={classes.input}
-            />
-          </Grid>
-
-          <Grid item xs={6} sm={6}>
-            <TextField
-              id=""
-              label="Apt # (optional)"
-              InputLabelProps={{ 
-                shrink: true,
-              }}
-              variant="outlined"
-              className={classes.input}
-            />
-          </Grid>
+            variant="outlined"
+            className={classes.input}
+          />
         </Grid>
-      
-        <Grid container direction="row" spacing={2}>
-          <Grid item xs={6} sm={6}>
-            <TextField
-              id=""
-              label="Suburb"
-              InputLabelProps={{ 
-                shrink: true,
-              }}
-              variant="outlined"
-              className={classes.input}
-            />
-          </Grid>
-
-          <Grid item xs={6} sm={6}>
-            <TextField
-              id=""
-              label="State"
-              InputLabelProps={{ 
-                shrink: true,
-              }}
-              variant="outlined"
-              className={classes.input}
-            />
-          </Grid>
-        </Grid>
-
-        <Grid container direction="row" spacing={2}>
-          <Grid item xs={6} sm={6}>
-            <TextField
-              id=""
-              label="Phone Number"
-              InputLabelProps={{ 
-                shrink: true,
-              }}
-              variant="outlined"
-              className={classes.input}
-            />
-          </Grid>
-
-          <Grid item xs={6} sm={6} />
-        </Grid>
-      
-      
-      
       </Grid>
 
+      <Grid container direction="row" spacing={2}>
+        <Grid item xs={6} sm={6}>
+          <TextField
+            id=""
+            label="Street Address"
+            InputLabelProps={{ 
+                shrink: true,
+              }}
+            variant="outlined"
+            className={classes.input}
+          />
+        </Grid>
+
+        <Grid item xs={6} sm={6}>
+          <TextField
+            id=""
+            label="Apt # (optional)"
+            InputLabelProps={{ 
+                shrink: true,
+              }}
+            variant="outlined"
+            className={classes.input}
+          />
+        </Grid>
+      </Grid>
+      
+      <Grid container direction="row" spacing={2}>
+        <Grid item xs={6} sm={6}>
+          <TextField
+            id=""
+            label="Suburb"
+            InputLabelProps={{ 
+                shrink: true,
+              }}
+            variant="outlined"
+            className={classes.input}
+          />
+        </Grid>
+
+        <Grid item xs={6} sm={6}>
+          <TextField
+            id=""
+            label="State"
+            InputLabelProps={{ 
+                shrink: true,
+              }}
+            variant="outlined"
+            className={classes.input}
+          />
+        </Grid>
+      </Grid>
+
+      <Grid container direction="row" spacing={2}>
+        <Grid item xs={6} sm={6}>
+          <TextField
+            id=""
+            label="Phone Number"
+            InputLabelProps={{ 
+                shrink: true,
+              }}
+            variant="outlined"
+            className={classes.input}
+          />
+        </Grid>
+
+        <Grid item xs={6} sm={6} />
+      </Grid>
+      
+      
+      
     </Box>
+
 
 
 

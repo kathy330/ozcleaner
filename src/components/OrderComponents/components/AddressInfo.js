@@ -82,6 +82,7 @@ export default function AddressInfo() {
           <TextField
             id=""
             label="Suburb"
+            error
             InputLabelProps={{ 
                 shrink: true,
               }}

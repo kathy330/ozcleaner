@@ -118,13 +118,15 @@ export default function OrderLeft() {
               </Typography>
             </Grid>
 
-            {/* false代表信息无误 */}
-            <PaymentInfo 
-              error={false}
-              CardNumberText="Credit Card Number *"
-              DateText="Expiry Date *"
-              CVCText="Card Security Code *"
-            />
+            <Grid item xs={6} sm={12}>
+              {/* false代表信息无误 */}
+              <PaymentInfo 
+                error={false}
+                CardNumberText="Credit Card Number *"
+                DateText="Expiry Date *"
+                CVCText="Card Security Code *"
+              />
+            </Grid>
           </Grid>
         </Container>
 

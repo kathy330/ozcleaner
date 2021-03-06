@@ -9,6 +9,8 @@ import StarIcon from '@material-ui/icons/Star'
 import StarBorderIcon from '@material-ui/icons/StarBorder'
 import StarHalfIcon from '@material-ui/icons/StarHalf'
 import amber from '@material-ui/core/colors/amber'
+// import Button from '@material-ui/core/Button'
+// import {statusStyle} from '../../../../styles/styles'
 
 let theme = createMuiTheme()
 theme = responsiveFontSizes(theme)
@@ -28,7 +30,7 @@ const useStyles = makeStyles((themes) => ({
     color: 'white',
     background:'#89B153',
     borderRadius:20, 
-    textAlign:'center'
+    textAlign:'center',
   }
   
 }))
@@ -64,27 +66,7 @@ export default function AutoGrid() {
 
 
 
-        {/* Onging Orders */}
-        <Grid item xs={12} sm={6}>
-          <Paper className={classes.paper}>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <ThemeProvider theme={theme}>
-                  <Typography>
-                    Status
-                  </Typography>
-                </ThemeProvider>             
-              </Grid>
-              <Grid item xs className={classes.green}>
-                <ThemeProvider theme={theme}>
-                  <Typography>
-                    Avaliable
-                  </Typography>
-                </ThemeProvider>          
-              </Grid>
-            </Grid>
-          </Paper>
-        </Grid>
+
 
         {/* Total Earns,Reviews */}
 
@@ -126,8 +108,114 @@ export default function AutoGrid() {
 
           </Paper>
         </Grid>
+
+
+
+
+
+        {/* Onging Orders */}
+        <Grid item xs={12} sm={12}>
+          <Paper className={classes.paper}>
+            <Grid item xs container direction="row" spacing={2}>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    Postcode
+                  </Typography>
+                </ThemeProvider>             
+              </Grid>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    4101
+                  </Typography>
+                </ThemeProvider>          
+              </Grid>
+            </Grid>
+            <Grid item xs container direction="row" spacing={2}>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    Email
+                  </Typography>
+                </ThemeProvider>             
+              </Grid>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    Jack.p@mail.com
+                  </Typography>
+                </ThemeProvider>          
+              </Grid>
+            </Grid>
+            <Grid item xs container direction="row" spacing={2}>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    Phone
+                  </Typography>
+                </ThemeProvider>             
+              </Grid>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    111111111
+                  </Typography>
+                </ThemeProvider>          
+              </Grid>
+            </Grid>
+            <Grid item xs container direction="row" spacing={2}>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    ABN
+                  </Typography>
+                </ThemeProvider>             
+              </Grid>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    1234567
+                  </Typography>
+                </ThemeProvider>          
+              </Grid>
+            </Grid>
+            <Grid item xs container direction="row" spacing={2}>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    Experience
+                  </Typography>
+                </ThemeProvider>             
+              </Grid>
+              <Grid item xs>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    2 years
+                  </Typography>
+                </ThemeProvider>          
+              </Grid>
+            </Grid>
+            <Grid item xs sm container direction="row" spacing={2}>
+              <Grid item xs sm={6}>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    Status
+                  </Typography>
+                </ThemeProvider>             
+              </Grid>
+              <Grid item xs sm={3} className={classes.green}>
+                <ThemeProvider theme={theme}>
+                  <Typography>
+                    Available
+                  </Typography>
+                </ThemeProvider>          
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
         {/* Total Earns */}
-        <Grid item xs={12} sm={6}>
+        {/* <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
@@ -147,7 +235,7 @@ export default function AutoGrid() {
               </Grid>
             </Grid>
           </Paper>
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   )

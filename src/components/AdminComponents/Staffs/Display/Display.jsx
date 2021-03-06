@@ -11,21 +11,24 @@ const useStyles = makeStyles((theme) => ({
           margin: theme.spacing(1),
         },
     },
-
   }))
   
   export default function Displays() {
     const classes = useStyles()
     return (
       <div className={classes.root}>
-        <Box display="flex" flexDirection="row" justifyContent="space-between" flexWrap="wrap">
-          <Box margin="auto">
-            <Avatars />
+        <Box>
+          <Box display="flex" flexDirection="row" justifyContent="space-between" flexWrap="wrap">
+            <Box margin="auto">
+              <Avatars />
+            </Box>
+            <Box margin="5% auto">
+              <Card /> 
+            </Box> 
           </Box>
-          <Box margin="5% auto" width="60%">
-            <Card /> 
-          </Box> 
-        </Box>   
+          <Box margin="2% 6%" fontWeight="bold" fontSize="2vh">Order History</Box> 
+        </Box>
+         
       </div>
     )
   }

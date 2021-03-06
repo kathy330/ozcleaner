@@ -84,30 +84,22 @@ export const statusStyle = makeStyles((theme) => ({
     color: 'white',
     background: theme.palette.green.main,
     borderRadius: '25px',
-    paddingInline: '10px',
-    disableRipple: true,
-    '&:hover': {
-      background: theme.palette.green.main,
+    '&:disabled': {
+      color: 'white',
     },
   },
   grey: {
-    color: 'white',
     background: theme.palette.grey.main,
     borderRadius: '25px',
-    paddingInline: '10px',
-    disableRipple: true,
-    '&:hover': {
-      background: theme.palette.grey.main,
+    '&:disabled': {
+      color: 'white',
     },
   },
   red: {
-    color: 'white',
     background: theme.palette.red.main,
     borderRadius: '25px',
-    paddingInline: '10px',
-    disableRipple: true,
-    '&:hover': {
-      background: theme.palette.red.main,
+    '&:disabled': {
+      color: 'white',
     },
   },
 }));

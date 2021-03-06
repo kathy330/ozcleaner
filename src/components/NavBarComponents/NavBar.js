@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   Grid,
   Button,
@@ -12,30 +12,25 @@ import {
   Typography,
   Slide,
   Drawer,
-} from '@material-ui/core'
+} from '@material-ui/core';
 
-import MenuIcon from '@material-ui/icons/Menu'
-import FormDialog from '../SignUpComponents/PopupForm'
+import MenuIcon from '@material-ui/icons/Menu';
+import FormDialog from '../SignUpComponents/PopupForm';
 
-import { navBarStyle } from '../../styles/styles'
+import { navBarStyle } from '../../styles/styles';
 
-const styleq = {
-  display: 'inline',
-  float: 'left',
-  width: '25%',
-}
 export default function HeaderNavigation(props) {
-  const { trigger } = props
+  const { trigger } = props;
 
-  const style = navBarStyle()
-  const [anchorEl, setAnchorEl] = useState(null)
+  const style = navBarStyle();
+  const [anchor, setAnchor] = useState(null);
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchor(event.currentTarget);
+  };
 
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchor(null);
+  };
 
   return (
     <Slide
@@ -44,7 +39,7 @@ export default function HeaderNavigation(props) {
       direction="down"
     >
       <AppBar
-        position={trigger === null || trigger === undefined ? 'static' : 'fixed'}
+        position={trigger === null || trigger === undefined ? 'relative' : 'fixed'}
         className={style.AppBar}
       >
         <Grid item className={style.container}>
@@ -67,9 +62,9 @@ export default function HeaderNavigation(props) {
             </Box>
             <Drawer
               id="simple-menu"
-              anchorEl={anchorEl}
+              anchorEl={anchor}
               keepMounted
-              open={Boolean(anchorEl)}
+              open={Boolean(anchor)}
               onClose={handleClose}
               anchor="right"
             >
@@ -81,5 +76,5 @@ export default function HeaderNavigation(props) {
         </Grid>
       </AppBar>
     </Slide>
-  )
+  );
 }

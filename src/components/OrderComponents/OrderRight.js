@@ -9,6 +9,9 @@ import BathtubIcon from '@material-ui/icons/Bathtub'
 import RoomIcon from '@material-ui/icons/Room'
 import NoteIcon from '@material-ui/icons/Note'
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
+import IconButton from '@material-ui/core/IconButton'
+import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
+import Divider from '@material-ui/core/Divider'
 
 
 const useStyles = makeStyles(() => ({
@@ -16,15 +19,20 @@ const useStyles = makeStyles(() => ({
     color: '#707070',
   },
 
+  hover: {
+    padding: 0,
+  },
+
   price: {
     color: '#007bf5',
   },
 
-  total: {
+  totalText: {
     paddingTop: '10px',
   },
 
   top: {
+    marginBottom: '30px',
     marginTop: '30px',
   }
 }))
@@ -32,6 +40,8 @@ const useStyles = makeStyles(() => ({
 
 export default function OrderRight() {
   const classes = useStyles()
+  const [showForm, setShowForm] = React.useState(false)
+  console.log(setShowForm)
   return(
     <Box className={classes.top}>
       <Container maxWidth="lg">
@@ -40,7 +50,12 @@ export default function OrderRight() {
             <Grid item xs={6} sm={12}>
               <Grid container direction="row">
                 <Grid item xs={6} sm={2}>
-                  <KingBedIcon fontSize="large" className={classes.icon}  />
+                  {/* <KingBedIcon fontSize="large" className={classes.icon}  /> */}
+                  <IconButton className={classes.hover}>
+                    {!showForm? 
+                      <KingBedIcon fontSize="large" className={classes.icon}  />
+                    : <IndeterminateCheckBoxIcon />}
+                  </IconButton>
                 </Grid>
                 <Grid item xs={6} sm={10}>
                   <Typography variant='h6'>Bedrooms x 2</Typography>
@@ -91,10 +106,12 @@ export default function OrderRight() {
             </Grid>
           </Container>
         </Grid>
-
+      </Container>
+      <Divider />
+      <Container maxWidth="lg">
         <Grid container>
           <Grid item xs={6} sm={6}>
-            <Typography align="left" variant='h4' className={classes.total}>
+            <Typography align="left" variant='h4' className={classes.totalText}>
               Total
             </Typography>
           </Grid>

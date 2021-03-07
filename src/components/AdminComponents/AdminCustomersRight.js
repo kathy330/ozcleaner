@@ -3,11 +3,12 @@ import {
   Grid,
   Typography,
   makeStyles,
-  Button,
   Card,
   CardContent,
   Divider,
 } from '@material-ui/core'
+import { RedStatus } from '../../pages/UI/Status'
+
 
 // style
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       order: 1,
     },
-
   },
   card: {
     border: '1px solid',
@@ -63,10 +63,9 @@ function AdminCustomersRight() {
         </CardContent>
       </Card>
 
-      <Button variant="contained" color="primary" className={classes.button}>
+      <RedStatus>
         CANCEL ORDER
-      </Button>
-
+      </RedStatus>
     </Grid>
   )
 }

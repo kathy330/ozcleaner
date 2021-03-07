@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Container, Typography } from '@material-ui/core'
 import NavBar from '../../components/NavBarComponents/NavBar'
 import Footer from '../../components/FooterComponents/Footer'
-import ListTable from '../../components/AdminComponents/Customers/ListTable'
+import ListTable from '../../components/AdminComponents/ListTable'
 
 const columns = [
   { id: 'avatar', label: 'Avatar', minWidth: 60, align: 'center' },
@@ -33,8 +33,8 @@ const UserData = [
   {
     id: '1',
     avatar: '',
-    status: 'Available',
     name: 'Oliver',
+    status: 'Available',
     ongoingOrder: '3',
     completedOrder: '26',
   },
@@ -50,7 +50,7 @@ const UserData = [
     id: '3',
     avatar: '',
     status: 'Unavailable',
-    name: 'Ava',
+    name: 'Avaa',
     ongoingOrder: '2',
     completedOrder: '25',
   },
@@ -240,7 +240,6 @@ const UserData = [
   },
 ]
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '75vh',
@@ -255,7 +254,7 @@ const useStyles = makeStyles((theme) => ({
 
 function AdminCustomersListPage() {
   const classes = useStyles()
-  const rowPreSet = '10'
+  const rowPreSet = 10
   const tableType = 'staff'
   return (
     <>

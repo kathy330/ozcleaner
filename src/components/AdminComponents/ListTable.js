@@ -10,8 +10,6 @@ import {
 } from '@material-ui/core'
 import ListTableRow from './ListTableRow'
 
-
-
 function ListTablePagination(props){
   const { columns, UserData, rowPreSet, tableType } = props
   const [page, setPage] = React.useState(0)
@@ -49,6 +47,7 @@ function ListTablePagination(props){
                 key={row.id}
                 id={row.id}
                 name={row.name}
+                status={row.status}
                 ongoingOrder={row.ongoingOrder}
                 completedOrder={row.completedOrder}
                 tableType={tableType}
@@ -70,7 +69,6 @@ function ListTablePagination(props){
     </>
   )
 }
-
 
 export default ListTablePagination 
 

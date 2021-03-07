@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core'
 import NavBar from '../../components/NavBarComponents/NavBar'
 import Footer from '../../components/FooterComponents/Footer'
-import ListTable from '../../components/AdminComponents/Customers/ListTable'
+import ListTable from '../../components/AdminComponents/ListTable'
 
 const columns = [
   { id: 'avatar', label: 'Avatar', minWidth: 80, align: 'center' },
@@ -230,7 +230,7 @@ const useStyles = makeStyles((theme) => ({
 
 function AdminCustomersListPage(){
   const classes = useStyles()
-  const rowPreSet = 10
+  const rowPreSet = 25
   const tableType = 'customer'
   return (
     <>

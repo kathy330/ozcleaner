@@ -1,10 +1,11 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable max-len */
 import React from 'react'
 import { makeStyles} from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
-
+// import { RedStatus } from '../../../../pages/UI/Status'
 
 const useStyles = makeStyles((themes) => ({
   root: {
@@ -20,11 +21,17 @@ const useStyles = makeStyles((themes) => ({
   large: {
     width: themes.spacing(16),
     height: themes.spacing(16),
+    fontSize:50,
   },
   img:{
     margin:"auto",
   }
 }))
+
+
+const staffs=[{
+  name:"Joshua Danial",
+}]
 
 export default function ImageAvatars() {
   const classes = useStyles()
@@ -32,16 +39,24 @@ export default function ImageAvatars() {
   return (
     <div className={classes.root}>
       <Grid item xs container direction="column" spacing={2}>
-        <Grid item className={classes.img}>
-          <Avatar srcSet="/broken-image.jpg" className={classes.large} />
-        </Grid>
+        {staffs.map((staff)=>(
+          <Grid item className={classes.img} key={staff.name}>
+         
+            <Avatar className={classes.large}>{staff.name[0]}</Avatar>
+
+          </Grid>
+        ))}
+        {staffs.map((staff)=>(
+          <Grid item xs>
+            <Box textAlign="center" width="100%" fontWeight="bold" fontSize={25} key={staff.name}>
+              {staff.name}
+            </Box>
+          </Grid>
+        ))}
+
+        
         <Grid item xs>
-          <Box textAlign="center" width="100%" fontWeight="bold" fontSize={25}>
-            Joshua Danial
-          </Box>
-        </Grid>
-        <Grid item xs>
-          <Box color="white" bgcolor=" #cc584e" p={1} borderRadius={15} textAlign="center">
+          <Box color="white" bgcolor=" #cc584e" p={1} borderRadius={15} fontWeight={700} textAlign="center">
             Staff
           </Box>
           

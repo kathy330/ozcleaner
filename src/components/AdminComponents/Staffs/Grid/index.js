@@ -1,1 +1,1 @@
-export {default} from "./Grid copy"
+export {default} from "./Grid"

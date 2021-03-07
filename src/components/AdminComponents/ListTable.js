@@ -10,7 +10,8 @@ import {
 } from '@material-ui/core'
 import ListTableRow from './ListTableRow'
 
-function ListTablePagination(props){
+//
+function ListTable(props){
   const { columns, UserData, rowPreSet, tableType } = props
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(rowPreSet)
@@ -70,5 +71,5 @@ function ListTablePagination(props){
   )
 }
 
-export default ListTablePagination 
+export default ListTable 
 

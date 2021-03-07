@@ -1,21 +1,24 @@
 import React from 'react'
-import { makeStyles, Grid, Typography, } from '@material-ui/core'
-import { Star, StarHalf, StarBorder } from '@material-ui/icons/'
+import { makeStyles, Grid, Typography } from '@material-ui/core'
+import { Rating } from '@material-ui/lab'
 
 // style
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     paddingLeft: 10,
   },
-  stars: {
-    color: 'rgb(255, 191, 0)',
+  rate: {
+    display: "flex",
+    flexDirection: "column",
+    "& > * + *": {
+      marginTop: theme.spacing(1)
+    }
   },
-})
+}))
 
-export default function Review() {
+export default function Review({ rating }) {
   const classes = useStyles()
-  // example
-  const rating = 3.5
+
   return (
     <Grid container direction="column" className={classes.root}>
       <Grid item xs>
@@ -30,16 +33,12 @@ export default function Review() {
               {rating}
             </Typography>
           </Grid>
-          <Grid item xs>
-            <Star className={classes.stars} />
-            <StarHalf className={classes.stars} />
-            <StarBorder className={classes.stars} />
-            <StarBorder className={classes.stars} />
-            <StarBorder className={classes.stars} />
+          <Grid item xs className={classes.rate}>
+            <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs className={classes.paper}>
+      <Grid item xs>
         <Typography variant="body2">
           Michael J. Is so nice, He completed his job in just three hours
           and made my apartment like fresh new!

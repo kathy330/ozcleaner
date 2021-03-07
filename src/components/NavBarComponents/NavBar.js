@@ -44,7 +44,7 @@ export default function HeaderNavigation(props) {
       direction="down"
     >
       <AppBar
-        position={trigger === null || trigger === undefined ? 'static' : 'fixed'}
+        position={trigger === null || trigger === undefined ? 'relative' : 'fixed'}
         className={style.AppBar}
       >
         <Grid item className={style.container}>

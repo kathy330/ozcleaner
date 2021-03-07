@@ -37,7 +37,7 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/order" exact component={OrderPage} />
         <Route path="/profile" exact component={ProfilePage} />
-        <Route path="/admin/customers" exact component={AdminCustomersPage} />
+        <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} />
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />
         <Route path="/admin/overview" exact component={AdminOverviewPage} />
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}

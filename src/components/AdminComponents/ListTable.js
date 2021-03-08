@@ -10,7 +10,11 @@ import {
 } from '@material-ui/core'
 import ListTableRow from './ListTableRow'
 
-//
+// ListTable will has four params
+// columns(obj): table head
+// UserDate(obj): table body
+// rowPreSet(num): is the default page row's number
+// tableType(str): is to distinguish between customer list and staff list
 function ListTable(props){
   const { columns, UserData, rowPreSet, tableType } = props
   const [page, setPage] = React.useState(0)

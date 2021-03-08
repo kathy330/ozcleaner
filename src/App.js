@@ -39,14 +39,14 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/order" exact component={OrderPage} />
         <Route path="/profile" exact component={ProfilePage} />
-        <Route path="/admin/customers" exact component={AdminCustomersPage} />
-        <Route path="/admin/customers-list" exact component={AdminCustomersListPage} />
-        <Route path="/admin/staffs-list" exact component={AdminStaffsListPage} />
+        <Route path="/admin/staffs/customer" exact component={AdminCustomersPage} />
+        <Route path="/admin/customers" exact component={AdminCustomersListPage} />
+        <Route path="/admin/staffs" exact component={AdminStaffsListPage} />
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />
         <Route path="/admin/overview" exact component={AdminOverviewPage} />
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
         <Route path="/admin/dashboard" exact component={AdminDashboardPage} />
-        <Route path="/admin/staffs" exact component={AdminStaffPage} />
+        <Route path="/admin/customers/info" exact component={AdminStaffPage} />
 
         <Route path="/ui" exact component={UI} />
 

@@ -11,7 +11,8 @@ import ProfilePage from './pages/ProfilePage/ProfilePage'
 import AdminCustomersPage from './pages/AdminPage/AdminCustomersPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 import theme from './styles/theme'
-import AdminStaffPage from './pages/AdminPage/AdminStaffPage'
+import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
+import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
 import AdminDashboardPage from "./pages/AdminPage/AdminDashboardPage"
 // import ....Page from ....
 
@@ -42,8 +43,8 @@ function App() {
         <Route path="/admin/overview" exact component={AdminOverviewPage} />
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
         <Route path="/admin/dashboard" exact component={AdminDashboardPage} />
-        <Route path="/admin/staffs" exact component={AdminStaffPage} />
-
+        <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
+        <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} />
         <Route path="/ui" exact component={UI} />
 
         <Route path="/dongyu" exact component={DongyuPage} />

@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   title:{
     padding: '0px 30px',
     paddingTop: '2vh',
+    fontWeight:'bold',
   },
   textField: {
     [`& fieldset`]: {

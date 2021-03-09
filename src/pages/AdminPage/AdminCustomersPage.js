@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
   body: {
     backgroundColor: "white",
     minHeight: "85vh",
-    
   },
 }))
 
@@ -32,6 +31,7 @@ function AdminCustomersPage() {
   return (
     <Grid className={classes.bg}>
       <NavBar />
+
       <Container maxWidth="md" className={classes.body}>
         <AdminCustomersTop />
         <Grid container spacing={2}>

@@ -7,6 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import HomePage from './pages/HomePage/HomePage'
 import UI from './pages/UI/UI'
 import OrderPage from './pages/OrderPage/OrderPage'
+import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import AdminCustomersPage from './pages/AdminPage/AdminCustomersPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
@@ -36,6 +37,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/order" exact component={OrderPage} />
+        <Route path="/order/confirm" exact component={OrderConfirmPage} />
         <Route path="/profile" exact component={ProfilePage} />
         <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} />
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />

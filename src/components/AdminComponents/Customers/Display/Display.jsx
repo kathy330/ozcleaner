@@ -11,6 +11,27 @@ const useStyles = makeStyles((theme) => ({
           margin: theme.spacing(1),
         },
     },
+    display:{
+      display:"flex",
+      flexDirection:"row",
+      justifyContent:"space-between",
+      flexWrap:"wrap"
+    },
+    card:{
+      [theme.breakpoints.down("xs")]: {
+        width:"100%",
+        margin:"5% auto"
+      },
+      [theme.breakpoints.up("sm")]: {
+        width:"60%",
+        margin:"5% auto"
+      },
+    },
+    title:{
+      margin:"2% 2%",
+      fontWeight:"bold",
+      fontSize:"2vh"
+    }
   }))
   
   export default function Displays() {
@@ -18,15 +39,15 @@ const useStyles = makeStyles((theme) => ({
     return (
       <div className={classes.root}>
         <Box>
-          <Box display="flex" flexDirection="row" justifyContent="space-between" flexWrap="wrap">
+          <Box className={classes.display}>
             <Box margin="auto">
               <Avatars />
             </Box>
-            <Box margin="5% auto" width="60%">
+            <Box className={classes.card}>
               <Card /> 
             </Box> 
           </Box>
-          <Box margin="2% 2%" fontWeight="bold" fontSize="2vh">Order History</Box> 
+          <Box className={classes.title}>Order History</Box> 
         </Box>
          
       </div>

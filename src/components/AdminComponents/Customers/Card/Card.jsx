@@ -11,8 +11,13 @@ const useStyles = makeStyles((themes) => ({
     padding: themes.spacing(2),
   },
   li: {
-    listStyleType: "none",
-    margin:"10%"
+    [themes.breakpoints.down("xs")]: {
+      margin:"2%"
+    },
+    [themes.breakpoints.up("sm")]: {
+      margin:"10%"
+    },
+ 
   },
 }))
 
@@ -73,8 +78,8 @@ export default function AutoGrid() {
         {/* Personal Infomation */}
         <Grid item xs={12} sm={12}>
           <Paper className={classes.paper}>
-            <Grid container spacing={4} justify="space-evenly">
-              <Grid item xs={12} sm={3}>
+            <Grid container justify="space-evenly">
+              <Grid item xs={4} sm={3}>
                 <ul>
                   <li className={classes.li}>
                     <Typography variant="subtitle2">Postcode</Typography>
@@ -88,11 +93,11 @@ export default function AutoGrid() {
                 </ul>
               </Grid>
               {cards.map((card) => (
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={8} sm={3}>
                   <ul>
                     {card.info.map((item) => (
                       <li key={item} className={classes.li}>
-                        <Typography>{item}</Typography>
+                        <Typography variant="body2">{item}</Typography>
                       </li>
           ))}
                   </ul>

@@ -20,8 +20,12 @@ const useStyles = makeStyles((themes) => ({
     color:"white",
   },
   li: {
-    listStyleType: "none",
-    margin:"10%"
+    [themes.breakpoints.down("xs")]: {
+      margin:"2%"
+    },
+    [themes.breakpoints.up("sm")]: {
+      margin:"10%"
+    },
   },
 
   status2:{
@@ -51,7 +55,7 @@ function showCardInfo(card, index, isAvailable, classes) {
     return (
       <div className={`title ${isAvailable ? classes.status1 : classes.status2}`}>
         <li key={card.item}>
-          <Typography>
+          <Typography variant="subtitle2">
             { card.info[index] }
           </Typography>
         </li>
@@ -60,7 +64,7 @@ function showCardInfo(card, index, isAvailable, classes) {
   } 
     return (
       <li key={card.item} className={classes.li}>
-        <Typography>
+        <Typography variant="body2">
           { card.info[index] }
         </Typography>
       </li>
@@ -127,7 +131,7 @@ export default function AutoGrid() {
         <Grid item xs={12} sm={12}>
           <Paper className={classes.paper}>
             <Grid container spacing={4} justify="space-evenly">
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={4} sm={3}>
                 <ul>
                   <li className={classes.li}>
                     <Typography variant="subtitle2">Postcode</Typography>
@@ -150,7 +154,7 @@ export default function AutoGrid() {
                 </ul>
               </Grid>
               {cards.map((card) => (
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={8} sm={3}>
                   <ul>
                     {card.info.map((item, index) => (
                      showCardInfo(card, index, card.status === "Available", classes)

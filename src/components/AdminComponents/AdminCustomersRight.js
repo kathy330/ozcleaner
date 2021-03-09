@@ -1,13 +1,6 @@
-import React from 'react'
-import {
-  Grid,
-  Typography,
-  makeStyles,
-  Button,
-  Card,
-  CardContent,
-  Divider,
-} from '@material-ui/core'
+import React from 'react';
+import { Grid, Typography, makeStyles, Card, CardContent, Divider } from '@material-ui/core';
+import { RedStatus } from '../UIComponents/Status';
 
 // style
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       order: 1,
     },
-
   },
   card: {
     border: '1px solid',
@@ -37,11 +29,11 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     marginBottom: 20,
     backgroundColor: '#cc584e',
-  }
-}))
+  },
+}));
 
 function AdminCustomersRight() {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <Grid item xs={12} sm={3} className={classes.root}>
       <Card className={classes.card}>
@@ -63,12 +55,9 @@ function AdminCustomersRight() {
         </CardContent>
       </Card>
 
-      <Button variant="contained" color="primary" className={classes.button}>
-        CANCEL ORDER
-      </Button>
-
+      <RedStatus>CANCEL ORDER</RedStatus>
     </Grid>
-  )
+  );
 }
 
-export default AdminCustomersRight
+export default AdminCustomersRight;

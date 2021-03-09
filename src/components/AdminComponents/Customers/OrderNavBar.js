@@ -1,5 +1,7 @@
-import React from 'react'
-import { Grid, Button, makeStyles } from '@material-ui/core'
+import React from 'react';
+import { Grid, makeStyles, Box } from '@material-ui/core';
+// import { PrimaryButton } from '../../../pages/UI/Buttons'
+import { GreenStatus, GreyStatus, RedStatus } from '../../UIComponents/Status';
 // import style from '../scss/Admin.module.scss'
 
 // styles
@@ -9,42 +11,32 @@ const navBarStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
-  button: {
-    width: 100,
-    fontSize: 10,
-    fontWeight: 50,
-    margin: '25px 10px',
-    backgroundColor: '#bec3dc',
-    [theme.breakpoints.down('xs')]: {
-      margin: '10px'
-    },
-  },
   container: {
+    paddingTop: 4,
     [theme.breakpoints.down('xs')]: {
       justifyContent: 'center',
     },
-  }
-}))
-
+  },
+}));
 
 // navbars
 export default function ContainedButtons() {
-  const classes = navBarStyles()
+  const classes = navBarStyles();
 
   return (
     <Grid container className={classes.container}>
-      <Button variant="contained" color="primary" className={classes.button}>
-        UNCONFIRMED
-      </Button>
-      <Button variant="contained" color="primary" className={classes.button}>
-        CONFIRMED
-      </Button>
-      <Button variant="contained" color="primary" className={classes.button}>
-        COMPLETED
-      </Button>
-      <Button variant="contained" color="primary" className={classes.button}>
-        CANCELLED
-      </Button>
+      <Box mr={3}>
+        <RedStatus>UNCONFIRMED</RedStatus>
+      </Box>
+      <Box mr={3}>
+        <GreenStatus>CONFIRMED</GreenStatus>
+      </Box>
+      <Box mr={3}>
+        <GreyStatus>COMPLETED</GreyStatus>
+      </Box>
+      <Box mr={3}>
+        <GreyStatus>CANCELLED</GreyStatus>
+      </Box>
     </Grid>
-  )
+  );
 }

@@ -1,3 +1,3 @@
 export default {
     LOAD_ORDER_REQUESTED: "LOAD_ORDER_REQUESTED",
-};
+}

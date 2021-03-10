@@ -9,15 +9,15 @@ const useStyles = makeStyles(theme => ({
   },
   border: {
     borderBottom: "1px solid black",
-    width:70
+    width:140
   },
   content: {
     fontFamily: "museo-sans, sans-serif",
     fontWeightRegular:500,
     paddingTop: theme.spacing(0.5),
     paddingBottom: theme.spacing(0.5),
-    paddingRight: theme.spacing(1),
-    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(0.5),
+    paddingLeft: theme.spacing(0.5),
     fontWeight: 100,
     fontSize:10,
     color: "black"

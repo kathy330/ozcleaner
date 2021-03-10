@@ -52,7 +52,7 @@ const AdminCustomersLeft = () => {
       <Divider className={classes.divider} />
       <Extra />
       <Divider className={classes.divider} />
-      <Review />
+      <Review rating="4.5" />
     </Grid>
   )
 }

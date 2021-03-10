@@ -9,6 +9,8 @@ import UI from './pages/UI/UI'
 import OrderPage from './pages/OrderPage/OrderPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import AdminCustomersPage from './pages/AdminPage/AdminCustomersPage'
+import AdminCustomersListPage from './pages/AdminPage/AdminCustomersListPage'
+import AdminStaffsListPage from './pages/AdminPage/AdminStaffsListPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 import theme from './styles/theme'
 import AdminStaffPage from './pages/AdminPage/AdminStaffPage'
@@ -37,12 +39,13 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/order" exact component={OrderPage} />
         <Route path="/profile" exact component={ProfilePage} />
-        <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} />
+        <Route path="/admin/customers" exact component={AdminCustomersListPage} />
+        <Route path="/admin/staffs" exact component={AdminStaffsListPage} />
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />
         <Route path="/admin/overview" exact component={AdminOverviewPage} />
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
         <Route path="/admin/dashboard" exact component={AdminDashboardPage} />
-        <Route path="/admin/staffs" exact component={AdminStaffPage} />
+        <Route path="/admin/customers/info" exact component={AdminStaffPage} />
 
         <Route path="/ui" exact component={UI} />
 

@@ -1,11 +1,9 @@
 import React from 'react'
-import { Grid, Container, Button } from '@material-ui/core'
+import { Grid, Container } from '@material-ui/core'
 
 // import { makeStyles } from '@material-ui/core/styles'
 
 import Card from './card'
-import { asyncRqurestOrders } from '../../../store/sagas/actions/actionCreater'
-import store from "../../../store/store"
 
 
 // const useStyles = makeStyles(() => ({

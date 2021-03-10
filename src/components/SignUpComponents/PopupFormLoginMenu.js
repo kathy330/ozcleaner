@@ -1,5 +1,4 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
@@ -7,11 +6,12 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Divider from '@material-ui/core/Divider'
 import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
+import {MenuItem} from '@material-ui/core'
 import DividerWithText from './Divider'
-import {PopupButton,FbButton,GoogleButton} from './Button'
+import {FbButton,GoogleButton,PopupLoginButton} from './Button'
 
 
-export default function FormDialog() {
+export default function FormDialogMenuLogin() {
     const [open, setOpen] = React.useState(false)
   
     const handleClickOpen = () => {
@@ -98,10 +98,9 @@ const useStyles = makeStyles((theme) => ({
 const classes = useStyles()
     return (
       <>
-        <Button onClick={handleClickOpen}>
-          Sign up
-        </Button>  
-             
+        <MenuItem onClick={handleClickOpen}>
+          Login
+        </MenuItem>       
         <Dialog
           open={open}
           onClose={handleClose}
@@ -116,7 +115,7 @@ const classes = useStyles()
                 align="center"
                 variant="h4"
               >
-                Join us
+                Login
               </Typography>
             </DialogTitle>
           </Grid>
@@ -165,15 +164,14 @@ const classes = useStyles()
           </Grid>
             
           <Grid container justify="center">
-            <PopupButton />
-            
+            <PopupLoginButton />
           </Grid>
           <Grid container justify="center">
             <DividerWithText>
               <Typography
                 className={classes.divider}
               >
-                or sign up with
+                or login with
               </Typography>
             </DividerWithText>
           </Grid>
@@ -188,7 +186,7 @@ const classes = useStyles()
             <Typography
               className={classes.agreement}
             >
-              By signing up, I agree to terms & conditions.
+              By logging in, I agree to terms & conditions.
             </Typography>
               
           </Grid>
@@ -207,38 +205,16 @@ const classes = useStyles()
                
               <Typography className={classes.login}>
                 <a href="/login" className={classes.loginColor}>
-                  Login
+                  Sign Up
                 </a>
               </Typography>
                
             </Grid>
           </Grid>
         </Dialog>
-       
       </>
     )
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

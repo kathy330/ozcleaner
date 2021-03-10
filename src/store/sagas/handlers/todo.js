@@ -1,8 +1,8 @@
 /* eslint-disable no-fallthrough */
 /* eslint-disable import/prefer-default-export */
 
-import { call, put, select, fork } from 'redux-saga/effects'
-import axios from 'axios'
+import { call, put, /* select, fork */ } from 'redux-saga/effects'
+// import axios from 'axios'
 import actionTypes from '../actions/actionTypes'
 import { requestOrderList } from '../requests/todo'
 

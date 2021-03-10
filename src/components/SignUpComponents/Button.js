@@ -24,6 +24,20 @@ export function PopupButton() {
     </>
   )
 }
+export function PopupLoginButton() {
+  const classes = buttonStyle()
+  return(
+    <>
+      <Button
+        className={classes.homeBookingButton}
+        // variant="contained"
+        type="submit"
+      >
+        Login
+      </Button>
+    </>
+  )
+}
 
 export function FbButton() {  
   const classes = buttonStyle()

@@ -13,7 +13,8 @@ import AdminCustomersListPage from './pages/AdminPage/AdminCustomersListPage'
 import AdminStaffsListPage from './pages/AdminPage/AdminStaffsListPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 import theme from './styles/theme'
-import AdminStaffPage from './pages/AdminPage/AdminStaffPage'
+import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
+import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
 import AdminDashboardPage from "./pages/AdminPage/AdminDashboardPage"
 // import ....Page from ....
 
@@ -45,6 +46,9 @@ function App() {
         <Route path="/admin/overview" exact component={AdminOverviewPage} />
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
         <Route path="/admin/dashboard" exact component={AdminDashboardPage} />
+        <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
+        <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} />
+        <Route path="/admin/customers/info" exact component={AdminCustomersPage} />
         <Route path="/admin/customers/info" exact component={AdminStaffPage} />
         <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} />
 

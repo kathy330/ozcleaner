@@ -23,12 +23,15 @@ const useStyles = makeStyles((theme) => ({
 
   right: {
     background: 'white',
+    margin: '10px',
     [theme.breakpoints.up('md')]: {
       height: '100%'
     }
+
   },
 
   left: {
+    margin: '10px',
     paddingTop: '10vh',
     background: 'white',
     minHeight: "353px",
@@ -71,7 +74,7 @@ function OrderConfirm() {
           </Grid>
 
 
-          <Grid item xs={12} sm={1} />
+
 
           <Grid item xs={12} sm={5} className={classes.right}>
             <OrderRight />

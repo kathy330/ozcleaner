@@ -21,7 +21,7 @@ const useStyles = makeStyles((themes) => ({
   },
   li: {
     [themes.breakpoints.down("xs")]: {
-      margin:"2%"
+      margin:"auto"
     },
     [themes.breakpoints.up("sm")]: {
       margin:"10%"
@@ -64,7 +64,7 @@ function showCardInfo(card, index, isAvailable, classes) {
   } 
     return (
       <li key={card.item} className={classes.li}>
-        <Typography variant="body2">
+        <Typography variant="subtitle2">
           { card.info[index] }
         </Typography>
       </li>

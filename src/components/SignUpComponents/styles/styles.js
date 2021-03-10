@@ -29,14 +29,18 @@ export const navBarStyle = makeStyles((theme) => ({
 export const buttonStyle = makeStyles((theme) => ({
   // 🔥这个名字 改成navbar booking button？
   homeBookingButton: {
-      background: theme.palette.primary.main, // #007bf5
-      borderRadius: '30px',
-      height:42,
-      width:250,// vh//button 外面设置一个container
-      color: theme.palette.primary.contrastText,
-      marginInline: "-88px",
-      marginTop:'-5px',
-      marginBottom:'8px',
+    color: theme.palette.primary.contrastText,
+    background: theme.palette.primary.main,
+    borderRadius: '30px',
+    marginInline: '25px',
+    paddingTop:'2.0%',
+    paddingBottom:'2.0%',
+    width:'85%',
+    
+    
+    
+    // marginTop:'-5px',
+    marginBottom:'15px',
       // marginLeft:'40px',
       // marginRight:'40px',
       // paddingInline: '130px',
@@ -50,12 +54,14 @@ export const buttonStyle = makeStyles((theme) => ({
   faceBookButton: {
       background: theme.palette.secondary.darkBlue, // #007bf5
       borderRadius: '30px',
-      height:42,
-      width:250,// vh//button 外面设置一个container
+      marginInline: '25px',
+      paddingTop:'2.0%',
+      paddingBottom:'2.0%',
+      marginTop:'3px',
+      marginBottom:'20px',
       color: theme.palette.primary.contrastText,
-      marginInline: "-88px",
-      marginBottom:'5px',
-      paddingRight:'20px',
+      
+      width:'85%',
   
       
       
@@ -68,11 +74,14 @@ export const buttonStyle = makeStyles((theme) => ({
     googleButton: {
       background: theme.palette.primary.contrastText, // #007bf5theme.palette.primary.white
       borderRadius: '30px',
-      height:42,
-      width:250,// vh//button 外面设置一个container
-      color: theme.palette.secondary.black,
-      marginInline: "-88px",
+      marginInline: '25px',
+      paddingTop:'2.0%',
+      paddingBottom:'2.0%',
+      width:'85%',
+      marginTop:'-5px',
       marginBottom:'8px',
+      color: theme.palette.secondary.black,
+     
       "&:hover": {
         background: theme.palette.primary.dark, // #0050c1
         boxShadow: "0px 2px 10px #888",

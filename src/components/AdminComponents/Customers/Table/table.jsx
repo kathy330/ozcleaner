@@ -10,7 +10,7 @@ import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import Button from '@material-ui/core/Button'
 import TablePagination from '@material-ui/core/TablePagination'
-import { GreenStatus ,GreyStatus} from '../../../../pages/UI/Status'
+import { GreenStatus ,RedStatus} from '../../../../pages/UI/Status'
 
 
 const useStyles = makeStyles({
@@ -45,31 +45,28 @@ function createData(oid, status, cname, date, Actions1, Actions2) {
 }
 
 const rows = [
-  createData("01", "In Progress", "Lisa","11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("02", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("03", "Completed", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("04", "Completed", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("05", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("06", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("07", "Completed","Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("08", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("09", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("10", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("11", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("12", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("13", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("14", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("15", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("16", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("17", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("18", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("01", "Confirmed", "Pablo D.","11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("02", "Confirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("03", "UnConfirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("04", "Confirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("05", "UnConfirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("06", "Confirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("07", "Confirmed","Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("08", "UnConfirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("09", "UnConfirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("10", "Confirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("11", "Confirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("12", "Confirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("13", "Confirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("14", "UnConfirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
+  createData("15", "UnConfirmed", "Pablo D.", "11:30AM 22 Jan 2021", "Check", "Delete"),
 ]
 
 function isButton(words) {
-  if(words.status==='In Progress') {
-   return  <GreenStatus>{words.status}</GreenStatus>
+  if(words.status==='Confirmed') {
+    return <GreenStatus>{words.status}</GreenStatus>
   }
-   return <GreyStatus>{words.status}</GreyStatus>
+    return <RedStatus>{words.status}</RedStatus>
   
 }
 
@@ -96,13 +93,13 @@ export default function BasicTable() {
           <TableRow>
             <TableCell align="center">Order ID</TableCell>
             <TableCell align="center">Status</TableCell>
-            <TableCell align="center">Customer</TableCell>
+            <TableCell align="center">Assignee</TableCell>
             <TableCell align="center">Created At</TableCell>
             <TableCell align="center">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => ( 
             <TableRow key={row.oid}>
               <TableCell align="center">{row.oid}</TableCell>
               <TableCell align="center">
@@ -120,10 +117,12 @@ export default function BasicTable() {
                   {row.Actions2}
                 </Button>
               </TableCell>
+
             </TableRow>
-            ))}
-      
+       ))}
         </TableBody>
+        
+     
       </Table>
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
@@ -138,4 +137,3 @@ export default function BasicTable() {
     </TableContainer>
   )
 }
-

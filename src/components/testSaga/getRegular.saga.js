@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 
 
-import {getGitRequest} from '../../store/actions/index'
+import {getREGULARRequest} from "../../store/actions"
 
 
 const GitList = () => {
@@ -11,7 +11,7 @@ const GitList = () => {
   const repo = useSelector(state => state.git_in_reducer_index.repos_in_reducer_init)
   
   useEffect(()=>{
-    dispatch(getGitRequest())
+    dispatch(getREGULARRequest())
   },[])
   console.log(repo)
 

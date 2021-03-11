@@ -16,7 +16,9 @@ import {
 
 import MenuIcon from '@material-ui/icons/Menu'
 import FormDialog from '../SignUpComponents/PopupForm'
-
+import MenuDialog from '../SignUpComponents/PopupFormMenu'
+import FormDialogLogin from '../SignUpComponents/PopupFormLogin'
+import FormDialogMenuLogin from '../SignUpComponents/PopupFormLoginMenu'
 import { navBarStyle } from '../../styles/styles'
 
 const styleq = {
@@ -63,7 +65,7 @@ export default function HeaderNavigation(props) {
             <Box className={style.buttonsBox}>
               <Button className={style.bookingButton}>Booking Now</Button>
               <FormDialog />
-              <Button>Login</Button>
+              <FormDialogLogin />   
             </Box>
             <Drawer
               id="simple-menu"
@@ -74,8 +76,8 @@ export default function HeaderNavigation(props) {
               anchor="right"
             >
               <MenuItem onClick={handleClose}>Booking Now</MenuItem>
-              <MenuItem onClick={handleClose}>Sign Up</MenuItem>
-              <MenuItem onClick={handleClose}>Login</MenuItem>
+              <MenuDialog />
+              <FormDialogMenuLogin />
             </Drawer>
           </Toolbar>
         </Grid>

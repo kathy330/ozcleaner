@@ -1,5 +1,6 @@
 import React from 'react'
-import { Grid, Container} from '@material-ui/core'
+import { Grid, Container } from '@material-ui/core'
+
 // import { makeStyles } from '@material-ui/core/styles'
 
 import Card from './card'
@@ -18,14 +19,16 @@ export default function Overview() {
       Quick status
       <Grid container spacing={6}>
 
-        {[1,2,3,4].map((x, i) => 
-            (
-              <Grid item>
-                <Card key={x} other={i} />
-              </Grid>
-)
-          )}
+        {[1, 2, 3, 4].map((x, i) =>
+        (
+          <Grid item>
+            <Card key={x} other={i} />
+
+          </Grid>
+        )
+        )}
       </Grid>
+
     </Container>
   )
 }

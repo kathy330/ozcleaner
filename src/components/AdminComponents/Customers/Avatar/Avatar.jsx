@@ -27,9 +27,10 @@ const useStyles = makeStyles((themes) => ({
 }))
 
 
-const staffs=[{
-  name:"Joshua Danial",
+const customers=[{
+  name:"Jack Postman",
 }]
+
 
 export default function ImageAvatars() {
   const classes = useStyles()
@@ -37,24 +38,25 @@ export default function ImageAvatars() {
   return (
     <div className={classes.root}>
       <Grid item xs container direction="column" spacing={2}>
-        {staffs.map((staff)=>(
-          <Grid item className={classes.img} key={staff.name}>
+        {customers.map((customer)=>(
+          <Grid item className={classes.img} key={customer.name}>
          
-            <Avatar className={classes.large}>{staff.name.slice(0,2).toUpperCase()}</Avatar>
+            <Avatar className={classes.large}>{customer.name.slice(0,2).toUpperCase()}</Avatar>
 
           </Grid>
         ))}
-        {staffs.map((staff)=>(
+        {customers.map((customer)=>(
           <Grid item xs>
-            <Box textAlign="center" width="100%" fontWeight="bold" fontSize={25} key={staff.name}>
-              {staff.name}
+            <Box textAlign="center" width="100%" fontWeight="bold" fontSize={25} key={customer.name}>
+              {customer.name}
             </Box>
           </Grid>
         ))}
+
         
         <Grid item xs>
-          <Box color="white" bgcolor=" #cc584e" p={1} borderRadius={15} fontWeight={700} textAlign="center">
-            Staff
+          <Box color="white" bgcolor="#89b153" p={1} borderRadius={15} fontWeight={700} textAlign="center">
+            Customer
           </Box>
           
         </Grid>

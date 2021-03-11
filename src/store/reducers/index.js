@@ -8,7 +8,7 @@ import regularReducer from './regular-reducer'
 // 🎉 rootReduce会被store/store.js使用
 const rootReducer = combineReducers({
     
-  git_in_reducer_index:regularReducer
+  regular_in_reducer_index:regularReducer
 
 })
 export default rootReducer

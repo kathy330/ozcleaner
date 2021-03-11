@@ -6,13 +6,12 @@ import {getREGULARRequest} from "../../store/actions"
 
 const GitList = () => {
   const dispatch = useDispatch()
-  const repo = useSelector(state => state.git_in_reducer_index.repos_in_reducer_init)
+  const repo = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)
 
   useEffect(()=>{
     dispatch(getREGULARRequest())
   },[])
   console.log(repo)
-
   return(
     <>
       <ul>

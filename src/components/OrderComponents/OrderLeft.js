@@ -74,8 +74,8 @@ export default function OrderLeft() {
               Set up your cleaning service
             </Typography>
 
-            {bookingInfo('some-info')}
-            {/* {bookingInfo()} */}
+            {/* {bookingInfo('some-info')} */}
+            {bookingInfo()}
 
             <Grid container alignItems="flex-end">
               <Grid item xs={6} sm={1}>

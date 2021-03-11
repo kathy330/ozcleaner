@@ -4,6 +4,7 @@ import { Grid, Button, AppBar, Avatar} from '@material-ui/core'
 import { navBarStyle } from '../../../styles/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import PopDetails from '../../SignUpComponents/PopupDetails'
 
 
 
@@ -45,7 +46,8 @@ export default function AdminHeaderNavigation() {
             <Button>Logo</Button>
           </Grid> 
           <Grid container className={classes.Avatar} xs={1}>
-            <Avatar className={classes.orange} >J</Avatar>
+           
+            <PopDetails/>
           </Grid>
         </AppBar>
 

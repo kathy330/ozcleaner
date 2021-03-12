@@ -10,10 +10,10 @@ import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import Button from '@material-ui/core/Button'
 import TablePagination from '@material-ui/core/TablePagination'
+import { Box } from "@material-ui/core"
 import { GreenStatus ,GreyStatus} from '../../../../pages/UI/Status'
 
-
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
   table: {
     minWidth: 650
   },
@@ -37,8 +37,12 @@ const useStyles = makeStyles({
     margin:" 0 3%",
     background:"#f35162",
     color:"white"
+  },
+  action:{
+    display:"flex",
+    flexDirection:"row"
   }
-})
+}))
 
 function createData(oid, status, cname, date, Actions1, Actions2) {
   return { oid, status, cname, date, Actions1, Actions2 }
@@ -90,52 +94,56 @@ export default function BasicTable() {
 
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">Order ID</TableCell>
-            <TableCell align="center">Status</TableCell>
-            <TableCell align="center">Customer</TableCell>
-            <TableCell align="center">Created At</TableCell>
-            <TableCell align="center">Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-            <TableRow key={row.oid}>
-              <TableCell align="center">{row.oid}</TableCell>
-              <TableCell align="center">
-                {isButton(row)}      
-              </TableCell>
-              <TableCell align="center">
-                <Typography className={classes.name}>{row.cname}</Typography>
-              </TableCell>
-              <TableCell align="center">{row.date}</TableCell>
-              <TableCell align="center">
-                <Button variant="contained" className={classes.check}>
-                  {row.Actions1}
-                </Button>
-                <Button variant="contained" className={classes.delete}>
-                  {row.Actions2}
-                </Button>
-              </TableCell>
+    <Box>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center" className={classes.row1}>Order ID</TableCell>
+              <TableCell align="center" className={classes.row2}>Status</TableCell>
+              <TableCell align="center" className={classes.row3}>Customer</TableCell>
+              <TableCell align="center" className={classes.row4}>Created At</TableCell>
+              <TableCell align="center" className={classes.row5}>Actions</TableCell>
             </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+              <TableRow key={row.oid}>
+                <TableCell align="center">{row.oid}</TableCell>
+                <TableCell align="center">
+                  {isButton(row)}      
+                </TableCell>
+                <TableCell align="center">
+                  <Typography className={classes.name}>{row.cname}</Typography>
+                </TableCell>
+                <TableCell align="center">{row.date}</TableCell>
+                <TableCell align="center" className={classes.action}>
+                  <Button variant="contained" className={classes.check}>
+                    {row.Actions1}
+                  </Button>
+                  <Button variant="contained" className={classes.delete}>
+                    {row.Actions2}
+                  </Button>
+                </TableCell>
+              </TableRow>
             ))}
       
-        </TableBody>
-      </Table>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-        align="center"
-      />
-    </TableContainer>
-  )
+          </TableBody>
+        </Table>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+          align="center"
+        />
+      </TableContainer>
+  
+    </Box>
+    )
+ 
 }
 

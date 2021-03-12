@@ -37,12 +37,11 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-
 export default function OrderRight() {
   const classes = useStyles()
   const [showForm, setShowForm] = React.useState(false)
   console.log(setShowForm)
-  return(
+  return (
     <Box className={classes.top}>
       <Container maxWidth="lg">
         <Grid container direction="column">
@@ -52,9 +51,9 @@ export default function OrderRight() {
                 <Grid item xs={6} sm={2}>
                   {/* <KingBedIcon fontSize="large" className={classes.icon}  /> */}
                   <IconButton className={classes.hover}>
-                    {!showForm? 
-                      <KingBedIcon fontSize="large" className={classes.icon}  />
-                    : <IndeterminateCheckBoxIcon />}
+                    {!showForm ?
+                      <KingBedIcon fontSize="large" className={classes.icon} />
+                      : <IndeterminateCheckBoxIcon />}
                   </IconButton>
                 </Grid>
                 <Grid item xs={6} sm={10}>
@@ -65,7 +64,7 @@ export default function OrderRight() {
             <Grid item xs={6} sm={12}>
               <Grid container direction="row">
                 <Grid item xs={6} sm={2}>
-                  <BathtubIcon fontSize="large" className={classes.icon}  />
+                  <BathtubIcon fontSize="large" className={classes.icon} />
                 </Grid>
                 <Grid item xs={6} sm={10}>
                   <Typography variant='h6'>Bathrooms x 2</Typography>
@@ -75,7 +74,7 @@ export default function OrderRight() {
             <Grid item xs={6} sm={12}>
               <Grid container direction="row">
                 <Grid item xs={6} sm={2}>
-                  <NoteIcon fontSize="large" className={classes.icon}  />
+                  <NoteIcon fontSize="large" className={classes.icon} />
                 </Grid>
                 <Grid item xs={6} sm={10}>
                   <Typography variant='h6'>Bond Cleaning</Typography>
@@ -85,7 +84,7 @@ export default function OrderRight() {
             <Grid item xs={6} sm={12}>
               <Grid container direction="row">
                 <Grid item xs={6} sm={2}>
-                  <RoomIcon fontSize="large" className={classes.icon}  />
+                  <RoomIcon fontSize="large" className={classes.icon} />
                 </Grid>
                 <Grid item xs={6} sm={10}>
                   <Typography variant='h6'>
@@ -97,7 +96,7 @@ export default function OrderRight() {
             <Grid item xs={6} sm={12}>
               <Grid container direction="row">
                 <Grid item xs={6} sm={2}>
-                  <CalendarTodayIcon fontSize="large" className={classes.icon}  />
+                  <CalendarTodayIcon fontSize="large" className={classes.icon} />
                 </Grid>
                 <Grid item xs={6} sm={10}>
                   <Typography variant='h6'>12:00PM, Friday, 29 Jan 2021</Typography>

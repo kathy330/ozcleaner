@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { AppBar, Box, Tabs, Tab, Typography} from '@material-ui/core'
+import { AppBar, Box, Tabs, Tab, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 // import Card from './card'
 import Overview from './Overview'
@@ -49,10 +49,10 @@ const useStyles = makeStyles(() => ({
     // theme.palette.grey.main
   },
   AppBar: {
-    background:"white",
+    background: "white",
   },
   Tab: {
-    color:'black'
+    color: 'black'
   }
 
 }))
@@ -72,7 +72,7 @@ export default function SimpleTabs() {
           value={value}
           onChange={handleChange}
           aria-label="simple tabs example"
-          className={classes.Tab} 
+          className={classes.Tab}
           indicatorColor="primary"
           textColor="primary"
         >

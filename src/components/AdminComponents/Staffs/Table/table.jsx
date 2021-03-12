@@ -98,11 +98,11 @@ export default function BasicTable() {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center" className={classes.row1}>Order ID</TableCell>
-            <TableCell align="center" className={classes.row2}>Status</TableCell>
-            <TableCell align="center" className={classes.row3}>Customer</TableCell>
-            <TableCell align="center" className={classes.row4}>Created At</TableCell>
-            <TableCell align="center" className={classes.row5}>Actions</TableCell>
+            <TableCell align="center">Order ID</TableCell>
+            <TableCell align="center">Status</TableCell>
+            <TableCell align="center">Customer</TableCell>
+            <TableCell align="center">Created At</TableCell>
+            <TableCell align="center">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

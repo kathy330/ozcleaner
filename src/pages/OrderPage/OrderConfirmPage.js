@@ -3,6 +3,7 @@ import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card'
 import Typography from '@material-ui/core/Typography'
 
 
@@ -13,12 +14,12 @@ import { PrimaryButton } from "../UI/Buttons"
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: 'lightgrey'
+    background: 'white'
   },
 
   content: {
     marginTop: '11vh',
-    marginBottom: '35vh'
+
   },
 
   right: {
@@ -73,11 +74,10 @@ function OrderConfirm() {
             </Container>
           </Grid>
 
-
-
-
           <Grid item xs={12} sm={5} className={classes.right}>
-            <OrderRight />
+            <Card>
+              <OrderRight />
+            </Card>
           </Grid>
         </Grid>
       </Container>

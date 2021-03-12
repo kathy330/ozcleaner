@@ -12,8 +12,7 @@ import Button from '@material-ui/core/Button'
 import TablePagination from '@material-ui/core/TablePagination'
 import { GreenStatus ,GreyStatus} from '../../../../pages/UI/Status'
 
-
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
   table: {
     minWidth: 650
   },
@@ -37,8 +36,12 @@ const useStyles = makeStyles({
     margin:" 0 3%",
     background:"#f35162",
     color:"white"
+  },
+  action:{
+    display:"flex",
+    flexDirection:"row"
   }
-})
+}))
 
 function createData(oid, status, cname, date, Actions1, Actions2) {
   return { oid, status, cname, date, Actions1, Actions2 }
@@ -90,6 +93,7 @@ export default function BasicTable() {
 
 
   return (
+
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -112,7 +116,7 @@ export default function BasicTable() {
                 <Typography className={classes.name}>{row.cname}</Typography>
               </TableCell>
               <TableCell align="center">{row.date}</TableCell>
-              <TableCell align="center">
+              <TableCell align="center" className={classes.action}>
                 <Button variant="contained" className={classes.check}>
                   {row.Actions1}
                 </Button>
@@ -136,6 +140,8 @@ export default function BasicTable() {
         align="center"
       />
     </TableContainer>
-  )
+  
+    )
+ 
 }
 

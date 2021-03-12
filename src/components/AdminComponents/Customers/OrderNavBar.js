@@ -1,7 +1,7 @@
-import React from 'react'
-import { Grid, makeStyles, Box } from '@material-ui/core'
+import React from 'react';
+import { Grid, makeStyles, Box } from '@material-ui/core';
 // import { PrimaryButton } from '../../../pages/UI/Buttons'
-import { GreenStatus, GreyStatus, RedStatus } from '../../../pages/UI/Status'
+import { GreenStatus, GreyStatus, RedStatus } from '../../UIComponents/Status';
 // import style from '../scss/Admin.module.scss'
 
 // styles
@@ -16,36 +16,27 @@ const navBarStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       justifyContent: 'center',
     },
-  }
-}))
-
+  },
+}));
 
 // navbars
 export default function ContainedButtons() {
-  const classes = navBarStyles()
+  const classes = navBarStyles();
 
   return (
     <Grid container className={classes.container}>
       <Box mr={3}>
-        <RedStatus>
-          UNCONFIRMED
-        </RedStatus>
+        <RedStatus>UNCONFIRMED</RedStatus>
       </Box>
       <Box mr={3}>
-        <GreenStatus>
-          CONFIRMED
-        </GreenStatus>
+        <GreenStatus>CONFIRMED</GreenStatus>
       </Box>
       <Box mr={3}>
-        <GreyStatus>
-          COMPLETED
-        </GreyStatus>
+        <GreyStatus>COMPLETED</GreyStatus>
       </Box>
       <Box mr={3}>
-        <GreyStatus>
-          CANCELLED
-        </GreyStatus>
+        <GreyStatus>CANCELLED</GreyStatus>
       </Box>
     </Grid>
-  )
+  );
 }

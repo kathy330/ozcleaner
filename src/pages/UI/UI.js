@@ -6,8 +6,12 @@ import BathtubIcon from '@material-ui/icons/Bathtub';
 import NoteIcon from '@material-ui/icons/Note';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import RoomIcon from '@material-ui/icons/Room';
-import { GreenStatus, GreyStatus, RedStatus } from './Status';
-import { BookingButton, PrimaryButton, SecondaryButton } from './Buttons';
+import { GreenStatus, GreyStatus, RedStatus } from '../../components/UIComponents/Status';
+import {
+  BookingButton,
+  PrimaryButton,
+  SecondaryButton,
+} from '../../components/UIComponents/Buttons';
 import HeaderNavigation from '../../components/NavBarComponents/NavBar';
 
 export default function UI() {

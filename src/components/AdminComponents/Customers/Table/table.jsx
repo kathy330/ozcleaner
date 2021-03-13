@@ -10,7 +10,7 @@ import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import Button from '@material-ui/core/Button'
 import TablePagination from '@material-ui/core/TablePagination'
-import { GreenStatus ,RedStatus} from '../../../../pages/UI/Status'
+import { GreenStatus ,RedStatus} from '../../../UIComponents/Status'
 
 
 const useStyles = makeStyles({
@@ -37,6 +37,10 @@ const useStyles = makeStyles({
     margin:" 0 3%",
     background:"#f35162",
     color:"white"
+  },
+  action:{
+    display:"flex",
+    flexDirection:"row"
   }
 })
 
@@ -109,7 +113,7 @@ export default function BasicTable() {
                 <Typography className={classes.name}>{row.cname}</Typography>
               </TableCell>
               <TableCell align="center">{row.date}</TableCell>
-              <TableCell align="center">
+              <TableCell align="center" className={classes.action}>
                 <Button variant="contained" className={classes.check}>
                   {row.Actions1}
                 </Button>

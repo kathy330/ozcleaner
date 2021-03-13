@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   Grid,
   Button,
@@ -12,32 +12,27 @@ import {
   Typography,
   Slide,
   Drawer,
-} from '@material-ui/core'
+} from '@material-ui/core';
 
-import MenuIcon from '@material-ui/icons/Menu'
-import FormDialog from '../SignUpComponents/PopupForm'
-import MenuDialog from '../SignUpComponents/PopupFormMenu'
-import FormDialogLogin from '../SignUpComponents/PopupFormLogin'
-import FormDialogMenuLogin from '../SignUpComponents/PopupFormLoginMenu'
-import { navBarStyle } from '../../styles/styles'
+import MenuIcon from '@material-ui/icons/Menu';
+import FormDialog from '../SignUpComponents/PopupForm';
+import MenuDialog from '../SignUpComponents/PopupFormMenu';
+import FormDialogLogin from '../SignUpComponents/PopupFormLogin';
+import FormDialogMenuLogin from '../SignUpComponents/PopupFormLoginMenu';
+import { navBarStyle } from '../../styles/styles';
 
-const styleq = {
-  display: 'inline',
-  float: 'left',
-  width: '25%',
-}
 export default function HeaderNavigation(props) {
-  const { trigger } = props
+  const { trigger } = props;
 
-  const style = navBarStyle()
-  const [anchorEl, setAnchorEl] = useState(null)
+  const style = navBarStyle();
+  const [anchor, setAnchor] = useState(null);
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchor(event.currentTarget);
+  };
 
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchor(null);
+  };
 
   return (
     <Slide
@@ -65,13 +60,13 @@ export default function HeaderNavigation(props) {
             <Box className={style.buttonsBox}>
               <Button className={style.bookingButton}>Booking Now</Button>
               <FormDialog />
-              <FormDialogLogin />   
+              <FormDialogLogin />
             </Box>
             <Drawer
               id="simple-menu"
-              anchorEl={anchorEl}
+              anchorEl={anchor}
               keepMounted
-              open={Boolean(anchorEl)}
+              open={Boolean(anchor)}
               onClose={handleClose}
               anchor="right"
             >
@@ -83,5 +78,5 @@ export default function HeaderNavigation(props) {
         </Grid>
       </AppBar>
     </Slide>
-  )
+  );
 }

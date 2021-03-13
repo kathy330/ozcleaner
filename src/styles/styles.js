@@ -21,9 +21,10 @@ export const navBarStyle = makeStyles((theme) => ({
     },
   },
   bookingButton: {
+    // fontSize:'1rem',
     color: 'white',
     background: theme.palette.primary.main,
-    borderRadius: '25px',
+    borderRadius: '12px', // 跟首页下面booking button一样尺寸
     marginInline: '20px',
     '&:hover': {
       background: theme.palette.primary.hover,
@@ -67,11 +68,20 @@ export const buttonStyle = makeStyles((theme) => ({
   },
 
   bookingButton: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize:'1rem',
+    },
+    [theme.breakpoints.between('sm','md')]: {
+      fontSize:'1.3rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize:'1.4rem',
+    },
     background: theme.palette.primary.main, // #007bf5
-    borderRadius: '5px',
+    borderRadius: '12px',
     color: theme.palette.primary.contrastText,
     marginInline: '20px',
-    paddingInline: '100px',
+    paddingInline: '80px', // 太长，小屏幕装不下
     '&:hover': {
       background: theme.palette.primary.hover, // #0050c1
       boxShadow: '0px 2px 10px #888',
@@ -84,30 +94,22 @@ export const statusStyle = makeStyles((theme) => ({
     color: 'white',
     background: theme.palette.green.main,
     borderRadius: '25px',
-    paddingInline: '10px',
-    disableRipple: true,
-    '&:hover': {
-      background: theme.palette.green.main,
+    '&:disabled': {
+      color: 'white',
     },
   },
   grey: {
-    color: 'white',
     background: theme.palette.grey.main,
     borderRadius: '25px',
-    paddingInline: '10px',
-    disableRipple: true,
-    '&:hover': {
-      background: theme.palette.grey.main,
+    '&:disabled': {
+      color: 'white',
     },
   },
   red: {
-    color: 'white',
     background: theme.palette.red.main,
     borderRadius: '25px',
-    paddingInline: '10px',
-    disableRipple: true,
-    '&:hover': {
-      background: theme.palette.red.main,
+    '&:disabled': {
+      color: 'white',
     },
   },
 }))

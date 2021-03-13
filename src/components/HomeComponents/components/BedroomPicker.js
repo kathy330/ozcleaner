@@ -14,6 +14,7 @@ export default function BedroomPicker() {
 
   const changeHandler = (event) => {
     setBedRoomNum(event.target.value)
+    console.log(event.target.value)
   }
 
   const submitHandler = (e) => {
@@ -23,13 +24,13 @@ export default function BedroomPicker() {
   return (
     <div>
       <FormControl 
-        className={classes.roomPicker}
+        className={classes.Picker}
         onSubmit={submitHandler}
       >
 
         <InputLabel 
           id="demo-simple-select-filled-label"
-          className={classes.roomPicker}
+          className={classes.Picker}
         >
           Bedroom
         </InputLabel>

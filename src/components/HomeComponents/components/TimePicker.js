@@ -9,13 +9,13 @@ import HomeComponentStyle from '../styles/HomeComponentStyle'
 
 // 🌟diy样式方法2: styled（里面放要被改变的组件名字），
 // KeyboardTimePicker重命名为MyKeyboardTimePicker;在下面引用 <MyKeyboardTimePicker/ >
+// https://codesandbox.io/s/qqnde?file=/demo.js
 // 法1和嵌套方法在 style/HomeComponentStyle.js
 // const MyKeyboardTimePicker = styled(KeyboardTimePicker)({
 //   // marginLeft: '5px',
 //   // width: '210px'
 //   width: '100%',
 //   padding: "0 10px",
-
 // })
 
 export default function MaterialUIPickers() {

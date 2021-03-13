@@ -107,6 +107,7 @@ export default function HomeSelectForm() {
                 )}
                   name="bedRoomNum"
                   control={control}
+                  defaultValue=""
                 />
               </FormControl>
             </Grid> 
@@ -130,6 +131,7 @@ export default function HomeSelectForm() {
                 )}
                   name="bathRoomNum"
                   control={control}
+                  defaultValue=""
                 />
               </FormControl>
             </Grid>
@@ -149,6 +151,7 @@ export default function HomeSelectForm() {
                 )}
                   name="type"
                   control={control}
+                  defaultValue=""
                 />
               </FormControl>
             </Grid>
@@ -161,6 +164,7 @@ export default function HomeSelectForm() {
                 )}
                   name="postcode"
                   control={control}
+                  defaultValue=""
                 />
               </FormControl>
             </Grid>
@@ -189,10 +193,7 @@ export default function HomeSelectForm() {
             </Grid>
             {/* 6.Time */}
             <Grid item xs={12} md={2}>
-              <MuiPickersUtilsProvider
-                utils={DateFnsUtils}
-                
-              >
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Controller
                   name="time"
                   control={control}

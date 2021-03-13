@@ -14,7 +14,15 @@ import KingBedIcon from '@material-ui/icons/KingBed'
 import BathtubIcon from '@material-ui/icons/Bathtub'
 
 const useStyles = makeStyles((theme) => ({
-  
+  tableCell:{
+    padding:'8px',
+    [theme.breakpoints.down((1550))]:{
+      padding:'7px',
+    },
+    [theme.breakpoints.down((700))]:{
+      padding:'6px',
+    },
+  },
   table: {
     minWidth: 500,
     [theme.breakpoints.down((1550))]:{
@@ -100,22 +108,22 @@ export default function BasicTable() {
   }
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.root}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Order ID</TableCell>
-            <TableCell align="center">Details</TableCell>
-            <TableCell align="center">Date</TableCell>
-            <TableCell align="center">Price</TableCell>
-            <TableCell align="center">Action</TableCell>
+            <TableCell align="center" className={classes.tableCell}>Order ID</TableCell>
+            <TableCell align="center" className={classes.tableCell}>Details</TableCell>
+            <TableCell align="center" className={classes.tableCell}>Date</TableCell>
+            <TableCell align="center" className={classes.tableCell}>Price</TableCell>
+            <TableCell align="center" className={classes.tableCell}>Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => ( 
             <TableRow key={row.orderId} vertical-align='middle'>
-              <TableCell align="center">{row.orderId}</TableCell>
-              <TableCell align='center'>
+              <TableCell align="center" className={classes.tableCell}>{row.orderId}</TableCell>
+              <TableCell align='center' className={classes.tableCell}>
                 <KingBedIcon className={classes.bedIconSize} />
                 <Typography className={classes.orderNumber}>
                   ×
@@ -127,11 +135,11 @@ export default function BasicTable() {
                   {row.numOfBathrooms}
                 </Typography>
               </TableCell>
-              <TableCell align="center">{row.date}</TableCell>
-              <TableCell align="center">
+              <TableCell align="center" className={classes.tableCell}>{row.date}</TableCell>
+              <TableCell align="center" className={classes.tableCell}>
                 <Typography>{row.price}</Typography>
               </TableCell>
-              <TableCell align="center">
+              <TableCell align="center" className={classes.tableCell}>
                 <Button variant="contained" className={classes.check}>
                   {row.action}
                 </Button>
@@ -145,7 +153,7 @@ export default function BasicTable() {
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
-        page={page}
+        page={page} 
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
         align="center"

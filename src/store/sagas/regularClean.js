@@ -19,7 +19,7 @@ function* fetchRegularUrl() {
   }
   catch(e) {
     console.log(e)
-    yield put({type:'GET_REGULAR_FAILED',message:e.message})
+    yield put({type:'GET_REGULAR_FAILED',payload:e})
   }
 }
 

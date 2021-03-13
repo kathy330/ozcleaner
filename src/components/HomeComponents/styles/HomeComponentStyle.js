@@ -11,6 +11,10 @@ const HomeComponentStyle = makeStyles(() => ({
       fontSize: '1.3rem',
     }
   },
+  
+  postCodeLength: {
+    width: '100%',
+  },
 
   datePicker: {
     padding: "0 10px",

@@ -17,7 +17,7 @@ export default function BasicTextFields() {
 
   return (
     <form 
-      className={classes.postCode}
+      className={classes.Picker}
       noValidate 
       autoComplete="off"
       onSubmit={submitHandler}

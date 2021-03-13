@@ -24,13 +24,13 @@ export default function BedroomPicker() {
   return (
     <div>
       <FormControl 
-        className={classes.roomPicker}
+        className={classes.Picker}
         onSubmit={submitHandler}
       >
 
         <InputLabel 
           id="demo-simple-select-filled-label"
-          className={classes.roomPicker}
+          className={classes.Picker}
         >
           Bedroom
         </InputLabel>

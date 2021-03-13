@@ -7,8 +7,10 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import HomePage from './pages/HomePage/HomePage'
 import UI from './pages/UI/UI'
 import OrderPage from './pages/OrderPage/OrderPage'
+import CustomerProfilePage from './pages/ProfilePage/CustomerProfilePage'
+import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
-import ProfilePage from './pages/ProfilePage/ProfilePage'
+// import ProfilePage from './pages/ProfilePage/ProfilePage'
 import AdminCustomersPage from './pages/AdminPage/AdminCustomersPage'
 import AdminCustomersListPage from './pages/AdminPage/AdminCustomersListPage'
 import AdminStaffsListPage from './pages/AdminPage/AdminStaffsListPage'
@@ -40,8 +42,10 @@ function App() {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/order" exact component={OrderPage} />
+        <Route path="/profile/customer" exact component={CustomerProfilePage} />
+        <Route path="/profile/employee" exact component={EmployeeProfilePage} />
         <Route path="/order/confirm" exact component={OrderConfirmPage} />
-        <Route path="/profile" exact component={ProfilePage} />
+        {/* <Route path="/profile" exact component={ProfilePage} /> */}
         <Route path="/admin/customers" exact component={AdminCustomersListPage} />
         <Route path="/admin/staffs" exact component={AdminStaffsListPage} />
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />

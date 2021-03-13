@@ -1,5 +1,5 @@
 
-import * as actionType from '../actions/regular-action-types'
+import actionType from '../actions/actionTypes'
 
 const initialState = {
   loading: false,
@@ -28,7 +28,7 @@ function regularReducer(state = initialState,action) {
         ...state,
         loading: false,
         repos_in_reducer_init: [],
-        error:action.data.err
+        error:action.payload
       }
 
     default:

@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react'
-import { Grid, Button, AppBar, Avatar} from '@material-ui/core'
+import { Grid, Button, AppBar} from '@material-ui/core'
 import { navBarStyle } from '../../../styles/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { deepOrange, deepPurple } from '@material-ui/core/colors';

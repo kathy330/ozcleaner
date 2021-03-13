@@ -1,33 +1,28 @@
 
 import {call,put,takeEvery} from 'redux-saga/effects'
+import axios from 'axios'
  
-// const gitApi = 'https://api.github.com/users/vincent-9-7/repos'
+
+// import API from our API folder, this just is a example
+
 const gitApi = 'http://localhost:8000/regular/'
 
 
-function getApi () {
-  return fetch(gitApi,{
-    method:'GET',
-    headers:{
-      // 'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(response => response.json())
-    .catch(err=>console.log(err))
-}
+
 
 function* fetchRegularUrl() {
   // console.log(url)
   try{
-    const data = yield call(getApi)
+    const data = yield call(axios.get, gitApi)
     // 🌟 这个{type:'GET_GIT_SUCCESS',repos:data} 的repos的名字就是
     //  git-reducer.js 里的 ‘repos_in_reducer_init: action.repos’ 的 repos
     // 两者名字必须一样
-    yield put({type:'GET_REGULAR_SUCCESS',repos:data})
+    console.log(data)
+    yield put({type:'GET_REGULAR_SUCCESS',repos:data.data})
   }
   catch(e) {
-    yield put({type:'GET_REGULAR_FAILED',message:e.message})
+    console.log(e)
+    yield put({type:'GET_REGULAR_FAILED',payload:e})
   }
 }
 

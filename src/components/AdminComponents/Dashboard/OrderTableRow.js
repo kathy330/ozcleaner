@@ -3,7 +3,7 @@ import React from 'react'
 import { TableRow, TableCell, makeStyles, Typography, Box } from '@material-ui/core/'
 import date from 'date-and-time'
 import { KingBed, Bathtub } from '@material-ui/icons'
-import { GreenStatus, RedStatus, GreyStatus } from '../../../pages/UI/Status'
+import { GreenStatus, RedStatus, GreyStatus } from '../../UIComponents/Status'
 
 
 const useStyle = makeStyles(() => ({

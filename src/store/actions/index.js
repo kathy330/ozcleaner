@@ -6,5 +6,4 @@
 export * from "./actionCreator"
 
 
-export * from "./regular-action"
 

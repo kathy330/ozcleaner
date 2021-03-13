@@ -1,5 +1,5 @@
 import {all} from 'redux-saga/effects'
-import RegularSaga from './regular-saga'
+import RegularSaga from './regularClean'
 
 export default function* rootSaga() {
   // 如果有更多的放在这下面;

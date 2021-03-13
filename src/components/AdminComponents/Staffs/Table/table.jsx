@@ -10,7 +10,7 @@ import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import Button from '@material-ui/core/Button'
 import TablePagination from '@material-ui/core/TablePagination'
-import { GreenStatus ,GreyStatus} from '../../../../pages/UI/Status'
+import { GreenStatus ,GreyStatus} from '../../../UIComponents/Status'
 
 const useStyles = makeStyles(() => ({
   table: {

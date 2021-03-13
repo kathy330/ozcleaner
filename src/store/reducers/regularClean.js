@@ -29,6 +29,7 @@ function regularReducer(state = initialState,action) {
         loading: false,
         repos_in_reducer_init: [],
         error:action.payload
+        // error:action.data.err
       }
 
     default:

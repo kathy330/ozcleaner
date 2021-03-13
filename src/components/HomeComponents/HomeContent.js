@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '3.4375rem',
       fontWeight: 'bold',
       padding: '0px 30px',
-      paddingTop: '45vh',
+      paddingTop: '40vh',
     }
   },
 
@@ -41,15 +41,15 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.between('sm','md')]: {
       fontSize: '1.875rem',
-      fontWeight: 'normal',
+      fontWeight: 'bold',
       padding: '0px 30px',
       paddingTop: '0.5vh',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '1.875rem', // font字体先按照zeplin调了
-      fontWeight: 'normal',
+      fontSize: '2rem', // font字体先按照zeplin调了
+      fontWeight: 'bold',
       padding: '0px 30px',
-      paddingTop: '2vh',
+      paddingTop: '1vh',
     }
   }  
 }))

@@ -24,7 +24,7 @@ export const navBarStyle = makeStyles((theme) => ({
     // fontSize:'1rem',
     color: 'white',
     background: theme.palette.primary.main,
-    borderRadius: '12px',
+    borderRadius: '12px', // 跟首页下面booking button一样尺寸
     marginInline: '20px',
     '&:hover': {
       background: theme.palette.primary.hover,

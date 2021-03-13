@@ -14,6 +14,7 @@ export default function BedroomPicker() {
 
   const changeHandler = (event) => {
     setBedRoomNum(event.target.value)
+    console.log(event.target.value)
   }
 
   const submitHandler = (e) => {

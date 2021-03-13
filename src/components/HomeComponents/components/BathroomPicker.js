@@ -14,6 +14,7 @@ export default function BathroomPicker() {
 
   const changeHandler = (event) => {
     setBathRoomNum(event.target.value)
+    console.log(event.target.value)
   }
 
   const submitHandler = (e) => {
@@ -34,7 +35,7 @@ export default function BathroomPicker() {
           labelId="demo-simple-select-filled-label"
           id="demo-simple-select-filled"
           value={bathRoomNum}
-          name="bedRoomNum"
+          name="bathRoomNum"
           onChange={changeHandler}
           MenuProps={{
             anchorOrigin: {

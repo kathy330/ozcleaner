@@ -14,6 +14,7 @@ export default function TypePicker() {
 
   const changeHandler = (event) => {
     setType(event.target.value)
+    console.log(event.target.value)
   }
 
   const submitHandler = (e) => {
@@ -33,7 +34,7 @@ export default function TypePicker() {
           labelId="demo-simple-select-filled-label"
           id="demo-simple-select-filled"
           value={type}
-          name="bedRoomNum"
+          name="type"
           onChange={changeHandler}
           MenuProps={{
             anchorOrigin: {

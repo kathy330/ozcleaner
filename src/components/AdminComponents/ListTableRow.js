@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import React from 'react'
 import { TableRow, TableCell, Button, Avatar, makeStyles } from '@material-ui/core/'
-import { GreenStatus, RedStatus } from '../../pages/UI/Status'
+import { GreenStatus, RedStatus } from '../UIComponents/Status'
 
 const useStyle = makeStyles((theme) => ({
   avatar: {

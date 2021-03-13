@@ -8,7 +8,7 @@ class InsertOder extends React.Component {
   constructor() {
     super()
     this.state= {
-      TaskId:'',
+      // TaskId:'',
       Title:'',
       Type:'',
       Status:'confirmed',
@@ -61,7 +61,7 @@ class InsertOder extends React.Component {
     const endDateAndTime = `${date} ${EndTime}`
 
     const OrderMessage = {
-      "taskID": TaskId,
+      // "taskID": TaskId,
       "title":Title,
       "type":Type,
       "status":Status,
@@ -204,7 +204,7 @@ class InsertOder extends React.Component {
 
             <br />
             <label htmlFor="date">
-              Choose the date:
+              *Choose the date:
               <input
                 type="date"
                 name="date"
@@ -349,12 +349,12 @@ class InsertOder extends React.Component {
           <div className="back-end__process">
             <h4>3. 下订单后前端处理传递的信息:</h4>
     
-            <input
+            {/* <input
               type="Number"
               name="TaskId"
               onChange={this.changeHandler}
-              placeholder="*task id"
-            />
+              placeholder="task id"
+            /> */}
 
             <input
               type="String"
@@ -380,7 +380,7 @@ class InsertOder extends React.Component {
               type="String"
               name="PropertyType"
               onChange={this.changeHandler}
-              placeholder="property type"
+              placeholder="*property type"
             />
 
             <input

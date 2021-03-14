@@ -5,6 +5,7 @@
 import {combineReducers} from 'redux'
 import regularReducer from './regularClean'
 import users from './users'
+import regularReducer from './regularCleanOrder'
 
 // 🎉 rootReduce会被store/store.js使用
 const rootReducer = combineReducers({

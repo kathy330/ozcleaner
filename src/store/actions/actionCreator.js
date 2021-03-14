@@ -12,23 +12,44 @@ export const loadOrdersFailed = err => ({
   data: { err }
 })
 
+
+//  GET Regular order -- dongyu 
 export const getREGULARRequest = (datalist) => ({
   type: actionTypes.GET_REGULAR_REQUEST,
   payload: datalist,
 })
-
 export const getREGULARSuccess = (datalist) => ({
   type: actionTypes.GET_REGULAR_SUCCESS,
   payload: datalist,
 })
-
 export const getREGULARFaild = (err) => ({
   type: actionTypes.GET_REGULAR_FAILED,
   payload: err,
 })
+
+//  POST Regular order -- dongyu 
+export const postRegularRequest = (obj) => ({
+  type:actionTypes.POST_REGULAR_REQUEST,
+  payload:obj, // By convention, we put that information in a field called payload.
+})
+export const postRegularSuccess = (obj) => ({
+  type:actionTypes.POST_REGULAR_SUCCESS,
+  payload:obj, 
+})
+export function postRegularFaild(obj) {
+  return{
+    type:actionTypes.POST_REGULAR_FAILED,
+    payload:obj, 
+  }
+}
 
 // * getAllUserListRequest() is for get all users from userTable -- kathy
 export const getAllUserListRequest = users => ({
   type: actionTypes.GET_USERS_REQUESTED,
   payload: users,
 })
+
+
+
+
+

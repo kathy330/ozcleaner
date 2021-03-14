@@ -11,6 +11,7 @@ import { getAllUserListRequest } from '../../store/actions'
 // import NavBar from '../../components/NavBarComponents/NavBar'
 import Footer from '../../components/FooterComponents/Footer'
 import ListTable from '../../components/AdminComponents/ListTable'
+import ListTableMobile from '../../components/AdminComponents/ListTableMobile'
 import LoadingIcon from '../../components/AdminComponents/LoadingIcon'
 
 const columns = [
@@ -69,7 +70,9 @@ const AdminCustomersListPage = () => {
         <Typography variant="h3" component="h1">
           Customers List
         </Typography>
+        {/* if loading: show loading icon */}
         {loading && <LoadingIcon />}
+        {/* if user data is not empty: DestopView: ListTable. MobileView: TODO */}
         {users.length > 0 && (!mediumViewport ?(
           <ListTable 
             columns={columns} 
@@ -82,9 +85,16 @@ const AdminCustomersListPage = () => {
             <Typography variant="h4">Mobile responsive coming soon...</Typography>
           )
         )}
+        {/* if not loading && user data is empty: show no user available */}
         {users.length === 0 && 
-        !loading && 
-        <Typography variant="h4">No users available!</Typography>}
+        !loading && (
+          <ListTableMobile 
+            UserData={users}
+            rowPreSet={rowPreSet}
+            tableType={tableType}
+          />
+        )}
+        {/* display any error below */}
         {error && !loading && <Typography variant="h4">{error}</Typography>}
       </Container>
       <Footer />

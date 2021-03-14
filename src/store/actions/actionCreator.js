@@ -42,7 +42,12 @@ export function postRegularFaild(obj) {
     payload:obj, 
   }
 }
-//
+
+// * getAllUserListRequest() is for get all users from userTable -- kathy
+export const getAllUserListRequest = users => ({
+  type: actionTypes.GET_USERS_REQUESTED,
+  payload: users,
+})
 
 
 

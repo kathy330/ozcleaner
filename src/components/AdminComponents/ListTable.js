@@ -19,7 +19,6 @@ function ListTable(props){
   const { columns, UserData, rowPreSet, tableType } = props
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(rowPreSet)
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
   }
@@ -49,12 +48,13 @@ function ListTable(props){
           <TableBody>
             {UserData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
               <ListTableRow
-                key={row.id}
-                id={row.id}
-                name={row.name}
+                key={row.ID}
+                id={row.ID}
+                firstName={row.name.firstName}
+                lastName={row.name.lastName}
                 status={row.status}
-                ongoingOrder={row.ongoingOrder}
-                completedOrder={row.completedOrder}
+                ongoingOrder={row.numberOfOnGoingOrder}
+                completedOrder={row.numberOfOrderFinished}
                 tableType={tableType}
               />
             ))}

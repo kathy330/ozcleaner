@@ -138,10 +138,6 @@ export default function HomeSelectForm() {
     else{
       console.log('Must pick all the info')
     }
-    // }catch(e){
-    //   console.log('Must select date and time!', e)
-    // }
-    
   } 
 
   const onErrors = () => {

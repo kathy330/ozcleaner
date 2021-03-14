@@ -3,7 +3,7 @@
 // 并返回新的状态：(state, action) => newState。
 // 您可以将reducer视为事件侦听器，该事件侦听器根据接收到的操作（事件）类型来处理事件。
 import {combineReducers} from 'redux'
-import regularReducer from './regularClean'
+//import regularReducer from './regularClean'
 import users from './users'
 import regularReducer from './regularCleanOrder'
 

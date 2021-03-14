@@ -128,7 +128,7 @@ export default function HomeSelectForm() {
           postcode:data.postcode
         },
         startTime:totalDate,
-        endTime:totalDate, // endtime 什么时候设置？     
+        // endTime:totalDate, // endtime 什么时候设置？     
       }
       console.log(newData)
   

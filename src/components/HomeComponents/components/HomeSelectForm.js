@@ -107,30 +107,37 @@ export default function HomeSelectForm() {
     lastName: "Howell",
     phoneNumber: '0400000000'
   }
-  console.log(postData.address.postcode)
+  
   const onSubmit = data => {
     console.log(data)
-    const pickDate = date.format(data.date, 'YYYY-MM-DD') 
-    const pickTime = date.format(data.time, 'HH:mm:ss') 
-    const totalDate = `${pickDate}T${pickTime}Z`
-    // console.log(totalDate)
-
-    const newData = {
-      ...postData,
-      bedroomNum:data.bedRoomNum,
-      bathroomNum:data.bathRoomNum,
-      type:data.type,
-      address:{
-        ...postData.address,
-        postcode:data.postcode
-      },
-      startTime:totalDate,
-      endTime:totalDate, // endtime 什么时候设置？     
+    if(data.bedRoomNum!=="" && data.bathRoomNum!=="" && data.type!==""
+        &&data.postcode!=="" &&data.date!=="" &&data.time!==0) {
+      // 防止有人不选时间
+      const pickDate = date.format(data.date, 'YYYY-MM-DD') 
+      const pickTime = date.format(data.time, 'HH:mm:ss') 
+      const totalDate = `${pickDate}T${pickTime}Z`
+      // console.log(totalDate)
+  
+      const newData = {
+        ...postData,
+        bedroomNum:data.bedRoomNum,
+        bathroomNum:data.bathRoomNum,
+        type:data.type,
+        address:{
+          ...postData.address,
+          postcode:data.postcode
+        },
+        startTime:totalDate,
+        endTime:totalDate, // endtime 什么时候设置？     
+      }
+      console.log(newData)
+  
+      // 🌟dispatch一个action
+      dispatch(postRegularRequest(newData)) // 发送saga请求
     }
-    console.log(newData)
-
-    // 🌟dispatch一个action
-    dispatch(postRegularRequest(newData)) // 发送saga请求
+    else{
+      console.log('Must pick all the info')
+    }
   } 
 
   const onErrors = () => {

@@ -3,27 +3,32 @@ import actionTypes from "./actionTypes"
 
 
 export const loadOrdersSucceeded = res => ({
-    type: actionTypes.LOAD_ORDER_SUCCEEDED,
-    data: res
+  type: actionTypes.LOAD_ORDER_SUCCEEDED,
+  data: res
 })
 
 export const loadOrdersFailed = err => ({
-    type: actionTypes.LOAD_ORDER_FAILED,
-    data: { err }
+  type: actionTypes.LOAD_ORDER_FAILED,
+  data: { err }
 })
 
 export const getREGULARRequest = (datalist) => ({
-    type: actionTypes.GET_REGULAR_REQUEST,
-    payload: datalist,
-  })
-  
-  export const getREGULARSuccess = (datalist) => ({
-    type: actionTypes.GET_REGULAR_SUCCESS,
-    payload: datalist,
-  })
-  
-  export const getREGULARFaild = (err) => ({
-    type: actionTypes.GET_REGULAR_FAILED,
-    payload: err,
-  })
-  
+  type: actionTypes.GET_REGULAR_REQUEST,
+  payload: datalist,
+})
+
+export const getREGULARSuccess = (datalist) => ({
+  type: actionTypes.GET_REGULAR_SUCCESS,
+  payload: datalist,
+})
+
+export const getREGULARFaild = (err) => ({
+  type: actionTypes.GET_REGULAR_FAILED,
+  payload: err,
+})
+
+// * getAllUserListRequest() is for get all users from userTable -- kathy
+export const getAllUserListRequest = users => ({
+  type: actionTypes.GET_USERS_REQUESTED,
+  payload: users,
+})

@@ -9,7 +9,6 @@ const initialState = {
 
 function regularReducer(state = initialState,action) {
   switch (action.type) {
-
     case actionType.GET_REGULAR_REQUEST:
       return {
         ...state,

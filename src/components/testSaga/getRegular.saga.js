@@ -11,7 +11,6 @@ const GitList = () => {
   useEffect(()=>{
     dispatch(getREGULARRequest())
   },[])
-  console.log(repo)
   return(
     <>
       <ul>

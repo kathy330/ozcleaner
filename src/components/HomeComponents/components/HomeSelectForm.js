@@ -14,6 +14,10 @@ import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import DateRangeIcon from '@material-ui/icons/DateRange'
+import date from 'date-and-time'
+import {useDispatch} from 'react-redux'
+import {postRegularRequest} from '../../../store/actions'
+
 import {buttonStyle} from '../../../styles/styles'
 import HomeComponentStyle from '../styles/HomeComponentStyle'
 // 官方文档diy的方式在TimePicker,style/HomeComponentStyle.js里有三种
@@ -71,11 +75,69 @@ export default function HomeSelectForm() {
   const classes = useStyles()
   const cssstyle = HomeComponentStyle()
   const buttonstyle = buttonStyle()
-
   const {  handleSubmit,control } = useForm()
+  const dispatch = useDispatch()
+
+  const postData = {      
+    address: {
+      address1: "king street",
+      address2: "",
+      suburb: "",
+      state: "QLD",
+      postcode: "4102"
+    },
+    type: "RC",
+    status: "in-progress",
+    propertyType: "unknown",
+    cabinets: 0,
+    fridge: 0,
+    oven: 0,
+    interiorWindows: 0,
+    review: "",
+    rating: "",
+    title: "I want clean",
+    bedroomNum: 0,
+    bathroomNum: 0,
+    price: 20,
+    startTime: "2020-01-01T00:00:00",
+    endTime: "2020-01-01T00:00:00",
+    userID: "",
+    employeeID: "",
+    firstName: "Ervin",
+    lastName: "Howell",
+    phoneNumber: '0400000000'
+  }
   
   const onSubmit = data => {
     console.log(data)
+    if(data.bedRoomNum!=="" && data.bathRoomNum!=="" && data.type!==""
+        &&data.postcode!=="" &&data.date!=="" &&data.time!==0) {
+      // 防止有人不选时间
+      const pickDate = date.format(data.date, 'YYYY-MM-DD') 
+      const pickTime = date.format(data.time, 'HH:mm:ss') 
+      const totalDate = `${pickDate}T${pickTime}Z`
+      // console.log(totalDate)
+  
+      const newData = {
+        ...postData,
+        bedroomNum:data.bedRoomNum,
+        bathroomNum:data.bathRoomNum,
+        type:data.type,
+        address:{
+          ...postData.address,
+          postcode:data.postcode
+        },
+        startTime:totalDate,
+        // endTime:totalDate, // endtime 什么时候设置？     
+      }
+      console.log(newData)
+  
+      // 🌟dispatch一个action
+      dispatch(postRegularRequest(newData)) // 发送saga请求
+    }
+    else{
+      console.log('Must pick all the info')
+    }
   } 
 
   const onErrors = () => {
@@ -139,7 +201,7 @@ export default function HomeSelectForm() {
             <Grid item xs={12} md={2}>
               <FormControl className={cssstyle.Picker}>
                 <InputLabel className={cssstyle.Picker}>
-                  Type
+                  Type of clean
                 </InputLabel>
 
                 <Controller

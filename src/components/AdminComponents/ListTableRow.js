@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-alert */
 import React from 'react'
 import { TableRow, TableCell, Button, Avatar, makeStyles } from '@material-ui/core/'
@@ -42,13 +43,19 @@ function StatusDisplay(tableType, status) {
 function ListTableRow(props){
   const classes = useStyle()
   const {id} = props
-  const { name, status, ongoingOrder, completedOrder, tableType } = props
+  const { firstName, lastName, status, ongoingOrder, completedOrder, tableType } = props
   return (
     <TableRow role="checkbox" tabIndex={-1} key={id}>
       <TableCell align="center">
-        <Avatar className={classes.avatar}>{name[0].toUpperCase()}</Avatar>
+        <Avatar className={classes.avatar}>
+          {firstName[0].toUpperCase()}
+        </Avatar>
       </TableCell>
-      <TableCell align="center">{name}</TableCell>
+      <TableCell align="center">
+        {firstName}
+        {' '}
+        {lastName}
+      </TableCell>
       {StatusDisplay(tableType, status)}
       <TableCell align="center">
         {ongoingOrder}

@@ -50,6 +50,8 @@ export const getAllUserListRequest = users => ({
 })
 
 
-
-
-
+  
+export const getCUSDETAILRequest = (users) => ({
+    type: actionTypes.GET_CUSDETAIL_REQUEST,
+    payload: users,
+  })

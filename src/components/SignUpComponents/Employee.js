@@ -7,18 +7,17 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import Divider from '@material-ui/core/Divider'
 import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-// import DividerWithText from './Divider'
+import {useForm,Controller } from 'react-hook-form'
 import {PopupButton} from './Button'
 
 
 
 
 export default function EmployeeRegistrationForm() {
-   
-  
-   /* const handleClickOpen = () => {
-      setOpen(true)
-    } */
+  const {control ,handleSubmit} = useForm()
+  const onSubmit = (data) =>{
+    console.log(data)
+  }
   
    
 const useStyles = makeStyles((theme) => ({
@@ -98,133 +97,160 @@ const useStyles = makeStyles((theme) => ({
 const classes = useStyles()
     return (
       <>
-        {/* <Button onClick={handleClickOpen}>
-          Sign up
-    </Button> */}  
-             
-        <Grid container justify="center">
-          <DialogTitle className="Dialog-title">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Grid container justify="center">
+            <DialogTitle className="Dialog-title">
+              <Typography
+                className={classes.title}
+                align="center"
+                variant="h4"
+              >
+                Join us
+              </Typography>
+            </DialogTitle>
+          </Grid>
+          <Grid container>
             <Typography
-              className={classes.title}
-              align="center"
-              variant="h4"
+              className={classes.text}
             >
-              Join us
+              Email
             </Typography>
-          </DialogTitle>
-        </Grid>
-        <Grid container>
-          <Typography
-            className={classes.text}
-          >
-            Email
-          </Typography>
-        </Grid>
-        <Grid container justify="center">
-          <TextField
-            className={classes.textField}
-            margin="dense"
-            id="outlined-basic"
-            label="Email"
-            type="Email"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid>
-          <Typography
-            className={classes.text}
-          >
-            ABN:
-          </Typography>
-        </Grid>
-        <Grid container justify="center">
-          <TextField
-            className={classes.textField}
-            margin="dense"
-            id="outlined-basic"
-            label="ABN"
-            type="ABN"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid>
-          <Typography
-            className={classes.text}
-          >
-            Login Name:
-          </Typography>
-        </Grid>
-        <Grid container justify="center">
-          <TextField
-            className={classes.textField}
-            margin="dense"
-            id="outlined-basic"
-            label="Login Name"
-            type="Login Name"
-            variant="outlined"
-          />
-        </Grid>        
-        <Grid>
-          <Typography
-            className={classes.text}
-          >
-            Password
-          </Typography>
-        </Grid>
-        <Grid container justify="center">
-          <TextField
-            className={classes.textField}
-            margin="dense"
-            id="outlined-basic"
-            label="Password"
-            type="password"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid>
-          <a href="/password">
+          </Grid>
+          <Grid container justify="center">
+            <Controller
+              as={(
+                <TextField
+                  className={classes.textField}
+                  margin="dense"
+                  id="outlined-basic"
+                  label="Email"
+                  type="Email"
+                  variant="outlined"
+                />
+                )}
+              name="Email"
+              control={control}
+              defaultValue=""
+            />
+          </Grid>
+          <Grid>
             <Typography
-              className={classes.mention}
+              className={classes.text}
             >
-              Forgot Password?
+              ABN:
             </Typography>
-          </a>
-        </Grid>
+          </Grid>
+          <Grid container justify="center">
+            <Controller
+              as={(
+                <TextField
+                  className={classes.textField}
+                  margin="dense"
+                  id="outlined-basic"
+                  label="ABN"
+                  type="ABN"
+                  variant="outlined"
+                />
+                )}
+              name="ABN"
+              control={control}
+              defaultValue=""
+            />
+          </Grid>
+          <Grid>
+            <Typography
+              className={classes.text}
+            >
+              Login Name:
+            </Typography>
+          </Grid>
+          <Grid container justify="center">
+            <Controller
+              as={(
+                <TextField
+                  className={classes.textField}
+                  margin="dense"
+                  id="outlined-basic"
+                  label="Login Name"
+                  type="Login Name"
+                  variant="outlined"
+                />
+                )}
+              name="Login Name"
+              control={control}
+              defaultValue=""
+            />
+          </Grid>        
+          <Grid>
+            <Typography
+              className={classes.text}
+            >
+              Password
+            </Typography>
+          </Grid>
+          <Grid container justify="center">
+            <Controller
+              as={(
+                <TextField
+                  className={classes.textField}
+                  margin="dense"
+                  id="outlined-basic"
+                  label="Password"
+                  type="password"
+                  variant="outlined"
+                />
+                )}
+              name="Password"
+              control={control}
+              defaultValue=""
+            />
+          </Grid>
+          <Grid>
+            <a href="/password">
+              <Typography
+                className={classes.mention}
+              >
+                Forgot Password?
+              </Typography>
+            </a>
+          </Grid>
             
-        <Grid container justify="center">
-          <PopupButton />
+          <Grid container justify="center">
+            <PopupButton 
+              type="submit"
+            />
             
-        </Grid>
-        <Grid container justify="center" item xs={12}>
-          <Typography
-            className={classes.agreement}
-          >
-            By signing up, I agree to terms & conditions.
-          </Typography>
-              
-        </Grid>
-        <Grid container justify="center" item xs={12}>
-          <Divider className={classes.divide} />
-        </Grid>
-            
-        <Grid container direction="row">
-          <Grid container justify="flex-start">
-            <Typography className={classes.account}>
-              Do not have an account?
+          </Grid>
+          <Grid container justify="center" item xs={12}>
+            <Typography
+              className={classes.agreement}
+            >
+              By signing up, I agree to terms & conditions.
             </Typography>
               
           </Grid>
-          <Grid container justify="flex-end">
-               
-            <Typography className={classes.login}>
-              <a href="/login" className={classes.loginColor}>
-                Login
-              </a>
-            </Typography>
-               
+          <Grid container justify="center" item xs={12}>
+            <Divider className={classes.divide} />
           </Grid>
-        </Grid>
-       
+            
+          <Grid container direction="row">
+            <Grid container justify="flex-start">
+              <Typography className={classes.account}>
+                Do not have an account?
+              </Typography>
+              
+            </Grid>
+            <Grid container justify="flex-end">
+               
+              <Typography className={classes.login}>
+                <a href="/login" className={classes.loginColor}>
+                  Login
+                </a>
+              </Typography>
+               
+            </Grid>
+          </Grid>
+        </form>
       </>
     )
   }

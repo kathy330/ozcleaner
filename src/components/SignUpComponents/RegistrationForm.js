@@ -8,16 +8,20 @@ import Divider from '@material-ui/core/Divider'
 import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import {useForm,Controller } from 'react-hook-form'
+import {useDispatch} from 'react-redux'
 import DividerWithText from './Divider'
 import {PopupButton,FbButton,GoogleButton} from './Button'
-
+import {postRegularRequest} from '../../store/actions'
 
 
 export default function RegistrationForm() {
   const {control ,handleSubmit} = useForm()
+  const dispatch = useDispatch()
   const onSubmit = (data) =>{
     console.log(data)
+    dispatch(postRegularRequest(data)) // 发送saga请求
   }
+
   const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       textAlign:'center',
@@ -127,7 +131,7 @@ const classes = useStyles()
                   variant="outlined"
                 />
                 )}
-              name="Email"
+              name="email"
               control={control}
               defaultValue=""
             />
@@ -151,7 +155,7 @@ const classes = useStyles()
                   variant="outlined"
                 />
                 )}
-              name="Password"
+              name="password"
               control={control}
               defaultValue=""
             />

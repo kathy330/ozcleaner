@@ -6,13 +6,13 @@ import { combineReducers } from 'redux';
 // import regularReducer from './regularClean'
 import users from './users';
 import regularReducer from './regularCleanOrder';
-import { userRegisterReducer, userSigninReducer } from '../../reducers/userReducer';
+// import { userRegisterReducer, userSigninReducer } from './userReducer';
 // 🎉 rootReduce会被store/store.js使用
 const rootReducer = combineReducers({
   regular_in_reducer_index: regularReducer,
   users,
-  userSignin: userSigninReducer,
-  userRegister: userRegisterReducer,
+  // userSignin: userSigninReducer,
+  // userRegister: userRegisterReducer,
 });
 export default rootReducer;
 

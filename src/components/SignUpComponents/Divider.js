@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   },
   border: {
     borderBottom: "1px solid black",
-    width:140
+    width:135
   },
   content: {
     fontFamily: "museo-sans, sans-serif",

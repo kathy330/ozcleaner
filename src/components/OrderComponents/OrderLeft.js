@@ -782,17 +782,17 @@ export default function OrderLeft() {
           {/* Payment */}
           <Container maxWidth="lg">
             <Grid container alignItems="flex-end">
-              <Grid item xs={6} sm={1}>
+              <Grid item xs={2} sm={1}>
                 <PaymentIcon className={classes.extraIcon} />
               </Grid>
             
-              <Grid item xs={6} sm={11}>
+              <Grid item xs={10} sm={11}>
                 <Typography variant='h5'>
                   Payment Information
                 </Typography>
               </Grid>
 
-              <Grid item xs={6} sm={12}>
+              <Grid item xs={12} sm={12}>
                 <PaymentInfo 
                 // error={false}代表信息无误
                 // error={false}

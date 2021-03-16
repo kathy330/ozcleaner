@@ -7,6 +7,8 @@ import {combineReducers} from 'redux'
 import users from './users'
 import regularReducer from './regularCleanOrder'
 import CusDetails from "./customersDetail"
+import CusDetailsTable from "./customerDetailTable"
+import StaffDetails from './staffsDetail'
 
 // 🎉 rootReduce会被store/store.js使用
 const rootReducer = combineReducers({
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
   regular_in_reducer_index:regularReducer,
   users,
   cusDetails:CusDetails,
+  cusDetailsTable:CusDetailsTable,
+  staffDetails:StaffDetails,
 
 })
 export default rootReducer

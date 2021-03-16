@@ -8,7 +8,7 @@ const useStyles = makeStyles((themes) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: themes.spacing(2),
+    padding: themes.spacing(4),
   },
   li: {
     [themes.breakpoints.down("xs")]: {
@@ -21,18 +21,15 @@ const useStyles = makeStyles((themes) => ({
   },
 }))
 
-const cards = [
-  {
-    total:"4",
-    Orderfinished:"2",
-    info:['11111', '111111@gmail.com', '333333'],
-  
-}]
 
-
-export default function AutoGrid() {
+export default function AutoGrid(props) {
 
   const classes = useStyles()
+  const {UserData}=props
+  const {postcode}=UserData[0].address
+  const {email,phone}=UserData[0]
+  const arrayObj =[]
+  arrayObj.push([postcode,email,phone])
 
   return (
     <Box className={classes.root}>
@@ -47,9 +44,9 @@ export default function AutoGrid() {
               <Grid item xs>
                 <Typography>Total Orders</Typography>                       
               </Grid>
-              {cards.map((card)=>(
-                <Grid item key={card.total}>
-                  <Typography variant="h6">{card.total}</Typography>            
+              {UserData.map((card)=>(
+                <Grid item key={card.totalOrder}>
+                  <Typography variant="h6">{card.totalOrder}</Typography>            
                 </Grid>
                 ))}
              
@@ -65,9 +62,9 @@ export default function AutoGrid() {
               <Grid item>
                 <Typography>Completed Orders</Typography>
               </Grid>
-              {cards.map((card)=>(
-                <Grid item xs key={card.Orderfinished}>
-                  <Typography variant="h6">{card.Orderfinished}</Typography>
+              {UserData.map((card)=>(
+                <Grid item xs key={card.numberOfOrderFinished}>
+                  <Typography variant="h6">{card.numberOfOrderFinished}</Typography>
                 </Grid> 
               ))}         
             </Grid>            
@@ -92,10 +89,10 @@ export default function AutoGrid() {
                   </li>
                 </ul>
               </Grid>
-              {cards.map((card) => (
+              {arrayObj.map((card) => (
                 <Grid item xs={8} sm={3}>
                   <ul>
-                    {card.info.map((item) => (
+                    {card.map((item) => (
                       <li key={item} className={classes.li}>
                         <Typography variant="body2">{item}</Typography>
                       </li>

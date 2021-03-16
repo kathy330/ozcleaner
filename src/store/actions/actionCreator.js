@@ -50,8 +50,21 @@ export const getAllUserListRequest = users => ({
 })
 
 
-  
+// customer details page
 export const getCUSDETAILRequest = (users) => ({
     type: actionTypes.GET_CUSDETAIL_REQUEST,
     payload: users,
   })
+
+export const getSTAFFDETAILRequest = (users) => ({
+    type: actionTypes.GET_STAFFDETAIL_REQUEST,
+    payload: users,
+  })
+
+
+export const getCUSDETAILTABLERequest = (users) => ({
+    type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
+    payload: users,
+  })
+
+  

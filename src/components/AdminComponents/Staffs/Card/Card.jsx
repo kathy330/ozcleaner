@@ -9,7 +9,7 @@ const useStyles = makeStyles((themes) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: themes.spacing(2),
+    padding: themes.spacing(3),
   },
   status1:{
     backgroundColor: "#89b153",

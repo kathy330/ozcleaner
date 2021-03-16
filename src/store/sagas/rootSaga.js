@@ -2,6 +2,8 @@ import {all} from 'redux-saga/effects'
 import RegularSaga from './regularClean'
 import UsersSage from './usersSaga'
 import CusDetailSaga from './customersDetail'
+import CusDetailTableSaga from './customersDetailsTable'
+import StaffDetailSaga from './staffsDetail'
 
 export default function* rootSaga() {
   // 如果有更多的放在这下面;
@@ -9,6 +11,8 @@ export default function* rootSaga() {
     RegularSaga(),
     UsersSage(),
     CusDetailSaga(),
+    CusDetailTableSaga(),
+    StaffDetailSaga(),
 
   ])
   // 另外的写法：

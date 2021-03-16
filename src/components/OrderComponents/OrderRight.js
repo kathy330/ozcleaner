@@ -46,9 +46,9 @@ export default function OrderRight() {
       <Container maxWidth="lg">
         <Grid container direction="column">
           <Container maxWidth="sm">
-            <Grid item xs={6} sm={12}>
+            <Grid item xs={12} sm={12}>
               <Grid container direction="row">
-                <Grid item xs={6} sm={2}>
+                <Grid item xs={2} sm={2}>
                   {/* <KingBedIcon fontSize="large" className={classes.icon}  /> */}
                   <IconButton className={classes.hover}>
                     {!showForm ?
@@ -56,49 +56,49 @@ export default function OrderRight() {
                       : <IndeterminateCheckBoxIcon />}
                   </IconButton>
                 </Grid>
-                <Grid item xs={6} sm={10}>
+                <Grid item xs={10} sm={10}>
                   <Typography variant='h6'>Bedrooms x 2</Typography>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={6} sm={12}>
+            <Grid item xs={12} sm={12}>
               <Grid container direction="row">
-                <Grid item xs={6} sm={2}>
+                <Grid item xs={2} sm={2}>
                   <BathtubIcon fontSize="large" className={classes.icon} />
                 </Grid>
-                <Grid item xs={6} sm={10}>
+                <Grid item xs={10} sm={10}>
                   <Typography variant='h6'>Bathrooms x 2</Typography>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={6} sm={12}>
+            <Grid item xs={12} sm={12}>
               <Grid container direction="row">
-                <Grid item xs={6} sm={2}>
+                <Grid item xs={2} sm={2}>
                   <NoteIcon fontSize="large" className={classes.icon} />
                 </Grid>
-                <Grid item xs={6} sm={10}>
+                <Grid item xs={10} sm={10}>
                   <Typography variant='h6'>Bond Cleaning</Typography>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={6} sm={12}>
+            <Grid item xs={12} sm={12}>
               <Grid container direction="row">
-                <Grid item xs={6} sm={2}>
+                <Grid item xs={2} sm={2}>
                   <RoomIcon fontSize="large" className={classes.icon} />
                 </Grid>
-                <Grid item xs={6} sm={10}>
+                <Grid item xs={10} sm={10}>
                   <Typography variant='h6'>
                     Unit 502, 18 Buchan Street, West End, 4101, QLD
                   </Typography>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={6} sm={12}>
+            <Grid item xs={12} sm={12}>
               <Grid container direction="row">
-                <Grid item xs={6} sm={2}>
+                <Grid item xs={2} sm={2}>
                   <CalendarTodayIcon fontSize="large" className={classes.icon} />
                 </Grid>
-                <Grid item xs={6} sm={10}>
+                <Grid item xs={10} sm={10}>
                   <Typography variant='h6'>12:00PM, Friday, 29 Jan 2021</Typography>
                 </Grid>
               </Grid>

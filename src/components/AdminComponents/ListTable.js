@@ -15,7 +15,7 @@ import ListTableRow from './ListTableRow'
 // UserDate(obj): table body
 // rowPreSet(num): is the default page row's number
 // tableType(str): is to distinguish between customer list and staff list
-function ListTable(props){
+function ListTable(props) {
   const { columns, UserData, rowPreSet, tableType } = props
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(rowPreSet)
@@ -69,11 +69,10 @@ function ListTable(props){
         page={page}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
-        labelRowsPerPage="User Per Page:"
+        labelRowsPerPage="User P/P:"
       />
     </>
   )
 }
 
-export default ListTable 
-
+export default ListTable

@@ -6,7 +6,12 @@ import BathtubIcon from '@material-ui/icons/Bathtub';
 import NoteIcon from '@material-ui/icons/Note';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import RoomIcon from '@material-ui/icons/Room';
-import { GreenStatus, GreyStatus, RedStatus } from '../../components/UIComponents/Status';
+import {
+  GreenStatus,
+  GreyStatus,
+  RedStatus,
+  DisabledStatus,
+} from '../../components/UIComponents/Status';
 import {
   BookingButton,
   PrimaryButton,
@@ -75,6 +80,7 @@ export default function UI() {
             <GreenStatus>Green Status</GreenStatus>
             <GreyStatus>Grey Status</GreyStatus>
             <RedStatus>Red Status</RedStatus>
+            <DisabledStatus>Disabled Status</DisabledStatus>
           </Grid>
 
           <Grid item xs={12} sm={3}>

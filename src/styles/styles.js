@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core';
 // 🌟这个文件的style只负责material UI 组件的 配色和字体和样式（从theme引用），不负责位置
 // 🌟位置需要给组件加上<div calssName=""></div>，并在scss中定义
 
@@ -42,7 +42,7 @@ export const navBarStyle = makeStyles((theme) => ({
       display: 'block',
     },
   },
-}))
+}));
 
 export const buttonStyle = makeStyles((theme) => ({
   primaryButton: {
@@ -69,13 +69,13 @@ export const buttonStyle = makeStyles((theme) => ({
 
   bookingButton: {
     [theme.breakpoints.down('sm')]: {
-      fontSize:'1rem',
+      fontSize: '1rem',
     },
-    [theme.breakpoints.between('sm','md')]: {
-      fontSize:'1.3rem',
+    [theme.breakpoints.between('sm', 'md')]: {
+      fontSize: '1.3rem',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize:'1.4rem',
+      fontSize: '1.4rem',
     },
     background: theme.palette.primary.main, // #007bf5
     borderRadius: '12px',
@@ -87,7 +87,7 @@ export const buttonStyle = makeStyles((theme) => ({
       boxShadow: '0px 2px 10px #888',
     },
   },
-}))
+}));
 
 export const statusStyle = makeStyles((theme) => ({
   green: {
@@ -112,4 +112,9 @@ export const statusStyle = makeStyles((theme) => ({
       color: 'white',
     },
   },
-}))
+  disabled: {
+    '&:disabled': {
+      color: '#BEC3DC',
+    },
+  },
+}));

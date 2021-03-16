@@ -5,13 +5,11 @@ import { makeStyles } from '@material-ui/core/styles'
 import {
   Container,
   Typography,
-  useMediaQuery,
 } from '@material-ui/core'
 import { getAllUserListRequest } from '../../store/actions'
-// import NavBar from '../../components/NavBarComponents/NavBar'
+import NavBar from '../../components/NavBarComponents/NavBar'
 import Footer from '../../components/FooterComponents/Footer'
 import ListTable from '../../components/AdminComponents/ListTable'
-import ListTableMobile from '../../components/AdminComponents/ListTableMobile'
 import LoadingIcon from '../../components/AdminComponents/LoadingIcon'
 
 const columns = [
@@ -55,17 +53,16 @@ const AdminCustomersListPage = () => {
   const users = useSelector(state => state.users.users)
   const loading = useSelector(state => state.users.loading)
   const error = useSelector(state => state.users.error)
-  const rowPreSet = 25
+  const rowPreSet = 5
   const tableType = 'customer'
-  const mediumViewport = useMediaQuery('(max-width:480px)')
 
   useEffect(() => {
     dispatch(getAllUserListRequest())
   }, [])
-  console.log('KathyC: ', users)
+  // console.log('KathyC: ', users)
   return (
     <>
-      {/* <NavBar /> */}
+      <NavBar />
       <Container maxWidth="lg" className={classes.root}>
         <Typography variant="h3" component="h1">
           Customers List
@@ -73,26 +70,17 @@ const AdminCustomersListPage = () => {
         {/* if loading: show loading icon */}
         {loading && <LoadingIcon />}
         {/* if user data is not empty: DestopView: ListTable. MobileView: TODO */}
-        {users.length > 0 && (!mediumViewport ?(
+        {users.length > 0 && (
           <ListTable 
             columns={columns} 
             UserData={users} 
             rowPreSet={rowPreSet} 
             tableType={tableType}
           />
-          ):(
-            // TODO: make table mobile responsive.
-            <Typography variant="h4">Mobile responsive coming soon...</Typography>
-          )
         )}
         {/* if not loading && user data is empty: show no user available */}
         {users.length === 0 && 
-        !loading && (
-          <ListTableMobile 
-            UserData={users}
-            rowPreSet={rowPreSet}
-            tableType={tableType}
-          />
+          !loading && (<Typography variant="h4">No user available.</Typography>
         )}
         {/* display any error below */}
         {error && !loading && <Typography variant="h4">{error}</Typography>}

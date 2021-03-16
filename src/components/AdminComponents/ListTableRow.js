@@ -24,26 +24,20 @@ function DeleteUser(id){
   alert(`Delete UserID: ${id}`)
 }
 
-// StatusResult() is to return different style status component
-function StatusResult(status){
-  if(status === 'Available'){
-    return <GreenStatus>{status}</GreenStatus>
-  }
-  return <RedStatus>{status}</RedStatus>
-}
-
 // StatusDisplay() is for checking whether to display status column or not
 function StatusDisplay(tableType, status) {
   if( tableType === 'customer') {
     return null
   }
-  return <TableCell align="center">{StatusResult(status)}</TableCell>
+  // return <TableCell align="center">{StatusResult(status)}</TableCell>
+  return (status === 'Available') ? (<GreenStatus>{status}</GreenStatus>) : (
+    <RedStatus>{status}</RedStatus>
+  )
 }
 
 function ListTableRow(props){
   const classes = useStyle()
-  const {id} = props
-  const { firstName, lastName, status, ongoingOrder, completedOrder, tableType } = props
+  const { id, firstName, lastName, status, ongoingOrder, completedOrder, tableType } = props
   return (
     <TableRow role="checkbox" tabIndex={-1} key={id}>
       <TableCell align="center">

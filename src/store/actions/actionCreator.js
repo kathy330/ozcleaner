@@ -49,7 +49,20 @@ export const getAllUserListRequest = users => ({
   payload: users,
 })
 
-
+// * get employee 
+  // employee
+  export const getEmployeeRequest = (datalist) => ({
+    type: actionTypes.GET_EMPLOYEE_REQUEST,
+    payload: datalist,})
+  
+  export const getEmployeeSuccess = (datalist) => ({
+    type: actionTypes.GET_EMPLOYEE_SUCCESS,
+    payload: datalist,
+  })
+  export const GET_EMPLOYEE_FAILED = (err) => ({
+    type: actionTypes.GET_EMPLOYEE_FAILED,
+    payload: err,
+  })
 
 
 

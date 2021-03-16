@@ -1,15 +1,12 @@
 import {all} from 'redux-saga/effects'
 import RegularSaga from './regularClean'
 import UsersSage from './usersSaga'
-import testSaga from './userRegistrationSaga'
 
 export default function* rootSaga() {
   // 如果有更多的放在这下面;
   yield all([
     RegularSaga(),
     UsersSage(),
-    testSaga()
-    
 
   ])
   // 另外的写法：

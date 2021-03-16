@@ -69,7 +69,7 @@ function ListTable(props){
         page={page}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
-        labelRowsPerPage="User P/P:"
+        labelRowsPerPage="User Per Page:"
       />
     </>
   )

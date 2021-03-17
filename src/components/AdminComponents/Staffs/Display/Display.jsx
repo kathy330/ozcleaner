@@ -3,7 +3,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box } from "@material-ui/core"
 import Card from "../Card"
-import Avatars2 from "../Avatar"
+import Avatars from "../Avatar"
 import {getSTAFFDETAILRequest} from "../../../../store/actions"
 
 const useStyles = makeStyles((theme) => ({
@@ -36,20 +36,19 @@ const useStyles = makeStyles((theme) => ({
     }
   }))
   
-const DisplaySTAFF=()=> {
+const Displays=()=> {
   const classes = useStyles()
   const dispatch=useDispatch()
 
   const staff =useSelector(state => state.staffDetails.staffDetails) 
   const loading = useSelector(state => state.staffDetails.loading)
   const error = useSelector(state => state.staffDetails.error)
-  console.log("STAFF :",staff)
+  // console.log("STAFF :",staff)
 
   useEffect(()=>{
     dispatch(getSTAFFDETAILRequest())
 },[])
 
-    console.log(staff.length);
 
   return (
     <>
@@ -59,10 +58,10 @@ const DisplaySTAFF=()=> {
         <Box>
           <Box className={classes.display}>
             <Box margin="auto">
-              <Avatars2 User={staff} />
+              <Avatars UserData={staff} />
             </Box>
             <Box className={classes.card}>
-              <Card /> 
+              <Card UserData={staff} /> 
             </Box> 
           </Box>
           <Box className={classes.title}>Order History</Box> 
@@ -78,4 +77,4 @@ const DisplaySTAFF=()=> {
   )
 }
 
-export default DisplaySTAFF
+export default Displays

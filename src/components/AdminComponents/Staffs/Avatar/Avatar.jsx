@@ -34,10 +34,7 @@ function CombineName(firstname,lastname) {
 
 export default function Avatars2(props) {
   const classes = useStyles()
-  const {User}=props
-
-  console.log(User)
-
+  const {UserData}=props
 
   return (
 
@@ -45,12 +42,12 @@ export default function Avatars2(props) {
 
       <Grid item xs container direction="column" spacing={2}>
         <Grid item className={classes.img}>
-          <Avatar className={classes.large}>{User.name.firstName.slice(0,2).toUpperCase()}</Avatar>
+          <Avatar className={classes.large}>{UserData.name.firstName.slice(0,2).toUpperCase()}</Avatar>
         </Grid>
              
         <Grid item xs>
           <Box textAlign="center" width="100%" fontWeight="bold" fontSize={25}>
-            {CombineName(User.name.firstName,User.name.lastName)}
+            {CombineName(UserData.name.firstName,UserData.name.lastName)}
           </Box>
         </Grid>
     

@@ -36,7 +36,7 @@ export default function Avatars(props){
 
   const classes = useStyles()
   const {UserData}=props
-  console.log(UserData)
+  // console.log(UserData)
 
   return (
 

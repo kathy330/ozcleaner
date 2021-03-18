@@ -75,12 +75,11 @@ export default function AutoGrid(props) {
 
   const classes = useStyles()
   const {UserData }=props
-  // console.log(UserData)
   const {postcode}=UserData.address
   const {email,phone,ABN,workingExperience,employmentStatus}=UserData
   const arrayObj =[]
   arrayObj.push([postcode,email,phone,ABN,workingExperience,switchName(employmentStatus)])
-  console.log(arrayObj[0])
+  // console.log(arrayObj[0])
 
   return (
     <Box className={classes.root}>

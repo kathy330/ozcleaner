@@ -4,6 +4,8 @@ import UsersSage from './usersSaga'
 import CusDetailSaga from './customersDetail'
 import CusDetailTableSaga from './customersDetailsTable'
 import StaffDetailSaga from './staffsDetail'
+// import testSaga from './userRegistrationSaga'
+import EmployeeSaga from './emplyeeDetail'
 
 export default function* rootSaga() {
   // 如果有更多的放在这下面;
@@ -13,6 +15,8 @@ export default function* rootSaga() {
     CusDetailSaga(),
     CusDetailTableSaga(),
     StaffDetailSaga(),
+    // testSaga(),
+    EmployeeSaga(),
 
   ])
   // 另外的写法：

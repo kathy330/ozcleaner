@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
 
-const apiUrl = 'http://localhost:8000/users'
+const apiUrl = 'http://localhost:8000/userslist?page=1&pageSize=3'
 
 function* fetchUsers() {
   try {

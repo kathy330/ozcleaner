@@ -1,6 +1,9 @@
 import {all} from 'redux-saga/effects'
 import RegularSaga from './regularClean'
 import UsersSage from './usersSaga'
+import CusDetailSaga from './customersDetail'
+import CusDetailTableSaga from './customersDetailsTable'
+import StaffDetailSaga from './staffsDetail'
 // import testSaga from './userRegistrationSaga'
 import EmployeeSaga from './emplyeeDetail'
 
@@ -9,6 +12,9 @@ export default function* rootSaga() {
   yield all([
     RegularSaga(),
     UsersSage(),
+    CusDetailSaga(),
+    CusDetailTableSaga(),
+    StaffDetailSaga(),
     // testSaga(),
     EmployeeSaga(),
 

@@ -49,6 +49,8 @@ export const getAllUserListRequest = users => ({
   payload: users,
 })
 
+
+
 // * get employee 
   // employee
   export const getEmployeeRequest = (datalist) => ({
@@ -65,4 +67,21 @@ export const getAllUserListRequest = users => ({
   })
 
 
+// staff details page 
+export const getSTAFFDETAILRequest = (users) => ({
+    type: actionTypes.GET_STAFFDETAIL_REQUEST,
+    payload: users,
+  })
+  
+// customer details page
+export const getCUSDETAILRequest = (users) => ({
+  type: actionTypes.GET_CUSDETAIL_REQUEST,
+  payload: users,
+})
 
+export const getCUSDETAILTABLERequest = (users) => ({
+    type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
+    payload: users,
+  })
+
+  

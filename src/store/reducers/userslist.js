@@ -7,7 +7,6 @@ const initialState = {
 }
 
 function users( state = initialState, action){
-  // console.log(state)
   switch(action.type){
     case actionTypes.GET_USERS_REQUESTED:
       return{

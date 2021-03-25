@@ -1,8 +1,10 @@
-import React from "react"
+import React, {useEffect} from 'react'
+import {useSelector,useDispatch} from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box } from "@material-ui/core"
 import Card from "../Card"
 import Avatars from "../Avatar"
+import {getCUSDETAILRequest} from "../../../../store/actions"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,24 +36,44 @@ const useStyles = makeStyles((theme) => ({
     }
   }))
   
-  export default function Displays() {
-    const classes = useStyles()
-    return (
-      <div className={classes.root}>
-        <Box>
-          <Box className={classes.display}>
-            <Box margin="auto">
-              <Avatars />
+const Displays=()=> {
+  const classes = useStyles()
+  const dispatch=useDispatch()
+
+  const users =useSelector(state => state.cusDetails.cusDetails) 
+  const loading = useSelector(state => state.cusDetails.loading)
+  const error = useSelector(state => state.cusDetails.error)
+  console.log("CUSTOMERS :",users)
+
+  useEffect(()=>{
+    dispatch(getCUSDETAILRequest())
+},[])
+
+  return (
+    <>
+      {users.loading&&<p>Loading...</p>}
+
+      {users.length!==0&&(
+        <div className={classes.root}>
+          <Box>
+            <Box className={classes.display}>
+              <Box margin="auto">
+                <Avatars UserData={users} />
+              </Box>
+              <Box className={classes.card}>
+                <Card UserData={users} /> 
+              </Box> 
             </Box>
-            <Box className={classes.card}>
-              <Card /> 
-            </Box> 
+            <Box className={classes.title}>Order History</Box> 
           </Box>
-          <Box className={classes.title}>Order History</Box> 
-        </Box>
-         
-      </div>
-    )
-  }
+        </div>
+    )}
+      {users.length===0&&!loading &&<p>No users available!</p>}
+      {error&&!loading&&<p>{error}</p>}
+
+    </>  
   
-  
+  )
+}
+
+export default Displays

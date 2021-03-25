@@ -3,13 +3,23 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {Paper,Grid,Typography,Box } from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating'
+import StarRoundedIcon from '@material-ui/icons/StarRounded';
 
 const useStyles = makeStyles((themes) => ({
   root: {
     flexGrow: 1,
   },
   paper: {
-    padding: themes.spacing(2),
+    padding: themes.spacing(3),
+  },
+ 
+  li: {
+    [themes.breakpoints.down("xs")]: {
+      margin:"auto"
+    },
+    [themes.breakpoints.up("sm")]: {
+      margin:"10%"
+    },
   },
   status1:{
     backgroundColor: "#89b153",
@@ -19,20 +29,11 @@ const useStyles = makeStyles((themes) => ({
     borderRadius: "100px",
     color:"white",
   },
-  li: {
-    [themes.breakpoints.down("xs")]: {
-      margin:"auto"
-    },
-    [themes.breakpoints.up("sm")]: {
-      margin:"10%"
-    },
-  },
-
   status2:{
 
-    backgroundColor: "grey",
+    backgroundColor: "#cc584e",
     float: "left",
-    padding: "0 12px",
+    padding: "2px 25px",
     listStyleType: "none",
     borderRadius: "100px",
     color:"white",
@@ -40,23 +41,14 @@ const useStyles = makeStyles((themes) => ({
   }
 }))
 
-const cards = [
-  {
-    total:"4321",
-    review:"2.7",
-    info:['11111', '111111@gmail.com', '333333', '2222', '2 years', 'Available'],
-    status:"Available"
-  
-}]
 
-
-function showCardInfo(card, index, isAvailable, classes) {
+function showCardInfo(card, array,index, isAvailable, classes) {
   if (index.valueOf() === 5) {
     return (
       <div className={`title ${isAvailable ? classes.status1 : classes.status2}`}>
         <li key={card.item}>
           <Typography variant="subtitle2">
-            { card.info[index] }
+            { array[index] }
           </Typography>
         </li>
       </div>
@@ -65,16 +57,29 @@ function showCardInfo(card, index, isAvailable, classes) {
     return (
       <li key={card.item} className={classes.li}>
         <Typography variant="subtitle2">
-          { card.info[index] }
+          { array[index] }
         </Typography>
       </li>
   )
   
 }
+function switchName(status) {
+  let newStatus="Unavailable"
+  if( status==="off-job"){
+    newStatus="Available"
+  }
+  return newStatus
+}
 
-export default function AutoGrid() {
+export default function AutoGrid(props) {
 
   const classes = useStyles()
+  const {UserData }=props
+  const {postcode}=UserData.address
+  const {email,phone,ABN,workingExperience,employmentStatus}=UserData
+  const arrayObj =[]
+  arrayObj.push([postcode,email,phone,ABN,workingExperience,switchName(employmentStatus)])
+  // console.log(arrayObj[0])
 
   return (
     <Box className={classes.root}>
@@ -89,12 +94,11 @@ export default function AutoGrid() {
               <Grid item xs>
                 <Typography>Total Orders</Typography>                       
               </Grid>
-              {cards.map((card)=>(
-                <Grid item key={card.total}>
-                  <Typography variant="h6">{card.total}</Typography>            
-                </Grid>
-                ))}
-             
+
+              <Grid item key={UserData.totalOrders}>
+                <Typography variant="h6">{UserData.totalOrders}</Typography>            
+              </Grid>
+   
             </Grid>
 
           </Paper>
@@ -108,19 +112,25 @@ export default function AutoGrid() {
                 <Typography>Reviews</Typography>
               </Grid>
               <Grid item container direction="row" spacing={2}>
-                {cards.map((card)=>(
-                  <Grid item xs key={card.review}>
-                    <Typography variant="h6">{card.review}</Typography>
-                  </Grid> 
-              ))}
+      
+                <Grid item xs key={UserData.averageRating}>
+                  <Typography variant="h6">{UserData.averageRating}</Typography>
+                </Grid> 
+
                 {/* Stars */}
-                {cards.map((card)=>(
-                  <Grid item xs>
-                    <Box component="fieldset" mb={0.5} borderColor="transparent" key={card.review}>
-                      <Rating name="half-rating-read" defaultValue={card.review} precision={0.5} readOnly />
-                    </Box>
-                  </Grid>
-                ))}
+
+                <Grid item xs>
+                  <Box component="fieldset" mb={0.5} borderColor="transparent" key={UserData.averageRating}>
+                    <Rating 
+                      name="half-rating-read"
+                      defaultValue={UserData.averageRating}
+                      precision={0.5}
+                      icon={<StarRoundedIcon fontSize="inherit" />}
+                      readOnly
+                    />
+                  </Box>
+                </Grid>
+
               </Grid>            
             </Grid>            
           </Paper>
@@ -153,15 +163,15 @@ export default function AutoGrid() {
                   </li>
                 </ul>
               </Grid>
-              {cards.map((card) => (
-                <Grid item xs={8} sm={3}>
-                  <ul>
-                    {card.info.map((item, index) => (
-                     showCardInfo(card, index, card.status === "Available", classes)
+  
+              <Grid item xs={8} sm={3}>
+                <ul>
+                  {arrayObj[0].map((item, index) => (
+                     showCardInfo(UserData, arrayObj[0],index, UserData.employmentStatus === "off-job", classes)
           ))}
-                  </ul>
-                </Grid>
-         ))}
+                </ul>
+              </Grid>
+ 
             </Grid>
           </Paper>
         </Grid>

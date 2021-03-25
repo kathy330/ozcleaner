@@ -49,6 +49,12 @@ export const getAllUserListRequest = users => ({
   payload: users,
 })
 
+// * getAllEmployeeListRequest() is for get all users from userTable -- kathy
+export const getAllEmployeeListRequest = employees => ({
+  type: actionTypes.GET_EMPLOYEES_REQUESTED,
+  payload: employees,
+})
+
 
 
 // * get employee 

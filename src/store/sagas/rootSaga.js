@@ -1,23 +1,24 @@
 import {all} from 'redux-saga/effects'
 import RegularSaga from './regularClean'
-import UsersSage from './usersSaga'
+import UserListSaga from './userListSaga'
+import EmployeesListSaga from './employeesListSaga'
 import CusDetailSaga from './customersDetail'
 import CusDetailTableSaga from './customersDetailsTable'
 import StaffDetailSaga from './staffsDetail'
-// import testSaga from './userRegistrationSaga'
+// // import testSaga from './userRegistrationSaga'
 import EmployeeSaga from './emplyeeDetail'
 
 export default function* rootSaga() {
   // 如果有更多的放在这下面;
   yield all([
     RegularSaga(),
-    UsersSage(),
+    UserListSaga(),
+    EmployeesListSaga(),
     CusDetailSaga(),
     CusDetailTableSaga(),
     StaffDetailSaga(),
     // testSaga(),
     EmployeeSaga(),
-
   ])
   // 另外的写法：
   // yield all([fork(github), fork(user)]);

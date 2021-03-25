@@ -1,87 +1,92 @@
-/* eslint-disable */
+/* eslint-disable no-undef */
 import React, { useEffect } from 'react'
-
 import { useSelector, useDispatch } from 'react-redux'
-import { getAllUserListRequest } from '../../store/actions'
 import {
   TableContainer,
   Table,
-  TableHead,
-  TableRow,
-  TableCell,
   TableBody,
   TablePagination,
   Typography,
 } from '@material-ui/core'
+import { getAllUserListRequest, getAllEmployeeListRequest } from '../../store/actions'
+import ListTableHead from './ListTableHead'
 import ListTableRow from './ListTableRow'
 import LoadingIcon from './LoadingIcon'
 
-// ListTable will has four params
-// columns(obj): table head
-// UserDate(obj): table body
-// rowPreSet(num): is the default page row's number
-// tableType(str): is to distinguish between customer list and staff list
-function ListTable(props) {
+/**
+ * ListTable() is for displaying the user list(user/employee)
+ * @param columns: (obj) table head
+ * @param rowPreSet: (num) is the default page row's number
+ * @param tableType: (str) is to distinguish between customer list and staff list
+ */
+function ListCustomerTable(props) {
   const { columns, rowPreSet, tableType } = props
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(rowPreSet)
-
+  const listSize = {page: page+1, pageSize: rowsPerPage}
   const dispatch = useDispatch()
-  const userlist = useSelector(state => state.users)
-  const users = useSelector(state => state.users.users)
-  const loading = useSelector(state => state.users.loading)
-  const error = useSelector(state => state.users.error)
-  // user data
-  const usersData = useSelector(state => state.users.users.result)
-  // total users number
-  const usersCount = useSelector(state => state.users.users.count)
-  console.log(users)
+  
+  // get userdata from state
+  const usersData = useSelector(state => state.userslist.users.result)
+  // get total users number from state
+  const usersCount = useSelector(state => state.userslist.users.count)
+  const loading = useSelector(state => state.userslist.loading)
+  const error = useSelector(state => state.userslist.error)
+  const dispatchRequest = (tableType === 'customer') 
+
+  const dispatchRequested = () => {
+    if (dispatchRequest) {
+      dispatch(getAllUserListRequest(listSize))
+    } else {
+      dispatch(getAllEmployeeListRequest(listSize))
+    }
+  }
+
   useEffect(() => {
-    dispatch(getAllUserListRequest())
+    dispatchRequested()
   }, [])
 
+  const returnPage = ()=> {
+    if (listSize.page * listSize.pageSize > usersCount){
+      listSize.page = Math.floor(usersCount / listSize.pageSize) + 1
+    } else if (listSize.page * listSize.pageSize === usersCount){
+      listSize.page = usersCount / listSize.pageSize
+    }
+    return listSize.page  
+  }
+
   const handleChangePage = (event, newPage) => {
-    console.log(newPage)
-    setPage(newPage)
+    listSize.page = newPage+1
+    dispatchRequested()
+    setPage(newPage) // keep in the same page
   }
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value)
-    console.log(event.target.value)
-    setPage(0)
+    listSize.pageSize = event.target.value
+    const pageNum = returnPage() // avoive no user
+    dispatchRequested()
+    setPage(pageNum - 1) // keep in the same page
   }
 
-  // console.log('userc: ',typeof usersData)
   return (
     <>
       {/* if loading: show loading icon */}
       {loading && <LoadingIcon />}
       {/* if user data is not empty show ListTable.  */}
-      {usersData !== undefined && usersData.length > 0 && (
+      {!loading && usersData.length > 0 && (
         <>
           <TableContainer>
             <Table aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  {columns.map((column) => (
-                    <TableCell
-                      key={column.id}
-                      align={column.align}
-                      style={{ minWidth: column.minWidth }}
-                    >
-                      {column.label}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
+              <ListTableHead columns={columns} />
               <TableBody>
-                {usersData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+                {usersData.map((row) => (
                   <ListTableRow
                     key={row.ID}
                     id={row.ID}
                     firstName={row.name.firstName}
                     lastName={row.name.lastName}
-                    status={row.status}
+                    status={row.employmentStatus}
                     ongoingOrder={row.numberOfOnGoingOrder}
                     completedOrder={row.numberOfOrderFinished}
                     tableType={tableType}
@@ -112,4 +117,4 @@ function ListTable(props) {
   )
 }
 
-export default ListTable
+export default ListCustomerTable

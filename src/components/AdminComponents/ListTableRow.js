@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-alert */
 import React from 'react'
 import { TableRow, TableCell, Button, Avatar, makeStyles } from '@material-ui/core/'
@@ -29,10 +28,9 @@ function StatusDisplay(tableType, status) {
   if (tableType === 'customer') {
     return null
   }
-  // return <TableCell align="center">{StatusResult(status)}</TableCell>
-  return (status === 'Available') ? (<GreenStatus>{status}</GreenStatus>) : (
-    <RedStatus>{status}</RedStatus>
-  )
+  return (status === 'off-job') ? 
+    (<TableCell align="center"><GreenStatus>Avalilable</GreenStatus></TableCell>) : 
+    (<TableCell align="center"><RedStatus>Unavailable</RedStatus></TableCell>)
 }
 
 function ListTableRow(props) {
@@ -50,7 +48,9 @@ function ListTableRow(props) {
         {' '}
         {lastName}
       </TableCell>
+      
       {StatusDisplay(tableType, status)}
+      
       <TableCell align="center">
         {ongoingOrder}
         {' '}

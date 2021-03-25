@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AdminCustomersListPage = () => {
   const classes = useStyles()
+  const rowPreSet = 3
   const tableType = 'customer'
 
   return (
@@ -58,7 +59,7 @@ const AdminCustomersListPage = () => {
         <ListTable
           columns={columns}
           tableType={tableType}
-          rowPreSet={3}
+          rowPreSet={rowPreSet}
         />
       </Container>
       <Footer />

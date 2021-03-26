@@ -1,6 +1,7 @@
-import React from 'react';
-import { Grid, Typography, makeStyles, Card, CardContent, Divider } from '@material-ui/core';
-import { RedStatus } from '../UIComponents/Status';
+import React from 'react'
+import { Grid, Typography, makeStyles, Card, CardContent, Divider } from '@material-ui/core'
+import AdminCustomersTop from './AdminCustomersTop'
+import { SecondaryButton } from '../UIComponents/Buttons'
 
 // style
 const useStyles = makeStyles((theme) => ({
@@ -30,12 +31,16 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 20,
     backgroundColor: '#cc584e',
   },
-}));
+}))
 
-function AdminCustomersRight() {
-  const classes = useStyles();
+
+function AdminCustomersRight(props) {
+  const classes = useStyles()
+  const { orderPrice } = props
+
   return (
     <Grid item xs={12} sm={3} className={classes.root}>
+      <AdminCustomersTop />
       <Card className={classes.card}>
         <CardContent>
           <Grid item xs={12}>
@@ -48,16 +53,17 @@ function AdminCustomersRight() {
 
           <Grid item xs={12}>
             <Typography className={classes.price} variant="h3" color="textSecondary">
-              $800
+              $
+              {orderPrice}
             </Typography>
           </Grid>
           <Divider />
         </CardContent>
       </Card>
 
-      <RedStatus>CANCEL ORDER</RedStatus>
+      <SecondaryButton>CANCEL ORDER</SecondaryButton>
     </Grid>
-  );
+  )
 }
 
-export default AdminCustomersRight;
+export default AdminCustomersRight

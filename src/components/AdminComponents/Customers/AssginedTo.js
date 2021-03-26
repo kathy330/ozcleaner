@@ -38,18 +38,20 @@ const styles = makeStyles((theme) => ({
 
 export default function AssginedTo() {
   const classes = styles()
+  // where can I find these names?
+  const firstName = 'david'
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>
-        <Avatar className={classes.orange}>M</Avatar>
+        <Avatar className={classes.orange}>{firstName[0].toUpperCase()}</Avatar>
       </Grid>
       <Grid item justify="center" xs={9} sm={10} className={classes.text}>
         <Typography variant="subtitle2">ASSIGNED TO</Typography>
         <Grid container direction="row" justify="space-between" space={5}>
           <Link href="/admin/staffs" variant="subtitle2">
-            Michael J.
+            {firstName}
           </Link>
-          <Typography variant="subtitle2">21 hours ago</Typography>
+          {/* <Typography variant="subtitle2">21 hours ago</Typography> */}
         </Grid>
       </Grid>
     </Box>

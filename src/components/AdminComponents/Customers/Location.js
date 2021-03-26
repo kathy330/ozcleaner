@@ -15,8 +15,9 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-export default function Location() {
+export default function Location(props) {
   const classes = useStyles()
+  const { address } = props
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>
@@ -24,7 +25,7 @@ export default function Location() {
       </Grid>
       <Grid item justify="center" xs={10} sm={11} className={classes.text}>
         <Typography variant="subtitle2">LOCATION</Typography>
-        <Typography variant="body2">Unit 302, 27 Buchanan Street, West End, QLD 4101</Typography>
+        <Typography variant="body2">{address}</Typography>
       </Grid>
     </Box>
   )

@@ -36,23 +36,27 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const AdminCustomersLeft = () => {
+const AdminCustomersLeft = ({ dueDate, orderTitle,
+  customerFirstName, customerLastName, location, rate, reviewText }) => {
   const classes = useStyles()
+  // const { dueDate, orderTitle,
+  //   customerFirstName, customerLastName, location, rate, reviewText } = props
+  // console.log(props, 'this is props')
   return (
     <Grid item xs={12} sm={9} className={classes.root}>
-      <OrderTitle />
-      <CreatedBy />
+      <OrderTitle title={orderTitle} />
+      <CreatedBy firstName={customerFirstName} lastName={customerLastName} />
       <Divider className={classes.divider} />
       {/* <CreatedBy image='BJ' name='Ben' time='2020.03.02' title='Assgined To' /> */}
       <AssginedTo />
       <Divider className={classes.divider} />
-      <Location />
+      <Location address={location} />
       <Divider className={classes.divider} />
-      <DueDate />
+      <DueDate endTime={dueDate} />
       <Divider className={classes.divider} />
       <Extra />
       <Divider className={classes.divider} />
-      <Review rating="4.5" />
+      <Review rating={rate} review={reviewText} />
     </Grid>
   )
 }

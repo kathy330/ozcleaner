@@ -1,17 +1,12 @@
-import React from "react"
-import { makeStyles} from "@material-ui/core/styles"
-import Table from "@material-ui/core/Table"
-import TableBody from "@material-ui/core/TableBody"
-import TableCell from "@material-ui/core/TableCell"
-import TableContainer from "@material-ui/core/TableContainer"
-import Typography from "@material-ui/core/Typography"
-import TableHead from "@material-ui/core/TableHead"
-import TableRow from "@material-ui/core/TableRow"
-import Paper from "@material-ui/core/Paper"
-import Button from '@material-ui/core/Button'
-import TablePagination from '@material-ui/core/TablePagination'
+import React,{useEffect} from "react"
+import {useSelector,useDispatch} from 'react-redux'
+import date from 'date-and-time'
+import {Table,TableBody,TableCell,TableContainer,Typography,TableHead,TableRow,Paper,
+  Button,TablePagination,makeStyles}
+   from "@material-ui/core"
 import KingBedIcon from '@material-ui/icons/KingBed'
 import BathtubIcon from '@material-ui/icons/Bathtub'
+import {getEmployeeRequest} from "../../store/actions"
 
 const useStyles = makeStyles((theme) => ({
   tableCell:{
@@ -62,39 +57,30 @@ const useStyles = makeStyles((theme) => ({
 }
 ))
 
-function createData(orderId, numOfBedrooms, numOfBathrooms, date, price, action) {
-  return { orderId, numOfBedrooms, numOfBathrooms, date, price, action }
+// function createData(orderId, numOfBedrooms, numOfBathrooms, date, price, action) {
+//   return { orderId, numOfBedrooms, numOfBathrooms, date, price, action }
+// }
+function displayTime(time) {
+  // 2020-01-01T12:00:00.000+00:00
+  let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
+  result = result.toString().split(" ")
+  return `${date.transform(result[4], 'HH:mm:ss', 'hh:mmA')} 
+  ${result[2]} ${result[1]},${result[3]}`
 }
 
-const rows = [
-  createData("01", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("02", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("03", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("04", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("05", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("06", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("07", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("08", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("09", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("10", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("11", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("12", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("13", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("14", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("15", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("16", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("17", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("18", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("19", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("20", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("21", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("22", "1", "3","11:30AM 22 Jan 2021", "68.5","Check"),
-  createData("23", "1", "3","11:30AM 22 Jan 2021", "68.5","Check")
-]
+const GetList = () => {
+  const dispatch = useDispatch()
+  const repo = useSelector(state => state.employee_in_reducer_index.repos_in_reducer_init)
+  useEffect(()=>{
+    dispatch(getEmployeeRequest())
+  },[])
+return repo
+}
 
 export default function BasicTable() {
   const classes = useStyles()
-
+  const employees = GetList()
+  console.log(employees)
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
 
@@ -120,28 +106,34 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => ( 
-            <TableRow key={row.orderId} vertical-align='middle'>
-              <TableCell align="center" className={classes.tableCell}>{row.orderId}</TableCell>
+          {employees.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).
+          map((employee) => ( 
+            <TableRow key={employee.employeeID} vertical-align='middle'>
+              <TableCell align="center" className={classes.tableCell}>
+                {employee.type}
+                {employee.taskID}
+              </TableCell>
               <TableCell align='center' className={classes.tableCell}>
                 <KingBedIcon className={classes.bedIconSize} />
                 <Typography className={classes.orderNumber}>
                   ×
-                  {row.numOfBedrooms}
+                  {employee.bedroomNum}
                 </Typography>
                 <BathtubIcon className={classes.bathIconSize} />
                 <Typography className={classes.orderNumber}>
                   ×
-                  {row.numOfBathrooms}
+                  {employee.bathroomNum}
                 </Typography>
               </TableCell>
-              <TableCell align="center" className={classes.tableCell}>{row.date}</TableCell>
               <TableCell align="center" className={classes.tableCell}>
-                <Typography>{row.price}</Typography>
+                {displayTime(employee.startTime)}
+              </TableCell>
+              <TableCell align="center" className={classes.tableCell}>
+                <Typography>{employee.price}</Typography>
               </TableCell>
               <TableCell align="center" className={classes.tableCell}>
                 <Button variant="contained" className={classes.check}>
-                  {row.action}
+                  check
                 </Button>
               </TableCell>
             </TableRow>
@@ -151,7 +143,7 @@ export default function BasicTable() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={employees.length}
         rowsPerPage={rowsPerPage}
         page={page} 
         onChangePage={handleChangePage}

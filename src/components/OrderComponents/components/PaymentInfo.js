@@ -26,7 +26,7 @@ export default function PaymentInfo({error,CardNumberText,DateText,CVCText}) {
       <Grid container direction="column" spacing={0} className={classes.root}>
         
         <Grid container direction="row" spacing={0}>
-          <Grid item xs={6} sm={12}>
+          <Grid item xs={12} sm={12}>
             <TextField
               id=""
               label={CardNumberText}
@@ -42,7 +42,7 @@ export default function PaymentInfo({error,CardNumberText,DateText,CVCText}) {
         </Grid>
 
         <Grid container direction="row" spacing={2}>
-          <Grid item xs={6} sm={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               id=""
               label="MM/YY"
@@ -53,7 +53,7 @@ export default function PaymentInfo({error,CardNumberText,DateText,CVCText}) {
             />
           </Grid>
 
-          <Grid item xs={6} sm={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               id=""
               label="CVC"

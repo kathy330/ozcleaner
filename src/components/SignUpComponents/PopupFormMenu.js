@@ -1,17 +1,63 @@
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
-import Grid from '@material-ui/core/Grid'
-import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import Divider from '@material-ui/core/Divider'
-import {makeStyles} from '@material-ui/core/styles'
-import {MenuItem} from '@material-ui/core'
+import PropTypes from 'prop-types'
+import { makeStyles ,useTheme } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
-import DividerWithText from './Divider'
-import {PopupButton,FbButton,GoogleButton} from './Button'
+import Box from '@material-ui/core/Box'
+import SwipeableViews from 'react-swipeable-views'
+import {MenuItem} from '@material-ui/core'
+import RegistrationForm from './RegistrationForm'
+import EmployeeRegistrationForm from './Employee'
+// import AppBar from '@material-ui/core/AppBar'
+// import Tabs from '@material-ui/core/Tabs'
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props
 
-export default function MenuDialog() {
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={2}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  )
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+}
+
+function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
+  }
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.paper,
+    width:'100%',
+  },
+}))
+
+export default function FormDialog() {
     const [open, setOpen] = React.useState(false)
   
     const handleClickOpen = () => {
@@ -21,204 +67,58 @@ export default function MenuDialog() {
     const handleClose = () => {
       setOpen(false)
     }
-const useStyles = makeStyles((theme) => ({
-  [theme.breakpoints.down('sm')]: {
-    textAlign:'center',
-  },
-  [theme.breakpoints.between('sm','md')]: {
-    textAlign:'center',
-  },
-  [theme.breakpoints.up('md')]: {
-    textAlign:'center',
-  },
-  title:{
-    padding: '0px 30px',
-    paddingTop: '2vh',
-    fontWeight:'bold',
-  },
-  textField: {
-    [`& fieldset`]: {
-      borderRadius: '30px',
-    },
-    width:'85%',
-    marginBottom:10,
-  },
-  text:{
-    fontWeight:'bold',
-    width:'85%',
-    marginLeft:'8%'
-  },
-  mention:{
-    fontWeight: 'bold',
-    color: '#007bf5',
-    float: 'right',
-    fontSize:'12px',
-    textDecoration: 'none',
-    // marginTop:,
-    marginRight:'8%',
-    marginBottom:'15px'
-  },
-  divider:{
-    fontWeight: 'bold',
-    fontSize:'12px',
+    const theme = useTheme()
+    const classes = useStyles()
+    const [value, setValue] = React.useState(0)
   
-  },
-  agreement:{
-    fontWeight: 'bold',
-    fontSize:'12px',
-    marginLeft:'34px',
-    width:'100%',
-    marginBottom:'5px'
-   
-  },
-  divide:{
-    borderBottom: "1px solid black",
-    width:'85%',
-    marginBottom:10
-  },
-  account:{
-    fontWeight: 'bold',
-    fontSize:'12px',
-    marginLeft:'34px',
-    marginBottom:'-22px'
-    
-    
-  },
-  login:{
-    fontWeight: 'bold',
-    color: '#007bf5',
-    fontSize:'12px',
-    textDecoration: 'none',
-    marginRight:'10%',
-    marginBottom:'30px'
-  },
-  loginColor:{
-    textDecoration: 'none',
-    color: '#007bf5',
-  }
- 
-}))
-
-const classes = useStyles()
+    const handleChange = (event, newValue) => {
+      setValue(newValue)
+    }
+  
+    const handleChangeIndex = (index) => {
+      setValue(index)
+    }
     return (
       <>
-        <MenuItem onClick={handleClickOpen}>Sign Up</MenuItem>
-        <Grid container direction="column">      
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="form-dialog-title"
-            fullWidth
-            maxWidth='xs'
-          >
-            <Grid container justify="center">
-            
-              <DialogTitle className="Dialog-title">
-                <Typography
-                  className={classes.title}
-                  align="center"
-                  variant="h4"
-                >
-                  Join us
-                </Typography>
-              </DialogTitle>
-            </Grid>
-            <Grid container>
-              <Typography
-                className={classes.text}
+        <MenuItem onClick={handleClickOpen}>
+          Sign up
+        </MenuItem> 
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="form-dialog-title"
+          fullWidth
+          maxWidth='xs'
+        >
+          <div className={classes.root}>
+            <AppBar position="static" color="default">
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                variant="fullWidth"
+                aria-label="full width tabs example"
               >
-                Email
-              </Typography>
-            </Grid>
-            <Grid container justify="center">
-              <TextField
-                className={classes.textField}
-                margin="dense"
-                id="outlined-basic"
-                label="Email"
-                type="Email"
-                variant="outlined"
-              />
-            </Grid>
-            <Grid>
-              <Typography
-                className={classes.text}
-              >
-                Password
-              </Typography>
-            </Grid>
-            <Grid container justify="center">
-              <TextField
-                className={classes.textField}
-                margin="dense"
-                id="outlined-basic"
-                label="Password"
-                type="password"
-                variant="outlined"
-              />
-            </Grid>
-            <Grid>
-              <a href="/password">
-                <Typography
-                  className={classes.mention}
-                >
-                  Forgot Password?
-                </Typography>
-              </a>
-            </Grid>
-            
-            <Grid container justify="center">
-              <PopupButton />
-            
-            </Grid>
-
-            <Grid container justify="center">
-              <DividerWithText>
-                <Typography
-                  className={classes.divider}
-                >
-                  or sign up with
-                </Typography>
-              </DividerWithText>
-            </Grid>
-           
-            <Grid container justify="center" item xs={12}>
-              <FbButton />
-            </Grid>
-            <Grid container justify="center" item xs={12}>
-              <GoogleButton />
-            </Grid>
-            
-          
-            <Grid container justify="center" item xs={12}>
-              <Typography
-                className={classes.agreement}
-              >
-                By signing up, I agree to terms & conditions.
-              </Typography>
-            </Grid>
-            <Grid container justify="center" item xs={12}>
-              <Divider className={classes.divide} />             
-            </Grid>
-            
-            <Grid container direction="row">
-              <Grid container justify="flex-start">
-                <Typography className={classes.account}>
-                  Do not have an account?
-                </Typography>
-              
-              </Grid>  
-              <Grid container justify="flex-end">
-                <Typography className={classes.login}>
-                  <a href="/login" className={classes.loginColor}>
-                    Login
-                  </a>
-                </Typography>
-               
-              </Grid>
-            </Grid>
-          </Dialog>
-        </Grid>
+                <Tab label="Sign up as customer" {...a11yProps(0)} />
+                <Tab label="Sign up as employee" {...a11yProps(1)} />
+              </Tabs>
+            </AppBar>
+            <SwipeableViews
+              axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+              index={value}
+              onChangeIndex={handleChangeIndex}
+            >
+              <TabPanel value={value} index={0} dir={theme.direction}>
+                <RegistrationForm />
+              </TabPanel>
+              <TabPanel value={value} index={1} dir={theme.direction}>
+                <EmployeeRegistrationForm />
+              </TabPanel>
+            </SwipeableViews>
+          </div>
+        </Dialog>
+       
       </>
     )
   }

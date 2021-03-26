@@ -49,7 +49,45 @@ export const getAllUserListRequest = users => ({
   payload: users,
 })
 
+// * getAllEmployeeListRequest() is for get all users from userTable -- kathy
+export const getAllEmployeeListRequest = employees => ({
+  type: actionTypes.GET_EMPLOYEES_REQUESTED,
+  payload: employees,
+})
 
 
 
+// * get employee 
+  // employee
+  export const getEmployeeRequest = (datalist) => ({
+    type: actionTypes.GET_EMPLOYEE_REQUEST,
+    payload: datalist,})
+  
+  export const getEmployeeSuccess = (datalist) => ({
+    type: actionTypes.GET_EMPLOYEE_SUCCESS,
+    payload: datalist,
+  })
+  export const GET_EMPLOYEE_FAILED = (err) => ({
+    type: actionTypes.GET_EMPLOYEE_FAILED,
+    payload: err,
+  })
 
+
+// staff details page 
+export const getSTAFFDETAILRequest = (users) => ({
+    type: actionTypes.GET_STAFFDETAIL_REQUEST,
+    payload: users,
+  })
+  
+// customer details page
+export const getCUSDETAILRequest = (users) => ({
+  type: actionTypes.GET_CUSDETAIL_REQUEST,
+  payload: users,
+})
+
+export const getCUSDETAILTABLERequest = (users) => ({
+    type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
+    payload: users,
+  })
+
+  

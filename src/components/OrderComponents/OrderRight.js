@@ -12,6 +12,7 @@ import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
 import IconButton from '@material-ui/core/IconButton'
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
 import Divider from '@material-ui/core/Divider'
+// import { useForm } from "react-hook-form"
 
 
 const useStyles = makeStyles(() => ({
@@ -31,7 +32,7 @@ const useStyles = makeStyles(() => ({
     paddingTop: '10px',
   },
 
-  top: {
+  rightTop: {
     marginBottom: '30px',
     marginTop: '30px',
   }
@@ -39,10 +40,12 @@ const useStyles = makeStyles(() => ({
 
 export default function OrderRight() {
   const classes = useStyles()
-  const [showForm, setShowForm] = React.useState(false)
-  console.log(setShowForm)
+  const showForm = false
+
+  
+
   return (
-    <Box className={classes.top}>
+    <Box className={classes.rightTop}>
       <Container maxWidth="lg">
         <Grid container direction="column">
           <Container maxWidth="sm">

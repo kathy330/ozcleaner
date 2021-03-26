@@ -36,3 +36,18 @@ export function GreyStatus(props) {
     </Button>
   );
 }
+
+export function DisabledStatus(props) {
+  const styles = statusStyle();
+  const { children } = props;
+  return (
+    <Button
+      disabled
+      classes={{
+        disabled: styles.disabled,
+      }}
+    >
+      {children}
+    </Button>
+  );
+}

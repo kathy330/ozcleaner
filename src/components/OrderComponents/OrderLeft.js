@@ -46,7 +46,6 @@ import cabinetIcon from "../../assets/cabinet.svg"
 // import Hidden from '@material-ui/core/Hidden'
 
 // import DetailInfo from './components/DetailInfo'
-
 // import ExtraPicker from './components/ExtraPicker'
 // import AddressInfo from './components/AddressInfo'
 import PaymentInfo from './components/PaymentInfo'
@@ -153,25 +152,41 @@ export default function OrderLeft() {
     oven: false,
     fridge: false,
     windows: false,
-    cabinet:false
+    cabinet:false,
+    disable:false
   })
   
-  // 这是checkbox自己属性变化的函数
+  // 11这是checkbox右上角自己属性变化的函数
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked })
-    console.log(event.target.name,':',event.target.checked)
+    // console.log(event.target.name,':',event.target.checked)
   }
+  // 11-----------------------------------------
 
-  // 这里是点击CardActionArea也会触发checkbox属性变化的函数
+  // 22这里是点击CardActionArea也会触发checkbox属性变化的函数
   const areaClickChange = (event) => { 
-    // console.log(event.target)
-
+    // console.log(event.target.name,'or',event.target.alt)
     // 点击icon上面，就会有alt属性，点击actionArea上面，就会有name属性  
     const key = event.target.name || event.target.alt
     const newState = !state[key]
     setState({...state,[key]:newState})
   }
+  // 22-----------------------------------------
 
+  // 33这里是判断选中EC还是RC的extra picker部分的效果
+  const {disable} = state // 给下面disable={disable}用的，如果选中EC，这个变为true传给下面
+  const type = watch("type","")
+  useEffect(()=>{
+    console.log(type)
+    if(type === 'RC') {
+      setState({oven:false,fridge:false,windows:false,cabinet:false,disable:false})
+    }
+    else if(type === 'EC') {
+      setState({oven:true,fridge:true,windows:true,cabinet:true,disable:true}) 
+    }
+  },[type])
+  // 33-----------------------------------------
+ 
   const postData = {      
     address: {
       address1: "king street",
@@ -202,7 +217,7 @@ export default function OrderLeft() {
     phoneNumber: '0400000000'
   }
 
-  // 判断选中了哪个extra,那个值就为true，返回值给下面onSubmite提交时更改
+  // 44判断选中了哪个extra,那个值就为true，返回值给下面onSubmite提交时更改
   const { oven,fridge, windows,cabinet } = state
   const anyExtra = () => {
     const list = {ovennum:0,fridgenum:0,interiorWindowsnum:0,cabinetsnum:0}
@@ -220,7 +235,9 @@ export default function OrderLeft() {
     }
     return list
   }
+  // 44-----------------------------------------
 
+  // 55点击提交按钮后，post请求
   const onSubmit = data => {
     // console.log('init data: ',data)
     // anyExtra() // 判断是否选了extra，传值给下面
@@ -265,40 +282,44 @@ export default function OrderLeft() {
       console.log('Must pick all the info')
     }
   } 
+  // 55-----------------------------------------
 
   const onErrors = () => {
     console.log("ERROR!")
   }
 
-  let address1 = watch("address1","") // 第二个参数为初始值
-  let address2 = watch("address2","")
-  let postcode = watch("postcode","")
-  let suburb = watch("suburb","")
+  // 66这里是想左边输入信息，右边实时更新
+  const address1 = watch("address1","") // 第二个参数为初始值
+  const address2 = watch("address2","")
+  const postcode = watch("postcode","")
+  const suburb = watch("suburb","")
   const addressState = watch("state","")
 
-  if(address2!=="") {
-    address2 += ","
-  }
+  // if(address2!=="") {
+  //   address2 += ","
+  // }
 
-  if(address1!=="") {
-    address1 += ","
-  }
+  // if(address1!=="") {
+  //   address1 += ","
+  // }
 
-  if(postcode!=="") {
-    postcode += ','
-  }
+  // if(postcode!=="") {
+  //   postcode += ','
+  // }
 
-  if(suburb!=="") {
-    suburb += ','
-  }
+  // if(suburb!=="") {
+  //   suburb += ','
+  // }
 
   const totalAddress = `${address2}${address1}${suburb}${postcode}${addressState}`
   
-
   useEffect(()=>{
     console.log(totalAddress)
   },[totalAddress])
+  // 66-----------------------------------------
 
+
+  
   return(
     <Box className={classes.top}>
       <Grid container direction="column">
@@ -465,13 +486,13 @@ export default function OrderLeft() {
                 <Grid container direction="row" spacing={1} className={classes.actionArearoot}>
                   <Grid item xs={6} sm={3}>
                     <Card className={classes.pickerBackground}>
-
                       <Card className={classes.picker} elevation={2}>
-
+                        
                         <CardActionArea
                           className={classes.actionArea} 
                           name="oven"
                           onClick={areaClickChange}
+                          disabled={disable} // 如果选中EC，上面setState disable为true，这里就不能取消了
                         >
 
                           <Grid container direction='column' alignItems="flex-end">
@@ -503,15 +524,14 @@ export default function OrderLeft() {
                     </Card>
                   </Grid>
                 
-
                   <Grid item xs={6} sm={3}>
                     <Card className={classes.pickerBackground}>
                       <Card className={classes.picker} elevation={2}>
-
                         <CardActionArea
                           className={classes.actionArea} 
                           name="fridge"
                           onClick={areaClickChange}
+                          disabled={disable} // 如果选中EC，上面setState disable为true，这里就不能取消了
                         >
                           <Grid container direction='column' alignItems="flex-end">
                             <Grid item xs={6} sm={12}>
@@ -544,11 +564,11 @@ export default function OrderLeft() {
                   <Grid item xs={6} sm={3}>
                     <Card className={classes.pickerBackground}>
                       <Card className={classes.picker} elevation={2}>
-
                         <CardActionArea
                           className={classes.actionArea} 
                           name="windows"
                           onClick={areaClickChange}
+                          disabled={disable} // 如果选中EC，上面setState disable为true，这里就不能取消了
                         >
                           <Grid container direction='column' alignItems="flex-end">
                             <Grid item xs={6} sm={12}>
@@ -581,11 +601,11 @@ export default function OrderLeft() {
                   <Grid item xs={6} sm={3}>
                     <Card className={classes.pickerBackground}>
                       <Card className={classes.picker} elevation={2}>
-
                         <CardActionArea
                           className={classes.actionArea} 
                           name="cabinet"
                           onClick={areaClickChange}
+                          disabled={disable} // 如果选中EC，上面setState disable为true，这里就不能取消了
                         >
                           <Grid container direction='column' alignItems="flex-end">
                             <Grid item xs={6} sm={12}>
@@ -621,6 +641,7 @@ export default function OrderLeft() {
 
           <Divider />
 
+          {/* Service address */}
           <Container maxWidth="lg">
             <Grid container alignItems="flex-end">
               {/* home icon */}
@@ -633,7 +654,7 @@ export default function OrderLeft() {
                   Service Address
                 </Typography>
               </Grid>
-              {/* Service Address */}
+              {/* Input box */}
               <Grid item xs={12} sm={12}>
                 <Box className={classes.inputRoot}>
                   <Grid container direction="row" spacing={2}>
@@ -720,7 +741,7 @@ export default function OrderLeft() {
                           <TextField
                             id=""
                             label="Suburb"
-                            error
+                            // error
                             InputLabelProps={{shrink: true,}}
                             variant="outlined"
                             className={classes.input}
@@ -782,17 +803,17 @@ export default function OrderLeft() {
           {/* Payment */}
           <Container maxWidth="lg">
             <Grid container alignItems="flex-end">
-              <Grid item xs={6} sm={1}>
+              <Grid item xs={2} sm={1}>
                 <PaymentIcon className={classes.extraIcon} />
               </Grid>
             
-              <Grid item xs={6} sm={11}>
+              <Grid item xs={10} sm={11}>
                 <Typography variant='h5'>
                   Payment Information
                 </Typography>
               </Grid>
 
-              <Grid item xs={6} sm={12}>
+              <Grid item xs={12} sm={12}>
                 <PaymentInfo 
                 // error={false}代表信息无误
                 // error={false}

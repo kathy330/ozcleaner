@@ -112,8 +112,6 @@ export default function OrderRight() {
   let {startTime} = data // 做成1976-04-19T12:59,在orderpage是1976-04-19 12:59
   let timeDisplay = false
   if(startTime !== null && startTime !== '') {
-    
-    console.log('???')
     startTime = startTime.split(':',3)
     startTime = `${startTime[0]}:${startTime[1]}`
   }else {

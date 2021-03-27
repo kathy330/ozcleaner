@@ -12,7 +12,21 @@ import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
 import IconButton from '@material-ui/core/IconButton'
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
 import Divider from '@material-ui/core/Divider'
+// import date from 'date-and-time'
+import Moment from 'react-moment'
 // import { useForm } from "react-hook-form"
+import {useSelector} from 'react-redux'
+
+
+// 🔥local storage用法：(sessionStorage也可以用)
+// 1/4setter
+// localStorage.setItem('myData', data);
+// 2/4getter
+// localStorage.getItem('myData');
+// 3/4remove
+// localStorage.removeItem('myData');
+// 4/4remove all
+// localStorage.clear();
 
 
 const useStyles = makeStyles(() => ({
@@ -40,9 +54,59 @@ const useStyles = makeStyles(() => ({
 
 export default function OrderRight() {
   const classes = useStyles()
-  const showForm = false
+  const showForm = false // 测试，没啥用
+  const data = useSelector(state => state.regular_in_reducer_index.completeinfo.info)  
+  console.log("By local Storage: ",data)
 
-  
+  const {bedroomNum} = data
+  const {bathroomNum} = data
+  let {type} = data
+  if(type==='RC'){
+    type = "Regular clean"
+  }else{
+    type = 'End of lease clean'
+  }
+  let {address:{address2}} = data
+  let {address:{address1}} = data
+  let {address:{suburb}} = data
+  let {address:{state}} = data
+  let {address:{postcode}} = data
+
+  if(address2!== null){
+    address2 = `${address2}, `
+  }
+  if(address1!== null){
+    address1 = `${address1}, `
+  }
+  if(suburb!== null){
+    suburb = `${suburb}, `
+  }
+  if(postcode!== null){
+    postcode = `${postcode}, `
+  }
+  if(state!== null){
+    state = `${state}`
+  }
+  const totalAddress = `${address2}${address1}${suburb}${postcode}${state}`
+
+  let {startTime} = data // 做成1976-04-19T12:59,在orderpage是1976-04-19 12:59
+  startTime = startTime.split(':',3)
+  startTime = `${startTime[0]}:${startTime[1]}`
+  // console.log(startTime)
+
+  const {price} = data
+
+  // const dispatch = useDispatch()
+  // // lifeStyle 初始渲染,一般取数据用useEffect()
+  // useEffect(()=>{
+  //   dispatch(getREGULARRequest())
+  // },[])
+
+  // // regular_in_reducer_index. 是Reducer里面的index.js定义的名字
+  // // .repos_in_reducer_init 是Reducer里面的init值的名字
+  // // 🌟取数据
+  // const repo = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)  
+  // console.log("init reducer info: ",repo)
 
   return (
     <Box className={classes.rightTop}>
@@ -60,7 +124,11 @@ export default function OrderRight() {
                   </IconButton>
                 </Grid>
                 <Grid item xs={10} sm={10}>
-                  <Typography variant='h6'>Bedrooms x 2</Typography>
+                  <Typography variant='h6'>
+                    Bedrooms x
+                    {' '}
+                    {bedroomNum}
+                  </Typography>
                 </Grid>
               </Grid>
             </Grid>
@@ -70,7 +138,11 @@ export default function OrderRight() {
                   <BathtubIcon fontSize="large" className={classes.icon} />
                 </Grid>
                 <Grid item xs={10} sm={10}>
-                  <Typography variant='h6'>Bathrooms x 2</Typography>
+                  <Typography variant='h6'>
+                    Bathrooms x
+                    {' '}
+                    {bathroomNum}
+                  </Typography>
                 </Grid>
               </Grid>
             </Grid>
@@ -80,7 +152,7 @@ export default function OrderRight() {
                   <NoteIcon fontSize="large" className={classes.icon} />
                 </Grid>
                 <Grid item xs={10} sm={10}>
-                  <Typography variant='h6'>Bond Cleaning</Typography>
+                  <Typography variant='h6'>{type}</Typography>
                 </Grid>
               </Grid>
             </Grid>
@@ -91,7 +163,8 @@ export default function OrderRight() {
                 </Grid>
                 <Grid item xs={10} sm={10}>
                   <Typography variant='h6'>
-                    Unit 502, 18 Buchan Street, West End, 4101, QLD
+                    {/* Unit 502, 18 Buchan Street, West End, 4101, QLD */}
+                    {totalAddress}
                   </Typography>
                 </Grid>
               </Grid>
@@ -102,7 +175,10 @@ export default function OrderRight() {
                   <CalendarTodayIcon fontSize="large" className={classes.icon} />
                 </Grid>
                 <Grid item xs={10} sm={10}>
-                  <Typography variant='h6'>12:00PM, Friday, 29 Jan 2021</Typography>
+                  <Typography variant='h6'>
+                    {/* 12:00PM, Friday, 29 Jan 2021 */}
+                    <Moment format="dddd HH:mm, DD MMM YYYY">{startTime}</Moment>
+                  </Typography>
                 </Grid>
               </Grid>
             </Grid>
@@ -119,7 +195,8 @@ export default function OrderRight() {
           </Grid>
           <Grid item xs={6} sm={6}>
             <Typography align="right" variant='h3' className={classes.price}>
-              $220
+              $
+              {price}
             </Typography>
           </Grid>
         </Grid>

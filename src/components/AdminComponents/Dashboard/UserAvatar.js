@@ -4,9 +4,29 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
     avatar: {
+      [theme.breakpoints.down('sm')]: {
+        
+      },
+      [theme.breakpoints.between('sm','md')]: {
+        
+      },
+      [theme.breakpoints.up('md')]: {
         width: theme.spacing(14),
         height: theme.spacing(14),
-        fontSize: "36px"
+        fontSize: "36px",
+      }
+    },
+
+    name: {
+      [theme.breakpoints.down('sm')]: {
+        fontSize: "10px"
+      },
+      [theme.breakpoints.between('sm','md')]: {
+        fontSize: "15px"
+      },
+      [theme.breakpoints.up('md')]: {
+        fontSize: "20px"
+      }
     }
 }))
 
@@ -20,7 +40,7 @@ export default function UserAvatar(props) {
         </Avatar>
         <Box
           fontWeight="fontWeightBold"
-          fontSize={20}
+          className={classes.name}
           mt={2}
         >
           {`${firstName} ${lastName}`}

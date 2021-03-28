@@ -1,6 +1,5 @@
 import React from 'react'
 import { Grid, Typography, makeStyles, Card, CardContent, Divider } from '@material-ui/core'
-import AdminCustomersTop from './AdminCustomersTop'
 import { SecondaryButton } from '../UIComponents/Buttons'
 
 // style
@@ -40,7 +39,6 @@ function AdminCustomersRight(props) {
 
   return (
     <Grid item xs={12} sm={3} className={classes.root}>
-      <AdminCustomersTop />
       <Card className={classes.card}>
         <CardContent>
           <Grid item xs={12}>

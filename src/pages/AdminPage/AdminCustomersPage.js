@@ -63,7 +63,7 @@ const putData = {
 
 function displayPage(repo) {
   //const classes = useStyles()
-  const { endTime, title, firstName, address, lastName, rating, review, price } = repo[0]
+  const { endTime, title, firstName, address, lastName, rating, review, price, status } = repo[0]
   return (
     <>
       {/* <AdminCustomersTop /> */}
@@ -72,6 +72,7 @@ function displayPage(repo) {
           orderTitle={title}
           customerFirstName={firstName}
           customerLastName={lastName}
+          orderStatus={status}
           location={Object.values(address).join(', ')}
           rate={rating}
           reviewText={review} />

@@ -18,11 +18,16 @@ const useStyles = makeStyles(() => ({
 
 function displayTime(time) {
   // 2020-01-01T12:00:00.000+00:00
-
-  let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
-  result = result.toString().split(" ")
-  return `${date.transform(result[4], 'HH:mm:ss', 'hh:mmA')} 
+  try {
+    let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
+    result = result.toString().split(" ")
+    return `${date.transform(result[4], 'HH:mm:ss', 'hh:mmA')} 
   ${result[2]} ${result[1]},${result[3]}`
+
+  } catch {
+    return "There's no exact time in this part. "
+  }
+
 }
 
 export default function DueDate(props) {

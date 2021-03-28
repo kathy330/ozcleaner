@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 // const gitApi = 'http://localhost:8000/regular/'
-const gitApi = 'http://localhost:8000/regular/task/6'
+const gitApi = 'http://localhost:8000/regular/task/3'
 // const gitApi = 'http://localhost:8000/users/2'
 
 const postApi = 'http://localhost:8000/regular'

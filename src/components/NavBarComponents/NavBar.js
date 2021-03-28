@@ -47,7 +47,7 @@ export default function HeaderNavigation(props) {
         <Grid item className={style.container}>
           <Toolbar>
             <Grid className={style.grow}>
-              <Button>Logo</Button>
+              <Button href='/'>Logo</Button>
             </Grid>
             <IconButton
               className={style.menuButton}

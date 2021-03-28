@@ -1,23 +1,30 @@
 /* eslint-disable react/no-unknown-property */
-import React from 'react';
-import { Grid, Box, Typography } from '@material-ui/core';
-import KingBedIcon from '@material-ui/icons/KingBed';
-import BathtubIcon from '@material-ui/icons/Bathtub';
-import NoteIcon from '@material-ui/icons/Note';
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
-import RoomIcon from '@material-ui/icons/Room';
+import React from 'react'
+import { Grid, Box, Typography } from '@material-ui/core'
+import KingBedIcon from '@material-ui/icons/KingBed'
+import BathtubIcon from '@material-ui/icons/Bathtub'
+import NoteIcon from '@material-ui/icons/Note'
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
+import RoomIcon from '@material-ui/icons/Room'
 import {
   GreenStatus,
   GreyStatus,
   RedStatus,
   DisabledStatus,
-} from '../../components/UIComponents/Status';
+  BlueStatus,
+  YellowStatus,
+  BlueStatusSquare,
+  YellowStatusSquare,
+  GreenStatusSquare,
+  GreyStatusSquare,
+  RedStatusSquare
+} from '../../components/UIComponents/Status'
 import {
   BookingButton,
   PrimaryButton,
   SecondaryButton,
-} from '../../components/UIComponents/Buttons';
-import HeaderNavigation from '../../components/NavBarComponents/NavBar';
+} from '../../components/UIComponents/Buttons'
+import HeaderNavigation from '../../components/NavBarComponents/NavBar'
 
 export default function UI() {
   return (
@@ -78,9 +85,19 @@ export default function UI() {
 
           <Grid item xs={12} sm={3}>
             <GreenStatus>Green Status</GreenStatus>
+            <BlueStatus>Blue Status</BlueStatus>
             <GreyStatus>Grey Status</GreyStatus>
+            <YellowStatus>Yellow Status</YellowStatus>
             <RedStatus>Red Status</RedStatus>
+
+            <GreenStatusSquare>Green Status</GreenStatusSquare>
+            <BlueStatusSquare>Blue Status</BlueStatusSquare>
+            <GreyStatusSquare>Grey Status</GreyStatusSquare>
+            <YellowStatusSquare>Yellow Status</YellowStatusSquare>
+            <RedStatusSquare>Red Status</RedStatusSquare>
+
             <DisabledStatus>Disabled Status</DisabledStatus>
+
           </Grid>
 
           <Grid item xs={12} sm={3}>
@@ -103,5 +120,5 @@ export default function UI() {
         </Grid>
       </Box>
     </>
-  );
+  )
 }

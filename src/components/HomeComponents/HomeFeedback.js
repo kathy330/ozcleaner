@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function HomeFeedback({src}) {
+export default function HomeFeedback({src,title,subtitle,name}) {
   const classes = useStyles()
 
   return (
@@ -81,14 +81,14 @@ export default function HomeFeedback({src}) {
                     variant="h3"
                     component="h3"
                   >
-                    User feedback Title.
+                    {title}
                   </Typography>
 
                   <Typography 
                     variant="h4"
                     component="h4"
                   >
-                    User feedback here.
+                    {subtitle}
                   </Typography>
 
                   <Typography
@@ -96,7 +96,7 @@ export default function HomeFeedback({src}) {
                     color="textSecondary"
                     component="h5"
                   >
-                    - User Name
+                    {name}
                   </Typography>
                 </CardContent>
               </Container>

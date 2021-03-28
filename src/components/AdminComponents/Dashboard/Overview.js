@@ -1,5 +1,6 @@
 import React from 'react'
 import { Grid, Container, Paper,  Box } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
 // import { makeStyles } from '@material-ui/core/styles'
 
@@ -110,17 +111,18 @@ const UserName = [
 ]
 
 
-// const useStyles = makeStyles(() => ({
-
-
-// }))
-
 export default function Overview() {
-  // const classes = useStyles()
+
 
   return (
     <Container maxWidth="md">
-      <Box fontWeight="fontWeightBold" mb={2}>
+      <Box fontWeight="fontWeightBold" mb={1} fontSize={35}>
+        Dashboard
+      </Box>
+      <Box fontWeight="fontWeightBold" mb={2} fontSize={10} color="#9e9e9e">
+        Welcome Back!
+      </Box>
+      <Box fontWeight="fontWeightBold" mb={2} fontSize={25}>
         Quick status
       </Box>
       <Grid container spacing={6}>

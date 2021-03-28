@@ -1,5 +1,5 @@
 import {all} from 'redux-saga/effects'
-import RegularSaga from './regularClean'
+import RegularSaga from './regularCleanSaga'
 import UserListSaga from './userListSaga'
 import EmployeesListSaga from './employeesListSaga'
 import CusDetailSaga from './customersDetail'

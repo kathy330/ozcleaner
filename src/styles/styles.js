@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core'
 // 🌟这个文件的style只负责material UI 组件的 配色和字体和样式（从theme引用），不负责位置
 // 🌟位置需要给组件加上<div calssName=""></div>，并在scss中定义
 
@@ -42,7 +42,7 @@ export const navBarStyle = makeStyles((theme) => ({
       display: 'block',
     },
   },
-}));
+}))
 
 export const buttonStyle = makeStyles((theme) => ({
   primaryButton: {
@@ -87,7 +87,7 @@ export const buttonStyle = makeStyles((theme) => ({
       boxShadow: '0px 2px 10px #888',
     },
   },
-}));
+}))
 
 export const statusStyle = makeStyles((theme) => ({
   green: {
@@ -112,9 +112,54 @@ export const statusStyle = makeStyles((theme) => ({
       color: 'white',
     },
   },
+  blue: {
+    background: theme.palette.blue.main,
+    borderRadius: '25px',
+    '&:disabled': {
+      color: 'white',
+    },
+  },
+  yellow: {
+    background: theme.palette.yellow.main,
+    borderRadius: '25px',
+    '&:disabled': {
+      color: 'white',
+    },
+  },
+  greenSquare: {
+    color: 'white',
+    background: theme.palette.green.main,
+    '&:disabled': {
+      color: 'white',
+    },
+  },
+  greySquare: {
+    background: theme.palette.grey.main,
+    '&:disabled': {
+      color: 'white',
+    },
+  },
+  redSquare: {
+    background: theme.palette.red.main,
+    '&:disabled': {
+      color: 'white',
+    },
+  },
+  blueSquare: {
+    background: theme.palette.blue.main,
+    '&:disabled': {
+      color: 'white',
+    },
+  },
+  yellowSquare: {
+    background: theme.palette.yellow.main,
+    '&:disabled': {
+      color: 'white',
+    },
+  },
   disabled: {
     '&:disabled': {
       color: '#BEC3DC',
     },
   },
-}));
+}))

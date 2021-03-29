@@ -5,8 +5,8 @@ const initialState = {
   error:null,
   repos_in_reducer_init: 'init value',
   completeinfo:{
-    info: localStorage.getItem('regularCleanOrder')? 
-      JSON.parse(localStorage.getItem('regularCleanOrder')):{
+    info: localStorage.getItem('endofleaseCleanOrder')? 
+      JSON.parse(localStorage.getItem('endofleaseCleanOrder')):{
         bedroomNum:'',
         bathroomNum:'',
         type:'',
@@ -23,59 +23,59 @@ const initialState = {
   }
 }
 
-function regularReducer(state = initialState,action) {
+function endofleaseReducer(state = initialState,action) {
   switch (action.type) {
 
-    // 1/2 GET regular order --dongyu
-    case actionType.GET_REGULAR_REQUEST:
+    // 1/2 GET end of lease order --dongyu
+    case actionType.GET_ENDOFLEASE_REQUEST:
       return {
         ...state,
         loading:true
       }
 
-    case actionType.GET_REGULAR_SUCCESS:
+    case actionType.GET_ENDOFLEASE_SUCCESS:
       return {
         ...state,
         loading: false,
         repos_in_reducer_init: action.repos
       }
 
-    case actionType.GET_REGULAR_FAILED:
+    case actionType.GET_ENDOFLEASE_FAILED:
       return {
         ...state,
         loading: false,
         repos_in_reducer_init: [],
         error:action.payload
         // error:action.data.err
-      }
+    }
 
-    // 2/2 POST regular order --dongyu
-    case actionType.POST_REGULAR_REQUEST:
+
+    // 2/2 POST endoflease order --dongyu
+    case actionType.POST_ENDOFLEASE_REQUEST:
       return {
         ...state,
         loading: true,
         completeinfo:null
       }
   
-    case actionType.POST_REGULAR_SUCCESS:
+    case actionType.POST_ENDOFLEASE_SUCCESS:
       return {
         ...state,
         loading: false,
-        repos_in_reducer_init: action.postInSaga, // 发送给regular api
+        repos_in_reducer_init: action.postInSaga,
         completeinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
       }
 
-    case actionType.POST_REGULAR_FAILED:
+    case actionType.POST_ENDOFLEASE_FAILED:
       return {
         ...state,
         loading: false,
         repos_in_reducer_init:[],
         error:action.errorInSaga,
       }
-
     default:
       return state
   }
 }
 
-export default regularReducer
+export default endofleaseReducer

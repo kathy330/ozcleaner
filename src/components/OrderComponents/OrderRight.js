@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -16,7 +16,8 @@ import Divider from '@material-ui/core/Divider'
 // import date from 'date-and-time'
 import Moment from 'react-moment'
 // import { useForm } from "react-hook-form"
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
+import {getENDRequest,getREGULARRequest} from "../../store/actions"
 
 
 // 🔥local storage用法：(sessionStorage也可以用)
@@ -57,25 +58,61 @@ export default function OrderRight() {
   const classes = useStyles()
   const showForm = false // 测试，没啥用
 
-  const data = useSelector(state => state.regular_in_reducer_index.completeinfo.info)  
-  console.log("By local Storage: ",data)
+  // const testdata = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)  
+  // console.log('aa',testdata)
 
+  // 测试 get order method from mongoDB
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getREGULARRequest())
+    dispatch(getENDRequest())
+  },[])
+  const test1 = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)  
+  console.log("test: get regular order: ",test1)
+
+  const test2 = useSelector(state => state.endoflease_in_reducer_index.repos_in_reducer_init)  
+  console.log("test: get end of lease order: ",test2)
+  // -----测试结束----
+
+
+  // 从localstorage取值回来
+  const data1 = useSelector(state => state.regular_in_reducer_index.completeinfo.info)  
+  console.log("Get by local Storage regular: ",data1)
+
+  const data2 = useSelector(state => state.endoflease_in_reducer_index.completeinfo.info)  
+  console.log("By local Storage endoflease: ",data2)
   
+  // 初始化空data，否则下面报错
+  let data = {
+    bedroomNum:'',
+    bathroomNum:'',
+    type:'',
+    address:{
+      address1:'',
+      address2:'',
+      suburb:'',
+      state:'',
+      postcode:''
+    },
+    startTime:'',
+    price:0,
+  }
+  // 判断用哪个的local storage
+  if(data1.type==='RC' && data2.type ==='') {
+    data = data1
+  }
+  else if(data2.type==='EC' && data1.type ==='') {
+    data = data2
+  }
+
   let {bedroomNum} = data
   let {bathroomNum} = data
-  if(bedroomNum === ''){
-    bedroomNum = ''
-  }
   if(bedroomNum !== '') {
     bedroomNum = `Bedrooms x ${bedroomNum}`
-  }
-  if(bathroomNum === ''){
-    bathroomNum = ''
   }
   if(bathroomNum !== '') {
     bathroomNum = `Bathrooms x ${bathroomNum}`
   }
-
 
   let {type} = data
   if(type==='RC'){
@@ -84,7 +121,6 @@ export default function OrderRight() {
   if(type==='EC'){
     type = 'End of lease clean'
   }
-
 
   let {address:{address2}} = data
   let {address:{address1}} = data
@@ -114,9 +150,7 @@ export default function OrderRight() {
   if(startTime !== null && startTime !== '') {
     startTime = startTime.split(':',3)
     startTime = `${startTime[0]}:${startTime[1]}`
-    
   }else {
-    // startTime = ''
     timeDisplay = true
   }
   const {price} = data
@@ -124,20 +158,9 @@ export default function OrderRight() {
   // 🔥 离开该页面，清除local storage 🔥
   window.onbeforeunload = () => {
     localStorage.removeItem('regularCleanOrder')
+    localStorage.removeItem('endofleaseCleanOrder')
     // return '' //没有return的话，离开该页面就不会有弹窗提示
   }
-
-  // const dispatch = useDispatch()
-  // // lifeStyle 初始渲染,一般取数据用useEffect()
-  // useEffect(()=>{
-  //   dispatch(getREGULARRequest())
-  // },[])
-
-  // // regular_in_reducer_index. 是Reducer里面的index.js定义的名字
-  // // .repos_in_reducer_init 是Reducer里面的init值的名字
-  // // 🌟取数据
-  // const repo = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)  
-  // console.log("init reducer info: ",repo)
 
   return (
     <Box className={classes.rightTop}>

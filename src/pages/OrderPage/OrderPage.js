@@ -2,6 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-empty */
 import React,{useEffect} from 'react'
+import { Redirect } from "react-router-dom"
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
@@ -31,7 +32,7 @@ import PaymentIcon from '@material-ui/icons/Payment'
 import Icon from '@material-ui/core/Icon'
 // import Link from '@material-ui/core/Link'
 import { useForm,Controller } from "react-hook-form"
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import KingBedIcon from '@material-ui/icons/KingBed'
 import BathtubIcon from '@material-ui/icons/Bathtub'
 import RoomIcon from '@material-ui/icons/Room'
@@ -52,6 +53,8 @@ import HeaderNavigation from '../../components/NavBarComponents/NavBar'
 // import OrderRight from '../../components/OrderComponents/OrderRight'
 import Footer from '../../components/FooterComponents/Footer'
 import HomeComponentStyle from "../../components/HomeComponents/styles/HomeComponentStyle"
+
+
 
 
 
@@ -233,7 +236,7 @@ function Order() {
   const classes = useStyles()
   const cssstyle = HomeComponentStyle()
   const buttonstyles = buttonStyle()
-  const {  handleSubmit,control,watch } = useForm()
+  const { handleSubmit, control, watch } = useForm()
   const dispatch = useDispatch()
 
   const [state, setState] = React.useState({
@@ -241,7 +244,8 @@ function Order() {
     fridge: false,
     windows: false,
     cabinet:false,
-    disable:false
+    disable:false,
+    submit:false
   })
   
   // 11这是checkbox右上角自己属性变化的函数
@@ -475,7 +479,8 @@ function Order() {
       if(data.type === "EC") {
         dispatch(postEndOfLeaseRequest(newData)) // 在saga里控制跳转下一个页面
       }
-
+      console.log("successful")
+      setState({submit:true})
     }
     else{
       // alert('Must pick all the info')
@@ -485,6 +490,13 @@ function Order() {
   // 55-----------------------------------------
   
   const showForm = false // 没啥用 下面练习判断true false
+  const { submit } = state
+  // eslint-disable-next-line no-shadow
+  const loading = useSelector(state => state.regular_in_reducer_index.loading)
+  console.log("loading parameter: ", loading)
+  if (submit && !loading) {
+    return (<Redirect to="/order/confirm" />)
+  }
   return (
     <Box className={classes.root}>
       <HeaderNavigation />
@@ -498,7 +510,9 @@ function Order() {
               <Grid container direction="column">
                 {/* <p>{totalAddress}</p> */}
           
-                <form onSubmit={handleSubmit(onSubmit,onErrors)}>
+                <form
+                  onSubmit={handleSubmit(onSubmit,onErrors)}
+                >
                   <Container maxWidth="lg">
                     <Grid item xs={12} sm={12}>
                       <Typography variant='h4' align='left' className={classes.title}>

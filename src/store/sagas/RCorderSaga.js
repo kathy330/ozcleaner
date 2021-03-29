@@ -54,9 +54,9 @@ function* postRegularOrder(action) {
     yield put({type:'POST_REGULAR_SUCCESS',postInSaga:action.payload})
       
     // 🔥数据存储到local storage里，可以直接用useSelector() 使用
-    localStorage.setItem('regularCleanOrder',JSON.stringify(action.payload)) 
+    // localStorage.setItem('regularCleanOrder',JSON.stringify(action.payload)) 
     // window.location.href = "http://www.baidu.com" // 下单完成后重定向
-    window.location.href = "/order/confirm"
+    // window.location.href = "/order/confirm"
   }
 }
 

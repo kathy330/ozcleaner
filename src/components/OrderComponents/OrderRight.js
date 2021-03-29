@@ -57,7 +57,7 @@ export default function OrderRight() {
   const classes = useStyles()
   const showForm = false // 测试，没啥用
 
-  const data = useSelector(state => state.regular_in_reducer_index.completeinfo.info)  
+  const data = useSelector(state => state.regular_in_reducer_index.completeinfo)  
   console.log("By local Storage: ",data)
 
   

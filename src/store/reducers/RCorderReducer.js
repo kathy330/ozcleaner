@@ -6,26 +6,12 @@ const initialState = {
   error:null,
   repos_in_reducer_init: 'init value',
   completeinfo:{
-    info: localStorage.getItem('regularCleanOrder')? 
-      JSON.parse(localStorage.getItem('regularCleanOrder')):{
-        bedroomNum:'',
-        bathroomNum:'',
-        type:'',
-        address:{
-          address1:'',
-          address2:'',
-          suburb:'',
-          state:'',
-          postcode:''
-        },
-        startTime:'',
-        price:0,
-      }
+
   }
 
 }
 
-function regularReducer(state = initialState,action) {
+function regularReducer(state = initialState, action) {
   switch (action.type) {
 
     // 1/3 GET regular order --dongyu

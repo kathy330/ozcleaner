@@ -61,7 +61,7 @@ export default function OrderRight() {
   // const testdata = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)  
   // console.log('aa',testdata)
 
-  // test get order method from mongoDB
+  // 测试 get order method from mongoDB
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(getREGULARRequest())

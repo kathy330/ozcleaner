@@ -1,28 +1,40 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+/* eslint-disable no-unused-vars */
+import { put, call, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
-
-const apiUrl = 'http://localhost:8000/users'
-
-function* fetchUsers() {
-  try {
-    const users = yield call(axios.get, apiUrl)
-    yield put({ type: 'GET_USERS_SUCCESS', users: users.data })
-  } catch (e) {
-    yield put({ type: 'GET_USERS_FAILED', message: e.message })
-  }
-}
 
 function* userLogin(action) {
   try {
-    yield call(axios.post('http://localhost:8000/users/login', action.payload))
+    const userInfo = 
+    yield call(axios.post,'http://localhost:8000/users/login', action.payload)
+    yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
+    localStorage.setItem('userInfo', JSON.stringify(userInfo))
   } catch (e) {
-    yield put({ type: 'USER_SIGNIN_FAIL', payload: action.payload })
+    yield put({ type: 'USER_SIGNIN_FAIL', payload: e.response.data })
   }
 }
 
+function* userRegister(action) {
+  try {
+    const userInfo = 
+    yield call(axios.post,'http://localhost:8000/users/registration', action.payload)
+    yield put({ type: 'USER_REGISTER_SUCCESS', payload: userInfo })
+    yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
+    localStorage.setItem('userInfo', JSON.stringify(userInfo))
+  } catch (e) {
+    yield put({ type: 'USER_REGISTER_FAIL', payload: e.response.data })
+  }
+}
+
+function* userSignout() {
+  localStorage.removeItem('userInfo')
+  yield put({ type: 'USER_SIGNOUT' })
+  document.location.href = '/'
+}
+
 function* UsersSaga() {
-  yield takeEvery('GET_USERS_REQUESTED', fetchUsers)
   yield takeEvery('USER_SIGNIN_REQUEST', userLogin)
+  yield takeEvery('USER_REGISTER_REQUEST', userRegister)
+  yield takeEvery('USER_SIGNOUT_REQUEST', userSignout)
 }
 
 export default UsersSaga

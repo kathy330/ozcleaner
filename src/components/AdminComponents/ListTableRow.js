@@ -16,11 +16,6 @@ const useStyle = makeStyles((theme) => ({
   },
 }))
 
-// function CheckUser(id) {
-//   const path = `/admin/customers/?id=${id}`
-//   <Link to=path />
-// }
-
 function DeleteUser(id) {
   alert(`Delete UserID: ${id}`)
 }
@@ -68,9 +63,6 @@ function ListTableRow(props) {
           variant="contained"
           color="primary"
           className={classes.actionBtn}
-          // componet={Link}
-          // to="/fheawljfbel"
-          // onClick={() => CheckUser(id)}
           component={Link} 
           to={path}
         >

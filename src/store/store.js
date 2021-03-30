@@ -29,6 +29,7 @@ import createSagaMiddleware from 'redux-saga'
 import reducers from './reducers/index'
 import rootSaga from './sagas/rootSaga'
 
+// erik 登陆的initialState部分
 const initialState = {
   userSignin: {
     userInfo: localStorage.getItem('userInfo')

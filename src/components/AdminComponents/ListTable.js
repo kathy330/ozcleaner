@@ -33,7 +33,7 @@ function ListCustomerTable(props) {
   const loading = useSelector(state => state.userslist.loading)
   const error = useSelector(state => state.userslist.error)
   const dispatchRequest = (tableType === 'customer') 
-  console.log(usersData)
+  // console.log(usersData)
   const dispatchRequested = () => {
     if (dispatchRequest) {
       dispatch(getAllUserListRequest(listSize))

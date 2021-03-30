@@ -2,11 +2,12 @@ import React from "react"
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Nav from '../../components/NavBarComponents/NavBar'
 import crying from "../../assets/crying.svg" 
+import Footer from '../../components/FooterComponents/Footer'
 // import logo from "../../assets/logo.svg" 
 // https://www.flaticon.com/free-icon/crying_817847?related_id=817847&origin=search
 // https://www.flaticon.com/free-icon/broom_2731291
@@ -15,33 +16,30 @@ import crying from "../../assets/crying.svg"
 const useStyles = makeStyles((theme) => ({
   root: {
     background: 'white',
+    height: '100%',
+    [theme.breakpoints.down('sm')]: {
+      paddingBottom: '5vh',
+      paddingTop: '10vh',
+    },
+    [theme.breakpoints.between('sm', 'md')]: {
+      paddingBottom: '15vh',
+      paddingTop: '30vh',
+    },
+    [theme.breakpoints.up('md')]: {
+      paddingBottom: '30vh',
+      paddingTop: '30vh',
+    },
   },
 
-  content: {
-    // marginTop: '11vh',
-    height: '90vh',
-  },
-
-  right: {
-  
-  },
 
   img: {
     height: '30vh',
-    paddingTop: '10vh',
-  },
-
-  left: {
-    background: 'white',
-    margin: '10px',
-    maxWidth: '700px',
-    minHeight: "353px",
-    paddingLeft: '5vh',
-    paddingTop: '10vh',
-    [theme.breakpoints.up('md')]: {
-      height: '100%',
-      marginBottom: '11vh',
-    }
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '1vh',
+    },
+    [theme.breakpoints.between('sm', 'md')]: {
+      paddingTop: '1vh',
+    },
   },
 
   button: {
@@ -56,26 +54,32 @@ function ErrorPage(){
 
     return (
       <>
+        <Nav />
         <Box className={classes.root}>
-          <Nav />
-          <Container className={classes.content}>
-            <Grid container>
-              <Grid item xs={12} sm={6} className={classes.left}>
-                <Typography variant="h6">
-                  Oops, Something Went Wrong...
-                </Typography>
-               
-                <Button href="/" variant="contained" color="primary" className={classes.button}>
-                  Back to home
-                </Button>
-              </Grid>
+          <Container maxWidth="lg" className={classes.content}>
+            <Grid container spacing={0}>
 
-              <Grid item xs={12} sm={5} className={classes.right}>
-                <img src={crying} className={classes.img} alt="error icon" />
+              <Grid item xs={12} md={6}>
+                <Container maxWidth="lg">
+                  <Typography variant="h2">
+                    Oops, Something Went Wrong...
+                  </Typography>
+                </Container>
+              </Grid>
+              
+              <Grid item xs={12} md={6}>
+                <Container maxWidth="lg">
+                  <Grid container spacing={0} justify="center">
+                    <Grid item>
+                      <img src={crying} className={classes.img} alt="error icon" />
+                    </Grid>
+                  </Grid>
+                </Container>
               </Grid>
             </Grid>
           </Container>
         </Box>
+        <Footer />
       </>
     )
 }

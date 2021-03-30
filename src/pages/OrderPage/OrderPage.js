@@ -302,7 +302,8 @@ function Order() {
     employeeID: "",
     firstName: "",
     lastName: "",
-    phoneNumber: ''
+    phoneNumber: '',
+    // userDetail:'604cb4dfc875675915d0d0a5'
   }
 
   // 44判断选中了哪个extra,那个值就为true，返回值给下面onSubmite提交时更改
@@ -462,24 +463,23 @@ function Order() {
         firstName:data.firstName,
         lastName:data.lastName,
         phoneNumber:data.phoneNumber,
-        price:amount
+        price:amount,
+        // userDetail:'604cb4dfc875675915d0d0a5'
       }
       // console.log('new data: ',newData)
   
       if(data.type === "RC") {
         // 🌟dispatch一个action
         dispatch(postRegularRequest(newData)) // 在saga里控制跳转下一个页面
-         // 发送 regular saga请求
-        // dispatch(getCOMPLETERequest(newData))
+        
       }
       if(data.type === "EC") {
         dispatch(postEndOfLeaseRequest(newData)) // 在saga里控制跳转下一个页面
       }
-
     }
     else{
       // alert('Must pick all the info')
-      // console.log('Must pick all the info')
+      console.log('Must pick all the info')
     }
   } 
   // 55-----------------------------------------

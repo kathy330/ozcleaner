@@ -13,7 +13,7 @@ export const loadOrdersFailed = err => ({
 })
 
 
-//  1/3 GET Regular order -- dongyu 
+//  1/4 GET Regular order -- dongyu 
 export const getREGULARRequest = (datalist) => ({
   type: actionTypes.GET_REGULAR_REQUEST,
   payload: datalist,
@@ -27,7 +27,7 @@ export const getREGULARFaild = (err) => ({
   payload: err,
 })
 
-//  2/3 POST Regular order -- dongyu 
+//  2/4 POST Regular order -- dongyu 
 export const postRegularRequest = (obj) => ({
   type:actionTypes.POST_REGULAR_REQUEST,
   payload:obj, // By convention, we put that information in a field called payload.
@@ -43,7 +43,21 @@ export function postRegularFaild(obj) {
   }
 }
 
-//  3/3 POST Endoflease order -- dongyu 
+//  3/4 GET Endoflease order -- dongyu 
+export const getENDRequest = (datalist) => ({
+  type: actionTypes.GET_ENDOFLEASE_REQUEST,
+  payload: datalist,
+})
+export const getENDSuccess = (datalist) => ({
+  type: actionTypes.GET_ENDOFLEASE_SUCCESS,
+  payload: datalist,
+})
+export const getENDFaild = (err) => ({
+  type: actionTypes.GET_ENDOFLEASE_FAILED,
+  payload: err,
+})
+
+//  4/4 POST Endoflease order -- dongyu 
 export const postEndOfLeaseRequest = (obj) => ({
   type:actionTypes.POST_ENDOFLEASE_REQUEST,
   payload:obj, // By convention, we put that information in a field called payload.
@@ -58,21 +72,6 @@ export function postEndOfLeaseFaild(obj) {
     payload:obj, 
   }
 }
-
-// //  4/4没啥用，不能跨页面取值，刷新会初始化。 Get COMPLETE order -- dongyu 
-// export const getCOMPLETERequest = (obj) => ({
-//   type:actionTypes.GET_COMPLETE_REQUEST,
-//   payload:obj, // By convention, we put that information in a field called payload.
-// })
-// export const getCOMPLETESuccess = (obj) => ({
-//   type:actionTypes.GET_COMPLETE_SUCCESS,
-//   payload:obj, 
-// })
-// export const getCOMPLETEFaild = (obj) => ({
-//     type:actionTypes.GET_COMPLETE_FAILED,
-//     payload:obj, 
-// })
-// // export const getProject = (state) => state.regular_in_reducer_index
 
 
 // * getAllUserListRequest() is for get all users from userTable -- kathy
@@ -122,5 +121,20 @@ export const getCUSDETAILTABLERequest = (users) => ({
     type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
     payload: users,
   })
+
+
+export const signin = (payload) => ({
+  type: actionTypes.USER_SIGNIN_REQUEST,
+  payload,
+})
+
+export const register = (payload) => ({
+  type: actionTypes.USER_REGISTER_REQUEST,
+  payload,
+})
+
+export const signout = () => ({
+  type: actionTypes.USER_SIGNOUT_REQUEST,
+})
 
   

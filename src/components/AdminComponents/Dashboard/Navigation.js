@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     },
     Avatar: {
         alignItems: "center",
-        flexDirection: "column"
-
+        flexDirection: "column",
+        margin: "1%"
     }
 }))
 
@@ -41,12 +41,10 @@ export default function AdminHeaderNavigation() {
     return (
       <div>
         <AppBar  className={`${style.AppBar} ${classes.AppBar}`}  position="static" elevation={0.5}>
-            
           <Grid container className={style.grow} xs={11}>
             <Button>Logo</Button>
           </Grid> 
           <Grid container className={classes.Avatar} xs={1}>
-           
             <PopDetails/>
           </Grid>
         </AppBar>

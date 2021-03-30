@@ -6,18 +6,35 @@ import {
     TableRow,
     TableCell,
     TableBody,
+    makeStyles
 } from '@material-ui/core'
 import OrderTableRow from './OrderTableRow'
 
+const useStyles = makeStyles((theme) => ({
+  table: {
+    minWidth: 500,
+    [theme.breakpoints.down((1550))]:{
+      minWidth: 400,
+    },
+    [theme.breakpoints.down((700))]:{
+      minWidth: 300,
+    },
+    [theme.breakpoints.down((420))]:{
+      minWidth: 100,
+    },
+  },
+}
+))
+
 
 function OrderTable(props) {
+    const classes = useStyles()
     const { columns, UserData } = props
-    console.log(columns)
-    console.log(UserData)
+
     return (
       <>
         <TableContainer>
-          <Table aria-label="simple table">
+          <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
                 {columns.map((column) => (

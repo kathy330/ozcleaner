@@ -35,18 +35,18 @@ function postToEndOfLease (data) {
 function* postEndLeaseOrder(action) {
   // action.payload就是post-action.js的payload键，
   // 所以action.payload就等于post-action的obj
-  console.log("Post from component: ",action.payload) 
+  // console.log("Post from component: ",action.payload) 
   const result = yield call(postToEndOfLease, action.payload)
   if(result.errors) {
     console.log("end of lease post failed!",result.errors)
     yield put({type:'POST_ENDOFLEASE_FAILED',errorInSaga:result.errors})
   } 
   else {
-    console.log("end of lease post successss!",result)
+    // console.log("end of lease post successss!",result)
     yield put({type:'POST_ENDOFLEASE_SUCCESS',postInSaga:action.payload})
     // 🔥数据存储到local storage里，可以直接用useSelector() 使用
     localStorage.setItem('endofleaseCleanOrder',JSON.stringify(action.payload))
-    window.location.href = "/order/confirm" // 下单完成后重定向
+    // window.location.href = "/order/confirm" // 下单完成后重定向
   }
 }
 

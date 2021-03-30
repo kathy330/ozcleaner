@@ -1,14 +1,17 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 // import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
+import { useDispatch, useSelector } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
 // import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Divider from '@material-ui/core/Divider'
+// import { Link } from 'react-router-dom'
 import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import {useForm,Controller } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import DividerWithText from './Divider'
 import {FbButton,GoogleButton,PopupLoginButton} from './Button'
 import {signin} from "../../store/actions/actionCreator"
@@ -18,9 +21,15 @@ export default function LoginDetails() {
     const {control ,handleSubmit} = useForm()
     const dispatch = useDispatch()
     const onSubmit = (data) =>{
-      console.log(data)
       dispatch(signin(data))
-    }/* onSubmit 可以传参，eric拿去用 */
+    }
+
+    // const signoutHandler = () => {
+    //   dispatch(signout())
+    // }
+
+    const userSignin = useSelector((state) => state.userSignin)
+    const { userInfo, loading, error } = userSignin
   
 const useStyles = makeStyles((theme) => ({
   [theme.breakpoints.down('sm')]: {
@@ -137,6 +146,7 @@ const classes = useStyles()
               />
             
             </Grid>
+
             <Grid>
               <Typography
                 className={classes.text}
@@ -155,12 +165,14 @@ const classes = useStyles()
                     type="password"
                     variant="outlined"
                   />
-                )}
+                      )}
                 name="password"
                 control={control}
                 defaultValue=""
               />
             </Grid>
+
+
             <Grid>
               <a href="/password">
                 <Typography
@@ -172,6 +184,23 @@ const classes = useStyles()
             </Grid>
             
             <Grid container justify="center">
+              {loading && <CircularProgress />}
+              {error && (
+              <Typography
+                color="error"
+                className={classes.text}
+              >
+                {error}
+              </Typography>
+            )}
+              {userInfo && (
+              <Typography
+                color="primary"
+                className={classes.text}
+              >
+                You are now signed in!
+              </Typography>
+            )}
               <PopupLoginButton />
             </Grid>
             <Grid container justify="center">

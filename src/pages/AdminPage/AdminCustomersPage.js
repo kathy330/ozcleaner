@@ -7,8 +7,10 @@ import AdminCustomersRight from "../../components/AdminComponents/AdminCustomers
 import AdminCustomersTop from "../../components/AdminComponents/AdminCustomersTop"
 import NavBar from '../../components/NavBarComponents/NavBar'
 import Footer from '../../components/FooterComponents/Footer'
-import { getREGULARRequest } from "../../store/actions"
+import { getREGULARRequest, getENDOFLEASERequest } from "../../store/actions"
 import LoadingIcon from '../../components/AdminComponents/LoadingIcon'
+
+// import { useForm, Controller } from "react-hook-form"
 
 // style
 const useStyles = makeStyles((theme) => ({
@@ -63,10 +65,12 @@ const putData = {
 
 function displayPage(repo) {
   //const classes = useStyles()
-  const { endTime, title, firstName, address, lastName, rating, review, price, status } = repo[0]
+  const { endTime, title, firstName, address, lastName, cabinets, fridge, oven, interiorWindows, rating, review, price, status, type } = repo[0]
+  console.log(repo[0], '10')
+
+
   return (
     <>
-      {/* <AdminCustomersTop /> */}
       <Grid container spacing={2}>
         <AdminCustomersLeft dueDate={endTime}
           orderTitle={title}
@@ -74,9 +78,15 @@ function displayPage(repo) {
           customerLastName={lastName}
           orderStatus={status}
           location={Object.values(address).join(', ')}
+          cab={cabinets}
+          fri={fridge}
+          ov={oven}
+          intWin={interiorWindows}
           rate={rating}
+          typeOfOrder={type}
           reviewText={review} />
-        <AdminCustomersRight orderPrice={price} />
+        <AdminCustomersRight orderPrice={price}
+          orderStatus={status} />
       </Grid>
     </>
   )
@@ -84,24 +94,67 @@ function displayPage(repo) {
 
 function AdminCustomersPage() {
   const classes = useStyles()
+  // const { handleSubmit, control, watch } = useForm()
+  // const [state, setState] = React.useState({
+  //   oven: false,
+  //   fridge: false,
+  //   windows: false,
+  //   cabinet: false,
+  //   disable: false
+  // })
+  // const { disable } = state
+  // const type = watch("type", "")
+  // useEffect(() => {
+  //   // console.log (type)
+  //   if (type === 'RC') {
+  //     setState({ oven: false, fridge: false, windows: false, cabinet: false, disable: false })
+  //   }
+  //   else if (type === 'EC') {
+  //     setState({ oven: true, fridge: true, windows: true, cabinet: true, disable: true })
+  //   }
+  // }, [type])
+
+  // const [state, setState] = React.useState({
+  //   status: 'cancelled',
+  // })
+
+  // const buttonClickChange = (event) => {
+  //   const key = event.target.name
+  //   const newState = !state[key]
+  //   setState({ ...state, [key]: newState })
+  // }
+
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getREGULARRequest())
+    // dispatch(getENDOFLEASERequest())
   }, [])
+
   let repo = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)
-  //console.log(typeof repo)
-  // const repo = putData
-  // repo = repo[0]
+  // let repo2 = useSelector()
+  // console.log(Object.keys(repo[0]))
+
+  // if (Object.values(repo[0]).includes('EC')) {
+  //   useEffect(() => {
+  //     // dispatch(getREGULARRequest())
+  //     dispatch(getENDOFLEASERequest())
+  //   }, [])
+  //   let repo = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)
+  // }
+
+
   console.log(repo[0], '456')
-  // console.log(repo.address)
+  console.log(repo, '789')
+
 
   return (
     <Grid className={classes.bg}>
       {/* {endTime} */}
       <NavBar />
       <Container maxWidth="md" className={classes.body}>
-        {(repo[0] === 'init value') && (<LoadingIcon />)}
-        {(repo[0] !== 'init value') && displayPage(repo)}
+        {(repo === 'init value') && (<LoadingIcon />)}
+        {(repo !== 'init value') && displayPage(repo)}
       </Container>
       {/* <Container maxWidth="md" className={classes.body}>{repo.length}
         <AdminCustomersTop />

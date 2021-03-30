@@ -21,8 +21,8 @@ function displayTime(time) {
   try {
     let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
     result = result.toString().split(" ")
-    return `${date.transform(result[4], 'HH:mm:ss', 'hh:mmA')} 
-  ${result[2]} ${result[1]},${result[3]}`
+    return `${date.transform(result[4], 'HH:mm:ss', 'hh:mmA')},  
+  ${result[2]} ${result[1]}, ${result[3]}`
 
   } catch {
     return "There's no exact time in this part. "

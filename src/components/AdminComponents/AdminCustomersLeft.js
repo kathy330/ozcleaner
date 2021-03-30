@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 const AdminCustomersLeft = ({ dueDate, orderTitle,
-  customerFirstName, customerLastName, location, rate, reviewText, orderStatus }) => {
+  customerFirstName, customerLastName, location, rate, cab, fri, ov, intWin, reviewText,
+  orderStatus, typeOfOrder }) => {
   const classes = useStyles()
   // const { dueDate, orderTitle,
   //   customerFirstName, customerLastName, location, rate, reviewText } = props
@@ -57,7 +58,7 @@ const AdminCustomersLeft = ({ dueDate, orderTitle,
       <Divider className={classes.divider} />
       <DueDate endTime={dueDate} />
       <Divider className={classes.divider} />
-      <Extra />
+      <Extra cabinets={cab} fridge={fri} oven={ov} interiorWindows={intWin} type={typeOfOrder} />
       <Divider className={classes.divider} />
       <Review rating={rate} review={reviewText} />
     </Grid>

@@ -2,6 +2,7 @@ import actionType from '../actions/actionTypes'
 
 const initialState = {
   loading: false,
+  loadingNum:1,
   error:null,
   repos_in_reducer_init: 'init value',
   completeinfo:{
@@ -61,6 +62,7 @@ function regularReducer(state = initialState,action) {
       return {
         ...state,
         loading: false,
+        loadingNum:2,
         repos_in_reducer_init: action.postInSaga, // 发送给regular api
         completeinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
       }

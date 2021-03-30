@@ -36,6 +36,7 @@ const initialState = {
     : null,
   }
 }
+// const initialState = {}
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -53,6 +54,7 @@ const enhancers = composeEnhancers(
 )
 
 const store = createStore(reducers, initialState, enhancers)
+// const store = createStore(reducers, enhancers)
 
 sagaMiddleware.run(rootSaga)
 

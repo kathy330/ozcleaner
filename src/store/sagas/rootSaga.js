@@ -6,6 +6,7 @@ import EmployeesListSaga from './employeesListSaga'
 import CusDetailSaga from './customersDetail'
 import CusDetailTableSaga from './customersDetailsTable'
 import StaffDetailSaga from './staffsDetail'
+import UsersSaga from './usersSaga'
 // // import testSaga from './userRegistrationSaga'
 import EmployeeSaga from './emplyeeDetail'
 
@@ -21,6 +22,7 @@ export default function* rootSaga() {
     StaffDetailSaga(),
     // testSaga(),
     EmployeeSaga(),
+    UsersSaga()
   ])
   // 另外的写法：
   // yield all([fork(github), fork(user)]);

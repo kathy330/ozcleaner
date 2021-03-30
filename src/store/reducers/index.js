@@ -11,7 +11,7 @@ import CusDetails from "./customersDetail"
 import CusDetailsTable from "./customerDetailTable"
 import StaffDetails from './staffsDetail'
 import emplyeeReducer from './emplyeeDetail'
-// import { userRegisterReducer, userSigninReducer } from './userReducer'
+import { userRegisterReducer, userSigninReducer } from './userReducer'
 
 // 🎉 rootReduce会被store/store.js使用
 const rootReducer = combineReducers({
@@ -22,7 +22,8 @@ const rootReducer = combineReducers({
   cusDetails:CusDetails,
   cusDetailsTable:CusDetailsTable,
   staffDetails:StaffDetails,
-
+  userRegister: userRegisterReducer,
+  userSignin: userSigninReducer,
   employee_in_reducer_index:emplyeeReducer,
   // userSignin: userSigninReducer,
   // userRegister: userRegisterReducer,

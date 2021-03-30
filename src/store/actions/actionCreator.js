@@ -122,4 +122,19 @@ export const getCUSDETAILTABLERequest = (users) => ({
     payload: users,
   })
 
+
+export const signin = (payload) => ({
+  type: actionTypes.USER_SIGNIN_REQUEST,
+  payload,
+})
+
+export const register = (payload) => ({
+  type: actionTypes.USER_REGISTER_REQUEST,
+  payload,
+})
+
+export const signout = () => ({
+  type: actionTypes.USER_SIGNOUT_REQUEST,
+})
+
   

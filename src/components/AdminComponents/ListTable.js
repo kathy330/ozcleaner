@@ -1,7 +1,14 @@
+/* eslint-disable */
 /* eslint-disable no-undef */
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
+  Button,
+  Dialog, 
+  DialogActions, 
+  DialogContent, 
+  DialogContentText, 
+  DialogTitle,
   TableContainer,
   Table,
   TableBody,
@@ -25,7 +32,8 @@ function ListCustomerTable(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(rowPreSet)
   const listSize = {page: page+1, pageSize: rowsPerPage}
   const dispatch = useDispatch()
-  
+  const [deletedId, setDeletedId] = React.useState(0)
+  const [open, setOpen] = React.useState(false);
   // get userdata from state
   const usersData = useSelector(state => state.userslist.users.result)
   // get total users number from state
@@ -69,6 +77,21 @@ function ListCustomerTable(props) {
     setPage(pageNum - 1) // keep in the same page
   }
 
+  const openDeletedModal = (id) =>{
+    console.log(id)
+    setDeletedId(id)
+    setOpen(true)
+  }
+  
+  const handleAlertClose = () => {
+    setOpen(false)
+  };
+
+  const handleAlertConfirm = ()=>{
+    console.log('confirm delete: ', deletedId)
+    setOpen(false)
+  }
+
   return (
     <>
       {/* if loading: show loading icon */}
@@ -91,6 +114,7 @@ function ListCustomerTable(props) {
                     ongoingOrder={row.numberOfOnGoingOrder}
                     completedOrder={row.numberOfOrderFinished}
                     tableType={tableType}
+                    openDeletedModal={openDeletedModal}
                   />
                 ))}
               </TableBody>
@@ -106,6 +130,27 @@ function ListCustomerTable(props) {
             onChangeRowsPerPage={handleChangeRowsPerPage}
             labelRowsPerPage="User P/P:"
           />
+          <Dialog
+            open={open}
+            onClose={handleAlertClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">Do you want to delete this user?</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                User: UserName(useremail)
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleAlertClose} variant="contained" color="secondary">
+                Delete
+              </Button>
+              <Button onClick={handleAlertConfirm} variant="contained" autoFocus>
+                Cancel
+              </Button>
+            </DialogActions>
+          </Dialog>
         </>
       )}
       {/* if not loading && user data is empty: show no user available */}

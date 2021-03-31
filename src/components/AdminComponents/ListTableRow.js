@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* eslint-disable no-alert */
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -16,9 +17,9 @@ const useStyle = makeStyles((theme) => ({
   },
 }))
 
-function DeleteUser(id) {
-  alert(`Delete UserID: ${id}`)
-}
+// function DeleteUser(id) {
+//   alert(`Delete UserID: ${id}`)
+// }
 
 // StatusDisplay() is for checking whether to display status column or not
 function StatusDisplay(tableType, status) {
@@ -31,7 +32,7 @@ function StatusDisplay(tableType, status) {
 }
 function ListTableRow(props) {
   const classes = useStyle()
-  const { id, firstName, lastName, status, ongoingOrder, completedOrder, tableType } = props
+  const { id, firstName, lastName, status, ongoingOrder, completedOrder, tableType, openDeletedModal } = props
   const path = `/admin/${tableType}s/${id}`
   return (
     <TableRow role="checkbox" tabIndex={-1} key={id}>
@@ -72,7 +73,7 @@ function ListTableRow(props) {
           variant="contained"
           color="secondary"
           className={classes.actionBtn}
-          onClick={() => DeleteUser(id)}
+          onClick={() => openDeletedModal(id)}
         >
           Delete
         </Button>

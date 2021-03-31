@@ -16,9 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Review({ rating }) {
+export default function Review(props) {
   const classes = useStyles()
-
+  const { rating, review } = props
   return (
     <Grid container direction="column" className={classes.root}>
       <Grid item xs>
@@ -40,8 +40,7 @@ export default function Review({ rating }) {
       </Grid>
       <Grid item xs>
         <Typography variant="body2">
-          Michael J. Is so nice, He completed his job in just three hours
-          and made my apartment like fresh new!
+          {review}
         </Typography>
       </Grid>
     </Grid>

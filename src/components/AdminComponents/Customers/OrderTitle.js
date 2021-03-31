@@ -9,11 +9,12 @@ const useStyles = makeStyles({
     paddingLeft: 10,
   }
 })
-export default function OrderTitle() {
+export default function OrderTitle(props) {
   const classes = useStyles()
+  const { title } = props
   return (
     <Typography variant="h4" className={classes.root}>
-      Three bedroom apartment bond cleaning
+      {title}
     </Typography>
   )
 }

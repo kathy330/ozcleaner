@@ -2,7 +2,7 @@
 // 接收state和action对象，决定如何在必要时更新状态，
 // 并返回新的状态：(state, action) => newState。
 // 您可以将reducer视为事件侦听器，该事件侦听器根据接收到的操作（事件）类型来处理事件。
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 // import regularReducer from './regularClean'
 import userslist from './userslist'
 import regularReducer from './RCorderReducer'
@@ -19,12 +19,12 @@ const rootReducer = combineReducers({
   endoflease_in_reducer_index: endofleaseReducer,
 
   userslist,
-  cusDetails:CusDetails,
-  cusDetailsTable:CusDetailsTable,
-  staffDetails:StaffDetails,
+  cusDetails: CusDetails,
+  cusDetailsTable: CusDetailsTable,
+  staffDetails: StaffDetails,
   userRegister: userRegisterReducer,
   userSignin: userSigninReducer,
-  employee_in_reducer_index:emplyeeReducer,
+  employee_in_reducer_index: emplyeeReducer,
   // userSignin: userSigninReducer,
   // userRegister: userRegisterReducer,
 })

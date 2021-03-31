@@ -29,17 +29,17 @@ export const getREGULARFaild = (err) => ({
 
 //  2/4 POST Regular order -- dongyu 
 export const postRegularRequest = (obj) => ({
-  type:actionTypes.POST_REGULAR_REQUEST,
-  payload:obj, // By convention, we put that information in a field called payload.
+  type: actionTypes.POST_REGULAR_REQUEST,
+  payload: obj, // By convention, we put that information in a field called payload.
 })
 export const postRegularSuccess = (obj) => ({
-  type:actionTypes.POST_REGULAR_SUCCESS,
-  payload:obj, 
+  type: actionTypes.POST_REGULAR_SUCCESS,
+  payload: obj,
 })
 export function postRegularFaild(obj) {
-  return{
-    type:actionTypes.POST_REGULAR_FAILED,
-    payload:obj, 
+  return {
+    type: actionTypes.POST_REGULAR_FAILED,
+    payload: obj,
   }
 }
 
@@ -59,20 +59,19 @@ export const getENDFaild = (err) => ({
 
 //  4/4 POST Endoflease order -- dongyu 
 export const postEndOfLeaseRequest = (obj) => ({
-  type:actionTypes.POST_ENDOFLEASE_REQUEST,
-  payload:obj, // By convention, we put that information in a field called payload.
+  type: actionTypes.POST_ENDOFLEASE_REQUEST,
+  payload: obj, // By convention, we put that information in a field called payload.
 })
 export const postEndOfLeaseSuccess = (obj) => ({
-  type:actionTypes.POST_ENDOFLEASE_SUCCESS,
-  payload:obj, 
+  type: actionTypes.POST_ENDOFLEASE_SUCCESS,
+  payload: obj,
 })
 export function postEndOfLeaseFaild(obj) {
-  return{
-    type:actionTypes.POST_ENDOFLEASE_FAILED,
-    payload:obj, 
+  return {
+    type: actionTypes.POST_ENDOFLEASE_FAILED,
+    payload: obj,
   }
 }
-
 
 // * getAllUserListRequest() is for get all users from userTable -- kathy
 export const getAllUserListRequest = users => ({
@@ -89,28 +88,28 @@ export const getAllEmployeeListRequest = employees => ({
 
 
 // * get employee 
-  // employee
-  export const getEmployeeRequest = (datalist) => ({
-    type: actionTypes.GET_EMPLOYEE_REQUEST,
-    payload: datalist,
-  })
-  
-  export const getEmployeeSuccess = (datalist) => ({
-    type: actionTypes.GET_EMPLOYEE_SUCCESS,
-    payload: datalist,
-  })
-  export const GET_EMPLOYEE_FAILED = (err) => ({
-    type: actionTypes.GET_EMPLOYEE_FAILED,
-    payload: err,
-  })
+// employee
+export const getEmployeeRequest = (datalist) => ({
+  type: actionTypes.GET_EMPLOYEE_REQUEST,
+  payload: datalist,
+})
+
+export const getEmployeeSuccess = (datalist) => ({
+  type: actionTypes.GET_EMPLOYEE_SUCCESS,
+  payload: datalist,
+})
+export const GET_EMPLOYEE_FAILED = (err) => ({
+  type: actionTypes.GET_EMPLOYEE_FAILED,
+  payload: err,
+})
 
 
 // staff details page 
 export const getSTAFFDETAILRequest = (users) => ({
-    type: actionTypes.GET_STAFFDETAIL_REQUEST,
-    payload: users,
-  })
-  
+  type: actionTypes.GET_STAFFDETAIL_REQUEST,
+  payload: users,
+})
+
 // customer details page
 export const getCUSDETAILRequest = (users) => ({
   type: actionTypes.GET_CUSDETAIL_REQUEST,
@@ -118,9 +117,9 @@ export const getCUSDETAILRequest = (users) => ({
 })
 
 export const getCUSDETAILTABLERequest = (users) => ({
-    type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
-    payload: users,
-  })
+  type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
+  payload: users,
+})
 
 
 export const signin = (payload) => ({
@@ -137,4 +136,4 @@ export const signout = () => ({
   type: actionTypes.USER_SIGNOUT_REQUEST,
 })
 
-  
+

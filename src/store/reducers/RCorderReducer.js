@@ -21,13 +21,14 @@ const initialState = {
         startTime: '',
         price: 0,
       }
-  }
+  },
+  updateData:'no update' // 更新by id,可以更新任何值，只要有正确名字
 }
 
 function regularReducer(state = initialState, action) {
   switch (action.type) {
 
-    // 1/2 GET regular order --dongyu
+    // 1/3 GET regular order --dongyu
     case actionType.GET_REGULAR_REQUEST:
       return {
         ...state,
@@ -50,7 +51,29 @@ function regularReducer(state = initialState, action) {
         // error:action.data.err
       }
 
-    // 2/2 POST regular order --dongyu
+    // 2/3 Update regular order - dongyu
+    case actionType.UPDATE_REGULAR_REQUEST:
+      return {
+        ...state,
+        loading:true
+      }
+
+    case actionType.UPDATE_REGULAR_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        updateData: action.repos
+      }
+
+    case actionType.UPDATE_REGULAR_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error:action.payload
+        // error:action.data.err
+      }
+
+    // 3/3 POST regular order --dongyu
     case actionType.POST_REGULAR_REQUEST:
       return {
         ...state,

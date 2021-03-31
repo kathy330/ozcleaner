@@ -4,7 +4,6 @@ import axios from 'axios'
 const gitApi = 'http://localhost:8000/regular/task/1'
 const postApi = 'http://localhost:8000/regular'
 
-
 function* getRegularOrder() {
   try{
     const regularData = yield call(axios.get, gitApi)
@@ -19,6 +18,24 @@ function* getRegularOrder() {
     yield put({type:'GET_REGULAR_FAILED',payload:e})
   }
 }
+
+function* updateRegularOrder(action) {
+  const{taskid,orderstatus} = action.payload
+  console.log(orderstatus)
+  const update = {status:orderstatus}
+  const updateApi = `http://localhost:8000/regular/${taskid}`  // PUT方法更新regular
+
+  try{
+    const regularData = yield call(axios.put, updateApi, update)
+    console.log(regularData)
+    yield put({type:'UPDATE_REGULAR_SUCCESS',repos:regularData.data}) // 这个data是返回对象reponse的data属性
+  }
+  catch(e) {
+    console.log(e)
+    yield put({type:'UPDATE_REGULAR_FAILED',payload:e})
+  }
+}
+
 
 function postToRegular (data) {
   return fetch(postApi, {
@@ -66,6 +83,7 @@ function* RegularSaga() {
   // yield takeLatest('GET_REGULAR_REQUEST',fetchRegularUrl)
   yield takeEvery('GET_REGULAR_REQUEST',getRegularOrder) // GEt 全部 ORDER
   yield takeEvery('POST_REGULAR_REQUEST',postRegularOrder) // POST to regular order
+  yield takeEvery('UPDATE_REGULAR_REQUEST',updateRegularOrder) // UPDATE regular order
 
 
 }

@@ -73,24 +73,6 @@ export function postEndOfLeaseFaild(obj) {
   }
 }
 
-// 1/1 CANCEL Regular order -- kangkang
-export const cancelRegularOrderRequest = (obj) => ({
-  type: actionTypes.CANCEL_REGULAR_REQUEST,
-  payload: obj,
-})
-
-export const cancelRegularOrderSuccess = (obj, newUpdate) => ({
-  type: actionTypes.CANCEL_REGULAR_SUCCESS,
-  payload: obj,
-  newUpdate,
-})
-
-export const cancelRegularOrderFailed = (obj) => ({
-  type: actionTypes.CANCEL_REGULAR_FAILED,
-  payload: obj,
-})
-
-
 // * getAllUserListRequest() is for get all users from userTable -- kathy
 export const getAllUserListRequest = users => ({
   type: actionTypes.GET_USERS_REQUESTED,

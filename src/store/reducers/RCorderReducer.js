@@ -75,29 +75,6 @@ function regularReducer(state = initialState, action) {
         error: action.errorInSaga,
       }
 
-    case actionType.CANCEL_REGULAR_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        completeinfo: null,
-      }
-    case actionType.CANCEL_REGULAR_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        repos_in_reducer_init: action.postInSaga,
-        completeinfo: action.postInSaga
-      }
-    case actionType.CANCEL_REGULAR_FAILED:
-      return {
-        ...state,
-        loading: false,
-        repos_in_reducer_init: [],
-        error: action.errorInSaga,
-        ...action.newUpdate,
-      }
-
-
     default:
       return state
   }

@@ -64,10 +64,8 @@ import HomeComponentStyle from "../../components/HomeComponents/styles/HomeCompo
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // padding: 0,
-    background: 'lightgrey'
-    // position: 'relative',
-    // zIndex: '-2',
+    // background: 'lightgray'
+    background: '#e3f2fd',
   },
 
   content: {

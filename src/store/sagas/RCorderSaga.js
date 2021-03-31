@@ -1,7 +1,6 @@
 import {call,put,takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
 
-
 const gitApi = 'http://localhost:8000/regular/task/1'
 const postApi = 'http://localhost:8000/regular'
 
@@ -38,20 +37,21 @@ function postToRegular (data) {
 function* postRegularOrder(action) {
   // action.payload就是post-action.js的payload键，
   // 所以action.payload就等于post-action的obj
-  console.log("Post from component: ",action.payload) 
+  // console.log("Post from component: ",action.payload) 
   const result = yield call(postToRegular, action.payload)
   if(result.errors) {
     console.log("regular order post failed!",result.errors)
     yield put({type:'POST_REGULAR_FAILED',errorInSaga:result.errors})
   } 
   else {
-    console.log("regular order post successss!",result)
+    // console.log("regular order post successss!",result)
     yield put({type:'POST_REGULAR_SUCCESS',postInSaga:action.payload})
       
     // 🔥数据存储到local storage里，可以直接用useSelector() 使用
     localStorage.setItem('regularCleanOrder',JSON.stringify(action.payload)) 
-    // window.location.href = "http://www.baidu.com" // 下单完成后重定向
-    window.location.href = "/order/confirm"
+    // 下单完成后重定向，但是会刷新页面，reducer存储值消失
+    // window.location.href = "http://www.baidu.com"
+    // window.location.href = "/order/confirm"
   }
 }
 

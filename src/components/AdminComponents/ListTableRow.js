@@ -1,5 +1,6 @@
 /* eslint-disable no-alert */
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { TableRow, TableCell, Button, Avatar, makeStyles } from '@material-ui/core/'
 import { GreenStatus, RedStatus } from '../UIComponents/Status'
 
@@ -15,10 +16,6 @@ const useStyle = makeStyles((theme) => ({
   },
 }))
 
-function CheckUser(id) {
-  alert(`Check UserID: ${id}`)
-}
-
 function DeleteUser(id) {
   alert(`Delete UserID: ${id}`)
 }
@@ -32,10 +29,10 @@ function StatusDisplay(tableType, status) {
     (<TableCell align="center"><GreenStatus>Avalilable</GreenStatus></TableCell>) : 
     (<TableCell align="center"><RedStatus>Unavailable</RedStatus></TableCell>)
 }
-
 function ListTableRow(props) {
   const classes = useStyle()
   const { id, firstName, lastName, status, ongoingOrder, completedOrder, tableType } = props
+  const path = `/admin/${tableType}s/${id}`
   return (
     <TableRow role="checkbox" tabIndex={-1} key={id}>
       <TableCell align="center">
@@ -66,7 +63,8 @@ function ListTableRow(props) {
           variant="contained"
           color="primary"
           className={classes.actionBtn}
-          onClick={() => CheckUser(id)}
+          component={Link} 
+          to={path}
         >
           Check
         </Button>

@@ -33,7 +33,7 @@ function ListCustomerTable(props) {
   const loading = useSelector(state => state.userslist.loading)
   const error = useSelector(state => state.userslist.error)
   const dispatchRequest = (tableType === 'customer') 
-
+  // console.log(usersData)
   const dispatchRequested = () => {
     if (dispatchRequest) {
       dispatch(getAllUserListRequest(listSize))
@@ -83,7 +83,8 @@ function ListCustomerTable(props) {
                 {usersData.map((row) => (
                   <ListTableRow
                     key={row.ID}
-                    id={row.ID}
+                    // eslint-disable-next-line no-underscore-dangle
+                    id={row._id}
                     firstName={row.name.firstName}
                     lastName={row.name.lastName}
                     status={row.employmentStatus}

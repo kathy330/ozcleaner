@@ -20,6 +20,8 @@ import MenuDialog from '../SignUpComponents/PopupFormMenu'
 import FormDialogLogin from '../SignUpComponents/PopupFormLogin'
 import FormDialogMenuLogin from '../SignUpComponents/PopupFormLoginMenu'
 import { navBarStyle } from '../../styles/styles'
+import logo from "../../assets/logo.svg" 
+// https://www.flaticon.com/free-icon/broom_2731291
 
 export default function HeaderNavigation(props) {
   const { trigger } = props
@@ -47,7 +49,15 @@ export default function HeaderNavigation(props) {
         <Grid item className={style.container}>
           <Toolbar>
             <Grid className={style.grow}>
-              <Button href='/'>Logo</Button>
+              <Button href='/'>
+                <img
+                  src={logo} 
+                  className={style.logoimg}
+                  alt="error icon"
+                />
+                {/* Home */}
+              </Button>
+              {/* Logo */}
             </Grid>
             <IconButton
               className={style.menuButton}

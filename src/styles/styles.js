@@ -20,6 +20,9 @@ export const navBarStyle = makeStyles((theme) => ({
       marginInline: 0,
     },
   },
+  logoimg:{
+    height:'5vh'
+  },
   bookingButton: {
     // fontSize:'1rem',
     color: 'white',

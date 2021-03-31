@@ -11,7 +11,10 @@ import {useForm,Controller } from 'react-hook-form'
 import {useDispatch} from 'react-redux'
 import DividerWithText from './Divider'
 import {PopupButton,FbButton,GoogleButton} from './Button'
-import {postRegularRequest} from '../../store/actions'
+// import {postRegularRequest} from '../../store/actions'
+import {register} from "../../store/actions/actionCreator"
+// import FormDialogLogin from "./PopupFormLogin"
+import FormDialogLoginPop from './FormDialogLoginPop'
 
 
 export default function RegistrationForm() {
@@ -19,7 +22,7 @@ export default function RegistrationForm() {
   const dispatch = useDispatch()
   const onSubmit = (data) =>{
     console.log(data)
-    dispatch(postRegularRequest(data)) // 发送saga请求
+    dispatch(register(data)) // 发送saga请求
   }
 
   const useStyles = makeStyles((theme) => ({
@@ -213,12 +216,8 @@ const classes = useStyles()
             </Grid>
             <Grid container justify="flex-end">
                
-              <Typography className={classes.login}>
-                <a href="/login" className={classes.loginColor}>
-                  Login
-                </a>
-              </Typography>
-               
+              <Typography className={classes.login} />
+              <FormDialogLoginPop />
             </Grid>
           </Grid>
         </form>

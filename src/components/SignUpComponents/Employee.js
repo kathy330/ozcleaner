@@ -9,6 +9,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import {useForm,Controller } from 'react-hook-form'
 import {PopupButton} from './Button'
+import FormDialogLoginPop from './FormDialogLoginPop'
 
 
 
@@ -84,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     // float: 'right',
     fontSize:'12px',
     textDecoration: 'none',
-    marginRight:'10%',
+    // marginRight:'10%',
     marginBottom:'30px'
   },
   loginColor:{
@@ -242,11 +243,8 @@ const classes = useStyles()
             </Grid>
             <Grid container justify="flex-end">
                
-              <Typography className={classes.login}>
-                <a href="/login" className={classes.loginColor}>
-                  Login
-                </a>
-              </Typography>
+             
+              <FormDialogLoginPop />
                
             </Grid>
           </Grid>

@@ -17,7 +17,7 @@ import {FbButton,GoogleButton,PopupLoginButton} from './Button'
 import {signin} from "../../store/actions/actionCreator"
 import FormDialogSignupPop from './FormDialogSignupPop'
 
-export default function LoginDetails() {
+export default function EmployeeLogin() {
     const {control ,handleSubmit} = useForm()
     const dispatch = useDispatch()
     const onSubmit = (data) =>{
@@ -147,6 +147,56 @@ const classes = useStyles()
                 />
               
               </Grid>
+              <Grid container>
+                <Typography
+                  className={classes.text}
+                >
+                    ABN
+                </Typography>
+              </Grid>
+              <Grid container justify="center">
+                <Controller
+                  as={(
+                    <TextField
+                      className={classes.textField}
+                      margin="dense"
+                      id="outlined-basic"
+                      label="ABN"
+                      type="ABN"
+                      variant="outlined"
+                    />
+                  )}
+                  name="ABN"
+                  control={control}
+                  defaultValue=""
+                />
+              
+              </Grid>
+              <Grid container>
+                <Typography
+                  className={classes.text}
+                >
+                    Login Name
+                </Typography>
+              </Grid>
+              <Grid container justify="center">
+                <Controller
+                  as={(
+                    <TextField
+                      className={classes.textField}
+                      margin="dense"
+                      id="outlined-basic"
+                      label="Login Name"
+                      type="Login Name"
+                      variant="outlined"
+                    />
+                  )}
+                  name="Login Name"
+                  control={control}
+                  defaultValue=""
+                />
+              
+              </Grid>
 
               <Grid>
                 <Typography
@@ -172,7 +222,6 @@ const classes = useStyles()
                   defaultValue=""
                 />
               </Grid>
-
 
               <Grid>
                 <a href="/password">
@@ -253,7 +302,3 @@ const classes = useStyles()
       </>
     )
   }
-
-
-
-

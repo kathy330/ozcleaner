@@ -164,6 +164,7 @@ const classes = useStyles()
               defaultValue=""
             />
           </Grid>
+        
           <Grid>
             <a href="/password">
               <Typography
@@ -207,7 +208,7 @@ const classes = useStyles()
           <Grid container justify="center" item xs={12}>
             <Divider className={classes.divide} />
           </Grid>
-            
+        </form>
           <Grid container direction="row">
             <Grid container justify="flex-start">
               <Typography className={classes.account}>
@@ -215,13 +216,12 @@ const classes = useStyles()
               </Typography>
               
             </Grid>
+           
             <Grid container justify="flex-end">
-               
-              <Typography className={classes.login} />
               <FormDialogLoginPop />
             </Grid>
           </Grid>
-        </form>
+          
       </>
     )
   }

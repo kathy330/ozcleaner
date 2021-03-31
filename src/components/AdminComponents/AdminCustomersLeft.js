@@ -10,6 +10,8 @@ import DueDate from './Customers/DueDate'
 import Extra from './Customers/Extra'
 import Review from './Customers/Review'
 import Status from './Customers/Status'
+import Names from './Customers/Names'
+import PhoneNumber from './Customers/PhoneNumber'
 // import user1 from '../../assets/user1.jpg'
 
 // style
@@ -39,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AdminCustomersLeft = ({ dueDate, orderTitle,
   customerFirstName, customerLastName, location, rate, cab, fri, ov, intWin, reviewText,
-  orderStatus, typeOfOrder }) => {
+  orderStatus, typeOfOrder, phone }) => {
   const classes = useStyles()
   // const { dueDate, orderTitle,
   //   customerFirstName, customerLastName, location, rate, reviewText } = props
@@ -49,12 +51,15 @@ const AdminCustomersLeft = ({ dueDate, orderTitle,
       <OrderTitle title={orderTitle} />
       <CreatedBy firstName={customerFirstName} lastName={customerLastName} />
       <Divider className={classes.divider} />
-      {/* <CreatedBy image='BJ' name='Ben' time='2020.03.02' title='Assgined To' /> */}
       <AssginedTo />
       <Divider className={classes.divider} />
       <Status status={orderStatus} />
       <Divider className={classes.divider} />
+      <Names firstName={customerFirstName} lastName={customerLastName} />
+      <Divider className={classes.divider} />
       <Location address={location} />
+      <Divider className={classes.divider} />
+      <PhoneNumber phoneNumber={phone} />
       <Divider className={classes.divider} />
       <DueDate endTime={dueDate} />
       <Divider className={classes.divider} />

@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
 
@@ -6,7 +6,7 @@ import axios from 'axios'
 
 
 // const gitApi = 'http://localhost:8000/regular/'
-const gitApi = 'http://localhost:8000/regular/task/3'
+const gitApi = 'http://localhost:8000/regular/task/1'
 // const gitApi = 'http://localhost:8000/users/2'
 const postApi = 'http://localhost:8000/regular'
 const postApi2 = 'http://localhost:8000/endOfLease'
@@ -46,7 +46,9 @@ function* postRegularOrder(action) {
   // action.payload就是post-action.js的payload键，
   // 所以action.payload就等于post-action的obj
   console.log("Post from component: ", action.payload)
+  // 返回值ctx.body
   const result = yield call(postToRegular, action.payload)
+
   if (result.errors) {
     console.log("regular order post failed!", result.errors)
     yield put({ type: 'POST_REGULAR_FAILED', errorInSaga: result.errors })
@@ -61,6 +63,30 @@ function* postRegularOrder(action) {
     window.location.href = "/order/confirm"
   }
 }
+
+// const getApi = 'http://localhost:8000/regular/task/3'
+// function cancelRegularOrder(action, newUpdate) {
+//   return fetch(gitApi, {
+//     method: 'PUT',
+//     body: JSON.stringify(action, newUpdate)
+//   })
+//     .then(response => response.json())
+//     .catch(err => console.log(err))
+// }
+
+// function* updateStatus() {
+//   try {
+
+//     const newData = yield call(axios.put, gitApi)
+
+//     console.log('New data is: ', newData)
+//     yield put({ type: 'CANCEL_REGULAR_SUCCESS', repos: newData })
+//   } catch (e) {
+//     console.log(e)
+//     yield put({ type: 'CANCEL_REGULAR_FAILED', payload: e })
+//   }
+// }
+
 
 function postToEndOfLease(data) {
   return fetch(postApi2, {
@@ -122,12 +148,14 @@ function* postEndLeaseOrder(action) {
   dispatched while a fetch is already pending, that pending fetch is cancelled
   and only the latest one will be run.
 */
+
 function* RegularSaga() {
   // yield takeLatest('GET_REGULAR_REQUEST',fetchRegularUrl)
   yield takeEvery('GET_REGULAR_REQUEST', getRegularOrder) // GEt 全部 ORDER
   yield takeEvery('POST_REGULAR_REQUEST', postRegularOrder) // POST to regular order
   // yield takeEvery('GET_COMPLETE_REQUEST',getCompleteOrder) // POST to regular order
   yield takeEvery('POST_ENDOFLEASE_REQUEST', postEndLeaseOrder) // POST to regular order
+  yield takeEvery('CANCEL_REGULAR_REQUEST', updateStatus)
 
 
 }

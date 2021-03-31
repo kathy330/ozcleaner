@@ -7,10 +7,11 @@ import AdminCustomersRight from "../../components/AdminComponents/AdminCustomers
 import AdminCustomersTop from "../../components/AdminComponents/AdminCustomersTop"
 import NavBar from '../../components/NavBarComponents/NavBar'
 import Footer from '../../components/FooterComponents/Footer'
-import { getREGULARRequest, getENDOFLEASERequest } from "../../store/actions"
+import { getREGULARRequest, getENDRequest, cancelRegularOrderRequest } from "../../store/actions"
 import LoadingIcon from '../../components/AdminComponents/LoadingIcon'
 
-// import { useForm, Controller } from "react-hook-form"
+
+import { useForm, Controller } from "react-hook-form"
 
 // style
 const useStyles = makeStyles((theme) => ({
@@ -64,8 +65,10 @@ const putData = {
 }
 
 function displayPage(repo) {
+
   //const classes = useStyles()
-  const { endTime, title, firstName, address, lastName, cabinets, fridge, oven, interiorWindows, rating, review, price, status, type } = repo[0]
+  const { endTime, title, firstName, address, lastName,
+    cabinets, fridge, oven, interiorWindows, rating, review, price, status, type, phoneNumber } = repo[0]
   console.log(repo[0], '10')
 
 
@@ -77,6 +80,7 @@ function displayPage(repo) {
           customerFirstName={firstName}
           customerLastName={lastName}
           orderStatus={status}
+          phone={phoneNumber}
           location={Object.values(address).join(', ')}
           cab={cabinets}
           fri={fridge}
@@ -94,41 +98,18 @@ function displayPage(repo) {
 
 function AdminCustomersPage() {
   const classes = useStyles()
-  // const { handleSubmit, control, watch } = useForm()
-  // const [state, setState] = React.useState({
-  //   oven: false,
-  //   fridge: false,
-  //   windows: false,
-  //   cabinet: false,
-  //   disable: false
-  // })
-  // const { disable } = state
-  // const type = watch("type", "")
-  // useEffect(() => {
-  //   // console.log (type)
-  //   if (type === 'RC') {
-  //     setState({ oven: false, fridge: false, windows: false, cabinet: false, disable: false })
-  //   }
-  //   else if (type === 'EC') {
-  //     setState({ oven: true, fridge: true, windows: true, cabinet: true, disable: true })
-  //   }
-  // }, [type])
-
-  // const [state, setState] = React.useState({
-  //   status: 'cancelled',
-  // })
-
-  // const buttonClickChange = (event) => {
-  //   const key = event.target.name
-  //   const newState = !state[key]
-  //   setState({ ...state, [key]: newState })
-  // }
+  const { watch } = useForm()
+  const type = watch("type", "")
 
 
   const dispatch = useDispatch()
   useEffect(() => {
+    //get（假定已经拿到所有数据了)
+    // get data
     dispatch(getREGULARRequest())
     // dispatch(getENDOFLEASERequest())
+    // post
+
   }, [])
 
   let repo = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)

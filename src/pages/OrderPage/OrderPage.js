@@ -42,7 +42,8 @@ import NoteIcon from '@material-ui/icons/Note'
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
 import IconButton from '@material-ui/core/IconButton'
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
-import { Redirect } from "react-router-dom" // 负责页面跳转router，不会刷新reducer👍
+// import { Redirect } from "react-router-dom" // 负责页面跳转router，不会刷新reducer👍
+import {useHistory} from "react-router-dom"
 // import Zoom from '@material-ui/core/Zoom'
 import PropTypes from 'prop-types'
 // import useScrollTrigger from '@material-ui/core/useScrollTrigger'
@@ -515,8 +516,12 @@ function Order(props) {
   const { submit } = state
   const loading = useSelector(astate => astate.regular_in_reducer_index.loading)
   // console.log("loading parameter: ", loading)
+
+  const history = useHistory()
   if (submit && !loading) {
-    return (<Redirect to="/order/confirm" />)
+    // return (<Redirect to="/order/confirm" />)  不太好，附带 3XX状态
+    history.push("/order/confirm")
+
   }
   // 1010
 

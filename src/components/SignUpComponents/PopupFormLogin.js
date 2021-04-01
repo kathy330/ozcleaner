@@ -1,4 +1,4 @@
-/* eslint-disable react/require-default-props */
+/* eslint-disable */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function FormDialog() {
+export default function PopupFormDialog() {
     const [open, setOpen] = React.useState(false)
   
     const handleClickOpen = () => {

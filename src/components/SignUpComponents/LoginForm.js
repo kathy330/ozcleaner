@@ -109,7 +109,6 @@ const classes = useStyles()
     return (
       <>
         
-          <Grid container direction="column">
             <form onSubmit={handleSubmit(onSubmit)}>      
               <Grid container justify="center">
                 <DialogTitle className="Dialog-title">
@@ -148,7 +147,7 @@ const classes = useStyles()
               
               </Grid>
 
-              <Grid>
+              <Grid container>
                 <Typography
                   className={classes.text}
                 >
@@ -228,12 +227,12 @@ const classes = useStyles()
                 </Typography>
                 
               </Grid>
-            
+            </form>
+             
               <Grid container justify="center" item xs={12}>
                 <Divider className={classes.divide} />
               </Grid>
-            </form>
-             
+           
             <Grid container direction="row">
               <Grid container justify="flex-start">
                 <Typography className={classes.account}>
@@ -247,7 +246,7 @@ const classes = useStyles()
                
               </Grid>
             </Grid>
-          </Grid>
+          
         
         
       </>

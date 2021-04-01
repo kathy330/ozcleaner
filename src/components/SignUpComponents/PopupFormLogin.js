@@ -1,44 +1,3 @@
-/* import React from 'react'
-import Button from '@material-ui/core/Button'
-import Dialog from '@material-ui/core/Dialog'
-import LoginDetails from './LoginForm'
-
-
-
-export default function FormDialogLogin() {
-   
-  const [open, setOpen] = React.useState(false)
-  
-    const handleClickOpen = () => {
-      setOpen(true)
-    }
-  
-    const handleClose = () => {
-      setOpen(false)
-    }
-    
-  
-  
-
-    return (
-      <>
-        <Button onClick={handleClickOpen}>
-          Login
-        </Button>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="form-dialog-title"
-          fullWidth
-          maxWidth='xs'
-        >
-          <LoginDetails />
-        </Dialog>
-      </>
-    )
-    }
-*/
-
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -55,7 +14,6 @@ import Box from '@material-ui/core/Box'
 import SwipeableViews from 'react-swipeable-views'
 import LoginDetails from './LoginForm'
 import EmployeeLogin from './EmployeeLogin'
-
 
 // import AppBar from '@material-ui/core/AppBar'
 // import Tabs from '@material-ui/core/Tabs'
@@ -143,7 +101,7 @@ export default function FormDialog() {
                 variant="fullWidth"
                 aria-label="full width tabs example"
               >
-                <Tab label="Login as customer" {...a11yProps(0)} />
+                <Tab label="Sign up as customer" {...a11yProps(0)} />
                 <Tab label="Sign up as employee" {...a11yProps(1)} />
               </Tabs>
             </AppBar>
@@ -165,6 +123,19 @@ export default function FormDialog() {
       </>
     )
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

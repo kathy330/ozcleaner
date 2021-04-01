@@ -11,9 +11,11 @@ import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import SwipeableViews from 'react-swipeable-views'
-import {MenuItem} from '@material-ui/core' 
+import {MenuItem} from '@material-ui/core'
+// import RegistrationForm from './RegistrationForm'
+// import EmployeeRegistrationForm from './Employee'
 import LoginDetails from './LoginForm'
-
+import EmployeeLogin from './EmployeeLogin'
 // import AppBar from '@material-ui/core/AppBar'
 // import Tabs from '@material-ui/core/Tabs'
 
@@ -53,11 +55,11 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 443,
+    width:'100%',
   },
 }))
 
-export default function FormDialogMenuLogin() {
+export default function FormDialog() {
     const [open, setOpen] = React.useState(false)
   
     const handleClickOpen = () => {
@@ -82,7 +84,7 @@ export default function FormDialogMenuLogin() {
       <>
         <MenuItem onClick={handleClickOpen}>
           Login
-        </MenuItem>
+        </MenuItem> 
         <Dialog
           open={open}
           onClose={handleClose}
@@ -100,7 +102,7 @@ export default function FormDialogMenuLogin() {
                 variant="fullWidth"
                 aria-label="full width tabs example"
               >
-                <Tab label="Login as customer" {...a11yProps(0)} />
+                <Tab label="Sign up as customer" {...a11yProps(0)} />
                 <Tab label="Sign up as employee" {...a11yProps(1)} />
               </Tabs>
             </AppBar>
@@ -113,7 +115,7 @@ export default function FormDialogMenuLogin() {
                 <LoginDetails />
               </TabPanel>
               <TabPanel value={value} index={1} dir={theme.direction}>
-                <LoginDetails />
+                <EmployeeLogin />
               </TabPanel>
             </SwipeableViews>
           </div>
@@ -122,7 +124,3 @@ export default function FormDialogMenuLogin() {
       </>
     )
   }
-
-
-
-

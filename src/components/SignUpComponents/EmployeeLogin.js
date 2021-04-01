@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     float: 'right',
     fontSize:'12px',
     textDecoration: 'none',
-    marginRight:'8%',
+    marginRight:'10%',
     marginBottom:'15px'
   },
   divider:{
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
   agreement:{
     fontWeight: 'bold',
     fontSize:'12px',
-    marginLeft:'34px',
+    marginLeft:'36px',
     width:'100%',
     marginBottom:'5px' 
   },
@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
   account:{
     fontWeight: 'bold',
     fontSize:'12px',
-    marginLeft:'34px',
+    marginLeft:'36px',
     marginBottom:'-22px'
   },
   login:{
@@ -109,7 +109,6 @@ const classes = useStyles()
     return (
       <>
         
-          <Grid container direction="column">
             <form onSubmit={handleSubmit(onSubmit)}>      
               <Grid container justify="center">
                 <DialogTitle className="Dialog-title">
@@ -198,7 +197,7 @@ const classes = useStyles()
               
               </Grid>
 
-              <Grid>
+              <Grid justify="center">
                 <Typography
                   className={classes.text}
                 >
@@ -222,7 +221,6 @@ const classes = useStyles()
                   defaultValue=""
                 />
               </Grid>
-
               <Grid>
                 <a href="/password">
                   <Typography
@@ -232,7 +230,6 @@ const classes = useStyles()
                   </Typography>
                 </a>
               </Grid>
-              
               <Grid container justify="center">
                 {loading && <CircularProgress />}
                 {error && (
@@ -253,35 +250,12 @@ const classes = useStyles()
               )}
                 <PopupLoginButton />
               </Grid>
-              <Grid container justify="center">
-                <DividerWithText>
-                  <Typography
-                    className={classes.divider}
-                  >
-                    or login with
-                  </Typography>
-                </DividerWithText>
-              </Grid>
+            </form>
             
-              <Grid container justify="center" item xs={12}>
-                <FbButton />
-              </Grid>
-              <Grid container justify="center" item xs={12}>
-                <GoogleButton />
-              </Grid>
-              <Grid container justify="center" item xs={12}>
-                <Typography
-                  className={classes.agreement}
-                >
-                  By logging in, I agree to terms & conditions.
-                </Typography>
-                
-              </Grid>
-            
+           
               <Grid container justify="center" item xs={12}>
                 <Divider className={classes.divide} />
               </Grid>
-            </form>
              
             <Grid container direction="row">
               <Grid container justify="flex-start">
@@ -296,7 +270,7 @@ const classes = useStyles()
                
               </Grid>
             </Grid>
-          </Grid>
+        
         
         
       </>

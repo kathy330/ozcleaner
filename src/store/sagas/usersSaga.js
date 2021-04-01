@@ -18,10 +18,10 @@ function* userRegister(action) {
   try {
     const userInfo = 
     yield call(axios.post,'http://localhost:8000/users/registration', action.payload)
-    // yield put({ type: 'USER_REGISTER_SUCCESS', payload: userInfo })
-    // yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
-    // localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    console.log(userInfo)
+    yield put({ type: 'USER_REGISTER_SUCCESS', payload: userInfo })
+    yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
+    localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    console.log(`from${  userInfo}`)
   } catch (e) {
     yield put({ type: 'USER_REGISTER_FAIL', 
     payload: e.response.data.error })

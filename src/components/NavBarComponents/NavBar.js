@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Grid,
   Button,
@@ -20,14 +21,27 @@ import MenuDialog from '../SignUpComponents/PopupFormMenu'
 import FormDialogLogin from '../SignUpComponents/PopupFormLogin'
 import FormDialogMenuLogin from '../SignUpComponents/PopupFormLoginMenu'
 import { navBarStyle } from '../../styles/styles'
+import logo from "../../assets/logo.svg" 
+import {signout} from "../../store/actions/actionCreator"
+
+// https://www.flaticon.com/free-icon/broom_2731291
 
 export default function HeaderNavigation(props) {
   const { trigger } = props
+  const dispatch = useDispatch()
+
+  const userSignin = useSelector((state) => state.userSignin)
+  const { userInfo } = userSignin
 
   const style = navBarStyle()
   const [anchor, setAnchor] = useState(null)
   const handleClick = (event) => {
     setAnchor(event.currentTarget)
+  }
+
+
+  const signoutHandler = () => {
+    dispatch(signout())
   }
 
   const handleClose = () => {
@@ -47,7 +61,15 @@ export default function HeaderNavigation(props) {
         <Grid item className={style.container}>
           <Toolbar>
             <Grid className={style.grow}>
-              <Button href='/'>Logo</Button>
+              <Button href='/'>
+                <img
+                  src={logo} 
+                  className={style.logoimg}
+                  alt="error icon"
+                />
+                {/* Home */}
+              </Button>
+              {/* Logo */}
             </Grid>
             <IconButton
               className={style.menuButton}
@@ -57,23 +79,56 @@ export default function HeaderNavigation(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Box className={style.buttonsBox}>
-              <Button href='/order' className={style.bookingButton}>Booking Now</Button>
-              <FormDialog />
-              <FormDialogLogin />
-            </Box>
-            <Drawer
-              id="simple-menu"
-              anchorEl={anchor}
-              keepMounted
-              open={Boolean(anchor)}
-              onClose={handleClose}
-              anchor="right"
-            >
-              <MenuItem onClick={handleClose}>Booking Now</MenuItem>
-              <MenuDialog />
-              <FormDialogMenuLogin />
-            </Drawer>
+            {userInfo? (
+              <>
+                <Box className={style.buttonsBox}>
+                  <Button href='/order' className={style.bookingButton}>Booking Now</Button>
+                  <Button>My Order</Button>
+                  <Button>My Profile</Button>
+                  <Button
+                    onClick={signoutHandler}
+                  >
+                    Sign Out
+                  </Button>
+                </Box>
+
+                <Drawer
+                  id="simple-menu"
+                  anchorEl={anchor}
+                  keepMounted
+                  open={Boolean(anchor)}
+                  onClose={handleClose}
+                  anchor="right"
+                >
+                  <MenuItem onClick={handleClose}>Booking Now</MenuItem>
+                  <MenuItem>My Order</MenuItem>
+                  <MenuItem>My Profile</MenuItem>
+                  <MenuItem onClick={signoutHandler}>Sign Out</MenuItem>
+                </Drawer>
+              </>
+            ) : (
+              <>
+                <Box className={style.buttonsBox}>
+                  <Button href='/order' className={style.bookingButton}>Booking Now</Button>
+                  <FormDialog />
+                  <FormDialogLogin />
+                </Box>
+                
+                <Drawer
+                  id="simple-menu"
+                  anchorEl={anchor}
+                  keepMounted
+                  open={Boolean(anchor)}
+                  onClose={handleClose}
+                  anchor="right"
+                >
+                  <MenuItem onClick={handleClose}>Booking Now</MenuItem>
+                  <MenuDialog />
+                  <FormDialogMenuLogin />
+                </Drawer>
+              </>
+            )}
+            
           </Toolbar>
         </Grid>
       </AppBar>

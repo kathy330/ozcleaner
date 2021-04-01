@@ -9,6 +9,9 @@ import Location from './Customers/Location'
 import DueDate from './Customers/DueDate'
 import Extra from './Customers/Extra'
 import Review from './Customers/Review'
+import Status from './Customers/Status'
+import Names from './Customers/Names'
+import PhoneNumber from './Customers/PhoneNumber'
 // import user1 from '../../assets/user1.jpg'
 
 // style
@@ -36,23 +39,33 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const AdminCustomersLeft = () => {
+const AdminCustomersLeft = ({ dueDate, orderTitle,
+  customerFirstName, customerLastName, location, rate, cab, fri, ov, intWin, reviewText,
+  orderStatus, typeOfOrder, phone }) => {
   const classes = useStyles()
+  // const { dueDate, orderTitle,
+  //   customerFirstName, customerLastName, location, rate, reviewText } = props
+  // console.log(props, 'this is props')
   return (
     <Grid item xs={12} sm={9} className={classes.root}>
-      <OrderTitle />
-      <CreatedBy />
+      <OrderTitle title={orderTitle} />
+      <CreatedBy firstName={customerFirstName} lastName={customerLastName} />
       <Divider className={classes.divider} />
-      {/* <CreatedBy image='BJ' name='Ben' time='2020.03.02' title='Assgined To' /> */}
       <AssginedTo />
       <Divider className={classes.divider} />
-      <Location />
+      <Status status={orderStatus} />
       <Divider className={classes.divider} />
-      <DueDate />
+      <Names firstName={customerFirstName} lastName={customerLastName} />
       <Divider className={classes.divider} />
-      <Extra />
+      <Location address={location} />
       <Divider className={classes.divider} />
-      <Review rating="4.5" />
+      <PhoneNumber phoneNumber={phone} />
+      <Divider className={classes.divider} />
+      <DueDate endTime={dueDate} />
+      <Divider className={classes.divider} />
+      <Extra cabinets={cab} fridge={fri} oven={ov} interiorWindows={intWin} type={typeOfOrder} />
+      <Divider className={classes.divider} />
+      <Review rating={rate} review={reviewText} />
     </Grid>
   )
 }

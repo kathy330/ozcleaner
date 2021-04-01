@@ -1,6 +1,11 @@
-import React from 'react';
-import { Grid, Typography, makeStyles, Card, CardContent, Divider } from '@material-ui/core';
-import { RedStatus } from '../UIComponents/Status';
+/* eslint-disable */
+import React, { useEffect } from 'react'
+import { Grid, Typography, makeStyles, Card, CardContent, Divider, Button } from '@material-ui/core'
+
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogTitle from '@material-ui/core/DialogTitle'
+// import { SecondaryButton } from '../UIComponents/Buttons'
 
 // style
 const useStyles = makeStyles((theme) => ({
@@ -30,12 +35,68 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 20,
     backgroundColor: '#cc584e',
   },
-}));
+  cancel: {
+    color: theme.palette.secondary.contrastText,
+    background: theme.palette.secondary.main,
+    borderRadius: '25px',
+    marginInline: '25px',
+    '&:hover': {
+      background: theme.palette.secondary.hover,
+      boxShadow: '0px 2px 10px #888888',
+    },
+  },
+  dialog: {
+    padding: '40px'
 
-function AdminCustomersRight() {
-  const classes = useStyles();
+  }
+}))
+
+
+
+function AdminCustomersRight(props) {
+  const classes = useStyles()
+  const { orderPrice, orderStatus } = props
+  const [open, setOpen] = React.useState(false)
+
+  const [state, setState] = React.useState({
+    status: props.orderStatus
+  })
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
+  const handleCancelOrder = () => {
+    setOpen(false)
+    // console.log(state.status)
+    setState({ status: "cancelled" })
+  }
+  useEffect(() => {
+    // console.log(orderStatus, 'orderstatus')
+    console.log(state.status, 'state.status')
+  }, [state])
+
+
+
+
   return (
     <Grid item xs={12} sm={3} className={classes.root}>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle className={classes.dialog}>
+          Do you want to cancel this order?
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={handleCancelOrder} color="primary">
+            YES
+          </Button>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            NO
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       <Card className={classes.card}>
         <CardContent>
           <Grid item xs={12}>
@@ -43,21 +104,22 @@ function AdminCustomersRight() {
               PRICE
             </Typography>
           </Grid>
-
           <Divider />
-
           <Grid item xs={12}>
             <Typography className={classes.price} variant="h3" color="textSecondary">
-              $800
+              $
+              {orderPrice}
             </Typography>
           </Grid>
           <Divider />
         </CardContent>
       </Card>
 
-      <RedStatus>CANCEL ORDER</RedStatus>
+      <Button onClick={handleClickOpen} className={classes.cancel}>
+        CANCEL ORDER
+      </Button>
     </Grid>
-  );
+  )
 }
 
-export default AdminCustomersRight;
+export default AdminCustomersRight

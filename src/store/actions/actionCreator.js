@@ -122,5 +122,9 @@ export const getCUSDETAILTABLERequest = (users) => ({
     type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
     payload: users,
   })
+export const getSTAFFDETAILTABLERequest = (users) => ({
+    type: actionTypes.GET_STAFFDETAILTABLE_REQUEST,
+    payload: users,
+  })
 
   

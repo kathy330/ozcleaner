@@ -152,3 +152,17 @@ export const signout = () => ({
 })
 
 
+export const signinEmployee = (payload) => ({
+  type: actionTypes.EMPLOYEE_SIGNIN_REQUEST,
+  payload,
+})
+
+export const registerEmployee = (payload) => ({
+  type: actionTypes.EMPLOYEE_REGISTER_REQUEST,
+  payload,
+})
+
+export const signoutEmployee = () => ({
+  type: actionTypes.EMPLOYEE_SIGNOUT_REQUEST,
+})
+

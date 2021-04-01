@@ -125,6 +125,11 @@ export const getSTAFFDETAILRequest = (users) => ({
   payload: users,
 })
 
+export const getSTAFFDETAILTABLERequest = (users) => ({
+  type: actionTypes.GET_STAFFDETAILTABLE_REQUEST,
+  payload: users,
+})
+
 // customer details page
 export const getCUSDETAILRequest = (users) => ({
   type: actionTypes.GET_CUSDETAIL_REQUEST,
@@ -132,9 +137,9 @@ export const getCUSDETAILRequest = (users) => ({
 })
 
 export const getCUSDETAILTABLERequest = (users) => ({
-  type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
-  payload: users,
-})
+    type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
+    payload: users,
+  })
 
 
 export const signin = (payload) => ({

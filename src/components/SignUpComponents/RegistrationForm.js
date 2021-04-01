@@ -11,7 +11,7 @@ import {useForm,Controller } from 'react-hook-form'
 import {useDispatch} from 'react-redux'
 import DividerWithText from './Divider'
 import {PopupButton,FbButton,GoogleButton} from './Button'
-import {postRegularRequest} from '../../store/actions'
+import {register} from '../../store/actions'
 
 
 export default function RegistrationForm() {
@@ -19,7 +19,7 @@ export default function RegistrationForm() {
   const dispatch = useDispatch()
   const onSubmit = (data) =>{
     console.log(data)
-    dispatch(postRegularRequest(data)) // 发送saga请求
+    dispatch(register(data)) // 发送saga请求
   }
 
   const useStyles = makeStyles((theme) => ({
@@ -111,6 +111,55 @@ const classes = useStyles()
                 Join us
               </Typography>
             </DialogTitle>
+          </Grid>
+
+          <Grid container>
+            <Typography
+              className={classes.text}
+            >
+              First Name
+            </Typography>
+          </Grid>
+          <Grid container justify="center">
+            <Controller
+              as={(
+                <TextField
+                  className={classes.textField}
+                  margin="dense"
+                  id="outlined-basic"
+                  label="First Name"
+                  type="First Name"
+                  variant="outlined"
+                />
+                )}
+              name="firstName"
+              control={control}
+              defaultValue=""
+            />
+          </Grid>
+          <Grid container>
+            <Typography
+              className={classes.text}
+            >
+              Last Name
+            </Typography>
+          </Grid>
+          <Grid container justify="center">
+            <Controller
+              as={(
+                <TextField
+                  className={classes.textField}
+                  margin="dense"
+                  id="outlined-basic"
+                  label="Last Name"
+                  type="Last Name"
+                  variant="outlined"
+                />
+                )}
+              name="lastName"
+              control={control}
+              defaultValue=""
+            />
           </Grid>
           <Grid container>
             <Typography

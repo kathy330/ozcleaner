@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles, Box, Grid, Typography, Link, Avatar } from '@material-ui/core'
+import { makeStyles, Box, Grid, Typography } from '@material-ui/core'
 import { deepPurple, deepOrange } from '@material-ui/core/colors'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 // import style from '../scss/Admin.module.scss'
 
 
@@ -33,26 +34,24 @@ const styles = makeStyles((theme) => ({
   },
 }))
 
-export default function CreatBy(props) {
+export default function Names(props) {
   const classes = styles()
   const { firstName, lastName } = props
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>
-        <Avatar className={classes.purple}>
-          {firstName[0].toUpperCase()}
-        </Avatar>
+        <AccountCircleIcon />
       </Grid>
       <Grid item justify="center" xs={9} sm={10} className={classes.text}>
-        <Typography variant="subtitle2">CREATE BY</Typography>
+        <Typography variant="subtitle2">CONTACT</Typography>
         <Grid container direction="row" justify="space-between" space={5}>
-          <Link href="/admin/customers" variant="subtitle2">
+          <Typography variant="body2">
             {firstName[0].toUpperCase()}
             {firstName.slice(1)}
             {' '}
             {lastName[0].toUpperCase()}
             {lastName.slice(1)}
-          </Link>
+          </Typography>
           {/* <Typography variant="subtitle2">23 hours ago</Typography> */}
         </Grid>
       </Grid>

@@ -10,15 +10,38 @@ const useStyles = makeStyles({
   },
 })
 
-export default function Extra() {
+export default function Extra(props) {
   const classes = useStyles()
+  // const { cabinets, fridge, oven, interiorWindows } = props
+  console.log(props)
+  console.log(Object.values(props))
+  let items = 'No extra items.  '
+  if (Object.values(props)[0] === 1) {
+    items = "Cabinets, "
+  }
+  if (Object.values(props)[1] === 1) {
+    items += "Fridge, "
+  }
+  if (Object.values(props)[2] === 1) {
+    items += "Oven, "
+  }
+  if (Object.values(props)[3] === 1) {
+    items += "InteriorWindows  "
+  }
+  let item = ''
+  if (Object.values(props)[4] === "EC") {
+    item = "Cabinets, Fridge, Oven, InteriorWindows "
+  } else { item = items.slice(0, -2) }
+
+
+  console.log(items)
   return (
     <Grid container direction="column" className={classes.root}>
       <Typography variant="subtitle2">
         Extra
       </Typography>
       <Typography variant="body2">
-        Oven, Fridge
+        {item}
       </Typography>
     </Grid>
   )

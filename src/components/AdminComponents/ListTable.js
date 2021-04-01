@@ -41,7 +41,7 @@ function ListCustomerTable(props) {
   const loading = useSelector(state => state.userslist.loading)
   const error = useSelector(state => state.userslist.error)
   const dispatchRequest = (tableType === 'customer') 
-  // console.log(usersData)
+  console.log(usersData)
   const dispatchRequested = () => {
     if (dispatchRequest) {
       dispatch(getAllUserListRequest(listSize))
@@ -78,7 +78,7 @@ function ListCustomerTable(props) {
   }
 
   const openDeletedModal = (id) =>{
-    console.log(id)
+    // console.log(usersData.values(id))
     setDeletedId(id)
     setOpen(true)
   }
@@ -143,10 +143,10 @@ function ListCustomerTable(props) {
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleAlertClose} variant="contained" color="secondary">
+              <Button onClick={handleAlertConfirm} variant="contained" color="secondary">
                 Delete
               </Button>
-              <Button onClick={handleAlertConfirm} variant="contained" autoFocus>
+              <Button onClick={handleAlertClose} variant="contained" autoFocus>
                 Cancel
               </Button>
             </DialogActions>

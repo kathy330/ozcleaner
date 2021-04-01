@@ -24,7 +24,8 @@ function* userRegister(action) {
     console.log(`from${  userInfo}`)
   } catch (e) {
     yield put({ type: 'USER_REGISTER_FAIL', 
-    payload: e.response.data.error })
+    payload: e.response.data.email})
+    // console.log(e.response.data.email)
   }
 }
 

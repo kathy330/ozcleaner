@@ -6,7 +6,12 @@ import PropTypes from 'prop-types'
 import { AppBar, Box, Tabs, Tab, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 // import Card from './card'
-import Overview from './Overview'
+import {Switch} from 'react-router'
+import {Link} from 'react-router-dom'
+import ProtectedRoute from "../../../router/ProtectedRoute"
+import AdminDashboardPage from '../../../pages/AdminPage/AdminDashboardPage'
+import AdminCustomersListPage from '../../../pages/AdminPage/AdminCustomersListPage'
+import AdminStaffsListPage from '../../../pages/AdminPage/AdminStaffsListPage'
 
 
 function TabPanel(props) {
@@ -76,24 +81,22 @@ export default function SimpleTabs() {
           indicatorColor="primary"
           textColor="primary"
         >
-          <Tab label="OVERVIEW" {...a11yProps(0)} />
+          <Tab label="OVERVIEW" {...a11yProps(0)} component={Link} to="/admin/dashboard" />
           <Tab label="ORDERS" {...a11yProps(1)} />
-          <Tab label="CUSTOMERS" {...a11yProps(2)} />
-          <Tab label="STAFFS" {...a11yProps(3)} />
+          <Tab
+            label="CUSTOMERS"
+            {...a11yProps(2)} 
+            component={Link}
+            to="/admin/customers"
+          />
+          <Tab label="STAFFS" {...a11yProps(3)} component={Link} to="/admin/staffs" />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <Overview />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
+      <Switch>
+        <ProtectedRoute path="/admin/dashboard" component={AdminDashboardPage} />
+        <ProtectedRoute path="/admin/customers" exact component={AdminCustomersListPage} />
+        <ProtectedRoute path="/admin/staffs" exact component={AdminStaffsListPage} />
+      </Switch>
     </div>
   )
 }

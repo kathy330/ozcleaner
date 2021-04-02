@@ -5,8 +5,7 @@ import {
   Container,
   Typography,
 } from '@material-ui/core'
-import NavBar from '../../components/NavBarComponents/NavBar'
-import Footer from '../../components/FooterComponents/Footer'
+
 import ListTable from '../../components/AdminComponents/ListTable'
 
 const columns = [
@@ -51,7 +50,6 @@ const AdminCustomersListPage = () => {
 
   return (
     <>
-      <NavBar />
       <Container maxWidth="lg" className={classes.root}>
         <Typography variant="h3" component="h1">
           Customer List
@@ -62,7 +60,7 @@ const AdminCustomersListPage = () => {
           rowPreSet={rowPreSet}
         />
       </Container>
-      <Footer />
+
     </>
   )
 }

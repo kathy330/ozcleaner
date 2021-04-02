@@ -125,6 +125,11 @@ export const getSTAFFDETAILRequest = (users) => ({
   payload: users,
 })
 
+export const getSTAFFDETAILTABLERequest = (users) => ({
+  type: actionTypes.GET_STAFFDETAILTABLE_REQUEST,
+  payload: users,
+})
+
 // customer details page
 export const getCUSDETAILRequest = (users) => ({
   type: actionTypes.GET_CUSDETAIL_REQUEST,
@@ -132,9 +137,9 @@ export const getCUSDETAILRequest = (users) => ({
 })
 
 export const getCUSDETAILTABLERequest = (users) => ({
-  type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
-  payload: users,
-})
+    type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
+    payload: users,
+  })
 
 
 export const signin = (payload) => ({
@@ -151,4 +156,18 @@ export const signout = () => ({
   type: actionTypes.USER_SIGNOUT_REQUEST,
 })
 
+
+export const signinEmployee = (payload) => ({
+  type: actionTypes.EMPLOYEE_SIGNIN_REQUEST,
+  payload,
+})
+
+export const registerEmployee = (payload) => ({
+  type: actionTypes.EMPLOYEE_REGISTER_REQUEST,
+  payload,
+})
+
+export const signoutEmployee = () => ({
+  type: actionTypes.EMPLOYEE_SIGNOUT_REQUEST,
+})
 

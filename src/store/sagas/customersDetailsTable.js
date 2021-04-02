@@ -2,7 +2,7 @@ import {call,put,takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
  
 
-const apiUrl = `http://localhost:8000/regular/1`
+const apiUrl = `http://localhost:8000/users/alltask/1`
 
 
 
@@ -10,9 +10,9 @@ function* fetchCusDetailTableUrl() {
 
   try{
     const users = yield call(axios.get, apiUrl)
-
     console.log(users)
-    yield put({type:'GET_CUSDETAILTABLE_SUCCESS',users:users})
+
+    yield put({type:'GET_CUSDETAILTABLE_SUCCESS',users:users.data})
   }
   catch(e) {
     yield put({type:'GET_CUSDETAILTABLE_FAILED',message:e.message})

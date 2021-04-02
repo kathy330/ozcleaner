@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable no-unused-vars */
 import React from 'react'
 // import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
@@ -18,7 +18,7 @@ import {signin, signout} from "../../store/actions/actionCreator"
 import FormDialogSignupPop from "./FormDialogSignupPop"
 
 
-export default function LoginDetails() {
+export default function EmployeeLoginDetails() {
     const {control ,handleSubmit} = useForm()
     const dispatch = useDispatch()
     const onSubmit = (data) =>{
@@ -247,7 +247,9 @@ const classes = useStyles()
               </Grid>
               <Grid container justify="flex-end">
                
-                <FormDialogSignupPop />
+                <Typography className={classes.login}>
+                  <FormDialogSignupPop />
+                </Typography>
                
               </Grid>
             </Grid>

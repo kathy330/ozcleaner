@@ -4,7 +4,6 @@ import { makeStyles, Container, Grid } from '@material-ui/core'
 import { useSelector, useDispatch } from 'react-redux'
 import AdminCustomersLeft from "../../components/AdminComponents/AdminCustomersLeft"
 import AdminCustomersRight from "../../components/AdminComponents/AdminCustomersRight"
-import AdminCustomersTop from "../../components/AdminComponents/AdminCustomersTop"
 import NavBar from '../../components/NavBarComponents/NavBar'
 import Footer from '../../components/FooterComponents/Footer'
 import { getREGULARRequest, getENDRequest, cancelRegularOrderRequest } from "../../store/actions"
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 // 暂定一个初始order数据，下面更改
-const putData = {
+const data = {
   taskID: "3",
   address: {
     address1: "Room 101",
@@ -65,12 +64,10 @@ const putData = {
 }
 
 function displayPage(repo) {
-
-  //const classes = useStyles()
+  if (typeof (repo) === 'string') { return <LoadingIcon /> }
   const { endTime, title, firstName, address, lastName,
-    cabinets, fridge, oven, interiorWindows, rating, review, price, status, type, phoneNumber } = repo[0]
-  console.log(repo[0], '10')
-
+    cabinets, fridge, oven, interiorWindows, rating, review, price, status, type, phoneNumber, taskID } = repo[0]
+  console.log(repo, '10')
 
   return (
     <>
@@ -90,6 +87,7 @@ function displayPage(repo) {
           typeOfOrder={type}
           reviewText={review} />
         <AdminCustomersRight orderPrice={price}
+          ID={taskID}
           orderStatus={status} />
       </Grid>
     </>
@@ -98,21 +96,25 @@ function displayPage(repo) {
 
 function AdminCustomersPage() {
   const classes = useStyles()
-  const { watch } = useForm()
-  const type = watch("type", "")
-
-
+  const [type, setType] = React.useState({
+    repo: ''
+  })
+  const data = { taskid: 1 }
   const dispatch = useDispatch()
   useEffect(() => {
     //get（假定已经拿到所有数据了)
     // get data
-    dispatch(getREGULARRequest())
+    dispatch(getREGULARRequest(data))
     // dispatch(getENDOFLEASERequest())
     // post
-
+    setType({ repo })
   }, [])
 
-  let repo = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)
+  let redux = useSelector(state => state.regular_in_reducer_index)
+  console.log(redux, 'redux')
+  let repo = redux.repos_in_reducer_init
+  let loading = redux.loading
+  console.log(loading, 'loading')
   // let repo2 = useSelector()
   // console.log(Object.keys(repo[0]))
 
@@ -124,8 +126,7 @@ function AdminCustomersPage() {
   //   let repo = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)
   // }
 
-
-  console.log(repo[0], '456')
+  // console.log(repo[0], '456')
   console.log(repo, '789')
 
 
@@ -134,8 +135,8 @@ function AdminCustomersPage() {
       {/* {endTime} */}
       <NavBar />
       <Container maxWidth="md" className={classes.body}>
-        {(repo === 'init value') && (<LoadingIcon />)}
-        {(repo !== 'init value') && displayPage(repo)}
+        {(loading) && (<LoadingIcon />)}
+        {(!loading) && displayPage(repo)}
       </Container>
       {/* <Container maxWidth="md" className={classes.body}>{repo.length}
         <AdminCustomersTop />

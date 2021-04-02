@@ -5,7 +5,11 @@ import { Grid, Typography, makeStyles, Card, CardContent, Divider, Button } from
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateRegularRequest } from "../../store/actions"
 // import { SecondaryButton } from '../UIComponents/Buttons'
+import { Link, Redirect } from 'react-router-dom'
 
 // style
 const useStyles = makeStyles((theme) => ({
@@ -52,15 +56,20 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-
 function AdminCustomersRight(props) {
   const classes = useStyles()
-  const { orderPrice, orderStatus } = props
+  const dispatch = useDispatch()
+  const { orderPrice, orderStatus, ID } = props
   const [open, setOpen] = React.useState(false)
+  const data = { taskid: ID, orderstatus: "in-progress" }
+  // const data = { taskid: ID, orderstatus: "cancelled" }
+  console.log(data)
 
   const [state, setState] = React.useState({
     status: props.orderStatus
   })
+
+  let repo = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -70,13 +79,46 @@ function AdminCustomersRight(props) {
   }
   const handleCancelOrder = () => {
     setOpen(false)
+    dispatch(updateRegularRequest(data))
+    // console.log('1')
+    // Redirection()
+    // console.log('2')
     // console.log(state.status)
-    setState({ status: "cancelled" })
+    // const id = '1'
+    // const data = {
+    //   "status": "in-progress"
+    // }
+    // axios.put(`http://localhost:8000/regular/${id}`, data).then((res) => {
+    //   console.log(res.data);
+    // })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    console.log(repo)
+    // setState({ status: "cancelled" })
+
   }
+  // const Redirection = () => {
+  //   if (state.status === 'cancelled') {
+  //     return (<Redirect to="/admin/order" />)
+  //   }
+  // }
+
   useEffect(() => {
     // console.log(orderStatus, 'orderstatus')
     console.log(state.status, 'state.status')
   }, [state])
+
+
+
+
+  // const RedirectLink = (props) => {
+  //   const { to } = props
+  //   const Redirect = props => <Link to={to}{...props} />
+  //   if (status === 'cancelled') {
+  //     return <Redirect component={RedirectLink} />
+  //   }
+  // }
 
 
 

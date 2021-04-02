@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles, Box, Grid, Typography, Link, Avatar } from '@material-ui/core'
 import { deepPurple, deepOrange } from '@material-ui/core/colors'
 // import style from '../scss/Admin.module.scss'
+import { Link as RouterLink } from 'react-router-dom'
 
 
 // styles
@@ -35,7 +36,8 @@ const styles = makeStyles((theme) => ({
 
 export default function CreatBy(props) {
   const classes = styles()
-  const { firstName, lastName } = props
+  const { firstName, lastName, taskID } = props
+  const path = `/admin/customers/${taskID}`
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>
@@ -46,7 +48,7 @@ export default function CreatBy(props) {
       <Grid item justify="center" xs={9} sm={10} className={classes.text}>
         <Typography variant="subtitle2">CREATE BY</Typography>
         <Grid container direction="row" justify="space-between" space={5}>
-          <Link href="/admin/customers" variant="subtitle2">
+          <Link component={RouterLink} to={path} variant="subtitle2">
             {firstName[0].toUpperCase()}
             {firstName.slice(1)}
             {' '}

@@ -7,6 +7,7 @@ import ProtectedRoute from "../../router/ProtectedRoute"
 import AdminDashboardPage from "./AdminDashboardPage"
 import AdminCustomersListPage from "./AdminCustomersListPage"
 import AdminStaffsListPage from "./AdminStaffsListPage"
+import Footer from '../../components/FooterComponents/Footer'
 
 
 function AdminIndexPage(){
@@ -20,10 +21,12 @@ function AdminIndexPage(){
         {/* <footer /> */}
 
         <Switch>
-          <ProtectedRoute path="/admin/dashboard" component={AdminDashboardPage} />
-          <ProtectedRoute path="/admin/customers" exact component={AdminCustomersListPage} />
-          <ProtectedRoute path="/admin/staffs" exact component={AdminStaffsListPage} />
+          <ProtectedRoute path="/dashboard" component={AdminDashboardPage} />
+          <ProtectedRoute path="/customers" component={AdminCustomersListPage} />
+          <ProtectedRoute path="/staffs" component={AdminStaffsListPage} />
         </Switch>
+
+        <Footer />
       </div>
     )
   }

@@ -27,11 +27,6 @@ const useStyles = makeStyles((themes) => ({
   }
 }))
 
-function CombineName(firstname,lastname) {
-  const fullName=`${firstname} ${lastname}`
-  return fullName
-}
-
 export default function Avatars(props){
 
   const classes = useStyles()
@@ -49,7 +44,9 @@ export default function Avatars(props){
              
           <Grid item xs>
             <Box textAlign="center" key={user.name} width="100%" fontWeight="bold" fontSize={25}>
-              {CombineName(user.name.firstName,user.name.lastName)}
+              {user.name.firstName}
+              {' '}
+              {user.name.lastName}
             </Box>
           </Grid>
     

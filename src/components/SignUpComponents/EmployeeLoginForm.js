@@ -15,6 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import DividerWithText from './Divider'
 import {FbButton,GoogleButton,PopupLoginButton} from './Button'
 import {signin, signout} from "../../store/actions/actionCreator"
+import FormDialogSignupPop from "./FormDialogSignupPop"
 
 
 export default function EmployeeLoginDetails() {
@@ -247,9 +248,7 @@ const classes = useStyles()
               <Grid container justify="flex-end">
                
                 <Typography className={classes.login}>
-                  <a href="/login" className={classes.loginColor}>
-                    Sign Up
-                  </a>
+                  <FormDialogSignupPop />
                 </Typography>
                
               </Grid>

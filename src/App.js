@@ -63,7 +63,7 @@ function App() {
         <Route path="/Yanbo" exact component={YanboPage} />
         <Route path="/Yanbo/form" exact component={YanboForm} />
         <Route path="/wystan" exact component={WystanPage} />
-        <Route path="/kathy" exact component={KathyPage} />
+        <Route path="/admin/customers/:id" exact component={KathyPage} />
         <Route path="/erik" exact component={ErikPage} />
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />

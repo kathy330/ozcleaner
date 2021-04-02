@@ -15,7 +15,7 @@ import {MenuItem} from '@material-ui/core'
 // import RegistrationForm from './RegistrationForm'
 // import EmployeeRegistrationForm from './Employee'
 import LoginDetails from './LoginForm'
-import EmployeeLogin from './EmployeeLogin'
+import EmployeeLoginDetails from './EmployeeLoginForm'
 // import AppBar from '@material-ui/core/AppBar'
 // import Tabs from '@material-ui/core/Tabs'
 
@@ -115,7 +115,7 @@ export default function FormDialog() {
                 <LoginDetails />
               </TabPanel>
               <TabPanel value={value} index={1} dir={theme.direction}>
-                <EmployeeLogin />
+                <EmployeeLoginDetails />
               </TabPanel>
             </SwipeableViews>
           </div>

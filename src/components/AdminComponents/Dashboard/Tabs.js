@@ -7,11 +7,13 @@ import { AppBar, Box, Tabs, Tab, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 // import Card from './card'
 import {Switch} from 'react-router'
-import {Link} from 'react-router-dom'
+import {Link, useLocation } from 'react-router-dom'
 import ProtectedRoute from "../../../router/ProtectedRoute"
 import AdminDashboardPage from '../../../pages/AdminPage/AdminDashboardPage'
 import AdminCustomersListPage from '../../../pages/AdminPage/AdminCustomersListPage'
 import AdminStaffsListPage from '../../../pages/AdminPage/AdminStaffsListPage'
+import AdminStaffsDetailsPage from "../../../pages/AdminPage/AdminStaffDetailsPage"
+import AdminCustomersDetailsPage from "../../../pages/AdminPage/AdminCustomersDetailsPage"
 
 
 function TabPanel(props) {
@@ -41,10 +43,17 @@ TabPanel.propTypes = {
 }
 
 function a11yProps(index) {
+
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
   }
+}
+
+function presentIndex(pathname) {
+  // eslint-disable-next-line no-nested-ternary
+  return pathname.includes("dashboard") ? 0 : pathname.includes("orders") 
+  ? 1 : pathname.includes("customers") ? 2 : 3
 }
 
 const useStyles = makeStyles(() => ({
@@ -63,8 +72,12 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function SimpleTabs() {
+
+  const {pathname} = useLocation()
+  const index = presentIndex(pathname)
+  console.log(index)
   const classes = useStyles()
-  const [value, setValue] = React.useState(0)
+  const [value, setValue] = React.useState(index)
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -96,6 +109,8 @@ export default function SimpleTabs() {
         <ProtectedRoute path="/admin/dashboard" component={AdminDashboardPage} />
         <ProtectedRoute path="/admin/customers" exact component={AdminCustomersListPage} />
         <ProtectedRoute path="/admin/staffs" exact component={AdminStaffsListPage} />
+        <ProtectedRoute path="/admin/staffs/:id" exact component={AdminStaffsDetailsPage} />
+        <ProtectedRoute path="/admin/customers/:id" exact component={AdminCustomersDetailsPage} />
       </Switch>
     </div>
   )

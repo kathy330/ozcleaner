@@ -20,7 +20,7 @@ function Home() {
   const trigger = useScrollTrigger({ disableHysteresis: true })
   
   // localStorage.setItem("authLevel", "") // 如果为空，则不能进入order 页面
-  localStorage.setItem("authLevel", "user") // 可以进入order页面
+  localStorage.setItem("authLevel", "admin") // 可以进入order页面
   // localStorage.setItem("authLevel", "admin") // 可以进入admin,order页面
   
   return (

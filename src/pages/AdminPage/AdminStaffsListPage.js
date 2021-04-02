@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Container, Typography } from '@material-ui/core'
+import { Container, Grid, Typography } from '@material-ui/core'
 import ListTable from '../../components/AdminComponents/ListTable'
 
 const columns = [
@@ -29,7 +29,6 @@ const columns = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight: '75vh',
     marginTop: '1px',
     padding: '35px 15px',
     background: '#fff',
@@ -37,25 +36,32 @@ const useStyles = makeStyles((theme) => ({
       padding: '25px 10px',
     },
   },
+  listTable: {
+    minHeight: '70vh',
+    justifyContent: 'center',
+    alignContent: 'space-between'
+  }
 }))
 
-function AdminCustomersListPage() {
+function AdminCustomersListPage(match) {
   const classes = useStyles()
-  const rowPreSet = 10
   const tableType = 'staff'
+  const query = new URLSearchParams(match.location.search)
+  const page = parseInt(query.get('page') || '1', 10)
   return (
     <>
       <Container maxWidth="lg" className={classes.root}>
         <Typography variant="h3" component="h1">
           Staffs List
         </Typography>
-        <ListTable
-          columns={columns}
-          rowPreSet={rowPreSet}
-          tableType={tableType}
-        />
+        <Grid container className={classes.listTable}>
+          <ListTable
+            columns={columns}
+            tableType={tableType}
+            urlpage={page}
+          />
+        </Grid>
       </Container>
-
     </>
   )
 }

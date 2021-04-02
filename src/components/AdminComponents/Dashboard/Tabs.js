@@ -12,6 +12,7 @@ import ProtectedRoute from "../../../router/ProtectedRoute"
 import AdminDashboardPage from '../../../pages/AdminPage/AdminDashboardPage'
 import AdminCustomersListPage from '../../../pages/AdminPage/AdminCustomersListPage'
 import AdminStaffsListPage from '../../../pages/AdminPage/AdminStaffsListPage'
+import KathyPage from '../../../pages/zpractice/Kathy/Kathy'
 
 
 function TabPanel(props) {
@@ -107,6 +108,7 @@ export default function SimpleTabs() {
         <ProtectedRoute path="/admin/dashboard" component={AdminDashboardPage} />
         <ProtectedRoute path="/admin/customers" exact component={AdminCustomersListPage} />
         <ProtectedRoute path="/admin/staffs" exact component={AdminStaffsListPage} />
+        <ProtectedRoute path="/admin/customers/:id" exact component={KathyPage} />
       </Switch>
     </div>
   )

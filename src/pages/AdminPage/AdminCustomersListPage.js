@@ -5,7 +5,7 @@ import {
   Container,
   Typography,
 } from '@material-ui/core'
-import Footer from '../../components/FooterComponents/Footer'
+
 import ListTable from '../../components/AdminComponents/ListTable'
 
 const columns = [
@@ -60,7 +60,7 @@ const AdminCustomersListPage = () => {
           rowPreSet={rowPreSet}
         />
       </Container>
-      <Footer />
+
     </>
   )
 }

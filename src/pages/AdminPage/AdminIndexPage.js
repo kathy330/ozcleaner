@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from "react"
 
 import {Switch} from 'react-router'
@@ -7,6 +8,8 @@ import ProtectedRoute from "../../router/ProtectedRoute"
 import AdminDashboardPage from "./AdminDashboardPage"
 import AdminCustomersListPage from "./AdminCustomersListPage"
 import AdminStaffsListPage from "./AdminStaffsListPage"
+import AdminStaffsDetailsPage from "./AdminStaffDetailsPage"
+import AdminCustomersDetailsPage from "./AdminCustomersDetailsPage"
 
 
 function AdminIndexPage(){
@@ -23,6 +26,8 @@ function AdminIndexPage(){
           <ProtectedRoute path="/admin/dashboard" component={AdminDashboardPage} />
           <ProtectedRoute path="/admin/customers" exact component={AdminCustomersListPage} />
           <ProtectedRoute path="/admin/staffs" exact component={AdminStaffsListPage} />
+          <ProtectedRoute path="/admin/staffs/:id" exact component={AdminStaffsDetailsPage} />
+          <ProtectedRoute path="/admin/customers/:id" exact component={AdminCustomersDetailsPage} />
         </Switch>
       </div>
     )

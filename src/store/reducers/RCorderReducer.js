@@ -1,35 +1,13 @@
+
 import actionType from '../actions/actionTypes'
 
 const initialState = {
   loading: false,
-  loadingNum: 1,
-  error: null,
+  error:null,
   repos_in_reducer_init: 'init value',
-<<<<<<< HEAD
   completeinfo:{
 
   }
-
-=======
-  completeinfo: {
-    info: localStorage.getItem('regularCleanOrder') ?
-      JSON.parse(localStorage.getItem('regularCleanOrder')) : {
-        bedroomNum: '',
-        bathroomNum: '',
-        type: '',
-        address: {
-          address1: '',
-          address2: '',
-          suburb: '',
-          state: '',
-          postcode: ''
-        },
-        startTime: '',
-        price: 0,
-      }
-  },
-  updateData:'no update' // 更新by id,可以更新任何值，只要有正确名字
->>>>>>> adb0a195a3197b3ea0601d2a6b59fb3a2d1203a3
 }
 
 function regularReducer(state = initialState, action) {
@@ -39,7 +17,7 @@ function regularReducer(state = initialState, action) {
     case actionType.GET_REGULAR_REQUEST:
       return {
         ...state,
-        loading: true
+        loading:true
       }
 
     case actionType.GET_REGULAR_SUCCESS:
@@ -51,48 +29,25 @@ function regularReducer(state = initialState, action) {
 
     case actionType.GET_REGULAR_FAILED:
       return {
-        ...state,
+        ...state,z
         loading: false,
         repos_in_reducer_init: [],
-        error: action.payload
-        // error:action.data.err
-      }
-
-    // 2/3 Update regular order - dongyu
-    case actionType.UPDATE_REGULAR_REQUEST:
-      return {
-        ...state,
-        loading:true
-      }
-
-    case actionType.UPDATE_REGULAR_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        updateData: action.repos
-      }
-
-    case actionType.UPDATE_REGULAR_FAILED:
-      return {
-        ...state,
-        loading: false,
         error:action.payload
         // error:action.data.err
       }
 
-    // 3/3 POST regular order --dongyu
+    // 2/3 POST regular order --dongyu
     case actionType.POST_REGULAR_REQUEST:
       return {
         ...state,
         loading: true,
-        completeinfo: null
+        completeinfo:null
       }
-
+  
     case actionType.POST_REGULAR_SUCCESS:
       return {
         ...state,
         loading: false,
-        loadingNum: 2,
         repos_in_reducer_init: action.postInSaga, // 发送给regular api
         completeinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
       }
@@ -101,9 +56,57 @@ function regularReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        repos_in_reducer_init: [],
-        error: action.errorInSaga,
+        repos_in_reducer_init:[],
+        error:action.errorInSaga,
       }
+
+    // 3/3 POST endoflease order --dongyu
+    case actionType.POST_ENDOFLEASE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        completeinfo:null
+      }
+  
+    case actionType.POST_ENDOFLEASE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        repos_in_reducer_init: action.postInSaga,
+        completeinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
+      }
+
+    case actionType.POST_ENDOFLEASE_FAILED:
+      return {
+        ...state,
+        loading: false,
+        repos_in_reducer_init:[],
+        error:action.errorInSaga,
+      }
+
+
+    // // 没啥用，不能跨页面取值，刷新会初始化。GET COMPLETE order --dongyu
+    // case actionType.GET_COMPLETE_REQUEST:
+    //   return {
+    //     ...state,
+    //     loading:true,
+    //   }
+
+    // case actionType.GET_COMPLETE_SUCCESS:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     completeinfo: action.repos
+    //   }
+
+    // case actionType.COMPLETE_FAILED:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     completeinfo: [],
+    //     error:action.payload
+    //     // error:action.data.err
+    //   }
 
     default:
       return state

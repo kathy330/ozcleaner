@@ -2,41 +2,49 @@
 import { put, call, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
 
+
+ 
+// employeeLogin.use(cors()) // Use this after the variable declaration
+
 function* employeeLogin(action) {
   try {
-    const userInfo = 
-    yield call(axios.post,'http://localhost:8000/users/login', action.payload)
-    yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
-    localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    const employeeInfo = 
+    yield call(axios.post,'http://localhost:8000/employees/login', action.payload)
+    yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload: employeeInfo })
+    localStorage.setItem('employeeInfo', JSON.stringify(employeeInfo))
   } catch (e) {
     console.log(e.response)
-    yield put({ type: 'USER_SIGNIN_FAIL', payload: e.response.data.error })
+    yield put({ type: 'EMPLOYEE_SIGNIN_FAIL', payload: e.response.data.error })
   }
 }
 
+
 function* employeeRegister(action) {
+ 
   try {
-    const userInfo = 
-    yield call(axios.post,'http://localhost:8000/users/registration', action.payload)
-    yield put({ type: 'USER_REGISTER_SUCCESS', payload: userInfo })
-    yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
-    localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    const employeeInfo = 
+    yield call(axios.post, "http://localhost:8000/employees/registration", action.payload)
+    yield put({ type: 'EMPLOYEE_REGISTER_SUCCESS', payload: employeeInfo })
+    // yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload: employeeInfo })
+    localStorage.setItem('employeeInfo', JSON.stringify(employeeInfo))
+    // console.log(`from${  employeeInfo}`)
   } catch (e) {
-    yield put({ type: 'USER_REGISTER_FAIL', 
-    payload: e.response.data.error })
+    yield put({ type: 'EMPLOYEE_REGISTER_FAIL', 
+    payload: e.response.data.email })
   }
 }
 
 function* employeeSignout() {
-  localStorage.removeItem('userInfo')
-  yield put({ type: 'USER_SIGNOUT' })
+  localStorage.removeItem('employeeInfo')
+  yield put({ type: 'EMPLOYEE_SIGNOUT' })
   document.location.href = '/'
 }
 
-function* EmployeeSaga() {
+function*  EmployeeCertificationSaga () {
   yield takeEvery('EMPLOYEE_SIGNIN_REQUEST', employeeLogin)
   yield takeEvery('EMPLOYEE_REGISTER_REQUEST', employeeRegister)
   yield takeEvery('EMPLOYEE_SIGNOUT_REQUEST', employeeSignout)
 }
 
-export default EmployeeSaga
+export default EmployeeCertificationSaga 
+

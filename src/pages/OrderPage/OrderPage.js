@@ -267,7 +267,6 @@ function Order(props) {
   const buttonstyles = buttonStyle()
   const { handleSubmit, control, watch } = useForm()
   const dispatch = useDispatch()
-
   const [state, setState] = useState({
     oven: false,
     fridge: false,
@@ -503,6 +502,10 @@ function Order(props) {
       }else {
         propertyType = data.propertyType
       }
+
+      const user = JSON.parse(localStorage.getItem('userInfo'))
+      const userObjectId = user.data.objectID
+      // console.log(objectID)
       const newData = {
         ...postData,
         bedroomNum:data.bedRoomNum,
@@ -526,7 +529,9 @@ function Order(props) {
         lastName:data.lastName,
         phoneNumber:data.phoneNumber,
         price:amount,
-        propertyType:propertyType
+        propertyType:propertyType,
+        // userDetail:`ObjectId(${objectID})`
+        userDetail:userObjectId
         // userDetail:'604cb4dfc875675915d0d0a5'
       }
       // console.log('new data: ',newData)
@@ -1166,9 +1171,9 @@ function Order(props) {
                       </Grid>
                       <Grid item xs={10} sm={10}>
                         <Typography variant='h6'>
-                          {/* Bedrooms x
-                            {' '} */}
-                          {bedroomNumber}
+                          {/* {bedroomNumber} */}
+                          {(homeOrderData)&&(`Bedrooms x ${bedroom}`)}
+                          {(!homeOrderData)&&(bedroomNumber)}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -1184,9 +1189,9 @@ function Order(props) {
                       </Grid>
                       <Grid item xs={10} sm={10}>
                         <Typography variant='h6'>
-                          {/* Bathrooms x
-                            {' '} */}
-                          {bathroomNumber}
+                          {/* {bathroomNumber} */}
+                          {(homeOrderData)&&(`Bathrooms x ${bathroom}`)}
+                          {(!homeOrderData)&&(bathroomNumber)}
                         </Typography>
                       </Grid>
                     </Grid>

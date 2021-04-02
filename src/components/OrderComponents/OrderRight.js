@@ -144,7 +144,7 @@ export default function OrderRight({data}) {
     type = 'Regular Clean'
   }
   else if(type === 'EC') {
-    type = 'End of lease Clean'
+    type = 'End lease Clean'
   }
   
   // 🔥 离开该页面，清除local storage 🔥

@@ -415,7 +415,7 @@ function Order(props) {
     bathroomNumber = `Bathrooms x ${bathNumber}`
   }
   if(typeOfClean ==='EC') {
-    typeOfClean = 'End of lease clean'
+    typeOfClean = 'End lease clean'
   }
   else if(typeOfClean === 'RC') {
     typeOfClean = 'Regular clean'
@@ -656,8 +656,8 @@ function Order(props) {
                               <Controller
                                 as={(
                                   <Select MenuProps={SelectStyle}>
-                                    <MenuItem value="RC">Regular</MenuItem>
-                                    <MenuItem value="EC">End of lease</MenuItem>
+                                    <MenuItem value="RC">Regular clean</MenuItem>
+                                    <MenuItem value="EC">End lease clean</MenuItem>
                                   </Select>
                                 )}
                                 name="type"
@@ -1154,7 +1154,7 @@ function Order(props) {
             {/* <OrderRight /> */}
             <Box className={classes.rightTop}>
               <Container maxWidth="lg" className={classes.details}>
-                <Grid container direction="column">
+                <Grid container direction="column" spacing={1}>
                   {/* <Container maxWidth="sm"> */}
                   {/* 1/5Bedroom number */}
                   <Grid item xs={12} sm={12}>

@@ -1,5 +1,4 @@
 /* eslint-disable */
-/* eslint-disable no-undef */
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -12,13 +11,13 @@ import {
   TableContainer,
   Table,
   TableBody,
-  TablePagination,
   Typography,
 } from '@material-ui/core'
 import { getAllUserListRequest, getAllEmployeeListRequest } from '../../store/actions'
 import ListTableHead from './ListTableHead'
 import ListTableRow from './ListTableRow'
 import LoadingIcon from './LoadingIcon'
+import ListPagination from './ListPagination'
 
 /**
  * ListTable() is for displaying the user list(user/employee)
@@ -27,13 +26,13 @@ import LoadingIcon from './LoadingIcon'
  * @param tableType: (str) is to distinguish between customer list and staff list
  */
 function ListCustomerTable(props) {
-  const { columns, rowPreSet, tableType } = props
-  const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(rowPreSet)
-  const listSize = {page: page+1, pageSize: rowsPerPage}
+  const { columns, urlpage, tableType } = props
+  const pageSize = 12
+  const listSize = { page: urlpage, pageSize: pageSize}
   const dispatch = useDispatch()
   const [deletedId, setDeletedId] = React.useState(0)
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
+  const path = `/admin/${tableType}`
   // get userdata from state
   const usersData = useSelector(state => state.userslist.users.result)
   // get total users number from state
@@ -41,7 +40,18 @@ function ListCustomerTable(props) {
   const loading = useSelector(state => state.userslist.loading)
   const error = useSelector(state => state.userslist.error)
   const dispatchRequest = (tableType === 'customer') 
-  console.log(usersData)
+  const returnPage = (usersCount) => {
+    if (pageSize) {
+      return Math.floor(usersCount / listSize.pageSize) + 1
+    } else if (usersCount < pageSize) {
+      return 1
+    } else {
+      return Math.floor(usersCount / listSize.pageSize)
+    }
+  }
+  const finalPage = returnPage(usersCount)
+
+  // console.log(usersData)
   const dispatchRequested = () => {
     if (dispatchRequest) {
       dispatch(getAllUserListRequest(listSize))
@@ -54,29 +64,6 @@ function ListCustomerTable(props) {
     dispatchRequested()
   }, [])
 
-  const returnPage = ()=> {
-    if (listSize.page * listSize.pageSize > usersCount){
-      listSize.page = Math.floor(usersCount / listSize.pageSize) + 1
-    } else if (listSize.page * listSize.pageSize === usersCount){
-      listSize.page = usersCount / listSize.pageSize
-    }
-    return listSize.page  
-  }
-
-  const handleChangePage = (event, newPage) => {
-    listSize.page = newPage+1
-    dispatchRequested()
-    setPage(newPage) // keep in the same page
-  }
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value)
-    listSize.pageSize = event.target.value
-    const pageNum = returnPage() // avoive no user
-    dispatchRequested()
-    setPage(pageNum - 1) // keep in the same page
-  }
-
   const openDeletedModal = (id) =>{
     // console.log(usersData.values(id))
     setDeletedId(id)
@@ -85,13 +72,18 @@ function ListCustomerTable(props) {
   
   const handleAlertClose = () => {
     setOpen(false)
-  };
+  }
 
   const handleAlertConfirm = ()=>{
     console.log('confirm delete: ', deletedId)
     setOpen(false)
   }
 
+  const getPaginationPage = (page) =>{
+    listSize.page = page
+    dispatchRequested(listSize)
+  }
+  
   return (
     <>
       {/* if loading: show loading icon */}
@@ -120,15 +112,10 @@ function ListCustomerTable(props) {
               </TableBody>
             </Table>
           </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[rowPreSet, rowPreSet * 2, rowPreSet * 3]}
-            component="div"
-            count={usersCount}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onChangePage={handleChangePage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
-            labelRowsPerPage="User P/P:"
+          <ListPagination 
+            tableType={tableType} 
+            getPaginationPage={getPaginationPage}
+            count={finalPage}
           />
           <Dialog
             open={open}

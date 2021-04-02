@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import {
   Container,
   Typography,
+  Grid,
 } from '@material-ui/core'
 import NavBar from '../../components/NavBarComponents/NavBar'
 import Footer from '../../components/FooterComponents/Footer'
@@ -42,13 +43,19 @@ const useStyles = makeStyles((theme) => ({
       padding: '25px 10px',
     },
   },
+  listTable: {
+    minHeight: '70vh',
+    justifyContent: 'center',
+    alignContent: 'space-between'
+  }
 }))
 
-const AdminCustomersListPage = () => {
+const AdminCustomersListPage = (match) => {
   const classes = useStyles()
-  const rowPreSet = 10
   const tableType = 'customer'
-
+  const query = new URLSearchParams(match.location.search)
+  const page = parseInt(query.get('page') || '1', 10)
+  console.log(page)
   return (
     <>
       <NavBar />
@@ -56,11 +63,13 @@ const AdminCustomersListPage = () => {
         <Typography variant="h3" component="h1">
           Customer List
         </Typography>
-        <ListTable
-          columns={columns}
-          tableType={tableType}
-          rowPreSet={rowPreSet}
-        />
+        <Grid container className={classes.listTable}>
+          <ListTable
+            columns={columns}
+            tableType={tableType}
+            urlpage={page}
+          />
+        </Grid>
       </Container>
       <Footer />
     </>

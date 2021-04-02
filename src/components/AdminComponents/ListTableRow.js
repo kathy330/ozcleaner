@@ -67,7 +67,7 @@ function ListTableRow(props) {
           component={Link} 
           to={path}
         >
-          Check
+          View
         </Button>
         <Button
           variant="contained"

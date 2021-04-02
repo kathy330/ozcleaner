@@ -13,7 +13,7 @@ function* employeeLogin(action) {
     yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload: userInfo })
     localStorage.setItem('employeeInfo', JSON.stringify(userInfo))
   } catch (e) {
-    console.log(e.response)
+    console.log(e.response.data)
     yield put({ type: 'EMPLOYEE_SIGNIN_FAIL', payload: e.response.data.error })
   }
 }

@@ -14,7 +14,7 @@ import {useForm,Controller } from 'react-hook-form'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import DividerWithText from './Divider'
 import {FbButton,GoogleButton,PopupLoginButton} from './Button'
-import {signin, signout} from "../../store/actions/actionCreator"
+import {signinEmployee, signoutEmployee} from "../../store/actions/actionCreator"
 import FormDialogSignupPop from "./FormDialogSignupPop"
 
 
@@ -22,15 +22,15 @@ export default function EmployeeLoginDetails() {
     const {control ,handleSubmit} = useForm()
     const dispatch = useDispatch()
     const onSubmit = (data) =>{
-      dispatch(signin(data))
+      dispatch(signinEmployee(data))
     }
 
     const signoutHandler = () => {
-      dispatch(signout())
+      dispatch(signoutEmployee())
     }
 
-    const userSignin = useSelector((state) => state.userSignin)
-    const { userInfo, loading, error } = userSignin
+    const employeeSignin = useSelector((state) => state.employeeSignin)
+    const { userInfo, loading, error } = employeeSignin
   
 const useStyles = makeStyles((theme) => ({
   [theme.breakpoints.down('sm')]: {

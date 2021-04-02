@@ -49,8 +49,8 @@ function App() {
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />
         <Route path="/admin/overview" exact component={AdminOverviewPage} />
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
-        <ProtectedRoute path="/admin" component={AdminIndexPage} />
         <Redirect exact from="/admin" to="/admin/dashboard" />
+        <ProtectedRoute path="/admin" component={AdminIndexPage} />
         <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
         <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} />
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}

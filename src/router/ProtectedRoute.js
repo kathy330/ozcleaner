@@ -8,9 +8,9 @@ export default ({component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) => {
-        console.log(props)
-        if(((rest.path.includes("/admin") && (localStorage.getItem("authLevel") === "admin")) ||
-          (!rest.path.includes("/admin") && localStorage.getItem("authLevel"))
+        if(((props.location.pathname.includes("/admin") 
+        && (localStorage.getItem("authLevel") === "admin")) ||
+          (!props.location.pathname.includes("/admin") && localStorage.getItem("authLevel"))
         )) return <Component {...props} />
         return <Redirect to="/" />
 

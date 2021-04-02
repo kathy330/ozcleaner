@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 import React from 'react'
 // import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
@@ -15,6 +15,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import DividerWithText from './Divider'
 import {FbButton,GoogleButton,PopupLoginButton} from './Button'
 import {signin, signout} from "../../store/actions/actionCreator"
+import FormDialogSignupPop from "./FormDialogSignupPop"
 
 
 export default function LoginDetails() {
@@ -246,11 +247,7 @@ const classes = useStyles()
               </Grid>
               <Grid container justify="flex-end">
                
-                <Typography className={classes.login}>
-                  <a href="/login" className={classes.loginColor}>
-                    Sign Up
-                  </a>
-                </Typography>
+                <FormDialogSignupPop />
                
               </Grid>
             </Grid>

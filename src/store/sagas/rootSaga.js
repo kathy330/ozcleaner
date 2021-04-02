@@ -6,6 +6,7 @@ import EmployeesListSaga from './employeesListSaga'
 import CusDetailSaga from './customersDetail'
 import CusDetailTableSaga from './customersDetailsTable'
 import StaffDetailSaga from './staffsDetail'
+import StaffDetailTableSaga from './staffsDetailsTable'
 import UsersSaga from './usersSaga'
 // // import testSaga from './userRegistrationSaga'
 import EmployeeSaga from './emplyeeDetail'
@@ -20,6 +21,7 @@ export default function* rootSaga() {
     CusDetailSaga(),
     CusDetailTableSaga(),
     StaffDetailSaga(),
+    StaffDetailTableSaga(),
     // testSaga(),
     EmployeeSaga(),
     UsersSaga()

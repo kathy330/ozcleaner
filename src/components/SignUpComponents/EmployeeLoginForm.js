@@ -17,7 +17,7 @@ import {FbButton,GoogleButton,PopupLoginButton} from './Button'
 import {signin, signout} from "../../store/actions/actionCreator"
 
 
-export default function LoginDetails() {
+export default function EmployeeLoginDetails() {
     const {control ,handleSubmit} = useForm()
     const dispatch = useDispatch()
     const onSubmit = (data) =>{

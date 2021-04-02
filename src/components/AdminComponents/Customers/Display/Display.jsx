@@ -43,7 +43,7 @@ const Displays=()=> {
   const users =useSelector(state => state.cusDetails.cusDetails) 
   const loading = useSelector(state => state.cusDetails.loading)
   const error = useSelector(state => state.cusDetails.error)
-  console.log("CUSTOMERS :",users)
+  // console.log("CUSTOMERS :",users)
 
   useEffect(()=>{
     dispatch(getCUSDETAILRequest())

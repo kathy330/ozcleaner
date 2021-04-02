@@ -1,7 +1,8 @@
-/* eslint-disable react/require-default-props */
+/* eslint-disable*/
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
+import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
 import PropTypes from 'prop-types'
 import { makeStyles ,useTheme } from '@material-ui/core/styles'
@@ -11,11 +12,9 @@ import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import SwipeableViews from 'react-swipeable-views'
-import {MenuItem} from '@material-ui/core'
-// import RegistrationForm from './RegistrationForm'
-// import EmployeeRegistrationForm from './Employee'
-import LoginDetails from './LoginForm'
-import EmployeeLogin from './EmployeeLogin'
+import RegistrationForm from './RegistrationForm'
+import EmployeeRegistrationForm from './Employee'
+
 // import AppBar from '@material-ui/core/AppBar'
 // import Tabs from '@material-ui/core/Tabs'
 
@@ -55,11 +54,21 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width:'100%',
+    width: 443,
+  },
+  login:{
+    fontWeight: 'bold',
+    color: '#007bf5',
+    // float: 'right',
+    fontSize:'12px',
+    textDecoration: 'none',
+    marginRight:'20px',
+    marginTop:'-6px',
+    marginBottom:'20px'
   },
 }))
 
-export default function FormDialog() {
+export default function FormDialogSignupPop() {
     const [open, setOpen] = React.useState(false)
   
     const handleClickOpen = () => {
@@ -82,9 +91,9 @@ export default function FormDialog() {
     }
     return (
       <>
-        <MenuItem onClick={handleClickOpen}>
-          Login
-        </MenuItem> 
+        <Button className={classes.login} onClick={handleClickOpen}>
+          Sign up
+        </Button>
         <Dialog
           open={open}
           onClose={handleClose}
@@ -112,10 +121,10 @@ export default function FormDialog() {
               onChangeIndex={handleChangeIndex}
             >
               <TabPanel value={value} index={0} dir={theme.direction}>
-                <LoginDetails />
+                <RegistrationForm />
               </TabPanel>
               <TabPanel value={value} index={1} dir={theme.direction}>
-                <EmployeeLogin />
+                <EmployeeRegistrationForm />
               </TabPanel>
             </SwipeableViews>
           </div>
@@ -124,3 +133,14 @@ export default function FormDialog() {
       </>
     )
   }
+
+
+
+
+
+
+
+
+
+
+

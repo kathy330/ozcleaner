@@ -50,7 +50,6 @@ function ListCustomerTable(props) {
     }
   }
   const finalPage = returnPage(usersCount)
-
   // console.log(usersData)
   const dispatchRequested = () => {
     if (dispatchRequest) {

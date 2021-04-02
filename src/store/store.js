@@ -35,6 +35,11 @@ const initialState = {
     userInfo: localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo'))
     : null,
+  },
+  employeeSignin: {
+    employeeInfo: localStorage.getItem('employeeInfo')
+    ? JSON.parse(localStorage.getItem('employeeInfo'))
+    : null,
   }
 }
 // const initialState = {}

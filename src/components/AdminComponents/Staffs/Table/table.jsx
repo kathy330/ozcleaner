@@ -1,4 +1,5 @@
-import React from "react"
+import React, {useEffect} from 'react'
+import {useSelector,useDispatch} from 'react-redux'
 import { makeStyles} from "@material-ui/core/styles"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
@@ -9,8 +10,10 @@ import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import Button from '@material-ui/core/Button'
+import date from 'date-and-time'
 import TablePagination from '@material-ui/core/TablePagination'
-import { GreenStatus ,GreyStatus} from '../../../UIComponents/Status'
+import {getSTAFFDETAILTABLERequest} from "../../../../store/actions"
+import * as Status from '../../../UIComponents/Status'
 
 const useStyles = makeStyles(() => ({
   table: {
@@ -43,41 +46,52 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-function createData(oid, status, cname, date, Actions1, Actions2) {
-  return { oid, status, cname, date, Actions1, Actions2 }
+function CombineName(firstname,lastname) {
+  const fullName=`${firstname} ${lastname}`
+  return fullName
 }
 
-const rows = [
-  createData("01", "In Progress", "Lisa","11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("02", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("03", "Completed", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("04", "Completed", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("05", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("06", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("07", "Completed","Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("08", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("09", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("10", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("11", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("12", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("13", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("14", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("15", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("16", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("17", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-  createData("18", "In Progress", "Lisa", "11:30AM 22 Jan 2021", "Check", "Delete"),
-]
+function displayTime(time) {
+  // 2020-01-01T12:00:00.000+00:00
+
+  let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
+  result = result.toString().split(" ")
+  return `${date.transform(result[4], 'HH:mm:ss', 'hh:mmA')} 
+  ${result[2]} ${result[1]},${result[3]}`
+}
 
 function isButton(words) {
-  if(words.status==='In Progress') {
-   return  <GreenStatus>{words.status}</GreenStatus>
+  if(words.status==='assigned') {
+    return <Status.GreenStatus>Assgined</Status.GreenStatus>
   }
-   return <GreyStatus>{words.status}</GreyStatus>
-  
+  if(words.status==='cancelled'){
+    return <Status.RedStatus>Cancelled</Status.RedStatus>
+  }
+  if(words.status==='in-progress'){
+    return <Status.BlueStatus>In Progress</Status.BlueStatus>
+  }
+  if(words.status==='finished'){
+    return <Status.GreyStatus>Finished</Status.GreyStatus>
+  }
+  if(words.status==='reviewed'){
+    return <Status.YellowStatus>Reviewed</Status.YellowStatus>
+  }
+  return <Status.GreyStatus>{words.status}</Status.GreyStatus>
 }
 
-export default function BasicTable() {
+const BasicTable=()=>{
   const classes = useStyles()
+  const dispatch=useDispatch()
+
+  const users =useSelector(state => state.staffDetailsTable.staffDetailsTable) 
+  const loading = useSelector(state => state.staffDetailsTable.loading)
+  const error = useSelector(state => state.staffDetailsTable.error)
+
+    console.log("STAFFS TABLE :",users)
+
+    useEffect(()=>{
+      dispatch(getSTAFFDETAILTABLERequest())
+  },[])
 
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
@@ -93,55 +107,67 @@ export default function BasicTable() {
 
 
   return (
+    <>
+      {users.loading&&<p>Loading...</p>}
 
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">Order ID</TableCell>
-            <TableCell align="center">Status</TableCell>
-            <TableCell align="center">Customer</TableCell>
-            <TableCell align="center">Created At</TableCell>
-            <TableCell align="center">Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-            <TableRow key={row.oid}>
-              <TableCell align="center">{row.oid}</TableCell>
-              <TableCell align="center">
-                {isButton(row)}      
-              </TableCell>
-              <TableCell align="center">
-                <Typography className={classes.name}>{row.cname}</Typography>
-              </TableCell>
-              <TableCell align="center">{row.date}</TableCell>
-              <TableCell align="center" className={classes.action}>
-                <Button variant="contained" className={classes.check}>
-                  {row.Actions1}
-                </Button>
-                <Button variant="contained" className={classes.delete}>
-                  {row.Actions2}
-                </Button>
-              </TableCell>
+      {users.length!==0&&( 
+
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">Order ID</TableCell>
+              <TableCell align="center">Status</TableCell>
+              <TableCell align="center">Customer</TableCell>
+              <TableCell align="center">Created At</TableCell>
+              <TableCell align="center">Actions</TableCell>
             </TableRow>
+          </TableHead>
+          <TableBody>
+            {users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user) => (
+              <TableRow key={user.taskID}>
+                <TableCell align="center">{user.type+user.taskID}</TableCell>
+                <TableCell align="center">
+                  {isButton(user)}      
+                </TableCell>
+                <TableCell align="center">
+                  <Typography className={classes.name}> 
+                    {CombineName(user.firstName,user.lastName)}
+                  </Typography>
+                </TableCell>
+                <TableCell align="center">{displayTime(user.startTime)}</TableCell>
+                <TableCell align="center" className={classes.action}>
+                  <Button variant="contained" className={classes.check}>
+                    Check
+                  </Button>
+                  <Button variant="contained" className={classes.delete}>
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
             ))}
       
-        </TableBody>
-      </Table>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-        align="center"
-      />
-    </TableContainer>
+          </TableBody>
+        </Table>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={users.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+          align="center"
+        />
+      </TableContainer>
+    )}
+      {users.length===0&&!loading &&<p>No users available!</p>}
+      {error&&!loading&&<p>{error}</p>}
+
+    </>
   
     )
  
 }
+export default BasicTable
 

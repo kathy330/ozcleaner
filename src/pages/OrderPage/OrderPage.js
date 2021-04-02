@@ -40,12 +40,11 @@ import BathtubIcon from '@material-ui/icons/Bathtub'
 import RoomIcon from '@material-ui/icons/Room'
 import NoteIcon from '@material-ui/icons/Note'
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
-import IconButton from '@material-ui/core/IconButton'
-import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
-import { Redirect } from "react-router-dom" // 负责页面跳转router，不会刷新reducer👍
-// import Zoom from '@material-ui/core/Zoom'
+// import IconButton from '@material-ui/core/IconButton'
+// import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
+// import { Redirect } from "react-router-dom" // 负责页面跳转router，不会刷新reducer👍
+import {useHistory} from "react-router-dom"
 import PropTypes from 'prop-types'
-// import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import cabinetIcon from "../../assets/cabinet.svg"
 import windowIcon from "../../assets/window.svg"
 import fridgeIcon from "../../assets/fridge.svg"
@@ -62,12 +61,12 @@ import HomeComponentStyle from "../../components/HomeComponents/styles/HomeCompo
 
 
 
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    // padding: 0,
-    background: 'lightgrey'
-    // position: 'relative',
-    // zIndex: '-2',
+    // background: 'lightgray'
+    background: '#e3f2fd',
   },
 
   content: {
@@ -211,13 +210,14 @@ const useStyles = makeStyles((theme) => ({
     color: '#007bf5',
   },
 
-  totalText: {
-    paddingTop: '10px',
-  },
-
   rightTop: {
     marginBottom: '30px',
     marginTop: '30px',
+  },
+
+  details: {
+    marginBottom: '10px'
+    // paddingTop: '20px',
   }
 
 }))
@@ -265,7 +265,7 @@ function Order(props) {
   const classes = useStyles()
   const cssstyle = HomeComponentStyle()
   const buttonstyles = buttonStyle()
-  const {  handleSubmit,control,watch } = useForm()
+  const { handleSubmit, control, watch } = useForm()
   const dispatch = useDispatch()
 
   const [state, setState] = useState({
@@ -359,6 +359,23 @@ function Order(props) {
   }
   // 44-----------------------------------------
 
+  // 取回home page已填信息localstorage
+  const homeOrderData = localStorage.getItem('homeOrderData') ?
+  JSON.parse(localStorage.getItem('homeOrderData')) :''
+  // console.log(homeOrderData.bedroomNum)
+  let bedroom = ''
+  let bathroom = ''
+  let homePostcode = ''
+  let contactNumber = ''
+  let propertyType = ''
+  if(homeOrderData!=='') {
+    bedroom = homeOrderData.bedroomNum
+    bathroom = homeOrderData.bathroomNum
+    homePostcode = homeOrderData.postcode
+    contactNumber = homeOrderData.contact
+    propertyType = homeOrderData.propertyType
+  }
+
   // 66这里是想左边输入时间，右边实时更新
   let startDate = watch("date",'')
   let startTime = watch("time",'')
@@ -385,7 +402,7 @@ function Order(props) {
   // 77这里是想左边输入房间数，右边实时更新
   const bedNumber = watch("bedRoomNum",'')
   const bathNumber = watch("bathRoomNum",'')
-  let typeOfClean = watch("type",'')
+  let typeOfClean = watch("type",'') 
 
   let bedroomNumber = ''
   let bathroomNumber = ''
@@ -398,7 +415,7 @@ function Order(props) {
     bathroomNumber = `Bathrooms x ${bathNumber}`
   }
   if(typeOfClean ==='EC') {
-    typeOfClean = 'End of lease clean'
+    typeOfClean = 'End lease clean'
   }
   else if(typeOfClean === 'RC') {
     typeOfClean = 'Regular clean'
@@ -457,15 +474,35 @@ function Order(props) {
   // 55点击提交按钮后，post请求
   const onSubmit = data => {
 
-    if(data.bedRoomNum!=="" && data.bathRoomNum!=="" && data.type!==""
-        &&data.postcode!=="" &&data.date!=="" &&data.time!==""
-        &&data.firstName!=="" &&data.lastName!=="" &&data.phoneNumber!==""
-        &&data.address1!=="" &&data.suburb!=="" &&data.state!=="") {
+    // if(data.bedRoomNum!=="" && data.bathRoomNum!=="" && data.type!==""
+    //     &&data.postcode!=="" &&data.date!=="" &&data.time!==""
+    //     &&data.firstName!=="" &&data.lastName!=="" &&data.phoneNumber!==""
+    //     &&data.address1!=="" &&data.suburb!=="" &&data.state!=="") {
       // 防止有人不选时间
+      // console.log(data.date,data.time)
+      // Fri Apr 02 2021 13:08:25 GMT+1000 (澳大利亚东部标准时间) 
+      // Fri Apr 02 2021 13:08:25 GMT+1000 (澳大利亚东部标准时间)
+      // let pickDate = ''
+      // let pickTime = ''
+      // let datedate = ''
+      // if(homeOrderData) {
+      //   const {starDate,starTime} = homeOrderData
+      //   pickDate = date.format(starDate, 'YYYY-MM-DD') 
+      //   pickTime = date.format(starTime, 'HH:mm:ss') 
+      //   datedate = `${pickDate}T${pickTime}Z`
+
+      //   // datedate = homeOrderData.totalDate
+      // }else {
       const pickDate = date.format(data.date, 'YYYY-MM-DD') 
       const pickTime = date.format(data.time, 'HH:mm:ss') 
       const datedate = `${pickDate}T${pickTime}Z`
+      // }
 
+      if(data.propertyType === '') {
+        propertyType = 'unknown'
+      }else {
+        propertyType = data.propertyType
+      }
       const newData = {
         ...postData,
         bedroomNum:data.bedRoomNum,
@@ -481,7 +518,7 @@ function Order(props) {
         },
         startTime:datedate,
         // endTime:datedate, // endtime 什么时候设置？  
-        oven:anyExtra().oven, // 判断是否选了extra，传值给这里
+        oven:anyExtra().ovennum, // 判断是否选了extra，传值给这里
         fridge:anyExtra().fridgenum,
         interiorWindows:anyExtra().interiorWindowsnum,
         cabinets:anyExtra().cabinetsnum,
@@ -489,6 +526,7 @@ function Order(props) {
         lastName:data.lastName,
         phoneNumber:data.phoneNumber,
         price:amount,
+        propertyType:propertyType
         // userDetail:'604cb4dfc875675915d0d0a5'
       }
       // console.log('new data: ',newData)
@@ -501,26 +539,35 @@ function Order(props) {
         dispatch(postEndOfLeaseRequest(newData)) // 在saga里控制跳转下一个页面
       }
       setState({submit:true}) // 更改submit为true，下面即可跳转confirm页面
-    }
-    else{
-      console.log('Must pick all the info')
-    }
+    // }
+    // else{
+    //   console.log('Must pick all the info')
+    // }
   } 
 // 55-----------------------------------------
 
-  const onErrors = () => {
-    console.log("ERROR!")
-  }
-  const showForm = false // 没啥用 下面练习判断true false
+  // const onErrors = () => {
+  //   console.log("ERROR!")
+  // }
+  // const showForm = false // 没啥用 下面练习判断true false
 
   // 1010 判断是否正确提交，提交后，用<Redirect /> 跳转页面
   const { submit } = state
   const loading = useSelector(astate => astate.regular_in_reducer_index.loading)
   // console.log("loading parameter: ", loading)
+
+  const history = useHistory()
   if (submit && !loading) {
-    return (<Redirect to="/order/confirm" />)
+    // return (<Redirect to="/order/confirm" />)  不太好，附带 3XX状态
+    history.push("/order/confirm")
   }
   // 1010
+
+  // 🔥 离开该页面，清除home page 的 local storage 🔥
+  window.onbeforeunload = () => {
+    localStorage.removeItem('homeOrderData')
+    // return '' //没有return的话，离开该页面就不会有弹窗提示
+  }
 
   return (
     <Box className={classes.root}>
@@ -530,12 +577,9 @@ function Order(props) {
 
           {/* 1/3 Order Left */}
           <Grid item xs={12} sm={6} className={classes.left}>
-            {/* <OrderLeft /> */}
             <Box className={classes.top}>
-              <Grid container direction="column">
-                {/* <p>{totalAddress}</p> */}
-          
-                <form onSubmit={handleSubmit(onSubmit,onErrors)}>
+              <Grid container direction="column">          
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <Container maxWidth="lg">
                     <Grid item xs={12} sm={12}>
                       <Typography id="back-to-top-anchor" variant='h4' align='left' className={classes.title}>
@@ -553,7 +597,7 @@ function Order(props) {
                           <Grid item xs={12} sm={6}>
                             <FormControl className={cssstyle.Picker}>
                               <InputLabel className={cssstyle.Picker}>
-                                Bedroom
+                                Bedroom*
                               </InputLabel>
 
                               <Controller
@@ -569,8 +613,9 @@ function Order(props) {
                                   )}
                                 name="bedRoomNum"
                                 required
+                                disabled={!!homeOrderData} // {homeOrderData?true:false}
                                 control={control}
-                                defaultValue=""
+                                defaultValue={bedroom}
                               />
                             </FormControl>
                           </Grid>
@@ -578,7 +623,7 @@ function Order(props) {
                           <Grid item xs={12} sm={6}>
                             <FormControl className={cssstyle.Picker}>
                               <InputLabel className={cssstyle.Picker}>
-                                Bathroom
+                                Bathroom*
                               </InputLabel>
 
                               <Controller
@@ -594,55 +639,67 @@ function Order(props) {
                                 )}
                                 name="bathRoomNum"
                                 required
+                                disabled={!!homeOrderData} // {homeOrderData?true:false}
                                 control={control}
-                                defaultValue=""
+                                defaultValue={bathroom}
                               />
                             </FormControl>
                           </Grid>
-                          {/* Type */}
+                         
+                          {/* clean Type */}
                           <Grid item xs={12} sm={6}>
                             <FormControl className={cssstyle.Picker}>
                               <InputLabel className={cssstyle.Picker}>
-                                Clean type
+                                Clean type*
                               </InputLabel>
 
                               <Controller
                                 as={(
                                   <Select MenuProps={SelectStyle}>
-                                    <MenuItem value="RC">Regular</MenuItem>
-                                    <MenuItem value="EC">End of lease</MenuItem>
+                                    <MenuItem value="RC">Regular clean</MenuItem>
+                                    <MenuItem value="EC">End lease clean</MenuItem>
                                   </Select>
                                 )}
                                 name="type"
                                 required
                                 control={control}
-                                defaultValue=""
+                                defaultValue=''
                               />
                             </FormControl>
                           </Grid>
-                          {/* Postcode */}
+
+                          {/* roomTpye */}
                           <Grid item xs={12} sm={6}>
                             <FormControl className={cssstyle.Picker}>
+                              <InputLabel className={cssstyle.Picker}>
+                                Property type
+                              </InputLabel>
+
                               <Controller
                                 as={(
-                                  <TextField 
-                                    label="Post Code"
-                                    className={classes.postCodeLength}
-                                  />
+                                  <Select MenuProps={SelectStyle}>
+                                    <MenuItem value="unit">Unit</MenuItem>
+                                    <MenuItem value="apartment">Apartment</MenuItem>
+                                    <MenuItem value="house">House</MenuItem>
+                                  </Select>
                                 )}
-                                name="postcode"
-                                required
+                                name="propertyType"
+                                // required
+                                // disabled={!!homeOrderData} // {homeOrderData?true:false}
                                 control={control}
-                                defaultValue=""
+                                defaultValue={propertyType}
                               />
                             </FormControl>
                           </Grid>
+                          
                           {/* date */}
                           <Grid item xs={12} sm={6}>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                               <Controller
                                 name="date"
                                 control={control}
+                                // initialFocusedDate={datetime || null}
+                                // defaultValue={datetime || null} 
                                 initialFocusedDate={null} // 初始化没有日期
                                 defaultValue={null} // 初始化没有日期
                                 render={({ ref, ...rest }) => (
@@ -661,6 +718,7 @@ function Order(props) {
                               />
                             </MuiPickersUtilsProvider>
                           </Grid>
+
                           {/* time */}
                           <Grid item xs={12} sm={6}>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -993,13 +1051,13 @@ function Order(props) {
                           </Grid>
 
                           <Grid container direction="row" spacing={2}>
-                            {/* phone number */}
+                            {/* contact number */}
                             <Grid item xs={6} sm={6}>
                               <Controller
                                 as={(
                                   <TextField
                                     id=""
-                                    label="Phone Number"
+                                    label="Contact Number"
                                     required
                                     InputLabelProps={{shrink: true,}}
                                     variant="outlined"
@@ -1008,12 +1066,32 @@ function Order(props) {
                         )}
                                 name="phoneNumber"
                                 control={control}
-                                defaultValue=""
+                                defaultValue={contactNumber}
                               />
                             </Grid>
                       
                             {/* 空白 占位 */}
-                            <Grid item xs={6} sm={6} />
+                            {/* <Grid item xs={6} sm={6} /> */}
+
+                            {/* Postcode */}
+                            <Grid item xs={6} sm={6}>
+                              <Controller
+                                as={(
+                                  <TextField
+                                    id=""
+                                    label="Post Code"
+                                    required
+                                    InputLabelProps={{shrink: true,}}
+                                    variant="outlined"
+                                    className={classes.input}
+                                  />
+                        )}
+                                name="postcode"
+                                control={control}
+                                defaultValue={homePostcode}
+                              />
+                            </Grid>
+
                           </Grid>
                         </Box>
                       </Grid>
@@ -1075,91 +1153,96 @@ function Order(props) {
           <Grid item xs={12} sm={5} className={classes.right}>
             {/* <OrderRight /> */}
             <Box className={classes.rightTop}>
-              <Container maxWidth="lg">
-                <Grid container direction="column">
-                  <Container maxWidth="sm">
-                    {/* 1/5Bedroom number */}
-                    <Grid item xs={12} sm={12}>
-                      <Grid container direction="row">
-                        <Grid item xs={2} sm={2}>
-                          {/* <KingBedIcon fontSize="large" className={classes.icon}  /> */}
-                          <IconButton className={classes.hover}>
-                            {!showForm ?
-                              <KingBedIcon fontSize="large" className={classes.icon} />
-                      : <IndeterminateCheckBoxIcon />}
-                          </IconButton>
-                        </Grid>
-                        <Grid item xs={10} sm={10}>
-                          <Typography variant='h6'>
-                            {/* Bedrooms x
-                            {' '} */}
-                            {bedroomNumber}
-                          </Typography>
+              <Container maxWidth="lg" className={classes.details}>
+                <Grid container direction="column" spacing={1}>
+                  {/* <Container maxWidth="sm"> */}
+                  {/* 1/5Bedroom number */}
+                  <Grid item xs={12} sm={12}>
+                    <Grid container direction="row">
+                      <Grid item xs={2} sm={2}>
+                        <Grid container justify="center">
+                          <KingBedIcon fontSize="large" className={classes.icon}  />
                         </Grid>
                       </Grid>
+                      <Grid item xs={10} sm={10}>
+                        <Typography variant='h6'>
+                          {/* Bedrooms x
+                            {' '} */}
+                          {bedroomNumber}
+                        </Typography>
+                      </Grid>
                     </Grid>
+                  </Grid>
 
-                    {/* 2/Bathroom number */}
-                    <Grid item xs={12} sm={12}>
-                      <Grid container direction="row">
-                        <Grid item xs={2} sm={2}>
+                  {/* 2/5 Bathroom number */}
+                  <Grid item xs={12} sm={12}>
+                    <Grid container direction="row">
+                      <Grid item xs={2} sm={2}>
+                        <Grid container justify="center">
                           <BathtubIcon fontSize="large" className={classes.icon} />
                         </Grid>
-                        <Grid item xs={10} sm={10}>
-                          <Typography variant='h6'>
-                            {/* Bathrooms x
+                      </Grid>
+                      <Grid item xs={10} sm={10}>
+                        <Typography variant='h6'>
+                          {/* Bathrooms x
                             {' '} */}
-                            {bathroomNumber}
-                          </Typography>
-                        </Grid>
+                          {bathroomNumber}
+                        </Typography>
                       </Grid>
                     </Grid>
+                  </Grid>
 
-                    {/* 3/5 type of clean */}
-                    <Grid item xs={12} sm={12}>
-                      <Grid container direction="row">
-                        <Grid item xs={2} sm={2}>
+                  {/* 3/5 type of clean */}
+                  <Grid item xs={12} sm={12}>
+                    <Grid container direction="row">
+                      <Grid item xs={2} sm={2}>
+                        <Grid container justify="center">
                           <NoteIcon fontSize="large" className={classes.icon} />
                         </Grid>
-                        <Grid item xs={10} sm={10}>
-                          <Typography variant='h6'>{typeOfClean}</Typography>
-                        </Grid>
+                      </Grid>
+                      <Grid item xs={10} sm={10}>
+                        <Typography variant='h6'>{typeOfClean}</Typography>
                       </Grid>
                     </Grid>
+                  </Grid>
 
-                    {/* 4/5 address info */}
-                    <Grid item xs={12} sm={12}>
-                      <Grid container direction="row">
-                        <Grid item xs={2} sm={2}>
+                  {/* 4/5 address info */}
+                  <Grid item xs={12} sm={12}>
+                    <Grid container direction="row">
+                      <Grid item xs={2} sm={2}>
+                        <Grid container justify="center">
                           <RoomIcon fontSize="large" className={classes.icon} />
                         </Grid>
-                        <Grid item xs={10} sm={10}>
-                          <Typography variant='h6'>
-                            {totalAddress}
-                          </Typography>
-                        </Grid>
+                      </Grid>
+                      <Grid item xs={10} sm={10}>
+                        <Typography variant='h6'>
+                          {totalAddress}
+                        </Typography>
                       </Grid>
                     </Grid>
+                  </Grid>
 
-                    {/* 5/5 time info */}  
-                    <Grid item xs={12} sm={12}>
-                      <Grid container direction="row">
-                        <Grid item xs={2} sm={2}>
+                  {/* 5/5 time info */}  
+                  <Grid item xs={12} sm={12}>
+                    <Grid container direction="row">
+                      <Grid item xs={2} sm={2}>
+                        <Grid container justify="center">
                           <CalendarTodayIcon fontSize="large" className={classes.icon} />
                         </Grid>
-                        <Grid item xs={10} sm={10}>
-                          {/* 12:00PM, Friday, 29 Jan 2021 */}
-                          {/* <Typography variant='h6'>{totalDate}</Typography> */}
-                          {haveDate? (
-                            <Typography variant='h6'>
-                              <Moment format="dddd HH:mm, DD MMM YYYY">{totalDate}</Moment>
-                            </Typography>
+                      </Grid>
+                      <Grid item xs={10} sm={10}>
+                        {/* 12:00PM, Friday, 29 Jan 2021 */}
+                        {/* <Typography variant='h6'>{totalDate}</Typography> */}
+                        {haveDate? (
+                          <Typography variant='h6'>
+                            <Moment format="dddd HH:mm, DD MMM YYYY">{totalDate}</Moment>
+                          </Typography>
                         )
                           :''}
-                        </Grid>
                       </Grid>
                     </Grid>
-                  </Container>
+                  </Grid>
+                  {/* </Container> */}
                 </Grid>
               </Container>
 
@@ -1167,9 +1250,9 @@ function Order(props) {
 
               {/* Total amount */}
               <Container maxWidth="lg">
-                <Grid container>
+                <Grid container direction="row" alignItems="flex-end">
                   <Grid item xs={6} sm={6}>
-                    <Typography align="left" variant='h4' className={classes.totalText}>
+                    <Typography align="left" variant='h3'>
                       Total
                     </Typography>
                   </Grid>

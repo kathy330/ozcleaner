@@ -11,49 +11,51 @@ import {useSelector} from 'react-redux'
 import Nav from '../../components/NavBarComponents/NavBar'
 import OrderRight from "../../components/OrderComponents/OrderRight"
 import Footer from '../../components/FooterComponents/Footer'
+// import {buttonStyle} from '../../styles/styles'
 // import LoadingIcon from "../../components/AdminComponents/LoadingIcon"
 
 const useStyles = makeStyles((theme) => ({
   root: {
     background: 'white',
-  },
-
-  content: {
-    marginBottom: '35vh',
-    marginTop: '11vh',
-  },
-
-  right: {
-    background: 'white',
-    margin: '10px',
+    height: '100%',
+    [theme.breakpoints.down('sm')]: {
+      paddingBottom: '5vh',
+      paddingTop: '10vh',
+    },
+    [theme.breakpoints.between('sm', 'md')]: {
+      // paddingBottom: '15vh',
+      // paddingTop: '30vh',
+    },
     [theme.breakpoints.up('md')]: {
-      height: '100%',
-    }
-
-  },
-
-  left: {
-    background: 'white',
-    margin: '10px',
-    maxWidth: '700px',
-    minHeight: "353px",
-    paddingLeft: '5vh',
-    paddingTop: '10vh',
-    [theme.breakpoints.up('md')]: {
-      height: '100%',
-      marginBottom: '11vh',
-    }
+      paddingBottom: '25vh',
+      paddingTop: '20vh',
+    },
   },
 
   button: {
-    borderRadius: '30px',
-    marginTop: '5vh',
-    width: '200px',
+    background: theme.palette.primary.main, // #007bf5
+    borderRadius: '12px',
+    color: theme.palette.primary.contrastText,
+    fontSize: '1.4rem',
+    paddingInline: '80px', // 太长，小屏幕装不下
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: '5vh',
+      marginTop: '5vh',
+    },
+    [theme.breakpoints.up('md')]: {
+      marginTop: '10vh',
+    },
+
+    '&:hover': {
+      background: theme.palette.primary.hover, // #0050c1
+      boxShadow: '0px 2px 10px #888',
+    },
   }
 }))
 
 function OrderConfirm() {
   const classes = useStyles()
+  // const buttonstyle = buttonStyle()
 
   const [type, setType] = React.useState({
     ordertype:''
@@ -117,31 +119,43 @@ function OrderConfirm() {
   return (
     <>
       {/* {(error)&&(<Redirect to="/order/confirm/error" />)} */}
+      <Nav />
       <Box className={classes.root}>
-        <Nav />
-        <Container className={classes.content}>
-          <Grid container>
-            <Grid item xs={12} sm={6} className={classes.left}>
-              <Typography variant="h6">
-                Your Order has been recieved!
-              </Typography>
-              <Typography variant="h6">
-                We will email you once confirmed!
-              </Typography>
-              <Button variant="contained" color="primary" className={classes.button}>
-                View Order
-              </Button>
+        <Container>
+          <Grid container spacing={0}>
+            <Grid item xs={12} sm={6}>
+              <Container maxWidth="sm">
+                <Grid container direction="column" alignItems="flex-start">
+                  <Grid item>
+                    <Typography variant="h4">
+                      Your Order has been recieved. 
+                      <br />
+                      {/* We will email you once confirmed! */}
+                      Thank you!
+                    </Typography>
+                  </Grid>
+
+                  <Grid item>
+                    <Button variant="contained" color="primary" className={classes.button}>
+                      View Order
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Container>
             </Grid>
 
-            <Grid item xs={12} sm={5} className={classes.right}>
+            <Grid item xs={0} sm={1} />
+
+            <Grid item xs={12} sm={5}>
               <Card>
                 <OrderRight data={data} />
               </Card>
             </Grid>
           </Grid>
         </Container>
-        <Footer />
+      
       </Box>
+      <Footer />
     </>
   )
 }

@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import {React} from 'react'
 // import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
@@ -8,10 +9,17 @@ import Divider from '@material-ui/core/Divider'
 import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import {useForm,Controller } from 'react-hook-form'
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector } from 'react-redux'
 import DividerWithText from './Divider'
 import {PopupButton,FbButton,GoogleButton} from './Button'
-import {postRegularRequest} from '../../store/actions'
+// import {postRegularRequest} from '../../store/actions'
+import {register} from "../../store/actions/actionCreator"
+// import FormDialogLogin from "./PopupFormLogin"
+import FormDialogLoginPop from './FormDialogLoginPop'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import { ErrorOutline } from '@material-ui/icons'
+//import PopupFormLogin from './PopupFormLogin'
+
 
 
 export default function RegistrationForm() {
@@ -19,8 +27,12 @@ export default function RegistrationForm() {
   const dispatch = useDispatch()
   const onSubmit = (data) =>{
     console.log(data)
-    dispatch(postRegularRequest(data)) // 发送saga请求
+    dispatch(register(data)) // 发送saga请求
   }
+  const userRegister = useSelector((state) => state.userRegister)
+  const { userInfo, loading, error } = userRegister
+
+  
 
   const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
@@ -112,6 +124,25 @@ const classes = useStyles()
               </Typography>
             </DialogTitle>
           </Grid>
+          <Grid container justify="center">
+                {loading && <CircularProgress />}
+                {error && (
+                <Typography
+                  color="error"
+                  className={classes.text}
+                >
+                  {error}
+                </Typography>
+              )}
+                {userInfo && (
+                <Typography
+                  color="primary"
+                  className={classes.text}
+                >
+                  Your registration successfully!
+                </Typography>
+              )}
+          </Grid>
           <Grid container>
             <Typography
               className={classes.text}
@@ -160,6 +191,7 @@ const classes = useStyles()
               defaultValue=""
             />
           </Grid>
+        
           <Grid>
             <a href="/password">
               <Typography
@@ -203,7 +235,7 @@ const classes = useStyles()
           <Grid container justify="center" item xs={12}>
             <Divider className={classes.divide} />
           </Grid>
-            
+        </form>
           <Grid container direction="row">
             <Grid container justify="flex-start">
               <Typography className={classes.account}>
@@ -211,17 +243,12 @@ const classes = useStyles()
               </Typography>
               
             </Grid>
+           
             <Grid container justify="flex-end">
-               
-              <Typography className={classes.login}>
-                <a href="/login" className={classes.loginColor}>
-                  Login
-                </a>
-              </Typography>
-               
+             <FormDialogLoginPop/>
             </Grid>
           </Grid>
-        </form>
+          
       </>
     )
   }

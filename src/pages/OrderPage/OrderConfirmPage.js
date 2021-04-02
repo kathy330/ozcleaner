@@ -73,7 +73,7 @@ function OrderConfirm() {
   const ENDdata = useSelector(state => state.endoflease_in_reducer_index.repos_in_reducer_init)  
   // console.log('end redex method: ',ENDdata)
 
-  console.log(loadingNumREGdata,loadingNumENDdata)
+  // console.log(loadingNumREGdata,loadingNumENDdata)
   // 设置传参的data值
   let data = {
     bedroomNum:'',
@@ -95,16 +95,16 @@ function OrderConfirm() {
   // let count = 0
   useEffect(()=>{
     if (loadingNumREGdata===2 && loadingNumENDdata===1) {
-      // console.log('rc')
+      console.log('rc')
       setType({ordertype:'RC'}) 
       // count += 1
-      console.log('1')
+      // console.log('1')
     }
     else if (loadingNumREGdata===1 && loadingNumENDdata===2) {
-      // console.log('ec')
+      console.log('ec')
       setType({ordertype:'EC'})
       // count += 1
-      console.log('2')
+      // console.log('2')
     }
     // else if (loadingNumREGdata===1 && loadingNumENDdata===1) {
     //   console.log('3')

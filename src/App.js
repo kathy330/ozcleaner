@@ -4,6 +4,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import ProtectedRoute from './router/ProtectedRoute'
 import HomePage from './pages/HomePage/HomePage'
 import UI from './pages/UI/UI'
 import OrderPage from './pages/OrderPage/OrderPage'
@@ -41,7 +42,7 @@ function App() {
       <CssBaseline />
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <Route path="/order" exact component={OrderPage} />
+        <ProtectedRoute path="/order" exact component={OrderPage} />
         <Route path="/profile/customer" exact component={CustomerProfilePage} />
         <Route path="/profile/employee" exact component={EmployeeProfilePage} />
         <Route path="/order/confirm" exact component={OrderConfirmPage} />
@@ -51,7 +52,7 @@ function App() {
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />
         <Route path="/admin/overview" exact component={AdminOverviewPage} />
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
-        <Route path="/admin/dashboard" exact component={AdminDashboardPage} />
+        <ProtectedRoute path="/admin/dashboard" exact component={AdminDashboardPage} />
         <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
         <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} />
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
@@ -68,6 +69,8 @@ function App() {
         <Route path="/erik" exact component={ErikPage} />
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />
+        
+        
         <Route component={ErrorPage} />
       </Switch>
     </ThemeProvider>

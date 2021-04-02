@@ -157,7 +157,7 @@ const classes = useStyles()
                   className={classes.textField}
                   margin="dense"
                   id="outlined-basic"
-                  label="Email"
+                  label="email"
                   type="Email"
                   variant="outlined"
                 />

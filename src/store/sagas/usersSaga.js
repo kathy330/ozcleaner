@@ -15,6 +15,7 @@ function* userLogin(action) {
 }
 
 function* userRegister(action) {
+  
   try {
     const userInfo = 
     yield call(axios.post,'http://localhost:8000/users/registration', action.payload)

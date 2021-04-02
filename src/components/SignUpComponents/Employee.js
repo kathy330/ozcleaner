@@ -161,7 +161,7 @@ const classes = useStyles()
                   variant="outlined"
                 />
                 )}
-              name="Email"
+              name="email"
               control={control}
               defaultValue=""
             />
@@ -181,7 +181,7 @@ const classes = useStyles()
                   margin="dense"
                   id="outlined-basic"
                   label="ABN"
-                  type="ABN"
+                  type="number"
                   variant="outlined"
                 />
                 )}
@@ -189,31 +189,7 @@ const classes = useStyles()
               control={control}
               defaultValue=""
             />
-          </Grid>
-          <Grid>
-            <Typography
-              className={classes.text}
-            >
-              Login Name:
-            </Typography>
-          </Grid>
-          <Grid container justify="center">
-            <Controller
-              as={(
-                <TextField
-                  className={classes.textField}
-                  margin="dense"
-                  id="outlined-basic"
-                  label="Login Name"
-                  type="Login Name"
-                  variant="outlined"
-                />
-                )}
-              name="Login Name"
-              control={control}
-              defaultValue=""
-            />
-          </Grid>        
+          </Grid> 
           <Grid>
             <Typography
               className={classes.text}
@@ -233,7 +209,7 @@ const classes = useStyles()
                   variant="outlined"
                 />
                 )}
-              name="Password"
+              name="password"
               control={control}
               defaultValue=""
             />

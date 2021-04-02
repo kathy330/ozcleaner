@@ -1,28 +1,28 @@
 import actionType from '../actions/actionTypes'
 
 const initialState = {
-  cusDetailsTable: [],
+  staffDetailsTable: [],
   loading: false,
   error:null
 }
 
-function CusDetailTableReducer(state = initialState,action) {
+function StaffDetailTableReducer(state = initialState,action) {
   switch (action.type) {
 
-    case actionType.GET_CUSDETAILTABLE_REQUEST:
+    case actionType.GET_STAFFDETAILTABLE_REQUEST:
       return {
         ...state,
         loading:true
       }
 
-    case actionType.GET_CUSDETAILTABLE_SUCCESS:
+    case actionType.GET_STAFFDETAILTABLE_SUCCESS:
       return {
         ...state,
         loading: false,
-        cusDetailsTable: action.users
+        staffDetailsTable: action.users
       }
 
-    case actionType.GET_CUSDETAILTABLE_FAILED:
+    case actionType.GET_STAFFDETAILTABLE_FAILED:
       return {
         ...state,
         loading: false,
@@ -34,4 +34,4 @@ function CusDetailTableReducer(state = initialState,action) {
   }
 }
 
-export default CusDetailTableReducer
+export default StaffDetailTableReducer

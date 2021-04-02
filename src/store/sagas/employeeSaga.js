@@ -2,7 +2,7 @@
 import { put, call, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
 
-function* userLogin(action) {
+function* employeeLogin(action) {
   try {
     const userInfo = 
     yield call(axios.post,'http://localhost:8000/users/login', action.payload)
@@ -14,31 +14,29 @@ function* userLogin(action) {
   }
 }
 
-function* userRegister(action) {
+function* employeeRegister(action) {
   try {
     const userInfo = 
     yield call(axios.post,'http://localhost:8000/users/registration', action.payload)
     yield put({ type: 'USER_REGISTER_SUCCESS', payload: userInfo })
     yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    console.log(`from${  userInfo}`)
   } catch (e) {
     yield put({ type: 'USER_REGISTER_FAIL', 
-    payload: e.response.data.email})
-    // console.log(e.response.data.email)
+    payload: e.response.data.error })
   }
 }
 
-function* userSignout() {
+function* employeeSignout() {
   localStorage.removeItem('userInfo')
   yield put({ type: 'USER_SIGNOUT' })
   document.location.href = '/'
 }
 
-function* UsersSaga() {
-  yield takeEvery('USER_SIGNIN_REQUEST', userLogin)
-  yield takeEvery('USER_REGISTER_REQUEST', userRegister)
-  yield takeEvery('USER_SIGNOUT_REQUEST', userSignout)
+function* EmployeeSaga() {
+  yield takeEvery('EMPLOYEE_SIGNIN_REQUEST', employeeLogin)
+  yield takeEvery('EMPLOYEE_REGISTER_REQUEST', employeeRegister)
+  yield takeEvery('EMPLOYEE_SIGNOUT_REQUEST', employeeSignout)
 }
 
-export default UsersSaga
+export default EmployeeSaga

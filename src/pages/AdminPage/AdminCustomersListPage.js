@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AdminCustomersListPage = () => {
   const classes = useStyles()
-  const rowPreSet = 3
+  const rowPreSet = 10
   const tableType = 'customer'
 
   return (

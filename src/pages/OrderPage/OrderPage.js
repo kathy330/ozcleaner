@@ -1,8 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable max-len */
 /* eslint-disable no-empty */
-import React,{useEffect} from 'react'
-import { Redirect } from "react-router-dom"
+// /* eslint-disable no-shadow */
+/* eslint-disable react/jsx-props-no-spreading */
+
+import React,{useEffect,useState} from 'react'
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
@@ -32,7 +34,7 @@ import PaymentIcon from '@material-ui/icons/Payment'
 import Icon from '@material-ui/core/Icon'
 // import Link from '@material-ui/core/Link'
 import { useForm,Controller } from "react-hook-form"
-import {useDispatch,useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import KingBedIcon from '@material-ui/icons/KingBed'
 import BathtubIcon from '@material-ui/icons/Bathtub'
 import RoomIcon from '@material-ui/icons/Room'
@@ -40,6 +42,11 @@ import NoteIcon from '@material-ui/icons/Note'
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
 import IconButton from '@material-ui/core/IconButton'
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
+// import { Redirect } from "react-router-dom" // 负责页面跳转router，不会刷新reducer👍
+import {useHistory} from "react-router-dom"
+// import Zoom from '@material-ui/core/Zoom'
+import PropTypes from 'prop-types'
+// import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import cabinetIcon from "../../assets/cabinet.svg"
 import windowIcon from "../../assets/window.svg"
 import fridgeIcon from "../../assets/fridge.svg"
@@ -60,10 +67,8 @@ import HomeComponentStyle from "../../components/HomeComponents/styles/HomeCompo
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // padding: 0,
-    background: 'lightgrey'
-    // position: 'relative',
-    // zIndex: '-2',
+    // background: 'lightgray'
+    background: '#e3f2fd',
   },
 
   content: {
@@ -232,14 +237,39 @@ const SelectStyle = {
   getContentAnchorEl: null
 }
 
-function Order() {
+
+// 提交后，自动返回页面顶部
+function ScrollTop(props) {
+  const { children } = props
+
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor')
+    // 这个按钮会跳转到id为这个的组件上(设置的是home button为此id)
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'end' }) // start,center,end为滑动到该元素的哪个位置
+    }
+  }
+
+  return (
+    <div onClick={handleClick} role="presentation">
+      {children}
+    </div>
+  )
+}
+
+ScrollTop.propTypes = {
+  children: PropTypes.element.isRequired,
+}
+
+
+function Order(props) {
   const classes = useStyles()
   const cssstyle = HomeComponentStyle()
   const buttonstyles = buttonStyle()
   const { handleSubmit, control, watch } = useForm()
   const dispatch = useDispatch()
 
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     oven: false,
     fridge: false,
     windows: false,
@@ -306,7 +336,8 @@ function Order() {
     employeeID: "",
     firstName: "",
     lastName: "",
-    phoneNumber: ''
+    phoneNumber: '',
+    // userDetail:'604cb4dfc875675915d0d0a5'
   }
 
   // 44判断选中了哪个extra,那个值就为true，返回值给下面onSubmite提交时更改
@@ -329,15 +360,10 @@ function Order() {
   }
   // 44-----------------------------------------
 
-  const onErrors = () => {
-    console.log("ERROR!")
-  }
-
   // 66这里是想左边输入时间，右边实时更新
   let startDate = watch("date",'')
   let startTime = watch("time",'')
   let totalDate = ''
-
 
   try {
     startDate = date.format(startDate, 'YYYY-MM-DD') 
@@ -375,7 +401,7 @@ function Order() {
   if(typeOfClean ==='EC') {
     typeOfClean = 'End of lease clean'
   }
-  if(typeOfClean === 'RC') {
+  else if(typeOfClean === 'RC') {
     typeOfClean = 'Regular clean'
   }
   // console.log(bedNumber,bathNumber,typeOfClean)
@@ -391,15 +417,12 @@ function Order() {
   if(address2!=="") {
     address2 += ", "
   }
-
   if(address1!=="") {
     address1 += ", "
   }
-
   if(suburb!=="") {
     suburb += ", "
   }
-
   if(postcode!=="") {
     postcode += ', '
   }
@@ -466,37 +489,44 @@ function Order() {
         firstName:data.firstName,
         lastName:data.lastName,
         phoneNumber:data.phoneNumber,
-        price:amount
+        price:amount,
+        // userDetail:'604cb4dfc875675915d0d0a5'
       }
       // console.log('new data: ',newData)
   
       if(data.type === "RC") {
         // 🌟dispatch一个action
         dispatch(postRegularRequest(newData)) // 在saga里控制跳转下一个页面
-         // 发送 regular saga请求
-        // dispatch(getCOMPLETERequest(newData))
       }
       if(data.type === "EC") {
         dispatch(postEndOfLeaseRequest(newData)) // 在saga里控制跳转下一个页面
       }
-      console.log("successful")
-      setState({submit:true})
+      setState({submit:true}) // 更改submit为true，下面即可跳转confirm页面
     }
     else{
-      // alert('Must pick all the info')
-      // console.log('Must pick all the info')
+      console.log('Must pick all the info')
     }
   } 
-  // 55-----------------------------------------
-  
-  const showForm = false // 没啥用 下面练习判断true false
-  const { submit } = state
-  // eslint-disable-next-line no-shadow
-  const loading = useSelector(state => state.regular_in_reducer_index.loading)
-  console.log("loading parameter: ", loading)
-  if (submit && !loading) {
-    return (<Redirect to="/order/confirm" />)
+// 55-----------------------------------------
+
+  const onErrors = () => {
+    console.log("ERROR!")
   }
+  const showForm = false // 没啥用 下面练习判断true false
+
+  // 1010 判断是否正确提交，提交后，用<Redirect /> 跳转页面
+  const { submit } = state
+  const loading = useSelector(astate => astate.regular_in_reducer_index.loading)
+  // console.log("loading parameter: ", loading)
+
+  const history = useHistory()
+  if (submit && !loading) {
+    // return (<Redirect to="/order/confirm" />)  不太好，附带 3XX状态
+    history.push("/order/confirm")
+
+  }
+  // 1010
+
   return (
     <Box className={classes.root}>
       <HeaderNavigation />
@@ -515,7 +545,7 @@ function Order() {
                 >
                   <Container maxWidth="lg">
                     <Grid item xs={12} sm={12}>
-                      <Typography variant='h4' align='left' className={classes.title}>
+                      <Typography id="back-to-top-anchor" variant='h4' align='left' className={classes.title}>
                         Set up your cleaning service
                       </Typography>
 
@@ -1028,14 +1058,16 @@ function Order() {
                   <Container maxWidth="lg" className={classes.bookingButton}>
                     {/* href='/order/confirm' 藏在BookingButton里面了 */}
                     {/* <BookingButton>Complete Booking</BookingButton> */}
-                    <Button 
-                      // disabled
-                      // href='/order/confirm'
-                      type="submit"
-                      className={buttonstyles.bookingButton}
-                    >
-                      Complete Booking
-                    </Button>
+                    <ScrollTop {...props}>
+                      <Button 
+                        // disabled
+                        // href='/order/confirm'
+                        type="submit"
+                        className={buttonstyles.bookingButton}
+                      >
+                        Complete Booking
+                      </Button>
+                    </ScrollTop>
                   </Container>
                 </form>
   

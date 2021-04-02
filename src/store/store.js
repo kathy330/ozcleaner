@@ -29,7 +29,20 @@ import createSagaMiddleware from 'redux-saga'
 import reducers from './reducers/index'
 import rootSaga from './sagas/rootSaga'
 
-
+// erik 登陆的initialState部分
+const initialState = {
+  userSignin: {
+    userInfo: localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo'))
+    : null,
+  },
+  employeeSignin: {
+    employeeInfo: localStorage.getItem('employeeInfo')
+    ? JSON.parse(localStorage.getItem('employeeInfo'))
+    : null,
+  }
+}
+// const initialState = {}
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -46,7 +59,8 @@ const enhancers = composeEnhancers(
   // other store enhancers if any
 )
 
-const store = createStore(reducers, enhancers)
+const store = createStore(reducers, initialState, enhancers)
+// const store = createStore(reducers, enhancers)
 
 sagaMiddleware.run(rootSaga)
 

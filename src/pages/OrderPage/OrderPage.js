@@ -63,6 +63,8 @@ import HomeComponentStyle from "../../components/HomeComponents/styles/HomeCompo
 
 
 
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     // background: 'lightgray'
@@ -264,7 +266,7 @@ function Order(props) {
   const classes = useStyles()
   const cssstyle = HomeComponentStyle()
   const buttonstyles = buttonStyle()
-  const {  handleSubmit,control,watch } = useForm()
+  const { handleSubmit, control, watch } = useForm()
   const dispatch = useDispatch()
 
   const [state, setState] = useState({
@@ -538,7 +540,9 @@ function Order(props) {
               <Grid container direction="column">
                 {/* <p>{totalAddress}</p> */}
           
-                <form onSubmit={handleSubmit(onSubmit,onErrors)}>
+                <form
+                  onSubmit={handleSubmit(onSubmit,onErrors)}
+                >
                   <Container maxWidth="lg">
                     <Grid item xs={12} sm={12}>
                       <Typography id="back-to-top-anchor" variant='h4' align='left' className={classes.title}>

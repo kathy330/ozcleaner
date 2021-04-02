@@ -18,6 +18,7 @@ import works3 from '../../assets/work3.jpg' // https://www.pexels.com/zh-cn/phot
 
 function Home() {
   const trigger = useScrollTrigger({ disableHysteresis: true })
+  localStorage.setItem("authLevel", "admin")
   return (
     <>
       {/* navbar只有加了trigger={trigger}才会实现下拉显示和fixed位置，不填写的话是static属性 */}

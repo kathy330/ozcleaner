@@ -1,7 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Typography } from '@material-ui/core'
-import NavBar from '../../components/NavBarComponents/NavBar'
 import Footer from '../../components/FooterComponents/Footer'
 import ListTable from '../../components/AdminComponents/ListTable'
 
@@ -47,7 +46,6 @@ function AdminCustomersListPage() {
   const tableType = 'staff'
   return (
     <>
-      <NavBar />
       <Container maxWidth="lg" className={classes.root}>
         <Typography variant="h3" component="h1">
           Staffs List

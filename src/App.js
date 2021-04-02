@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css'
 import React from 'react'
-import { Route, Switch } from 'react-router'
+import { Redirect, Route, Switch } from 'react-router'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import ProtectedRoute from './router/ProtectedRoute'
@@ -13,13 +13,11 @@ import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
 // import ProfilePage from './pages/ProfilePage/ProfilePage'
 import AdminCustomersPage from './pages/AdminPage/AdminCustomersPage'
-import AdminCustomersListPage from './pages/AdminPage/AdminCustomersListPage'
-import AdminStaffsListPage from './pages/AdminPage/AdminStaffsListPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 import theme from './styles/theme'
 import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
 import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
-import AdminDashboardPage from "./pages/AdminPage/AdminDashboardPage"
+import AdminIndexPage from "./pages/AdminPage/AdminIndexPage"
 // import ....Page from ....
 
 import DongyuPage from './pages/zpractice/Dongyu/Dongyu'
@@ -47,12 +45,12 @@ function App() {
         <Route path="/profile/employee" exact component={EmployeeProfilePage} />
         <Route path="/order/confirm" exact component={OrderConfirmPage} />
         {/* <Route path="/profile" exact component={ProfilePage} /> */}
-        <Route path="/admin/customers" exact component={AdminCustomersListPage} />
-        <Route path="/admin/staffs" exact component={AdminStaffsListPage} />
+
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />
         <Route path="/admin/overview" exact component={AdminOverviewPage} />
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
-        <ProtectedRoute path="/admin/dashboard" exact component={AdminDashboardPage} />
+        <ProtectedRoute path="/admin" component={AdminIndexPage} />
+        <Redirect exact from="/admin" to="/admin/dashboard" />
         <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
         <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} />
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}

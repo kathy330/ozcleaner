@@ -8,6 +8,7 @@ function* employeeLogin(action) {
     yield call(axios.post,'http://localhost:8000/users/login', action.payload)
     yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    console.log(userInfo)
   } catch (e) {
     console.log(e.response)
     yield put({ type: 'USER_SIGNIN_FAIL', payload: e.response.data.error })

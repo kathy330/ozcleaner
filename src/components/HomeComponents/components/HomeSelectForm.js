@@ -132,7 +132,7 @@ export default function HomeSelectForm() {
             <Grid item xs={12} md={3}>
               <FormControl className={cssstyle.Picker}>
                 <InputLabel className={cssstyle.Picker}>
-                  Bedroom Number*
+                  Bedroom *
                 </InputLabel>
 
                 <Controller
@@ -158,7 +158,7 @@ export default function HomeSelectForm() {
             <Grid item xs={12} md={3}>
               <FormControl className={cssstyle.Picker}>
                 <InputLabel className={cssstyle.Picker}>
-                  Bathroom Number*
+                  Bathroom *
                 </InputLabel>
 
                 <Controller

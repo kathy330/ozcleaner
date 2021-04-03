@@ -41,9 +41,9 @@ function App() {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <ProtectedRoute path="/order" exact component={OrderPage} />
+        <Route path="/order/confirm" exact component={OrderConfirmPage} />
         <Route path="/profile/customer" exact component={CustomerProfilePage} />
         <Route path="/profile/employee" exact component={EmployeeProfilePage} />
-        <Route path="/order/confirm" exact component={OrderConfirmPage} />
         {/* <Route path="/profile" exact component={ProfilePage} /> */}
 
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />
@@ -63,7 +63,7 @@ function App() {
         <Route path="/Yanbo" exact component={YanboPage} />
         <Route path="/Yanbo/form" exact component={YanboForm} />
         <Route path="/wystan" exact component={WystanPage} />
-        <Route path="/kathy" exact component={KathyPage} />
+        <Route path="/admin/customers/:id" exact component={KathyPage} />
         <Route path="/erik" exact component={ErikPage} />
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />

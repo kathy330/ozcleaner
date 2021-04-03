@@ -5,18 +5,20 @@ import Grid from '@material-ui/core/Grid'
 import { Container , Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
-import DateFnsUtils from '@date-io/date-fns'
-import {MuiPickersUtilsProvider,KeyboardDatePicker,KeyboardTimePicker} from "@material-ui/pickers"
-import AccessTimeIcon from '@material-ui/icons/AccessTime'
+// import DateFnsUtils from '@date-io/date-fns'
+// import {MuiPickersUtilsProvider,KeyboardDatePicker,KeyboardTimePicker} 
+// from "@material-ui/pickers"
+// import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
-import DateRangeIcon from '@material-ui/icons/DateRange'
-import date from 'date-and-time'
-import {useDispatch} from 'react-redux'
-import {postRegularRequest} from '../../../store/actions'
+// import DateRangeIcon from '@material-ui/icons/DateRange'
+// import date from 'date-and-time'
+import {useHistory} from "react-router-dom"
+// import {useDispatch} from 'react-redux'
+// import {postRegularRequest} from '../../../store/actions'
 
 import {buttonStyle} from '../../../styles/styles'
 import HomeComponentStyle from '../styles/HomeComponentStyle'
@@ -44,10 +46,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     [theme.breakpoints.down('sm')]: {
-      paddingTop: '5vh',
+      paddingTop: '15vh',
     },
     [theme.breakpoints.between('sm','md')]: {
-      paddingTop: '10vh',
+      paddingTop: '15vh',
     },
     [theme.breakpoints.up('md')]: {
       paddingTop: '10vh',
@@ -76,84 +78,61 @@ export default function HomeSelectForm() {
   const cssstyle = HomeComponentStyle()
   const buttonstyle = buttonStyle()
   const {  handleSubmit,control } = useForm()
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  const postData = {      
-    address: {
-      address1: "king street",
-      address2: "",
-      suburb: "",
-      state: "QLD",
-      postcode: "4102"
-    },
-    type: "RC",
-    status: "in-progress",
-    propertyType: "unknown",
-    cabinets: 0,
-    fridge: 0,
-    oven: 0,
-    interiorWindows: 0,
-    review: "",
-    rating: "",
-    title: "I want clean",
-    bedroomNum: 0,
-    bathroomNum: 0,
-    price: 20,
-    startTime: "2020-01-01T00:00:00",
-    endTime: "2020-01-01T00:00:00",
-    userID: "",
-    employeeID: "",
-    firstName: "Ervin",
-    lastName: "Howell",
-    phoneNumber: '0400000000'
-  }
-  
+  const history = useHistory()
   const onSubmit = data => {
-    console.log(data)
-    if(data.bedRoomNum!=="" && data.bathRoomNum!=="" && data.type!==""
-        &&data.postcode!=="" &&data.date!=="" &&data.time!==0) {
+    // console.log(data)
+    // if(data.bedRoomNum!=="" && data.bathRoomNum!=="" && data.type!==""
+    //     &&data.postcode!=="" &&data.date!=="" &&data.time!==0) {
       // 防止有人不选时间
-      const pickDate = date.format(data.date, 'YYYY-MM-DD') 
-      const pickTime = date.format(data.time, 'HH:mm:ss') 
-      const totalDate = `${pickDate}T${pickTime}Z`
-      // console.log(totalDate)
+      // const pickDate = date.format(data.date, 'YYYY-MM-DD') 
+      // const pickTime = date.format(data.time, 'HH:mm:ss') 
+      // const totalDate = `${pickDate}T${pickTime}Z`
   
       const newData = {
-        ...postData,
+        // ...postData,
         bedroomNum:data.bedRoomNum,
         bathroomNum:data.bathRoomNum,
-        type:data.type,
-        address:{
-          ...postData.address,
-          postcode:data.postcode
-        },
-        startTime:totalDate,
+        contact:data.number,
+        propertyType:data.propertyType,
+        // type:data.type,
+        // address:{
+          // ...postData.address,
+        postcode:data.postcode,
+        // },
+        // startTime:totalDate,
+        // starDate:data.date,
+        // starTime:data.time,
+        // totalDate:totalDate
         // endTime:totalDate, // endtime 什么时候设置？     
       }
-      console.log(newData)
-  
+      // console.log(newData)
+      localStorage.setItem('homeOrderData',JSON.stringify(newData)) 
+      history.push("/order")
+
       // 🌟dispatch一个action
-      dispatch(postRegularRequest(newData)) // 发送saga请求
-    }
-    else{
-      console.log('Must pick all the info')
-    }
+      // dispatch(postRegularRequest(newData)) // 发送saga请求
+    // }
+    // else{
+    //   console.log('Must pick all the info')
+    // }
   } 
 
-  const onErrors = () => {
-    console.log("ERROR!")
-  }
+  // const onErrors = () => {
+  //   console.log("ERROR!")
+  // }
 
   return ( 
     <Box>
       <Container maxWidth="lg" className={classes.pickerPosition}>
-        <form onSubmit={handleSubmit(onSubmit,onErrors)}>
-          <Grid container spacing={1}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Grid container spacing={3}>
             {/* 1. Bedroom */}
-            <Grid item xs={12} md={2}>
+            <Grid item xs={12} md={3}>
               <FormControl className={cssstyle.Picker}>
                 <InputLabel className={cssstyle.Picker}>
-                  Bedroom
+                  Bedroom *
                 </InputLabel>
 
                 <Controller
@@ -168,16 +147,18 @@ export default function HomeSelectForm() {
                     </Select>
                 )}
                   name="bedRoomNum"
+                  required
                   control={control}
                   defaultValue=""
                 />
               </FormControl>
             </Grid> 
+
             {/* 2. Bathroom */}
-            <Grid item xs={12} md={2}>
+            <Grid item xs={12} md={3}>
               <FormControl className={cssstyle.Picker}>
                 <InputLabel className={cssstyle.Picker}>
-                  Bathroom
+                  Bathroom *
                 </InputLabel>
 
                 <Controller
@@ -192,16 +173,42 @@ export default function HomeSelectForm() {
                     </Select>
                 )}
                   name="bathRoomNum"
+                  required
                   control={control}
                   defaultValue=""
                 />
               </FormControl>
             </Grid>
-            {/* 3. Type */}
-            <Grid item xs={12} md={2}>
+
+            {/* . property type */}
+            <Grid item xs={12} md={3}>
               <FormControl className={cssstyle.Picker}>
                 <InputLabel className={cssstyle.Picker}>
-                  Type of clean
+                  Property Type
+                </InputLabel>
+
+                <Controller
+                  as={(
+                    <Select MenuProps={SelectStyle}>
+                      <MenuItem value="unit">Unit</MenuItem>
+                      <MenuItem value="apartment">Apartment</MenuItem>
+                      <MenuItem value="house">House</MenuItem>
+                                  
+                    </Select>
+                )}
+                  name="propertyType"
+                  // required
+                  control={control}
+                  defaultValue=''
+                />
+              </FormControl>
+            </Grid>
+
+            {/* 3. Type */}
+            {/* <Grid item xs={12} md={2}>
+              <FormControl className={cssstyle.Picker}>
+                <InputLabel className={cssstyle.Picker}>
+                  Clean Type
                 </InputLabel>
 
                 <Controller
@@ -212,26 +219,43 @@ export default function HomeSelectForm() {
                     </Select>
                 )}
                   name="type"
+                  required
                   control={control}
                   defaultValue=""
                 />
               </FormControl>
-            </Grid>
+            </Grid> */}
             {/* 4. PostCode */}
-            <Grid item xs={12} md={2}>
+            <Grid item xs={12} md={3}>
               <FormControl className={cssstyle.Picker}>
                 <Controller
                   as={(
                     <TextField label="Post Code" className={classes.postCodeLength} />
                 )}
                   name="postcode"
+                  // required
                   control={control}
                   defaultValue=""
                 />
               </FormControl>
             </Grid>
+            
+            {/* 5. Contact number */}
+            {/* <Grid item xs={12} md={2}>
+              <FormControl className={cssstyle.Picker}>
+                <Controller
+                  as={(
+                    <TextField label="Contact Number" className={classes.postCodeLength} />
+                )}
+                  name="number"
+                  // required
+                  control={control}
+                  defaultValue=""
+                />
+              </FormControl>
+            </Grid> */}
             {/* 5. Date */}
-            <Grid item xs={12} md={2}>
+            {/* <Grid item xs={12} md={2}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Controller
                   name="date"
@@ -243,6 +267,7 @@ export default function HomeSelectForm() {
                       className={cssstyle.datePicker}
                       format="MM/dd/yyyy"
                       label='Date'
+                      required
                       helperText="" // 关闭报错文字，会挤开下面样子
                       disablePast // 禁用过去日期
                       KeyboardButtonProps={{"aria-label": "change date"}}
@@ -252,9 +277,9 @@ export default function HomeSelectForm() {
                   )}
                 />
               </MuiPickersUtilsProvider>
-            </Grid>
+            </Grid> */}
             {/* 6.Time */}
-            <Grid item xs={12} md={2}>
+            {/* <Grid item xs={12} md={2}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Controller
                   name="time"
@@ -265,6 +290,7 @@ export default function HomeSelectForm() {
                     <KeyboardTimePicker
                       className={cssstyle.datePicker}
                       label='Time'
+                      required
                       helperText="" // 关闭报错文字，会挤开下面样子
                       KeyboardButtonProps={{'aria-label': 'change time',}}
                       keyboardIcon={(<AccessTimeIcon />)} // 重新定义右侧icon
@@ -273,7 +299,7 @@ export default function HomeSelectForm() {
                   )}
                 />
               </MuiPickersUtilsProvider>
-            </Grid>            
+            </Grid>             */}
           </Grid>
 
           <Box className={classes.buttonPosition}>
@@ -282,7 +308,7 @@ export default function HomeSelectForm() {
               variant="contained"
               type="submit"
               id="back-to-top-anchor"
-              // href="/order" //跳转到order page
+              // href="/order" // 跳转到order page
             >
               Booking from $80
             </Button>
@@ -292,89 +318,3 @@ export default function HomeSelectForm() {
       </Container>
     </Box>
 )}
-
-// import IconButton from '@material-ui/core/IconButton'
-// import BedroomPicker from './BedroomPicker'
-// import BathroomPicker from './BathroomPicker'
-// import TypePicker from './TypePicker'
-// import DatePicker from "./DatePicker"
-// import TimePicker from "./TimePicker"
-// import InsertPostcode from "./PostcodeInput"
-// import HomeButton from './HomeButton'
-        // {/* <BedroomPicker /> */}
-        // {/* <BathroomPicker /> */}
-        // {/* <TypePicker /> */}
-        // {/* <InsertPostcode /> */}
-        // {/* <DatePicker /> */}
-        // {/* <TimePicker /> */}
-// class HomeSelectForm extends React.Component {
-  
-//   constructor(){
-//     super()
-//     this.state={
-//       bedRoomNum:'',
-//       bathRoomNum:'',
-//       type:'',
-//       date:'',
-//       StartTime:'',
-//       Postcode:'',
-//     }
-//   }
-
-//   submitHandler = (e) => {
-//     e.preventDefault()
-//     const {bedRoomNum,bathRoomNum,type} = this.state
-//     const {date,StartTime} = this.state
-//     const {Postcode} = this.state
-//     const startDateAndTime = `${date}T${StartTime}:00.000+00:00`
-
-//     console.log("bedroom: ",bedRoomNum)
-//     console.log("bathroom: ",bathRoomNum)
-//     console.log("type: ",type)
-//     console.log("start time: ",startDateAndTime)
-//     console.log("postcode: ",Postcode)
-//   }
-
-//   changeHandler = (e) => {
-//     const {name} = e.target
-//     this.setState({
-//       [name]:e.target.value
-//     })
-//     // console.log(name,e.target.value)
-//   }
-  
-//   render() {
-//     return(
-//       <Box>
-//         <Container maxWidth="lg" className={scssStyle.select__position}>
-//           <Grid container spacing={1}>
-//             <Grid item xs={12} md={2}>
-//               <BedroomPicker />
-//             </Grid>
-//             <Grid item xs={12} md={2}>
-//               <BathroomPicker />
-//             </Grid>
-//             <Grid item xs={12} md={2}>
-//               <TypePicker />
-//             </Grid>
-//             <Grid item xs={12} md={2}>
-//               <InsertPostcode />
-//             </Grid>
-//             <Grid item xs={12} md={2}>
-//               <DatePicker />
-//             </Grid>
-//             <Grid item xs={12} md={2}>
-//               <TimePicker />
-//             </Grid>
-//           </Grid>
-//         </Container>
-
-//         <div className={scssStyle.select__button}>
-//           <HomeButton />
-//         </div>
-//       </Box>
-//     )
-//   }
-// }
-
-// export default HomeSelectForm

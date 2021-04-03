@@ -46,9 +46,9 @@ const useStyles = makeStyles(() => ({
     color: '#007bf5',
   },
 
-  totalText: {
-    paddingTop: '10px',
-  },
+  // totalText: {
+  //   paddingTop: '10px',
+  // },
 
   rightTop: {
     marginBottom: '30px',
@@ -144,99 +144,100 @@ export default function OrderRight({data}) {
     type = 'Regular Clean'
   }
   else if(type === 'EC') {
-    type = 'End of lease Clean'
+    type = 'End lease Clean'
   }
   
   // 🔥 离开该页面，清除local storage 🔥
-  // window.onbeforeunload = () => {
-  //   localStorage.removeItem('regularCleanOrder')
-  //   localStorage.removeItem('endofleaseCleanOrder')
+  window.onbeforeunload = () => {
+    localStorage.removeItem('homeOrderData')
+    localStorage.removeItem('regularCleanOrder')
+    localStorage.removeItem('endofleaseCleanOrder')
   //   // return '' //没有return的话，离开该页面就不会有弹窗提示
-  // }
+  }
 
   return (
     <>
       <Box className={classes.rightTop}>
         <Container maxWidth="lg">
           <Grid container direction="column">
-            <Container maxWidth="sm">
-              <Grid item xs={12} sm={12}>
-                <Grid container direction="row">
-                  <Grid item xs={2} sm={2}>
-                    {/* <KingBedIcon fontSize="large" className={classes.icon}  /> */}
-                    <IconButton className={classes.hover}>
-                      {!showForm ?
-                        <KingBedIcon fontSize="large" className={classes.icon} />
+            {/* <Container maxWidth="sm"> */}
+            <Grid item xs={12} sm={12}>
+              <Grid container direction="row">
+                <Grid item xs={2} sm={2}>
+                  {/* <KingBedIcon fontSize="large" className={classes.icon}  /> */}
+                  <IconButton className={classes.hover}>
+                    {!showForm ?
+                      <KingBedIcon fontSize="large" className={classes.icon} />
                       : <IndeterminateCheckBoxIcon />}
-                    </IconButton>
-                  </Grid>
-                  <Grid item xs={10} sm={10}>
-                    <Typography variant='h6'>     
-                      {bedroomNum}
-                    </Typography>
-                  </Grid>
+                  </IconButton>
+                </Grid>
+                <Grid item xs={10} sm={10}>
+                  <Typography variant='h6'>     
+                    {bedroomNum}
+                  </Typography>
                 </Grid>
               </Grid>
-              <Grid item xs={12} sm={12}>
-                <Grid container direction="row">
-                  <Grid item xs={2} sm={2}>
-                    <BathtubIcon fontSize="large" className={classes.icon} />
-                  </Grid>
-                  <Grid item xs={10} sm={10}>
-                    <Typography variant='h6'>
-                      {bathroomNum}
-                    </Typography>
-                  </Grid>
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <Grid container direction="row">
+                <Grid item xs={2} sm={2}>
+                  <BathtubIcon fontSize="large" className={classes.icon} />
+                </Grid>
+                <Grid item xs={10} sm={10}>
+                  <Typography variant='h6'>
+                    {bathroomNum}
+                  </Typography>
                 </Grid>
               </Grid>
-              <Grid item xs={12} sm={12}>
-                <Grid container direction="row">
-                  <Grid item xs={2} sm={2}>
-                    <NoteIcon fontSize="large" className={classes.icon} />
-                  </Grid>
-                  <Grid item xs={10} sm={10}>
-                    <Typography variant='h6'>{type}</Typography>
-                  </Grid>
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <Grid container direction="row">
+                <Grid item xs={2} sm={2}>
+                  <NoteIcon fontSize="large" className={classes.icon} />
+                </Grid>
+                <Grid item xs={10} sm={10}>
+                  <Typography variant='h6'>{type}</Typography>
                 </Grid>
               </Grid>
+            </Grid>
             
-              <Grid item xs={12} sm={12}>
-                <Grid container direction="row">
-                  <Grid item xs={2} sm={2}>
-                    <RoomIcon fontSize="large" className={classes.icon} />
-                  </Grid>
-                  <Grid item xs={10} sm={10}>
-                    <Typography variant='h6'>
-                      {/* Unit 502, 18 Buchan Street, West End, 4101, QLD */}
-                      {totalAddress}
-                    </Typography>
-                  </Grid>
+            <Grid item xs={12} sm={12}>
+              <Grid container direction="row">
+                <Grid item xs={2} sm={2}>
+                  <RoomIcon fontSize="large" className={classes.icon} />
+                </Grid>
+                <Grid item xs={10} sm={10}>
+                  <Typography variant='h6'>
+                    {/* Unit 502, 18 Buchan Street, West End, 4101, QLD */}
+                    {totalAddress}
+                  </Typography>
                 </Grid>
               </Grid>
+            </Grid>
             
-              <Grid item xs={12} sm={12}>
-                <Grid container direction="row">
-                  <Grid item xs={2} sm={2}>
-                    <CalendarTodayIcon fontSize="large" className={classes.icon} />
-                  </Grid>
-                  <Grid item xs={10} sm={10}>
-                    <Hidden xsUp={timeDisplay}>
-                      <Typography variant='h6'>
-                        {/* 12:00PM, Friday, 29 Jan 2021 */}
-                        <Moment format="dddd HH:mm, DD MMM YYYY">{startTime}</Moment>
-                      </Typography>
-                    </Hidden>
-                  </Grid>
+            <Grid item xs={12} sm={12}>
+              <Grid container direction="row">
+                <Grid item xs={2} sm={2}>
+                  <CalendarTodayIcon fontSize="large" className={classes.icon} />
+                </Grid>
+                <Grid item xs={10} sm={10}>
+                  <Hidden xsUp={timeDisplay}>
+                    <Typography variant='h6'>
+                      {/* 12:00PM, Friday, 29 Jan 2021 */}
+                      <Moment format="dddd HH:mm, DD MMM YYYY">{startTime}</Moment>
+                    </Typography>
+                  </Hidden>
                 </Grid>
               </Grid>
-            </Container>
+            </Grid>
+            {/* </Container> */}
           </Grid>
         </Container>
         <Divider />
         <Container maxWidth="lg">
-          <Grid container>
+          <Grid container direction="row" alignItems="flex-end">
             <Grid item xs={6} sm={6}>
-              <Typography align="left" variant='h4' className={classes.totalText}>
+              <Typography align="left" variant='h3'>
                 Total
               </Typography>
             </Grid>

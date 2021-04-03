@@ -30,7 +30,28 @@ function emplyeeDetail(state = initialState,action) {
         repos_in_reducer_init: [],
         error:action.payload
       }
-
+    
+      case actionType.UPDATE_EMPLOYEE_REQUEST:
+        return {
+          ...state,
+          loading:true
+        }
+  
+      case actionType.UPDATE_EMPLOYEE_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          repos_in_reducer_init: action.payload
+        }
+  
+      case actionType.UPDATE_EMPLOYEE_FAILED:
+        return {
+          ...state,
+          loading: false,
+          repos_in_reducer_init: [],
+          error:action.payload
+        }
+    
     default:
       return state
   }

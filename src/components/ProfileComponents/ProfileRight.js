@@ -2,9 +2,9 @@ import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import ProfileTitle from './components/ProfileTitle'
-import TextFields from './components/TextFields'
-import SaveButton from './components/SaveButton'
-
+// import TextFields from './components/TextFields'
+// import SaveButton from './components/SaveButton'
+import TextForm from './components/TextForm'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,11 +35,11 @@ export default function ProfileRight() {
           <ProfileTitle />
         </Grid>
         <Grid item xs={12} className={classes.marginLeft}>
-          <TextFields />
+          <TextForm />
         </Grid>
-        <Grid item xs={12} className={classes.botton}>
+        {/* <Grid item xs={12} className={classes.botton}>
           <SaveButton />
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   )

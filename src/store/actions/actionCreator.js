@@ -118,6 +118,21 @@ export const GET_EMPLOYEE_FAILED = (err) => ({
   payload: err,
 })
 
+// employee update profile 
+export const updateEmployeeRequest = (datalist) => ({
+  type: actionTypes.UPDATE_EMPLOYEE_REQUEST,
+  payload: datalist,
+})
+
+export const updateEmployeeSuccess = (datalist) => ({
+  type: actionTypes.UPDATE_EMPLOYEE_SUCCESS,
+  payload: datalist,
+})
+export const updateEmployeeFailed = (err) => ({
+  type: actionTypes.UPDATE_EMPLOYEE_FAILED,
+  payload: err,
+})
+
 
 // staff details page 
 export const getSTAFFDETAILRequest = (users) => ({

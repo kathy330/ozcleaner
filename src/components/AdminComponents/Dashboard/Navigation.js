@@ -10,28 +10,32 @@ import PopDetails from '../../SignUpComponents/PopupDetails'
 
 // styles
 const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    AppBar: {
-        flexDirection: 'row',
-        display: "flex",
-        padding:"1%",
-        shadows: 'none'
-    },
-    orange: {
-        color: theme.palette.getContrastText(deepOrange[500]),
-        backgroundColor: deepOrange[500],
-    },
-    purple: {
-        color: theme.palette.getContrastText(deepPurple[500]),
-        backgroundColor: deepPurple[500],
-    },
-    Avatar: {
-        alignItems: "center",
-        flexDirection: "column",
-        margin: "1%"
-    }
+  root: {
+    flexGrow: 1,
+  },
+
+  AppBar: {
+    display: "flex",
+    flexDirection: 'row',
+    padding: "1%",
+    shadows: 'none',
+  },
+
+  orange: {
+    backgroundColor: deepOrange[500],
+    color: theme.palette.getContrastText(deepOrange[500]),
+  },
+
+  purple: {
+    backgroundColor: deepPurple[500],
+    color: theme.palette.getContrastText(deepPurple[500]),
+  },
+
+  Avatar: {
+    alignItems: "center",
+    flexDirection: "column",
+    margin: "1%",
+  }
 }))
 
 export default function AdminHeaderNavigation() {
@@ -42,7 +46,7 @@ export default function AdminHeaderNavigation() {
       <div>
         <AppBar  className={`${style.AppBar} ${classes.AppBar}`}  position="static" elevation={0.5}>
           <Grid container className={style.grow} xs={11}>
-            <Button>Logo</Button>
+            <Button href='/admin'>Logo</Button>
           </Grid> 
           <Grid container className={classes.Avatar} xs={1}>
             <PopDetails/>

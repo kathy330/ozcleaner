@@ -156,7 +156,12 @@ function OrderConfirm() {
                   </Grid>
 
                   <Grid item>
-                    <Button variant="contained" color="primary" className={classes.button}>
+                    <Button
+                      href="/myorder" 
+                      variant="contained"
+                      color="primary"
+                      className={classes.button}
+                    >
                       View Order
                     </Button>
                   </Grid>

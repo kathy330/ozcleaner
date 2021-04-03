@@ -9,12 +9,12 @@ function* userLogin(action) {
     yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
   } catch (e) {
-    console.log(e.response)
     yield put({ type: 'USER_SIGNIN_FAIL', payload: e.response.data.error })
   }
 }
 
 function* userRegister(action) {
+  
   try {
     const userInfo = 
     yield call(axios.post,'http://localhost:8000/users/registration', action.payload)
@@ -24,7 +24,7 @@ function* userRegister(action) {
     console.log(`from${  userInfo}`)
   } catch (e) {
     yield put({ type: 'USER_REGISTER_FAIL', 
-    payload: e.response.data.email})
+    payload: e.response.data.error})
     // console.log(e.response.data.email)
   }
 }

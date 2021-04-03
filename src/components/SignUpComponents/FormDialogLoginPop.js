@@ -18,7 +18,7 @@ import SwipeableViews from 'react-swipeable-views'
 // import AppBar from '@material-ui/core/AppBar'
 // import Tabs from '@material-ui/core/Tabs'
 import LoginDetails from './LoginForm'
-import EmployeeLogin from './EmployeeLogin'
+import EmployeeLoginDetails from './EmployeeLoginForm'
 function TabPanel(props) {
   const { children, value, index, ...other } = props
 
@@ -125,7 +125,7 @@ export default function FormDialogSignupPop() {
                 <LoginDetails />
               </TabPanel>
               <TabPanel value={value} index={1} dir={theme.direction}>
-                <EmployeeLogin />
+                <EmployeeLoginDetails />
               </TabPanel>
             </SwipeableViews>
           </div>

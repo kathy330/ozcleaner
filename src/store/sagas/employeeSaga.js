@@ -12,6 +12,9 @@ function* employeeLogin(action) {
     yield call(axios.post, postAPI, action.payload)
     yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload: userInfo })
     localStorage.setItem('employeeInfo', JSON.stringify(userInfo))
+
+    localStorage.setItem("authLevel", "admin") // 暂时把employee当成admin
+    document.location.href = '/admin'
   } catch (e) {
     console.log(e.response.data)
     yield put({ type: 'EMPLOYEE_SIGNIN_FAIL', payload: e.response.data.error })
@@ -28,6 +31,9 @@ function* employeeRegister(action) {
     // yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload: employeeInfo })
     localStorage.setItem('employeeInfo', JSON.stringify(userInfo))
     // console.log(`from${  employeeInfo}`)
+
+    localStorage.setItem("authLevel", "admin") // 暂时把employee当成admin
+    document.location.href = '/admin'
   } catch (e) {
     yield put({ type: 'EMPLOYEE_REGISTER_FAIL', 
     payload: e.response.data[Object.keys(e.response.data)[0]]})
@@ -37,6 +43,8 @@ function* employeeRegister(action) {
 
 function* employeeSignout() {
   localStorage.removeItem('employeeInfo')
+  localStorage.removeItem('authLevel')
+
   yield put({ type: 'EMPLOYEE_SIGNOUT' })
   document.location.href = '/'
 }

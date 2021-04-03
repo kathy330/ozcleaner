@@ -65,7 +65,7 @@ export default function HeaderNavigation(props) {
                 <img
                   src={logo} 
                   className={style.logoimg}
-                  alt="error icon"
+                  alt="Logo icon"
                 />
                 {/* Home */}
               </Button>

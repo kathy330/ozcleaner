@@ -76,7 +76,8 @@ function isButton(words) {
   return <GreyStatus>{words.status}</GreyStatus>
 }
 
-const BasicTable=()=> {
+const BasicTable=(props)=> {
+  const {data}=props
   const classes = useStyles()
   const dispatch=useDispatch()
 
@@ -84,9 +85,12 @@ const BasicTable=()=> {
   const loading = useSelector(state => state.cusDetailsTable.loading)
   const error = useSelector(state => state.cusDetailsTable.error)
 
+  const dispatchRequested=()=>{
+    dispatch(getCUSDETAILTABLERequest(data))
+  }
 
   useEffect(()=>{
-    dispatch(getCUSDETAILTABLERequest())
+    dispatchRequested()
 },[])
 
   const [page, setPage] = React.useState(0)
@@ -139,7 +143,7 @@ const BasicTable=()=> {
                     variant="contained"
                     className={classes.check}
                     component={Link} 
-                    to={`/admin/staffs/customers/${user._id}`}
+                    to={`/admin/orders/${user._id}?type=${user.type}`}
                   >
                     View
                   </Button>

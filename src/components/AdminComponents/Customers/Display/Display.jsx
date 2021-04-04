@@ -36,17 +36,22 @@ const useStyles = makeStyles((theme) => ({
     }
   }))
   
-const Displays=()=> {
+const Displays=(props)=> {
+  const {data}=props
   const classes = useStyles()
   const dispatch=useDispatch()
 
   const users =useSelector(state => state.cusDetails.cusDetails) 
   const loading = useSelector(state => state.cusDetails.loading)
   const error = useSelector(state => state.cusDetails.error)
-  // console.log("CUSTOMERS :",users)
+ 
 
+
+  const dispatchRequested=()=>{
+    dispatch(getCUSDETAILRequest(data))
+  }
   useEffect(()=>{
-    dispatch(getCUSDETAILRequest())
+   dispatchRequested()
 },[])
 
   return (

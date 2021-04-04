@@ -53,10 +53,20 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles((theme) => ({
+  [theme.breakpoints.down('sm')]: {
+    textAlign:'center',
+  },
+  [theme.breakpoints.between('sm','md')]: {
+    textAlign:'center',
+  },
+  [theme.breakpoints.up('md')]: {
+    textAlign:'center',
+  },
+  /*
   root: {
     backgroundColor: theme.palette.background.paper,
     width: 443,
-  },
+  },*/
   login:{
     fontWeight: 'bold',
     color: '#007bf5',

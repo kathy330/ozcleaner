@@ -558,6 +558,7 @@ function Order(props) {
 
   const history = useHistory()
   if (submit && !loading) {
+    console.log(submit, loading)
     // return (<Redirect to="/order/confirm" />)  不太好，附带 3XX状态
     history.push("/order/confirm")
   }

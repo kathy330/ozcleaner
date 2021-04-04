@@ -19,7 +19,6 @@ import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
 import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
 import AdminIndexPage from "./pages/AdminPage/AdminIndexPage"
 // import ....Page from ....
-
 import DongyuPage from './pages/zpractice/Dongyu/Dongyu'
 import KangkangPage from './pages/zpractice/Kangkang/Kangkang'
 import YanboPage from './pages/zpractice/Yanbo/Yanbo'
@@ -55,7 +54,6 @@ function App() {
         <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} />
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
         <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} />
-
         <Route path="/ui" exact component={UI} />
 
         <Route path="/dongyu" exact component={DongyuPage} />

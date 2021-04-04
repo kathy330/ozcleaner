@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -22,17 +21,17 @@ import ListPagination from './ListPagination'
 /**
  * ListTable() is for displaying the user list(user/employee)
  * @param columns: (obj) table head
- * @param rowPreSet: (num) is the default page row's number
+ * @param urlpage: (str) is the url page number
  * @param tableType: (str) is to distinguish between customer list and staff list
  */
 function ListCustomerTable(props) {
   const { columns, urlpage, tableType } = props
-  const pageSize = 12
+  const pageSize = 3
   const listSize = { page: urlpage, pageSize: pageSize}
   const dispatch = useDispatch()
   const [deletedId, setDeletedId] = React.useState(0)
+  const [deletedIndex, setdeletedIndex] = React.useState(0)
   const [open, setOpen] = React.useState(false)
-  const path = `/admin/${tableType}`
   // get userdata from state
   const usersData = useSelector(state => state.userslist.users.result)
   // get total users number from state
@@ -40,14 +39,14 @@ function ListCustomerTable(props) {
   const loading = useSelector(state => state.userslist.loading)
   const error = useSelector(state => state.userslist.error)
   const dispatchRequest = (tableType === 'customer') 
+  // eslint-disable-next-line no-shadow
   const returnPage = (usersCount) => {
     if (pageSize) {
       return Math.floor(usersCount / listSize.pageSize) + 1
-    } else if (usersCount < pageSize) {
+    } if (usersCount < pageSize) {
       return 1
-    } else {
-      return Math.floor(usersCount / listSize.pageSize)
-    }
+    } 
+    return Math.floor(usersCount / listSize.pageSize)
   }
   const finalPage = returnPage(usersCount)
   // console.log(usersData)
@@ -63,8 +62,13 @@ function ListCustomerTable(props) {
     dispatchRequested()
   }, [])
 
-  const openDeletedModal = (id) =>{
-    // console.log(usersData.values(id))
+  const getPaginationPage = (page) => {
+    listSize.page = page
+    dispatchRequested(listSize)
+  }
+
+  const openDeletedModal = (id, index) =>{
+    setdeletedIndex(index)
     setDeletedId(id)
     setOpen(true)
   }
@@ -74,15 +78,11 @@ function ListCustomerTable(props) {
   }
 
   const handleAlertConfirm = ()=>{
+    // TODO: add update user deleted status here
     console.log('confirm delete: ', deletedId)
     setOpen(false)
   }
 
-  const getPaginationPage = (page) =>{
-    listSize.page = page
-    dispatchRequested(listSize)
-  }
-  
   return (
     <>
       {/* if loading: show loading icon */}
@@ -94,9 +94,10 @@ function ListCustomerTable(props) {
             <Table aria-label="simple table">
               <ListTableHead columns={columns} />
               <TableBody>
-                {usersData.map((row) => (
+                {usersData.map((row,index) => (
                   <ListTableRow
                     key={row.ID}
+                    index={index}
                     // eslint-disable-next-line no-underscore-dangle
                     id={row._id}
                     firstName={row.name.firstName}
@@ -107,7 +108,7 @@ function ListCustomerTable(props) {
                     tableType={tableType}
                     openDeletedModal={openDeletedModal}
                   />
-                ))}
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -125,7 +126,9 @@ function ListCustomerTable(props) {
             <DialogTitle id="alert-dialog-title">Do you want to delete this user?</DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                User: UserName(useremail)
+                {`User: 
+                  ${usersData[deletedIndex].name.firstName}
+                  (${usersData[deletedIndex].email})`}
               </DialogContentText>
             </DialogContent>
             <DialogActions>

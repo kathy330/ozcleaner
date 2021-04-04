@@ -12,6 +12,7 @@ import CusDetailsTable from "./customerDetailTable"
 import StaffDetails from './staffsDetail'
 import emplyeeReducer from './emplyeeDetail'
 import staffDetailsTable from './staffsDetailTable'
+import allOrders from './allOrders'
 // import { userRegisterReducer, userSigninReducer } from './userReducer'
 import { userRegisterReducer, userSigninReducer } from './userReducer'
 
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   employee_in_reducer_index: emplyeeReducer,
   // userSignin: userSigninReducer,
   // userRegister: userRegisterReducer,
+  allOrders
 })
 export default rootReducer
 

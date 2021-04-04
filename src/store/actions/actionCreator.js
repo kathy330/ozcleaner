@@ -171,3 +171,9 @@ export const signoutEmployee = () => ({
   type: actionTypes.EMPLOYEE_SIGNOUT_REQUEST,
 })
 
+// * getAllOrdersRequest() is for  get all order
+// * includes regular clean & end of lease clear -- kathy
+export const getAllOrersRequest = orders => ({
+  type: actionTypes.GET_ALL_ORDERS_REQUESTED,
+  payload: orders
+})

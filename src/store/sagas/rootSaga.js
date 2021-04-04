@@ -10,6 +10,7 @@ import StaffDetailTableSaga from './staffsDetailsTable'
 import UsersSaga from './usersSaga'
 // // import testSaga from './userRegistrationSaga'
 import EmployeeSaga from './emplyeeDetail'
+import AllOrdersSaga from './allOrdersSaga'
 
 export default function* rootSaga() {
   // 如果有更多的放在这下面;
@@ -24,7 +25,8 @@ export default function* rootSaga() {
     StaffDetailTableSaga(),
     // testSaga(),
     EmployeeSaga(),
-    UsersSaga()
+    UsersSaga(),
+    AllOrdersSaga()
   ])
   // 另外的写法：
   // yield all([fork(github), fork(user)]);

@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React from 'react'
-import { Grid, Button, AppBar} from '@material-ui/core'
+import { Grid, Button, AppBar,Box} from '@material-ui/core'
 import { navBarStyle } from '../../../styles/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
-import PopDetails from '../../SignUpComponents/PopupDetails'
+// import PopDetails from '../../SignUpComponents/PopupDetails'
 import adminLogo from "../../../assets/adminLogo.svg" 
 
 
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
   Avatar: {
     alignItems: "center",
-    flexDirection: "column",
+    // flexDirection: "row"
     margin: "1%",
   }
 }))
@@ -43,10 +43,18 @@ export default function AdminHeaderNavigation() {
     const style = navBarStyle()
     const classes = useStyles()
 
+    const signoutHandler = () => {
+      // dispatch(signout())
+      console.log('admin sign out')
+      localStorage.removeItem('authLevel')
+      localStorage.removeItem('employeeInfo')
+      document.location.href = '/'
+    }
+
     return (
       <div>
         <AppBar  className={`${style.AppBar} ${classes.AppBar}`}  position="static" elevation={0.5}>
-          <Grid container className={style.grow} xs={11}>
+          <Grid container className={style.grow} xs={6} md={9}>
             <Button href='/admin'>
               <img
                 src={adminLogo} 
@@ -55,9 +63,17 @@ export default function AdminHeaderNavigation() {
               />
             </Button>
           </Grid> 
-          <Grid container className={classes.Avatar} xs={1}>
-            <PopDetails/>
+
+          <Grid container direction="row" className={classes.Avatar} xs={6} md={3}>
+            <Grid item xs={6} md={8} />
+            <Grid item xs={6} md={4}>
+              <Button onClick={signoutHandler}>Sign Out</Button>
+            </Grid>
+            {/* <Grid item xs={3}>
+              <PopDetails/>
+            </Grid> */}
           </Grid>
+          
         </AppBar>
 
       </div>

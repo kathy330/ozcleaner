@@ -41,17 +41,24 @@ const useStyles = makeStyles((theme) => ({
 
 const AdminCustomersLeft = ({ dueDate, orderTitle,
   customerFirstName, customerLastName, location, rate, cab, fri, ov, intWin, reviewText,
-  orderStatus, typeOfOrder, phone }) => {
+  orderStatus, typeOfOrder, phone, userObjectID, employeeObjectID, userFirstName,
+  userLastName, employeeFirstName, employeeLastName }) => {
   const classes = useStyles()
-  // const { dueDate, orderTitle,
-  //   customerFirstName, customerLastName, location, rate, reviewText } = props
-  // console.log(props, 'this is props')
+
   return (
     <Grid item xs={12} sm={9} className={classes.root}>
       <OrderTitle title={orderTitle} />
-      <CreatedBy firstName={customerFirstName} lastName={customerLastName} />
+      <CreatedBy
+        firstName={userFirstName}
+        lastName={userLastName}
+        userObjectID={userObjectID}
+      />
       <Divider className={classes.divider} />
-      <AssginedTo />
+      <AssginedTo
+        employeeFirstName={employeeFirstName}
+        employeeLastName={employeeLastName}
+        employeeObjectID={employeeObjectID}
+      />
       <Divider className={classes.divider} />
       <Status status={orderStatus} />
       <Divider className={classes.divider} />

@@ -18,6 +18,7 @@ import ListTableHead from './ListTableHead'
 import ListTableRow from './ListTableRow'
 import LoadingIcon from './LoadingIcon'
 import ListPagination from './ListPagination'
+import { ContactSupportOutlined } from '@material-ui/icons'
 
 /**
  * ListTable() is for displaying the user list(user/employee)
@@ -58,10 +59,9 @@ function ListCustomerTable(props) {
       dispatch(getAllEmployeeListRequest(listSize))
     }
   }
-
   useEffect(() => {
     dispatchRequested()
-  }, [])
+  }, [urlpage])
 
   const openDeletedModal = (id) =>{
     // console.log(usersData.values(id))

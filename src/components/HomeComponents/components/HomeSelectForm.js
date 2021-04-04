@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/forbid-prop-types */
 import React from 'react'
 import { useForm,Controller } from "react-hook-form"
 import Grid from '@material-ui/core/Grid'
 import { Container , Box } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles,useTheme } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 // import DateFnsUtils from '@date-io/date-fns'
 // import {MuiPickersUtilsProvider,KeyboardDatePicker,KeyboardTimePicker} 
@@ -14,11 +16,20 @@ import TextField from '@material-ui/core/TextField'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
+import Dialog from '@material-ui/core/Dialog'
+import PropTypes from 'prop-types'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
+import SwipeableViews from 'react-swipeable-views'
 // import DateRangeIcon from '@material-ui/icons/DateRange'
 // import date from 'date-and-time'
 import {useHistory} from "react-router-dom"
 // import {useDispatch} from 'react-redux'
 // import {postRegularRequest} from '../../../store/actions'
+import LoginDetails from '../../SignUpComponents/LoginForm'
+import EmployeeLoginDetails from '../../SignUpComponents/EmployeeLoginForm'
 
 import {buttonStyle} from '../../../styles/styles'
 import HomeComponentStyle from '../styles/HomeComponentStyle'
@@ -58,6 +69,40 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={2}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  )
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+}
+
+function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
+  }
+}
+
+
 const SelectStyle = { 
   // 设置点开选项后的下拉样式
   // 弹出效果API： https://material-ui.com/zh/api/popover/
@@ -72,14 +117,35 @@ const SelectStyle = {
   getContentAnchorEl: null
 }
 
+
+
 export default function HomeSelectForm() {
-  
   const classes = useStyles()
   const cssstyle = HomeComponentStyle()
   const buttonstyle = buttonStyle()
   const {  handleSubmit,control } = useForm()
   // const dispatch = useDispatch()
 
+  // 1/1开始登陆窗口函数：
+  const theme = useTheme()
+  const [open, setOpen] = React.useState(false)
+  const [value, setValue] = React.useState(0)
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
+  }
+  const handleChangeIndex = (index) => {
+    setValue(index)
+  }
+  // 1/1结束登陆窗口函数：
+
+
+  // 首页处理order data存储到local sotrage
   const history = useHistory()
   const onSubmit = data => {
     // console.log(data)
@@ -118,10 +184,6 @@ export default function HomeSelectForm() {
     //   console.log('Must pick all the info')
     // }
   } 
-
-  // const onErrors = () => {
-  //   console.log("ERROR!")
-  // }
 
   return ( 
     <Box>
@@ -204,27 +266,6 @@ export default function HomeSelectForm() {
               </FormControl>
             </Grid>
 
-            {/* 3. Type */}
-            {/* <Grid item xs={12} md={2}>
-              <FormControl className={cssstyle.Picker}>
-                <InputLabel className={cssstyle.Picker}>
-                  Clean Type
-                </InputLabel>
-
-                <Controller
-                  as={(
-                    <Select MenuProps={SelectStyle}>
-                      <MenuItem value="RC">Regular</MenuItem>
-                      <MenuItem value="EC">End of lease</MenuItem>
-                    </Select>
-                )}
-                  name="type"
-                  required
-                  control={control}
-                  defaultValue=""
-                />
-              </FormControl>
-            </Grid> */}
             {/* 4. PostCode */}
             <Grid item xs={12} md={3}>
               <FormControl className={cssstyle.Picker}>
@@ -239,80 +280,70 @@ export default function HomeSelectForm() {
                 />
               </FormControl>
             </Grid>
-            
-            {/* 5. Contact number */}
-            {/* <Grid item xs={12} md={2}>
-              <FormControl className={cssstyle.Picker}>
-                <Controller
-                  as={(
-                    <TextField label="Contact Number" className={classes.postCodeLength} />
-                )}
-                  name="number"
-                  // required
-                  control={control}
-                  defaultValue=""
-                />
-              </FormControl>
-            </Grid> */}
-            {/* 5. Date */}
-            {/* <Grid item xs={12} md={2}>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Controller
-                  name="date"
-                  control={control}
-                  initialFocusedDate={null} // 初始化没有日期
-                  defaultValue={null} // 初始化没有日期
-                  render={({ ref, ...rest }) => (
-                    <KeyboardDatePicker
-                      className={cssstyle.datePicker}
-                      format="MM/dd/yyyy"
-                      label='Date'
-                      required
-                      helperText="" // 关闭报错文字，会挤开下面样子
-                      disablePast // 禁用过去日期
-                      KeyboardButtonProps={{"aria-label": "change date"}}
-                      keyboardIcon={(<DateRangeIcon />)} // 重新定义右侧icon
-                      {...rest}
-                    />
-                  )}
-                />
-              </MuiPickersUtilsProvider>
-            </Grid> */}
-            {/* 6.Time */}
-            {/* <Grid item xs={12} md={2}>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Controller
-                  name="time"
-                  control={control}
-                  initialFocusedDate={null} // 初始化没有日期
-                  defaultValue={null} // 初始化没有日期
-                  render={({ ref, ...rest }) => (
-                    <KeyboardTimePicker
-                      className={cssstyle.datePicker}
-                      label='Time'
-                      required
-                      helperText="" // 关闭报错文字，会挤开下面样子
-                      KeyboardButtonProps={{'aria-label': 'change time',}}
-                      keyboardIcon={(<AccessTimeIcon />)} // 重新定义右侧icon
-                      {...rest}
-                    />
-                  )}
-                />
-              </MuiPickersUtilsProvider>
-            </Grid>             */}
           </Grid>
 
           <Box className={classes.buttonPosition}>
+            {/* 如果没有authLevel，弹出登陆，如果有，正常下单按钮submit属性 */}
+            {localStorage.getItem('authLevel')? (
+              <Button
+                className={buttonstyle.bookingButton}
+                variant="contained"
+                type="submit"
+                id="back-to-top-anchor"
+                // href="/order" // 跳转到order page
+              >
+                Booking from $80
+              </Button>
+          ) : (
             <Button
               className={buttonstyle.bookingButton}
               variant="contained"
-              type="submit"
+              // type="submit"
               id="back-to-top-anchor"
-              // href="/order" // 跳转到order page
+              onClick={handleClickOpen}
             >
               Booking from $80
             </Button>
+          )}
           </Box>
+
+
+          {/* 登陆弹窗样式 */}
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="form-dialog-title"
+            fullWidth
+            maxWidth='xs'
+          >
+            <div className={classes.root}>
+              <AppBar position="static" color="default">
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  indicatorColor="primary"
+                  textColor="primary"
+                  variant="fullWidth"
+                  aria-label="full width tabs example"
+                >
+                  <Tab label="Login as customer" {...a11yProps(0)} />
+                  <Tab label="Login as employee" {...a11yProps(1)} />
+                </Tabs>
+              </AppBar>
+              <SwipeableViews
+                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                index={value}
+                onChangeIndex={handleChangeIndex}
+              >
+                <TabPanel value={value} index={0} dir={theme.direction}>
+                  <LoginDetails />
+                </TabPanel>
+                <TabPanel value={value} index={1} dir={theme.direction}>
+                  <EmployeeLoginDetails />
+                </TabPanel>
+              </SwipeableViews>
+            </div>
+          </Dialog>
 
         </form>
       </Container>

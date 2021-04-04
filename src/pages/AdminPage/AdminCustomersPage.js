@@ -10,6 +10,7 @@ import { getREGULARRequest, getENDRequest, cancelRegularOrderRequest } from "../
 import LoadingIcon from '../../components/AdminComponents/LoadingIcon'
 
 
+
 import { useForm, Controller } from "react-hook-form"
 
 // style
@@ -64,57 +65,119 @@ const data = {
 }
 
 function displayPage(repo) {
-  if (typeof (repo) === 'string') { return <LoadingIcon /> }
-  const { endTime, title, firstName, address, lastName,
-    cabinets, fridge, oven, interiorWindows, rating, review, price, status, type, phoneNumber, taskID } = repo[0]
-  console.log(repo, '10')
 
+  // need user objID & employee objID
+  // if (typeof (repo) === 'string') { return <LoadingIcon /> }
+  const { endTime, title, firstName, address, lastName,
+    cabinets, fridge, oven, interiorWindows, rating, review, price, status, type, phoneNumber, _id, taskID, userDetail, employeeDetail } = repo[0]
+  console.log(_id)
+  // let re = /{|}|":"|"address1|"address2|"suburb|"state|"postcode|":/g
+  // console.log(JSON.stringify(repo.address).replace(re, ''))
+  // let re2 = /",/g
+  // console.log(JSON.stringify(repo.address).replace(re, '').replace(re2, ', '))
+  // console.log(JSON.stringify(address).replace(/{|}|":"|"address1|"address2|"suburb|"state|"postcode|":/g, '').replace(/",/g, ', '))
+
+  let employeeFirstName, employeeLastName, employeeObjID = null
+  const userFirstName = userDetail[0].name.firstName
+  const userLastName = userDetail[0].name.lastName
+  const userObjID = userDetail[0]._id
+  console.log(userDetail[0].name)
+  if (employeeDetail[0] == null) {
+    employeeFirstName = 'null'
+    employeeLastName = 'null'
+    employeeObjID = 'null'
+  } else {
+    employeeFirstName = employeeDetail[0].name.firstName
+    employeeLastName = employeeDetail[0].name.lastName
+    employeeObjID = employeeDetail[0]._id
+  }
+  // const userFirstName = userDetail[0].name.firstName
+  // const userLastName = userDetail[0].name.lastName
+  // const employeeFirstName = employeeDetail[0].name.firstName
+  // const employeeLastName = employeeDetail[0].name.lastName
+  console.log(userFirstName, userLastName, employeeFirstName, employeeLastName)
   return (
     <>
       <Grid container spacing={2}>
-        <AdminCustomersLeft dueDate={endTime}
+        <AdminCustomersLeft
+          userFirstName={userFirstName}
+          userLastName={userLastName}
+          employeeFirstName={employeeFirstName}
+          employeeLastName={employeeLastName}
+          dueDate={endTime}
           orderTitle={title}
           customerFirstName={firstName}
           customerLastName={lastName}
           orderStatus={status}
           phone={phoneNumber}
-          location={Object.values(address).join(', ')}
+          // location={Object.values(address).join(', ')}
+          location={JSON.stringify(address).replace(/{|}|":"|"address1|"address2|"suburb|"state|"postcode|":/g, '').replace(/",/g, ', ')}
           cab={cabinets}
           fri={fridge}
           ov={oven}
           intWin={interiorWindows}
           rate={rating}
           typeOfOrder={type}
-          reviewText={review} />
+          reviewText={review}
+          userObjectID={userObjID}
+          employeeObjectID={employeeObjID}
+        />
         <AdminCustomersRight orderPrice={price}
-          ID={taskID}
+          _id={_id}
           orderStatus={status} />
       </Grid>
     </>
   )
 }
 
-function AdminCustomersPage() {
+function AdminCustomersPage(match) {
   const classes = useStyles()
-  const [type, setType] = React.useState({
-    repo: ''
-  })
-  const data = { taskid: 1 }
+  // const data = { taskid: 1 }
+  // const objid = '60633937b175b8fccb933398'
+  // const testData = { _id: '60633a30bad120ff885aa99c' }
+  const objid = match.match.params.id;
+  // console.log(objid)
+  const data = { _id: objid }
+  // console.log(testData.type)
+
+  const query = new URLSearchParams(match.location.search)
+  console.log(query)
+  console.log(match.location.search)
+  const getType = query.get('type')
+  console.log(getType)
+
+
   const dispatch = useDispatch()
   useEffect(() => {
     //get（假定已经拿到所有数据了)
     // get data
-    dispatch(getREGULARRequest(data))
-    // dispatch(getENDOFLEASERequest())
-    // post
-    setType({ repo })
+    if (getType === 'RC' || getType === 'rc') {
+      console.log('111')
+      dispatch(getREGULARRequest(data))
+    }
+    else if (getType === 'EC' || getType === 'ec') {
+      console.log('222')
+      dispatch(getENDRequest(data))
+    }
   }, [])
 
-  let redux = useSelector(state => state.regular_in_reducer_index)
-  console.log(redux, 'redux')
+  // let redux = useSelector(state => state.regular_in_reducer_index)
+  // let redux2 = useSelector(state => state.employee_in_reducer_index)
+
+  let redux = null
+  let loading = false
+  if (getType === 'RC' || 'rc') {
+    redux = useSelector(state => state.regular_in_reducer_index)
+  }
+  else if (getType === 'EC' || 'ec') {
+    redux = useSelector(state => state.endoflease_in_reducer_index)
+  }
   let repo = redux.repos_in_reducer_init
-  let loading = redux.loading
-  console.log(loading, 'loading')
+  loading = redux.loading
+  console.log(redux, 'redux')
+  // let updateData = redux.updateData
+  console.log(loading, repo)
+  // console.log(updateData)
   // let repo2 = useSelector()
   // console.log(Object.keys(repo[0]))
 
@@ -127,8 +190,7 @@ function AdminCustomersPage() {
   // }
 
   // console.log(repo[0], '456')
-  console.log(repo, '789')
-
+  // console.log(repo, '789')
 
   return (
     <Grid className={classes.bg}>

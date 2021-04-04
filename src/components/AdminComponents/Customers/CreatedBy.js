@@ -36,8 +36,8 @@ const styles = makeStyles((theme) => ({
 
 export default function CreatBy(props) {
   const classes = styles()
-  const { firstName, lastName, taskID } = props
-  const path = `/admin/customers/${taskID}`
+  const { firstName, lastName, userObjectID } = props
+  const path = `/admin/customers/${userObjectID}`
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>

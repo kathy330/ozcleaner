@@ -1,7 +1,8 @@
+/* eslint-disable */
 import actionType from '../actions/actionTypes'
 
 const initialState = {
-  loading: false,
+  loading: true,
   updateing: false,
   loadingNum: 1,
   error: null,
@@ -64,6 +65,7 @@ function regularReducer(state = initialState, action) {
         ...state,
         loading: false,
         updateData: action.repos,
+        // repos_in_reducer_init: action.postInSaga,
         repos_in_reducer_init: [{ ...state.repos_in_reducer_init[0], status: action.repos.status }]
       }
 

@@ -54,7 +54,9 @@ function App() {
         <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
         <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} />
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
-        <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} />
+        {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
+
+        <Route path="/admins/orders/:id" exact component={AdminCustomersPage} />
 
         <Route path="/ui" exact component={UI} />
 
@@ -67,8 +69,8 @@ function App() {
         <Route path="/erik" exact component={ErikPage} />
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />
-        
-        
+
+
         <Route component={ErrorPage} />
       </Switch>
     </ThemeProvider>

@@ -15,7 +15,7 @@ export default function Extra(props) {
   // const { cabinets, fridge, oven, interiorWindows } = props
   console.log(props)
   console.log(Object.values(props))
-  let items = 'No extra items.  '
+  let items = ''
   if (Object.values(props)[0] === 1) {
     items = "Cabinets, "
   }
@@ -27,6 +27,9 @@ export default function Extra(props) {
   }
   if (Object.values(props)[3] === 1) {
     items += "InteriorWindows  "
+  }
+  if (Object.values(props) === [0, 0, 0, 0, "RC"] || Object.values(props) === [0, 0, 0, 0, "EC"]) {
+    items = "No extra items. "
   }
   let item = ''
   if (Object.values(props)[4] === "EC") {

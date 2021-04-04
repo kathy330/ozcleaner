@@ -59,10 +59,10 @@ const useStyles = makeStyles((theme) => ({
 function AdminCustomersRight(props) {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const { orderPrice, orderStatus, ID } = props
+  const { orderPrice, orderStatus, _id } = props
   const [open, setOpen] = React.useState(false)
-  const data = { taskid: ID, orderstatus: "in-progress" }
-  // const data = { taskid: ID, orderstatus: "cancelled" }
+  // const data = { taskid: ID, orderstatus: "in-progress" }
+  const data = { id: _id, orderstatus: "cancelled" }
   console.log(data)
 
   const [state, setState] = React.useState({
@@ -80,6 +80,7 @@ function AdminCustomersRight(props) {
   const handleCancelOrder = () => {
     setOpen(false)
     dispatch(updateRegularRequest(data))
+
     // console.log('1')
     // Redirection()
     // console.log('2')
@@ -119,10 +120,6 @@ function AdminCustomersRight(props) {
   //     return <Redirect component={RedirectLink} />
   //   }
   // }
-
-
-
-
   return (
     <Grid item xs={12} sm={3} className={classes.root}>
       <Dialog open={open} onClose={handleClose}>
@@ -156,11 +153,16 @@ function AdminCustomersRight(props) {
           <Divider />
         </CardContent>
       </Card>
-
       <Button onClick={handleClickOpen} className={classes.cancel}>
         CANCEL ORDER
       </Button>
-    </Grid>
+
+      {/* {state.status === 'cancelled' ? (<>Your order has cancelled! </>) : (<Button onClick={handleClickOpen} className={classes.cancel}>
+        CANCEL ORDER
+      </Button>)
+      } */}
+
+    </Grid >
   )
 }
 

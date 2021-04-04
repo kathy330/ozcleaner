@@ -6,11 +6,12 @@ const postApi = 'http://localhost:8000/regular'
 
 function* getRegularOrder(action) {
   try {
-    const { taskid } = action.payload
-    console.log(taskid, 'asdffffff')
-    const gitApi = `http://localhost:8000/regular/task/${taskid}`
+    const { _id } = action.payload
+    console.log(_id, 'objectID')
+    const getApi = `http://localhost:8000/regular/${_id}`
 
-    const regularData = yield call(axios.get, gitApi)
+    const regularData = yield call(axios.get, getApi)
+    // console.log(regularData.data)
     // 🌟 这个{type:'GET_GIT_SUCCESS',repos:regularData.data} 的repos的名字就是
     //  git-reducer.js 里的 ‘repos_in_reducer_init: action.repos’ 的 repos
     // 两者名字必须一样
@@ -24,14 +25,17 @@ function* getRegularOrder(action) {
 }
 
 function* updateRegularOrder(action) {
-  const { taskid, orderstatus } = action.payload
+  const { id, orderstatus } = action.payload
+  console.log(id)
+  console.log(action)
   console.log(orderstatus)
   const update = { status: orderstatus }
-  const updateApi = `http://localhost:8000/regular/${taskid}`  // PUT方法更新regular
+  const updateApi = `http://localhost:8000/regular/${id}`  // PUT方法更新regular
 
   try {
     const regularData = yield call(axios.put, updateApi, update)
     console.log(regularData)
+    console.log(update)
     yield put({ type: 'UPDATE_REGULAR_SUCCESS', repos: update })
     // 这个data是返回对象reponse的data属性
   }
@@ -89,8 +93,6 @@ function* RegularSaga() {
   yield takeEvery('GET_REGULAR_REQUEST', getRegularOrder) // GEt 全部 ORDER
   yield takeEvery('POST_REGULAR_REQUEST', postRegularOrder) // POST to regular order
   yield takeEvery('UPDATE_REGULAR_REQUEST', updateRegularOrder) // UPDATE regular order
-
-
 }
 
 export default RegularSaga

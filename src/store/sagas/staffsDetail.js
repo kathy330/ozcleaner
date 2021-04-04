@@ -1,11 +1,9 @@
 import {call,put,takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
- 
 
-const apiUrl = `http://localhost:8000/employees/2222`
-
-function* fetchStaffDetailUrl() {
+function* fetchStaffDetailUrl(action) {
   try{
+    const apiUrl = `http://localhost:8000/employees/${action.payload}`
     const users = yield call(axios.get, apiUrl)
 
     console.log(users)

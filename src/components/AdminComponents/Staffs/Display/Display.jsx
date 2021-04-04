@@ -36,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
     }
   }))
   
-const Displays=()=> {
+const Displays=(props)=> {
+  const {data}=props
   const classes = useStyles()
   const dispatch=useDispatch()
 
@@ -45,8 +46,12 @@ const Displays=()=> {
   const error = useSelector(state => state.staffDetails.error)
   // console.log("STAFF :",staff)
 
+  const dispatchRequested=()=>{
+    dispatch(getSTAFFDETAILRequest(data))
+  }
+
   useEffect(()=>{
-    dispatch(getSTAFFDETAILRequest())
+    dispatchRequested()
 },[])
 
 

@@ -1,16 +1,14 @@
 import {call,put,takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
- 
-
-const apiUrl = `http://localhost:8000/employees/alltask/2222`
 
 
 
-function* fetchStaffDetailTableUrl() {
+function* fetchStaffDetailTableUrl(action) {
 
   try{ 
+    const apiUrl = `http://localhost:8000/employees/alltask/${action.payload}`
     const users = yield call(axios.get, apiUrl)
-    console.log(users)
+    console.log(apiUrl)
 
     yield put({type:'GET_STAFFDETAILTABLE_SUCCESS',users:users.data})
   }

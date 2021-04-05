@@ -43,29 +43,22 @@ function* updateRegularOrder(action) {
 }
 
 
-function postToRegular(data) {
-  return fetch(postApi, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      // 要有token
-    },
-    body: JSON.stringify(data)
-  })
-    .then(response => response.json())
-    .catch(err => console.log(err))
-}
-
 function* postRegularOrder(action) {
   // action.payload就是post-action.js的payload键，
   // 所以action.payload就等于post-action的obj
   // console.log("Post from component: ",action.payload) 
-  const result = yield call(postToRegular, action.payload)
-  if (result.errors) {
-    console.log("regular order post failed!", result.errors)
-    yield put({ type: 'POST_REGULAR_FAILED', errorInSaga: result.errors })
+  const {token} = JSON.parse(localStorage.getItem('userInfo')).data
+  const Header = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': token
   }
+  const result = yield call(axios.post,postApi, action.payload,{headers:Header})
+  // console.log(result)
+  if(result.errors) {
+    console.log("regular order post failed!",result.errors)
+    yield put({type:'POST_REGULAR_FAILED',errorInSaga:result.errors})
+  } 
   else {
     // console.log("regular order post successss!",result)
     yield put({ type: 'POST_REGULAR_SUCCESS', postInSaga: action.payload })
@@ -93,3 +86,22 @@ function* RegularSaga() {
 }
 
 export default RegularSaga
+
+
+
+
+// function postToRegular (data) {
+//   // const {token} = JSON.parse(localStorage.getItem('userInfo')).data
+//   return fetch(postApi, {
+//     method:'POST',
+//     headers:{
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json',
+//       // 'Authorization': token
+//     },
+//     body:JSON.stringify(data)
+//   })
+//     .then(response => response.json())
+//     .catch(err=>console.log(err))
+// }
+// const result = yield call(postToRegular, action.payload)

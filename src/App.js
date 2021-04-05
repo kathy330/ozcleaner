@@ -8,8 +8,8 @@ import ProtectedRoute from './router/ProtectedRoute'
 import HomePage from './pages/HomePage/HomePage'
 import UI from './pages/UI/UI'
 import OrderPage from './pages/OrderPage/OrderPage'
-import CustomerProfilePage from './pages/ProfilePage/CustomerProfilePage'
-import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
+import ProfilePage from './pages/ProfilePage/ProfilePage'
+// import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
 // import ProfilePage from './pages/ProfilePage/ProfilePage'
 import AdminCustomersPage from './pages/AdminPage/AdminOrderPage'
@@ -41,9 +41,9 @@ function App() {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <ProtectedRoute path="/order" exact component={OrderPage} />
-        <ProtectedRoute path="/order/confirm" exact component={OrderConfirmPage} />
-        <Route path="/profile/customer" exact component={CustomerProfilePage} />
-        <Route path="/profile/employee" exact component={EmployeeProfilePage} />
+        <Route path="/order/confirm" exact component={OrderConfirmPage} />
+        <Route path="/profile" exact component={ProfilePage} />
+        {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
         {/* <Route path="/profile" exact component={ProfilePage} /> */}
 
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />

@@ -1,6 +1,6 @@
 import React from 'react'
 import Box from '@material-ui/core/Box'
-import UploadBIcon from './components/UploadIcon'
+// import UploadBIcon from './components/UploadIcon'
 import ProfileAvatar from './components/ProfileAvatar'
 
 export default function ProfileLeft() {
@@ -12,7 +12,7 @@ export default function ProfileLeft() {
       marginTop='2vh'
       marginBottom='2vh'
     >
-      <UploadBIcon />
+      {/* <UploadBIcon /> */}
       <ProfileAvatar />
     </Box>        
   )

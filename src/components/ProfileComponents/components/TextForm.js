@@ -8,7 +8,7 @@ import { useForm, Controller } from "react-hook-form"
 import { TextField,Typography,Grid,Button } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles'
 import SaveIcon from '@material-ui/icons/Save'
-import {updateEmployeeRequest} from "../../../store/actions/actionCreator"
+import {updateProfileRequest} from "../../../store/actions/actionCreator"
 
 // const postData = {      
   // address: {
@@ -78,7 +78,7 @@ export default function TextForm() {
     }
   } 
     console.log(newData)
-    dispatch(updateEmployeeRequest(newData)) 
+    dispatch(updateProfileRequest(newData)) 
   }}
 
   // const loading = useSelector(astate => astate.employee_in_reducer_index.loading)

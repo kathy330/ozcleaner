@@ -7,23 +7,23 @@ const initialState = {
   error:null,
   ABN:123,
 }
-function emplyeeDetail(state = initialState,action) {
+function profileDetail(state = initialState,action) {
   switch (action.type) {
 
-    case actionType.GET_EMPLOYEE_REQUEST:
+    case actionType.GET_HISTORY_REQUEST:
       return {
         ...state,
         loading:true
       }
 
-    case actionType.GET_EMPLOYEE_SUCCESS:
+    case actionType.GET_HISTORY_SUCCESS:
       return {
         ...state,
         loading: false,
         repos_in_reducer_init: action.payload
       }
 
-    case actionType.GET_EMPLOYEE_FAILED:
+    case actionType.GET_HISTORY_FAILED:
       return {
         ...state,
         loading: false,
@@ -31,20 +31,20 @@ function emplyeeDetail(state = initialState,action) {
         error:action.payload
       }
     
-      case actionType.UPDATE_EMPLOYEE_REQUEST:
+      case actionType.UPDATE_PROFILE_REQUEST:
         return {
           ...state,
           loading:true
         }
   
-      case actionType.UPDATE_EMPLOYEE_SUCCESS:
+      case actionType.UPDATE_PROFILE_SUCCESS:
         return {
           ...state,
           loading: false,
           repos_in_reducer_init: action.payload
         }
   
-      case actionType.UPDATE_EMPLOYEE_FAILED:
+      case actionType.UPDATE_PROFILE_FAILED:
         return {
           ...state,
           loading: false,
@@ -57,4 +57,4 @@ function emplyeeDetail(state = initialState,action) {
   }
 }
 
-export default emplyeeDetail
+export default profileDetail

@@ -116,34 +116,33 @@ export const getAllEmployeeListRequest = employees => ({
 
 
 
-// * get employee 
-// employee
-export const getEmployeeRequest = (datalist) => ({
-  type: actionTypes.GET_EMPLOYEE_REQUEST,
+// * get history
+export const getHistoryRequest = (datalist) => ({
+  type: actionTypes.GET_HISTORY_REQUEST,
   payload: datalist,
 })
 
-export const getEmployeeSuccess = (datalist) => ({
-  type: actionTypes.GET_EMPLOYEE_SUCCESS,
+export const getHistorySuccess = (datalist) => ({
+  type: actionTypes.GET_HISTORY_SUCCESS,
   payload: datalist,
 })
-export const GET_EMPLOYEE_FAILED = (err) => ({
-  type: actionTypes.GET_EMPLOYEE_FAILED,
+export const getHistoryFailed = (err) => ({
+  type: actionTypes.GET_HISTORY_FAILED,
   payload: err,
 })
 
-// employee update profile 
-export const updateEmployeeRequest = (datalist) => ({
-  type: actionTypes.UPDATE_EMPLOYEE_REQUEST,
+//  update profile 
+export const updateProfileRequest = (datalist) => ({
+  type: actionTypes.UPDATE_PROFILE_REQUEST,
   payload: datalist,
 })
 
-export const updateEmployeeSuccess = (datalist) => ({
-  type: actionTypes.UPDATE_EMPLOYEE_SUCCESS,
+export const updateProfileSuccess = (datalist) => ({
+  type: actionTypes.UPDATE_PROFILE_SUCCESS,
   payload: datalist,
 })
-export const updateEmployeeFailed = (err) => ({
-  type: actionTypes.UPDATE_EMPLOYEE_FAILED,
+export const updateProfileFailed = (err) => ({
+  type: actionTypes.UPDATE_PROFILE_FAILED,
   payload: err,
 })
 

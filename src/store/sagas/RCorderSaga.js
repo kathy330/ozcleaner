@@ -6,12 +6,13 @@ const postApi = 'http://localhost:8000/regular'
 
 function* getRegularOrder(action) {
   try {
-      const {_id, type} = action.payload
-      console.log(_id, 'objectID')
-      const model = type === "RC" ? 'regular' : 'endOfLease'
-      const getApi = `http://localhost:8000/${model}/${_id}`
-      const data = yield call(axios.get, getApi)
-      yield put({ type: 'GET_REGULAR_SUCCESS', repos: data.data })
+    const { _id, type } = action.payload
+    console.log(_id, 'objectID')
+    console.log(type, 'type')
+    const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
+    const getApi = `http://localhost:8000/${model}/${_id}`
+    const data = yield call(axios.get, getApi)
+    yield put({ type: 'GET_REGULAR_SUCCESS', repos: data.data })
   } catch (e) {
     console.log(e)
     yield put({ type: 'GET_REGULAR_FAILED', payload: e })
@@ -19,12 +20,14 @@ function* getRegularOrder(action) {
 }
 
 function* updateRegularOrder(action) {
-  const { id, orderstatus } = action.payload
+  const { id, orderstatus, type } = action.payload
   console.log(id)
-  console.log(action)
+  console.log(action.payload)
   console.log(orderstatus)
+  console.log(type)
   const update = { status: orderstatus }
-  const updateApi = `http://localhost:8000/regular/${id}`  // PUT方法更新regular
+  const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
+  const updateApi = `http://localhost:8000/${model}/${id}`  // PUT方法更新regular
 
   try {
     const regularData = yield call(axios.put, updateApi, update)

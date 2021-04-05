@@ -67,7 +67,7 @@ const data = {
 function displayPage(repo) {
 
   // need user objID & employee objID
-  // if (typeof (repo) === 'string') { return <LoadingIcon /> }
+  if (typeof (repo) === 'string') { return <LoadingIcon /> }
   const { endTime, title, firstName, address, lastName,
     cabinets, fridge, oven, interiorWindows, rating, review, price, status, type, phoneNumber, _id, taskID, userDetail, employeeDetail } = repo[0]
   console.log(_id)
@@ -124,7 +124,8 @@ function displayPage(repo) {
         />
         <AdminCustomersRight orderPrice={price}
           _id={_id}
-          orderStatus={status} />
+          orderStatus={status}
+          typeOfOrder={type} />
       </Grid>
     </>
   )
@@ -137,21 +138,21 @@ function AdminCustomersPage(match) {
   // const testData = { _id: '60633a30bad120ff885aa99c' }
   const objid = match.match.params.id;
   // console.log(objid)
-  
+
   // console.log(testData.type)
 
   const query = new URLSearchParams(match.location.search)
   console.log(query)
   console.log(match.location.search)
   const getType = query.get('type')
-  
+
 
   const data = { _id: objid, type: getType }
 
 
   const dispatch = useDispatch()
   useEffect(() => {
-      dispatch(getREGULARRequest(data))
+    dispatch(getREGULARRequest(data))
   }, [])
 
   // let redux = useSelector(state => state.regular_in_reducer_index)

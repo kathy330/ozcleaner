@@ -6,19 +6,13 @@ const postApi = 'http://localhost:8000/regular'
 
 function* getRegularOrder(action) {
   try {
-    const { _id } = action.payload
-    console.log(_id, 'objectID')
-    const getApi = `http://localhost:8000/regular/${_id}`
-
-    const regularData = yield call(axios.get, getApi)
-    // console.log(regularData.data)
-    // 🌟 这个{type:'GET_GIT_SUCCESS',repos:regularData.data} 的repos的名字就是
-    //  git-reducer.js 里的 ‘repos_in_reducer_init: action.repos’ 的 repos
-    // 两者名字必须一样
-    // console.log('Data by the GET method is: ',regularData)
-    yield put({ type: 'GET_REGULAR_SUCCESS', repos: regularData.data }) // 这个data是返回对象reponse的data属性
-  }
-  catch (e) {
+      const {_id, type} = action.payload
+      console.log(_id, 'objectID')
+      const model = type === "RC" ? 'regular' : 'endOfLease'
+      const getApi = `http://localhost:8000/${model}/${_id}`
+      const data = yield call(axios.get, getApi)
+      yield put({ type: 'GET_REGULAR_SUCCESS', repos: data.data })
+  } catch (e) {
     console.log(e)
     yield put({ type: 'GET_REGULAR_FAILED', payload: e })
   }

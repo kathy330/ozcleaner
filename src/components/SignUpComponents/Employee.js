@@ -6,11 +6,17 @@ import TextField from '@material-ui/core/TextField'
 // import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Divider from '@material-ui/core/Divider'
+import {useDispatch,useSelector } from 'react-redux'
 import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import {useForm,Controller } from 'react-hook-form'
 import {PopupButton} from './Button'
 import FormDialogLoginPop from './FormDialogLoginPop'
+//import PopupFormLogin from './PopupFormLogin'
+import {registerEmployee} from "../../store/actions/actionCreator"
+// import FormDialogLogin from "./PopupFormLogin"
+import CircularProgress from '@material-ui/core/CircularProgress'
+import { ErrorOutline } from '@material-ui/icons'
 //import PopupFormLogin from './PopupFormLogin'
 
 
@@ -18,9 +24,14 @@ import FormDialogLoginPop from './FormDialogLoginPop'
 
 export default function EmployeeRegistrationForm() {
   const {control ,handleSubmit} = useForm()
+  const dispatch = useDispatch()
   const onSubmit = (data) =>{
     console.log(data)
+    dispatch(registerEmployee(data)) // 发送saga请求
   }
+  const employeeRegister = useSelector((state) => state.employeeRegister)
+  const { userInfo, loading, error } = employeeRegister
+
   
    
 const useStyles = makeStyles((theme) => ({
@@ -112,6 +123,25 @@ const classes = useStyles()
               </Typography>
             </DialogTitle>
           </Grid>
+          <Grid container justify="center">
+                {loading && <CircularProgress />}
+                {error && (
+                <Typography
+                  color="error"
+                  className={classes.text}
+                >
+                  {error}
+                </Typography>
+              )}
+                {userInfo && (
+                <Typography
+                  color="primary"
+                  className={classes.text}
+                >
+                  Your registration successfully!
+                </Typography>
+              )}
+          </Grid>
           <Grid container>
             <Typography
               className={classes.text}
@@ -131,7 +161,7 @@ const classes = useStyles()
                   variant="outlined"
                 />
                 )}
-              name="Email"
+              name="email"
               control={control}
               defaultValue=""
             />
@@ -151,7 +181,7 @@ const classes = useStyles()
                   margin="dense"
                   id="outlined-basic"
                   label="ABN"
-                  type="ABN"
+                  type="number"
                   variant="outlined"
                 />
                 )}
@@ -159,31 +189,7 @@ const classes = useStyles()
               control={control}
               defaultValue=""
             />
-          </Grid>
-          <Grid>
-            <Typography
-              className={classes.text}
-            >
-              Login Name:
-            </Typography>
-          </Grid>
-          <Grid container justify="center">
-            <Controller
-              as={(
-                <TextField
-                  className={classes.textField}
-                  margin="dense"
-                  id="outlined-basic"
-                  label="Login Name"
-                  type="Login Name"
-                  variant="outlined"
-                />
-                )}
-              name="Login Name"
-              control={control}
-              defaultValue=""
-            />
-          </Grid>        
+          </Grid> 
           <Grid>
             <Typography
               className={classes.text}
@@ -203,7 +209,7 @@ const classes = useStyles()
                   variant="outlined"
                 />
                 )}
-              name="Password"
+              name="password"
               control={control}
               defaultValue=""
             />

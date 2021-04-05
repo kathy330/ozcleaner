@@ -8,29 +8,37 @@ function* userLogin(action) {
     yield call(axios.post,'http://localhost:8000/users/login', action.payload)
     yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
+
+    localStorage.setItem("authLevel", "user") // 可以进入order页面
+    document.location.href = '/order'
   } catch (e) {
-    console.log(e.response)
     yield put({ type: 'USER_SIGNIN_FAIL', payload: e.response.data.error })
   }
 }
 
 function* userRegister(action) {
+  
   try {
     const userInfo = 
     yield call(axios.post,'http://localhost:8000/users/registration', action.payload)
     yield put({ type: 'USER_REGISTER_SUCCESS', payload: userInfo })
     yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    console.log(`from${  userInfo}`)
+    // console.log(`from${  userInfo}`)
+
+    localStorage.setItem("authLevel", "user") // 可以进入order页面
+    document.location.href = '/order'
   } catch (e) {
     yield put({ type: 'USER_REGISTER_FAIL', 
-    payload: e.response.data.email})
+    payload: e.response.data.error})
     // console.log(e.response.data.email)
   }
 }
 
 function* userSignout() {
   localStorage.removeItem('userInfo')
+  localStorage.removeItem('authLevel')
+
   yield put({ type: 'USER_SIGNOUT' })
   document.location.href = '/'
 }

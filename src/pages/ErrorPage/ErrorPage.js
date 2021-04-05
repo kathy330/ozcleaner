@@ -58,14 +58,6 @@ function ErrorPage(){
         <Box className={classes.root}>
           <Container maxWidth="lg" className={classes.content}>
             <Grid container spacing={0}>
-
-              <Grid item xs={12} md={6}>
-                <Container maxWidth="lg">
-                  <Typography variant="h2">
-                    Oops, Something Went Wrong...
-                  </Typography>
-                </Container>
-              </Grid>
               
               <Grid item xs={12} md={6}>
                 <Container maxWidth="lg">
@@ -76,6 +68,15 @@ function ErrorPage(){
                   </Grid>
                 </Container>
               </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Container maxWidth="lg">
+                  <Typography variant="h2">
+                    Oops, Something Went Wrong...
+                  </Typography>
+                </Container>
+              </Grid>
+              
             </Grid>
           </Container>
         </Box>

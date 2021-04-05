@@ -40,9 +40,9 @@ function App() {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <ProtectedRoute path="/order" exact component={OrderPage} />
+        <Route path="/order/confirm" exact component={OrderConfirmPage} />
         <Route path="/profile/customer" exact component={CustomerProfilePage} />
         <Route path="/profile/employee" exact component={EmployeeProfilePage} />
-        <Route path="/order/confirm" exact component={OrderConfirmPage} />
         {/* <Route path="/profile" exact component={ProfilePage} /> */}
 
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />

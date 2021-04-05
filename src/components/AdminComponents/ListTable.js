@@ -57,10 +57,9 @@ function ListCustomerTable(props) {
       dispatch(getAllEmployeeListRequest(listSize))
     }
   }
-
   useEffect(() => {
     dispatchRequested()
-  }, [])
+  }, [urlpage])
 
   const getPaginationPage = (page) => {
     listSize.page = page

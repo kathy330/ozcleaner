@@ -12,7 +12,7 @@ import Nav from '../../components/NavBarComponents/NavBar'
 import OrderRight from "../../components/OrderComponents/OrderRight"
 import Footer from '../../components/FooterComponents/Footer'
 // import {buttonStyle} from '../../styles/styles'
-// import LoadingIcon from "../../components/AdminComponents/LoadingIcon"
+import LoadingIcon from "../../components/AdminComponents/LoadingIcon"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,6 +73,7 @@ function OrderConfirm() {
   const ENDdata = useSelector(state => state.endoflease_in_reducer_index.repos_in_reducer_init)  
   // console.log('end redex method: ',ENDdata)
 
+  // console.log(loadingNumREGdata,loadingNumENDdata)
   // 设置传参的data值
   let data = {
     bedroomNum:'',
@@ -91,15 +92,24 @@ function OrderConfirm() {
 
   // 2/2检测loding状态改变，实时更新state的type属性，传不同的data给下面orderRight
   // const error = false
+  // let count = 0
   useEffect(()=>{
     if (loadingNumREGdata===2 && loadingNumENDdata===1) {
       console.log('rc')
       setType({ordertype:'RC'}) 
+      // count += 1
+      // console.log('1')
     }
-    if (loadingNumREGdata===1 && loadingNumENDdata===2) {
+    else if (loadingNumREGdata===1 && loadingNumENDdata===2) {
       console.log('ec')
       setType({ordertype:'EC'})
+      // count += 1
+      // console.log('2')
     }
+    // else if (loadingNumREGdata===1 && loadingNumENDdata===1) {
+    //   console.log('3')
+    //   document.location.href = '/'
+    // }
     // 无效。。 如果直接进入这个页面，两个都是num = 1，直接跳转到error页面
     // console.log(loadingNumREGdata,loadingNumENDdata)
     // if (loadingNumREGdata===1 && loadingNumENDdata===1) {
@@ -108,6 +118,8 @@ function OrderConfirm() {
     // }
   },[loadingNumREGdata,loadingNumENDdata])
 
+
+  let load = false
   const {ordertype} = type
   if (ordertype === 'RC') {
     data = REGdata
@@ -115,11 +127,19 @@ function OrderConfirm() {
   else if (ordertype === 'EC') {
     data = ENDdata
   }
+  else {
+    load = true // 没有数据，展示转圈
+    // document.location.href = '/'
+  }
+
 
   return (
     <>
-      {/* {(error)&&(<Redirect to="/order/confirm/error" />)} */}
+      {/* {(ordertype==='') && (document.location.href = '/') } */}
+      
       <Nav />
+      {load && <LoadingIcon />}
+      {!load && (
       <Box className={classes.root}>
         <Container>
           <Grid container spacing={0}>
@@ -136,7 +156,12 @@ function OrderConfirm() {
                   </Grid>
 
                   <Grid item>
-                    <Button variant="contained" color="primary" className={classes.button}>
+                    <Button
+                      href="/myorder" 
+                      variant="contained"
+                      color="primary"
+                      className={classes.button}
+                    >
                       View Order
                     </Button>
                   </Grid>
@@ -155,6 +180,7 @@ function OrderConfirm() {
         </Container>
       
       </Box>
+    )}
       <Footer />
     </>
   )

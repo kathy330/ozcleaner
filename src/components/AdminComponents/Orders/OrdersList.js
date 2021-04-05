@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Route } from 'react-router-dom'
-import { makeStyles, Grid, Typography, Box } from '@material-ui/core'
+import { makeStyles, Grid, Typography, Box, InputLabel, Select, MenuItem } from '@material-ui/core'
 import { getAllOrersRequest } from '../../../store/actions'
 import OrderCard from './OrderCard'
 import OrderDetail from './OrderDetali'
@@ -76,7 +76,8 @@ function OrdersLists(props) {
   const [curCard, setCurCard] = React.useState('default')
   const [prevCard, setPrevCard] = React.useState('unset')
   const [selectId, setSelectId] = React.useState('null')
-  const listSize = { page: urlPage, pageSize: pageSize }
+  const [orderStatus, setOrderStatus] = React.useState('')
+  const listPayload = { page: urlPage, pageSize: pageSize, status: orderStatus }
   const dispatch = useDispatch()
   const data = useSelector(state => state.allOrders.orders.result)
   const dataCount = useSelector(state => state.allOrders.orders.count)
@@ -84,15 +85,15 @@ function OrdersLists(props) {
   const error = useSelector(state => state.allOrders.error)
   const returnPage = (totalCount) => {
     if (pageSize) {
-      return Math.floor(totalCount / listSize.pageSize) + 1
+      return Math.floor(totalCount / listPayload.pageSize) + 1
     } if (totalCount < pageSize) {
       return 1
     }
-    return Math.floor(totalCount / listSize.pageSize)
+    return Math.floor(totalCount / listPayload.pageSize)
   }
   const finalPage = returnPage(dataCount)
   useEffect(() => {
-    dispatch(getAllOrersRequest(listSize))
+    dispatch(getAllOrersRequest(listPayload))
   },[])
 
   function handleSelectOrderCard(row, id) {
@@ -122,17 +123,37 @@ function OrdersLists(props) {
     }
   }
 
-  const getPaginationPage = (page) => {
-    listSize.page = page
-    dispatch(getAllOrersRequest(listSize))
+  const selectStatusChange = (event) =>{
+    console.log(event.target.value)
+    setOrderStatus(event.target.value)
   }
 
+  const getPaginationPage = (page) => {
+    listPayload.page = page
+    dispatch(getAllOrersRequest(listPayload))
+  }
+  console.log(data)
   return (
     <>
       {loading && <LoadingIcon />}
       {!loading && data.length > 0 && (
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} className={classes.left}>
+            <Box>
+              <InputLabel id="orderStatusLabel">Order Status</InputLabel>
+              <Select 
+                labelId="orderStatusLabel"
+                value={orderStatus}
+                displayEmpty
+                onChange={selectStatusChange}
+                inputProps={{ 'aria-label': 'Without label' }}
+              >
+                <MenuItem value="">All Status</MenuItem>
+                <MenuItem value="confirm">Completed</MenuItem>
+                <MenuItem value="in-progess">In Progress</MenuItem>
+                <MenuItem value="cancelled">Cancelled</MenuItem>
+              </Select>
+            </Box>
             <div>
               {data.map((row, index) => {
                 const idName = `orderCard${index}`

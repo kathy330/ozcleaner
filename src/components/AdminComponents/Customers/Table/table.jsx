@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, {useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import { makeStyles} from "@material-ui/core/styles"
@@ -12,10 +13,10 @@ import Paper from "@material-ui/core/Paper"
 import Button from '@material-ui/core/Button'
 import TablePagination from '@material-ui/core/TablePagination'
 import date from 'date-and-time'
+import { Link } from 'react-router-dom'
 import { GreenStatus ,RedStatus,
   YellowStatus,GreyStatus,BlueStatus} from '../../../UIComponents/Status'
 import {getCUSDETAILTABLERequest} from "../../../../store/actions"
-
 
 const useStyles = makeStyles({
   table: {
@@ -48,19 +49,13 @@ const useStyles = makeStyles({
   }
 })
 
-function CombineName(firstname,lastname) {
-  const fullName=`${firstname} ${lastname}`
-  return fullName
-}
-
 function displayTime(time) {
-  // 2020-01-01T12:00:00.000+00:00
-
   let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
   result = result.toString().split(" ")
   return `${date.transform(result[4], 'HH:mm:ss', 'hh:mmA')} 
   ${result[2]} ${result[1]},${result[3]}`
 }
+
 
 function isButton(words) {
   if(words.status==='assigned') {
@@ -81,7 +76,8 @@ function isButton(words) {
   return <GreyStatus>{words.status}</GreyStatus>
 }
 
-const BasicTable=()=> {
+const BasicTable=(props)=> {
+  const {data}=props
   const classes = useStyles()
   const dispatch=useDispatch()
 
@@ -89,12 +85,13 @@ const BasicTable=()=> {
   const loading = useSelector(state => state.cusDetailsTable.loading)
   const error = useSelector(state => state.cusDetailsTable.error)
 
-  // console.log("CUSTOMERS TABLE :",users)
+  const dispatchRequested=()=>{
+    dispatch(getCUSDETAILTABLERequest(data))
+  }
 
   useEffect(()=>{
-    dispatch(getCUSDETAILTABLERequest())
+    dispatchRequested()
 },[])
-
 
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
@@ -107,6 +104,7 @@ const BasicTable=()=> {
     setRowsPerPage(+event.target.value)
     setPage(0)
   }
+
 
 
   return (
@@ -134,13 +132,20 @@ const BasicTable=()=> {
                 </TableCell>
                 <TableCell align="center">
                   <Typography className={classes.name}>
-                    {CombineName(user.firstName,user.lastName)}
+                    {user.firstName}
+                    {' '}
+                    {user.lastName}
                   </Typography>
                 </TableCell>
-                <TableCell align="center">{displayTime(user.startTime)}</TableCell>
+                <TableCell align="center">{displayTime(user.createdAt)}</TableCell>
                 <TableCell align="center" className={classes.action}>
-                  <Button variant="contained" className={classes.check}>
-                    Check
+                  <Button 
+                    variant="contained"
+                    className={classes.check}
+                    component={Link} 
+                    to={`/admin/orders/${user._id}?type=${user.type}`}
+                  >
+                    View
                   </Button>
                   <Button variant="contained" className={classes.delete}>
                     Delete

@@ -1,16 +1,13 @@
 import {call,put,takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
  
-
-const apiUrl = `http://localhost:8000/users/alltask/1`
-
-
-
-function* fetchCusDetailTableUrl() {
+function* fetchCusDetailTableUrl(action) {
 
   try{
+    const apiUrl = `http://localhost:8000/users/alltask/${action.payload}`
     const users = yield call(axios.get, apiUrl)
-    console.log(users)
+
+    console.log(apiUrl)
 
     yield put({type:'GET_CUSDETAILTABLE_SUCCESS',users:users.data})
   }

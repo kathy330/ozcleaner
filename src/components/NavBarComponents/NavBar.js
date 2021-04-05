@@ -65,7 +65,7 @@ export default function HeaderNavigation(props) {
                 <img
                   src={logo} 
                   className={style.logoimg}
-                  alt="error icon"
+                  alt="Logo icon"
                 />
                 {/* Home */}
               </Button>
@@ -83,8 +83,8 @@ export default function HeaderNavigation(props) {
               <>
                 <Box className={style.buttonsBox}>
                   <Button href='/order' className={style.bookingButton}>Booking Now</Button>
-                  <Button>My Order</Button>
-                  <Button>My Profile</Button>
+                  <Button href='/myorder'>My Order</Button>
+                  <Button href='/profile/customer'>My Profile</Button>
                   <Button
                     onClick={signoutHandler}
                   >

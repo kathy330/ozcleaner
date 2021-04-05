@@ -7,7 +7,8 @@ import Table from "../../components/AdminComponents/Customers/Table"
 import NavBar from "../../components/NavBarComponents/NavBar"
 
 
-function AdminCustomersDetailsPage(){
+function AdminCustomersDetailsPage(match){
+  const{id}=match.match.params
   return (
    
     <Box bgcolor="#eaeaea">
@@ -15,10 +16,10 @@ function AdminCustomersDetailsPage(){
       <CssBaseline />      
       <Container maxWidth="md">
         <Box bgcolor="white">
-          <Display />         
+          <Display data={id} />         
         </Box>
         <Box>
-          <Table />
+          <Table data={id} />
         </Box>        
       </Container> 
     </Box>

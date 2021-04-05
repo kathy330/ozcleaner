@@ -18,7 +18,7 @@ import SwipeableViews from 'react-swipeable-views'
 // import AppBar from '@material-ui/core/AppBar'
 // import Tabs from '@material-ui/core/Tabs'
 import LoginDetails from './LoginForm'
-import EmployeeLogin from './EmployeeLogin'
+import EmployeeLoginDetails from './EmployeeLoginForm'
 function TabPanel(props) {
   const { children, value, index, ...other } = props
 
@@ -53,10 +53,20 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles((theme) => ({
+  [theme.breakpoints.down('sm')]: {
+    textAlign:'center',
+  },
+  [theme.breakpoints.between('sm','md')]: {
+    textAlign:'center',
+  },
+  [theme.breakpoints.up('md')]: {
+    textAlign:'center',
+  },
+  /*
   root: {
     backgroundColor: theme.palette.background.paper,
     width: 443,
-  },
+  },*/
   login:{
     fontWeight: 'bold',
     color: '#007bf5',
@@ -125,7 +135,7 @@ export default function FormDialogSignupPop() {
                 <LoginDetails />
               </TabPanel>
               <TabPanel value={value} index={1} dir={theme.direction}>
-                <EmployeeLogin />
+                <EmployeeLoginDetails />
               </TabPanel>
             </SwipeableViews>
           </div>

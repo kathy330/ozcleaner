@@ -41,30 +41,22 @@ function* updateEndOfLeaseOrder(action) {
   }
 }
 
-
-function postToEndOfLease(data) {
-  return fetch(postApi, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      // 要有token
-    },
-    body: JSON.stringify(data)
-  })
-    .then(response => response.json())
-    .catch(err => console.log(err))
-}
-
 function* postEndLeaseOrder(action) {
   // action.payload就是post-action.js的payload键，
   // 所以action.payload就等于post-action的obj
   // console.log("Post from component: ",action.payload) 
-  const result = yield call(postToEndOfLease, action.payload)
-  if (result.errors) {
-    console.log("end of lease post failed!", result.errors)
-    yield put({ type: 'POST_ENDOFLEASE_FAILED', errorInSaga: result.errors })
+  const {token} = JSON.parse(localStorage.getItem('userInfo')).data
+  const Header = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': token
   }
+  const result = yield call(axios.post,postApi, action.payload,{headers:Header})
+  // console.log(result)
+  if(result.errors) {
+    console.log("end of lease post failed!",result.errors)
+    yield put({type:'POST_ENDOFLEASE_FAILED',errorInSaga:result.errors})
+  } 
   else {
     // console.log("end of lease post successss!",result)
     yield put({ type: 'POST_ENDOFLEASE_SUCCESS', postInSaga: action.payload })
@@ -89,3 +81,18 @@ function* EndofleaseSaga() {
 }
 
 export default EndofleaseSaga
+
+// function postToEndOfLease (data) {
+//   return fetch(postApi, {
+//     method:'POST',
+//     headers:{
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json',
+//       // 要有token
+//     },
+//     body:JSON.stringify(data)
+//   })
+//     .then(response => response.json())
+//     .catch(err=>console.log(err))
+// }
+// const result = yield call(postToEndOfLease, action.payload)

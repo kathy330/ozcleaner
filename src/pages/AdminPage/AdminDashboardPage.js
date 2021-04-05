@@ -4,7 +4,7 @@ import { Grid, Container, Paper,  Box } from '@material-ui/core'
 
 // import { makeStyles } from '@material-ui/core/styles'
 
-import Card from '../../components/AdminComponents/Dashboard/card'
+import Card from '../../components/AdminComponents/Dashboard/Card'
 import OrderTable from '../../components/AdminComponents/Dashboard/OrderTable'
 import UserAvatar from "../../components/AdminComponents/Dashboard/UserAvatar"
 

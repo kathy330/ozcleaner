@@ -14,7 +14,7 @@ import AdminCustomersListPage from '../../../pages/AdminPage/AdminCustomersListP
 import AdminStaffsListPage from '../../../pages/AdminPage/AdminStaffsListPage'
 import AdminStaffsDetailsPage from "../../../pages/AdminPage/AdminStaffDetailsPage"
 import AdminCustomersDetailsPage from "../../../pages/AdminPage/AdminCustomersDetailsPage"
-import AdminCustomersPage from "../../../pages/AdminPage/AdminCustomersPage"
+import AdminOrderPage from "../../../pages/AdminPage/AdminOrderPage"
 
 
 function TabPanel(props) {
@@ -112,7 +112,7 @@ export default function SimpleTabs() {
         <ProtectedRoute path="/admin/staffs" exact component={AdminStaffsListPage} />
         <ProtectedRoute path="/admin/staffs/:id" exact component={AdminStaffsDetailsPage} />
         <ProtectedRoute path="/admin/customers/:id" exact component={AdminCustomersDetailsPage} />
-        <ProtectedRoute path="/admin/orders/:id" exact component={AdminCustomersPage} />
+        <ProtectedRoute path="/admin/orders/:id" exact component={AdminOrderPage} />
       </Switch>
     </div>
   )

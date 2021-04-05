@@ -12,11 +12,13 @@ import {
   TableBody,
   Typography,
 } from '@material-ui/core'
+import { useHistory } from 'react-router-dom'
 import { getAllUserListRequest, getAllEmployeeListRequest } from '../../store/actions'
 import ListTableHead from './ListTableHead'
 import ListTableRow from './ListTableRow'
 import LoadingIcon from './LoadingIcon'
 import ListPagination from './ListPagination'
+import NoDataFound from './NoDataFound'
 
 /**
  * ListTable() is for displaying the user list(user/employee)
@@ -26,7 +28,8 @@ import ListPagination from './ListPagination'
  */
 function ListCustomerTable(props) {
   const { columns, urlpage, tableType } = props
-  const pageSize = 3
+  const pageSize = 15
+  const history = useHistory()
   const listSize = { page: urlpage, pageSize: pageSize}
   const dispatch = useDispatch()
   const [deletedId, setDeletedId] = React.useState(0)
@@ -41,15 +44,15 @@ function ListCustomerTable(props) {
   const dispatchRequest = (tableType === 'customer') 
   // eslint-disable-next-line no-shadow
   const returnPage = (usersCount) => {
-    if (pageSize) {
-      return Math.floor(usersCount / listSize.pageSize) + 1
-    } if (usersCount < pageSize) {
+    if (usersCount < pageSize) {
       return 1
+    } 
+    if (usersCount % pageSize !== 0) {
+      return Math.floor(usersCount / listSize.pageSize) + 1
     } 
     return Math.floor(usersCount / listSize.pageSize)
   }
   const finalPage = returnPage(usersCount)
-  // console.log(usersData)
   const dispatchRequested = () => {
     if (dispatchRequest) {
       dispatch(getAllUserListRequest(listSize))
@@ -80,6 +83,13 @@ function ListCustomerTable(props) {
     // TODO: add update user deleted status here
     console.log('confirm delete: ', deletedId)
     setOpen(false)
+  }
+
+  const refreshPage = () => {
+    listSize.page = 1
+    dispatchRequested(listSize)
+    const curPath = window.location.pathname
+    history.push(`${curPath}`)
   }
 
   return (
@@ -144,7 +154,7 @@ function ListCustomerTable(props) {
       {/* if not loading && user data is empty: show no user available */}
       {usersData !== undefined && usersData.length === 0 &&
         !loading &&
-        <Typography variant="h4">No users available!</Typography>}
+        <NoDataFound refreshPage={refreshPage} />}
       {/* display any error below */}
       {error && !loading && <Typography variant="h4">{error}</Typography>}
     </>

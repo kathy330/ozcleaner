@@ -21,6 +21,7 @@ function ListPagination(props){
       {({ location }) => {
       const query = new URLSearchParams(location.search)
       const page = parseInt(query.get('page') || '1', 10)
+      const status = (query.get('status') || '')
       return (
         <Pagination
           page={page}
@@ -30,7 +31,8 @@ function ListPagination(props){
             <PaginationItem
               component={Link}
               className="test1"
-              to={`${path}${item.page === 1 ? `` : `?page=${item.page}`}`}
+              // eslint-disable-next-line max-len
+              to={`${path}${status ? `?status=${status}&` : ''}${status ? '' : '?'}${item.page === 1 ? `` : `page=${item.page}`}`}
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...item}
               onClick={() => getPaginationPage(item.page)}

@@ -13,7 +13,7 @@ export const loadOrdersFailed = err => ({
 })
 
 
-//  1/5 GET Regular order -- dongyu 
+//  1/6 GET Regular order -- dongyu 
 export const getREGULARRequest = (datalist) => ({
   type: actionTypes.GET_REGULAR_REQUEST,
   payload: datalist,
@@ -27,7 +27,7 @@ export const getREGULARFaild = (err) => ({
   payload: err,
 })
 
-//  2/5 POST Regular order -- dongyu 
+//  2/6 POST Regular order -- dongyu 
 export const postRegularRequest = (obj) => ({
   type: actionTypes.POST_REGULAR_REQUEST,
   payload: obj, // By convention, we put that information in a field called payload.
@@ -43,22 +43,22 @@ export function postRegularFaild(obj) {
   }
 }
 
-// 3/5 Update regular order -- dongyu
+// 3/6 Update regular order -- dongyu
 export const updateRegularRequest = (obj) => ({
-  type:actionTypes.UPDATE_REGULAR_REQUEST,
-  payload:obj, // By convention, we put that information in a field called payload.
+  type: actionTypes.UPDATE_REGULAR_REQUEST,
+  payload: obj, // By convention, we put that information in a field called payload.
 })
 export const updateRegularSuccess = (obj) => ({
-  type:actionTypes.UPDATE_REGULAR_SUCCESS,
-  payload:obj, 
+  type: actionTypes.UPDATE_REGULAR_SUCCESS,
+  payload: obj,
 })
 export const updateRegularFaild = (obj) => ({
-    type:actionTypes.UPDATE_REGULAR_FAILED,
-    payload:obj, 
+  type: actionTypes.UPDATE_REGULAR_FAILED,
+  payload: obj,
 })
 
 
-//  4/5 GET Endoflease order -- dongyu 
+//  4/6 GET Endoflease order -- dongyu 
 export const getENDRequest = (datalist) => ({
   type: actionTypes.GET_ENDOFLEASE_REQUEST,
   payload: datalist,
@@ -72,7 +72,7 @@ export const getENDFaild = (err) => ({
   payload: err,
 })
 
-//  5/5 POST Endoflease order -- dongyu 
+//  5/6 POST Endoflease order -- dongyu 
 export const postEndOfLeaseRequest = (obj) => ({
   type: actionTypes.POST_ENDOFLEASE_REQUEST,
   payload: obj, // By convention, we put that information in a field called payload.
@@ -87,6 +87,20 @@ export function postEndOfLeaseFaild(obj) {
     payload: obj,
   }
 }
+
+//  6/6 Update Endoflease order -- kangkang
+export const updateEndOfLeaseRequest = (obj) => ({
+  type: actionTypes.UPDATE_REGULAR_REQUEST,
+  payload: obj, // By convention, we put that information in a field called payload.
+})
+export const updateEndOfLeaseSuccess = (obj) => ({
+  type: actionTypes.UPDATE_REGULAR_SUCCESS,
+  payload: obj,
+})
+export const updateEndOfLeaseFailed = (obj) => ({
+  type: actionTypes.UPDATE_REGULAR_FAILED,
+  payload: obj,
+})
 
 // * getAllUserListRequest() is for get all users from userTable -- kathy
 export const getAllUserListRequest = users => ({
@@ -152,9 +166,9 @@ export const getCUSDETAILRequest = (users) => ({
 })
 
 export const getCUSDETAILTABLERequest = (users) => ({
-    type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
-    payload: users,
-  })
+  type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
+  payload: users,
+})
 
 
 export const signin = (payload) => ({

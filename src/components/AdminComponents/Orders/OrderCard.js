@@ -36,14 +36,14 @@ const useStyles = makeStyles(() => ({
   },
   status: {
     marginTop: '5px',
-    color: '#89b153',
+    color: '#5f647d',
     fontWeight: 700
   },
   styleCancelled: {
     color: '#cc584e'
   },
-  styleAssigned: {
-    color: '#5f647d'
+  styleConfirm: {
+    color: '#89b153'
   },
   styleProgress: {
     color: '#0878e6'
@@ -59,10 +59,6 @@ function formatDate (date){
     return 'Invalid Date Value.'
   }
 }
-
-// function textCapitalize (text) {
-//   return text.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())
-// }
 
 const OrderCard = (props) => {
   const classes = useStyles()

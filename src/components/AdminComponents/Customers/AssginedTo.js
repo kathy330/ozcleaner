@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles, Box, Grid, Typography, Link, Avatar } from '@material-ui/core'
 import { deepPurple, deepOrange } from '@material-ui/core/colors'
+import { Link as RouterLink } from 'react-router-dom'
 
 // styles
 const styles = makeStyles((theme) => ({
@@ -36,20 +37,26 @@ const styles = makeStyles((theme) => ({
 }))
 
 
-export default function AssginedTo() {
+export default function AssginedTo(props) {
   const classes = styles()
   // where can I find these names?
-  const firstName = 'david'
+  const { employeeFirstName, employeeLastName, employeeObjectID } = props
+  const path = `/admin/staffs/${employeeObjectID}`
+  // const path = `/admin/users.`
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>
-        <Avatar className={classes.orange}>{firstName[0].toUpperCase()}</Avatar>
+        <Avatar className={classes.orange}>{employeeFirstName[0].toUpperCase()}</Avatar>
       </Grid>
       <Grid item justify="center" xs={9} sm={10} className={classes.text}>
         <Typography variant="subtitle2">ASSIGNED TO</Typography>
         <Grid container direction="row" justify="space-between" space={5}>
-          <Link href="/admin/staffs" variant="subtitle2">
-            {firstName}
+          <Link component={RouterLink} to={path} variant="subtitle2">
+            {employeeFirstName[0].toUpperCase()}
+            {employeeFirstName.slice(1)}
+            {' '}
+            {employeeLastName[0].toUpperCase()}
+            {employeeLastName.slice(1)}
           </Link>
           {/* <Typography variant="subtitle2">21 hours ago</Typography> */}
         </Grid>

@@ -1,10 +1,12 @@
+/* eslint-disable */
 import actionType from '../actions/actionTypes'
 
 const initialState = {
-  loading: false,
+  loading: true,
+  updateing: false,
   loadingNum: 1,
   error: null,
-  repos_in_reducer_init: 'init value',
+  repos_in_reducer_init: "init value",
   completeinfo: {
     info: localStorage.getItem('regularCleanOrder') ?
       JSON.parse(localStorage.getItem('regularCleanOrder')) : {
@@ -22,7 +24,7 @@ const initialState = {
         price: 0,
       }
   },
-  updateData:'no update' // 更新by id,可以更新任何值，只要有正确名字
+  updateData: 'no update' // 更新by id,可以更新任何值，只要有正确名字
 }
 
 function regularReducer(state = initialState, action) {
@@ -32,7 +34,7 @@ function regularReducer(state = initialState, action) {
     case actionType.GET_REGULAR_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       }
 
     case actionType.GET_REGULAR_SUCCESS:
@@ -55,21 +57,23 @@ function regularReducer(state = initialState, action) {
     case actionType.UPDATE_REGULAR_REQUEST:
       return {
         ...state,
-        loading:true
+        loading: true
       }
 
     case actionType.UPDATE_REGULAR_SUCCESS:
       return {
         ...state,
         loading: false,
-        updateData: action.repos
+        updateData: action.repos,
+        // repos_in_reducer_init: action.postInSaga,
+        repos_in_reducer_init: [{ ...state.repos_in_reducer_init[0], status: action.repos.status }]
       }
 
     case actionType.UPDATE_REGULAR_FAILED:
       return {
         ...state,
         loading: false,
-        error:action.payload
+        error: action.payload
         // error:action.data.err
       }
 

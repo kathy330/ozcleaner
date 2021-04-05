@@ -4,8 +4,9 @@ import axios from 'axios'
 
 function * fetchAllOrders(action) {
   try {
-    const { page, pageSize } = action.payload
-    const apiUrl = `http://localhost:8000/sortedOrder?page=${page}&pageSize=${pageSize}`
+    const { page, pageSize, status } = action.payload
+    // eslint-disable-next-line max-len
+    const apiUrl = `http://localhost:8000/sortedOrder?page=${page}&pageSize=${pageSize}&status=${status}`
     const orders = yield call(axios.get, apiUrl)
     // console.log('data', orders)
     yield put({ type: 'GET_ALL_ORDERS_SUCCESS', orders: orders.data })

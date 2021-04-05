@@ -12,7 +12,7 @@ import CustomerProfilePage from './pages/ProfilePage/CustomerProfilePage'
 import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
 // import ProfilePage from './pages/ProfilePage/ProfilePage'
-import AdminCustomersPage from './pages/AdminPage/AdminCustomersPage'
+// import AdminCustomersPage from './pages/AdminPage/AdminOrderPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 import theme from './styles/theme'
 import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
@@ -53,7 +53,10 @@ function App() {
         <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
         <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} />
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
-        <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} />
+        {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
+
+        {/* <Route path="/admins/orders/:id" exact component={AdminCustomersPage} /> */}
+
         <Route path="/ui" exact component={UI} />
 
         <Route path="/dongyu" exact component={DongyuPage} />
@@ -65,8 +68,8 @@ function App() {
         <Route path="/erik" exact component={ErikPage} />
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />
-        
-        
+
+
         <Route component={ErrorPage} />
       </Switch>
     </ThemeProvider>

@@ -145,8 +145,6 @@ function AdminCustomersPage(match) {
   console.log(query)
   console.log(match.location.search)
   const getType = query.get('type')
-
-
   const data = { _id: objid, type: getType }
 
 

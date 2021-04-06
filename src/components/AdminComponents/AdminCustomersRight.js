@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect } from 'react'
 import { Grid, Typography, makeStyles, Card, CardContent, Divider, Button } from '@material-ui/core'
 import Dialog from '@material-ui/core/Dialog'
@@ -5,6 +6,8 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { useDispatch } from 'react-redux'
 import { updateRegularRequest } from "../../store/actions"
+import OrderActionButtons from './Customers/OrderActionButtons'
+
 
 // style
 const useStyles = makeStyles((theme) => ({
@@ -57,7 +60,9 @@ function AdminCustomersRight(props) {
   const [open, setOpen] = React.useState(false)
   // const data = { taskid: ID, orderstatus: "in-progress" }
   const data = { id: _id, orderstatus: "cancelled", type: typeOfOrder }
-  // console.log(data)
+  const toFinishData = { id: _id, orderstatus: "finished", type: typeOfOrder }
+  const toAcceptData = { id: _id, orderstatus: "in-progress", type: typeOfOrder }
+  console.log(data)
   const [state] = React.useState({
     status: { orderStatus }
   })
@@ -75,9 +80,14 @@ function AdminCustomersRight(props) {
     console.log(state.status, 'state.status')
   }, [state])
 
+
+  const authLevel = localStorage.getItem('authLevel')
+  console.log(authLevel)
+
+
   return (
     <Grid item xs={12} sm={3} className={classes.root}>
-      <Dialog open={open} onClose={handleClose}>
+      {/* <Dialog open={open} onClose={handleClose}>
         <DialogTitle className={classes.dialog}>
           Do you want to cancel this order?
         </DialogTitle>
@@ -89,7 +99,7 @@ function AdminCustomersRight(props) {
             NO
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
 
       <Card className={classes.card}>
         <CardContent>
@@ -108,9 +118,13 @@ function AdminCustomersRight(props) {
           <Divider />
         </CardContent>
       </Card>
-      <Button onClick={handleClickOpen} className={classes.cancel}>
-        CANCEL ORDER
-      </Button>
+
+      {(authLevel === 'admin') && (<OrderActionButtons cancel='cancel' finish='finish' accept='' cancelData={data}
+        finishData={toFinishData} acceptData={toAcceptData} />)}
+      {(authLevel === 'user') && (<OrderActionButtons cancel='cancel' finish='' accept='' cancelData={data}
+        finishData={toFinishData} acceptData={toAcceptData} />)}
+      {(authLevel === 'employee') && (<OrderActionButtons cancel='' finish='finish' accept='accept' cancelData={data}
+        finishData={toFinishData} acceptData={toAcceptData} />)}
     </Grid>
   )
 }

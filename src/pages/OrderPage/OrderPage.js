@@ -473,25 +473,6 @@ function Order(props) {
   // 55点击提交按钮后，post请求
   const onSubmit = data => {
 
-    // if(data.bedRoomNum!=="" && data.bathRoomNum!=="" && data.type!==""
-    //     &&data.postcode!=="" &&data.date!=="" &&data.time!==""
-    //     &&data.firstName!=="" &&data.lastName!=="" &&data.phoneNumber!==""
-    //     &&data.address1!=="" &&data.suburb!=="" &&data.state!=="") {
-      // 防止有人不选时间
-      // console.log(data.date,data.time)
-      // Fri Apr 02 2021 13:08:25 GMT+1000 (澳大利亚东部标准时间) 
-      // Fri Apr 02 2021 13:08:25 GMT+1000 (澳大利亚东部标准时间)
-      // let pickDate = ''
-      // let pickTime = ''
-      // let datedate = ''
-      // if(homeOrderData) {
-      //   const {starDate,starTime} = homeOrderData
-      //   pickDate = date.format(starDate, 'YYYY-MM-DD') 
-      //   pickTime = date.format(starTime, 'HH:mm:ss') 
-      //   datedate = `${pickDate}T${pickTime}Z`
-
-      //   // datedate = homeOrderData.totalDate
-      // }else {
       const pickDate = date.format(data.date, 'YYYY-MM-DD') 
       const pickTime = date.format(data.time, 'HH:mm:ss') 
       const datedate = `${pickDate}T${pickTime}Z`
@@ -558,7 +539,7 @@ function Order(props) {
 
   // 1010 判断是否正确提交，提交后，用<Redirect /> 跳转页面
   const { submit } = state
-  const loading = useSelector(astate => astate.regular_in_reducer_index.loading)
+  const loading = useSelector(astate => astate.order.loading)
   // console.log("loading parameter: ", loading)
 
   const history = useHistory()

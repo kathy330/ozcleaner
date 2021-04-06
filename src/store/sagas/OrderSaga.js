@@ -12,10 +12,10 @@ function* getRegularOrder(action) {
     const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
     const getApi = `http://localhost:8000/${model}/${_id}`
     const data = yield call(axios.get, getApi)
-    yield put({ type: 'GET_REGULAR_SUCCESS', repos: data.data })
+    yield put({ type: 'GET_ORDER_SUCCESS', repos: data.data })
   } catch (e) {
     console.log(e)
-    yield put({ type: 'GET_REGULAR_FAILED', payload: e })
+    yield put({ type: 'GET_ORDER_FAILED', payload: e })
   }
 }
 
@@ -80,7 +80,7 @@ function* postRegularOrder(action) {
 */
 function* RegularSaga() {
   // yield takeLatest('GET_REGULAR_REQUEST',fetchRegularUrl)
-  yield takeEvery('GET_REGULAR_REQUEST', getRegularOrder) // GEt 全部 ORDER
+  yield takeEvery('GET_ORDER_REQUEST', getRegularOrder) // GEt 全部 ORDER
   yield takeEvery('POST_REGULAR_REQUEST', postRegularOrder) // POST to regular order
   yield takeEvery('UPDATE_REGULAR_REQUEST', updateRegularOrder) // UPDATE regular order
 }

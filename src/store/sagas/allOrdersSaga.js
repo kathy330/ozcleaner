@@ -1,8 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
-// import actionTypes from "../actions/actionTypes"
 
-function * fetchAllOrders(action) {
+function* fetchAllOrders(action) {
   try {
     const { page, pageSize, status } = action.payload
     // eslint-disable-next-line max-len

@@ -206,3 +206,15 @@ export const getAllOrersRequest = orders => ({
   type: actionTypes.GET_ALL_ORDERS_REQUESTED,
   payload: orders
 })
+
+// * deleted a customer by customer's objID
+export const deletedCustomerRequest = users => ({
+  type: actionTypes.DELETED_CUSTOMER_REQUEST,
+  payload: users
+})
+
+// * deleted an employee by employee's objID
+export const deletedEmployeeRequest = users => ({
+  type: actionTypes.DELETED_EMPLOYEE_REQUEST,
+  payload: users
+})

@@ -54,7 +54,7 @@ const AdminCustomersListPage = (match) => {
   const tableType = 'customer'
   const query = new URLSearchParams(match.location.search)
   const page = parseInt(query.get('page') || '1', 10)
-  console.log(page)
+
   return (
     <>
       <Container maxWidth="lg" className={classes.root}>

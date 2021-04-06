@@ -13,7 +13,8 @@ import {
   Typography,
 } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
-import { getAllUserListRequest, getAllEmployeeListRequest } from '../../store/actions'
+import { getAllUserListRequest, getAllEmployeeListRequest,
+  deletedCustomerRequest } from '../../store/actions'
 import ListTableHead from './ListTableHead'
 import ListTableRow from './ListTableRow'
 import LoadingIcon from './LoadingIcon'
@@ -41,6 +42,8 @@ function ListCustomerTable(props) {
   const usersCount = useSelector(state => state.userslist.users.count)
   const loading = useSelector(state => state.userslist.loading)
   const error = useSelector(state => state.userslist.error)
+  const deleteStatus = useSelector(state => state.userslist.deleteStatus)
+  console.log(deleteStatus)
   const dispatchRequest = (tableType === 'customer') 
   // eslint-disable-next-line no-shadow
   const returnPage = (usersCount) => {
@@ -62,7 +65,7 @@ function ListCustomerTable(props) {
   }
   useEffect(() => {
     dispatchRequested()
-  }, [urlpage])
+  }, [])
 
   const getPaginationPage = (page) => {
     listSize.page = page
@@ -82,12 +85,16 @@ function ListCustomerTable(props) {
   const handleAlertConfirm = ()=>{
     // TODO: add update user deleted status here
     console.log('confirm delete: ', deletedId)
+    dispatch(deletedCustomerRequest(deletedId))
     setOpen(false)
+    console.log('after deletedsaga')
+    // dispatchRequested(listSize)
+    // const curPath = window.location.pathname+window.location.search
+    // history.push(`${curPath}`)
   }
 
   const refreshPage = () => {
     listSize.page = 1
-    dispatchRequested(listSize)
     const curPath = window.location.pathname
     history.push(`${curPath}`)
   }

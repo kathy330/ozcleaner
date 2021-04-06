@@ -101,7 +101,6 @@ function OrdersLists(props) {
   }
 
   const selectStatusChange = (event) =>{
-    console.log(event.target.value)
     setOrderStatus(event.target.value)
     listPayload.status = event.target.value
     listPayload.page = 1

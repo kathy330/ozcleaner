@@ -6,7 +6,7 @@ import {Table,TableBody,TableCell,TableContainer,Typography,TableHead,TableRow,P
    from "@material-ui/core"
 import KingBedIcon from '@material-ui/icons/KingBed'
 import BathtubIcon from '@material-ui/icons/Bathtub'
-import {getEmployeeRequest} from "../../store/actions"
+import {getHistoryRequest} from "../../store/actions"
 
 const useStyles = makeStyles((theme) => ({
   tableCell:{
@@ -72,7 +72,7 @@ const GetList = () => {
   const dispatch = useDispatch()
   const repo = useSelector(state => state.employee_in_reducer_index.repos_in_reducer_init)
   useEffect(()=>{
-    dispatch(getEmployeeRequest())
+    dispatch(getHistoryRequest())
   },[])
 return repo
 }

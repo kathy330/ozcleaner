@@ -6,25 +6,28 @@ const postApi = 'http://localhost:8000/regular'
 
 function* getRegularOrder(action) {
   try {
-      const {_id, type} = action.payload
-      console.log(_id, 'objectID')
-      const model = type === "RC" ? 'regular' : 'endOfLease'
-      const getApi = `http://localhost:8000/${model}/${_id}`
-      const data = yield call(axios.get, getApi)
-      yield put({ type: 'GET_REGULAR_SUCCESS', repos: data.data })
+    const { _id, type } = action.payload
+    console.log(_id, 'objectID')
+    console.log(type, 'type')
+    const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
+    const getApi = `http://localhost:8000/${model}/${_id}`
+    const data = yield call(axios.get, getApi)
+    yield put({ type: 'GET_ORDER_SUCCESS', repos: data.data })
   } catch (e) {
     console.log(e)
-    yield put({ type: 'GET_REGULAR_FAILED', payload: e })
+    yield put({ type: 'GET_ORDER_FAILED', payload: e })
   }
 }
 
 function* updateRegularOrder(action) {
-  const { id, orderstatus } = action.payload
+  const { id, orderstatus, type } = action.payload
   console.log(id)
-  console.log(action)
+  console.log(action.payload)
   console.log(orderstatus)
+  console.log(type)
   const update = { status: orderstatus }
-  const updateApi = `http://localhost:8000/regular/${id}`  // PUT方法更新regular
+  const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
+  const updateApi = `http://localhost:8000/${model}/${id}`  // PUT方法更新regular
 
   try {
     const regularData = yield call(axios.put, updateApi, update)
@@ -40,29 +43,22 @@ function* updateRegularOrder(action) {
 }
 
 
-function postToRegular(data) {
-  return fetch(postApi, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      // 要有token
-    },
-    body: JSON.stringify(data)
-  })
-    .then(response => response.json())
-    .catch(err => console.log(err))
-}
-
 function* postRegularOrder(action) {
   // action.payload就是post-action.js的payload键，
   // 所以action.payload就等于post-action的obj
   // console.log("Post from component: ",action.payload) 
-  const result = yield call(postToRegular, action.payload)
-  if (result.errors) {
-    console.log("regular order post failed!", result.errors)
-    yield put({ type: 'POST_REGULAR_FAILED', errorInSaga: result.errors })
+  const {token} = JSON.parse(localStorage.getItem('userInfo')).data
+  const Header = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': token
   }
+  const result = yield call(axios.post,postApi, action.payload,{headers:Header})
+  // console.log(result)
+  if(result.errors) {
+    console.log("regular order post failed!",result.errors)
+    yield put({type:'POST_REGULAR_FAILED',errorInSaga:result.errors})
+  } 
   else {
     // console.log("regular order post successss!",result)
     yield put({ type: 'POST_REGULAR_SUCCESS', postInSaga: action.payload })
@@ -84,9 +80,28 @@ function* postRegularOrder(action) {
 */
 function* RegularSaga() {
   // yield takeLatest('GET_REGULAR_REQUEST',fetchRegularUrl)
-  yield takeEvery('GET_REGULAR_REQUEST', getRegularOrder) // GEt 全部 ORDER
+  yield takeEvery('GET_ORDER_REQUEST', getRegularOrder) // GEt 全部 ORDER
   yield takeEvery('POST_REGULAR_REQUEST', postRegularOrder) // POST to regular order
   yield takeEvery('UPDATE_REGULAR_REQUEST', updateRegularOrder) // UPDATE regular order
 }
 
 export default RegularSaga
+
+
+
+
+// function postToRegular (data) {
+//   // const {token} = JSON.parse(localStorage.getItem('userInfo')).data
+//   return fetch(postApi, {
+//     method:'POST',
+//     headers:{
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json',
+//       // 'Authorization': token
+//     },
+//     body:JSON.stringify(data)
+//   })
+//     .then(response => response.json())
+//     .catch(err=>console.log(err))
+// }
+// const result = yield call(postToRegular, action.payload)

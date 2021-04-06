@@ -1,3 +1,7 @@
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/react-in-jsx-scope */
+
 import React , {useEffect} from "react"
 // import { Redirect } from "react-router-dom" // 负责页面跳转router，不会刷新reducer👍
 import Box from '@material-ui/core/Box'
@@ -8,11 +12,17 @@ import Card from '@material-ui/core/Card'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import {useSelector} from 'react-redux'
+import {useHistory} from "react-router-dom"
+import { loadStripe } from "@stripe/stripe-js"
+import { Elements } from "@stripe/react-stripe-js"
 import Nav from '../../components/NavBarComponents/NavBar'
 import OrderRight from "../../components/OrderComponents/OrderRight"
 import Footer from '../../components/FooterComponents/Footer'
 // import {buttonStyle} from '../../styles/styles'
 import LoadingIcon from "../../components/AdminComponents/LoadingIcon"
+import CheckoutForm from "../../components/testSaga/Testpay1-component"
+
+const promise = loadStripe("pk_test_51IcU7EIhWqpXGeJaSNSsYJNlyh302mKpZUWBQBl7nZU1ISbLPKnCPHnCqjqdQV2iubeJs17bKXSHp8p95r9aigNQ00fTIv8f3f")
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,30 +40,30 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '25vh',
       paddingTop: '20vh',
     },
-  },
-
-  button: {
-    background: theme.palette.primary.main, // #007bf5
-    borderRadius: '12px',
-    color: theme.palette.primary.contrastText,
-    fontSize: '1.4rem',
-    paddingInline: '80px', // 太长，小屏幕装不下
-    [theme.breakpoints.down('sm')]: {
-      marginBottom: '5vh',
-      marginTop: '5vh',
-    },
-    [theme.breakpoints.up('md')]: {
-      marginTop: '10vh',
-    },
-
-    '&:hover': {
-      background: theme.palette.primary.hover, // #0050c1
-      boxShadow: '0px 2px 10px #888',
-    },
   }
+
+  // button: {
+  //   background: theme.palette.primary.main, // #007bf5
+  //   borderRadius: '12px',
+  //   color: theme.palette.primary.contrastText,
+  //   fontSize: '1.4rem',
+  //   paddingInline: '80px', // 太长，小屏幕装不下
+  //   [theme.breakpoints.down('sm')]: {
+  //     marginBottom: '5vh',
+  //     marginTop: '5vh',
+  //   },
+  //   [theme.breakpoints.up('md')]: {
+  //     marginTop: '14vh',
+  //   },
+
+  //   '&:hover': {
+  //     background: theme.palette.primary.hover, // #0050c1
+  //     boxShadow: '0px 2px 10px #888',
+  //   },
+  // }
 }))
 
-function OrderConfirm() {
+function OrderPay() {
   const classes = useStyles()
   // const buttonstyle = buttonStyle()
 
@@ -63,8 +73,8 @@ function OrderConfirm() {
 
   // 1/2 直接从regular reducer取值回来
   // const loadingREGdata = useSelector(state => state.regular_in_reducer_index.loading)  
-  const loadingNumREGdata = useSelector(state => state.order.loadingNum)  
-  const REGdata = useSelector(state => state.order.order)  
+  const loadingNumREGdata = useSelector(state => state.regular_in_reducer_index.loadingNum)  
+  const REGdata = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)  
   // console.log('regular redex method: ',REGdata)
 
   // 2/2 直接从end reducer取值回来
@@ -131,6 +141,11 @@ function OrderConfirm() {
     load = true // 没有数据，展示转圈
     // document.location.href = '/'
   }
+  // const history = useHistory()
+  // const paynow =() => {
+  //   // history.push("/order/confirm")
+  // }
+  
 
 
   return (
@@ -138,33 +153,32 @@ function OrderConfirm() {
       {/* {(ordertype==='') && (document.location.href = '/') } */}
       
       <Nav />
-      {load && <LoadingIcon />}
-      {!load && (
+      {/* {load && <LoadingIcon />} */}
+      {load &&(
       <Box className={classes.root}>
         <Container>
           <Grid container spacing={0}>
             <Grid item xs={12} sm={6}>
               <Container maxWidth="sm">
-                <Grid container direction="column" alignItems="flex-start">
+                <Grid container direction="column" alignItems="center">
                   <Grid item>
-                    <Typography variant="h4">
-                      Your Order has been recieved. 
-                      <br />
-                      {/* We will email you once confirmed! */}
-                      Thank you!
-                    </Typography>
+                    <Elements stripe={promise}>
+                      <CheckoutForm />
+                    </Elements>
                   </Grid>
 
-                  <Grid item>
+                  {/* <Grid item>
                     <Button
-                      href="/myorder" 
+                      // href="/order/confirm" 
                       variant="contained"
                       color="primary"
                       className={classes.button}
+                      onClick={paynow}
+                      disabled
                     >
-                      View Order
+                      Complete Booking
                     </Button>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
               </Container>
             </Grid>
@@ -180,10 +194,10 @@ function OrderConfirm() {
         </Container>
       
       </Box>
-    )}
+       )} 
       <Footer />
     </>
   )
 }
 
-export default OrderConfirm
+export default OrderPay

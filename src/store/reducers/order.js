@@ -2,11 +2,13 @@
 import actionType from '../actions/actionTypes'
 
 const initialState = {
-  loading: true,
+  loading: false,
   updateing: false,
   loadingNum: 1,
   error: null,
-  repos_in_reducer_init: "init value",
+  order: [],
+  orders: [],
+  row: 0,
   completeinfo: {
     info: localStorage.getItem('regularCleanOrder') ?
       JSON.parse(localStorage.getItem('regularCleanOrder')) : {
@@ -27,28 +29,27 @@ const initialState = {
   updateData: 'no update' // 更新by id,可以更新任何值，只要有正确名字
 }
 
-function regularReducer(state = initialState, action) {
+function orderReducer(state = initialState, action) {
   switch (action.type) {
 
     // 1/3 GET regular order --dongyu
-    case actionType.GET_REGULAR_REQUEST:
+    case actionType.GET_ORDERr_REQUEST:
       return {
         ...state,
         loading: true,
       }
 
-    case actionType.GET_REGULAR_SUCCESS:
+    case actionType.GET_ORDER_SUCCESS:
       return {
         ...state,
         loading: false,
-        repos_in_reducer_init: action.repos
+        order: action.repos
       }
 
-    case actionType.GET_REGULAR_FAILED:
+    case actionType.GET_ORDER_FAILED:
       return {
         ...state,
         loading: false,
-        repos_in_reducer_init: [],
         error: action.payload
         // error:action.data.err
       }
@@ -61,12 +62,17 @@ function regularReducer(state = initialState, action) {
       }
 
     case actionType.UPDATE_REGULAR_SUCCESS:
+      let orders = state.orders.result
+      let order = [{ ...state.order[0], status: action.repos.status }]
+      orders[state.row] = order[0]
+      console.log([][0])
       return {
         ...state,
         loading: false,
         updateData: action.repos,
-        // repos_in_reducer_init: action.postInSaga,
-        repos_in_reducer_init: [{ ...state.repos_in_reducer_init[0], status: action.repos.status }]
+        // order: action.postInSaga,
+        order: order,
+        orders:{...state.orders, result: orders}
       }
 
     case actionType.UPDATE_REGULAR_FAILED:
@@ -90,7 +96,7 @@ function regularReducer(state = initialState, action) {
         ...state,
         loading: false,
         loadingNum: 2,
-        repos_in_reducer_init: action.postInSaga, // 发送给regular api
+        order: action.postInSaga, // 发送给regular api
         completeinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
       }
 
@@ -98,13 +104,37 @@ function regularReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        repos_in_reducer_init: [],
+        order: [],
         error: action.errorInSaga,
       }
 
+    case actionType.GET_ALL_ORDERS_REQUESTED:
+      return {
+        ...state,
+        loading: true
+      }
+    case actionType.GET_ALL_ORDERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        orders: action.orders
+      }
+    case actionType.GET_ALL_ORDERS_FAILED:
+      return {
+        ... state,
+        loading: false,
+        error: action.message
+      }
+
+    case actionType.CHANGE_ORDER:
+      return {
+        ...state,
+        order: [state.orders.result[action.payload]],
+        row: action.payload
+      }
     default:
       return state
   }
 }
 
-export default regularReducer
+export default orderReducer

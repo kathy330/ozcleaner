@@ -14,16 +14,16 @@ export const loadOrdersFailed = err => ({
 
 
 //  1/6 GET Regular order -- dongyu 
-export const getREGULARRequest = (datalist) => ({
-  type: actionTypes.GET_REGULAR_REQUEST,
+export const getOrderRequest = (datalist) => ({
+  type: actionTypes.GET_ORDER_REQUEST,
   payload: datalist,
 })
-export const getREGULARSuccess = (datalist) => ({
-  type: actionTypes.GET_REGULAR_SUCCESS,
+export const getOrderSuccess = (datalist) => ({
+  type: actionTypes.GET_ORDER_SUCCESS,
   payload: datalist,
 })
-export const getREGULARFaild = (err) => ({
-  type: actionTypes.GET_REGULAR_FAILED,
+export const getOrderFaild = (err) => ({
+  type: actionTypes.GET_ORDER_FAILED,
   payload: err,
 })
 
@@ -88,19 +88,6 @@ export function postEndOfLeaseFaild(obj) {
   }
 }
 
-//  6/6 Update Endoflease order -- kangkang
-export const updateEndOfLeaseRequest = (obj) => ({
-  type: actionTypes.UPDATE_REGULAR_REQUEST,
-  payload: obj, // By convention, we put that information in a field called payload.
-})
-export const updateEndOfLeaseSuccess = (obj) => ({
-  type: actionTypes.UPDATE_REGULAR_SUCCESS,
-  payload: obj,
-})
-export const updateEndOfLeaseFailed = (obj) => ({
-  type: actionTypes.UPDATE_REGULAR_FAILED,
-  payload: obj,
-})
 
 // * getAllUserListRequest() is for get all users from userTable -- kathy
 export const getAllUserListRequest = users => ({
@@ -116,34 +103,33 @@ export const getAllEmployeeListRequest = employees => ({
 
 
 
-// * get employee 
-// employee
-export const getEmployeeRequest = (datalist) => ({
-  type: actionTypes.GET_EMPLOYEE_REQUEST,
+// * get history
+export const getHistoryRequest = (datalist) => ({
+  type: actionTypes.GET_HISTORY_REQUEST,
   payload: datalist,
 })
 
-export const getEmployeeSuccess = (datalist) => ({
-  type: actionTypes.GET_EMPLOYEE_SUCCESS,
+export const getHistorySuccess = (datalist) => ({
+  type: actionTypes.GET_HISTORY_SUCCESS,
   payload: datalist,
 })
-export const GET_EMPLOYEE_FAILED = (err) => ({
-  type: actionTypes.GET_EMPLOYEE_FAILED,
+export const getHistoryFailed = (err) => ({
+  type: actionTypes.GET_HISTORY_FAILED,
   payload: err,
 })
 
-// employee update profile 
-export const updateEmployeeRequest = (datalist) => ({
-  type: actionTypes.UPDATE_EMPLOYEE_REQUEST,
+//  update profile 
+export const updateProfileRequest = (datalist) => ({
+  type: actionTypes.UPDATE_PROFILE_REQUEST,
   payload: datalist,
 })
 
-export const updateEmployeeSuccess = (datalist) => ({
-  type: actionTypes.UPDATE_EMPLOYEE_SUCCESS,
+export const updateProfileSuccess = (datalist) => ({
+  type: actionTypes.UPDATE_PROFILE_SUCCESS,
   payload: datalist,
 })
-export const updateEmployeeFailed = (err) => ({
-  type: actionTypes.UPDATE_EMPLOYEE_FAILED,
+export const updateProfileFailed = (err) => ({
+  type: actionTypes.UPDATE_PROFILE_FAILED,
   payload: err,
 })
 
@@ -217,4 +203,14 @@ export const deletedCustomerRequest = users => ({
 export const deletedEmployeeRequest = users => ({
   type: actionTypes.DELETED_EMPLOYEE_REQUEST,
   payload: users
+})
+
+export const deletedUserRefetch = num => ({
+  type: actionTypes.DELETED_USER_ACTION,
+  payload: num
+})
+
+export const changeOrder = num => ({
+  type: actionTypes.CHANGE_ORDER,
+  payload: num
 })

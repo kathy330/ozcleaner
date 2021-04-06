@@ -1,15 +1,13 @@
 /* eslint-disable */
 import React, { useEffect } from 'react'
 import { Grid, Typography, makeStyles, Card, CardContent, Divider, Button } from '@material-ui/core'
-
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { updateRegularRequest } from "../../store/actions"
-// import { SecondaryButton } from '../UIComponents/Buttons'
-import { Link, Redirect } from 'react-router-dom'
+import OrderActionButtons from './Customers/OrderActionButtons'
+
 
 // style
 const useStyles = makeStyles((theme) => ({
@@ -55,22 +53,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-
 function AdminCustomersRight(props) {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const { orderPrice, orderStatus, _id } = props
+  const { orderPrice, orderStatus, _id, typeOfOrder } = props
   const [open, setOpen] = React.useState(false)
   // const data = { taskid: ID, orderstatus: "in-progress" }
-  const data = { id: _id, orderstatus: "cancelled" }
+  const data = { id: _id, orderstatus: "cancelled", type: typeOfOrder }
+  const toFinishData = { id: _id, orderstatus: "finished", type: typeOfOrder }
+  const toAcceptData = { id: _id, orderstatus: "in-progress", type: typeOfOrder }
   console.log(data)
-
-  const [state, setState] = React.useState({
-    status: props.orderStatus
+  const [state] = React.useState({
+    status: { orderStatus }
   })
-
-  let repo = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)
-
   const handleClickOpen = () => {
     setOpen(true)
   }
@@ -80,49 +75,19 @@ function AdminCustomersRight(props) {
   const handleCancelOrder = () => {
     setOpen(false)
     dispatch(updateRegularRequest(data))
-
-    // console.log('1')
-    // Redirection()
-    // console.log('2')
-    // console.log(state.status)
-    // const id = '1'
-    // const data = {
-    //   "status": "in-progress"
-    // }
-    // axios.put(`http://localhost:8000/regular/${id}`, data).then((res) => {
-    //   console.log(res.data);
-    // })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    console.log(repo)
-    // setState({ status: "cancelled" })
-
   }
-  // const Redirection = () => {
-  //   if (state.status === 'cancelled') {
-  //     return (<Redirect to="/admin/order" />)
-  //   }
-  // }
-
   useEffect(() => {
-    // console.log(orderStatus, 'orderstatus')
     console.log(state.status, 'state.status')
   }, [state])
 
 
+  const authLevel = localStorage.getItem('authLevel')
+  console.log(authLevel)
 
 
-  // const RedirectLink = (props) => {
-  //   const { to } = props
-  //   const Redirect = props => <Link to={to}{...props} />
-  //   if (status === 'cancelled') {
-  //     return <Redirect component={RedirectLink} />
-  //   }
-  // }
   return (
     <Grid item xs={12} sm={3} className={classes.root}>
-      <Dialog open={open} onClose={handleClose}>
+      {/* <Dialog open={open} onClose={handleClose}>
         <DialogTitle className={classes.dialog}>
           Do you want to cancel this order?
         </DialogTitle>
@@ -134,7 +99,7 @@ function AdminCustomersRight(props) {
             NO
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
 
       <Card className={classes.card}>
         <CardContent>
@@ -153,17 +118,14 @@ function AdminCustomersRight(props) {
           <Divider />
         </CardContent>
       </Card>
-      <Button onClick={handleClickOpen} className={classes.cancel}>
-        CANCEL ORDER
-      </Button>
 
-      {/* {state.status === 'cancelled' ? (<>Your order has cancelled! </>) : (<Button onClick={handleClickOpen} className={classes.cancel}>
-        CANCEL ORDER
-      </Button>)
-      } */}
-
-    </Grid >
+      {(authLevel === 'admin') && (<OrderActionButtons cancel='cancel' finish='finish' accept='' cancelData={data}
+        finishData={toFinishData} acceptData={toAcceptData} />)}
+      {(authLevel === 'user') && (<OrderActionButtons cancel='cancel' finish='' accept='' cancelData={data}
+        finishData={toFinishData} acceptData={toAcceptData} />)}
+      {(authLevel === 'employee') && (<OrderActionButtons cancel='' finish='finish' accept='accept' cancelData={data}
+        finishData={toFinishData} acceptData={toAcceptData} />)}
+    </Grid>
   )
 }
-
 export default AdminCustomersRight

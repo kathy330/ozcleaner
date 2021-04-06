@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import { getAllUserListRequest, getAllEmployeeListRequest,
-  deletedCustomerRequest } from '../../store/actions'
+  deletedCustomerRequest, deletedUserRefetch } from '../../store/actions'
 import ListTableHead from './ListTableHead'
 import ListTableRow from './ListTableRow'
 import LoadingIcon from './LoadingIcon'
@@ -88,6 +88,7 @@ function ListCustomerTable(props) {
     dispatch(deletedCustomerRequest(deletedId))
     setOpen(false)
     console.log('after deletedsaga')
+    dispatch(deletedUserRefetch(0))
     // dispatchRequested(listSize)
     // const curPath = window.location.pathname+window.location.search
     // history.push(`${curPath}`)

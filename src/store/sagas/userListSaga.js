@@ -10,6 +10,7 @@ function* fetchUsers(action) {
     const users = yield call(axios.get, apiUrl)
     console.log('data', apiUrl)
     yield put({ type: "GET_USERS_SUCCESS", users: users.data })
+    yield put({ type: 'DELETED_USER_ACTION', payload: 0 })
   } catch (e) {
     yield put({ type: 'GET_USERS_FAILED', message: e.message })
   }  
@@ -22,6 +23,7 @@ function* deletedUsers(action) {
     const users = yield call(axios.put, deletedApi)
     console.log(users.status)
     yield put({ type: 'DELETED_CUSTOMER_SUCCESS', page: 1, pageSize: 3, users: users.status })
+    
   } catch (e) {
     yield put({ type: 'DELETED_CUSTOMER_FAILED', message: e.message })
   }
@@ -30,7 +32,7 @@ function* deletedUsers(action) {
 function* UserListSaga() {
   yield takeEvery('GET_USERS_REQUESTED', fetchUsers)
   yield takeEvery('DELETED_CUSTOMER_REQUEST', deletedUsers)
-  yield takeEvery('DELETED_CUSTOMER_SUCCESS', fetchUsers)
+  // yield takeEvery('DELETED_CUSTOMER_SUCCESS', fetchUsers)
 }
 
 export default UserListSaga

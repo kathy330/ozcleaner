@@ -80,6 +80,11 @@ function users( state = initialState, action){
         loading: false,
         error: action.message
       }
+    case actionTypes.DELETED_USER:
+      return {
+        ...state,
+        users: action.payload
+      }
     default:
       return state
   }

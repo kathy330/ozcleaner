@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Route, useHistory } from 'react-router-dom'
 import { makeStyles, Grid, Typography, Box, InputLabel, Select, MenuItem } from '@material-ui/core'
-import { getAllOrersRequest } from '../../../store/actions'
+import { RowingSharp, RowingTwoTone } from '@material-ui/icons'
+import { getAllOrersRequest, changeOrder } from '../../../store/actions'
 import OrderCard from './OrderCard'
-import OrderDetail from './OrderDetali'
+// import OrderDetail from './OrderDetali'
+import AdminOrderPage from '../../../pages/AdminPage/AdminOrderPage'
 import ListPagination from '../ListPagination'
 import LoadingIcon from '../LoadingIcon'
 import NoDataFound from '../NoDataFound'
@@ -53,10 +55,10 @@ function OrdersLists(props) {
   const [orderStatus, setOrderStatus] = React.useState(status)
   const listPayload = { page: urlPage, pageSize: pageSize, status: orderStatus }
   const dispatch = useDispatch()
-  const data = useSelector(state => state.allOrders.orders.result)
-  const dataCount = useSelector(state => state.allOrders.orders.count)
-  const loading = useSelector(state => state.allOrders.loading)
-  const error = useSelector(state => state.allOrders.error)
+  const data = useSelector(state => state.order.orders.result)
+  const dataCount = useSelector(state => state.order.orders.count)
+  const loading = useSelector(state => state.order.loading)
+  const error = useSelector(state => state.order.error)
   const returnPage = (totalCount) => {
     if (totalCount < pageSize) {
       return 1
@@ -81,8 +83,10 @@ function OrdersLists(props) {
     }
     document.getElementById(`orderCard${row}`).classList.add('order-card-select')
     setCurCard(row)
+    console.log('row', row)
     setSelectId(id)
     setSelectType(type)
+    dispatch(changeOrder(row))
     // history.push(`/admin/orders/${id}`)
   }
 
@@ -109,6 +113,7 @@ function OrdersLists(props) {
   }
 
   const getPaginationPage = (page) => {
+    setCurCard(0)
     listPayload.page = page
     dispatch(getAllOrersRequest(listPayload))
   }
@@ -121,10 +126,11 @@ function OrdersLists(props) {
     history.push(`/admin/orders/`)
   }
 
+  
   return (
     <>
       {loading && <LoadingIcon />}
-      {!loading && data.length > 0 && (
+      {!loading && dataCount > 0 && (
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} className={classes.left}>
             <div>
@@ -175,7 +181,7 @@ function OrdersLists(props) {
             />
           </Grid>
           <Grid item xs={12} sm={8} className={classes.right}>
-            <OrderDetail id={selectId} type={selectType} />
+            <AdminOrderPage />
           </Grid>
         </Grid>
       )}

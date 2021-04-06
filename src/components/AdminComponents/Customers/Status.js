@@ -29,7 +29,7 @@ export default function Status(props) {
       </Grid>
       <Grid item justify="center" xs={10} sm={11} className={classes.text}>
         {/* <Typography variant="subtitle2">STATUS</Typography> */}
-        {(status === 'confirmed') && (<RedStatus>{status}</RedStatus>)}
+        {(status === 'confirmed') && (<GreenStatusSquare>{status}</GreenStatusSquare>)}
         {(status === 'assigned') && (<GreenStatusSquare>{status}</GreenStatusSquare>)}
         {(status === 'in-progress') && (<BlueStatusSquare>{status}</BlueStatusSquare>)}
         {(status === 'finished') && (<GreyStatusSquare>{status}</GreyStatusSquare>)}

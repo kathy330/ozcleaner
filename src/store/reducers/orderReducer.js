@@ -1,30 +1,38 @@
 /* eslint-disable */
 import actionType from '../actions/actionTypes'
 
+// 这不是init
+const dongyuPostOrder = {
+  bedroomNum: '',
+  bathroomNum: '',
+  type: '',
+  address: {
+    address1: '',
+    address2: '',
+    suburb: '',
+    state: '',
+    postcode: ''
+  },
+  startTime: '',
+  price: 0,
+}
+
 const initialState = {
   loading: false,
   updateing: false,
   loadingNum: 1,
   error: null,
-  order: [],
+  payment:false,
+  order: [], //repos_in_reducer_init: "init value",
   orders: [],
   row: 0,
   completeinfo: {
     info: localStorage.getItem('regularCleanOrder') ?
-      JSON.parse(localStorage.getItem('regularCleanOrder')) : {
-        bedroomNum: '',
-        bathroomNum: '',
-        type: '',
-        address: {
-          address1: '',
-          address2: '',
-          suburb: '',
-          state: '',
-          postcode: ''
-        },
-        startTime: '',
-        price: 0,
-      }
+      JSON.parse(localStorage.getItem('regularCleanOrder')) : dongyuPostOrder
+  },
+  ECcompleteinfo: {
+    info: localStorage.getItem('endofleaseCleanOrder') ?
+      JSON.parse(localStorage.getItem('endofleaseCleanOrder')) : dongyuPostOrder
   },
   updateData: 'no update' // 更新by id,可以更新任何值，只要有正确名字
 }
@@ -32,7 +40,14 @@ const initialState = {
 function orderReducer(state = initialState, action) {
   switch (action.type) {
 
-    // 1/3 GET regular order --dongyu
+    // 1/4 Pay order --dongyu
+    case actionType.PAY_ORDER_SUCCESS:
+      return {
+        ...state,
+        payment:true
+      }
+
+    // 2/4 GET regular order --
     case actionType.GET_ORDERr_REQUEST:
       return {
         ...state,
@@ -54,7 +69,7 @@ function orderReducer(state = initialState, action) {
         // error:action.data.err
       }
 
-    // 2/3 Update regular order - dongyu
+    // 3/4 Update regular order - 
     case actionType.UPDATE_REGULAR_REQUEST:
       return {
         ...state,
@@ -83,7 +98,7 @@ function orderReducer(state = initialState, action) {
         // error:action.data.err
       }
 
-    // 3/3 POST regular order --dongyu
+    // 4/4 POST regular order --dongyu
     case actionType.POST_REGULAR_REQUEST:
       return {
         ...state,
@@ -108,6 +123,33 @@ function orderReducer(state = initialState, action) {
         error: action.errorInSaga,
       }
 
+    // 5/5 POST endoflease order --dongyu
+    case actionType.POST_ENDOFLEASE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        ECcompleteinfo: null
+      }
+
+    case actionType.POST_ENDOFLEASE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loadingNum: 2,
+        order: action.postInSaga,
+        ECcompleteinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
+      }
+
+    case actionType.POST_ENDOFLEASE_FAILED:
+      return {
+        ...state,
+        loading: false,
+        order: [],
+        error: action.errorInSaga,
+      }
+
+
+    // 6/6
     case actionType.GET_ALL_ORDERS_REQUESTED:
       return {
         ...state,
@@ -126,6 +168,7 @@ function orderReducer(state = initialState, action) {
         error: action.message
       }
 
+    //7/7
     case actionType.CHANGE_ORDER:
       return {
         ...state,

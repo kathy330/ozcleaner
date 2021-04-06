@@ -1,4 +1,4 @@
-import React , {useEffect} from "react"
+import React  from "react"
 // import { Redirect } from "react-router-dom" // 负责页面跳转router，不会刷新reducer👍
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import {useSelector} from 'react-redux'
+// import {useHistory} from "react-router-dom"
 import Nav from '../../components/NavBarComponents/NavBar'
 import OrderRight from "../../components/OrderComponents/OrderRight"
 import Footer from '../../components/FooterComponents/Footer'
@@ -57,23 +58,24 @@ function OrderConfirm() {
   const classes = useStyles()
   // const buttonstyle = buttonStyle()
 
-  const [type, setType] = React.useState({
-    ordertype:''
-  })
+  // const [type, setType] = useState({
+  //   ordertype:''
+  // })
 
   // 1/2 直接从regular reducer取值回来
   // const loadingREGdata = useSelector(state => state.regular_in_reducer_index.loading)  
-  const loadingNumREGdata = useSelector(state => state.order.loadingNum)  
-  const REGdata = useSelector(state => state.order.order)  
-  // console.log('regular redex method: ',REGdata)
+  // const loadingNumREGdata = useSelector(state => state.order.loadingNum)  
+  const orderData = useSelector(state => state.order.order)  
+  console.log('order data from redex: ',orderData)
 
   // 2/2 直接从end reducer取值回来
   // const loadingENDdata = useSelector(state => state.regular_in_reducer_index.loading)  
-  const loadingNumENDdata = useSelector(state => state.endoflease_in_reducer_index.loadingNum)  
-  const ENDdata = useSelector(state => state.endoflease_in_reducer_index.repos_in_reducer_init)  
+  // const loadingNumENDdata = useSelector(state => state.endoflease_in_reducer_index.loadingNum)  
+  // const ENDdata = useSelector(state => state.endoflease_in_reducer_index.repos_in_reducer_init)  
   // console.log('end redex method: ',ENDdata)
-
   // console.log(loadingNumREGdata,loadingNumENDdata)
+
+
   // 设置传参的data值
   let data = {
     bedroomNum:'',
@@ -90,49 +92,18 @@ function OrderConfirm() {
     price:0,
   }
 
-  // 2/2检测loding状态改变，实时更新state的type属性，传不同的data给下面orderRight
-  // const error = false
-  // let count = 0
-  useEffect(()=>{
-    if (loadingNumREGdata===2 && loadingNumENDdata===1) {
-      console.log('rc')
-      setType({ordertype:'RC'}) 
-      // count += 1
-      // console.log('1')
-    }
-    else if (loadingNumREGdata===1 && loadingNumENDdata===2) {
-      console.log('ec')
-      setType({ordertype:'EC'})
-      // count += 1
-      // console.log('2')
-    }
-    // else if (loadingNumREGdata===1 && loadingNumENDdata===1) {
-    //   console.log('3')
-    //   document.location.href = '/'
-    // }
-    // 无效。。 如果直接进入这个页面，两个都是num = 1，直接跳转到error页面
-    // console.log(loadingNumREGdata,loadingNumENDdata)
-    // if (loadingNumREGdata===1 && loadingNumENDdata===1) {
-    //   console.log('no data, cant access')
-    //   error = true // true代表下面进入error页面
-    // }
-  },[loadingNumREGdata,loadingNumENDdata])
 
-
-  let load = false
-  const {ordertype} = type
-  if (ordertype === 'RC') {
-    data = REGdata
-  }
-  else if (ordertype === 'EC') {
-    data = ENDdata
-  }
-  else {
-    load = true // 没有数据，展示转圈
+  let load = true // 没有数据，展示转圈  
+  if(orderData.type === 'RC' || orderData.type === 'EC') {
+    data = orderData
+    load = false 
     // document.location.href = '/'
   }
 
-
+  // const objid = '60633a30bad120ff885aa99c'
+  const {_id} = orderData
+  const aa = orderData.type
+  const orderUrl = `/myorder/${_id}?type=${aa}`
   return (
     <>
       {/* {(ordertype==='') && (document.location.href = '/') } */}
@@ -156,14 +127,18 @@ function OrderConfirm() {
                   </Grid>
 
                   <Grid item>
+                    {/* <form onSubmit={handleSubmit()}> */}
                     <Button
-                      href="/myorder" 
                       variant="contained"
                       color="primary"
                       className={classes.button}
+                      type="submit"
+                      href={orderUrl}
                     >
                       View Order
+                      {/* Pay Now */}
                     </Button>
+                    {/* </form> */}
                   </Grid>
                 </Grid>
               </Container>

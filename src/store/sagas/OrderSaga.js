@@ -2,7 +2,8 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
 
 // const gitApi = 'http://localhost:8000/regular/task/1'
-const postApi = 'http://localhost:8000/regular'
+const postRCApi = 'http://localhost:8000/regular'
+const postECApi = 'http://localhost:8000/endOfLease/'
 
 function* getRegularOrder(action) {
   try {
@@ -42,7 +43,7 @@ function* updateRegularOrder(action) {
   }
 }
 
-
+// 1/3 post regular order --dongyu
 function* postRegularOrder(action) {
   // action.payload就是post-action.js的payload键，
   // 所以action.payload就等于post-action的obj
@@ -53,15 +54,18 @@ function* postRegularOrder(action) {
     'Content-Type': 'application/json',
     'Authorization': token
   }
-  const result = yield call(axios.post,postApi, action.payload,{headers:Header})
-  // console.log(result)
+  const result = yield call(axios.post,postRCApi, action.payload,{headers:Header})
+  const {data} = result
+  // console.log('return from backend: ', data)
   if(result.errors) {
     console.log("regular order post failed!",result.errors)
     yield put({type:'POST_REGULAR_FAILED',errorInSaga:result.errors})
   } 
   else {
     // console.log("regular order post successss!",result)
-    yield put({ type: 'POST_REGULAR_SUCCESS', postInSaga: action.payload })
+    // yield put({ type: 'POST_REGULAR_SUCCESS', postInSaga: action.payload })
+    yield put({ type: 'POST_REGULAR_SUCCESS', postInSaga: data })
+
 
     // 🔥数据存储到local storage里，可以直接用useSelector() 使用
     localStorage.setItem('regularCleanOrder', JSON.stringify(action.payload))
@@ -71,6 +75,37 @@ function* postRegularOrder(action) {
   }
 }
 
+// 2/3 post end of lease order --dongyu
+function* postEndLeaseOrder(action) {
+  // action.payload就是post-action.js的payload键，
+  // 所以action.payload就等于post-action的obj
+  // console.log("Post from component: ",action.payload) 
+  const {token} = JSON.parse(localStorage.getItem('userInfo')).data
+  const Header = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': token
+  }
+  const result = yield call(axios.post,postECApi, action.payload,{headers:Header})
+  const {data} = result
+  // console.log('return from backend: ', data)
+  if(result.errors) {
+    console.log("end of lease post failed!",result.errors)
+    yield put({type:'POST_ENDOFLEASE_FAILED',errorInSaga:result.errors})
+  } 
+  else {
+    // yield put({ type: 'POST_ENDOFLEASE_SUCCESS', postInSaga: action.payload })
+    yield put({ type: 'POST_ENDOFLEASE_SUCCESS', postInSaga: data })
+    // 🔥数据存储到local storage里，可以直接用useSelector() 使用
+    localStorage.setItem('endofleaseCleanOrder', JSON.stringify(action.payload))
+    // window.location.href = "/order/confirm" // 下单完成后重定向
+  }
+}
+
+// 3/3 PAY order --dongyu
+function* payOrder() {
+    yield put({ type: 'PAY_ORDER_SUCCESS', postInSaga: 'success!!' })
+}
 
 /*
   Alternatively you may use takeLatest.
@@ -82,7 +117,10 @@ function* RegularSaga() {
   // yield takeLatest('GET_REGULAR_REQUEST',fetchRegularUrl)
   yield takeEvery('GET_ORDER_REQUEST', getRegularOrder) // GEt 全部 ORDER
   yield takeEvery('POST_REGULAR_REQUEST', postRegularOrder) // POST to regular order
+  yield takeEvery('POST_ENDOFLEASE_REQUEST', postEndLeaseOrder) // POST to end order
   yield takeEvery('UPDATE_REGULAR_REQUEST', updateRegularOrder) // UPDATE regular order
+
+  yield takeEvery('PAY_ORDER_REQUEST', payOrder) // PAY
 }
 
 export default RegularSaga

@@ -43,8 +43,8 @@ function App() {
         <ProtectedRoute path="/order" exact component={OrderPage} />
         <ProtectedRoute path="/order/confirm" exact component={OrderConfirmPage} />
         {/* <ProtectedRoute path="/order/pay" exact component={OrderPay} /> */}
-        {/* <Route path="/profile/customer" exact component={CustomerProfilePage} />
-        <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
+        {/* <Route path="/profile/customer" exact component={CustomerProfilePage} /> */}
+        {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
         <Route path="/profile" exact component={ProfilePage} />
         {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
         {/* <Route path="/profile" exact component={ProfilePage} /> */}

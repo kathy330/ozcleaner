@@ -19,6 +19,7 @@ import theme from './styles/theme'
 import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
 import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
 import AdminIndexPage from "./pages/AdminPage/AdminIndexPage"
+import AdminOrderPage from "./pages/AdminPage/AdminOrderPage"
 // import ....Page from ....
 import DongyuPage from './pages/zpractice/Dongyu/Dongyu'
 import KangkangPage from './pages/zpractice/Kangkang/Kangkang'
@@ -59,7 +60,7 @@ function App() {
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
         {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
 
-        {/* <Route path="/admins/orders/:id" exact component={AdminCustomersPage} /> */}
+        <Route path="/myorder/:id" exact component={AdminOrderPage} />
 
         <Route path="/ui" exact component={UI} />
 

@@ -1,7 +1,9 @@
+/* eslint-disable max-len */
+
 import React from 'react'
-
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
-
+// import { loadStripe } from "@stripe/stripe-js"
+// import { Elements } from "@stripe/react-stripe-js"
 import HeaderNavigation from '../../components/NavBarComponents/NavBar'
 import HomeContent from '../../components/HomeComponents/HomeContent'
 import HomeFeedback from '../../components/HomeComponents/HomeFeedback'
@@ -16,6 +18,10 @@ import works1 from '../../assets/work1.jpg' // https://www.pexels.com/zh-cn/phot
 import works2 from '../../assets/work2.jpg' // https://www.pexels.com/zh-cn/photo/6195114/
 import works3 from '../../assets/work3.jpg' // https://www.pexels.com/zh-cn/photo/6197124/
 
+// import CheckoutForm from "../../components/testSaga/Testpay1-component"
+
+// const promise = loadStripe("pk_test_51IcU7EIhWqpXGeJaSNSsYJNlyh302mKpZUWBQBl7nZU1ISbLPKnCPHnCqjqdQV2iubeJs17bKXSHp8p95r9aigNQ00fTIv8f3f")
+
 function Home() {
   const trigger = useScrollTrigger({ disableHysteresis: true })
   
@@ -29,6 +35,11 @@ function Home() {
       {/* navbar只有加了trigger={trigger}才会实现下拉显示和fixed位置，不填写的话是static属性 */}
       <HeaderNavigation trigger={trigger} />
       <HomeContent />
+
+      {/* <Elements stripe={promise}>
+        <CheckoutForm />
+      </Elements> */}
+
       <HomeFeedback
         src={user2}
         title="Easy to use and effective!" 

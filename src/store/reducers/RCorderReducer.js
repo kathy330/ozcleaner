@@ -6,6 +6,7 @@ const initialState = {
   updateing: false,
   loadingNum: 1,
   error: null,
+  payment:false,
   repos_in_reducer_init: "init value",
   completeinfo: {
     info: localStorage.getItem('regularCleanOrder') ?
@@ -29,6 +30,13 @@ const initialState = {
 
 function regularReducer(state = initialState, action) {
   switch (action.type) {
+
+    // 0/3 Pay order --dongyu
+    case actionType.PAY_ORDER_SUCCESS:
+      return {
+        ...state,
+        payment:true
+      }
 
     // 1/3 GET regular order --dongyu
     case actionType.GET_REGULAR_REQUEST:

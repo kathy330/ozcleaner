@@ -43,6 +43,17 @@ export function postRegularFaild(obj) {
   }
 }
 
+
+//  2.5/6 PAY Regular order -- dongyu 
+export const payOrderRequest = (obj) => ({
+  type: actionTypes.PAY_ORDER_REQUEST,
+  payload: obj, 
+})
+export const payOrderSuccess = (obj) => ({
+  type: actionTypes.PAY_ORDER_SUCCESS,
+  payload: obj,
+})
+
 // 3/6 Update regular order -- dongyu
 export const updateRegularRequest = (obj) => ({
   type: actionTypes.UPDATE_REGULAR_REQUEST,

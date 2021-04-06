@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import {useSelector} from 'react-redux'
+// import {useHistory} from "react-router-dom"
 import Nav from '../../components/NavBarComponents/NavBar'
 import OrderRight from "../../components/OrderComponents/OrderRight"
 import Footer from '../../components/FooterComponents/Footer'
@@ -65,7 +66,7 @@ function OrderConfirm() {
   // const loadingREGdata = useSelector(state => state.regular_in_reducer_index.loading)  
   const loadingNumREGdata = useSelector(state => state.regular_in_reducer_index.loadingNum)  
   const REGdata = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)  
-  // console.log('regular redex method: ',REGdata)
+  // console.log('regular order from saga: ',REGdata)
 
   // 2/2 直接从end reducer取值回来
   // const loadingENDdata = useSelector(state => state.regular_in_reducer_index.loading)  
@@ -95,16 +96,12 @@ function OrderConfirm() {
   // let count = 0
   useEffect(()=>{
     if (loadingNumREGdata===2 && loadingNumENDdata===1) {
-      console.log('rc')
+      // console.log('rc')
       setType({ordertype:'RC'}) 
-      // count += 1
-      // console.log('1')
     }
     else if (loadingNumREGdata===1 && loadingNumENDdata===2) {
-      console.log('ec')
+      // console.log('ec')
       setType({ordertype:'EC'})
-      // count += 1
-      // console.log('2')
     }
     // else if (loadingNumREGdata===1 && loadingNumENDdata===1) {
     //   console.log('3')
@@ -132,7 +129,9 @@ function OrderConfirm() {
     // document.location.href = '/'
   }
 
-
+  // const objid = '60633a30bad120ff885aa99c'
+  const {_id} = REGdata
+  const orderUrl = `/myorder/${_id}?type=${ordertype}`
   return (
     <>
       {/* {(ordertype==='') && (document.location.href = '/') } */}
@@ -156,14 +155,18 @@ function OrderConfirm() {
                   </Grid>
 
                   <Grid item>
+                    {/* <form onSubmit={handleSubmit()}> */}
                     <Button
-                      href="/myorder" 
                       variant="contained"
                       color="primary"
                       className={classes.button}
+                      type="submit"
+                      href={orderUrl}
                     >
                       View Order
+                      {/* Pay Now */}
                     </Button>
+                    {/* </form> */}
                   </Grid>
                 </Grid>
               </Container>

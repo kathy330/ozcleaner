@@ -214,8 +214,6 @@ export default function CheckoutForm({price,paystatus,data}) {
               options={cardStyle}
               onChange={handleChange}
             />
-            <br />
-            <br />
             <button
               className="paybutton"
               type='submit'

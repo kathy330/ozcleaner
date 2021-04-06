@@ -1205,20 +1205,24 @@ function Order(props) {
 
 
         <Dialog className={classes.dialog} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">
-            Total amount:  $
-            {amount}
-          </DialogTitle>
           <Container>
+            <DialogTitle id="form-dialog-title" style={{ textAlign: 'center' }}>
+              Total amount:  $
+              {amount}
+            </DialogTitle>
+     
             <DialogContentText>
               Success: 4242424242424242 Faild: 4000000000000002 
               <br />
               3D Identify:4000002760003184
             </DialogContentText>
           </Container>
-          <Elements stripe={promise}>
-            <CheckoutForm price={amount} paystatus={payment} data={orderData} />
-          </Elements>
+          
+          <Container>
+            <Elements stripe={promise}>
+              <CheckoutForm price={amount} paystatus={payment} data={orderData} />
+            </Elements>
+          </Container>
         </Dialog>
       </Box>
     </>

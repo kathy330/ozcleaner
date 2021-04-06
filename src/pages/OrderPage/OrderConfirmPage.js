@@ -75,7 +75,7 @@ function OrderConfirm() {
   // console.log('end redex method: ',ENDdata)
   // console.log(loadingNumREGdata,loadingNumENDdata)
 
-  
+
   // 设置传参的data值
   let data = {
     bedroomNum:'',
@@ -95,7 +95,6 @@ function OrderConfirm() {
 
   let load = true // 没有数据，展示转圈  
   if(orderData.type === 'RC' || orderData.type === 'EC') {
-    console.log('no data')
     data = orderData
     load = false 
     // document.location.href = '/'

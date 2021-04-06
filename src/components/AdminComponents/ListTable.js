@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -13,27 +12,29 @@ import {
   TableBody,
   Typography,
 } from '@material-ui/core'
+import { useHistory } from 'react-router-dom'
 import { getAllUserListRequest, getAllEmployeeListRequest } from '../../store/actions'
 import ListTableHead from './ListTableHead'
 import ListTableRow from './ListTableRow'
 import LoadingIcon from './LoadingIcon'
 import ListPagination from './ListPagination'
-import { ContactSupportOutlined } from '@material-ui/icons'
+import NoDataFound from './NoDataFound'
 
 /**
  * ListTable() is for displaying the user list(user/employee)
  * @param columns: (obj) table head
- * @param rowPreSet: (num) is the default page row's number
+ * @param urlpage: (str) is the url page number
  * @param tableType: (str) is to distinguish between customer list and staff list
  */
 function ListCustomerTable(props) {
   const { columns, urlpage, tableType } = props
-  const pageSize = 12
+  const pageSize = 15
+  const history = useHistory()
   const listSize = { page: urlpage, pageSize: pageSize}
   const dispatch = useDispatch()
   const [deletedId, setDeletedId] = React.useState(0)
+  const [deletedIndex, setdeletedIndex] = React.useState(0)
   const [open, setOpen] = React.useState(false)
-  const path = `/admin/${tableType}`
   // get userdata from state
   const usersData = useSelector(state => state.userslist.users.result)
   // get total users number from state
@@ -41,17 +42,17 @@ function ListCustomerTable(props) {
   const loading = useSelector(state => state.userslist.loading)
   const error = useSelector(state => state.userslist.error)
   const dispatchRequest = (tableType === 'customer') 
+  // eslint-disable-next-line no-shadow
   const returnPage = (usersCount) => {
-    if (pageSize) {
-      return Math.floor(usersCount / listSize.pageSize) + 1
-    } else if (usersCount < pageSize) {
+    if (usersCount < pageSize) {
       return 1
-    } else {
-      return Math.floor(usersCount / listSize.pageSize)
-    }
+    } 
+    if (usersCount % pageSize !== 0) {
+      return Math.floor(usersCount / listSize.pageSize) + 1
+    } 
+    return Math.floor(usersCount / listSize.pageSize)
   }
   const finalPage = returnPage(usersCount)
-  // console.log(usersData)
   const dispatchRequested = () => {
     if (dispatchRequest) {
       dispatch(getAllUserListRequest(listSize))
@@ -63,8 +64,13 @@ function ListCustomerTable(props) {
     dispatchRequested()
   }, [urlpage])
 
-  const openDeletedModal = (id) =>{
-    // console.log(usersData.values(id))
+  const getPaginationPage = (page) => {
+    listSize.page = page
+    dispatchRequested(listSize)
+  }
+
+  const openDeletedModal = (id, index) =>{
+    setdeletedIndex(index)
     setDeletedId(id)
     setOpen(true)
   }
@@ -74,15 +80,18 @@ function ListCustomerTable(props) {
   }
 
   const handleAlertConfirm = ()=>{
+    // TODO: add update user deleted status here
     console.log('confirm delete: ', deletedId)
     setOpen(false)
   }
 
-  const getPaginationPage = (page) =>{
-    listSize.page = page
+  const refreshPage = () => {
+    listSize.page = 1
     dispatchRequested(listSize)
+    const curPath = window.location.pathname
+    history.push(`${curPath}`)
   }
-  
+
   return (
     <>
       {/* if loading: show loading icon */}
@@ -94,9 +103,10 @@ function ListCustomerTable(props) {
             <Table aria-label="simple table">
               <ListTableHead columns={columns} />
               <TableBody>
-                {usersData.map((row) => (
+                {usersData.map((row,index) => (
                   <ListTableRow
                     key={row.ID}
+                    index={index}
                     // eslint-disable-next-line no-underscore-dangle
                     id={row._id}
                     firstName={row.name.firstName}
@@ -107,7 +117,7 @@ function ListCustomerTable(props) {
                     tableType={tableType}
                     openDeletedModal={openDeletedModal}
                   />
-                ))}
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -125,7 +135,9 @@ function ListCustomerTable(props) {
             <DialogTitle id="alert-dialog-title">Do you want to delete this user?</DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                User: UserName(useremail)
+                {`User: 
+                  ${usersData[deletedIndex].name.firstName}
+                  (${usersData[deletedIndex].email})`}
               </DialogContentText>
             </DialogContent>
             <DialogActions>
@@ -142,7 +154,7 @@ function ListCustomerTable(props) {
       {/* if not loading && user data is empty: show no user available */}
       {usersData !== undefined && usersData.length === 0 &&
         !loading &&
-        <Typography variant="h4">No users available!</Typography>}
+        <NoDataFound refreshPage={refreshPage} />}
       {/* display any error below */}
       {error && !loading && <Typography variant="h4">{error}</Typography>}
     </>

@@ -11,6 +11,7 @@ import UsersSaga from './usersSaga'
 // // import testSaga from './userRegistrationSaga'
 import EmployeeSaga from './emplyeeDetail'
 import EmployeeCertificationSaga from './employeeSaga'
+import AllOrdersSaga from './allOrdersSaga'
 
 export default function* rootSaga() {
   // 如果有更多的放在这下面;
@@ -27,6 +28,7 @@ export default function* rootSaga() {
     EmployeeSaga(),
     UsersSaga(),
     EmployeeCertificationSaga(),
+    AllOrdersSaga(),
   ])
   // 另外的写法：
   // yield all([fork(github), fork(user)]);

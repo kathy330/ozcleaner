@@ -40,3 +40,17 @@
     transform: rotate(360deg);
   }
 }
+
+.text-capitalize{
+  text-transform: capitalize;
+}
+
+.text-upperCase{
+  text-transform: uppercase;
+}
+
+div[id^="orderCard"].order-card-select{
+  border: 3px solid #007bf5;
+  box-shadow: 0 0 2px 2px rgb(0 123 245 / 20%);
+}
+

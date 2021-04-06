@@ -3,7 +3,7 @@ import NavBar from '../../components/NavBarComponents/NavBar'
 import Profile from '../../components/ProfileComponents/Profile'
 import Footer from '../../components/FooterComponents/Footer'
 
-function CustomerProfilePage(){
+function ProfilePage(){
   return (
     <div>
       <NavBar />
@@ -13,4 +13,4 @@ function CustomerProfilePage(){
   )
 }
 
-export default CustomerProfilePage
+export default ProfilePage

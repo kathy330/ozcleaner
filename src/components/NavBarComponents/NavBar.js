@@ -84,7 +84,7 @@ export default function HeaderNavigation(props) {
                 <Box className={style.buttonsBox}>
                   <Button href='/order' className={style.bookingButton}>Booking Now</Button>
                   <Button href='/myorder'>My Order</Button>
-                  <Button href='/profile/customer'>My Profile</Button>
+                  <Button href='/profile'>My Profile</Button>
                   <Button
                     onClick={signoutHandler}
                   >

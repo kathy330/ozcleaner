@@ -5,44 +5,64 @@ import actionTypes from "../actions/actionTypes"
 
 
 // import API from our API folder, this just is a example
-const ID = 2222
 
+let gitApi = ''
+let updateAPI =''
 
-function* fetchRegularUrl() {
+function* fetchRegularUrl()   {
   // console.log(url)
-  const gitApi = `http://localhost:8000/employees/alltask/${ID}`
+  const info = JSON.parse(localStorage.getItem('userInfo'))
+  const level = localStorage.getItem('authLevel')
+  const ID = info.data.objectID
+  const person = level === 'user'? 'users' : 'employees'
+  // if(level==='user'){
+  //   console.log('user')
+  //   gitApi = `http://localhost:8000/users/alltask/${ID}`
+  // } 
+  // if(level ==='employee'|| level==="admin"){
+  //   console.log('employee')
+  //   gitApi = `http://localhost:8000/employee/alltask/${ID}`
+  // }
+  gitApi = `http://localhost:8000/${person}/alltask/${ID}`
   try{
     const data = yield call(axios.get, gitApi)
-    // 两者名字必须一样
-    // console.log(data,'data1')
-    // put => action 
-    yield put({type:actionTypes.GET_EMPLOYEE_SUCCESS,payload:data.data})
+
+    yield put({type:actionTypes.GET_HISTORY_SUCCESS,payload:data.data})
   }
   catch(e) {
     console.log(e)
-    yield put({type:actionTypes.GET_EMPLOYEE_FAILED,payload:e})
+    yield put({type:actionTypes.GET_HISTORY_FAILED,payload:e})
   }
 }
 
 function* updateEmployeeProfile(action) {
-  const updateAPI = `http://localhost:8000/employees/${ID}`
+  const info = JSON.parse(localStorage.getItem('userInfo'))
+  const level = localStorage.getItem('authLevel')
+  const ID = info.data.objectID
+  const person = level === 'user'? 'users' : 'employees'
+  updateAPI=`http://localhost:8000/${person}/${ID}`
+//   if(level==='user'){
+//     updateAPI = `http://localhost:8000/users/${ID}`
+//  } 
+//  if(level ==='employee'|| level==="admin"){
+//     updateAPI = `http://localhost:8000/employees/${ID}`
+//  }
+ 
+  // const updateAPI = `http://localhost:8000/employees/${ID}`
   // console.log(url)
   try{
     const data = yield call(axios.put, updateAPI ,action.payload)
-    // 两者名字必须一样
-    // console.log(data,'data1')
-    // put => action 
-    yield put({type:'UPDATE_EMPLOYEE_SUCESS',payload:data.data})
+    yield put({type:'UPDATE_PROFILE_SUCESS',payload:data.data})
   }
   catch(e) {
     console.log(e)
-    yield put({type:'UPDATE_EMPLOYEE_FAILED',payload:e})
+    yield put({type:'UPDATE_PROFILE_FAILED',payload:e})
   }
 }
 
 function* WatchEmployeeSaga() {
-  yield takeEvery(actionTypes.GET_EMPLOYEE_REQUEST,fetchRegularUrl)
-  yield takeEvery(actionTypes.UPDATE_EMPLOYEE_REQUEST,updateEmployeeProfile)
+  yield takeEvery(actionTypes.GET_HISTORY_REQUEST,fetchRegularUrl)
+  yield takeEvery(actionTypes.UPDATE_PROFILE_REQUEST,updateEmployeeProfile)
 }
 
 export default WatchEmployeeSaga

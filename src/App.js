@@ -8,19 +8,18 @@ import ProtectedRoute from './router/ProtectedRoute'
 import HomePage from './pages/HomePage/HomePage'
 import UI from './pages/UI/UI'
 import OrderPage from './pages/OrderPage/OrderPage'
-import CustomerProfilePage from './pages/ProfilePage/CustomerProfilePage'
-import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
+import ProfilePage from './pages/ProfilePage/ProfilePage'
+// import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
 // import OrderPay from "./pages/OrderPage/OrderPayPage"
 // import ProfilePage from './pages/ProfilePage/ProfilePage'
-import AdminCustomersPage from './pages/AdminPage/AdminOrderPage'
+// import AdminCustomersPage from './pages/AdminPage/AdminOrderPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 import theme from './styles/theme'
 import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
 import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
 import AdminIndexPage from "./pages/AdminPage/AdminIndexPage"
 // import ....Page from ....
-
 import DongyuPage from './pages/zpractice/Dongyu/Dongyu'
 import KangkangPage from './pages/zpractice/Kangkang/Kangkang'
 import YanboPage from './pages/zpractice/Yanbo/Yanbo'
@@ -44,8 +43,10 @@ function App() {
         <ProtectedRoute path="/order" exact component={OrderPage} />
         <ProtectedRoute path="/order/confirm" exact component={OrderConfirmPage} />
         {/* <ProtectedRoute path="/order/pay" exact component={OrderPay} /> */}
-        <Route path="/profile/customer" exact component={CustomerProfilePage} />
-        <Route path="/profile/employee" exact component={EmployeeProfilePage} />
+        {/* <Route path="/profile/customer" exact component={CustomerProfilePage} />
+        <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
+        <Route path="/profile" exact component={ProfilePage} />
+        {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
         {/* <Route path="/profile" exact component={ProfilePage} /> */}
 
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />
@@ -58,7 +59,7 @@ function App() {
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
         {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
 
-        <Route path="/admins/orders/:id" exact component={AdminCustomersPage} />
+        {/* <Route path="/admins/orders/:id" exact component={AdminCustomersPage} /> */}
 
         <Route path="/ui" exact component={UI} />
 

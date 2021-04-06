@@ -1,4 +1,3 @@
-/* eslint-disable */
 /* eslint-disable no-alert */
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -32,16 +31,17 @@ function StatusDisplay(tableType, status) {
 }
 function ListTableRow(props) {
   const classes = useStyle()
-  const { id, firstName, lastName, status, ongoingOrder, completedOrder, tableType, openDeletedModal } = props
+  // eslint-disable-next-line max-len
+  const { index, id, firstName, lastName, status, ongoingOrder, completedOrder, tableType, openDeletedModal } = props
   const path = `/admin/${tableType}s/${id}`
   return (
     <TableRow role="checkbox" tabIndex={-1} key={id}>
       <TableCell align="center">
-        <Avatar className={classes.avatar}>
-          {firstName[0].toUpperCase()}
+        <Avatar className={`${classes.avatar} text-upperCase`}>
+          {firstName[0]}
         </Avatar>
       </TableCell>
-      <TableCell align="center">
+      <TableCell align="center" className="text-capitalize">
         {firstName}
         {' '}
         {lastName}
@@ -73,7 +73,7 @@ function ListTableRow(props) {
           variant="contained"
           color="secondary"
           className={classes.actionBtn}
-          onClick={() => openDeletedModal(id)}
+          onClick={() => openDeletedModal(id, index)}
         >
           Delete
         </Button>

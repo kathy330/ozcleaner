@@ -52,14 +52,15 @@ function* postEndLeaseOrder(action) {
     'Authorization': token
   }
   const result = yield call(axios.post,postApi, action.payload,{headers:Header})
-  // console.log(result)
+  const {data} = result
+  console.log('return from backend: ', data)
   if(result.errors) {
     console.log("end of lease post failed!",result.errors)
     yield put({type:'POST_ENDOFLEASE_FAILED',errorInSaga:result.errors})
   } 
   else {
-    // console.log("end of lease post successss!",result)
-    yield put({ type: 'POST_ENDOFLEASE_SUCCESS', postInSaga: action.payload })
+    // yield put({ type: 'POST_ENDOFLEASE_SUCCESS', postInSaga: action.payload })
+    yield put({ type: 'POST_ENDOFLEASE_SUCCESS', postInSaga: data })
     // 🔥数据存储到local storage里，可以直接用useSelector() 使用
     localStorage.setItem('endofleaseCleanOrder', JSON.stringify(action.payload))
     // window.location.href = "/order/confirm" // 下单完成后重定向

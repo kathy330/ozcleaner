@@ -3,6 +3,7 @@ import axios from 'axios'
 
 // const gitApi = 'http://localhost:8000/regular/task/1'
 const postApi = 'http://localhost:8000/regular'
+// const payApi = 'http://localhost:8000/pay'
 
 function* getRegularOrder(action) {
   try {
@@ -54,14 +55,17 @@ function* postRegularOrder(action) {
     'Authorization': token
   }
   const result = yield call(axios.post,postApi, action.payload,{headers:Header})
-  // console.log(result)
+  const {data} = result
+  console.log('return from backend: ', data)
   if(result.errors) {
     console.log("regular order post failed!",result.errors)
     yield put({type:'POST_REGULAR_FAILED',errorInSaga:result.errors})
   } 
   else {
     // console.log("regular order post successss!",result)
-    yield put({ type: 'POST_REGULAR_SUCCESS', postInSaga: action.payload })
+    // yield put({ type: 'POST_REGULAR_SUCCESS', postInSaga: action.payload })
+    yield put({ type: 'POST_REGULAR_SUCCESS', postInSaga: data })
+
 
     // 🔥数据存储到local storage里，可以直接用useSelector() 使用
     localStorage.setItem('regularCleanOrder', JSON.stringify(action.payload))
@@ -71,6 +75,10 @@ function* postRegularOrder(action) {
   }
 }
 
+
+function* payOrder() {
+    yield put({ type: 'PAY_ORDER_SUCCESS', postInSaga: 'success!!' })
+}
 
 /*
   Alternatively you may use takeLatest.
@@ -83,6 +91,8 @@ function* RegularSaga() {
   yield takeEvery('GET_REGULAR_REQUEST', getRegularOrder) // GEt 全部 ORDER
   yield takeEvery('POST_REGULAR_REQUEST', postRegularOrder) // POST to regular order
   yield takeEvery('UPDATE_REGULAR_REQUEST', updateRegularOrder) // UPDATE regular order
+
+  yield takeEvery('PAY_ORDER_REQUEST', payOrder) // PAY
 }
 
 export default RegularSaga

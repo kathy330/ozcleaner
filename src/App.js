@@ -12,14 +12,13 @@ import ProfilePage from './pages/ProfilePage/ProfilePage'
 // import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
 // import ProfilePage from './pages/ProfilePage/ProfilePage'
-import AdminCustomersPage from './pages/AdminPage/AdminOrderPage'
+// import AdminCustomersPage from './pages/AdminPage/AdminOrderPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 import theme from './styles/theme'
 import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
 import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
 import AdminIndexPage from "./pages/AdminPage/AdminIndexPage"
 // import ....Page from ....
-
 import DongyuPage from './pages/zpractice/Dongyu/Dongyu'
 import KangkangPage from './pages/zpractice/Kangkang/Kangkang'
 import YanboPage from './pages/zpractice/Yanbo/Yanbo'
@@ -56,7 +55,7 @@ function App() {
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
         {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
 
-        <Route path="/admins/orders/:id" exact component={AdminCustomersPage} />
+        {/* <Route path="/admins/orders/:id" exact component={AdminCustomersPage} /> */}
 
         <Route path="/ui" exact component={UI} />
 

@@ -6,7 +6,7 @@ import { RowingSharp, RowingTwoTone } from '@material-ui/icons'
 import { getAllOrersRequest, changeOrder } from '../../../store/actions'
 import OrderCard from './OrderCard'
 // import OrderDetail from './OrderDetali'
-import OrderPage from '../../../pages/AdminPage/AdminOrderPage'
+import AdminOrderPage from '../../../pages/AdminPage/AdminOrderPage'
 import ListPagination from '../ListPagination'
 import LoadingIcon from '../LoadingIcon'
 import NoDataFound from '../NoDataFound'
@@ -182,7 +182,7 @@ function OrdersLists(props) {
             />
           </Grid>
           <Grid item xs={12} sm={8} className={classes.right}>
-            <OrderPage />
+            <AdminOrderPage />
           </Grid>
         </Grid>
       )}

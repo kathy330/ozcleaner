@@ -11,13 +11,15 @@ import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import Button from '@material-ui/core/Button'
+import TablePagination from '@material-ui/core/TablePagination'
 import date from 'date-and-time'
 import { Link } from 'react-router-dom'
-import TablePagination from '@material-ui/core/TablePagination'
-import {getSTAFFDETAILTABLERequest} from "../../../../store/actions"
-import * as Status from '../../../UIComponents/Status'
+import Alert from '@material-ui/lab/Alert'
+import {getCUSDETAILTABLERequest,updateRegularRequest} from "../../../../store/actions"
+import { GreenStatus ,RedStatus,
+  YellowStatus,GreyStatus,BlueStatus} from '../../../UIComponents/Status'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
   table: {
     minWidth: 650
   },
@@ -46,7 +48,7 @@ const useStyles = makeStyles(() => ({
     display:"flex",
     flexDirection:"row"
   }
-}))
+})
 
 function displayTime(time) {
   let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
@@ -55,49 +57,72 @@ function displayTime(time) {
   ${result[2]} ${result[1]},${result[3]}`
 }
 
+
 function isButton(words) {
   if(words.status==='confirmed') {
-    return <Status.GreenStatus>Confirmed</Status.GreenStatus>
+    return <GreenStatus>Confirmed</GreenStatus>
   }
   if(words.status==='cancelled'){
-    return <Status.RedStatus>Cancelled</Status.RedStatus>
+    return <RedStatus>Cancelled</RedStatus>
   }
   if(words.status==='in-progress'){
-    return <Status.BlueStatus>In Progress</Status.BlueStatus>
+    return <BlueStatus>In Progress</BlueStatus>
   }
   if(words.status==='finished'){
-    return <Status.GreyStatus>Finished</Status.GreyStatus>
+    return <GreyStatus>Finished</GreyStatus>
   }
   if(words.status==='reviewed'){
-    return <Status.YellowStatus>Reviewed</Status.YellowStatus>
+    return <YellowStatus>Reviewed</YellowStatus>
   }
-  return <Status.GreyStatus>{words.status}</Status.GreyStatus>
+  return <GreyStatus>{words.status}</GreyStatus>
 }
 
-function isCancel(words,classes) {
-  if(words.status==='confirmed') {
-    return  <Button variant="contained" className={classes.delete}>Cancel</Button>
+function isCancel(user,classes,handleCancelOrder) {
+  if(user.status==='confirmed') {
+    return  (
+      <Button 
+        variant="contained"
+        className={classes.delete}
+        id={user.type}
+        value={user._id}
+        onClick={handleCancelOrder}
+      >
+        Cancel
+      </Button>
+)
   }
-  return <Button variant="contained" className={classes.delete} disabled>Cancel</Button>
+  return (
+    <Button 
+      variant="contained"
+      className={classes.delete}
+      id={user.type}
+      value={user._id}
+      onClick={handleCancelOrder}
+      disabled
+    >
+      Cancel
+    </Button>
+)
   
 }
 
-const BasicTable=(props)=>{
+const BasicTable=(props)=> {
   const {data}=props
   const classes = useStyles()
   const dispatch=useDispatch()
 
-  const users =useSelector(state => state.staffDetailsTable.staffDetailsTable) 
-  const loading = useSelector(state => state.staffDetailsTable.loading)
-  const error = useSelector(state => state.staffDetailsTable.error)
-    // console.log("STAFFS TABLE :",users)
+  const users =useSelector(state => state.cusDetailsTable.cusDetailsTable) 
+  const loading = useSelector(state => state.cusDetailsTable.loading)
+  // const error = useSelector(state => state.cusDetailsTable.error)
 
-  const dispatchRequested = () => {
-    dispatch(getSTAFFDETAILTABLERequest(data))
+
+  const dispatchRequested=()=>{
+    dispatch(getCUSDETAILTABLERequest(data))
   }
-    useEffect(()=>{
-      dispatchRequested()
-  },[])
+
+  useEffect(()=>{
+    dispatchRequested()
+},[])
 
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
@@ -112,32 +137,41 @@ const BasicTable=(props)=>{
   }
 
 
+  const handleCancelOrder = (event) => {
+    if(event.target.value&&event.target.id){
+      const body={id:event.target.value,orderstatus:"cancelled",type:event.target.id}
+      console.log("111111",body)
+      dispatch(updateRegularRequest(body))
+    }
+  }
+
+
+
   return (
     <>
       {users.loading&&<p>Loading...</p>}
 
-      {users.length!==0&&( 
-
+      {users.length!==0&&(
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell align="center">Order ID</TableCell>
               <TableCell align="center">Status</TableCell>
-              <TableCell align="center">Customer</TableCell>
+              <TableCell align="center">Assignee</TableCell>
               <TableCell align="center">Created At</TableCell>
               <TableCell align="center">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user) => (
+            {users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user) => ( 
               <TableRow key={user.taskID}>
                 <TableCell align="center">{user.type+user.taskID}</TableCell>
                 <TableCell align="center">
                   {isButton(user)}      
                 </TableCell>
                 <TableCell align="center">
-                  <Typography className={classes.name}> 
+                  <Typography className={classes.name}>
                     {user.firstName}
                     {' '}
                     {user.lastName}
@@ -145,20 +179,23 @@ const BasicTable=(props)=>{
                 </TableCell>
                 <TableCell align="center">{displayTime(user.createdAt)}</TableCell>
                 <TableCell align="center" className={classes.action}>
-                  <Button
-                    variant="contained" 
+                  <Button 
+                    variant="contained"
                     className={classes.check}
                     component={Link} 
                     to={`/admin/orders/${user._id}?type=${user.type}`}
                   >
                     View
                   </Button>
-                  {isCancel(user,classes)}
+                  {isCancel(user,classes,handleCancelOrder)}
                 </TableCell>
+
               </TableRow>
-            ))}
-      
+       ))}
+                  
           </TableBody>
+        
+     
         </Table>
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
@@ -171,14 +208,12 @@ const BasicTable=(props)=>{
           align="center"
         />
       </TableContainer>
-    )}
-      {users.length===0&&!loading &&<p>No users available!</p>}
-      {error&&!loading&&<p>{error}</p>}
+)}
+      {users.length===0&&!loading &&
+        <Alert severity="error">This is an error alert — check it out!</Alert>}
+      {/* {error&&!loading&&<p>{error}</p>} */}
 
     </>
-  
-    )
- 
+  )
 }
 export default BasicTable
-

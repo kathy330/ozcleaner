@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
 
 import React, { useState, useEffect } from "react"
@@ -14,7 +13,7 @@ import {useHistory} from "react-router-dom"
 import Grid from '@material-ui/core/Grid'
 // import Button from '@material-ui/core/Button'
 import date from 'date-and-time'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {payOrderRequest,postRegularRequest,postEndOfLeaseRequest } from '../../../store/actions'
 
 

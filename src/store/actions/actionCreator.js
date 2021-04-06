@@ -14,16 +14,16 @@ export const loadOrdersFailed = err => ({
 
 
 //  1/6 GET Regular order -- dongyu 
-export const getREGULARRequest = (datalist) => ({
-  type: actionTypes.GET_REGULAR_REQUEST,
+export const getOrderRequest = (datalist) => ({
+  type: actionTypes.GET_ORDER_REQUEST,
   payload: datalist,
 })
-export const getREGULARSuccess = (datalist) => ({
-  type: actionTypes.GET_REGULAR_SUCCESS,
+export const getOrderSuccess = (datalist) => ({
+  type: actionTypes.GET_ORDER_SUCCESS,
   payload: datalist,
 })
-export const getREGULARFaild = (err) => ({
-  type: actionTypes.GET_REGULAR_FAILED,
+export const getOrderFaild = (err) => ({
+  type: actionTypes.GET_ORDER_FAILED,
   payload: err,
 })
 
@@ -99,19 +99,6 @@ export function postEndOfLeaseFaild(obj) {
   }
 }
 
-//  6/6 Update Endoflease order -- kangkang
-export const updateEndOfLeaseRequest = (obj) => ({
-  type: actionTypes.UPDATE_REGULAR_REQUEST,
-  payload: obj, // By convention, we put that information in a field called payload.
-})
-export const updateEndOfLeaseSuccess = (obj) => ({
-  type: actionTypes.UPDATE_REGULAR_SUCCESS,
-  payload: obj,
-})
-export const updateEndOfLeaseFailed = (obj) => ({
-  type: actionTypes.UPDATE_REGULAR_FAILED,
-  payload: obj,
-})
 
 // * getAllUserListRequest() is for get all users from userTable -- kathy
 export const getAllUserListRequest = users => ({
@@ -215,4 +202,9 @@ export const signoutEmployee = () => ({
 export const getAllOrersRequest = orders => ({
   type: actionTypes.GET_ALL_ORDERS_REQUESTED,
   payload: orders
+})
+
+export const changeOrder = num => ({
+  type: actionTypes.CHANGE_ORDER,
+  payload: num
 })

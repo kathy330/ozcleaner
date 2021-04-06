@@ -1,18 +1,12 @@
 /* eslint-disable */
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { makeStyles, Container, Grid } from '@material-ui/core'
 import { useSelector, useDispatch } from 'react-redux'
 import AdminCustomersLeft from "../../components/AdminComponents/AdminCustomersLeft"
 import AdminCustomersRight from "../../components/AdminComponents/AdminCustomersRight"
-import NavBar from '../../components/NavBarComponents/NavBar'
 import Footer from '../../components/FooterComponents/Footer'
-import { getREGULARRequest, getENDRequest, cancelRegularOrderRequest } from "../../store/actions"
+import { getOrderRequest, cancelRegularOrderRequest } from "../../store/actions"
 import LoadingIcon from '../../components/AdminComponents/LoadingIcon'
-
-
-
-import { useForm, Controller } from "react-hook-form"
-
 // style
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -131,59 +125,39 @@ function displayPage(repo) {
   )
 }
 
-function AdminCustomersPage(match) {
+function AdminOrderPage(match) {
   const classes = useStyles()
   // const data = { taskid: 1 }
   // const objid = '60633937b175b8fccb933398'
   // const testData = { _id: '60633a30bad120ff885aa99c' }
-  const objid = match.match.params.id;
-  // console.log(objid)
-
-  // console.log(testData.type)
-
-  const query = new URLSearchParams(match.location.search)
-  console.log(query)
-  console.log(match.location.search)
-  const getType = query.get('type')
-
-
-  const data = { _id: objid, type: getType }
-
-
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getREGULARRequest(data))
-  }, [])
-
-  // let redux = useSelector(state => state.regular_in_reducer_index)
+  if (match.match) {
+    const objid = match.match.params.id;
+    const query = new URLSearchParams(match.location.search)
+    console.log(query)
+    console.log(match.location.search)
+    const getType = query.get('type')
+    const data = { _id: objid, type: getType }
+    const dispatch = useDispatch()
+    useEffect(() => {
+      dispatch(getOrderRequest(data))
+    }, [])
+  } 
+  
+  // let redux = useSelector(state => state.order)
   // let redux2 = useSelector(state => state.employee_in_reducer_index)
-  let redux = useSelector(state => state.regular_in_reducer_index)
-  let repo = redux.repos_in_reducer_init
+  let redux = useSelector(state => state.order)
+  let repo = redux.order
   let loading = redux.loading
   console.log(redux, 'redux')
-  // let updateData = redux.updateData
-  console.log(loading, repo)
-  // console.log(updateData)
-  // let repo2 = useSelector()
-  // console.log(Object.keys(repo[0]))
+  console.log(loading, repo.length)
 
-  // if (Object.values(repo[0]).includes('EC')) {
-  //   useEffect(() => {
-  //     // dispatch(getREGULARRequest())
-  //     dispatch(getENDOFLEASERequest())
-  //   }, [])
-  //   let repo = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)
-  // }
-
-  // console.log(repo[0], '456')
-  // console.log(repo, '789')
 
   return (
     <Grid className={classes.bg}>
       {/* {endTime} */}
       <Container maxWidth="md" className={classes.body}>
         {(loading) && (<LoadingIcon />)}
-        {(!loading) && displayPage(repo)}
+        {(!loading) && repo.length !=0 && displayPage(repo)}
       </Container>
       {/* <Container maxWidth="md" className={classes.body}>{repo.length}
         <AdminCustomersTop />
@@ -198,9 +172,8 @@ function AdminCustomersPage(match) {
           <AdminCustomersRight orderPrice={price} />
         </Grid>
       </Container> */}
-      <Footer />
     </Grid>
   )
 }
 
-export default AdminCustomersPage
+export default AdminOrderPage

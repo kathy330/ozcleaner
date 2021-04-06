@@ -461,7 +461,7 @@ function Order(props) {
   // console.log('一共：',amount)
   // 99
 
-  const payment = useSelector(astate => astate.regular_in_reducer_index.payment)
+  const payment = useSelector(astate => astate.order.payment)
   // console.log("pay::", payment)
 
   // 55点击提交按钮后，post请求
@@ -491,7 +491,7 @@ function Order(props) {
 
 
   // 1010 判断是否正确提交，提交后，用<Redirect /> 跳转页面
-  // const loading = useSelector(astate => astate.regular_in_reducer_index.loading)
+  // const loading = useSelector(astate => astate.order.loading)
   // console.log("loading parameter: ", loading)
   // const { submit } = extraState
   // const history = useHistory()
@@ -1211,7 +1211,9 @@ function Order(props) {
           </DialogTitle>
           <Container>
             <DialogContentText>
-              Success: 4242424242424242 Faild: 4000000000000002
+              Success: 4242424242424242 Faild: 4000000000000002 
+              <br />
+              3D Identify:4000002760003184
             </DialogContentText>
           </Container>
           <Elements stripe={promise}>

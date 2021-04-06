@@ -228,13 +228,19 @@ const useStyles = makeStyles((theme) => ({
     color: '#007bf5',
   },
 
+  priceArea: {
+    paddingBottom: '20px',
+    paddingTop: '20px',
+  },
+
   rightTop: {
-    marginBottom: '30px',
-    marginTop: '30px',
+    paddingBottom: '10px',
+    paddingTop: '40px',
   },
 
   details: {
-    marginBottom: '10px'
+    // height: '30vh',
+    marginBottom: '30px'
     // paddingTop: '20px',
   }
 
@@ -1183,7 +1189,7 @@ function Order(props) {
 
                 {/* Total amount */}
                 <Container maxWidth="lg">
-                  <Grid container direction="row" alignItems="flex-end">
+                  <Grid container direction="row" alignItems="flex-end" className={classes.priceArea}>
                     <Grid item xs={6} sm={6}>
                       <Typography align="left" variant='h3'>
                         Total

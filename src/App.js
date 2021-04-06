@@ -11,6 +11,7 @@ import OrderPage from './pages/OrderPage/OrderPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 // import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
+// import OrderPay from "./pages/OrderPage/OrderPayPage"
 // import ProfilePage from './pages/ProfilePage/ProfilePage'
 // import AdminCustomersPage from './pages/AdminPage/AdminOrderPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
@@ -18,6 +19,7 @@ import theme from './styles/theme'
 import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
 import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
 import AdminIndexPage from "./pages/AdminPage/AdminIndexPage"
+import AdminOrderPage from "./pages/AdminPage/AdminOrderPage"
 // import ....Page from ....
 import DongyuPage from './pages/zpractice/Dongyu/Dongyu'
 import KangkangPage from './pages/zpractice/Kangkang/Kangkang'
@@ -40,7 +42,10 @@ function App() {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <ProtectedRoute path="/order" exact component={OrderPage} />
-        <Route path="/order/confirm" exact component={OrderConfirmPage} />
+        <ProtectedRoute path="/order/confirm" exact component={OrderConfirmPage} />
+        {/* <ProtectedRoute path="/order/pay" exact component={OrderPay} /> */}
+        {/* <Route path="/profile/customer" exact component={CustomerProfilePage} /> */}
+        {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
         <Route path="/profile" exact component={ProfilePage} />
         {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
         {/* <Route path="/profile" exact component={ProfilePage} /> */}
@@ -55,7 +60,7 @@ function App() {
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
         {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
 
-        {/* <Route path="/admins/orders/:id" exact component={AdminCustomersPage} /> */}
+        <Route path="/myorder/:id" exact component={AdminOrderPage} />
 
         <Route path="/ui" exact component={UI} />
 

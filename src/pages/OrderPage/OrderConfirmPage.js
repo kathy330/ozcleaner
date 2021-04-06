@@ -63,8 +63,8 @@ function OrderConfirm() {
 
   // 1/2 直接从regular reducer取值回来
   // const loadingREGdata = useSelector(state => state.regular_in_reducer_index.loading)  
-  const loadingNumREGdata = useSelector(state => state.regular_in_reducer_index.loadingNum)  
-  const REGdata = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)  
+  const loadingNumREGdata = useSelector(state => state.order.loadingNum)  
+  const REGdata = useSelector(state => state.order.order)  
   // console.log('regular redex method: ',REGdata)
 
   // 2/2 直接从end reducer取值回来

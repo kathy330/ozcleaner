@@ -13,7 +13,7 @@ export const loadOrdersFailed = err => ({
 })
 
 
-//  1/6 GET Regular order -- dongyu 
+//  1/6 GET Regular order -- 
 export const getOrderRequest = (datalist) => ({
   type: actionTypes.GET_ORDER_REQUEST,
   payload: datalist,
@@ -27,7 +27,21 @@ export const getOrderFaild = (err) => ({
   payload: err,
 })
 
-//  2/6 POST Regular order -- dongyu 
+//  2/6 GET Endoflease order -- 
+export const getENDRequest = (datalist) => ({
+  type: actionTypes.GET_ENDOFLEASE_REQUEST,
+  payload: datalist,
+})
+export const getENDSuccess = (datalist) => ({
+  type: actionTypes.GET_ENDOFLEASE_SUCCESS,
+  payload: datalist,
+})
+export const getENDFaild = (err) => ({
+  type: actionTypes.GET_ENDOFLEASE_FAILED,
+  payload: err,
+})
+
+//  3/6 POST Regular order -- dongyu 
 export const postRegularRequest = (obj) => ({
   type: actionTypes.POST_REGULAR_REQUEST,
   payload: obj, // By convention, we put that information in a field called payload.
@@ -43,47 +57,7 @@ export function postRegularFaild(obj) {
   }
 }
 
-
-//  2.5/6 PAY Regular order -- dongyu 
-export const payOrderRequest = (obj) => ({
-  type: actionTypes.PAY_ORDER_REQUEST,
-  payload: obj, 
-})
-export const payOrderSuccess = (obj) => ({
-  type: actionTypes.PAY_ORDER_SUCCESS,
-  payload: obj,
-})
-
-// 3/6 Update regular order -- dongyu
-export const updateRegularRequest = (obj) => ({
-  type: actionTypes.UPDATE_REGULAR_REQUEST,
-  payload: obj, // By convention, we put that information in a field called payload.
-})
-export const updateRegularSuccess = (obj) => ({
-  type: actionTypes.UPDATE_REGULAR_SUCCESS,
-  payload: obj,
-})
-export const updateRegularFaild = (obj) => ({
-  type: actionTypes.UPDATE_REGULAR_FAILED,
-  payload: obj,
-})
-
-
-//  4/6 GET Endoflease order -- dongyu 
-export const getENDRequest = (datalist) => ({
-  type: actionTypes.GET_ENDOFLEASE_REQUEST,
-  payload: datalist,
-})
-export const getENDSuccess = (datalist) => ({
-  type: actionTypes.GET_ENDOFLEASE_SUCCESS,
-  payload: datalist,
-})
-export const getENDFaild = (err) => ({
-  type: actionTypes.GET_ENDOFLEASE_FAILED,
-  payload: err,
-})
-
-//  5/6 POST Endoflease order -- dongyu 
+//  4/6 POST Endoflease order -- dongyu 
 export const postEndOfLeaseRequest = (obj) => ({
   type: actionTypes.POST_ENDOFLEASE_REQUEST,
   payload: obj, // By convention, we put that information in a field called payload.
@@ -98,6 +72,31 @@ export function postEndOfLeaseFaild(obj) {
     payload: obj,
   }
 }
+
+
+//  5/6 PAY Regular order -- dongyu 
+export const payOrderRequest = (obj) => ({
+  type: actionTypes.PAY_ORDER_REQUEST,
+  payload: obj, 
+})
+export const payOrderSuccess = (obj) => ({
+  type: actionTypes.PAY_ORDER_SUCCESS,
+  payload: obj,
+})
+
+// 6/6 Update regular order -- 
+export const updateRegularRequest = (obj) => ({
+  type: actionTypes.UPDATE_REGULAR_REQUEST,
+  payload: obj, // By convention, we put that information in a field called payload.
+})
+export const updateRegularSuccess = (obj) => ({
+  type: actionTypes.UPDATE_REGULAR_SUCCESS,
+  payload: obj,
+})
+export const updateRegularFaild = (obj) => ({
+  type: actionTypes.UPDATE_REGULAR_FAILED,
+  payload: obj,
+})
 
 
 // * getAllUserListRequest() is for get all users from userTable -- kathy

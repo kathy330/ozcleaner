@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box } from "@material-ui/core"
+import Alert from '@material-ui/lab/Alert'
 import Card from "../Card"
 import Avatars from "../Avatar"
 import {getCUSDETAILRequest} from "../../../../store/actions"
@@ -43,7 +44,7 @@ const Displays=(props)=> {
 
   const users =useSelector(state => state.cusDetails.cusDetails) 
   const loading = useSelector(state => state.cusDetails.loading)
-  const error = useSelector(state => state.cusDetails.error)
+  // const error = useSelector(state => state.cusDetails.error)
  
 
 
@@ -73,8 +74,9 @@ const Displays=(props)=> {
           </Box>
         </div>
     )}
-      {users.length===0&&!loading &&<p>No users available!</p>}
-      {error&&!loading&&<p>{error}</p>}
+      {users.length===0&&!loading &&
+      <Alert severity="error">This is an error alert — check it out!</Alert>}
+      {/* {error&&!loading&&<p>{error}</p>} */}
 
     </>  
   

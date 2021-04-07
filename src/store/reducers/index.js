@@ -5,7 +5,7 @@
 import { combineReducers } from 'redux'
 // import regularReducer from './regularClean'
 import userslist from './userslist'
-import order from './OrderReducer'
+import order from './orderReducer'
 import endofleaseReducer from './ECorderReducer'
 import CusDetails from "./customersDetail"
 import CusDetailsTable from "./customerDetailTable"

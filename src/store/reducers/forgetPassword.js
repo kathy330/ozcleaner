@@ -1,12 +1,12 @@
 import actionTypes from '../actions/actionTypes'
 
-export const userRegisterReducer = (state = {}, action) => {
+export const resetPasswordReducer = (state = {}, action) => {
   switch (action.type) {
-    case actionTypes.USER_REGISTER_REQUEST:
+    case actionTypes.USER_RESET_REQUEST:
       return { loading: true }
-    case actionTypes.USER_REGISTER_SUCCESS:
+    case actionTypes.USER_RESET_REQUEST_SUCCESS:
       return { loading: false, userInfo: action.payload }
-    case actionTypes.USER_REGISTER_FAIL:
+    case actionTypes.USER_RESET_REQUEST_FAILED:
       return { loading: false, error: action.payload }
     default:
       return state

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 function* forgetPassword(action) {
   try {
-    console.log("hello")
+    // console.log("hello")
     const userInfo = 
     yield call(axios.post,'http://localhost:8000/recover', action.payload)
     yield put({ type: 'USER_EMAIL_REQUEST_SUCCESS', payload: userInfo })
@@ -17,37 +17,29 @@ function* forgetPassword(action) {
     // console.log(e.response.data.error)
   }
 }
-/*
-function* userRegister(action) {
+
+function* resetPassword(action) {
   
   try {
     const userInfo = 
-    yield call(axios.post,'http://localhost:8000/users/registration', action.payload)
-    yield put({ type: 'USER_REGISTER_SUCCESS', payload: userInfo })
-    yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
+    yield call(axios.post,'http://localhost:8000/resetPassword', action.payload)
+    // yield put({ type: 'USER_RESET_REQUEST', payload: userInfo })
+    yield put({ type: 'USER_RESET_REQUEST_SUCCESS', payload: userInfo })
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    // console.log(`from${  userInfo}`)
+    localStorage.setItem("authLevel", "user") // 给一个user权限
+  
 
-    localStorage.setItem("authLevel", "user") // 可以进入order页面
-    document.location.href = '/order'
+
   } catch (e) {
-    yield put({ type: 'USER_REGISTER_FAIL', 
-    payload: e.response.data.error})
-    // console.log(e.response.data.email)
+    yield put({ type: 'USER_RESET_REQUEST_FAILED', payload: e.response.data.error})
+    console.log(e.response.data.error)
   }
 }
 
-function* userSignout() {
-  localStorage.removeItem('userInfo')
-  localStorage.removeItem('authLevel')
 
-  yield put({ type: 'USER_SIGNOUT' })
-  document.location.href = '/'
-}
-*/
 function* forgetPasswordSaga() {
   yield takeEvery('USER_EMAIL_REQUEST', forgetPassword)
-  // yield takeEvery('USER_REGISTER_REQUEST', userRegister)
+  yield takeEvery('USER_RESET_REQUEST', resetPassword)
   // yield takeEvery('USER_SIGNOUT_REQUEST', userSignout)
 }
 

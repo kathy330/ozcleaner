@@ -29,6 +29,7 @@ import OliviaPage from './pages/zpractice/Olivia/Olivia'
 import MengxuanPage from './pages/zpractice/Mengxuan/Mengxuan'
 import YanboForm from './pages/zpractice/Yanbo/YanboForm'
 import ForgetPassword from "./components/SignUpComponents/ForgetPassword"
+import ResetPassword from './components/SignUpComponents/ResetPassword'
 
 function App() {
   // 使用theme方法：
@@ -71,6 +72,8 @@ function App() {
         <Route path="/Olivia" exact component={OliviaPage} />
 
         <Route path="/forgetpassword" exact component={ForgetPassword} />
+        <Route path="/forgetpassword/resetpassword" exact component={ResetPassword} />
+
         <Route component={ErrorPage} />
       </Switch>
     </ThemeProvider>

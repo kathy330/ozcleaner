@@ -211,3 +211,10 @@ export const forgetpassword = (payload) => ({
   type: actionTypes.USER_EMAIL_REQUEST,
   payload,
 })
+
+/* reset password */
+
+export const resetpassword = (payload) => ({
+  type: actionTypes.USER_RESET_REQUEST,
+  payload,
+})

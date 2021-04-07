@@ -16,7 +16,7 @@ import allOrders from './allOrders'
 // import { userRegisterReducer, userSigninReducer } from './userReducer'
 import { userRegisterReducer, userSigninReducer } from './userReducer'
 import {employeeRegisterReducer,employeeSigninReducer} from './employeeReducer'
-import{forgetPasswordReducer} from './forgetPassword'
+import{forgetPasswordReducer,resetPasswordReducer} from './forgetPassword'
 
 // 🎉 rootReduce会被store/store.js使用
 const rootReducer = combineReducers({
@@ -35,7 +35,8 @@ const rootReducer = combineReducers({
   employeeSignin: employeeSigninReducer,
   employeeRegister: employeeRegisterReducer,
   allOrders,
-  forgetPassword:forgetPasswordReducer
+  forgetPassword:forgetPasswordReducer,
+  resetPassword:resetPasswordReducer
 
 })
 export default rootReducer

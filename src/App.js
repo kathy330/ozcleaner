@@ -7,7 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import ProtectedRoute from './router/ProtectedRoute'
 import HomePage from './pages/HomePage/HomePage'
 import UI from './pages/UI/UI'
-import OrderPage from './pages/OrderPage/OrderPage'
+import Order from './pages/OrderPage/OrderPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 // import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
@@ -41,7 +41,7 @@ function App() {
       <CssBaseline />
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <ProtectedRoute path="/order" exact component={OrderPage} />
+        <ProtectedRoute path="/order" exact component={Order} />
         <ProtectedRoute path="/order/confirm" exact component={OrderConfirmPage} />
         {/* <ProtectedRoute path="/order/pay" exact component={OrderPay} /> */}
         {/* <Route path="/profile/customer" exact component={CustomerProfilePage} /> */}

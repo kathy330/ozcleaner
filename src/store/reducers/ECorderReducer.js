@@ -5,23 +5,23 @@ const initialState = {
   loadingNum: 1,
   error: null,
   repos_in_reducer_init: 'init value',
-  completeinfo: {
-    info: localStorage.getItem('endofleaseCleanOrder') ?
-      JSON.parse(localStorage.getItem('endofleaseCleanOrder')) : {
-        bedroomNum: '',
-        bathroomNum: '',
-        type: '',
-        address: {
-          address1: '',
-          address2: '',
-          suburb: '',
-          state: '',
-          postcode: ''
-        },
-        startTime: '',
-        price: 0,
-      }
-  },
+  // completeinfo: {
+  //   info: localStorage.getItem('endofleaseCleanOrder') ?
+  //     JSON.parse(localStorage.getItem('endofleaseCleanOrder')) : {
+  //       bedroomNum: '',
+  //       bathroomNum: '',
+  //       type: '',
+  //       address: {
+  //         address1: '',
+  //         address2: '',
+  //         suburb: '',
+  //         state: '',
+  //         postcode: ''
+  //       },
+  //       startTime: '',
+  //       price: 0,
+  //     }
+  // },
   updateData: 'no update' // 更新by id,可以更新任何值，只要有正确名字
 }
 
@@ -75,30 +75,30 @@ function endofleaseReducer(state = initialState, action) {
       }
 
 
-    // 2/2 POST endoflease order --dongyu
-    case actionType.POST_ENDOFLEASE_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        completeinfo: null
-      }
+    // // 2/2 POST endoflease order --dongyu
+    // case actionType.POST_ENDOFLEASE_REQUEST:
+    //   return {
+    //     ...state,
+    //     loading: true,
+    //     completeinfo: null
+    //   }
 
-    case actionType.POST_ENDOFLEASE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        loadingNum: 2,
-        repos_in_reducer_init: action.postInSaga,
-        completeinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
-      }
+    // case actionType.POST_ENDOFLEASE_SUCCESS:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     loadingNum: 2,
+    //     repos_in_reducer_init: action.postInSaga,
+    //     completeinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
+    //   }
 
-    case actionType.POST_ENDOFLEASE_FAILED:
-      return {
-        ...state,
-        loading: false,
-        repos_in_reducer_init: [],
-        error: action.errorInSaga,
-      }
+    // case actionType.POST_ENDOFLEASE_FAILED:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     repos_in_reducer_init: [],
+    //     error: action.errorInSaga,
+    //   }
     default:
       return state
   }

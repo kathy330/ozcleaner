@@ -12,8 +12,8 @@ import BathtubIcon from '@material-ui/icons/Bathtub'
 import RoomIcon from '@material-ui/icons/Room'
 import NoteIcon from '@material-ui/icons/Note'
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
-import IconButton from '@material-ui/core/IconButton'
-import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
+// import IconButton from '@material-ui/core/IconButton'
+// import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
 import Divider from '@material-ui/core/Divider'
 // import date from 'date-and-time'
 import Moment from 'react-moment'
@@ -53,12 +53,15 @@ const useStyles = makeStyles(() => ({
   rightTop: {
     marginBottom: '30px',
     marginTop: '30px',
+  },
+
+  text: {
+    paddingLeft: '10px',
   }
 }))
 
 export default function OrderRight({data}) {
   const classes = useStyles()
-  const showForm = false // 测试，没啥用
 
   // 1/1get order  from mongoDB
   // const dispatch = useDispatch()
@@ -163,16 +166,12 @@ export default function OrderRight({data}) {
             {/* <Container maxWidth="sm"> */}
             <Grid item xs={12} sm={12}>
               <Grid container direction="row">
-                <Grid item xs={2} sm={2}>
+                <Grid item xs={1} sm={1}>
                   {/* <KingBedIcon fontSize="large" className={classes.icon}  /> */}
-                  <IconButton className={classes.hover}>
-                    {!showForm ?
-                      <KingBedIcon fontSize="large" className={classes.icon} />
-                      : <IndeterminateCheckBoxIcon />}
-                  </IconButton>
+                  <KingBedIcon fontSize="large" className={classes.icon} />
                 </Grid>
-                <Grid item xs={10} sm={10}>
-                  <Typography variant='h6'>     
+                <Grid item xs={11} sm={11}>
+                  <Typography variant='h6' className={classes.text}>     
                     {bedroomNum}
                   </Typography>
                 </Grid>
@@ -180,11 +179,11 @@ export default function OrderRight({data}) {
             </Grid>
             <Grid item xs={12} sm={12}>
               <Grid container direction="row">
-                <Grid item xs={2} sm={2}>
+                <Grid item xs={1} sm={1}>
                   <BathtubIcon fontSize="large" className={classes.icon} />
                 </Grid>
-                <Grid item xs={10} sm={10}>
-                  <Typography variant='h6'>
+                <Grid item xs={11} sm={11}>
+                  <Typography variant='h6' className={classes.text}>
                     {bathroomNum}
                   </Typography>
                 </Grid>
@@ -192,37 +191,23 @@ export default function OrderRight({data}) {
             </Grid>
             <Grid item xs={12} sm={12}>
               <Grid container direction="row">
-                <Grid item xs={2} sm={2}>
+                <Grid item xs={1} sm={1}>
                   <NoteIcon fontSize="large" className={classes.icon} />
                 </Grid>
-                <Grid item xs={10} sm={10}>
-                  <Typography variant='h6'>{type}</Typography>
+                <Grid item xs={11} sm={11}>
+                  <Typography variant='h6' className={classes.text}>{type}</Typography>
                 </Grid>
               </Grid>
             </Grid>
             
             <Grid item xs={12} sm={12}>
               <Grid container direction="row">
-                <Grid item xs={2} sm={2}>
-                  <RoomIcon fontSize="large" className={classes.icon} />
-                </Grid>
-                <Grid item xs={10} sm={10}>
-                  <Typography variant='h6'>
-                    {/* Unit 502, 18 Buchan Street, West End, 4101, QLD */}
-                    {totalAddress}
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Grid>
-            
-            <Grid item xs={12} sm={12}>
-              <Grid container direction="row">
-                <Grid item xs={2} sm={2}>
+                <Grid item xs={1} sm={1}>
                   <CalendarTodayIcon fontSize="large" className={classes.icon} />
                 </Grid>
-                <Grid item xs={10} sm={10}>
+                <Grid item xs={11} sm={11}>
                   <Hidden xsUp={timeDisplay}>
-                    <Typography variant='h6'>
+                    <Typography variant='h6' className={classes.text}>
                       {/* 12:00PM, Friday, 29 Jan 2021 */}
                       <Moment format="dddd HH:mm, DD MMM YYYY">{startTime}</Moment>
                     </Typography>
@@ -230,6 +215,21 @@ export default function OrderRight({data}) {
                 </Grid>
               </Grid>
             </Grid>
+            <Grid item xs={12} sm={12}>
+              <Grid container direction="row">
+                <Grid item xs={1} sm={1}>
+                  <RoomIcon fontSize="large" className={classes.icon} />
+                </Grid>
+                <Grid item xs={11} sm={11}>
+                  <Typography variant='h6' className={classes.text}>
+                    {/* Unit 502, 18 Buchan Street, West End, 4101, QLD */}
+                    {totalAddress}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+            
+            
             {/* </Container> */}
           </Grid>
         </Container>

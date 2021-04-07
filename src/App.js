@@ -28,6 +28,7 @@ import ErikPage from './pages/zpractice/Erik/Erik'
 import OliviaPage from './pages/zpractice/Olivia/Olivia'
 import MengxuanPage from './pages/zpractice/Mengxuan/Mengxuan'
 import YanboForm from './pages/zpractice/Yanbo/YanboForm'
+import ForgetPassword from "./components/SignUpComponents/ForgetPassword"
 
 function App() {
   // 使用theme方法：
@@ -69,7 +70,7 @@ function App() {
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />
 
-
+        <Route path="/forgetpassword" exact component={ForgetPassword} />
         <Route component={ErrorPage} />
       </Switch>
     </ThemeProvider>

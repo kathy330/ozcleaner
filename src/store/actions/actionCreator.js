@@ -205,3 +205,9 @@ export const getAllOrersRequest = orders => ({
   type: actionTypes.GET_ALL_ORDERS_REQUESTED,
   payload: orders
 })
+
+/* forget password */
+export const forgetpassword = (payload) => ({
+  type: actionTypes.USER_EMAIL_REQUEST,
+  payload,
+})

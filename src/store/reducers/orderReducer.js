@@ -80,7 +80,7 @@ function orderReducer(state = initialState, action) {
       let orders = state.orders.result
       let order = [{ ...state.order[0], status: action.repos.status }]
       orders[state.row] = order[0]
-      console.log([][0])
+      // console.log([][0])
       return {
         ...state,
         loading: false,

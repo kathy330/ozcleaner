@@ -144,7 +144,7 @@ function OrderConfirm() {
               </Container>
             </Grid>
 
-            <Grid item xs={0} sm={1} />
+            <Grid item xs={false} sm={1} />
 
             <Grid item xs={12} sm={5}>
               <Card>

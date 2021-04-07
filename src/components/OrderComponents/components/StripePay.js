@@ -111,7 +111,7 @@ export default function CheckoutForm({price,paystatus,data}) {
       postcode: ""
     },
     type: "",
-    status: "in-progress",
+    status: "confirmed",
     propertyType: "unknown",
     cabinets: 0,
     fridge: 0,

@@ -15,7 +15,7 @@
 // // import Button from '@material-ui/core/Button'
 // import date from 'date-and-time'
 // import {useDispatch, useSelector} from 'react-redux'
-// import {payOrderRequest,postRegularRequest } from '../../store/actions'
+// // import {payOrderRequest,postRegularRequest } from '../../store/actions/actionCreator'
 
 // const cardStyle = {
 //   style: {

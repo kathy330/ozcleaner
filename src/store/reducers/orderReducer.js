@@ -79,7 +79,7 @@ function orderReducer(state = initialState, action) {
 
     case actionType.UPDATE_REGULAR_SUCCESS:
       let orders = state.orders.result
-      let order = [{ ...state.order, status: action.repos.status }]
+      let order = { ...state.order, status: action.repos.status }
       orders[state.row] = order
       return {
         ...state,
@@ -172,7 +172,7 @@ function orderReducer(state = initialState, action) {
     case actionType.CHANGE_ORDER:
       return {
         ...state,
-        order: [state.orders.result[action.payload]],
+        order: state.orders.result[action.payload],
         row: action.payload
       }
     default:

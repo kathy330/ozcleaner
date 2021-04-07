@@ -4,26 +4,25 @@ import axios from 'axios'
 // const apiUrl = `http://localhost:8000/userslist?page=1&pageSize=3`
 function* fetchUsers(action) {
   try {
-    console.log(action)
     const { page, pageSize } = action.payload
     const apiUrl = `http://localhost:8000/userslist?page=${page}&pageSize=${pageSize}`
     const users = yield call(axios.get, apiUrl)
-    console.log('data', apiUrl)
+    // console.log('data', apiUrl)
     yield put({ type: "GET_USERS_SUCCESS", users: users.data })
-    yield put({ type: 'DELETED_USER_ACTION', payload: 0 })
   } catch (e) {
     yield put({ type: 'GET_USERS_FAILED', message: e.message })
   }  
 }
 
 function* deletedUsers(action) {
+  // console.log(action)
   const deletedId = action.payload
   const deletedApi = `http://localhost:8000/deletedUsers/${deletedId}`
   try {
-    const users = yield call(axios.put, deletedApi)
-    console.log(users.status)
-    yield put({ type: 'DELETED_CUSTOMER_SUCCESS', page: 1, pageSize: 3, users: users.status })
-    
+    yield call(axios.put, deletedApi)
+    // console.log(users)
+    yield put({ type: 'DELETED_CUSTOMER_SUCCESS'})
+    yield put({ type: 'GET_USERS_REQUESTED', payload: action.listSize})
   } catch (e) {
     yield put({ type: 'DELETED_CUSTOMER_FAILED', message: e.message })
   }

@@ -204,15 +204,17 @@ export const getAllOrersRequest = orders => ({
 })
 
 // * deleted a customer by customer's objID
-export const deletedCustomerRequest = users => ({
+export const deletedCustomerRequest = (users, listSize) => ({
   type: actionTypes.DELETED_CUSTOMER_REQUEST,
-  payload: users
+  payload: users,
+  listSize: listSize
 })
 
 // * deleted an employee by employee's objID
-export const deletedEmployeeRequest = users => ({
+export const deletedEmployeeRequest = (users, listSize) => ({
   type: actionTypes.DELETED_EMPLOYEE_REQUEST,
-  payload: users
+  payload: users,
+  listSize: listSize
 })
 
 export const deletedUserRefetch = num => ({

@@ -7,7 +7,6 @@ const initialState = {
 }
 
 function users( state = initialState, action){
-  console.log(action, action.users)
   switch(action.type){
     // get user list
     case actionTypes.GET_USERS_REQUESTED:
@@ -71,19 +70,13 @@ function users( state = initialState, action){
     case actionTypes.DELETED_EMPLOYEE_SUCCESS:
       return {
         ...state,
-        updateData: action.users,
         loading: false,
       }
     case actionTypes.DELETED_EMPLOYEE_FAILED:
       return {
         ...state,
         loading: false,
-        error: action.message
-      }
-    case actionTypes.DELETED_USER:
-      return {
-        ...state,
-        users: action.payload
+        error: action.message,
       }
     default:
       return state

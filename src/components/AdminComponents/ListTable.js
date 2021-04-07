@@ -12,9 +12,8 @@ import {
   TableBody,
   Typography,
 } from '@material-ui/core'
-import { useHistory } from 'react-router-dom'
 import { getAllUserListRequest, getAllEmployeeListRequest,
-  deletedCustomerRequest, deletedUserRefetch } from '../../store/actions'
+  deletedCustomerRequest, deletedEmployeeRequest } from '../../store/actions'
 import ListTableHead from './ListTableHead'
 import ListTableRow from './ListTableRow'
 import LoadingIcon from './LoadingIcon'
@@ -29,8 +28,7 @@ import NoDataFound from './NoDataFound'
  */
 function ListCustomerTable(props) {
   const { columns, urlpage, tableType } = props
-  const pageSize = 15
-  const history = useHistory()
+  const pageSize = 3
   const listSize = { page: urlpage, pageSize: pageSize}
   const dispatch = useDispatch()
   const [deletedId, setDeletedId] = React.useState(0)
@@ -42,8 +40,6 @@ function ListCustomerTable(props) {
   const usersCount = useSelector(state => state.userslist.users.count)
   const loading = useSelector(state => state.userslist.loading)
   const error = useSelector(state => state.userslist.error)
-  const deleteStatus = useSelector(state => state.userslist.deleteStatus)
-  console.log(deleteStatus)
   const dispatchRequest = (tableType === 'customer') 
   // eslint-disable-next-line no-shadow
   const returnPage = (usersCount) => {
@@ -83,21 +79,17 @@ function ListCustomerTable(props) {
   }
 
   const handleAlertConfirm = ()=>{
-    // TODO: add update user deleted status here
-    console.log('confirm delete: ', deletedId)
-    dispatch(deletedCustomerRequest(deletedId))
+    if (dispatchRequest) {
+      dispatch(deletedCustomerRequest(deletedId, listSize)) 
+    } else {
+      dispatch(deletedEmployeeRequest(deletedId, listSize)) 
+    }
     setOpen(false)
-    console.log('after deletedsaga')
-    dispatch(deletedUserRefetch(0))
-    // dispatchRequested(listSize)
-    // const curPath = window.location.pathname+window.location.search
-    // history.push(`${curPath}`)
   }
 
   const refreshPage = () => {
     listSize.page = 1
-    const curPath = window.location.pathname
-    history.push(`${curPath}`)
+    dispatchRequested(listSize)
   }
 
   return (

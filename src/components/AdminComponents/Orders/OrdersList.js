@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Route, useHistory } from 'react-router-dom'
 import { makeStyles, Grid, Typography, Box, InputLabel, Select, MenuItem } from '@material-ui/core'
-import { RowingSharp, RowingTwoTone } from '@material-ui/icons'
 import { getAllOrersRequest, changeOrder } from '../../../store/actions'
 import OrderCard from './OrderCard'
 // import OrderDetail from './OrderDetali'
@@ -50,8 +49,8 @@ function OrdersLists(props) {
   const history = useHistory()
   const [curCard, setCurCard] = React.useState('default')
   const [prevCard, setPrevCard] = React.useState('unset')
-  const [selectId, setSelectId] = React.useState('')
-  const [selectType, setSelectType] = React.useState('')
+  // const [selectId, setSelectId] = React.useState('')
+  // const [selectType, setSelectType] = React.useState('')
   const [orderStatus, setOrderStatus] = React.useState(status)
   const listPayload = { page: urlPage, pageSize: pageSize, status: orderStatus }
   const dispatch = useDispatch()
@@ -74,7 +73,7 @@ function OrdersLists(props) {
     dispatch(getAllOrersRequest(listPayload))
   },[])
 
-  function handleSelectOrderCard(row, id, type) {
+  function handleSelectOrderCard(row) {
     if (prevCard === 'unset'){
       setPrevCard(row)
     } else {
@@ -84,8 +83,8 @@ function OrdersLists(props) {
     document.getElementById(`orderCard${row}`).classList.add('order-card-select')
     setCurCard(row)
     console.log('row', row)
-    setSelectId(id)
-    setSelectType(type)
+    // setSelectId(id)
+    // setSelectType(type)
     dispatch(changeOrder(row))
     // history.push(`/admin/orders/${id}`)
   }
@@ -105,7 +104,6 @@ function OrdersLists(props) {
   }
 
   const selectStatusChange = (event) =>{
-    console.log(event.target.value)
     setOrderStatus(event.target.value)
     listPayload.status = event.target.value
     listPayload.page = 1
@@ -159,7 +157,7 @@ function OrdersLists(props) {
                     id={idName}
                     key={idName}
                     // eslint-disable-next-line no-underscore-dangle
-                    onClick={() => handleSelectOrderCard(index, row._id, row.type)}
+                    onClick={() => handleSelectOrderCard(index)}
                     className={`${classes.card} ${classes[classToUse]}`}
                     aria-hidden="true"
                   >

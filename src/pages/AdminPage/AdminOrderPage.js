@@ -63,7 +63,7 @@ function displayPage(repo) {
   // need user objID & employee objID
   if (typeof (repo) === 'string') { return <LoadingIcon /> }
   const { endTime, title, firstName, address, lastName,
-    cabinets, fridge, oven, interiorWindows, rating, review, price, status, type, phoneNumber, _id, taskID, userDetail, employeeDetail } = repo[0]
+    cabinets, fridge, oven, interiorWindows, rating, review, price, status, type, phoneNumber, _id, userDetail, employeeDetail } = repo
   console.log(_id)
   // let re = /{|}|":"|"address1|"address2|"suburb|"state|"postcode|":/g
   // console.log(JSON.stringify(repo.address).replace(re, ''))
@@ -149,7 +149,7 @@ function AdminOrderPage(match) {
   let repo = redux.order
   let loading = redux.loading
   console.log(redux, 'redux')
-  console.log(loading, repo.length)
+  console.log(loading, )
 
 
   return (
@@ -157,7 +157,7 @@ function AdminOrderPage(match) {
       {/* {endTime} */}
       <Container maxWidth="md" className={classes.body}>
         {(loading) && (<LoadingIcon />)}
-        {(!loading) && repo.length !=0 && displayPage(repo)}
+        {(!loading) && repo.status && displayPage(repo)}
       </Container>
       {/* <Container maxWidth="md" className={classes.body}>{repo.length}
         <AdminCustomersTop />

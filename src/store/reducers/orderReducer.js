@@ -23,8 +23,9 @@ const initialState = {
   loadingNum: 1,
   error: null,
   payment:false,
-  order: [], //repos_in_reducer_init: "init value",
-  orders: [],
+  order: {}, //repos_in_reducer_init: "init value",
+  orders: {'result':[],
+            'count':0},
   row: 0,
   completeinfo: {
     info: localStorage.getItem('regularCleanOrder') ?
@@ -78,9 +79,8 @@ function orderReducer(state = initialState, action) {
 
     case actionType.UPDATE_REGULAR_SUCCESS:
       let orders = state.orders.result
-      let order = [{ ...state.order[0], status: action.repos.status }]
-      orders[state.row] = order[0]
-      // console.log([][0])
+      let order = { ...state.order, status: action.repos.status }
+      orders[state.row] = order
       return {
         ...state,
         loading: false,
@@ -172,7 +172,7 @@ function orderReducer(state = initialState, action) {
     case actionType.CHANGE_ORDER:
       return {
         ...state,
-        order: [state.orders.result[action.payload]],
+        order: state.orders.result[action.payload],
         row: action.payload
       }
     default:

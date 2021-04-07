@@ -12,8 +12,8 @@ import {
   TableBody,
   Typography,
 } from '@material-ui/core'
-import { useHistory } from 'react-router-dom'
-import { getAllUserListRequest, getAllEmployeeListRequest } from '../../store/actions'
+import { getAllUserListRequest, getAllEmployeeListRequest,
+  deletedCustomerRequest, deletedEmployeeRequest } from '../../store/actions'
 import ListTableHead from './ListTableHead'
 import ListTableRow from './ListTableRow'
 import LoadingIcon from './LoadingIcon'
@@ -29,7 +29,6 @@ import NoDataFound from './NoDataFound'
 function ListCustomerTable(props) {
   const { columns, urlpage, tableType } = props
   const pageSize = 15
-  const history = useHistory()
   const listSize = { page: urlpage, pageSize: pageSize}
   const dispatch = useDispatch()
   const [deletedId, setDeletedId] = React.useState(0)
@@ -62,7 +61,7 @@ function ListCustomerTable(props) {
   }
   useEffect(() => {
     dispatchRequested()
-  }, [urlpage])
+  }, [])
 
   const getPaginationPage = (page) => {
     listSize.page = page
@@ -80,16 +79,17 @@ function ListCustomerTable(props) {
   }
 
   const handleAlertConfirm = ()=>{
-    // TODO: add update user deleted status here
-    console.log('confirm delete: ', deletedId)
+    if (dispatchRequest) {
+      dispatch(deletedCustomerRequest(deletedId, listSize)) 
+    } else {
+      dispatch(deletedEmployeeRequest(deletedId, listSize)) 
+    }
     setOpen(false)
   }
 
   const refreshPage = () => {
     listSize.page = 1
     dispatchRequested(listSize)
-    const curPath = window.location.pathname
-    history.push(`${curPath}`)
   }
 
   return (

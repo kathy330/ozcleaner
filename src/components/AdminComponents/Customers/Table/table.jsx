@@ -14,9 +14,13 @@ import Button from '@material-ui/core/Button'
 import TablePagination from '@material-ui/core/TablePagination'
 import date from 'date-and-time'
 import { Link } from 'react-router-dom'
+import Alert from '@material-ui/lab/Alert'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import {getCUSDETAILTABLERequest,updateRegularRequest} from "../../../../store/actions"
 import { GreenStatus ,RedStatus,
   YellowStatus,GreyStatus,BlueStatus} from '../../../UIComponents/Status'
-import {getCUSDETAILTABLERequest} from "../../../../store/actions"
 
 const useStyles = makeStyles({
   table: {
@@ -58,8 +62,8 @@ function displayTime(time) {
 
 
 function isButton(words) {
-  if(words.status==='assigned') {
-    return <GreenStatus>Assgined</GreenStatus>
+  if(words.status==='confirmed') {
+    return <GreenStatus>Confirmed</GreenStatus>
   }
   if(words.status==='cancelled'){
     return <RedStatus>Cancelled</RedStatus>
@@ -76,6 +80,35 @@ function isButton(words) {
   return <GreyStatus>{words.status}</GreyStatus>
 }
 
+function isCancel(words,classes,handleClickOpen,user) {
+  if(words.status==='confirmed') {
+    return  (
+      <Button 
+        variant="contained"
+        className={classes.delete}
+        id={user.type}
+        value={user._id}
+        onClick={handleClickOpen}
+      >
+        Cancel
+      </Button>
+)
+  }
+  return (
+    <Button 
+      variant="contained"
+      className={classes.delete}
+      id={user.type}
+      value={user._id}
+      onClick={handleClickOpen}
+      disabled
+    >
+      Cancel
+    </Button>
+)
+  
+}
+
 const BasicTable=(props)=> {
   const {data}=props
   const classes = useStyles()
@@ -83,7 +116,12 @@ const BasicTable=(props)=> {
 
   const users =useSelector(state => state.cusDetailsTable.cusDetailsTable) 
   const loading = useSelector(state => state.cusDetailsTable.loading)
-  const error = useSelector(state => state.cusDetailsTable.error)
+  // const error = useSelector(state => state.cusDetailsTable.error)
+
+
+  const [state] = React.useState({
+    status: users.status
+  })
 
   const dispatchRequested=()=>{
     dispatch(getCUSDETAILTABLERequest(data))
@@ -91,7 +129,7 @@ const BasicTable=(props)=> {
 
   useEffect(()=>{
     dispatchRequested()
-},[])
+},[state])
 
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
@@ -103,6 +141,23 @@ const BasicTable=(props)=> {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value)
     setPage(0)
+  }
+
+  const [open, setOpen] = React.useState(false)
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const handleCancelOrder = (event) => {
+    const body={id:event.target.value,orderstatus:"cancelled",type:event.target.id}
+    console.log("111111",body)
+    setOpen(false)
+    dispatch(updateRegularRequest(body))
   }
 
 
@@ -147,13 +202,30 @@ const BasicTable=(props)=> {
                   >
                     View
                   </Button>
-                  <Button variant="contained" className={classes.delete}>
-                    Delete
-                  </Button>
+                  {isCancel(user,classes,handleClickOpen,user)}
                 </TableCell>
 
               </TableRow>
        ))}
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                Do you want to cancel this order?
+              </DialogTitle>
+              <DialogActions>
+                <Button onClick={handleCancelOrder} color="primary">
+                  Yes
+                </Button>
+                <Button onClick={handleClose} color="primary" autoFocus>
+                  No
+                </Button>
+              </DialogActions>
+            </Dialog>
+                  
           </TableBody>
         
      
@@ -170,8 +242,9 @@ const BasicTable=(props)=> {
         />
       </TableContainer>
 )}
-      {users.length===0&&!loading &&<p>No users available!</p>}
-      {error&&!loading&&<p>{error}</p>}
+      {users.length===0&&!loading &&
+        <Alert severity="error">This is an error alert — check it out!</Alert>}
+      {/* {error&&!loading&&<p>{error}</p>} */}
 
     </>
   )

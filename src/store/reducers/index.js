@@ -5,14 +5,14 @@
 import { combineReducers } from 'redux'
 // import regularReducer from './regularClean'
 import userslist from './userslist'
-import regularReducer from './RCorderReducer'
+import order from './orderReducer'
 import endofleaseReducer from './ECorderReducer'
 import CusDetails from "./customersDetail"
 import CusDetailsTable from "./customerDetailTable"
 import StaffDetails from './staffsDetail'
 import emplyeeReducer from './emplyeeDetail'
 import staffDetailsTable from './staffsDetailTable'
-import allOrders from './allOrders'
+// import allOrders from './allOrders'
 // import { userRegisterReducer, userSigninReducer } from './userReducer'
 import { userRegisterReducer, userSigninReducer } from './userReducer'
 import {employeeRegisterReducer,employeeSigninReducer} from './employeeReducer'
@@ -20,7 +20,7 @@ import{forgetPasswordReducer,resetPasswordReducer} from './forgetPassword'
 
 // 🎉 rootReduce会被store/store.js使用
 const rootReducer = combineReducers({
-  regular_in_reducer_index: regularReducer,
+  order,
   userslist,
   cusDetails:CusDetails,
   cusDetailsTable:CusDetailsTable,
@@ -34,7 +34,7 @@ const rootReducer = combineReducers({
   // userRegister: userRegisterReducer,
   employeeSignin: employeeSigninReducer,
   employeeRegister: employeeRegisterReducer,
-  allOrders,
+  // allOrders,
   forgetPassword:forgetPasswordReducer,
   resetPassword:resetPasswordReducer
 

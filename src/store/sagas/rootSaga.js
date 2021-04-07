@@ -1,5 +1,5 @@
 import {all} from 'redux-saga/effects'
-import RegularSaga from './RCorderSaga'
+import OrderSaga from './OrderSaga'
 import EndofleaseSaga from './ECorderSaga'
 import UserListSaga from './userListSaga'
 import EmployeesListSaga from './employeesListSaga'
@@ -17,7 +17,7 @@ import forgetPasswordSaga from './forgetPasswordSaga'
 export default function* rootSaga() {
   // 如果有更多的放在这下面;
   yield all([
-    RegularSaga(),
+    OrderSaga(),
     EndofleaseSaga(),
     UserListSaga(),
     EmployeesListSaga(),

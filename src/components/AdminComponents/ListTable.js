@@ -28,7 +28,7 @@ import NoDataFound from './NoDataFound'
  */
 function ListCustomerTable(props) {
   const { columns, urlpage, tableType } = props
-  const pageSize = 3
+  const pageSize = 15
   const listSize = { page: urlpage, pageSize: pageSize}
   const dispatch = useDispatch()
   const [deletedId, setDeletedId] = React.useState(0)

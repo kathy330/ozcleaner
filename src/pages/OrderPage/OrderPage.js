@@ -258,6 +258,7 @@ const SelectStyle = {
     horizontal: "left"
   },
   getContentAnchorEl: null
+  // getContentAnchorEl:'null | undefined'
 }
 
 
@@ -293,7 +294,7 @@ function Order(props) {
   const promise = loadStripe("pk_test_51IcU7EIhWqpXGeJaSNSsYJNlyh302mKpZUWBQBl7nZU1ISbLPKnCPHnCqjqdQV2iubeJs17bKXSHp8p95r9aigNQ00fTIv8f3f")
   const { handleSubmit, control, watch } = useForm()
   // const dispatch = useDispatch()
-  const [open, setOpen] = useState('')
+  const [open, setOpen] = useState(false)
   const [extraState, setExtraState] = useState({
     oven: false,
     fridge: false,
@@ -361,20 +362,20 @@ function Order(props) {
   let bedroom = ''
   let bathroom = ''
   let homePostcode = ''
-  let contactNumber = ''
+  // let contactNumber = ''
   let propertyType = ''
   if(homeOrderData!=='') {
     bedroom = homeOrderData.bedroomNum
     bathroom = homeOrderData.bathroomNum
     homePostcode = homeOrderData.postcode
-    contactNumber = homeOrderData.contact
+    // contactNumber = homeOrderData.contact
     propertyType = homeOrderData.propertyType
   }
 
   // 66这里是想左边输入时间，右边实时更新
   let startDate = watch("date",'')
   let startTime = watch("time",'')
-  let totalDate = ''
+  let totalDate = '' // 2021-04-08 00:52
 
   try {
     startDate = date.format(startDate, 'YYYY-MM-DD') 
@@ -390,7 +391,8 @@ function Order(props) {
   if(startDate !==null &&startDate !=='' && startTime !==null && startTime !=='') {
     haveDate = true
     // 做成1976-04-19 12:59,在orderRight是1976-04-19T12:59
-    totalDate = `${startDate} ${startTime} `
+    totalDate = `${startDate}T${startTime}`
+    // console.log(totalDate)
   }
   // 66---------------
 
@@ -1022,7 +1024,7 @@ function Order(props) {
                         )}
                                   name="phoneNumber"
                                   control={control}
-                                  defaultValue={contactNumber}
+                                  defaultValue=''
                                 />
                               </Grid>
                       
@@ -1212,7 +1214,13 @@ function Order(props) {
 
         <Dialog className={classes.dialog} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
           <Container>
-            <DialogTitle id="form-dialog-title" style={{ textAlign: 'center' }}>
+            <DialogTitle
+              id="form-dialog-title" 
+              style={{ 
+                textAlign: 'center',
+                color: '#007bf5'
+              }}
+            >
               Total amount:  $
               {amount}
             </DialogTitle>

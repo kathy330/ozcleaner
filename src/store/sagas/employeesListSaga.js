@@ -13,11 +13,25 @@ function* fetchEmployees(action) {
   } catch (e) {
     yield put({ type: 'GET_EMPLOYEES_FAILED', message: e.message })
   }
-  
 }
+
+function* deletedUsers(action) {
+  // console.log(action)
+  const deletedId = action.payload
+  const deletedApi = `http://localhost:8000/deletedEmployees/${deletedId}`
+  try {
+    yield call(axios.put, deletedApi)
+    // console.log(users)
+    yield put({ type: 'DELETED_EMPLOYEE_SUCCESS' })
+    yield put({ type: 'GET_EMPLOYEES_REQUESTED', payload: action.listSize })
+  } catch (e) {
+    yield put({ type: 'DELETED_EMPLOYEE_FAILED', message: e.message })
+  }
+} 
 
 function* EmployeesListSaga() {
   yield takeEvery('GET_EMPLOYEES_REQUESTED', fetchEmployees)
+  yield takeEvery('DELETED_EMPLOYEE_REQUEST', deletedUsers)
 }
 
 export default EmployeesListSaga

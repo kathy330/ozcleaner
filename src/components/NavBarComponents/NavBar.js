@@ -31,7 +31,8 @@ export default function HeaderNavigation(props) {
   const dispatch = useDispatch()
 
   const userSignin = useSelector((state) => state.userSignin)
-  const { userInfo } = userSignin
+  const { userInfo} = userSignin
+
 
   const style = navBarStyle()
   const [anchor, setAnchor] = useState(null)
@@ -39,6 +40,18 @@ export default function HeaderNavigation(props) {
     setAnchor(event.currentTarget)
   }
 
+
+  const info = JSON.parse(localStorage.getItem('userInfo'))
+  const level = localStorage.getItem('authLevel')
+  let id=''
+  let role=''
+
+  if(info){
+ 
+  id = info.data.objectID 
+  role = level === 'user'? 'users' : 'employees'
+}
+  
 
   const signoutHandler = () => {
     dispatch(signout())
@@ -83,7 +96,8 @@ export default function HeaderNavigation(props) {
               <>
                 <Box className={style.buttonsBox}>
                   <Button href='/order' className={style.bookingButton}>Booking Now</Button>
-                  <Button href='/myorder'>My Order</Button>
+                  {/* <Button href=''>My Order</Button> */}
+                  <Button href={`/${role}/${id}`}>My Order</Button>
                   <Button href='/profile'>My Profile</Button>
                   <Button
                     onClick={signoutHandler}
@@ -91,7 +105,6 @@ export default function HeaderNavigation(props) {
                     Sign Out
                   </Button>
                 </Box>
-
                 <Drawer
                   id="simple-menu"
                   anchorEl={anchor}

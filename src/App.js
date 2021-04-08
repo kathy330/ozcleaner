@@ -17,10 +17,12 @@ import OrderDetailsPage from './pages/OrderPage/OrderDetailsPage'
 // import AdminCustomersPage from './pages/AdminPage/AdminOrderPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 import theme from './styles/theme'
-import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
-import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
+// import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
+// import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
 import AdminIndexPage from "./pages/AdminPage/AdminIndexPage"
 import AdminOrderPage from "./pages/AdminPage/AdminOrderPage"
+import OrderCusDetailPage from "./pages/OrderPage/CustomersDetails"
+import OrderStaffDetailPage from "./pages/OrderPage/StaffDetails"
 // import ....Page from ....
 import DongyuPage from './pages/zpractice/Dongyu/Dongyu'
 import KangkangPage from './pages/zpractice/Kangkang/Kangkang'
@@ -59,8 +61,10 @@ function App() {
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
         <Redirect exact from="/admin" to="/admin/dashboard" />
         <ProtectedRoute path="/admin" component={AdminIndexPage} />
-        <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
-        <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} />
+        {/* <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
+        <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} /> */}
+        <Route path="/users/:id" exact component={OrderCusDetailPage} /> 
+        <Route path="/employees/:id" exact component={OrderStaffDetailPage} /> 
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
         {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
 

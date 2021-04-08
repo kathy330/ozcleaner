@@ -203,6 +203,37 @@ export const getAllOrersRequest = orders => ({
   payload: orders
 })
 
+/* forget password- yanbo */
+export const forgetpassword = (payload) => ({
+  type: actionTypes.USER_EMAIL_REQUEST,
+  payload,
+})
+
+/* reset password- yanbo */
+
+export const resetpassword = (payload) => ({
+  type: actionTypes.USER_RESET_REQUEST,
+  payload,
+})
+// * deleted a customer by customer's objID
+export const deletedCustomerRequest = (users, listSize) => ({
+  type: actionTypes.DELETED_CUSTOMER_REQUEST,
+  payload: users,
+  listSize: listSize
+})
+
+// * deleted an employee by employee's objID
+export const deletedEmployeeRequest = (users, listSize) => ({
+  type: actionTypes.DELETED_EMPLOYEE_REQUEST,
+  payload: users,
+  listSize: listSize
+})
+
+export const deletedUserRefetch = num => ({
+  type: actionTypes.DELETED_USER_ACTION,
+  payload: num
+})
+
 export const changeOrder = num => ({
   type: actionTypes.CHANGE_ORDER,
   payload: num

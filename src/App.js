@@ -11,6 +11,7 @@ import Order from './pages/OrderPage/OrderPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 // import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
+import OrderDetailsPage from './pages/OrderPage/OrderDetailsPage'
 // import OrderPay from "./pages/OrderPage/OrderPayPage"
 // import ProfilePage from './pages/ProfilePage/ProfilePage'
 // import AdminCustomersPage from './pages/AdminPage/AdminOrderPage'
@@ -32,6 +33,8 @@ import ErikPage from './pages/zpractice/Erik/Erik'
 import OliviaPage from './pages/zpractice/Olivia/Olivia'
 import MengxuanPage from './pages/zpractice/Mengxuan/Mengxuan'
 import YanboForm from './pages/zpractice/Yanbo/YanboForm'
+import ForgetPassword from "./components/SignUpComponents/ForgetPassword"
+import ResetPassword from './components/SignUpComponents/ResetPassword'
 
 function App() {
   // 使用theme方法：
@@ -45,6 +48,7 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <ProtectedRoute path="/order" exact component={Order} />
         <ProtectedRoute path="/order/confirm" exact component={OrderConfirmPage} />
+        <Route path="/myorder/:id" exact component={OrderDetailsPage} />
         {/* <ProtectedRoute path="/order/pay" exact component={OrderPay} /> */}
         {/* <Route path="/profile/customer" exact component={CustomerProfilePage} /> */}
         {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
@@ -65,6 +69,7 @@ function App() {
         {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
 
         <Route path="/myorder/:id" exact component={AdminOrderPage} /> 
+        <Route path="/myorders/:id" exact component={AdminOrderPage} />
 
         <Route path="/ui" exact component={UI} />
 
@@ -78,6 +83,8 @@ function App() {
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />
 
+        <Route path="/forgetpassword" exact component={ForgetPassword} />
+        <Route path="/forgetpassword/resetpassword" exact component={ResetPassword} />
 
         <Route component={ErrorPage} />
       </Switch>

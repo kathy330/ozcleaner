@@ -42,15 +42,17 @@ export default function ForgetPassword() {
           textAlign:'center',
         },
         root: {
-            minWidth: '220%',
-            // minHeight: 300,
+            minWidth: "200%",
+            minHeight: "100%",
           },
           text:{
             paddingTop:30,
-            paddingBottom:30,
+            paddingBottom:20,
+            marginRight:50,
+            marginLeft:40,
             fontWeight:'bold',
-            // width:'85%',
-            marginRight:'15px',
+            width:'120%',
+            // marginRight:'15px',
           },
           textField: {
             width:'85%',
@@ -66,7 +68,7 @@ export default function ForgetPassword() {
   return (
     <Grid
       container
-      spacing={0}
+      spacing={1}
       direction="row"
       alignItems="center"
       justify="center"
@@ -81,7 +83,7 @@ export default function ForgetPassword() {
               <Typography
                 className={classes.text}
               >
-                Enter your Email address to receive verfication email
+                Enter your Registration Email address 
               </Typography>
             </Grid>
             <Grid container justify="center">

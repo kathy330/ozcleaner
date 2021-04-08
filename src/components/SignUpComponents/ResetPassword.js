@@ -43,23 +43,31 @@ export default function ResetPassword() {
           textAlign:'center',
         },
         root: {
-            minWidth: '220%',
+            minWidth: '200%',
             // minHeight: 300,
           },
           text:{
+            marginLeft:35,
+            marginRight:200,
             paddingTop:30,
-            paddingBottom:30,
+            paddingBottom:15,
             fontWeight:'bold',
             // width:'85%',
-            marginRight:'15px',
+            // marginRight:'15px',
           },
           textField: {
             width:'85%',
-            marginBottom:45,
+            marginBottom:35,
+           // marginRight:200,
+           // marginLeft:200,
+
+            
           },
           response: {
             fontWeight:'bold',
             paddingBottom: '30px',
+            fontSize:'15px',
+            width:'45%',
           },
         }))
     const classes = useStyles()
@@ -78,11 +86,11 @@ export default function ResetPassword() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid item xs={6}>
           <Card className={classes.root}>
-            <Grid container justify="center">
+            <Grid container>
               <Typography
                 className={classes.text}
               >
-                Enter your verfication token
+                Enter your verfication key
               </Typography>
             </Grid>
             <Grid container justify="center">
@@ -103,7 +111,7 @@ export default function ResetPassword() {
               />
                 
             </Grid>
-            <Grid container justify="center">
+            <Grid container>
               <Typography
                 className={classes.text}
               >
@@ -128,11 +136,11 @@ export default function ResetPassword() {
               />
                 
             </Grid>
-            <Grid container justify="center">
+            <Grid container>
               <Typography
                 className={classes.text}
               >
-                Enter your conformation password
+                Confirm your password
               </Typography>
             </Grid>
             <Grid container justify="center">

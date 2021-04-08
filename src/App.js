@@ -11,6 +11,7 @@ import Order from './pages/OrderPage/OrderPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 // import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
+import OrderDetailsPage from './pages/OrderPage/OrderDetailsPage'
 // import OrderPay from "./pages/OrderPage/OrderPayPage"
 // import ProfilePage from './pages/ProfilePage/ProfilePage'
 // import AdminCustomersPage from './pages/AdminPage/AdminOrderPage'
@@ -45,6 +46,7 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <ProtectedRoute path="/order" exact component={Order} />
         <ProtectedRoute path="/order/confirm" exact component={OrderConfirmPage} />
+        <Route path="/myorder/:id" exact component={OrderDetailsPage} />
         {/* <ProtectedRoute path="/order/pay" exact component={OrderPay} /> */}
         {/* <Route path="/profile/customer" exact component={CustomerProfilePage} /> */}
         {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
@@ -62,7 +64,7 @@ function App() {
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
         {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
 
-        <Route path="/myorder/:id" exact component={AdminOrderPage} />
+        <Route path="/myorders/:id" exact component={AdminOrderPage} />
 
         <Route path="/ui" exact component={UI} />
 

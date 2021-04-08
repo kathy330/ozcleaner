@@ -71,4 +71,19 @@ export function GoogleButton() {
   )
 }
 
+export function ConfirmButton() {
+  const classes = buttonStyle()
+  return(
+    <>
+      <Button
+        className={classes.homeBookingButton}
+        // variant="contained"
+        type="submit"
+      >
+        Confirm
+      </Button>
+    </>
+  )
+}
+
 

@@ -23,6 +23,7 @@ export default function LoginDetails() {
     const dispatch = useDispatch()
     const onSubmit = (data) =>{
       dispatch(signin(data))
+      console.log(data.email)
     }
 
     const signoutHandler = () => {
@@ -31,6 +32,7 @@ export default function LoginDetails() {
 
     const userSignin = useSelector((state) => state.userSignin)
     const { userInfo, loading, error } = userSignin
+    
   
 const useStyles = makeStyles((theme) => ({
   [theme.breakpoints.down('sm')]: {
@@ -179,7 +181,7 @@ const classes = useStyles()
 
 
             <Grid>
-              <a href="/password">
+              <a href="/forgetpassword">
                 <Typography
                   className={classes.mention}
                 >

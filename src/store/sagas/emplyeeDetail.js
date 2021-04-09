@@ -2,7 +2,7 @@
 import {call,put,takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
 import actionTypes from "../actions/actionTypes"
-
+import header from "./header"
 
 // import API from our API folder, this just is a example
 
@@ -25,7 +25,7 @@ function* fetchRegularUrl()   {
   // }
   gitApi = `http://localhost:8000/${person}/alltask/${ID}`
   try{
-    const data = yield call(axios.get, gitApi)
+    const data = yield call(axios.get, gitApi,header())
 
     yield put({type:actionTypes.GET_HISTORY_SUCCESS,payload:data.data})
   }

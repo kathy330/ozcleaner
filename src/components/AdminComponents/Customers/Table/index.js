@@ -1,1 +1,1 @@
-export {default} from "./table copy"
+export {default} from "./table"

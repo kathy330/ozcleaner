@@ -1,6 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 import React,{useEffect} from "react"
 import {useSelector,useDispatch} from 'react-redux'
 import date from 'date-and-time'
+import {Link} from "react-router-dom"
 import {Table,TableBody,TableCell,TableContainer,Typography,TableHead,TableRow,Paper,
   Button,TablePagination,makeStyles}
    from "@material-ui/core"
@@ -132,8 +134,14 @@ export default function BasicTable() {
                 <Typography>{employee.price}</Typography>
               </TableCell>
               <TableCell align="center" className={classes.tableCell}>
-                <Button variant="contained" className={classes.check}>
-                  check
+                <Button
+                  variant="contained"
+                  className={classes.check}
+                  component={Link} 
+                  to={`/myorder/${employee._id}?type=
+                  ${employee.type==="EC"? "EC":"RC"}`}
+                >
+                  view
                 </Button>
               </TableCell>
             </TableRow>

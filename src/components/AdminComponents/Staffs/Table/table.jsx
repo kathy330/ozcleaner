@@ -82,6 +82,37 @@ function isCancel(words,classes) {
   
 }
 
+function isAuth(user,classes) {
+  const level = localStorage.getItem('authLevel')
+  if(level==="admin"){
+  
+      return(
+        <Button 
+          variant="contained"
+          className={classes.check}
+          component={Link} 
+          to={`/admin/orders/${user._id}?type=${user.type}`}
+        >
+          View
+        </Button>
+      )
+  }
+    
+ 
+    return(
+      <Button 
+        variant="contained"
+        className={classes.check}
+        component={Link} 
+        to={`/myorder/${user._id}?type=${user.type}`}
+      >
+        View
+      </Button>
+    )
+  }
+  
+ 
+
 const BasicTable=(props)=>{
   const {data}=props
   const classes = useStyles()
@@ -145,14 +176,7 @@ const BasicTable=(props)=>{
                 </TableCell>
                 <TableCell align="center">{displayTime(user.createdAt)}</TableCell>
                 <TableCell align="center" className={classes.action}>
-                  <Button
-                    variant="contained" 
-                    className={classes.check}
-                    component={Link} 
-                    to={`/admin/orders/${user._id}?type=${user.type}`}
-                  >
-                    View
-                  </Button>
+                  {isAuth(user,classes)}
                   {isCancel(user,classes)}
                 </TableCell>
               </TableRow>

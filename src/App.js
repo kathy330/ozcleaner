@@ -63,12 +63,12 @@ function App() {
         <ProtectedRoute path="/admin" component={AdminIndexPage} />
         {/* <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
         <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} /> */}
-        <Route path="/users/:id" exact component={OrderCusDetailPage} /> 
-        <Route path="/employees/:id" exact component={OrderStaffDetailPage} /> 
+        <Route path="/users/:id" exact component={OrderCusDetailPage} />
+        <Route path="/employees/:id" exact component={OrderStaffDetailPage} />
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
         {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
 
-        <Route path="/myorders/:id" exact component={AdminOrderPage} />
+        <Route path="/userOrders/:id" exact component={AdminOrderPage} />
 
         <Route path="/ui" exact component={UI} />
 

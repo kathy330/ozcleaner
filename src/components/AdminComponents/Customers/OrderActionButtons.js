@@ -24,8 +24,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function OrderActionButtons({ cancel, finish, accept, cancelData, finishData, acceptData }) {
-  console.log(cancelData)
-  console.log(finishData)
   const classes = useStyles()
   const dispatch = useDispatch()
 
@@ -34,20 +32,26 @@ export default function OrderActionButtons({ cancel, finish, accept, cancelData,
     actionType: 'No actions',
   })
   const { actionType } = status
-  console.log(actionType)
+  // console.log(actionType)
 
   const handleCancelOrder = () => {
     setOpen(false)
     const { actionType } = status
-    console.log(actionType)
-    if (actionType === 'cancel') { dispatch(updateRegularRequest(cancelData)) }
+    // console.log(actionType)
+    if (actionType === 'cancel') {
+      dispatch(updateRegularRequest(cancelData))
+      // alert('Your order has been set CANCELLED successfully! ')
+    }
 
     else if (actionType === 'finish') {
       dispatch(updateRegularRequest(finishData))
+      // alert('Your order has been set FINISHED successfully! ')
     }
     else if (actionType === 'accept') {
       dispatch(updateRegularRequest(acceptData))
+      // alert('You ACCEPT this order successfully! ')
     }
+
 
   }
   const handleCancel = () => {

@@ -115,6 +115,7 @@ function displayPage(repo) {
           reviewText={review}
           userObjectID={userObjID}
           employeeObjectID={employeeObjID}
+          _id={_id}
         />
         <AdminCustomersRight orderPrice={price}
           _id={_id}
@@ -141,15 +142,15 @@ function AdminOrderPage(match) {
     useEffect(() => {
       dispatch(getOrderRequest(data))
     }, [])
-  } 
-  
+  }
+
   // let redux = useSelector(state => state.order)
   // let redux2 = useSelector(state => state.employee_in_reducer_index)
   let redux = useSelector(state => state.order)
   let repo = redux.order
   let loading = redux.loading
   console.log(redux, 'redux')
-  console.log(loading, )
+  console.log(loading,)
 
 
   return (

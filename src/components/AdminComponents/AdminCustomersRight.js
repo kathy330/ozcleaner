@@ -62,7 +62,6 @@ function AdminCustomersRight(props) {
   const data = { id: _id, orderstatus: "cancelled", type: typeOfOrder }
   const toFinishData = { id: _id, orderstatus: "finished", type: typeOfOrder }
   const toAcceptData = { id: _id, orderstatus: "in-progress", type: typeOfOrder }
-  console.log(data)
   const [state] = React.useState({
     status: { orderStatus }
   })
@@ -82,8 +81,6 @@ function AdminCustomersRight(props) {
 
 
   const authLevel = localStorage.getItem('authLevel')
-  console.log(authLevel)
-
 
   return (
     <Grid item xs={12} sm={3} className={classes.root}>

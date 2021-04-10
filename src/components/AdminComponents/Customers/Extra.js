@@ -12,9 +12,7 @@ const useStyles = makeStyles({
 
 export default function Extra(props) {
   const classes = useStyles()
-  // const { cabinets, fridge, oven, interiorWindows } = props
-  console.log(props)
-  console.log(Object.values(props))
+
   let items = ''
   if (Object.values(props)[0] === 1) {
     items = "Cabinets, "
@@ -36,8 +34,6 @@ export default function Extra(props) {
     item = "Cabinets, Fridge, Oven, InteriorWindows "
   } else { item = items.slice(0, -2) }
 
-
-  console.log(items)
   return (
     <Grid container direction="column" className={classes.root}>
       <Typography variant="subtitle2">

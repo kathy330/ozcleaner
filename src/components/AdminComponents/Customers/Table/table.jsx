@@ -144,7 +144,7 @@ function isComment(user,classes) {
         variant="contained"
         className={classes.check}
         component={Link} 
-        to={`/myorder/${user._id}?type=${user.type}`}
+        to={`/userOrders/${user._id}?type=${user.type}`}
       >
         View
       </Button>
@@ -155,7 +155,7 @@ function isComment(user,classes) {
       variant="contained"
       className={classes.comment}
       component={Link} 
-      to={`myorder/${user._id}?type=${user.type}`}
+      to={`userOrders/${user._id}?type=${user.type}`}
     >
       Review
     </Button>

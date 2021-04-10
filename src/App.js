@@ -33,6 +33,7 @@ import ErikPage from './pages/zpractice/Erik/Erik'
 import OliviaPage from './pages/zpractice/Olivia/Olivia'
 import MengxuanPage from './pages/zpractice/Mengxuan/Mengxuan'
 import YanboForm from './pages/zpractice/Yanbo/YanboForm'
+import EmployeeOrderList from './pages/OrderPage/EmployeeOrderList'
 import ForgetPassword from "./components/SignUpComponents/ForgetPassword"
 import ResetPassword from './components/SignUpComponents/ResetPassword'
 
@@ -69,6 +70,8 @@ function App() {
         {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
 
         <Route path="/userOrders/:id" exact component={AdminOrderPage} />
+        {/* <Route path="/myorder/:id" exact component={AdminOrderPage} /> */}
+        <Route path="/employee-orders" exact component={EmployeeOrderList} />
 
         <Route path="/ui" exact component={UI} />
 

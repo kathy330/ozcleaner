@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Route, useHistory } from 'react-router-dom'
-import { makeStyles, Grid, Typography, Box, InputLabel, Select, MenuItem } from '@material-ui/core'
+import { useHistory } from 'react-router-dom'
+import { makeStyles, Grid, Typography, Box } from '@material-ui/core'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { getAllOrersRequest, changeOrder } from '../../../store/actions'
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import OrderCard from './OrderCard'
 import AdminOrderPage from '../../../pages/AdminPage/AdminOrderPage'
 import ListPagination from '../ListPagination'
@@ -60,7 +60,6 @@ function returnPath(listType){
 function OrdersLists(props) {
   const classes = useStyles()
   const { pageSize, urlPage, status, listType } = props
-  const tableType = 'order'
   const path = returnPath(listType)
   const history = useHistory()
   const [curCard, setCurCard] = React.useState('default') // current
@@ -69,12 +68,12 @@ function OrdersLists(props) {
   const [sortValue, setsortValue] = React.useState('')
   const listPayload = { page: urlPage, pageSize: pageSize, status: orderStatus, sort: sortValue }
   const dispatch = useDispatch()
-  const data = useSelector(state => state.order.orders.result)
-  const dataCount = useSelector(state => state.order.orders.count)
-  const loading = useSelector(state => state.order.loading)
-  const error = useSelector(state => state.order.error)
-  const matches = useMediaQuery('(max-width:480px)')
-  // console.log('test', listPayload)
+  const data = useSelector(state => state.order.orders.result) // data get from saga
+  const dataCount = useSelector(state => state.order.orders.count) // number of orders
+  const loading = useSelector(state => state.order.loading) // loading status
+  const error = useSelector(state => state.order.error) // error message
+  const matches = useMediaQuery('(max-width:480px)') // media query breakpoint
+
   const returnPage = (totalCount) => {
     if (totalCount < pageSize) {
       return 1
@@ -101,7 +100,11 @@ function OrdersLists(props) {
     setCurCard(row)
     dispatch(changeOrder(row))
     if (matches){
-      history.push(`${path}/${id}?type=${type}`)
+      if (listType === 'admin') {
+        history.push(`${path}/${id}?type=${type}`)
+      } else {
+        history.push(`/userOrders/${id}?type=${type}`)
+      }
     } 
   }
 
@@ -120,7 +123,7 @@ function OrdersLists(props) {
   }
 
   const formatPath = (sort, status) => {
-    if(!statue){
+    if (!status){
       return `/admin/orders`
     }
   }
@@ -166,30 +169,15 @@ function OrdersLists(props) {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} className={classes.left}>
             <div>
-              <Grid container direction="row" justify="space-between" >
+              <Grid container direction="row" justify="space-between">
                 { (listType === 'admin') && ( 
-                  <OrderSelectBox path={path} orderStatus={orderStatus}
-                    selectStatusChange={selectStatusChange}/>
+                  <OrderSelectBox
+                    path={path}
+                    orderStatus={orderStatus}
+                    selectStatusChange={selectStatusChange} 
+                  />
                 )}
-                {/* <div className={classes.selectWrapper}>
-                  <InputLabel id="orderSortLabel">Sort By:</InputLabel>
-                  <Route path={path}>
-                    <Select
-                      className={classes.selectBox}
-                      labelId="orderSortLabel"
-                      value={sortValue}
-                      displayEmpty
-                      onChange={selectSortChange}
-                      inputProps={{ 'aria-label': 'Without label' }}
-                    >
-                      <MenuItem value=""></MenuItem>
-                      <MenuItem value="priceasc">Price Low to High</MenuItem>
-                      <MenuItem value="pricedesc">Price High to Low</MenuItem>
-                      <MenuItem value="dateasc">Date Ascending</MenuItem>
-                      <MenuItem value="datedesc">Date Descending</MenuItem>
-                    </Select>
-                  </Route>
-                </div> */}
+                {/* // Todo: may add sort here */}
               </Grid>
               {data.map((row, index) => {
                 const idName = `orderCard${index}`
@@ -224,7 +212,8 @@ function OrdersLists(props) {
           {!matches && (
           <Grid item xs={12} sm={8} className={classes.right}>
             <AdminOrderPage /> 
-          </Grid>)}
+          </Grid>
+)}
         </Grid>
       )}
       {!loading && data !== undefined && data.length === 0 &&

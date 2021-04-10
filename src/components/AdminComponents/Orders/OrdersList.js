@@ -1,14 +1,16 @@
+/* eslint-disable */
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Route, useHistory } from 'react-router-dom'
 import { makeStyles, Grid, Typography, Box, InputLabel, Select, MenuItem } from '@material-ui/core'
 import { getAllOrersRequest, changeOrder } from '../../../store/actions'
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import OrderCard from './OrderCard'
-// import OrderDetail from './OrderDetali'
 import AdminOrderPage from '../../../pages/AdminPage/AdminOrderPage'
 import ListPagination from '../ListPagination'
 import LoadingIcon from '../LoadingIcon'
 import NoDataFound from '../NoDataFound'
+import OrderSelectBox from './OrderSelectBox'
 
 const useStyles = makeStyles(() => ({
   left: {
@@ -39,25 +41,40 @@ const useStyles = makeStyles(() => ({
   },
   styleProgress: {
     borderLeft: '4px solid #0878e6'
-  }
+  },
+  selectWrapper:{
+    width: '48%'
+  },
+  selectBox:{
+    width: '100%'
+  },
 }))
+
+function returnPath(listType){
+  if(listType === 'admin'){
+    return '/admin/orders'
+  }
+  return '/employee-orders'
+}
 
 function OrdersLists(props) {
   const classes = useStyles()
-  const { pageSize, urlPage, status } = props
+  const { pageSize, urlPage, status, listType } = props
   const tableType = 'order'
+  const path = returnPath(listType)
   const history = useHistory()
-  const [curCard, setCurCard] = React.useState('default')
-  const [prevCard, setPrevCard] = React.useState('unset')
-  // const [selectId, setSelectId] = React.useState('')
-  // const [selectType, setSelectType] = React.useState('')
+  const [curCard, setCurCard] = React.useState('default') // current
+  const [prevCard, setPrevCard] = React.useState('unset') // previous card
   const [orderStatus, setOrderStatus] = React.useState(status)
-  const listPayload = { page: urlPage, pageSize: pageSize, status: orderStatus }
+  const [sortValue, setsortValue] = React.useState('')
+  const listPayload = { page: urlPage, pageSize: pageSize, status: orderStatus, sort: sortValue }
   const dispatch = useDispatch()
   const data = useSelector(state => state.order.orders.result)
   const dataCount = useSelector(state => state.order.orders.count)
   const loading = useSelector(state => state.order.loading)
   const error = useSelector(state => state.order.error)
+  const matches = useMediaQuery('(max-width:480px)')
+  // console.log('test', listPayload)
   const returnPage = (totalCount) => {
     if (totalCount < pageSize) {
       return 1
@@ -73,7 +90,7 @@ function OrdersLists(props) {
     dispatch(getAllOrersRequest(listPayload))
   },[])
 
-  function handleSelectOrderCard(row) {
+  function handleSelectOrderCard(row, id, type) {
     if (prevCard === 'unset'){
       setPrevCard(row)
     } else {
@@ -82,11 +99,10 @@ function OrdersLists(props) {
     }
     document.getElementById(`orderCard${row}`).classList.add('order-card-select')
     setCurCard(row)
-    console.log('row', row)
-    // setSelectId(id)
-    // setSelectType(type)
     dispatch(changeOrder(row))
-    // history.push(`/admin/orders/${id}`)
+    if (matches){
+      history.push(`${path}/${id}?type=${type}`)
+    } 
   }
 
   // eslint-disable-next-line no-shadow
@@ -103,12 +119,29 @@ function OrdersLists(props) {
     }
   }
 
+  const formatPath = (sort, status) => {
+    if(!statue){
+      return `/admin/orders`
+    }
+  }
+
   const selectStatusChange = (event) =>{
     setOrderStatus(event.target.value)
     listPayload.status = event.target.value
     listPayload.page = 1
     dispatch(getAllOrersRequest(listPayload))
+    const path = formatPath(listPayload.sort, listPayload.status)
     history.push(`/admin/orders/?status=${listPayload.status}`)
+  }
+
+  const selectSortChange = (event) => {
+    setsortValue(event.target.value)
+    listPayload.sort = event.target.value
+    listPayload.page = 1
+    dispatch(getAllOrersRequest(listPayload))
+    const path = formatPath(listPayload.sort, listPayload.status)
+    console.log(path)
+    history.push(`/admin/orders/?sort=${listPayload.sort}`)
   }
 
   const getPaginationPage = (page) => {
@@ -133,22 +166,31 @@ function OrdersLists(props) {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} className={classes.left}>
             <div>
-              <InputLabel id="orderStatusLabel">Order Status</InputLabel>
-              <Route path="/admin/orders">
-                <Select
-                  labelId="orderStatusLabel"
-                  value={orderStatus}
-                  displayEmpty
-                  onChange={selectStatusChange}
-                  inputProps={{ 'aria-label': 'Without label' }}
-                >
-                  <MenuItem value="">All Status</MenuItem>
-                  <MenuItem value="confirmed">Confirmed</MenuItem>
-                  <MenuItem value="finished">Finished</MenuItem>
-                  <MenuItem value="in-progress">In Progress</MenuItem>
-                  <MenuItem value="cancelled">Cancelled</MenuItem>
-                </Select>
-              </Route>
+              <Grid container direction="row" justify="space-between" >
+                { (listType === 'admin') && ( 
+                  <OrderSelectBox path={path} orderStatus={orderStatus}
+                    selectStatusChange={selectStatusChange}/>
+                )}
+                {/* <div className={classes.selectWrapper}>
+                  <InputLabel id="orderSortLabel">Sort By:</InputLabel>
+                  <Route path={path}>
+                    <Select
+                      className={classes.selectBox}
+                      labelId="orderSortLabel"
+                      value={sortValue}
+                      displayEmpty
+                      onChange={selectSortChange}
+                      inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                      <MenuItem value=""></MenuItem>
+                      <MenuItem value="priceasc">Price Low to High</MenuItem>
+                      <MenuItem value="pricedesc">Price High to Low</MenuItem>
+                      <MenuItem value="dateasc">Date Ascending</MenuItem>
+                      <MenuItem value="datedesc">Date Descending</MenuItem>
+                    </Select>
+                  </Route>
+                </div> */}
+              </Grid>
               {data.map((row, index) => {
                 const idName = `orderCard${index}`
                 const classToUse = switchCardStyle(row.status.toLowerCase())
@@ -157,7 +199,7 @@ function OrdersLists(props) {
                     id={idName}
                     key={idName}
                     // eslint-disable-next-line no-underscore-dangle
-                    onClick={() => handleSelectOrderCard(index)}
+                    onClick={() => handleSelectOrderCard(index, row._id, row.type)}
                     className={`${classes.card} ${classes[classToUse]}`}
                     aria-hidden="true"
                   >
@@ -174,14 +216,15 @@ function OrdersLists(props) {
               })}
             </div>
             <ListPagination
-              tableType={tableType}
+              path={path}
               getPaginationPage={getPaginationPage}
               count={finalPage}
             />
           </Grid>
+          {!matches && (
           <Grid item xs={12} sm={8} className={classes.right}>
-            <AdminOrderPage />
-          </Grid>
+            <AdminOrderPage /> 
+          </Grid>)}
         </Grid>
       )}
       {!loading && data !== undefined && data.length === 0 &&

@@ -13,8 +13,8 @@ const useStyles = makeStyles(() => ({
 
 function ListPagination(props){
   const classes = useStyles()
-  const { tableType, getPaginationPage, count } = props
-  const path = `/admin/${tableType}s`
+  const { path, getPaginationPage, count } = props
+  // const path = `/admin/${tableType}s`
 
   return(
     <Route path={path}>
@@ -22,6 +22,7 @@ function ListPagination(props){
       const query = new URLSearchParams(location.search)
       const page = parseInt(query.get('page') || '1', 10)
       const status = (query.get('status') || '')
+      
       return (
         <Pagination
           page={page}

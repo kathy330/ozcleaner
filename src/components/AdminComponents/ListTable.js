@@ -41,6 +41,8 @@ function ListCustomerTable(props) {
   const loading = useSelector(state => state.userslist.loading)
   const error = useSelector(state => state.userslist.error)
   const dispatchRequest = (tableType === 'customer') 
+  const path = dispatchRequest ? '/admin/customers' : '/admin/staffs'
+  
   // eslint-disable-next-line no-shadow
   const returnPage = (usersCount) => {
     if (usersCount < pageSize) {
@@ -122,7 +124,7 @@ function ListCustomerTable(props) {
             </Table>
           </TableContainer>
           <ListPagination 
-            tableType={tableType} 
+            path={path} 
             getPaginationPage={getPaginationPage}
             count={finalPage}
           />

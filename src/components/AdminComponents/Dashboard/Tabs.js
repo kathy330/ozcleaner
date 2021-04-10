@@ -16,7 +16,7 @@ import AdminOrderPage from '../../../pages/AdminPage/AdminOrderPage'
 import AdminStaffsDetailsPage from "../../../pages/AdminPage/AdminStaffDetailsPage"
 import AdminCustomersDetailsPage from "../../../pages/AdminPage/AdminCustomersDetailsPage"
 import AdminOrdersListPage from "../../../pages/AdminPage/AdminOrdersListPage"
-
+import ScrollToTop from '../ScrollToTop'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -107,15 +107,17 @@ export default function SimpleTabs() {
           <Tab label="STAFFS" {...a11yProps(3)} component={Link} to="/admin/staffs" />
         </Tabs>
       </AppBar>
-      <Switch>
-        <ProtectedRoute path="/admin/dashboard" component={AdminDashboardPage} />
-        <ProtectedRoute path="/admin/orders" exact component={AdminOrdersListPage} />
-        <ProtectedRoute path="/admin/customers" exact component={AdminCustomersListPage} />
-        <ProtectedRoute path="/admin/staffs" exact component={AdminStaffsListPage} />
-        <ProtectedRoute path="/admin/staffs/:id" exact component={AdminStaffsDetailsPage} />
-        <ProtectedRoute path="/admin/customers/:id" exact component={AdminCustomersDetailsPage} />
-        <ProtectedRoute path="/admin/orders/:id" exact component={AdminOrderPage} />
-      </Switch>
+      <ScrollToTop>
+        <Switch>
+          <ProtectedRoute path="/admin/dashboard" component={AdminDashboardPage} />
+          <ProtectedRoute path="/admin/orders" exact component={AdminOrdersListPage} />
+          <ProtectedRoute path="/admin/customers" exact component={AdminCustomersListPage} />
+          <ProtectedRoute path="/admin/staffs" exact component={AdminStaffsListPage} />
+          <ProtectedRoute path="/admin/staffs/:id" exact component={AdminStaffsDetailsPage} />
+          <ProtectedRoute path="/admin/customers/:id" exact component={AdminCustomersDetailsPage} />
+          <ProtectedRoute path="/admin/orders/:id" exact component={AdminOrderPage} />
+        </Switch>
+      </ScrollToTop>
     </div>
   )
 }

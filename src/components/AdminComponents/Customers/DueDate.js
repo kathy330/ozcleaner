@@ -33,7 +33,6 @@ function displayTime(time) {
 export default function DueDate(props) {
   const classes = useStyles()
   const { endTime } = props
-  console.log(endTime)
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>

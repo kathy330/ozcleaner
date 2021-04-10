@@ -22,10 +22,12 @@ const initialState = {
   updateing: false,
   loadingNum: 1,
   error: null,
-  payment:false,
+  payment: false,
   order: {}, //repos_in_reducer_init: "init value",
-  orders: {'result':[],
-            'count':0},
+  orders: {
+    'result': [],
+    'count': 0
+  },
   row: 0,
   completeinfo: {
     info: localStorage.getItem('regularCleanOrder') ?
@@ -45,7 +47,7 @@ function orderReducer(state = initialState, action) {
     case actionType.PAY_ORDER_SUCCESS:
       return {
         ...state,
-        payment:true
+        payment: true
       }
 
     // 2/4 GET regular order --
@@ -87,7 +89,7 @@ function orderReducer(state = initialState, action) {
         updateData: action.repos,
         // order: action.postInSaga,
         order: order,
-        orders:{...state.orders, result: orders}
+        orders: { ...state.orders, result: orders }
       }
 
     case actionType.UPDATE_REGULAR_FAILED:
@@ -163,7 +165,7 @@ function orderReducer(state = initialState, action) {
       }
     case actionType.GET_ALL_ORDERS_FAILED:
       return {
-        ... state,
+        ...state,
         loading: false,
         error: action.message
       }
@@ -175,6 +177,35 @@ function orderReducer(state = initialState, action) {
         order: state.orders.result[action.payload],
         row: action.payload
       }
+
+    // 8/8 Submit reviews from users -- kangkang
+    case actionType.SUBMIT_REVIEWS_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case actionType.SUBMIT_REVIEWS_SUCCESS:
+      let ordersa = state.orders.result
+      let ordera = { ...state.order, review: action.repos.review, rating: action.repos.rating }
+      ordersa[state.row] = ordera
+      console.log(action.repos.review)
+      console.log(action.repos.rating)
+
+      return {
+        ...state,
+        loading: false,
+        order: ordera,
+        orders: { ...state.orders, result: ordersa }
+      }
+
+    case actionType.SUBMIT_REVIEWS_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      }
+
     default:
       return state
   }

@@ -77,7 +77,7 @@ export function postEndOfLeaseFaild(obj) {
 //  5/6 PAY Regular order -- dongyu 
 export const payOrderRequest = (obj) => ({
   type: actionTypes.PAY_ORDER_REQUEST,
-  payload: obj, 
+  payload: obj,
 })
 export const payOrderSuccess = (obj) => ({
   type: actionTypes.PAY_ORDER_SUCCESS,
@@ -238,3 +238,19 @@ export const changeOrder = num => ({
   type: actionTypes.CHANGE_ORDER,
   payload: num
 })
+
+// Submit reviews from users
+export const submitReviewsRequest = (obj) => ({
+  type: actionTypes.SUBMIT_REVIEWS_REQUEST,
+  payload: obj, // By convention, we put that information in a field called payload.
+})
+export const submitReviewsSuccess = (obj) => ({
+  type: actionTypes.SUBMIT_REVIEWS_SUCCESS,
+  payload: obj,
+})
+export function submitReviewsFailed(obj) {
+  return {
+    type: actionTypes.SUBMIT_REVIEWS_FAILED,
+    payload: obj,
+  }
+}

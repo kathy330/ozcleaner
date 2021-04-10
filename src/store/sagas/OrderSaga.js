@@ -48,19 +48,19 @@ function* postRegularOrder(action) {
   // action.payload就是post-action.js的payload键，
   // 所以action.payload就等于post-action的obj
   // console.log("Post from component: ",action.payload) 
-  const {token} = JSON.parse(localStorage.getItem('userInfo')).data
+  const { token } = JSON.parse(localStorage.getItem('userInfo')).data
   const Header = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'Authorization': token
   }
-  const result = yield call(axios.post,postRCApi, action.payload,{headers:Header})
-  const {data} = result
+  const result = yield call(axios.post, postRCApi, action.payload, { headers: Header })
+  const { data } = result
   // console.log('return from backend: ', data)
-  if(result.errors) {
-    console.log("regular order post failed!",result.errors)
-    yield put({type:'POST_REGULAR_FAILED',errorInSaga:result.errors})
-  } 
+  if (result.errors) {
+    console.log("regular order post failed!", result.errors)
+    yield put({ type: 'POST_REGULAR_FAILED', errorInSaga: result.errors })
+  }
   else {
     // console.log("regular order post successss!",result)
     // yield put({ type: 'POST_REGULAR_SUCCESS', postInSaga: action.payload })
@@ -80,19 +80,19 @@ function* postEndLeaseOrder(action) {
   // action.payload就是post-action.js的payload键，
   // 所以action.payload就等于post-action的obj
   // console.log("Post from component: ",action.payload) 
-  const {token} = JSON.parse(localStorage.getItem('userInfo')).data
+  const { token } = JSON.parse(localStorage.getItem('userInfo')).data
   const Header = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'Authorization': token
   }
-  const result = yield call(axios.post,postECApi, action.payload,{headers:Header})
-  const {data} = result
+  const result = yield call(axios.post, postECApi, action.payload, { headers: Header })
+  const { data } = result
   // console.log('return from backend: ', data)
-  if(result.errors) {
-    console.log("end of lease post failed!",result.errors)
-    yield put({type:'POST_ENDOFLEASE_FAILED',errorInSaga:result.errors})
-  } 
+  if (result.errors) {
+    console.log("end of lease post failed!", result.errors)
+    yield put({ type: 'POST_ENDOFLEASE_FAILED', errorInSaga: result.errors })
+  }
   else {
     // yield put({ type: 'POST_ENDOFLEASE_SUCCESS', postInSaga: action.payload })
     yield put({ type: 'POST_ENDOFLEASE_SUCCESS', postInSaga: data })
@@ -104,7 +104,33 @@ function* postEndLeaseOrder(action) {
 
 // 3/3 PAY order --dongyu
 function* payOrder() {
-    yield put({ type: 'PAY_ORDER_SUCCESS', postInSaga: 'success!!' })
+  yield put({ type: 'PAY_ORDER_SUCCESS', postInSaga: 'success!!' })
+}
+
+
+// submit User Reviews --kangkang
+function* submitUserReviews(action) {
+  const { id, review, type, rate } = action.payload
+  console.log(id)
+  console.log(action.payload)
+  console.log(review)
+  console.log(type)
+  const update = { review: review, rating: rate }
+  const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
+  const updateApi = `http://localhost:8000/${model}/${id}`  // PUT方法更新regular
+
+  try {
+    console.log('aaa')
+    const regularData = yield call(axios.put, updateApi, update)
+    console.log(regularData)
+    console.log(update)
+    yield put({ type: 'SUBMIT_REVIEWS_SUCCESS', repos: update })
+    // 这个data是返回对象reponse的data属性
+  }
+  catch (e) {
+    console.log(e)
+    yield put({ type: 'SUBMIT_REVIEWS_FAILED', payload: e })
+  }
 }
 
 /*
@@ -121,6 +147,7 @@ function* RegularSaga() {
   yield takeEvery('UPDATE_REGULAR_REQUEST', updateRegularOrder) // UPDATE regular order
 
   yield takeEvery('PAY_ORDER_REQUEST', payOrder) // PAY
+  yield takeEvery('SUBMIT_REVIEWS_REQUEST', submitUserReviews)
 }
 
 export default RegularSaga

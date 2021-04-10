@@ -104,7 +104,7 @@ function isAuth(user,classes) {
         variant="contained"
         className={classes.check}
         component={Link} 
-        to={`/myorder/${user._id}?type=${user.type}`}
+        to={`/userOrders/${user._id}?type=${user.type}`}
       >
         View
       </Button>

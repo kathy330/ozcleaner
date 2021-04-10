@@ -11,15 +11,18 @@ import Order from './pages/OrderPage/OrderPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 // import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
+import OrderDetailsPage from './pages/OrderPage/OrderDetailsPage'
 // import OrderPay from "./pages/OrderPage/OrderPayPage"
 // import ProfilePage from './pages/ProfilePage/ProfilePage'
 // import AdminCustomersPage from './pages/AdminPage/AdminOrderPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 import theme from './styles/theme'
-import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
-import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
+// import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
+// import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
 import AdminIndexPage from "./pages/AdminPage/AdminIndexPage"
 import AdminOrderPage from "./pages/AdminPage/AdminOrderPage"
+import OrderCusDetailPage from "./pages/OrderPage/CustomersDetails"
+import OrderStaffDetailPage from "./pages/OrderPage/StaffDetails"
 // import ....Page from ....
 import DongyuPage from './pages/zpractice/Dongyu/Dongyu'
 import KangkangPage from './pages/zpractice/Kangkang/Kangkang'
@@ -31,6 +34,8 @@ import OliviaPage from './pages/zpractice/Olivia/Olivia'
 import MengxuanPage from './pages/zpractice/Mengxuan/Mengxuan'
 import YanboForm from './pages/zpractice/Yanbo/YanboForm'
 import EmployeeOrderList from './pages/OrderPage/EmployeeOrderList'
+import ForgetPassword from "./components/SignUpComponents/ForgetPassword"
+import ResetPassword from './components/SignUpComponents/ResetPassword'
 
 function App() {
   // 使用theme方法：
@@ -44,6 +49,7 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <ProtectedRoute path="/order" exact component={Order} />
         <ProtectedRoute path="/order/confirm" exact component={OrderConfirmPage} />
+        <Route path="/myorder/:id" exact component={OrderDetailsPage} />
         {/* <ProtectedRoute path="/order/pay" exact component={OrderPay} /> */}
         {/* <Route path="/profile/customer" exact component={CustomerProfilePage} /> */}
         {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
@@ -56,8 +62,10 @@ function App() {
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
         <Redirect exact from="/admin" to="/admin/dashboard" />
         <ProtectedRoute path="/admin" component={AdminIndexPage} />
-        <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
-        <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} />
+        {/* <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
+        <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} /> */}
+        <Route path="/users/:id" exact component={OrderCusDetailPage} /> 
+        <Route path="/employees/:id" exact component={OrderStaffDetailPage} /> 
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
         {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
 
@@ -76,6 +84,8 @@ function App() {
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />
 
+        <Route path="/forgetpassword" exact component={ForgetPassword} />
+        <Route path="/forgetpassword/resetpassword" exact component={ResetPassword} />
 
         <Route component={ErrorPage} />
       </Switch>

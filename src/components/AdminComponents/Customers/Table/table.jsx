@@ -15,9 +15,6 @@ import TablePagination from '@material-ui/core/TablePagination'
 import date from 'date-and-time'
 import { Link } from 'react-router-dom'
 import Alert from '@material-ui/lab/Alert'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogTitle from '@material-ui/core/DialogTitle'
 import {getCUSDETAILTABLERequest,updateRegularRequest} from "../../../../store/actions"
 import { GreenStatus ,RedStatus,
   YellowStatus,GreyStatus,BlueStatus} from '../../../UIComponents/Status'
@@ -45,6 +42,12 @@ const useStyles = makeStyles({
     display:"inline-block",
     margin:" 0 3%",
     background:"#f35162",
+    color:"white"
+  },
+  comment:{
+    display:"inline-block",
+    margin:" 0 3%",
+    background:"#ffad33",
     color:"white"
   },
   action:{
@@ -80,15 +83,15 @@ function isButton(words) {
   return <GreyStatus>{words.status}</GreyStatus>
 }
 
-function isCancel(words,classes,handleClickOpen,user) {
-  if(words.status==='confirmed') {
+function isCancel(user,classes,handleCancelOrder) {
+  if(user.status==='confirmed') {
     return  (
       <Button 
         variant="contained"
         className={classes.delete}
         id={user.type}
         value={user._id}
-        onClick={handleClickOpen}
+        onClick={handleCancelOrder}
       >
         Cancel
       </Button>
@@ -100,12 +103,64 @@ function isCancel(words,classes,handleClickOpen,user) {
       className={classes.delete}
       id={user.type}
       value={user._id}
-      onClick={handleClickOpen}
+      onClick={handleCancelOrder}
       disabled
     >
       Cancel
     </Button>
 )
+  
+}
+
+function isComment(user,classes) {
+  const level = localStorage.getItem('authLevel')
+  if(level==="admin"){
+    if(user.reviewStatus){
+      return(
+        <Button 
+          variant="contained"
+          className={classes.check}
+          component={Link} 
+          to={`/admin/orders/${user._id}?type=${user.type}`}
+        >
+          View
+        </Button>
+      )
+    }
+    return(
+      <Button 
+        variant="contained"
+        className={classes.comment}
+        component={Link} 
+        to={`/admin/orders/${user._id}?type=${user.type}`}
+      >
+        Review
+      </Button>
+    )  
+  }
+  if(user.reviewStatus){
+    return(
+      <Button 
+        variant="contained"
+        className={classes.check}
+        component={Link} 
+        to={`/myorder/${user._id}?type=${user.type}`}
+      >
+        View
+      </Button>
+    )
+  }
+  return(
+    <Button 
+      variant="contained"
+      className={classes.comment}
+      component={Link} 
+      to={`myorder/${user._id}?type=${user.type}`}
+    >
+      Review
+    </Button>
+  )
+  
   
 }
 
@@ -119,17 +174,13 @@ const BasicTable=(props)=> {
   // const error = useSelector(state => state.cusDetailsTable.error)
 
 
-  const [state] = React.useState({
-    status: users.status
-  })
-
   const dispatchRequested=()=>{
     dispatch(getCUSDETAILTABLERequest(data))
   }
 
   useEffect(()=>{
     dispatchRequested()
-},[state])
+},[])
 
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
@@ -143,21 +194,12 @@ const BasicTable=(props)=> {
     setPage(0)
   }
 
-  const [open, setOpen] = React.useState(false)
-
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
-
+// cancel orders
   const handleCancelOrder = (event) => {
-    const body={id:event.target.value,orderstatus:"cancelled",type:event.target.id}
-    console.log("111111",body)
-    setOpen(false)
-    dispatch(updateRegularRequest(body))
+    if(event.target.value&&event.target.id){
+      const body={id:event.target.value,orderstatus:"cancelled",type:event.target.id}
+      dispatch(updateRegularRequest(body))
+    }
   }
 
 
@@ -194,37 +236,12 @@ const BasicTable=(props)=> {
                 </TableCell>
                 <TableCell align="center">{displayTime(user.createdAt)}</TableCell>
                 <TableCell align="center" className={classes.action}>
-                  <Button 
-                    variant="contained"
-                    className={classes.check}
-                    component={Link} 
-                    to={`/admin/orders/${user._id}?type=${user.type}`}
-                  >
-                    View
-                  </Button>
-                  {isCancel(user,classes,handleClickOpen,user)}
+                  {isComment(user,classes)}
+                  {isCancel(user,classes,handleCancelOrder)}
                 </TableCell>
 
               </TableRow>
        ))}
-            <Dialog
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">
-                Do you want to cancel this order?
-              </DialogTitle>
-              <DialogActions>
-                <Button onClick={handleCancelOrder} color="primary">
-                  Yes
-                </Button>
-                <Button onClick={handleClose} color="primary" autoFocus>
-                  No
-                </Button>
-              </DialogActions>
-            </Dialog>
                   
           </TableBody>
         

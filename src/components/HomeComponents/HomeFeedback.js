@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   img: {
     marginBottom: '55px',
     // marginTop: '102px',
-    marginTop: '79px',
+    marginTop: '55px',
     // padding: '0px',
     
     '& img': {

@@ -67,7 +67,19 @@ const useStyles = makeStyles((theme) => ({
     }
   },
 
+  selected: {
+    '&$selected': {
+      backgroundColor: 'white',
+
+      '&:hover': {
+        backgroundColor: '#67a9ff',
+
+      }
+    },
+  }
+
 }))
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -200,12 +212,12 @@ export default function HomeSelectForm() {
                 <Controller
                   as={(
                     <Select MenuProps={SelectStyle}>
-                      <MenuItem value="0">0</MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      <MenuItem value="4">4</MenuItem>
-                      <MenuItem value="5">5</MenuItem>
+                      <MenuItem className={classes.selected} value="0">0</MenuItem>
+                      <MenuItem className={classes.selected} value="1">1</MenuItem>
+                      <MenuItem className={classes.selected} value="2">2</MenuItem>
+                      <MenuItem className={classes.selected} value="3">3</MenuItem>
+                      <MenuItem className={classes.selected} value="4">4</MenuItem>
+                      <MenuItem className={classes.selected} value="5">5</MenuItem>
                     </Select>
                 )}
                   name="bedRoomNum"
@@ -226,12 +238,12 @@ export default function HomeSelectForm() {
                 <Controller
                   as={(
                     <Select MenuProps={SelectStyle}>
-                      <MenuItem value="0">0</MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      <MenuItem value="4">4</MenuItem>
-                      <MenuItem value="5">5</MenuItem>
+                      <MenuItem className={classes.selected} value="0">0</MenuItem>
+                      <MenuItem className={classes.selected} value="1">1</MenuItem>
+                      <MenuItem className={classes.selected} value="2">2</MenuItem>
+                      <MenuItem className={classes.selected} value="3">3</MenuItem>
+                      <MenuItem className={classes.selected} value="4">4</MenuItem>
+                      <MenuItem className={classes.selected} value="5">5</MenuItem>
                     </Select>
                 )}
                   name="bathRoomNum"
@@ -252,9 +264,9 @@ export default function HomeSelectForm() {
                 <Controller
                   as={(
                     <Select MenuProps={SelectStyle}>
-                      <MenuItem value="unit">Unit</MenuItem>
-                      <MenuItem value="apartment">Apartment</MenuItem>
-                      <MenuItem value="house">House</MenuItem>
+                      <MenuItem className={classes.selected} value="unit">Unit</MenuItem>
+                      <MenuItem className={classes.selected} value="apartment">Apartment</MenuItem>
+                      <MenuItem className={classes.selected} value="house">House</MenuItem>
                                   
                     </Select>
                 )}

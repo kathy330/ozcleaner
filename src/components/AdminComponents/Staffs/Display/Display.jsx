@@ -1,7 +1,9 @@
+/* eslint-disable max-len */
 import React, {useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box } from "@material-ui/core"
+import { Box} from "@material-ui/core"
+import{ Alert, AlertTitle } from '@material-ui/lab'
 import Card from "../Card"
 import Avatars from "../Avatar"
 import {getSTAFFDETAILRequest} from "../../../../store/actions"
@@ -44,7 +46,6 @@ const Displays=(props)=> {
   const staff =useSelector(state => state.staffDetails.staffDetails) 
   const loading = useSelector(state => state.staffDetails.loading)
   const error = useSelector(state => state.staffDetails.error)
-  // console.log("STAFF :",staff)
 
   const dispatchRequested=()=>{
     dispatch(getSTAFFDETAILRequest(data))
@@ -74,9 +75,16 @@ const Displays=(props)=> {
       </div>
       )} 
        
-      {staff.length===0&&!loading &&<p>No staffs available!</p>}
-      {error&&!loading&&<p>{error}</p>}
-  
+      {staff.length===0&&
+      (<Alert severity="info">No users available! — check it out!</Alert>)}
+      {error&&!loading&&
+        ( 
+          <Alert severity="error"> 
+            <AlertTitle>{error}</AlertTitle>
+            It&apos;s been a while since you&apos;ve signed in to Ozcleaner. 
+            Please refresh your browser and try again.
+          </Alert>
+)}
     </>  
 
   )

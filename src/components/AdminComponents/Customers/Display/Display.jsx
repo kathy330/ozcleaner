@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box } from "@material-ui/core"
-import Alert from '@material-ui/lab/Alert'
+import{ Alert, AlertTitle } from '@material-ui/lab'
 import Card from "../Card"
 import Avatars from "../Avatar"
 import {getCUSDETAILRequest} from "../../../../store/actions"
@@ -44,7 +44,7 @@ const Displays=(props)=> {
 
   const users =useSelector(state => state.cusDetails.cusDetails) 
   const loading = useSelector(state => state.cusDetails.loading)
-  // const error = useSelector(state => state.cusDetails.error)
+  const error = useSelector(state => state.cusDetails.error)
  
 
 
@@ -74,9 +74,17 @@ const Displays=(props)=> {
           </Box>
         </div>
     )}
-      {users.length===0&&!loading &&
-      <Alert severity="error">This is an error alert — check it out!</Alert>}
-      {/* {error&&!loading&&<p>{error}</p>} */}
+      {users.length===0&&(
+        (<Alert severity="info">No users available! — check it out!</Alert>)
+    )}
+      {error&&!loading&&
+        ( 
+          <Alert severity="error"> 
+            <AlertTitle>{error}</AlertTitle>
+            It&apos;s been a while since you&apos;ve signed in to Ozcleaner. 
+            Please refresh your browser and try again.
+          </Alert>
+)}
 
     </>  
   

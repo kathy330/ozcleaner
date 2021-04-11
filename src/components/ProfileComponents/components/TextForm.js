@@ -1,14 +1,19 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from "react"
+import React,{useState} from "react"
 // import ReactDOM from "react-dom"
 // import Select from "react-select";
 // import { Redirect } from "react-router-dom" 
-import {useDispatch} from 'react-redux'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import {useDispatch,useSelector} from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
 import { TextField,Typography,Grid,Button } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles'
 import SaveIcon from '@material-ui/icons/Save'
 import {updateProfileRequest} from "../../../store/actions/actionCreator"
+
 
 // const postData = {      
   // address: {
@@ -48,8 +53,10 @@ const useStyles = makeStyles((theme) => ({
 export default function TextForm() {
   const { control, handleSubmit } = useForm()
   const classes = useStyles()
+  const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const onSubmit = data => {
+    setOpen(true)
     if(data.type!==""
     &&data.postcode!=="" &&data.birthday!=="" 
     // &&data.email!==""&&data.password!==""
@@ -58,10 +65,6 @@ export default function TextForm() {
     &&data.address2!==""&&data.suburb!=="" &&data.state!==""
     ) {
   const newData = {
-    // ...postData,
-    type:data.type,
-    // email:data.email,
-    birthday:data.birthday,
     address:{
       address1:data.address1,
       address2:data.address2,
@@ -70,8 +73,6 @@ export default function TextForm() {
       postcode:data.postcode,
     },
     phone:data.phone,
-    // password:data.password,
-    employeeID: 2222,
     name:{
       firstName:data.firstName,
       lastName:data.lastName,
@@ -80,12 +81,9 @@ export default function TextForm() {
     console.log(newData)
     dispatch(updateProfileRequest(newData)) 
   }}
-
-  // const loading = useSelector(astate => astate.employee_in_reducer_index.loading)
-  // // console.log("loading parameter: ", loading)
-  // if (onsubmit && !loading) {
-  //   return (<Redirect to="/profile/customer" />)
-  // }
+  const detail = useSelector(state => state.employee_in_reducer_index)
+  const handleClose = () =>{setOpen(false)}
+  const {profile}= detail
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -104,6 +102,7 @@ export default function TextForm() {
             name="firstName"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -120,6 +119,7 @@ export default function TextForm() {
             name="lastName"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -138,6 +138,7 @@ export default function TextForm() {
             name="address1"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -154,6 +155,7 @@ export default function TextForm() {
             name="address2"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -170,6 +172,7 @@ export default function TextForm() {
             name="suburb"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -186,6 +189,7 @@ export default function TextForm() {
             name="state"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -202,24 +206,9 @@ export default function TextForm() {
             name="postcode"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
-        {/* <Grid item xs={12} sm={6}>
-          <Typography variant="h6"> Birthday </Typography> 
-          <Controller
-            as={(
-              <TextField
-                id="birthday"
-            // label="First name"
-                variant="outlined"
-                size="small"
-              />
- )}
-            name="birthday"
-            control={control}
-            defaultValue=""
-          />
-        </Grid> */}
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> Phone </Typography> 
           <Controller
@@ -234,14 +223,13 @@ export default function TextForm() {
             name="phone"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={7} />
         <Grid item xs={12} sm={5}>
 
-          {/* <input type="submit" /> */}
           <Button 
-            // href='/order/confirm'
             type="submit"
             variant="contained"
             size="medium"
@@ -249,9 +237,19 @@ export default function TextForm() {
             className={classes.button}
           >
             save
-          </Button> 
+          </Button>
         </Grid>
       </Grid>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle className={classes.dialog}>
+          Update profile successfully!
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </form>
   )
 }

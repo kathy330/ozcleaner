@@ -63,8 +63,8 @@ export default function CheckoutForm({price,paystatus,data}) {
     }
     const res = await axios.post(postApi,paydata,{headers:Header})
     await setClientSecret(res.data.clientSecret) // 🌟必须有这个
-    console.log('付款已创建: ',res)
-    console.log('付款安全码: ',res.data)
+    // console.log('付款已创建: ',res)
+    // console.log('付款安全码: ',res.data)
   }
   
   useEffect(() => {
@@ -80,7 +80,7 @@ export default function CheckoutForm({price,paystatus,data}) {
   }
 
   const paySubmit = async (event) => {
-    console.log('pay now..')
+    console.log('pay now...')
     event.preventDefault()
     setProcessing(true)
 
@@ -133,7 +133,7 @@ export default function CheckoutForm({price,paystatus,data}) {
     // userDetail:'604cb4dfc875675915d0d0a5'
   }
 
-  console.log('pay success? ', paystatus)
+  // console.log('pay success? ', paystatus)
   if(paystatus === true) {
     const{otherdata} = data
     const{extra} = data

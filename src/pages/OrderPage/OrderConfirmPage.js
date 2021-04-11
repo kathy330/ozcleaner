@@ -66,7 +66,7 @@ function OrderConfirm() {
   // const loadingREGdata = useSelector(state => state.regular_in_reducer_index.loading)  
   // const loadingNumREGdata = useSelector(state => state.order.loadingNum)  
   const orderData = useSelector(state => state.order.order)  
-  console.log('order data from redex: ',orderData)
+  // console.log('order data from redex: ',orderData)
 
   // 2/2 直接从end reducer取值回来
   // const loadingENDdata = useSelector(state => state.regular_in_reducer_index.loading)  

@@ -8,20 +8,26 @@ import TextForm from './components/TextForm'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight:'80vh',
-    flexGrow: 1
+    flexGrow: 1,
+    minHeight: '80vh',
   },
+
   paper: {
+    color: theme.palette.text.secondary,
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.secondary
   },
-  botton:{
-    textAlign: "center"},
+
+  botton: {
+    textAlign: "center",
+  },
+
   marginLeft: {
-    marginLeft:'8vh',
-    [theme.breakpoints.down('xs')]: {
-      marginLeft:'0',}},
+    // marginLeft: '8vh',
+    // [theme.breakpoints.down('xs')]: {
+    //   marginLeft: '0',
+    // }
+  },
   
 }))
 

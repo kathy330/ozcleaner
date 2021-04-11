@@ -33,21 +33,30 @@ import {updateProfileRequest} from "../../../store/actions/actionCreator"
 // }
 const useStyles = makeStyles((theme) => ({
   center: {
-    [theme.breakpoints.down('xs')]: {
-    textAlign:'center',
-  }},
-  button: {  
-    fontSize:'1rem',
-    alignContent:'end',
+    // [theme.breakpoints.down('xs')]: {
+    //   textAlign: 'center',
+    // }
+    textAlign: 'center',
+  },
+
+  button: {
+    // alignContent: 'center',
     background: theme.palette.primary.main, // #007bf5
     color: theme.palette.primary.contrastText,
-    textalign: 'right',
-    marginTop:'2rem',
-    paddingInline: '40px', // 太长，小屏幕装不下
+    fontSize: '1rem',
+    marginTop: '2rem',
+    paddingInline: '50px', // 太长，小屏幕装不下
+    // textalign: 'center',
+
     '&:hover': {
       background: theme.palette.primary.hover, // #0050c1
       boxShadow: '0px 2px 10px #888',},
   },
+
+  formcenter: {
+    padding: '0 5vh',
+    width: '100%',
+  }
 }))
 
 export default function TextForm() {
@@ -87,10 +96,19 @@ export default function TextForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Grid container direction="row" spacing={2} className={classes.center}>
+      <Grid 
+        container
+        direction="row"
+        spacing={2}
+        justify="center"
+        alignItems="center"
+        alignContent="center"
+        className={classes.center}
+      >
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> First name</Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="firstName"
@@ -108,6 +126,7 @@ export default function TextForm() {
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> Last name</Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="lastName"
@@ -127,6 +146,7 @@ export default function TextForm() {
             Street  Address
           </Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="address1"
@@ -144,6 +164,7 @@ export default function TextForm() {
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> Apt  #(optional) </Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="address2"
@@ -161,6 +182,7 @@ export default function TextForm() {
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> Suburb </Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="suburb"
@@ -178,6 +200,7 @@ export default function TextForm() {
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> State </Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="state"
@@ -195,6 +218,7 @@ export default function TextForm() {
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> Postcode </Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="postcode"
@@ -212,6 +236,7 @@ export default function TextForm() {
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> Phone </Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="phone"
@@ -226,7 +251,8 @@ export default function TextForm() {
             required
           />
         </Grid>
-        <Grid item xs={12} sm={7} />
+
+        {/* <Grid item xs={12} sm={7} />
         <Grid item xs={12} sm={5}>
 
           <Button 
@@ -237,8 +263,30 @@ export default function TextForm() {
             className={classes.button}
           >
             save
-          </Button>
+          </Button> */}
+
+        {/* <Grid item xs={12} sm={7} /> */}
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          <Grid item xs={12} sm={4}>
+            {/* <input type="submit" /> */}
+            <Button 
+            // href='/order/confirm'
+              type="submit"
+              variant="contained"
+              size="medium"
+              startIcon={<SaveIcon />}
+              className={classes.button}
+            >
+              SAVE
+            </Button> 
+          </Grid>
         </Grid>
+
       </Grid>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle className={classes.dialog}>

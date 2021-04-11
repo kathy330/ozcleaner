@@ -57,6 +57,15 @@ const useStyles = makeStyles(() => ({
 
   text: {
     paddingLeft: '10px',
+  },
+
+  textbottom: {
+    // backgroundColor: 'white',
+    paddingBottom: '30px',
+  },
+
+  totalprice: {
+    paddingTop: '30px',
   }
 }))
 
@@ -161,7 +170,7 @@ export default function OrderRight({data}) {
   return (
     <>
       <Box className={classes.rightTop}>
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" className={classes.textbottom}>
           <Grid container direction="column">
             {/* <Container maxWidth="sm"> */}
             <Grid item xs={12} sm={12}>
@@ -233,8 +242,10 @@ export default function OrderRight({data}) {
             {/* </Container> */}
           </Grid>
         </Container>
+
         <Divider />
-        <Container maxWidth="lg">
+
+        <Container maxWidth="lg" className={classes.totalprice}>
           <Grid container direction="row" alignItems="flex-end">
             <Grid item xs={6} sm={6}>
               <Typography align="left" variant='h3'>

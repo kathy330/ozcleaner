@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/forbid-prop-types */
@@ -31,7 +32,7 @@ import FormDialogLogin from '../SignUpComponents/PopupFormLogin'
 import FormDialogMenuLogin from '../SignUpComponents/PopupFormLoginMenu'
 import { navBarStyle } from '../../styles/styles'
 import logo from "../../assets/logo.svg" 
-import {signout} from "../../store/actions/actionCreator"
+import {signout,signoutEmployee} from "../../store/actions/actionCreator"
 import LoginDetails from '../SignUpComponents/LoginForm'
 import EmployeeLoginDetails from '../SignUpComponents/EmployeeLoginForm'
 
@@ -96,7 +97,9 @@ export default function HeaderNavigation(props) {
   // 1/1结束登陆窗口函数：
 
   const userSignin = useSelector((state) => state.userSignin)
-  const { userInfo} = userSignin
+  const {userInfo} = userSignin
+  const employeeSignin = useSelector((state) => state.employeeSignin)
+  const {employeeInfo} = employeeSignin
 
 
   const style = navBarStyle()
@@ -106,20 +109,40 @@ export default function HeaderNavigation(props) {
   }
 
 
-  const info = JSON.parse(localStorage.getItem('userInfo'))
+  const userinfoo = JSON.parse(localStorage.getItem('userInfo'))
+  const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
   const level = localStorage.getItem('authLevel')
   let id=''
   let role=''
 
-  if(info){
+  if(userinfoo){
  
-  id = info.data.objectID 
-  role = level === 'user'? 'users' : 'employees'
-}
-  
+    id = userinfoo.data.objectID 
+    // role = level === 'user'? 'users' : 'employees'
+    // if(level==='user'){
+      role = 'users'
+    // }
+    // else if(level==='employee'){
+    //   role = 'employees'
+    // }
+    // else {
+    //   role = 'admin'
+    // }
+  }
+
+  if(employeeinfoo){
+    role = 'employees'
+    id = employeeinfoo.data.objectID 
+
+  }
+  // const ii = '6072ad2147e3bc290251987a'
 
   const signoutHandler = () => {
     dispatch(signout())
+  }
+
+  const employeesignoutHandler = () => {
+    dispatch(signoutEmployee())
   }
 
   const handleClose = () => {
@@ -158,7 +181,8 @@ export default function HeaderNavigation(props) {
               >
                 <MenuIcon />
               </IconButton>
-              {userInfo? (
+
+              {userInfo ? (
                 <>
                   <Box className={style.buttonsBox}>
                     <Button href='/order' className={style.bookingButton}>Booking Now</Button>
@@ -186,33 +210,70 @@ export default function HeaderNavigation(props) {
                   </Drawer>
                 </>
             ) : (
-              <>
-                <Box className={style.buttonsBox}>
-                  {/* <Button href='/order' className={style.bookingButton}>Booking Now</Button> */}
-                  <Button 
-                    className={style.bookingButton}
-                    onClick={handleClickOpen}
-                  >
-                    Booking Now
-                  </Button>
-                  <FormDialog />
-                  <FormDialogLogin />
-                </Box>
-                
-                <Drawer
-                  id="simple-menu"
-                  anchorel={anchor}
-                  keepMounted
-                  open={Boolean(anchor)}
-                  onClose={handleClose}
-                  anchor="right"
-                >
-                  <MenuItem onClick={handleClose}>Booking Now</MenuItem>
-                  <MenuDialog />
-                  <FormDialogMenuLogin />
-                </Drawer>
-              </>
+              ''
             )}
+
+              {employeeInfo ? (
+                <>
+                  <Box className={style.buttonsBox}>
+                    <Button href='/employee-order' className={style.bookingButton}>Browse Orders</Button>
+                    <Button href={`/${role}/${id}`}>My Order</Button>
+                    <Button href='/profile'>My Profile</Button>
+                    <Button
+                      onClick={employeesignoutHandler}
+                    >
+                      Sign Out
+                    </Button>
+                  </Box>
+                  <Drawer
+                    id="simple-menu"
+                    anchorel={anchor}
+                    keepMounted
+                    open={Boolean(anchor)}
+                    onClose={handleClose}
+                    anchor="right"
+                  >
+                    <MenuItem onClick={handleClose}>Booking Now</MenuItem>
+                    <MenuItem>My Order</MenuItem>
+                    <MenuItem>My Profile</MenuItem>
+                    <MenuItem onClick={employeesignoutHandler}>Sign Out</MenuItem>
+                  </Drawer>
+                </>
+            ) : (
+              ''
+            )}
+
+          
+              {!employeeInfo && !userInfo ? (
+                <>
+                  <Box className={style.buttonsBox}>
+                    <Button 
+                      className={style.bookingButton}
+                      onClick={handleClickOpen}
+                    >
+                      Booking Now
+                    </Button>
+                    <FormDialog />
+                    <FormDialogLogin />
+                  </Box>
+              
+                  <Drawer
+                    id="simple-menu"
+                    anchorel={anchor}
+                    keepMounted
+                    open={Boolean(anchor)}
+                    onClose={handleClose}
+                    anchor="right"
+                  >
+                    <MenuItem onClick={handleClose}>Booking Now</MenuItem>
+                    <MenuDialog />
+                    <FormDialogMenuLogin />
+                  </Drawer>
+                </>
+          ) : (
+            ''
+          )}
+             
             
             </Toolbar>
           </Grid>

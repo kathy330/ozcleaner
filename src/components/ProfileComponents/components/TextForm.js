@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     // [theme.breakpoints.down('xs')]: {
     //   textAlign: 'center',
     // }
-    textAlign: 'center',
+    textAlign: 'left',
   },
 
   button: {
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   formcenter: {
-    padding: '0 5vh',
+    // padding: '0 5vh',
     width: '100%',
   }
 }))

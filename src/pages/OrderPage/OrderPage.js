@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable no-empty */
-/* eslint-disable no-unused-vars */
+// /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React,{useEffect,useState} from 'react'
@@ -405,8 +405,8 @@ function Order(props) {
     const mon = startDate.slice(5,7)
     const da = startDate.slice(8,10)
     if(year<=yyyy&&mon<=mm&&da<dd) {
-      reset()      
-      console.log('small!!')
+      reset() // 日期不符，重制所有watch
+      // console.log('small!!')
       // startDate = `${yyyy}-${mm}-${dd}`
       // console.log(startDate)
     }
@@ -1153,7 +1153,7 @@ function Order(props) {
                         </Grid>
                       </Grid>
                     </Grid>
-                    
+
                     {/* 1/5Bedroom number */}
                     <Grid item xs={12} sm={12}>
                       <Grid container direction="row">

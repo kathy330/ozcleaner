@@ -36,6 +36,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     // flexDirection: "row"
     margin: "1%",
+  },
+
+  signout: {
+    width: '100%',
   }
 }))
 
@@ -65,9 +69,9 @@ export default function AdminHeaderNavigation() {
           </Grid> 
 
           <Grid container direction="row" className={classes.Avatar} xs={6} md={3}>
-            <Grid item xs={6} md={8} />
-            <Grid item xs={6} md={4}>
-              <Button onClick={signoutHandler}>Sign Out</Button>
+            <Grid item xs={6} md={7} />
+            <Grid item xs={6} md={5}>
+              <Button className={classes.signout} onClick={signoutHandler}>Sign Out</Button>
             </Grid>
             {/* <Grid item xs={3}>
               <PopDetails/>

@@ -197,7 +197,7 @@ export default function CheckoutForm({price,paystatus,data}) {
 
   const history = useHistory()
   if(paystatus) {
-    console.log('post success')
+    // console.log('post success')
     history.push("/order/confirm")
   }
 

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/forbid-prop-types */
-import React from 'react'
+import React,{useState} from 'react'
 import { useForm,Controller } from "react-hook-form"
 import Grid from '@material-ui/core/Grid'
 import { Container , Box } from '@material-ui/core'
@@ -128,8 +128,8 @@ export default function HomeSelectForm() {
 
   // 1/1开始登陆窗口函数：
   const theme = useTheme()
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState(0)
+  const [open, setOpen] = useState(false)
+  const [value, setValue] = useState(0)
   const handleClickOpen = () => {
     setOpen(true)
   }

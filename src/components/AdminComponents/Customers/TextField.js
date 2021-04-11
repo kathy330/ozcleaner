@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react'
+import React,{useState} from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import {
   makeStyles,
@@ -8,8 +8,11 @@ import {
   Grid,
   Typography,
   FormControlLabel
-} from '@material-ui/core';
+} from '@material-ui/core'
 import { useDispatch } from 'react-redux'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogTitle from '@material-ui/core/DialogTitle'
 import StarIcon from '@material-ui/icons/Star'
 import { Rating } from '@material-ui/lab'
 import { submitReviewsRequest } from '../../../store/actions'
@@ -46,13 +49,13 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const ParseTextarea = ({ value = '', onChange }) => {
-  const [text, setText] = React.useState(value);
+  const [text, setText] = useState(value)
   const classes = useStyles()
   const handleChange = (err) => {
-    const value = err.target.value;
-    setText(value);
-    onChange(value);
-  };
+    const {value} = err.target
+    setText(value)
+    onChange(value)
+  }
   return (
     <TextareaAutosize
       onChange={handleChange}
@@ -60,24 +63,40 @@ const ParseTextarea = ({ value = '', onChange }) => {
       className={classes.text}
       required
       rowsMin={3}
-    />);
-};
+    />
+)
+}
 
 export default function App(props) {
   const { _id, type } = props
   console.log(props)
   const dispatch = useDispatch()
-  const [rateStar, setRateStar] = React.useState(0.0)
+  const [open, setOpen] = useState(false)
+  const [rateStar, setRateStar] = useState(0.0)
+  const [reviews, setReviews] = useState('')
   const { control, handleSubmit, register } = useForm()
   const classes = useStyles()
+  
   const onSubmit = data => {
-    console.log(data)
-    const payload = { id: _id, type: type, review: data.review, rate: rateStar }
-    console.log(payload)
+    setOpen(true)
+    setReviews(data.review)
+    // console.log(data)
+    // payload = { id: _id, type: type, review: data.review, rate: rateStar }
+    // console.log(payload)
     // dispatch
     // dispatch(updateProfileRequest(data)) 
+    // dispatch(submitReviewsRequest(payload))
+    // alert('Your review has been uploaded successfully! ')
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const hadlesubmit =() => {
+    setOpen(false)
+    const payload = { id: _id, type: type, review: reviews, rate: rateStar }
     dispatch(submitReviewsRequest(payload))
-    alert('Your review has been uploaded successfully! ')
   }
 
   return (
@@ -86,7 +105,7 @@ export default function App(props) {
         <Typography variant='subtitle2' className={classes.title}>Write Review: </Typography>
 
 
-        <FormControlLabel control={
+        <FormControlLabel control={(
           <>
             <input name="rating" type="number" value={rateStar} ref={register} readOnly hidden />
             <Rating
@@ -94,15 +113,15 @@ export default function App(props) {
               value={rateStar}
               precision={0.5}
               onChange={(_, value) => {
-                setRateStar(value);
+                setRateStar(value)
               }}
               icon={<StarIcon fontSize="inherit" />}
               className={classes.stars}
             />
           </>
-        }
+        )}
         />
-        <Controller name="review" as={ParseTextarea} control={control} required />
+        <Controller name="review" as={ParseTextarea} control={control} defaultValue='' required />
         <br />
         <Button
           name="rating"
@@ -114,6 +133,20 @@ export default function App(props) {
           SUBMIT
         </Button>
       </form>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle className={classes.dialog}>
+          Do you want to upload this review?
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={hadlesubmit} color="primary">
+            YES
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            NO
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Grid>
   )
 }

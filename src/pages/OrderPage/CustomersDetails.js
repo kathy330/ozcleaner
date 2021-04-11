@@ -4,6 +4,9 @@ import Container from '@material-ui/core/Container'
 import { Box } from "@material-ui/core"
 import Table from "../../components/AdminComponents/Customers/Table"
 import Display from "../../components/AdminComponents/Customers/Display"
+import NavBar from '../../components/NavBarComponents/NavBar'
+import Footer from '../../components/FooterComponents/Footer'
+
 
 
 function CustomersDetailsPage(match){
@@ -11,7 +14,8 @@ function CustomersDetailsPage(match){
     return (
      
       <Box bgcolor="#eaeaea">
-        <CssBaseline />      
+        <CssBaseline />
+        <NavBar />      
         <Container maxWidth="md">
           <Box bgcolor="white">
             <Display data={id} />         
@@ -20,6 +24,7 @@ function CustomersDetailsPage(match){
             <Table data={id} />
           </Box>        
         </Container> 
+        <Footer />
       </Box>
     )
   }

@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button'
 import TablePagination from '@material-ui/core/TablePagination'
 import date from 'date-and-time'
 import { Link } from 'react-router-dom'
-import Alert from '@material-ui/lab/Alert'
+import{ Alert, AlertTitle } from '@material-ui/lab'
 import {getCUSDETAILTABLERequest,updateRegularRequest} from "../../../../store/actions"
 import { GreenStatus ,RedStatus,
   YellowStatus,GreyStatus,BlueStatus} from '../../../UIComponents/Status'
@@ -171,7 +171,7 @@ const BasicTable=(props)=> {
 
   const users =useSelector(state => state.cusDetailsTable.cusDetailsTable) 
   const loading = useSelector(state => state.cusDetailsTable.loading)
-  // const error = useSelector(state => state.cusDetailsTable.error)
+  const error = useSelector(state => state.cusDetailsTable.error)
 
 
   const dispatchRequested=()=>{
@@ -259,10 +259,17 @@ const BasicTable=(props)=> {
         />
       </TableContainer>
 )}
-      {users.length===0&&!loading &&
-        <Alert severity="error">This is an error alert — check it out!</Alert>}
-      {/* {error&&!loading&&<p>{error}</p>} */}
-
+      {users.length===0&&( 
+      <Alert severity="info">No orders available! — check it out!</Alert>
+)}
+      {error&&!loading&&
+        ( 
+          <Alert severity="error"> 
+            <AlertTitle>{error}</AlertTitle>
+            It&apos;s been a while since you&apos;ve signed in to Ozcleaner. 
+            Please refresh your browser and try again.
+          </Alert>
+)}
     </>
   )
 }

@@ -19,7 +19,7 @@ function* employeeLogin(action) {
     else{
       localStorage.setItem('employeeInfo', JSON.stringify(userInfo))
       localStorage.setItem("authLevel", "employee") // 暂时把employee当成admin
-      document.location.href = '/employee/order'
+      document.location.href = '/employee-orders'
     }
     
   } catch (e) {

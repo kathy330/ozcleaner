@@ -179,7 +179,7 @@ const classes = useStyles()
 
 
             <Grid>
-              <a href="/password">
+              <a href="/forgetpassword/employee">
                 <Typography
                   className={classes.mention}
                 >

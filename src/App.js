@@ -36,6 +36,8 @@ import YanboForm from './pages/zpractice/Yanbo/YanboForm'
 import EmployeeOrderList from './pages/OrderPage/EmployeeOrderList'
 import ForgetPassword from "./components/SignUpComponents/ForgetPassword"
 import ResetPassword from './components/SignUpComponents/ResetPassword'
+import ForgetPasswordEmployee from './components/SignUpComponents/ForgetPasswordEmployee'
+import ResetPasswordEmployee from './components/SignUpComponents/ResetPasswordEmployee'
 
 function App() {
   // 使用theme方法：
@@ -87,6 +89,9 @@ function App() {
 
         <Route path="/forgetpassword" exact component={ForgetPassword} />
         <Route path="/forgetpassword/resetpassword" exact component={ResetPassword} />
+        <Route path="/forgetpassword/employee" exact component={ForgetPasswordEmployee} />
+        <Route path="/resetpassword/employee" exact component={ResetPasswordEmployee} />
+        
 
         <Route component={ErrorPage} />
       </Switch>

@@ -57,6 +57,13 @@ function returnPath(listType){
   return '/employee-orders'
 }
 
+/**
+ * OrdersLists() is a pagination components
+ * @param pageSize: (num) numbers of orders display on the list 
+ * @param urlPage: (num) current page location
+ * @param status: (string) get the status from the url
+ * @param listType: (string) admin or employee
+ */
 function OrdersLists(props) {
   const classes = useStyles()
   const { pageSize, urlPage, status, listType } = props
@@ -64,16 +71,17 @@ function OrdersLists(props) {
   const history = useHistory()
   const [curCard, setCurCard] = React.useState('default') // current
   const [prevCard, setPrevCard] = React.useState('unset') // previous card
-  const [orderStatus, setOrderStatus] = React.useState(status)
-  const [sortValue, setsortValue] = React.useState('')
+  const [orderStatus, setOrderStatus] = React.useState(status) // current order's status
+  const [sortValue, setsortValue] = React.useState('') // TODO current sort value?
   const listPayload = { page: urlPage, pageSize: pageSize, status: orderStatus, sort: sortValue }
+  
   const dispatch = useDispatch()
   const data = useSelector(state => state.order.orders.result) // data get from saga
   const dataCount = useSelector(state => state.order.orders.count) // number of orders
   const loading = useSelector(state => state.order.loading) // loading status
   const error = useSelector(state => state.order.error) // error message
   const matches = useMediaQuery('(max-width:480px)') // media query breakpoint
-
+  
   const returnPage = (totalCount) => {
     if (totalCount < pageSize) {
       return 1
@@ -83,7 +91,7 @@ function OrdersLists(props) {
     } 
     return Math.floor(totalCount / listPayload.pageSize)
   }
-  const finalPage = returnPage(dataCount)
+  const finalPage = returnPage(dataCount) // final page number for the compoent
 
   useEffect(() => {
     dispatch(getAllOrersRequest(listPayload))
@@ -103,7 +111,7 @@ function OrdersLists(props) {
       if (listType === 'admin') {
         history.push(`${path}/${id}?type=${type}`)
       } else {
-        history.push(`/userOrders/${id}?type=${type}`)
+        history.push(`/order-detail/${id}?type=${type}`)
       }
     } 
   }
@@ -121,7 +129,7 @@ function OrdersLists(props) {
         return ''
     }
   }
-
+  // Todo: sort order route path?
   const formatPath = (sort, status) => {
     if (!status){
       return `/admin/orders`
@@ -137,6 +145,7 @@ function OrdersLists(props) {
     history.push(`/admin/orders/?status=${listPayload.status}`)
   }
 
+  // Todo
   const selectSortChange = (event) => {
     setsortValue(event.target.value)
     listPayload.sort = event.target.value
@@ -210,10 +219,10 @@ function OrdersLists(props) {
             />
           </Grid>
           {!matches && (
-          <Grid item xs={12} sm={8} className={classes.right}>
-            <AdminOrderPage /> 
-          </Grid>
-)}
+            <Grid item xs={12} sm={8} className={classes.right}>
+              <AdminOrderPage /> 
+            </Grid>
+          )}
         </Grid>
       )}
       {!loading && data !== undefined && data.length === 0 &&

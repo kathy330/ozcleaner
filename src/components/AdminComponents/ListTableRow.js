@@ -16,11 +16,11 @@ const useStyle = makeStyles((theme) => ({
   },
 }))
 
-// function DeleteUser(id) {
-//   alert(`Delete UserID: ${id}`)
-// }
-
-// StatusDisplay() is for checking whether to display status column or not
+/**
+ * ListTableRow() is for displaying the user display in the user/employee list
+ * @param tableType: (string) type of the table
+ * @param status: (string) employee status
+ */
 function StatusDisplay(tableType, status) {
   if (tableType === 'customer') {
     return null
@@ -29,6 +29,11 @@ function StatusDisplay(tableType, status) {
     (<TableCell align="center"><GreenStatus>Avalilable</GreenStatus></TableCell>) : 
     (<TableCell align="center"><RedStatus>Unavailable</RedStatus></TableCell>)
 }
+
+/**
+ * ListTableRow() is for rendering the user info in the user/employee list
+ * @param props: (obj) user information 
+ */
 function ListTableRow(props) {
   const classes = useStyle()
   // eslint-disable-next-line max-len

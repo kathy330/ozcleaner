@@ -12,6 +12,10 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
+/**
+ * NoDataFound() if no data found on the page refresh the root path
+ * @param refreshPage: (func) a callback func
+ */
 const NoDataFound = (props) =>{
   const { refreshPage } = props
   const classes = useStyles()

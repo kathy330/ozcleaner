@@ -5,13 +5,13 @@ import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 
 // import CardActionArea from '@material-ui/core/CardActionArea'
-import CardActions from '@material-ui/core/CardActions'
+// import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
+// import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
+// import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
 
 // import scssStyle from './scss/HomeContent.module.scss'
 
@@ -24,19 +24,20 @@ const useStyles = makeStyles((theme) => ({
   },
 
   img: {
+    marginBottom: '55px',
     // marginTop: '102px',
-    marginTop: '95px',
-    padding: '0px',
+    marginTop: '55px',
+    // padding: '0px',
     
     '& img': {
-      // height: '75vh',
+      height: '60vh',
     }
   },
 
   text: {
     display: 'flex',
     flexDirection: 'column',
-    height: '75vh',
+    height: '60vh',
     justifyContent: 'center',
     // marginTop: '102px',
     marginTop: '95px',
@@ -103,7 +104,7 @@ export default function HomeFeedback({src,title,subtitle,name}) {
             </Grid>
 
             {/* Container： 为了让下方button居中 */}
-            <Container maxWidth="sm">
+            {/* <Container maxWidth="sm">
               <Grid item xs={12} sm={12}>
                 <CardActions className={classes.button}>
                   <Button color="primary" className={classes.arrowIcon}>
@@ -115,7 +116,7 @@ export default function HomeFeedback({src,title,subtitle,name}) {
                   </Button>
                 </CardActions>
               </Grid>
-            </Container>
+            </Container> */}
           </Grid>
         </Card>
       </Container>

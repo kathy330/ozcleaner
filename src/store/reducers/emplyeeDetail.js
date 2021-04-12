@@ -6,6 +6,8 @@ const initialState = {
   repos_in_reducer_init: [],
   error:null,
   ABN:123,
+  profile:false,
+  profileDe:[],
 }
 function profileDetail(state = initialState,action) {
   switch (action.type) {
@@ -41,14 +43,15 @@ function profileDetail(state = initialState,action) {
         return {
           ...state,
           loading: false,
-          repos_in_reducer_init: action.payload
+          profileDe: action.payload,
+          profile: true,
         }
   
       case actionType.UPDATE_PROFILE_FAILED:
         return {
           ...state,
           loading: false,
-          repos_in_reducer_init: [],
+          profileDe: [],
           error:action.payload
         }
     

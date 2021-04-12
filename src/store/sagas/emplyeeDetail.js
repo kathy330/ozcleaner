@@ -15,14 +15,6 @@ function* fetchRegularUrl()   {
   const level = localStorage.getItem('authLevel')
   const ID = info.data.objectID
   const person = level === 'user'? 'users' : 'employees'
-  // if(level==='user'){
-  //   console.log('user')
-  //   gitApi = `http://localhost:8000/users/alltask/${ID}`
-  // } 
-  // if(level ==='employee'|| level==="admin"){
-  //   console.log('employee')
-  //   gitApi = `http://localhost:8000/employee/alltask/${ID}`
-  // }
   gitApi = `http://localhost:8000/${person}/alltask/${ID}`
   try{
     const data = yield call(axios.get, gitApi,header())
@@ -41,18 +33,10 @@ function* updateEmployeeProfile(action) {
   const ID = info.data.objectID
   const person = level === 'user'? 'users' : 'employees'
   updateAPI=`http://localhost:8000/${person}/${ID}`
-//   if(level==='user'){
-//     updateAPI = `http://localhost:8000/users/${ID}`
-//  } 
-//  if(level ==='employee'|| level==="admin"){
-//     updateAPI = `http://localhost:8000/employees/${ID}`
-//  }
- 
-  // const updateAPI = `http://localhost:8000/employees/${ID}`
-  // console.log(url)
   try{
-    const data = yield call(axios.put, updateAPI ,action.payload)
-    yield put({type:'UPDATE_PROFILE_SUCESS',payload:data.data})
+    const data = yield call(axios.put, updateAPI ,action.payload,header())
+    console.log(data)
+    yield put({type:'UPDATE_PROFILE_SUCCESS',payload:data})
   }
   catch(e) {
     console.log(e)

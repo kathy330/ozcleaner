@@ -1,14 +1,19 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from "react"
+import React,{useState} from "react"
 // import ReactDOM from "react-dom"
 // import Select from "react-select";
 // import { Redirect } from "react-router-dom" 
-import {useDispatch} from 'react-redux'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import {useDispatch,useSelector} from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
 import { TextField,Typography,Grid,Button } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles'
 import SaveIcon from '@material-ui/icons/Save'
 import {updateProfileRequest} from "../../../store/actions/actionCreator"
+
 
 // const postData = {      
   // address: {
@@ -28,28 +33,39 @@ import {updateProfileRequest} from "../../../store/actions/actionCreator"
 // }
 const useStyles = makeStyles((theme) => ({
   center: {
-    [theme.breakpoints.down('xs')]: {
-    textAlign:'center',
-  }},
-  button: {  
-    fontSize:'1rem',
-    alignContent:'end',
+    // [theme.breakpoints.down('xs')]: {
+    //   textAlign: 'center',
+    // }
+    textAlign: 'left',
+  },
+
+  button: {
+    // alignContent: 'center',
     background: theme.palette.primary.main, // #007bf5
     color: theme.palette.primary.contrastText,
-    textalign: 'right',
-    marginTop:'2rem',
-    paddingInline: '40px', // 太长，小屏幕装不下
+    fontSize: '1rem',
+    marginTop: '2rem',
+    paddingInline: '50px', // 太长，小屏幕装不下
+    // textalign: 'center',
+
     '&:hover': {
       background: theme.palette.primary.hover, // #0050c1
       boxShadow: '0px 2px 10px #888',},
   },
+
+  formcenter: {
+    // padding: '0 5vh',
+    width: '100%',
+  }
 }))
 
 export default function TextForm() {
   const { control, handleSubmit } = useForm()
   const classes = useStyles()
+  const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const onSubmit = data => {
+    setOpen(true)
     if(data.type!==""
     &&data.postcode!=="" &&data.birthday!=="" 
     // &&data.email!==""&&data.password!==""
@@ -58,10 +74,6 @@ export default function TextForm() {
     &&data.address2!==""&&data.suburb!=="" &&data.state!==""
     ) {
   const newData = {
-    // ...postData,
-    type:data.type,
-    // email:data.email,
-    birthday:data.birthday,
     address:{
       address1:data.address1,
       address2:data.address2,
@@ -70,8 +82,6 @@ export default function TextForm() {
       postcode:data.postcode,
     },
     phone:data.phone,
-    // password:data.password,
-    employeeID: 2222,
     name:{
       firstName:data.firstName,
       lastName:data.lastName,
@@ -80,19 +90,25 @@ export default function TextForm() {
     console.log(newData)
     dispatch(updateProfileRequest(newData)) 
   }}
-
-  // const loading = useSelector(astate => astate.employee_in_reducer_index.loading)
-  // // console.log("loading parameter: ", loading)
-  // if (onsubmit && !loading) {
-  //   return (<Redirect to="/profile/customer" />)
-  // }
+  const detail = useSelector(state => state.employee_in_reducer_index)
+  const handleClose = () =>{setOpen(false)}
+  const {profile}= detail
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Grid container direction="row" spacing={2} className={classes.center}>
+      <Grid 
+        container
+        direction="row"
+        spacing={2}
+        justify="center"
+        alignItems="center"
+        alignContent="center"
+        className={classes.center}
+      >
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> First name</Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="firstName"
@@ -104,11 +120,13 @@ export default function TextForm() {
             name="firstName"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> Last name</Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="lastName"
@@ -120,6 +138,7 @@ export default function TextForm() {
             name="lastName"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -127,6 +146,7 @@ export default function TextForm() {
             Street  Address
           </Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="address1"
@@ -138,11 +158,13 @@ export default function TextForm() {
             name="address1"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> Apt  #(optional) </Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="address2"
@@ -154,11 +176,13 @@ export default function TextForm() {
             name="address2"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> Suburb </Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="suburb"
@@ -170,11 +194,13 @@ export default function TextForm() {
             name="suburb"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> State </Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="state"
@@ -186,11 +212,13 @@ export default function TextForm() {
             name="state"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> Postcode </Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="postcode"
@@ -202,27 +230,13 @@ export default function TextForm() {
             name="postcode"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
-        {/* <Grid item xs={12} sm={6}>
-          <Typography variant="h6"> Birthday </Typography> 
-          <Controller
-            as={(
-              <TextField
-                id="birthday"
-            // label="First name"
-                variant="outlined"
-                size="small"
-              />
- )}
-            name="birthday"
-            control={control}
-            defaultValue=""
-          />
-        </Grid> */}
         <Grid item xs={12} sm={6}>
           <Typography variant="h6"> Phone </Typography> 
           <Controller
+            className={classes.formcenter}
             as={(
               <TextField
                 id="phone"
@@ -234,14 +248,14 @@ export default function TextForm() {
             name="phone"
             control={control}
             defaultValue=""
+            required
           />
         </Grid>
-        <Grid item xs={12} sm={7} />
+
+        {/* <Grid item xs={12} sm={7} />
         <Grid item xs={12} sm={5}>
 
-          {/* <input type="submit" /> */}
           <Button 
-            // href='/order/confirm'
             type="submit"
             variant="contained"
             size="medium"
@@ -249,9 +263,41 @@ export default function TextForm() {
             className={classes.button}
           >
             save
-          </Button> 
+          </Button> */}
+
+        {/* <Grid item xs={12} sm={7} /> */}
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          <Grid item xs={12} sm={4}>
+            {/* <input type="submit" /> */}
+            <Button 
+            // href='/order/confirm'
+              type="submit"
+              variant="contained"
+              size="medium"
+              startIcon={<SaveIcon />}
+              className={classes.button}
+            >
+              SAVE
+            </Button> 
+          </Grid>
         </Grid>
+
       </Grid>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle className={classes.dialog}>
+          Update profile successfully!
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </form>
   )
 }

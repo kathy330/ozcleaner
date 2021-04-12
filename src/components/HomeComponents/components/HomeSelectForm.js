@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/forbid-prop-types */
-import React from 'react'
+import React,{useState} from 'react'
 import { useForm,Controller } from "react-hook-form"
 import Grid from '@material-ui/core/Grid'
 import { Container , Box } from '@material-ui/core'
@@ -67,7 +67,19 @@ const useStyles = makeStyles((theme) => ({
     }
   },
 
+  selected: {
+    '&$selected': {
+      backgroundColor: 'white',
+
+      '&:hover': {
+        backgroundColor: '#67a9ff',
+
+      }
+    },
+  }
+
 }))
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -128,8 +140,8 @@ export default function HomeSelectForm() {
 
   // 1/1开始登陆窗口函数：
   const theme = useTheme()
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState(0)
+  const [open, setOpen] = useState(false)
+  const [value, setValue] = useState(0)
   const handleClickOpen = () => {
     setOpen(true)
   }
@@ -200,12 +212,12 @@ export default function HomeSelectForm() {
                 <Controller
                   as={(
                     <Select MenuProps={SelectStyle}>
-                      <MenuItem value="0">0</MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      <MenuItem value="4">4</MenuItem>
-                      <MenuItem value="5">5</MenuItem>
+                      <MenuItem className={classes.selected} value="0">0</MenuItem>
+                      <MenuItem className={classes.selected} value="1">1</MenuItem>
+                      <MenuItem className={classes.selected} value="2">2</MenuItem>
+                      <MenuItem className={classes.selected} value="3">3</MenuItem>
+                      <MenuItem className={classes.selected} value="4">4</MenuItem>
+                      <MenuItem className={classes.selected} value="5">5</MenuItem>
                     </Select>
                 )}
                   name="bedRoomNum"
@@ -226,12 +238,12 @@ export default function HomeSelectForm() {
                 <Controller
                   as={(
                     <Select MenuProps={SelectStyle}>
-                      <MenuItem value="0">0</MenuItem>
-                      <MenuItem value="1">1</MenuItem>
-                      <MenuItem value="2">2</MenuItem>
-                      <MenuItem value="3">3</MenuItem>
-                      <MenuItem value="4">4</MenuItem>
-                      <MenuItem value="5">5</MenuItem>
+                      <MenuItem className={classes.selected} value="0">0</MenuItem>
+                      <MenuItem className={classes.selected} value="1">1</MenuItem>
+                      <MenuItem className={classes.selected} value="2">2</MenuItem>
+                      <MenuItem className={classes.selected} value="3">3</MenuItem>
+                      <MenuItem className={classes.selected} value="4">4</MenuItem>
+                      <MenuItem className={classes.selected} value="5">5</MenuItem>
                     </Select>
                 )}
                   name="bathRoomNum"
@@ -252,9 +264,9 @@ export default function HomeSelectForm() {
                 <Controller
                   as={(
                     <Select MenuProps={SelectStyle}>
-                      <MenuItem value="unit">Unit</MenuItem>
-                      <MenuItem value="apartment">Apartment</MenuItem>
-                      <MenuItem value="house">House</MenuItem>
+                      <MenuItem className={classes.selected} value="unit">Unit</MenuItem>
+                      <MenuItem className={classes.selected} value="apartment">Apartment</MenuItem>
+                      <MenuItem className={classes.selected} value="house">House</MenuItem>
                                   
                     </Select>
                 )}

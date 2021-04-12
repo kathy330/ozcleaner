@@ -1,17 +1,20 @@
-.location{
-    top: 150px;
-}
-.background{
-    background-color: rgba(223, 223, 223, 0.53);
+.location {
+  top: 150px;
 }
 
+.background {
+  background-color: rgba(223, 223, 223, 0.53);
+  // height: 80vh;
+  padding-top: 10vh;
+}
 
-.background2{
-    background-color: #f5f5f5;
+.background2 {
+  background-color: #f5f5f5;
+  padding-top: 10vh;
 }
 
 .width {
-    width: 100%;
+  width: 100%;
 }
 
 // .picture {
@@ -20,6 +23,6 @@
 // }
 
 .title {
-    padding: 0;
-    text-align: center;
+  padding: 0;
+  text-align: left;
 }

@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable no-empty */
+// /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React,{useEffect,useState} from 'react'
@@ -46,7 +47,7 @@ import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
 // import {useHistory} from "react-router-dom"
 import PropTypes from 'prop-types'
 import Dialog from '@material-ui/core/Dialog'
-// import DialogActions from '@material-ui/core/DialogActions';
+// import DialogActions from '@material-ui/core/DialogActions'
 // import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
@@ -77,6 +78,18 @@ const useStyles = makeStyles((theme) => ({
 
   content: {
     marginTop: '11vh',
+  },
+
+  // 下拉样式
+  selected: {
+    '&$selected': {
+      backgroundColor: 'white',
+
+      '&:hover': {
+        backgroundColor: '#67a9ff',
+
+      }
+    },
   },
 
   dialog: {
@@ -292,9 +305,10 @@ function Order(props) {
   const buttonstyles = buttonStyle()
 
   const promise = loadStripe("pk_test_51IcU7EIhWqpXGeJaSNSsYJNlyh302mKpZUWBQBl7nZU1ISbLPKnCPHnCqjqdQV2iubeJs17bKXSHp8p95r9aigNQ00fTIv8f3f")
-  const { handleSubmit, control, watch } = useForm()
+  const { handleSubmit, control, watch,reset } = useForm()
   // const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
+
   const [extraState, setExtraState] = useState({
     oven: false,
     fridge: false,
@@ -377,9 +391,26 @@ function Order(props) {
   let startTime = watch("time",'')
   let totalDate = '' // 2021-04-08 00:52
 
+  const today = new Date()
+  const dd = String(today.getDate()).padStart(2, '0')
+  const mm = String(today.getMonth() + 1).padStart(2, '0') // January is 0!
+  const yyyy = today.getFullYear()
+
+  // today = `${mm}/${dd}/${yyyy}`
+  // console.log(today)
   try {
     startDate = date.format(startDate, 'YYYY-MM-DD') 
-    // console.log(startDate)
+    const year = startDate.slice(0,4)
+
+    const mon = startDate.slice(5,7)
+    const da = startDate.slice(8,10)
+    if(year<=yyyy&&mon<=mm&&da<dd) {
+      reset() // 日期不符，重制所有watch
+      // console.log('small!!')
+      // startDate = `${yyyy}-${mm}-${dd}`
+      // console.log(startDate)
+    }
+
   }catch (e) {
   }
   try {
@@ -549,105 +580,7 @@ function Order(props) {
                           </Typography>
         
                           <Grid container direction="row" spacing={2} className={classes.pickerRoot}>
-                            {/* Bedroom num */}
-                            <Grid item xs={12} sm={6}>
-                              <FormControl className={cssstyle.Picker}>
-                                <InputLabel className={cssstyle.Picker}>
-                                  Bedroom*
-                                </InputLabel>
 
-                                <Controller
-                                  as={(
-                                    <Select MenuProps={SelectStyle}>
-                                      <MenuItem value="0">0</MenuItem>
-                                      <MenuItem value="1">1</MenuItem>
-                                      <MenuItem value="2">2</MenuItem>
-                                      <MenuItem value="3">3</MenuItem>
-                                      <MenuItem value="4">4</MenuItem>
-                                      <MenuItem value="5">5</MenuItem>
-                                    </Select>
-                                  )}
-                                  name="bedRoomNum"
-                                  required
-                                  disabled={!!homeOrderData} // {homeOrderData?true:false}
-                                  control={control}
-                                  defaultValue={bedroom}
-                                />
-                              </FormControl>
-                            </Grid>
-                            {/* Bathroom num */}
-                            <Grid item xs={12} sm={6}>
-                              <FormControl className={cssstyle.Picker}>
-                                <InputLabel className={cssstyle.Picker}>
-                                  Bathroom*
-                                </InputLabel>
-
-                                <Controller
-                                  as={(
-                                    <Select MenuProps={SelectStyle}>
-                                      <MenuItem value="0">0</MenuItem>
-                                      <MenuItem value="1">1</MenuItem>
-                                      <MenuItem value="2">2</MenuItem>
-                                      <MenuItem value="3">3</MenuItem>
-                                      <MenuItem value="4">4</MenuItem>
-                                      <MenuItem value="5">5</MenuItem>
-                                    </Select>
-                                )}
-                                  name="bathRoomNum"
-                                  required
-                                  disabled={!!homeOrderData} // {homeOrderData?true:false}
-                                  control={control}
-                                  defaultValue={bathroom}
-                                />
-                              </FormControl>
-                            </Grid>
-                         
-                            {/* clean Type */}
-                            <Grid item xs={12} sm={6}>
-                              <FormControl className={cssstyle.Picker}>
-                                <InputLabel className={cssstyle.Picker}>
-                                  Clean type*
-                                </InputLabel>
-
-                                <Controller
-                                  as={(
-                                    <Select MenuProps={SelectStyle}>
-                                      <MenuItem value="RC">Regular clean</MenuItem>
-                                      <MenuItem value="EC">End lease clean</MenuItem>
-                                    </Select>
-                                )}
-                                  name="type"
-                                  required
-                                  control={control}
-                                  defaultValue=''
-                                />
-                              </FormControl>
-                            </Grid>
-
-                            {/* roomTpye */}
-                            <Grid item xs={12} sm={6}>
-                              <FormControl className={cssstyle.Picker}>
-                                <InputLabel className={cssstyle.Picker}>
-                                  Property type
-                                </InputLabel>
-
-                                <Controller
-                                  as={(
-                                    <Select MenuProps={SelectStyle}>
-                                      <MenuItem value="unit">Unit</MenuItem>
-                                      <MenuItem value="apartment">Apartment</MenuItem>
-                                      <MenuItem value="house">House</MenuItem>
-                                    </Select>
-                                )}
-                                  name="propertyType"
-                                // required
-                                // disabled={!!homeOrderData} // {homeOrderData?true:false}
-                                  control={control}
-                                  defaultValue={propertyType}
-                                />
-                              </FormControl>
-                            </Grid>
-                          
                             {/* date */}
                             <Grid item xs={12} sm={6}>
                               <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -664,6 +597,7 @@ function Order(props) {
                                       format="MM/dd/yyyy"
                                       label='Date'
                                       required
+                                      // shouldDisableDate={()=>'2020-4-12'}
                                       helperText="" // 关闭报错文字，会挤开下面样子
                                       disablePast // 禁用过去日期
                                       KeyboardButtonProps={{"aria-label": "change date"}}
@@ -697,6 +631,107 @@ function Order(props) {
                                 />
                               </MuiPickersUtilsProvider>
                             </Grid>
+                            
+                            {/* Bedroom num */}
+                            <Grid item xs={12} sm={6}>
+                              <FormControl className={cssstyle.Picker}>
+                                <InputLabel className={cssstyle.Picker}>
+                                  Bedroom*
+                                </InputLabel>
+
+                                <Controller
+                                  as={(
+                                    <Select MenuProps={SelectStyle}>
+                                      <MenuItem className={classes.selected} value="0">0</MenuItem>
+                                      <MenuItem className={classes.selected} value="1">1</MenuItem>
+                                      <MenuItem className={classes.selected} value="2">2</MenuItem>
+                                      <MenuItem className={classes.selected} value="3">3</MenuItem>
+                                      <MenuItem className={classes.selected} value="4">4</MenuItem>
+                                      <MenuItem className={classes.selected} value="5">5</MenuItem>
+                                    </Select>
+                                  )}
+                                  name="bedRoomNum"
+                                  required
+                                  disabled={!!homeOrderData} // {homeOrderData?true:false}
+                                  control={control}
+                                  defaultValue={bedroom}
+                                />
+                              </FormControl>
+                            </Grid>
+                            {/* Bathroom num */}
+                            <Grid item xs={12} sm={6}>
+                              <FormControl className={cssstyle.Picker}>
+                                <InputLabel className={cssstyle.Picker}>
+                                  Bathroom*
+                                </InputLabel>
+
+                                <Controller
+                                  as={(
+                                    <Select MenuProps={SelectStyle}>
+                                      <MenuItem className={classes.selected} value="0">0</MenuItem>
+                                      <MenuItem className={classes.selected} value="1">1</MenuItem>
+                                      <MenuItem className={classes.selected} value="2">2</MenuItem>
+                                      <MenuItem className={classes.selected} value="3">3</MenuItem>
+                                      <MenuItem className={classes.selected} value="4">4</MenuItem>
+                                      <MenuItem className={classes.selected} value="5">5</MenuItem>
+                                    </Select>
+                                )}
+                                  name="bathRoomNum"
+                                  required
+                                  disabled={!!homeOrderData} // {homeOrderData?true:false}
+                                  control={control}
+                                  defaultValue={bathroom}
+                                />
+                              </FormControl>
+                            </Grid>
+                         
+                            {/* clean Type */}
+                            <Grid item xs={12} sm={6}>
+                              <FormControl className={cssstyle.Picker}>
+                                <InputLabel className={cssstyle.Picker}>
+                                  Clean type*
+                                </InputLabel>
+
+                                <Controller
+                                  as={(
+                                    <Select MenuProps={SelectStyle}>
+                                      <MenuItem className={classes.selected} value="RC">Regular clean</MenuItem>
+                                      <MenuItem className={classes.selected} value="EC">End lease clean</MenuItem>
+                                    </Select>
+                                )}
+                                  name="type"
+                                  required
+                                  control={control}
+                                  defaultValue=''
+                                />
+                              </FormControl>
+                            </Grid>
+
+                            {/* roomTpye */}
+                            <Grid item xs={12} sm={6}>
+                              <FormControl className={cssstyle.Picker}>
+                                <InputLabel className={cssstyle.Picker}>
+                                  Property type
+                                </InputLabel>
+
+                                <Controller
+                                  as={(
+                                    <Select MenuProps={SelectStyle}>
+                                      <MenuItem className={classes.selected} value="unit">Unit</MenuItem>
+                                      <MenuItem className={classes.selected} value="apartment">Apartment</MenuItem>
+                                      <MenuItem className={classes.selected} value="house">House</MenuItem>
+                                    </Select>
+                                )}
+                                  name="propertyType"
+                                // required
+                                // disabled={!!homeOrderData} // {homeOrderData?true:false}
+                                  control={control}
+                                  defaultValue={propertyType}
+                                />
+                              </FormControl>
+                            </Grid>
+                          
+            
                           </Grid>
                         </Box>
 
@@ -1097,6 +1132,28 @@ function Order(props) {
                 <Container maxWidth="lg" className={classes.details}>
                   <Grid container direction="column" spacing={1}>
                     {/* <Container maxWidth="sm"> */}
+                    
+                    {/* 4/5 time info */}  
+                    <Grid item xs={12} sm={12}>
+                      <Grid container direction="row">
+                        <Grid item xs={1} sm={1}>
+                          <Grid container justify="center">
+                            <CalendarTodayIcon fontSize="large" className={classes.icon} />
+                          </Grid>
+                        </Grid>
+                        <Grid item xs={11} sm={11}>
+                          {/* 12:00PM, Friday, 29 Jan 2021 */}
+                          {/* <Typography variant='h6'>{totalDate}</Typography> */}
+                          {haveDate? (
+                            <Typography variant='h6' className={classes.text}>
+                              <Moment format="dddd HH:mm, DD MMM YYYY">{totalDate}</Moment>
+                            </Typography>
+                        )
+                          :''}
+                        </Grid>
+                      </Grid>
+                    </Grid>
+
                     {/* 1/5Bedroom number */}
                     <Grid item xs={12} sm={12}>
                       <Grid container direction="row">
@@ -1143,27 +1200,6 @@ function Order(props) {
                         </Grid>
                         <Grid item xs={11} sm={11} className={classes.text}>
                           <Typography variant='h6'>{typeOfClean}</Typography>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-
-                    {/* 4/5 time info */}  
-                    <Grid item xs={12} sm={12}>
-                      <Grid container direction="row">
-                        <Grid item xs={1} sm={1}>
-                          <Grid container justify="center">
-                            <CalendarTodayIcon fontSize="large" className={classes.icon} />
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={11} sm={11}>
-                          {/* 12:00PM, Friday, 29 Jan 2021 */}
-                          {/* <Typography variant='h6'>{totalDate}</Typography> */}
-                          {haveDate? (
-                            <Typography variant='h6' className={classes.text}>
-                              <Moment format="dddd HH:mm, DD MMM YYYY">{totalDate}</Moment>
-                            </Typography>
-                        )
-                          :''}
                         </Grid>
                       </Grid>
                     </Grid>

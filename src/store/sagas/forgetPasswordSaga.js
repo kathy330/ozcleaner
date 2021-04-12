@@ -8,8 +8,8 @@ function* forgetPassword(action) {
     const userInfo = 
     yield call(axios.post,'http://localhost:8000/recover', action.payload)
     yield put({ type: 'USER_EMAIL_REQUEST_SUCCESS', payload: userInfo })
-    localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    localStorage.setItem("authLevel", "user") // 给一个user权限
+    // localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    // localStorage.setItem("authLevel", "user") // 给一个user权限
     // document.location.href = '/order'
   } catch (e) {
     // console.log(action)
@@ -23,8 +23,8 @@ function* forgetPasswordEmployee(action) {
     const userInfo = 
     yield call(axios.post,'http://localhost:8000/employees/recover', action.payload)
     yield put({ type: 'EMPLOYEE_EMAIL_REQUEST_SUCCESS', payload: userInfo })
-    localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    localStorage.setItem("authLevel", "employee") // 给一个user权限
+    // localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    // localStorage.setItem("authLevel", "employee") // 给一个user权限
     // document.location.href = '/order'
   } catch (e) {
     // console.log(action)
@@ -40,8 +40,8 @@ function* resetPassword(action) {
     yield call(axios.post,'http://localhost:8000/resetPassword', action.payload)
     // yield put({ type: 'USER_RESET_REQUEST', payload: userInfo })
     yield put({ type: 'USER_RESET_REQUEST_SUCCESS', payload: userInfo })
-    localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    localStorage.setItem("authLevel", "user") // 给一个user权限
+    // localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    // localStorage.setItem("authLevel", "user") // 给一个user权限
   
 
 
@@ -58,8 +58,8 @@ function* resetPasswordEmployee(action) {
     yield call(axios.post,'http://localhost:8000/employees/resetPassword', action.payload)
     // yield put({ type: 'USER_RESET_REQUEST', payload: userInfo })
     yield put({ type: 'EMPLOYEE_RESET_SUCCESS', payload: userInfo })
-    localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    localStorage.setItem("authLevel", "employee") // 给一个user权限
+    // localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    // localStorage.setItem("authLevel", "employee") // 给一个user权限
   
 
 

@@ -19,7 +19,7 @@ function* employeeLogin(action) {
     else{
       localStorage.setItem('employeeInfo', JSON.stringify(userInfo))
       localStorage.setItem("authLevel", "employee") // 暂时把employee当成admin
-      document.location.href = '/employee/order'
+      document.location.href = '/employee-orders'
     }
     
   } catch (e) {
@@ -45,7 +45,7 @@ function* employeeRegister(action) {
       yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload:userInfo  })// 按照employee进行login操作
       localStorage.setItem('employeeInfo', JSON.stringify(userInfo))
       localStorage.setItem("authLevel", "employee") // 暂时把employee当成admin
-      document.location.href = '/employee/order'
+      document.location.href = '/employee-orders'
     }
     
   } catch (e) {

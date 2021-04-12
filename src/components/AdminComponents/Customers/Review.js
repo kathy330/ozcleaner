@@ -30,7 +30,8 @@ export default function Review(props) {
         <Grid container direction="row">
           <Grid item xs={1}>
             <Typography variant="subtitle1">
-              {rating}
+              {(rating === null) && (0)}
+              {(rating !== null) && (rating)}
             </Typography>
           </Grid>
           <Grid item xs className={classes.rate}>

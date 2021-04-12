@@ -47,7 +47,7 @@ export default function CreatBy(props) {
       </Grid>
       <Grid item justify="center" xs={9} sm={10} className={classes.text}>
         <Typography variant="subtitle2">CREATE BY</Typography>
-        <Grid container direction="row" justify="space-between" space={5}>
+        <Grid container direction="row" justify="space-between">
           <Link component={RouterLink} to={path} variant="subtitle2">
             {firstName[0].toUpperCase()}
             {firstName.slice(1)}

@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
-
+import header from "./header"
 // const gitApi = 'http://localhost:8000/endOfLease/task/1'
 // const postApi = 'http://localhost:8000/endOfLease/'
 
@@ -10,7 +10,7 @@ function* getEndofLeaseOrder(action) {
     const { _id } = action.payload
     console.log(_id, 'objectID')
     const gitApi = `http://localhost:8000/endOfLease/${_id}`
-    const endofleaseData = yield call(axios.get, gitApi)
+    const endofleaseData = yield call(axios.get, gitApi,header())
     // console.log('Data by the GET method is: ',endofleaseData)
     yield put({ type: 'GET_ENDOFLEASE_SUCCESS', repos: endofleaseData.data })
   }
@@ -29,7 +29,7 @@ function* updateEndOfLeaseOrder(action) {
   const updateApi = `http://localhost:8000/endOfLease/${id}`  // PUT方法更新regular
 
   try {
-    const regularData = yield call(axios.put, updateApi, update)
+    const regularData = yield call(axios.put, updateApi, update,header())
     console.log(regularData)
     console.log(update)
     yield put({ type: 'UPDATE_ENDOFLEASE_SUCCESS', repos: update })

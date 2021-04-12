@@ -186,7 +186,6 @@ export default function TextForm() {
             as={(
               <TextField
                 id="suburb"
-            // label="First name"
                 variant="outlined"
                 size="small"
               />
@@ -204,7 +203,6 @@ export default function TextForm() {
             as={(
               <TextField
                 id="state"
-            // label="First name"
                 variant="outlined"
                 size="small"
               />
@@ -222,7 +220,6 @@ export default function TextForm() {
             as={(
               <TextField
                 id="postcode"
-            // label="First name"
                 variant="outlined"
                 size="small"
               />
@@ -240,7 +237,6 @@ export default function TextForm() {
             as={(
               <TextField
                 id="phone"
-            // label="First name"
                 variant="outlined"
                 size="small"
               />
@@ -251,31 +247,14 @@ export default function TextForm() {
             required
           />
         </Grid>
-
-        {/* <Grid item xs={12} sm={7} />
-        <Grid item xs={12} sm={5}>
-
-          <Button 
-            type="submit"
-            variant="contained"
-            size="medium"
-            startIcon={<SaveIcon />}
-            className={classes.button}
-          >
-            save
-          </Button> */}
-
-        {/* <Grid item xs={12} sm={7} /> */}
         <Grid
           container
           direction="row"
           justify="center"
           alignItems="center"
         >
-          <Grid item xs={12} sm={4}>
-            {/* <input type="submit" /> */}
+          <Grid item xs={6} sm={4}>
             <Button 
-            // href='/order/confirm'
               type="submit"
               variant="contained"
               size="medium"

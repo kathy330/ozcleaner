@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
-
+import header from "./header"
 // const gitApi = 'http://localhost:8000/regular/task/1'
 const postRCApi = 'http://localhost:8000/regular'
 const postECApi = 'http://localhost:8000/endOfLease/'
@@ -12,7 +12,7 @@ function* getRegularOrder(action) {
     console.log(type, 'type')
     const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
     const getApi = `http://localhost:8000/${model}/${_id}`
-    const data = yield call(axios.get, getApi)
+    const data = yield call(axios.get, getApi,header())
     yield put({ type: 'GET_ORDER_SUCCESS', repos: data.data })
   } catch (e) {
     console.log(e)
@@ -31,7 +31,7 @@ function* updateRegularOrder(action) {
   const updateApi = `http://localhost:8000/${model}/${id}`  // PUT方法更新regular
 
   try {
-    const regularData = yield call(axios.put, updateApi, update)
+    const regularData = yield call(axios.put, updateApi, update,header())
     console.log(regularData)
     console.log(update)
     yield put({ type: 'UPDATE_REGULAR_SUCCESS', repos: update })
@@ -48,13 +48,13 @@ function* postRegularOrder(action) {
   // action.payload就是post-action.js的payload键，
   // 所以action.payload就等于post-action的obj
   // console.log("Post from component: ",action.payload) 
-  const { token } = JSON.parse(localStorage.getItem('userInfo')).data
-  const Header = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': token
-  }
-  const result = yield call(axios.post, postRCApi, action.payload, { headers: Header })
+  // const { token } = JSON.parse(localStorage.getItem('userInfo')).data
+  // const Header = {
+  //   'Accept': 'application/json',
+  //   'Content-Type': 'application/json',
+  //   'Authorization': token
+  // }
+  const result = yield call(axios.post, postRCApi, action.payload, header())
   const { data } = result
   // console.log('return from backend: ', data)
   if (result.errors) {
@@ -80,13 +80,13 @@ function* postEndLeaseOrder(action) {
   // action.payload就是post-action.js的payload键，
   // 所以action.payload就等于post-action的obj
   // console.log("Post from component: ",action.payload) 
-  const { token } = JSON.parse(localStorage.getItem('userInfo')).data
-  const Header = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': token
-  }
-  const result = yield call(axios.post, postECApi, action.payload, { headers: Header })
+  // const { token } = JSON.parse(localStorage.getItem('userInfo')).data
+  // const Header = {
+  //   'Accept': 'application/json',
+  //   'Content-Type': 'application/json',
+  //   'Authorization': token
+  // }
+  const result = yield call(axios.post, postECApi, action.payload, header())
   const { data } = result
   // console.log('return from backend: ', data)
   if (result.errors) {
@@ -121,7 +121,7 @@ function* submitUserReviews(action) {
 
   try {
     console.log('aaa')
-    const regularData = yield call(axios.put, updateApi, update)
+    const regularData = yield call(axios.put, updateApi, update,header())
     console.log(regularData)
     console.log(update)
     yield put({ type: 'SUBMIT_REVIEWS_SUCCESS', repos: update })

@@ -276,7 +276,7 @@ export default function HeaderNavigation(props) {
                     onClose={handleClose}
                     anchor="right"
                   >
-                    <MenuItem onClick={handleClose}>Booking Now</MenuItem>
+                    <MenuItem onClick={handleClickOpen}>Booking Now</MenuItem>
                     <MenuDialog />
                     <FormDialogMenuLogin />
                   </Drawer>

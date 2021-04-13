@@ -103,7 +103,7 @@ function OrderConfirm() {
   // const objid = '60633a30bad120ff885aa99c'
   const {_id} = orderData
   const aa = orderData.type
-  const orderUrl = `/myorder/${_id}?type=${aa}`
+  const orderUrl = `/order-detail/${_id}?type=${aa}`
   return (
     <>
       {/* {(ordertype==='') && (document.location.href = '/') } */}

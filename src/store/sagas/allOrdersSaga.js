@@ -8,7 +8,7 @@ function* fetchAllOrders(action) {
     // eslint-disable-next-line max-len
     const apiUrl = `http://localhost:8000/sortedOrder?page=${page}&pageSize=${pageSize}&status=${status}`
     const orders = yield call(axios.get, apiUrl,header())
-    console.log('data', orders)
+    // console.log('data', orders)
     yield put({ type: 'GET_ALL_ORDERS_SUCCESS', orders: orders.data })
     yield put({ type: 'CHANGE_ORDER', payload:0})
   } catch (e) {

@@ -120,7 +120,7 @@ function AdminCustomersRight(props) {
         finishData={toFinishData} acceptData={toAcceptData} />)}
       {(authLevel === 'user') && (<OrderActionButtons cancel='cancel' finish='' accept='' cancelData={data}
         finishData={toFinishData} acceptData={toAcceptData} />)}
-      {(authLevel === 'employee') && (<OrderActionButtons cancel='' finish='finish' accept='accept' cancelData={data}
+      {(authLevel === 'employee') && (<OrderActionButtons cancel='' finish={orderStatus==="in-progress"?"finish":""} accept={orderStatus==="confirmed"?"accept":""}  cancelData={data}
         finishData={toFinishData} acceptData={toAcceptData} />)}
     </Grid>
   )

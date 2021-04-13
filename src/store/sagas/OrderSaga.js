@@ -8,8 +8,8 @@ const postECApi = 'http://localhost:8000/endOfLease/'
 function* getRegularOrder(action) {
   try {
     const { _id, type } = action.payload
-    console.log(_id, 'objectID')
-    console.log(type, 'type')
+    // console.log(_id, 'objectID')
+    // console.log(type, 'type')
     const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
     const getApi = `http://localhost:8000/${model}/${_id}`
     const data = yield call(axios.get, getApi,header())
@@ -22,10 +22,10 @@ function* getRegularOrder(action) {
 
 function* updateRegularOrder(action) {
   const { id, orderstatus, type } = action.payload
-  console.log(id)
-  console.log(action.payload)
-  console.log(orderstatus)
-  console.log(type)
+  // console.log(id)
+  // console.log(action.payload)
+  // console.log(orderstatus)
+  // console.log(type)
   const update = { status: orderstatus }
   const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
   const updateApi = `http://localhost:8000/${model}/${id}`  // PUT方法更新regular
@@ -111,10 +111,10 @@ function* payOrder() {
 // submit User Reviews --kangkang
 function* submitUserReviews(action) {
   const { id, review, type, rate } = action.payload
-  console.log(id)
-  console.log(action.payload)
-  console.log(review)
-  console.log(type)
+  // console.log(id)
+  // console.log(action.payload)
+  // console.log(review)
+  // console.log(type)
   const update = { review: review, rating: rate }
   const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
   const updateApi = `http://localhost:8000/${model}/${id}`  // PUT方法更新regular
@@ -133,6 +133,34 @@ function* submitUserReviews(action) {
   }
 }
 
+function* assignToEmployee(action) {
+  const { type,id,orderstatus } = action.payload
+  console.log(action.payload);
+  const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
+  const level = localStorage.getItem('authLevel') 
+  const info = JSON.parse(localStorage.getItem(`${level}Info`))
+  const update = {status:orderstatus}
+  console.log(info);
+  const {ID,objectID} = info.data
+  console.log(ID,objectID);
+  // const person = level === 'user'? 'users' : 'employees'
+  // /endOfLease/assign/:id
+  const updateAPI=`http://localhost:8000/${model}/assign/${id}`
+  const EmployeeData = {employeeID:ID,employeeDetail:objectID}
+  console.log(EmployeeData);
+  try{
+    const data = yield call(axios.put, updateAPI ,EmployeeData,header())
+    console.log(data)
+    yield put({type:'UPDATE_ASSIGN_SUCCESS',payload:data})
+
+    yield put({ type: 'UPDATE_REGULAR_SUCCESS', repos: update })
+  }
+  catch(e) {
+    console.log(e)
+    yield put({type:'UPDATE_ASSIGN_FAILED',payload:e})
+  }
+}
+
 /*
   Alternatively you may use takeLatest.
   Does not allow concurrent fetches of user. If "USER_FETCH_REQUESTED" gets
@@ -145,7 +173,7 @@ function* RegularSaga() {
   yield takeEvery('POST_REGULAR_REQUEST', postRegularOrder) // POST to regular order
   yield takeEvery('POST_ENDOFLEASE_REQUEST', postEndLeaseOrder) // POST to end order
   yield takeEvery('UPDATE_REGULAR_REQUEST', updateRegularOrder) // UPDATE regular order
-
+  yield takeEvery('UPDATE_ASSIGN_REQUEST', assignToEmployee)
   yield takeEvery('PAY_ORDER_REQUEST', payOrder) // PAY
   yield takeEvery('SUBMIT_REVIEWS_REQUEST', submitUserReviews)
 }

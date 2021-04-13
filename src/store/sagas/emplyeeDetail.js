@@ -18,10 +18,10 @@ function* fetchRegularUrl()   {
   getApi = `http://localhost:8000/${person}/alltask/${ID}`
   // getApi='http://localhost:8000/employees/alltask/606ae8d38985eb80d70f58e6'
   try{
-    console.log(header());
+    console.log(header())
     const data = yield call(axios.get, getApi,header())
     const test =yield put({type:actionTypes.GET_HISTORY_SUCCESS,payload:data.data})
-    console.log(test);
+    console.log(test)
   }
   catch(e) {
     console.log(e)

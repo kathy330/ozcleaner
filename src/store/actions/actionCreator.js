@@ -98,6 +98,19 @@ export const updateRegularFaild = (obj) => ({
   payload: obj,
 })
 
+// assignToEmployee
+export const updateAssignRequest = (obj) => ({
+  type: actionTypes.UPDATE_ASSIGN_REQUEST,
+  payload: obj, // By convention, we put that information in a field called payload.
+})
+export const updateAssignSuccess = (obj) => ({
+  type: actionTypes.UPDATE_ASSIGN_SUCCESS,
+  payload: obj,
+})
+export const updateAssignFaild = (obj) => ({
+  type: actionTypes.UPDATE_ASSIGN_FAILED,
+  payload: obj,
+})
 
 // * getAllUserListRequest() is for get all users from userTable -- kathy
 export const getAllUserListRequest = users => ({

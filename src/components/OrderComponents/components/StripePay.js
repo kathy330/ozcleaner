@@ -15,7 +15,7 @@ import Grid from '@material-ui/core/Grid'
 import date from 'date-and-time'
 import {useDispatch} from 'react-redux'
 import {payOrderRequest,postRegularRequest,postEndOfLeaseRequest } from '../../../store/actions'
-
+// import header from "../../../store/sagas/header"
 
 const cardStyle = {
   style: {
@@ -58,8 +58,18 @@ export default function CheckoutForm({price,paystatus,data}) {
       // price:12800 // ¥128.00
       price:price
     }
+    const level = localStorage.getItem('authLevel')
+    const person = level === 'user' ? 'user':'employee'
+    const {token} = JSON.parse(localStorage.getItem(`${person}Info`)).data
+    // const Header = {
+    //   'Accept': 'application/json',
+    //   'Content-Type': 'application/json',
+    //   'Authorization': token
+    // }
     const Header = {
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
+      'Authorization': token
     }
     const res = await axios.post(postApi,paydata,{headers:Header})
     await setClientSecret(res.data.clientSecret) // 🌟必须有这个

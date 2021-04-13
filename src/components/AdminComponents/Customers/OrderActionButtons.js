@@ -5,7 +5,7 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { useDispatch } from 'react-redux'
-import { updateRegularRequest } from "../../../store/actions"
+import { updateRegularRequest,updateAssignRequest } from "../../../store/actions"
 
 
 // styles
@@ -48,7 +48,8 @@ export default function OrderActionButtons({ cancel, finish, accept, cancelData,
       // alert('Your order has been set FINISHED successfully! ')
     }
     else if (actionType === 'accept') {
-      dispatch(updateRegularRequest(acceptData))
+      console.log(acceptData);
+      dispatch(updateAssignRequest(acceptData))
       // alert('You ACCEPT this order successfully! ')
     }
 

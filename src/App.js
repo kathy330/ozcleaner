@@ -90,6 +90,8 @@ function App() {
   
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
         {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
+        {/* <Route path="/order-detail/:id" exact component={OrderDetailsPage} /> */}
+        {/* <Route path="/userOrders/:id" exact component={AdminOrderPage} /> */}
         {/* <Route path="/myorder/:id" exact component={AdminOrderPage} /> */}
 
     

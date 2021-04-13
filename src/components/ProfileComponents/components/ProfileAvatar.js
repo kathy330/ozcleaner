@@ -41,8 +41,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LetterAvatars() {
   const classes = useStyles()
-  const user = JSON.parse(localStorage.getItem('userInfo'))
-  const {lastName} = user.data
+  const level = localStorage.getItem('authLevel')
+  const person = JSON.parse(localStorage.getItem(`${level}Info`))
+  const {lastName} = person.data
   const firstChar = lastName[0].toUpperCase()
   return (
     <>

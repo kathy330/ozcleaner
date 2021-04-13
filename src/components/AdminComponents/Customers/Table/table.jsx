@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button'
 import TablePagination from '@material-ui/core/TablePagination'
 import date from 'date-and-time'
 import { Link } from 'react-router-dom'
-import{ Alert, AlertTitle } from '@material-ui/lab'
+import{ Alert} from '@material-ui/lab'
 import {getCUSDETAILTABLERequest,updateRegularRequest} from "../../../../store/actions"
 import { GreenStatus ,RedStatus,
   YellowStatus,GreyStatus,BlueStatus} from '../../../UIComponents/Status'
@@ -115,7 +115,7 @@ function isCancel(user,classes,handleCancelOrder) {
 function isComment(user,classes) {
   const level = localStorage.getItem('authLevel')
   if(level==="admin"){
-    if(user.reviewStatus){
+    if(user.reviewStatus||user.status!=="finished"){
       return(
         <Button 
           variant="contained"
@@ -138,13 +138,13 @@ function isComment(user,classes) {
       </Button>
     )  
   }
-  if(user.reviewStatus){
+  if(user.reviewStatus||user.status!=="finished"){
     return(
       <Button 
         variant="contained"
         className={classes.check}
         component={Link} 
-        to={`/userOrders/${user._id}?type=${user.type}`}
+        to={`/order-detail/${user._id}?type=${user.type}`}
       >
         View
       </Button>
@@ -155,7 +155,7 @@ function isComment(user,classes) {
       variant="contained"
       className={classes.comment}
       component={Link} 
-      to={`/userOrders/${user._id}?type=${user.type}`}
+      to={`/order-detail/${user._id}?type=${user.type}`}
     >
       Review
     </Button>
@@ -171,7 +171,7 @@ const BasicTable=(props)=> {
 
   const users =useSelector(state => state.cusDetailsTable.cusDetailsTable) 
   const loading = useSelector(state => state.cusDetailsTable.loading)
-  const error = useSelector(state => state.cusDetailsTable.error)
+  // const error = useSelector(state => state.cusDetailsTable.error)
 
 
   const dispatchRequested=()=>{
@@ -259,17 +259,17 @@ const BasicTable=(props)=> {
         />
       </TableContainer>
 )}
-      {users.length===0&&( 
+      {users.length===0&&!loading&&( 
       <Alert severity="info">No orders available! — check it out!</Alert>
 )}
-      {error&&!loading&&
+      {/* {error&&!loading&&
         ( 
           <Alert severity="error"> 
             <AlertTitle>{error}</AlertTitle>
             It&apos;s been a while since you&apos;ve signed in to Ozcleaner. 
             Please refresh your browser and try again.
           </Alert>
-)}
+)} */}
     </>
   )
 }

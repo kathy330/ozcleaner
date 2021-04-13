@@ -6,20 +6,22 @@ import header from "./header"
 
 // import API from our API folder, this just is a example
 
-let gitApi = ''
+let getApi = ''
 let updateAPI =''
 
 function* fetchRegularUrl()   {
   // console.log(url)
-  const info = JSON.parse(localStorage.getItem('userInfo'))
-  const level = localStorage.getItem('authLevel')
+  const level = localStorage.getItem('authLevel') 
+  const info = JSON.parse(localStorage.getItem(`${level}Info`))
   const ID = info.data.objectID
   const person = level === 'user'? 'users' : 'employees'
-  gitApi = `http://localhost:8000/${person}/alltask/${ID}`
+  getApi = `http://localhost:8000/${person}/alltask/${ID}`
+  // getApi='http://localhost:8000/employees/alltask/606ae8d38985eb80d70f58e6'
   try{
-    const data = yield call(axios.get, gitApi,header())
-
-    yield put({type:actionTypes.GET_HISTORY_SUCCESS,payload:data.data})
+    console.log(header())
+    const data = yield call(axios.get, getApi,header())
+    const test =yield put({type:actionTypes.GET_HISTORY_SUCCESS,payload:data.data})
+    console.log(test)
   }
   catch(e) {
     console.log(e)
@@ -28,8 +30,8 @@ function* fetchRegularUrl()   {
 }
 
 function* updateEmployeeProfile(action) {
-  const info = JSON.parse(localStorage.getItem('userInfo'))
-  const level = localStorage.getItem('authLevel')
+  const level = localStorage.getItem('authLevel') 
+  const info = JSON.parse(localStorage.getItem(`${level}Info`))
   const ID = info.data.objectID
   const person = level === 'user'? 'users' : 'employees'
   updateAPI=`http://localhost:8000/${person}/${ID}`

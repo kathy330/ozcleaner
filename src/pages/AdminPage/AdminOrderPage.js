@@ -64,7 +64,7 @@ function displayPage(repo) {
   if (typeof (repo) === 'string') { return <LoadingIcon /> }
   const { endTime, title, firstName, address, lastName,
     cabinets, fridge, oven, interiorWindows, rating, review, price, status, type, phoneNumber, _id, userDetail, employeeDetail } = repo
-  console.log(_id)
+  // console.log(_id)
   // let re = /{|}|":"|"address1|"address2|"suburb|"state|"postcode|":/g
   // console.log(JSON.stringify(repo.address).replace(re, ''))
   // let re2 = /",/g
@@ -75,7 +75,7 @@ function displayPage(repo) {
   const userFirstName = userDetail[0].name.firstName
   const userLastName = userDetail[0].name.lastName
   const userObjID = userDetail[0]._id
-  console.log(userDetail[0].name)
+  // console.log(userDetail[0].name)
   if (employeeDetail[0] == null) {
     employeeFirstName = 'null'
     employeeLastName = 'null'
@@ -89,7 +89,7 @@ function displayPage(repo) {
   // const userLastName = userDetail[0].name.lastName
   // const employeeFirstName = employeeDetail[0].name.firstName
   // const employeeLastName = employeeDetail[0].name.lastName
-  console.log(userFirstName, userLastName, employeeFirstName, employeeLastName)
+  // console.log(userFirstName, userLastName, employeeFirstName, employeeLastName)
   return (
     <>
       <Grid container spacing={2}>
@@ -134,8 +134,8 @@ function AdminOrderPage(match) {
   if (match.match) {
     const objid = match.match.params.id;
     const query = new URLSearchParams(match.location.search)
-    console.log(query)
-    console.log(match.location.search)
+    // console.log(query)
+    // console.log(match.location.search)
     const getType = query.get('type')
     const data = { _id: objid, type: getType }
     const dispatch = useDispatch()
@@ -149,8 +149,8 @@ function AdminOrderPage(match) {
   let redux = useSelector(state => state.order)
   let repo = redux.order
   let loading = redux.loading
-  console.log(redux, 'redux')
-  console.log(loading,)
+  // console.log(redux, 'redux')
+  // console.log(loading,)
 
 
   return (

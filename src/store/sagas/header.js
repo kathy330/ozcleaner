@@ -1,11 +1,14 @@
 
 const header=()=>{
-    const {token} = JSON.parse(localStorage.getItem('userInfo')).data
+    const level = localStorage.getItem('authLevel')
+    const person = level === 'user' ? 'user':'employee'
+    const {token} = JSON.parse(localStorage.getItem(`${person}Info`)).data
     const Header = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization': token
     }
+    console.log(Header)
     return {headers:Header}
     }
 export default header

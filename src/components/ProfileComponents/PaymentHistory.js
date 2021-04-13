@@ -116,10 +116,12 @@ export default function BasicTable() {
                 {employee.taskID}
               </TableCell>
               <TableCell align='center' className={classes.tableCell}>
+                <span>&nbsp;&nbsp;</span>
                 <KingBedIcon className={classes.bedIconSize} />
                 <Typography className={classes.orderNumber}>
                   ×
                   {employee.bedroomNum}
+                  <span>&nbsp;&nbsp;</span>
                 </Typography>
                 <BathtubIcon className={classes.bathIconSize} />
                 <Typography className={classes.orderNumber}>
@@ -138,10 +140,9 @@ export default function BasicTable() {
                   variant="contained"
                   className={classes.check}
                   component={Link} 
-                  to={`/myorder/${employee._id}?type=
-                  ${employee.type==="EC"? "EC":"RC"}`}
+                  to={`/order-detail/${employee._id}?type=${employee.type==="EC"? "EC":"RC"}`}
                 >
-                  view
+                  View
                 </Button>
               </TableCell>
             </TableRow>

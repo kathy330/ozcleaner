@@ -43,9 +43,6 @@ export default function ProfileRight() {
         <Grid item xs={12} className={classes.marginLeft}>
           <TextForm />
         </Grid>
-        {/* <Grid item xs={12} className={classes.botton}>
-          <SaveButton />
-        </Grid> */}
       </Grid>
     </div>
   )

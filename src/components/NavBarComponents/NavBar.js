@@ -18,7 +18,7 @@ import {
   Slide,
   Drawer,
 } from '@material-ui/core'
-
+import {useHistory} from "react-router-dom"
 import MenuIcon from '@material-ui/icons/Menu'
 import Dialog from '@material-ui/core/Dialog'
 import PropTypes from 'prop-types'
@@ -145,9 +145,20 @@ export default function HeaderNavigation(props) {
   const employeesignoutHandler = () => {
     dispatch(signoutEmployee())
   }
-
   const handleClose = () => {
     setAnchor(null)
+  }
+
+  const history = useHistory()
+  
+  const pushOrder = () => {
+    history.push("/order")
+  }
+  const pushMyOrder = () => {
+    history.push(`/${role}/${id}`)
+  }
+  const pushMyProfile = () => {
+    history.push("/profile")
   }
 
   return (
@@ -204,9 +215,9 @@ export default function HeaderNavigation(props) {
                     onClose={handleClose}
                     anchor="right"
                   >
-                    <MenuItem onClick={handleClose}>Booking Now</MenuItem>
-                    <MenuItem>My Order</MenuItem>
-                    <MenuItem>My Profile</MenuItem>
+                    <MenuItem onClick={pushOrder}>Booking Now</MenuItem>
+                    <MenuItem onClick={pushMyOrder}>My Order</MenuItem>
+                    <MenuItem onClick={pushMyProfile}>My Profile</MenuItem>
                     <MenuItem onClick={signoutHandler}>Sign Out</MenuItem>
                   </Drawer>
                 </>
@@ -217,7 +228,7 @@ export default function HeaderNavigation(props) {
               {employeeInfo ? (
                 <>
                   <Box className={style.buttonsBox}>
-                    <Button href='/employee-order' className={style.bookingButton}>Browse Orders</Button>
+                    <Button href='/employee-orders' className={style.bookingButton}>Browse Orders</Button>
                     <Button href={`/${role}/${id}`}>My Order</Button>
                     <Button href='/profile'>My Profile</Button>
                     <Button
@@ -234,9 +245,9 @@ export default function HeaderNavigation(props) {
                     onClose={handleClose}
                     anchor="right"
                   >
-                    <MenuItem onClick={handleClose}>Booking Now</MenuItem>
-                    <MenuItem>My Order</MenuItem>
-                    <MenuItem>My Profile</MenuItem>
+                    <MenuItem onClick={pushOrder}>Browse Orders</MenuItem>
+                    <MenuItem onClick={pushMyOrder}>My Order</MenuItem>
+                    <MenuItem onClick={pushMyProfile}>My Profile</MenuItem>
                     <MenuItem onClick={employeesignoutHandler}>Sign Out</MenuItem>
                   </Drawer>
                 </>
@@ -266,7 +277,7 @@ export default function HeaderNavigation(props) {
                     onClose={handleClose}
                     anchor="right"
                   >
-                    <MenuItem onClick={handleClose}>Booking Now</MenuItem>
+                    <MenuItem onClick={handleClickOpen}>Booking Now</MenuItem>
                     <MenuDialog />
                     <FormDialogMenuLogin />
                   </Drawer>

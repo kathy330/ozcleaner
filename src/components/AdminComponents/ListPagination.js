@@ -11,10 +11,15 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
+/**
+ * ListPagination() is a pagination components
+ * @param path: (string) route path based on the parent component's path
+ * @param getPaginationPage: (func) a callback function
+ * @param count: (num) number of the pages
+ */
 function ListPagination(props){
   const classes = useStyles()
   const { path, getPaginationPage, count } = props
-  // const path = `/admin/${tableType}s`
 
   return(
     <Route path={path}>

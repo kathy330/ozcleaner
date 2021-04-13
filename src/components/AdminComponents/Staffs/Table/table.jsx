@@ -11,7 +11,7 @@ import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import Button from '@material-ui/core/Button'
-import{ Alert, AlertTitle } from '@material-ui/lab'
+import{ Alert} from '@material-ui/lab'
 import date from 'date-and-time'
 import { Link } from 'react-router-dom'
 import TablePagination from '@material-ui/core/TablePagination'
@@ -105,7 +105,7 @@ function isAuth(user,classes) {
         variant="contained"
         className={classes.check}
         component={Link} 
-        to={`/userOrders/${user._id}?type=${user.type}`}
+        to={`/order-detail/${user._id}?type=${user.type}`}
       >
         View
       </Button>
@@ -121,7 +121,8 @@ const BasicTable=(props)=>{
 
   const users =useSelector(state => state.staffDetailsTable.staffDetailsTable) 
   const loading = useSelector(state => state.staffDetailsTable.loading)
-  const error = useSelector(state => state.staffDetailsTable.error)
+  // const error = useSelector(state => state.staffDetailsTable.error)
+
   
   const dispatchRequested = () => {
     dispatch(getSTAFFDETAILTABLERequest(data))
@@ -196,17 +197,17 @@ const BasicTable=(props)=>{
         />
       </TableContainer>
     )}
-      {users.length===0&&( 
+      {users.length===0&&!loading&&( 
         <Alert severity="info">No orders available! — check it out!</Alert>
 )}
-      {error&&!loading&&
+      {/* {error&&!loading&&
         ( 
           <Alert severity="error"> 
             <AlertTitle>{error}</AlertTitle>
             It&apos;s been a while since you&apos;ve signed in to Ozcleaner. 
             Please refresh your browser and try again.
           </Alert>
-)}
+)} */}
 
     </>
   

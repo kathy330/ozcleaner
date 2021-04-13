@@ -28,6 +28,7 @@ const initialState = {
     'result': [],
     'count': 0
   },
+  test:1,
   row: 0,
   completeinfo: {
     info: localStorage.getItem('regularCleanOrder') ?
@@ -206,6 +207,33 @@ function orderReducer(state = initialState, action) {
         error: action.payload
       }
 
+      case actionType.UPDATE_ASSIGN_REQUEST:
+        return {
+          ...state,
+          loading: true,
+        }
+  
+      case actionType.UPDATE_ASSIGN_SUCCESS:
+        // let orders = state.orders.result
+        // let order = { ...state.order, status: action.repos.status }
+        // orders[state.row] = order
+        return {
+          ...state,
+          loading: false,
+          test:2,
+          updateData: {status:"in-progress"},
+          // order: action.postInSaga,
+          // order: order,
+          // orders: { ...state.orders, result: orders }
+        }
+  
+      case actionType.UPDATE_ASSIGN_FAILED:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload
+          // error:action.data.err
+        }
     default:
       return state
   }

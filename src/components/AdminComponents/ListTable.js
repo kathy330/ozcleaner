@@ -1,12 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-  Button,
-  Dialog, 
-  DialogActions, 
-  DialogContent, 
-  DialogContentText, 
-  DialogTitle,
   TableContainer,
   Table,
   TableBody,
@@ -19,6 +13,7 @@ import ListTableRow from './ListTableRow'
 import LoadingIcon from './LoadingIcon'
 import ListPagination from './ListPagination'
 import NoDataFound from './NoDataFound'
+import DialogPopup from './DialogPopup'
 
 /**
  * ListTable() is for displaying the user list(user/employee)
@@ -128,29 +123,12 @@ function ListCustomerTable(props) {
             getPaginationPage={getPaginationPage}
             count={finalPage}
           />
-          <Dialog
-            open={open}
-            onClose={handleAlertClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">Do you want to delete this user?</DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                {`User: 
-                  ${usersData[deletedIndex].name.firstName}
-                  (${usersData[deletedIndex].email})`}
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleAlertConfirm} variant="contained" color="secondary">
-                Delete
-              </Button>
-              <Button onClick={handleAlertClose} variant="contained" autoFocus>
-                Cancel
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <DialogPopup 
+            open={open} 
+            handleAlertClose={handleAlertClose} 
+            handleAlertConfirm={handleAlertConfirm} 
+            userdata={usersData[deletedIndex]} 
+          />
         </>
       )}
       {/* if not loading && user data is empty: show no user available */}

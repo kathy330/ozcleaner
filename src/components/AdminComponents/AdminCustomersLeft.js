@@ -83,7 +83,7 @@ const AdminCustomersLeft = ({ dueDate, orderTitle,
         <Review rating={rate} review={reviewText} />
       </div>
       <div>
-        {(authLevel === 'user') && (
+        {(authLevel === 'user' && orderStatus === 'finished') && (
           <>
             <Divider className={classes.divider} />
             <TextField _id={_id} type={typeOfOrder} review={reviewText} />

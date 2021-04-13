@@ -59,7 +59,7 @@ export default function AutoGrid() {
                 orientation={mediumViewport ? "vertical" : "horizontal"}
               > 
                 <Tab label="Profile" />
-                <Tab label="Payment Hitory" />
+                <Tab label="Order History" />
               </Tabs>
             </>
           </Grid>

@@ -140,8 +140,7 @@ export default function BasicTable() {
                   variant="contained"
                   className={classes.check}
                   component={Link} 
-                  to={`/order-detail/${employee._id}?type=
-                  ${employee.type==="EC"? "EC":"RC"}`}
+                  to={`/order-detail/${employee._id}?type=${employee.type==="EC"? "EC":"RC"}`}
                 >
                   View
                 </Button>

@@ -216,7 +216,7 @@ export default function HeaderNavigation(props) {
               {employeeInfo ? (
                 <>
                   <Box className={style.buttonsBox}>
-                    <Button href='/employee-order' className={style.bookingButton}>Browse Orders</Button>
+                    <Button href='/employee-orders' className={style.bookingButton}>Browse Orders</Button>
                     <Button href={`/${role}/${id}`}>My Order</Button>
                     <Button href='/profile'>My Profile</Button>
                     <Button

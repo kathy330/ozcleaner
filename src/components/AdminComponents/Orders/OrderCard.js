@@ -60,6 +60,10 @@ function formatDate (date){
   }
 }
 
+/**
+ * OrderCard() is for render an order detail in the order task page
+ * @param props: (obj) store data that need to be rended in this component
+ */
 const OrderCard = (props) => {
   const classes = useStyles()
   const { title, address, date, status, classToUse, name} = props

@@ -26,18 +26,18 @@ const useStyles = makeStyles((theme) => ({
   img: {
     marginBottom: '55px',
     // marginTop: '102px',
-    marginTop: '79px',
-    padding: '0px',
+    marginTop: '55px',
+    // padding: '0px',
     
     '& img': {
-      // height: '75vh',
+      height: '60vh',
     }
   },
 
   text: {
     display: 'flex',
     flexDirection: 'column',
-    height: '75vh',
+    height: '60vh',
     justifyContent: 'center',
     // marginTop: '102px',
     marginTop: '95px',

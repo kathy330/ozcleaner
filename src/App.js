@@ -20,7 +20,7 @@ import theme from './styles/theme'
 // import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
 // import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
 import AdminIndexPage from "./pages/AdminPage/AdminIndexPage"
-import AdminOrderPage from "./pages/AdminPage/AdminOrderPage"
+// import AdminOrderPage from "./pages/AdminPage/AdminOrderPage"
 import OrderCusDetailPage from "./pages/OrderPage/CustomersDetails"
 import OrderStaffDetailPage from "./pages/OrderPage/StaffDetails"
 // import ....Page from ....
@@ -46,41 +46,57 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Switch>
+        {/* 1 首页 */}
         <Route path="/" exact component={HomePage} />
-
-
-        {/* 🌟员工接单大厅的链接🌟 */}
-        {/* <Route path="/employee-order" exact component={员工登陆后接单大厅} /> */}
-
-
+        {/* 2 user下订单Booking */}
         <ProtectedRoute path="/order" exact component={Order} />
+        {/* 3 user下订单后展示 */}
         <ProtectedRoute path="/order/confirm" exact component={OrderConfirmPage} />
-        <Route path="/myorder/:id" exact component={OrderDetailsPage} />
+        {/* 4 user和employee的profile */}
+        <Route path="/profile" exact component={ProfilePage} />
+        {/* 5 user的Navbar My order按钮 */}
+        <Route path="/users/:id" exact component={OrderCusDetailPage} />
+        {/* 6 employee的Navbar My order按钮 */}
+        <Route path="/employees/:id" exact component={OrderStaffDetailPage} />
+        {/* 7 employee接单大厅Browse Task */}
+        <Route path="/employee-orders" exact component={EmployeeOrderList} />
+        {/* 8 user/employee myorder里面的子页链接 */}
+        <Route path="/order-detail/:id" exact component={OrderDetailsPage} />
+     
+        {/* 9 admin页面 */}
+        <Redirect exact from="/admin" to="/admin/dashboard" />
+        <ProtectedRoute path="/admin" component={AdminIndexPage} />
+        {/* 10 找回密码页面 */}
+        <Route path="/forgetpassword" exact component={ForgetPassword} />
+        <Route path="/forgetpassword/resetpassword" exact component={ResetPassword} />
+        {/* 11 Error page */}
+        <Route component={ErrorPage} />
+
+        {/* myorder删除掉 */}
+        {/* <Route path="/myorder/:id" exact component={OrderDetailsPage} /> */}
         {/* <ProtectedRoute path="/order/pay" exact component={OrderPay} /> */}
         {/* <Route path="/profile/customer" exact component={CustomerProfilePage} /> */}
         {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
-        <Route path="/profile" exact component={ProfilePage} />
         {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
         {/* <Route path="/profile" exact component={ProfilePage} /> */}
 
         {/* <Route path="/admin/order" exact component={AdminOrderPage} />
         <Route path="/admin/overview" exact component={AdminOverviewPage} />
         <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
-        <Redirect exact from="/admin" to="/admin/dashboard" />
-        <ProtectedRoute path="/admin" component={AdminIndexPage} />
+     
         {/* <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
         <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} /> */}
-        <Route path="/users/:id" exact component={OrderCusDetailPage} />
-        <Route path="/employees/:id" exact component={OrderStaffDetailPage} />
+
+  
         {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
         {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
-        <Route path="/order-detail/:id" exact component={OrderDetailsPage} />
-        <Route path="/userOrders/:id" exact component={AdminOrderPage} />
+        {/* <Route path="/order-detail/:id" exact component={OrderDetailsPage} /> */}
+        {/* <Route path="/userOrders/:id" exact component={AdminOrderPage} /> */}
         {/* <Route path="/myorder/:id" exact component={AdminOrderPage} /> */}
-        <Route path="/employee-orders" exact component={EmployeeOrderList} />
+
+    
 
         <Route path="/ui" exact component={UI} />
-
         <Route path="/dongyu" exact component={DongyuPage} />
         <Route path="/Kangkang" exact component={KangkangPage} />
         <Route path="/Yanbo" exact component={YanboPage} />
@@ -90,11 +106,6 @@ function App() {
         <Route path="/erik" exact component={ErikPage} />
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />
-
-        <Route path="/forgetpassword" exact component={ForgetPassword} />
-        <Route path="/forgetpassword/resetpassword" exact component={ResetPassword} />
-
-        <Route component={ErrorPage} />
       </Switch>
     </ThemeProvider>
   )

@@ -33,8 +33,9 @@ function* employeeRegister(action) {
  
   try {
     const userInfo = 
-    yield call(axios.post, "http://localhost:8000/employees/registration", action.payload)
+      yield call(axios.post, "http://localhost:8000/employees/registration", action.payload)
     yield put({ type: 'EMPLOYEE_REGISTER_SUCCESS', payload:userInfo })
+
     if(JSON.parse(userInfo.config.data).email === "admin@oz.com"){
       yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload:userInfo  })
       localStorage.setItem('employeeInfo', JSON.stringify(userInfo))
@@ -42,8 +43,10 @@ function* employeeRegister(action) {
       document.location.href = '/admin'
     }
     else{
-      yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload:userInfo  })// 按照employee进行login操作
-      localStorage.setItem('employeeInfo', JSON.stringify(userInfo))
+      const userloginInfo = 
+        yield call(axios.post, "http://localhost:8000/employees/login", action.payload)
+      yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload:userloginInfo  })// 按照employee进行login操作
+      localStorage.setItem('employeeInfo', JSON.stringify(userloginInfo))
       localStorage.setItem("authLevel", "employee") // 暂时把employee当成admin
       document.location.href = '/employee-orders'
     }

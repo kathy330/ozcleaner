@@ -115,7 +115,7 @@ function isCancel(user,classes,handleCancelOrder) {
 function isComment(user,classes) {
   const level = localStorage.getItem('authLevel')
   if(level==="admin"){
-    if(user.reviewStatus){
+    if(user.reviewStatus||user.status!=="finished"){
       return(
         <Button 
           variant="contained"
@@ -138,7 +138,7 @@ function isComment(user,classes) {
       </Button>
     )  
   }
-  if(user.reviewStatus){
+  if(user.reviewStatus||user.status!=="finished"){
     return(
       <Button 
         variant="contained"

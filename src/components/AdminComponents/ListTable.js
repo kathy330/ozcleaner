@@ -134,7 +134,7 @@ function ListCustomerTable(props) {
       {/* if not loading && user data is empty: show no user available */}
       {usersData !== undefined && usersData.length === 0 &&
         !loading &&
-        <NoDataFound refreshPage={refreshPage} />}
+        <NoDataFound refreshPage={refreshPage} title={`No ${tableType} found!`} />}
       {/* display any error below */}
       {error && !loading && <Typography variant="h4">{error}</Typography>}
     </>

@@ -167,7 +167,11 @@ function OrdersLists(props) {
     listPayload.status = ''
     dispatch(getAllOrersRequest(listPayload))
     setOrderStatus('')
-    history.push(`/admin/orders/`)
+    if (listType === 'admin'){
+      history.push(`/admin/orders/`)
+    } else {
+      history.push(`/employee-orders/`)
+    }
   }
 
   
@@ -226,7 +230,7 @@ function OrdersLists(props) {
         </Grid>
       )}
       {!loading && data !== undefined && data.length === 0 &&
-        <NoDataFound refreshPage={refreshPage} />}
+        <NoDataFound refreshPage={refreshPage} title="No order found!" />}
       {!loading && error && <Typography variant="h4">{error}</Typography>}
     </>
   )

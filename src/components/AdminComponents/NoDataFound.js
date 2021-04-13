@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react'
 import { makeStyles, Grid, Typography, Button }from '@material-ui/core'
 
@@ -9,6 +8,9 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     flexDirection: 'column',
     minHeight: '60vh',
+  },
+  btn: {
+    marginTop: '20px'
   }
 }))
 
@@ -17,13 +19,20 @@ const useStyles = makeStyles(() => ({
  * @param refreshPage: (func) a callback func
  */
 const NoDataFound = (props) =>{
-  const { refreshPage } = props
+  const { refreshPage, title } = props
   const classes = useStyles()
 
   return(
     <Grid className={classes.root}>
-      <Typography variant="h3">No Data Found!</Typography>
-      <Button variant="contained" color="primary" onClick={() => refreshPage()}>Refresh Page</Button>
+      <Typography variant="h3">{title}</Typography>
+      <Button 
+        className={classes.btn} 
+        variant="contained" 
+        color="primary" 
+        onClick={() => refreshPage()}
+      >
+        Refresh Page
+      </Button>
     </Grid>
   )
 }

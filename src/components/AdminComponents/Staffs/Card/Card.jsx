@@ -63,13 +63,6 @@ function showCardInfo(card, array,index, isAvailable, classes) {
   )
   
 }
-function switchName(status) {
-  let newStatus="Unavailable"
-  if( status==="off-job"){
-    newStatus="Available"
-  }
-  return newStatus
-}
 
 export default function AutoGrid(props) {
 
@@ -78,7 +71,7 @@ export default function AutoGrid(props) {
   const {postcode}=UserData.address
   const {email,phone,ABN,workingExperience,employmentStatus}=UserData
   const arrayObj =[]
-  arrayObj.push([postcode,email,phone,ABN,workingExperience,switchName(employmentStatus)])
+  arrayObj.push([postcode,email,phone,ABN,workingExperience,employmentStatus])
   // console.log(arrayObj[0])
 
   return (
@@ -167,7 +160,7 @@ export default function AutoGrid(props) {
               <Grid item xs={8} sm={3}>
                 <ul>
                   {arrayObj[0].map((item, index) => (
-                     showCardInfo(UserData, arrayObj[0],index, UserData.employmentStatus === "off-job", classes)
+                     showCardInfo(UserData, arrayObj[0],index, UserData.employmentStatus === "available", classes)
           ))}
                 </ul>
               </Grid>

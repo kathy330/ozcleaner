@@ -95,6 +95,7 @@ export const buttonStyle = makeStyles((theme) => ({
 export const statusStyle = makeStyles((theme) => ({
   green: {
     color: 'white',
+    minWidth:'120px',
     background: theme.palette.green.main,
     borderRadius: '25px',
     '&:disabled': {
@@ -103,6 +104,7 @@ export const statusStyle = makeStyles((theme) => ({
   },
   grey: {
     background: theme.palette.grey.main,
+    minWidth:'120px',
     borderRadius: '25px',
     '&:disabled': {
       color: 'white',
@@ -110,6 +112,7 @@ export const statusStyle = makeStyles((theme) => ({
   },
   red: {
     background: theme.palette.red.main,
+    minWidth:'120px',
     borderRadius: '25px',
     '&:disabled': {
       color: 'white',
@@ -117,6 +120,7 @@ export const statusStyle = makeStyles((theme) => ({
   },
   blue: {
     background: theme.palette.blue.main,
+    minWidth:'120px',
     borderRadius: '25px',
     '&:disabled': {
       color: 'white',
@@ -124,6 +128,7 @@ export const statusStyle = makeStyles((theme) => ({
   },
   yellow: {
     background: theme.palette.yellow.main,
+    minWidth:'120px',
     borderRadius: '25px',
     '&:disabled': {
       color: 'white',

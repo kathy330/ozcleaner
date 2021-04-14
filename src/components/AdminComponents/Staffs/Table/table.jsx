@@ -34,12 +34,14 @@ const useStyles = makeStyles(() => ({
   check: {
     display:"inline-block",
     margin:" 0 3%",
+    minWidth:"120px",
     background:"#007bf5",
     color:"white"
   },
   delete: {
     display:"inline-block",
     margin:" 0 3%",
+    minWidth:"120px",
     background:"#f35162",
     color:"white"
   },

@@ -88,8 +88,8 @@ export default function AutoGrid(props) {
                 <Typography>Total Orders</Typography>                       
               </Grid>
 
-              <Grid item key={UserData.totalOrders}>
-                <Typography variant="h6">{UserData.totalOrders}</Typography>            
+              <Grid item key={UserData.numberOfOrderFinished}>
+                <Typography variant="h6">{UserData.numberOfOrderFinished}</Typography>            
               </Grid>
    
             </Grid>

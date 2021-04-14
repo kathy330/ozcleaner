@@ -5,6 +5,7 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
 import PropTypes from 'prop-types'
+import Grid from '@material-ui/core/Grid'
 import { makeStyles ,useTheme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
@@ -32,7 +33,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={2}>
-          <Typography>{children}</Typography>
+          <Grid>{children}</Grid>
         </Box>
       )}
     </div>

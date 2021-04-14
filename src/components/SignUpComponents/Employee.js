@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '0px 30px',
     paddingTop: '2vh',
     fontWeight:'bold',
+    fontSize:'38px'
   },
   textField: {
     [`& fieldset`]: {
@@ -117,7 +118,7 @@ const classes = useStyles()
               <Typography
                 className={classes.title}
                 align="center"
-                variant="h4"
+              
               >
                 Join us
               </Typography>
@@ -166,30 +167,6 @@ const classes = useStyles()
               defaultValue=""
             />
           </Grid>
-          <Grid>
-            <Typography
-              className={classes.text}
-            >
-              ABN:
-            </Typography>
-          </Grid>
-          <Grid container justify="center">
-            <Controller
-              as={(
-                <TextField
-                  className={classes.textField}
-                  margin="dense"
-                  id="outlined-basic"
-                  label="ABN"
-                  type="number"
-                  variant="outlined"
-                />
-                )}
-              name="ABN"
-              control={control}
-              defaultValue=""
-            />
-          </Grid> 
           <Grid>
             <Typography
               className={classes.text}

@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '0px 30px',
     paddingTop: '2vh',
     fontWeight:'bold',
+    fontSize:'38px'
   },
   textField: {
     [`& fieldset`]: {
@@ -122,7 +123,7 @@ const classes = useStyles()
                 <Typography
                   className={classes.title}
                   align="center"
-                  variant="h4"
+                  
                 >
                   Login
                 </Typography>
@@ -211,22 +212,6 @@ const classes = useStyles()
               </Typography>
             )}
               <PopupLoginButton />
-            </Grid>
-            <Grid container justify="center">
-              <DividerWithText>
-                <Typography
-                  className={classes.divider}
-                >
-                  or login with
-                </Typography>
-              </DividerWithText>
-            </Grid>
-           
-            <Grid container justify="center" item xs={12}>
-              <FbButton />
-            </Grid>
-            <Grid container justify="center" item xs={12}>
-              <GoogleButton />
             </Grid>
             <Grid container justify="center" item xs={12}>
               <Typography

@@ -8,13 +8,12 @@ import { makeStyles ,useTheme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import SwipeableViews from 'react-swipeable-views'
 import {Button} from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
 import LoginDetails from './LoginForm'
 import EmployeeLoginDetails from './EmployeeLoginForm'
-
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -29,7 +28,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={2}>
-          <Typography>{children}</Typography>
+          <Grid>{children}</Grid>
         </Box>
       )}
     </div>

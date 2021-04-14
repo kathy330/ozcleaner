@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import {buttonStyle} from './styles/styles'
 import './styles/Style.scss'
-import GoogleLogo from './resource/google.png'
+// import GoogleLogo from './resource/google.png'
 
 
 
@@ -55,21 +55,7 @@ export function FbButton() {
   )
 }
 
-export function GoogleButton() {
-  const classes = buttonStyle()
-  return(
-    <>
-      <Button
-        className={classes.googleButton}
-        variant="contained"
-        type="submit"
-      >
-        <img src={GoogleLogo} className='google' alt="fireSpot" />
-        <p className='google-font'>Google</p>
-      </Button>
-    </>
-  )
-}
+
 
 export function ConfirmButton() {
   const classes = buttonStyle()

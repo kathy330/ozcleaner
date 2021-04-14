@@ -1,4 +1,5 @@
-/* eslint-disable*/
+/* eslint no-unused-vars: "error" */
+/* eslint import/no-cycle: [2, { maxDepth: 1 }] *///
 import {React} from 'react'
 // import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
@@ -10,15 +11,15 @@ import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import {useForm,Controller } from 'react-hook-form'
 import {useDispatch,useSelector } from 'react-redux'
-import DividerWithText from './Divider'
-import {PopupButton,FbButton,GoogleButton} from './Button'
+import CircularProgress from '@material-ui/core/CircularProgress'
+// import { ErrorOutline } from '@material-ui/icons'
+// import DividerWithText from './Divider'
+import {PopupButton} from './Button'
 // import {postRegularRequest} from '../../store/actions'
 import {register} from "../../store/actions/actionCreator"
 // import FormDialogLogin from "./PopupFormLogin"
 import FormDialogLoginPop from './FormDialogLoginPop'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import { ErrorOutline } from '@material-ui/icons'
-//import PopupFormLogin from './PopupFormLogin'
+// import PopupFormLogin from './PopupFormLogin'
 
 
 
@@ -48,6 +49,7 @@ export default function RegistrationForm() {
       padding: '0px 30px',
       paddingTop: '2vh',
       fontWeight:'bold',
+      fontSize:'38px'
     },
     textField: {
       [`& fieldset`]: {
@@ -90,7 +92,8 @@ export default function RegistrationForm() {
       fontWeight: 'bold',
       fontSize:'12px',
       marginLeft:'34px',
-      marginBottom:'-22px'
+      marginBottom:'-22px',
+
     },
     login:{
       fontWeight: 'bold',
@@ -99,7 +102,8 @@ export default function RegistrationForm() {
       fontSize:'12px',
       textDecoration: 'none',
       marginRight:'10%',
-      marginBottom:'30px'
+      marginBottom:'30px',
+ 
     },
     loginColor:{
       textDecoration: 'none',
@@ -117,7 +121,7 @@ const classes = useStyles()
               <Typography
                 className={classes.title}
                 align="center"
-                variant="h4"
+                // variant="h4"
                 
               >
                 Join us
@@ -125,22 +129,22 @@ const classes = useStyles()
             </DialogTitle>
           </Grid>
           <Grid container justify="center">
-                {loading && <CircularProgress />}
-                {error && (
-                <Typography
-                  color="error"
-                  className={classes.text}
-                >
-                  {error}
-                </Typography>
+            {loading && <CircularProgress />}
+            {error && (
+            <Typography
+              color="error"
+              className={classes.text}
+            >
+              {error}
+            </Typography>
               )}
-                {userInfo && (
-                <Typography
-                  color="primary"
-                  className={classes.text}
-                >
-                  Your registration successfully!
-                </Typography>
+            {userInfo && (
+            <Typography
+              color="primary"
+              className={classes.text}
+            >
+              Your registration successfully!
+            </Typography>
               )}
           </Grid>
           <Grid container>
@@ -157,7 +161,7 @@ const classes = useStyles()
                   className={classes.textField}
                   margin="dense"
                   id="outlined-basic"
-                  label="email"
+                  label="Email"
                   type="Email"
                   variant="outlined"
                 />
@@ -208,22 +212,9 @@ const classes = useStyles()
             />
             
           </Grid>
-          <Grid container justify="center">
-            <DividerWithText>
-              <Typography
-                className={classes.divider}
-              >
-                or sign up with
-              </Typography>
-            </DividerWithText>
-          </Grid>
+
            
-          <Grid container justify="center" item xs={12}>
-            <FbButton />
-          </Grid>
-          <Grid container justify="center" item xs={12}>
-            <GoogleButton />
-          </Grid>
+        
           <Grid container justify="center" item xs={12}>
             <Typography
               className={classes.agreement}
@@ -236,24 +227,22 @@ const classes = useStyles()
             <Divider className={classes.divide} />
           </Grid>
         </form>
-          <Grid container direction="row">
-            <Grid container justify="flex-start">
-              <Typography className={classes.account}>
-                Do not have an account?
-              </Typography>
+        <Grid container direction="row">
+          <Grid container justify="flex-start">
+            <Typography className={classes.account}>
+              Do not have an account?
+            </Typography>
               
-            </Grid>
-           
-            <Grid container justify="flex-end">
-             <FormDialogLoginPop/>
-            </Grid>
           </Grid>
+           
+          <Grid container justify="flex-end">
+            <FormDialogLoginPop />
+          </Grid>
+        </Grid>
           
       </>
     )
   }
-
-
 
 
 

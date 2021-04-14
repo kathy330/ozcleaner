@@ -15,7 +15,7 @@ export const navBarStyle = makeStyles((theme) => ({
     flexGrow: 1,
   },
   container: {
-    marginInline: theme.spacing(30),
+    marginInline: theme.spacing(8),
     [theme.breakpoints.down('md')]: {
       marginInline: 0,
     },
@@ -29,6 +29,8 @@ export const navBarStyle = makeStyles((theme) => ({
     background: theme.palette.primary.main,
     borderRadius: '12px', // 跟首页下面booking button一样尺寸
     marginInline: '20px',
+    paddingLeft:'25px',
+    paddingRight:'25px',
     '&:hover': {
       background: theme.palette.primary.hover,
       boxShadow: '0px 2px 10px #888888',

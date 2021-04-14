@@ -69,8 +69,7 @@ function App() {
         {/* 10 找回密码页面 */}
         <Route path="/forgetpassword" exact component={ForgetPassword} />
         <Route path="/forgetpassword/resetpassword" exact component={ResetPassword} />
-        {/* 11 Error page */}
-        <Route component={ErrorPage} />
+       
 
         {/* myorder删除掉 */}
         {/* <Route path="/myorder/:id" exact component={OrderDetailsPage} /> */}
@@ -106,6 +105,9 @@ function App() {
         <Route path="/erik" exact component={ErikPage} />
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />
+
+        {/* 11 Error page */}
+        <Route component={ErrorPage} />
       </Switch>
     </ThemeProvider>
   )

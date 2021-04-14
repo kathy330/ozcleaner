@@ -16,9 +16,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   AppBar: {
+    background: '#fafafa',
     display: "flex",
     flexDirection: 'row',
-    padding: "1%",
+    padding: "0 10px",
     shadows: 'none',
   },
 
@@ -33,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   Avatar: {
-    alignItems: "center",
+    alignItems: "center"
     // flexDirection: "row"
-    margin: "1%",
+    // margin: "1%",
   },
 
   signout: {
@@ -57,6 +58,7 @@ export default function AdminHeaderNavigation() {
 
     return (
       <div>
+        {/* <Grid item className={style.container}> */}
         <AppBar  className={`${style.AppBar} ${classes.AppBar}`}  position="static" elevation={0.5}>
           <Grid container className={style.grow} xs={6} md={9}>
             <Button href='/admin'>
@@ -79,7 +81,7 @@ export default function AdminHeaderNavigation() {
           </Grid>
           
         </AppBar>
-
+        {/* </Grid> */}
       </div>
     )
 }

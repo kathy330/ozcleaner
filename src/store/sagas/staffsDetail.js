@@ -6,8 +6,7 @@ function* fetchStaffDetailUrl(action) {
   try{
     const apiUrl = `http://localhost:8000/employees/${action.payload}`
     const users = yield call(axios.get, apiUrl,header())
-
-    console.log(users)
+    
     yield put({type:'GET_STAFFDETAIL_SUCCESS',users:users.data})
  
   }

@@ -8,8 +8,6 @@ function* fetchCusDetailTableUrl(action) {
     const apiUrl = `http://localhost:8000/users/alltask/${action.payload}`
     const users = yield call(axios.get, apiUrl,header())
 
-    console.log(apiUrl)
-
     yield put({type:'GET_CUSDETAILTABLE_SUCCESS',users:users.data})
   }
   catch(e) {

@@ -1,11 +1,11 @@
 /* eslint-disable */
 import React from 'react'
-import { Grid, makeStyles, Container, Box, Typography } from '@material-ui/core'
+import { Grid, makeStyles, Box } from '@material-ui/core'
 import AssessmentIcon from '@material-ui/icons/Assessment';
-// import { GreenStatus, GreyStatus, RedStatus } from '../../UIComponents/Status'
-import {
-  RedStatus, BlueStatusSquare, YellowStatusSquare, GreenStatusSquare, GreyStatusSquare, RedStatusSquare
-} from '../../UIComponents/Status'
+import { GreenStatus, GreyStatus, RedStatus, YellowStatus, BlueStatus } from '../../UIComponents/Status'
+// import {
+//   RedStatus, BlueStatusSquare, YellowStatusSquare, GreenStatusSquare, GreyStatusSquare, RedStatusSquare
+// } from '../../UIComponents/Status'
 
 // style
 const useStyles = makeStyles(() => ({
@@ -22,6 +22,7 @@ const useStyles = makeStyles(() => ({
 export default function Status(props) {
   const classes = useStyles()
   const { status } = props
+  const uppercaseStatus = status.toUpperCase()
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>
@@ -29,12 +30,12 @@ export default function Status(props) {
       </Grid>
       <Grid item justify="center" xs={10} sm={11} className={classes.text}>
         {/* <Typography variant="subtitle2">STATUS</Typography> */}
-        {(status === 'confirmed') && (<GreenStatusSquare>{status}</GreenStatusSquare>)}
-        {(status === 'assigned') && (<GreenStatusSquare>{status}</GreenStatusSquare>)}
-        {(status === 'in-progress') && (<BlueStatusSquare>{status}</BlueStatusSquare>)}
-        {(status === 'finished') && (<GreyStatusSquare>{status}</GreyStatusSquare>)}
-        {(status === 'reviewed') && (<YellowStatusSquare>{status}</YellowStatusSquare>)}
-        {(status === 'cancelled') && (<RedStatusSquare>{status}</RedStatusSquare>)}
+        {(status === 'confirmed') && (<GreenStatus>{uppercaseStatus}</GreenStatus>)}
+        {(status === 'assigned') && (<GreenStatus>{uppercaseStatus}</GreenStatus>)}
+        {(status === 'in-progress') && (<BlueStatus>{uppercaseStatus}</BlueStatus>)}
+        {(status === 'finished') && (<GreyStatus>{uppercaseStatus}</GreyStatus>)}
+        {(status === 'reviewed') && (<YellowStatus>{uppercaseStatus}</YellowStatus>)}
+        {(status === 'cancelled') && (<RedStatus>{uppercaseStatus}</RedStatus>)}
       </Grid>
     </Box>
   )

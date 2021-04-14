@@ -5,7 +5,7 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { useDispatch } from 'react-redux'
-import { updateRegularRequest,updateAssignRequest } from "../../../store/actions"
+import { updateRegularRequest, updateAssignRequest } from "../../../store/actions"
 
 
 // styles
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
       background: theme.palette.secondary.hover,
       boxShadow: '0px 2px 10px #888888',
     },
+    minWidth: '120px',
   }
 }))
 
@@ -87,13 +88,13 @@ export default function OrderActionButtons({ cancel, finish, accept, cancelData,
         </DialogActions>
       </Dialog>
       {(cancel === 'cancel') && (<Button className={classes.button} onClick={handleCancel}>
-        CANCEL ORDER
+        CANCEL
       </Button>)}
       {(finish === 'finish') && (<Button className={classes.button} onClick={handleFinish}>
-        FINISH ORDER
+        FINISH
       </Button>)}
       {(accept === 'accept') && (<Button className={classes.button} onClick={handleAccept}>
-        ACCEPT ORDER
+        ACCEPT
       </Button>)}
     </>
   )

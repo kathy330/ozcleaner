@@ -449,7 +449,7 @@ function Order(props) {
     typeOfClean = 'Regular clean'
   }
   else if(typeOfClean === '') {
-    typeOfClean = 'Please choose a type'
+    typeOfClean = 'Please choose a type.'
   }
   // console.log(bedNumber,bathNumber,typeOfClean)
   // 77---------------
@@ -465,7 +465,7 @@ function Order(props) {
   if(address2!=="") {
     address2 += ", "
   }else{
-    address2="Please input your address"
+    address2="Please input your address."
   }
   if(address1!=="") {
     address1 += ", "
@@ -749,7 +749,7 @@ function Order(props) {
                             </Grid>
                             <Grid item xs={10} sm={10} md={11}>
                               <Typography variant='h5'>
-                                Extra Service
+                                Extra Service:
                               </Typography>
                             </Grid>
                           </Grid>
@@ -925,7 +925,7 @@ function Order(props) {
                         {/* title  */}
                         <Grid item xs={10} sm={10} md={11}>
                           <Typography variant='h5'>
-                            Service Address
+                            Service Address:
                           </Typography>
                         </Grid>
                         {/* Input box */}
@@ -1157,7 +1157,7 @@ function Order(props) {
                         )
                           :(
                             <Typography variant='h6' className={classes.text}>
-                              Please choose a date
+                              Please choose a date.
                             </Typography>
 )}
                         </Grid>

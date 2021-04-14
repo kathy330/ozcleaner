@@ -117,9 +117,6 @@ function isCancel(user,classes,handleCancelOrder) {
       variant="contained"
       className={classes.delete}
       color="secondary"
-      id={user.type}
-      value={user._id}
-      onClick={handleCancelOrder}
       disabled
     >
       Cancel

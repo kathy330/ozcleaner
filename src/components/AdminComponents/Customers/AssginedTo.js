@@ -1,7 +1,8 @@
 import React from 'react'
-import { makeStyles, Box, Grid, Typography, Link, Avatar } from '@material-ui/core'
+import { makeStyles, Box, Grid, Typography, Avatar, Link } from '@material-ui/core'
 import { deepPurple, deepOrange } from '@material-ui/core/colors'
 import { Link as RouterLink } from 'react-router-dom'
+
 
 // styles
 const styles = makeStyles((theme) => ({
@@ -51,13 +52,22 @@ export default function AssginedTo(props) {
       <Grid item justify="center" xs={9} sm={10} className={classes.text}>
         <Typography variant="subtitle2">ASSIGNED TO</Typography>
         <Grid container direction="row" justify="space-between" space={5}>
-          <Link component={RouterLink} to={path} variant="subtitle2">
-            {employeeFirstName[0].toUpperCase()}
-            {employeeFirstName.slice(1)}
-            {' '}
-            {employeeLastName[0].toUpperCase()}
-            {employeeLastName.slice(1)}
-          </Link>
+          {(employeeFirstName === 'null'
+            && employeeLastName === 'null')
+            && (
+              <>
+                No one take this order yet.
+              </>
+            )}
+          {(employeeFirstName !== 'null' || employeeLastName !== 'null') && (
+            <Link component={RouterLink} to={path} variant="subtitle2">
+              {employeeFirstName[0].toUpperCase()}
+              {employeeFirstName.slice(1)}
+              {' '}
+              {employeeLastName[0].toUpperCase()}
+              {employeeLastName.slice(1)}
+            </Link>
+          )}
           {/* <Typography variant="subtitle2">21 hours ago</Typography> */}
         </Grid>
       </Grid>

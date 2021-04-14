@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, {useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
-import { makeStyles} from "@material-ui/core/styles"
+import {  withStyles,makeStyles} from "@material-ui/core/styles"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
 import TableCell from "@material-ui/core/TableCell"
@@ -15,9 +15,20 @@ import TablePagination from '@material-ui/core/TablePagination'
 import date from 'date-and-time'
 import { Link } from 'react-router-dom'
 import{ Alert} from '@material-ui/lab'
+import { amber } from '@material-ui/core/colors'
 import {getCUSDETAILTABLERequest,updateRegularRequest} from "../../../../store/actions"
 import { GreenStatus ,RedStatus,
   YellowStatus,GreyStatus,BlueStatus} from '../../../UIComponents/Status'
+
+const ColorButton = withStyles((theme) => ({
+  root: {
+    color: theme.palette.getContrastText(amber[500]),
+    backgroundColor: amber[500],
+    '&:hover': {
+      backgroundColor: amber[700],
+    },
+  },
+}))(Button)
 
 const useStyles = makeStyles({
   table: {
@@ -36,21 +47,21 @@ const useStyles = makeStyles({
     display:"inline-block",
     margin:" 0 3%",
     minWidth:"120px",
-    background:"#007bf5",
+    // background:"#007bf5",
     color:"white"
   },
   delete: {
     display:"inline-block",
     margin:" 0 3%",
     minWidth:"120px",
-    background:"#f35162",
+    // background:"#f35162",
     color:"white"
   },
   comment:{
     display:"inline-block",
     margin:" 0 3%",
     minWidth:"120px",
-    background:"#ffad33",
+    // background:"#ffad33",
     color:"white"
   },
   action:{
@@ -92,6 +103,7 @@ function isCancel(user,classes,handleCancelOrder) {
       <Button 
         variant="contained"
         className={classes.delete}
+        color="secondary"
         id={user.type}
         value={user._id}
         onClick={handleCancelOrder}
@@ -104,6 +116,7 @@ function isCancel(user,classes,handleCancelOrder) {
     <Button 
       variant="contained"
       className={classes.delete}
+      color="secondary"
       id={user.type}
       value={user._id}
       onClick={handleCancelOrder}
@@ -123,6 +136,7 @@ function isComment(user,classes) {
         <Button 
           variant="contained"
           className={classes.check}
+          color="primary"
           component={Link} 
           to={`/admin/orders/${user._id}?type=${user.type}`}
         >
@@ -131,14 +145,14 @@ function isComment(user,classes) {
       )
     }
     return(
-      <Button 
+      <ColorButton 
         variant="contained"
         className={classes.comment}
         component={Link} 
         to={`/admin/orders/${user._id}?type=${user.type}`}
       >
         Review
-      </Button>
+      </ColorButton>
     )  
   }
   if(user.reviewStatus||user.status!=="finished"){
@@ -146,6 +160,7 @@ function isComment(user,classes) {
       <Button 
         variant="contained"
         className={classes.check}
+        color="primary"
         component={Link} 
         to={`/order-detail/${user._id}?type=${user.type}`}
       >
@@ -154,14 +169,14 @@ function isComment(user,classes) {
     )
   }
   return(
-    <Button 
+    <ColorButton 
       variant="contained"
       className={classes.comment}
       component={Link} 
       to={`/order-detail/${user._id}?type=${user.type}`}
     >
       Review
-    </Button>
+    </ColorButton>
   )
   
   

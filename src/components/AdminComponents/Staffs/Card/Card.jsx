@@ -48,7 +48,7 @@ function showCardInfo(card, array,index, isAvailable, classes) {
       <div className={`title ${isAvailable ? classes.status1 : classes.status2}`}>
         <li key={card.item}>
           <Typography variant="subtitle2">
-            { array[index] }
+            { array[index].slice(0,1).toUpperCase()+array[index].slice(1).toLowerCase()}
           </Typography>
         </li>
       </div>

@@ -35,14 +35,12 @@ const useStyles = makeStyles(() => ({
     display:"inline-block",
     margin:" 0 3%",
     minWidth:"120px",
-    background:"#007bf5",
     color:"white"
   },
   delete: {
     display:"inline-block",
     margin:" 0 3%",
     minWidth:"120px",
-    background:"#f35162",
     color:"white"
   },
   action:{
@@ -79,9 +77,26 @@ function isButton(words) {
 
 function isCancel(words,classes) {
   if(words.status==='confirmed') {
-    return  <Button variant="contained" className={classes.delete}>Cancel</Button>
+    return  (
+      <Button 
+        variant="contained"
+        color="secondary"
+        className={classes.delete}
+      >
+        Cancel
+      </Button>
+)
   }
-  return <Button variant="contained" className={classes.delete} disabled>Cancel</Button>
+  return (
+    <Button 
+      variant="contained"
+      color="secondary"
+      className={classes.delete}
+      disabled
+    >
+      Cancel
+    </Button>
+)
   
 }
 
@@ -93,6 +108,7 @@ function isAuth(user,classes) {
         <Button 
           variant="contained"
           className={classes.check}
+          color="primary"
           component={Link} 
           to={`/admin/orders/${user._id}?type=${user.type}`}
         >
@@ -106,6 +122,7 @@ function isAuth(user,classes) {
       <Button 
         variant="contained"
         className={classes.check}
+        color="primary"
         component={Link} 
         to={`/order-detail/${user._id}?type=${user.type}`}
       >

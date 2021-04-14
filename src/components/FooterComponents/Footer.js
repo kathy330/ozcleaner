@@ -1,65 +1,46 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react"
-import { makeStyles, Box, Container, Grid, Typography, Link } from '@material-ui/core'
-import { Link as RouteLink } from 'react-router-dom'
+import { makeStyles, Box, Container, Typography, IconButton, Link } from '@material-ui/core'
+import MailOutlineIcon from '@material-ui/icons/MailOutline'
 
 const useStyles = makeStyles({
   footer: {
     backgroundColor: '#eaeaea',
     width: '100%',
-    padding: '50px 0 80px',
+    padding: '20px 0',
   },
-  subMenuLink: {
-    color: '#131523',
-    fontSize: '20px',
+  warpper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
+  btn: {
+    border: '3px solid #007bf5',
+    padding: '8px',
+    '&:hover': {
+      boxShadow: '3px 3px 5px #999'
+    }
+  }
 })
-
-const footers = [
-  {
-    title: 'Discover',
-    submenu: ['How it works', 'FAQ'],
-    url: ['how-it-works', 'faq']
-  },
-  {
-    title: 'Company',
-    submenu: ['About us', 'Contact us'],
-    url: ['about-us', 'contact-us']
-  },
-  {
-    title: 'Existing Members',
-    submenu: ['Book Now', 'Login', 'Register'],
-    url: ['order', 'login', 'register']
-  },
-]
 
 function Footer(){
   const classes = useStyles()
 
   return (
     <Box component="footer" className={classes.footer}>
-      <Container maxWidth="xl">
-        <Grid container spacing={4} justify="space-evenly">
-          {footers.map((footer) => (
-            <Grid item xs={12} sm={3} key={footer.title}>
-              <Typography variant="h6">{footer.title}</Typography>
-              <ul>
-                {footer.submenu.map((item, index) => (
-                  <li key={item}>
-                    <Link
-                      to={footer.url[index]} 
-                      variant="subtitle1" 
-                      component={RouteLink}
-                      className={classes.subMenuLink}
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Grid>
-          ))}
-        </Grid>
+      <Container maxWidth="xl" className={classes.warpper}>
+        <Typography variant="subtitle2" color="inherit">
+          Copyright © OzCleaner 2021.
+        </Typography>
+        <IconButton 
+          aria-label="contact us" 
+          className={classes.btn} 
+          component={Link} 
+          href="mailto:admin@ozcleaner.com"
+        >
+          <MailOutlineIcon />
+        </IconButton>
+        
       </Container>
     </Box>
   )

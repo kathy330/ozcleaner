@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  TableContainer,
-  Table,
-  TableBody,
-  Typography,
-} from '@material-ui/core'
+import { TableContainer, Table, TableBody } from '@material-ui/core'
 import { getAllUserListRequest, getAllEmployeeListRequest,
   deletedCustomerRequest, deletedEmployeeRequest } from '../../store/actions'
 import ListTableHead from './ListTableHead'
@@ -136,7 +131,7 @@ function ListCustomerTable(props) {
         !loading &&
         <NoDataFound refreshPage={refreshPage} title={`No ${tableType} found!`} />}
       {/* display any error below */}
-      {error && !loading && <Typography variant="h4">{error}</Typography>}
+      {error && !loading && console.log(error)}
     </>
   )
 }

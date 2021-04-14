@@ -25,8 +25,8 @@ function StatusDisplay(tableType, status) {
   if (tableType === 'customer') {
     return null
   }
-  return (status === 'off-job') ? 
-    (<TableCell align="center"><GreenStatus>Avalilable</GreenStatus></TableCell>) : 
+  return (status === 'available') ? 
+    (<TableCell align="center"><GreenStatus>Available</GreenStatus></TableCell>) : 
     (<TableCell align="center"><RedStatus>Unavailable</RedStatus></TableCell>)
 }
 

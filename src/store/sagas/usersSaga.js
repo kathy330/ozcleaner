@@ -20,12 +20,13 @@ function* userRegister(action) {
   
   try {
     const userInfo = 
-    yield call(axios.post,'http://localhost:8000/users/registration', action.payload)
+      yield call(axios.post,'http://localhost:8000/users/registration', action.payload)
     yield put({ type: 'USER_REGISTER_SUCCESS', payload: userInfo })
-    yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
-    localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    // console.log(`from${  userInfo}`)
-
+    
+    const userloginInfo = 
+      yield call(axios.post,'http://localhost:8000/users/login', action.payload)
+    yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userloginInfo })
+    localStorage.setItem('userInfo', JSON.stringify(userloginInfo))
     localStorage.setItem("authLevel", "user") // 可以进入order页面
     document.location.href = '/order'
   } catch (e) {

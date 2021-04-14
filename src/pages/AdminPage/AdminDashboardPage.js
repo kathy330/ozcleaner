@@ -1,9 +1,6 @@
+// /* eslint-disable */
 import React from 'react'
 import { Grid, Container, Paper,  Box } from '@material-ui/core'
-
-
-// import { makeStyles } from '@material-ui/core/styles'
-
 import Card from '../../components/AdminComponents/Dashboard/Card'
 import OrderTable from '../../components/AdminComponents/Dashboard/OrderTable'
 import UserAvatar from "../../components/AdminComponents/Dashboard/UserAvatar"
@@ -119,7 +116,7 @@ export default function Overview() {
       <Box fontWeight="fontWeightBold" mb={1} fontSize={35}>
         Dashboard
       </Box>
-      <Box fontWeight="fontWeightBold" mb={2} fontSize={10} color="#9e9e9e">
+      <Box fontWeight="fontWeightBold" mb={2} fontSize={30} color="#9e9e9e">
         Welcome Back!
       </Box>
       <Box fontWeight="fontWeightBold" mb={2} fontSize={25}>
@@ -159,12 +156,14 @@ export default function Overview() {
             alignItems="center"
           >
             {UserName.map((user) => (
-              <Grid container alignItems="center" direction="column" xs={3}>
+              // <Grid container alignItems="center" direction="row">
+              <Grid item xs={3}>
                 <UserAvatar
                   firstName={user.firstName}
                   lastName={user.lastName}
                 />
               </Grid>
+              // </Grid>
             ))}
           </Grid>
         </Box>

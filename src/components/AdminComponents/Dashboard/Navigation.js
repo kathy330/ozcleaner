@@ -1,9 +1,9 @@
-/* eslint-disable */
+// /* eslint-disable */
 import React from 'react'
-import { Grid, Button, AppBar,Box} from '@material-ui/core'
-import { navBarStyle } from '../../../styles/styles'
+import { Grid, Button, AppBar} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import { deepOrange, deepPurple } from '@material-ui/core/colors'
+import { navBarStyle } from '../../../styles/styles'
 // import PopDetails from '../../SignUpComponents/PopupDetails'
 import adminLogo from "../../../assets/adminLogo.svg" 
 
@@ -59,8 +59,8 @@ export default function AdminHeaderNavigation() {
     return (
       <div>
         {/* <Grid item className={style.container}> */}
-        <AppBar  className={`${style.AppBar} ${classes.AppBar}`}  position="static" elevation={0.5}>
-          <Grid container className={style.grow} xs={6} md={9}>
+        <AppBar className={`${style.AppBar} ${classes.AppBar}`} position="static" elevation={1}>
+          <Grid item className={style.grow} xs={6} md={9}>
             <Button href='/admin'>
               <img
                 src={adminLogo} 
@@ -69,10 +69,10 @@ export default function AdminHeaderNavigation() {
               />
             </Button>
           </Grid> 
-
-          <Grid container direction="row" className={classes.Avatar} xs={6} md={3}>
-            <Grid item xs={6} md={7} />
-            <Grid item xs={6} md={5}>
+        
+          <Grid container direction="row" className={classes.Avatar}>
+            <Grid item xs={6} md={9} />
+            <Grid item xs={6} md={3}>
               <Button className={classes.signout} onClick={signoutHandler}>Sign Out</Button>
             </Grid>
             {/* <Grid item xs={3}>

@@ -36,7 +36,7 @@ export default function Avatars2(props) {
 
       <Grid item xs container direction="column" spacing={2}>
         <Grid item className={classes.img}>
-          <Avatar className={classes.large}>{UserData.name.firstName.slice(0,2).toUpperCase()}</Avatar>
+          <Avatar className={classes.large} key={UserData.name}>{UserData.name.firstName.slice(0,2).toUpperCase()}</Avatar>
         </Grid>
              
         <Grid item xs>

@@ -1,3 +1,4 @@
+
 /* eslint-disable max-len */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
@@ -158,11 +159,12 @@ export default function AutoGrid(props) {
               </Grid>
   
               <Grid item xs={8} sm={3}>
-                <ul>
-                  {arrayObj[0].map((item, index) => (
-                     showCardInfo(UserData, arrayObj[0],index, UserData.employmentStatus === "available", classes)
-          ))}
-                </ul>
+                {arrayObj[0].map((item, index) => (
+                  <ul key={item}>    
+                    { showCardInfo(UserData, arrayObj[0],index, UserData.employmentStatus === "available", classes)}
+        
+                  </ul>
+                ))}
               </Grid>
  
             </Grid>

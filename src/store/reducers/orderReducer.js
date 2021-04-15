@@ -2,20 +2,20 @@
 import actionType from '../actions/actionTypes'
 
 // 这不是init
-const dongyuPostOrder = {
-  bedroomNum: '',
-  bathroomNum: '',
-  type: '',
-  address: {
-    address1: '',
-    address2: '',
-    suburb: '',
-    state: '',
-    postcode: ''
-  },
-  startTime: '',
-  price: 0,
-}
+// const dongyuPostOrder = {
+//   bedroomNum: '',
+//   bathroomNum: '',
+//   type: '',
+//   address: {
+//     address1: '',
+//     address2: '',
+//     suburb: '',
+//     state: '',
+//     postcode: ''
+//   },
+//   startTime: '',
+//   price: 0,
+// }
 
 const initialState = {
   loading: false,
@@ -32,11 +32,13 @@ const initialState = {
   row: 0,
   completeinfo: {
     info: localStorage.getItem('regularCleanOrder') ?
-      JSON.parse(localStorage.getItem('regularCleanOrder')) : dongyuPostOrder
+      // JSON.parse(localStorage.getItem('regularCleanOrder')) : dongyuPostOrder
+      JSON.parse(localStorage.getItem('regularCleanOrder')) : ''
   },
   ECcompleteinfo: {
     info: localStorage.getItem('endofleaseCleanOrder') ?
-      JSON.parse(localStorage.getItem('endofleaseCleanOrder')) : dongyuPostOrder
+      // JSON.parse(localStorage.getItem('endofleaseCleanOrder')) : dongyuPostOrder
+      JSON.parse(localStorage.getItem('endofleaseCleanOrder')) : ''
   },
   updateData: 'no update' // 更新by id,可以更新任何值，只要有正确名字
 }

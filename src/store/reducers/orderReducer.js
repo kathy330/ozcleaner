@@ -93,7 +93,7 @@ function orderReducer(state = initialState, action) {
         // error:action.data.err
       }
 
-    // 4/4 POST regular order --dongyu
+    // 4/4 POST order --dongyu
     case actionType.POST_ORDER_REQUEST:
       return {
         ...state,
@@ -106,7 +106,7 @@ function orderReducer(state = initialState, action) {
         ...state,
         loading: false,
         loadingNum: 2,
-        order: action.postInSaga, // 发送给regular api
+        order: action.postInSaga, // 发送给post order api
         completeinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
       }
 

@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid'
 import date from 'date-and-time'
 import {useDispatch} from 'react-redux'
 import {payOrderRequest, postOrderRequest } from '../../../store/actions'
+// import OrderTitle from "../../AdminComponents/Customers/OrderTitle"
 // import header from "../../../store/sagas/header"
 
 const cardStyle = {
@@ -120,7 +121,7 @@ export default function CheckoutForm({price,paystatus,data}) {
     interiorWindows: 0,
     review: "",
     rating: "",
-    title: "I want clean",
+    title: "",
     bedroomNum: 0,
     bathroomNum: 0,
     price: 0,
@@ -155,7 +156,7 @@ export default function CheckoutForm({price,paystatus,data}) {
     const user = JSON.parse(localStorage.getItem('userInfo'))
     const userObjectId = user.data.objectID
     // console.log(userObjectId)
-
+    const postTitle = `${otherdata.type} Bedroomx${otherdata.bedRoomNum} Bathroomx${otherdata.bathRoomNum}`
     const newData = {
       ...postData,
       ...extra,
@@ -170,6 +171,7 @@ export default function CheckoutForm({price,paystatus,data}) {
         suburb:otherdata.suburb,
         state:otherdata.state,
       },
+      title:postTitle,
       startTime:datedate,
       // endTime:datedate, // endtime 什么时候设置？  
       firstName:otherdata.firstName,

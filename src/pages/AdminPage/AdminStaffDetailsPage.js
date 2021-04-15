@@ -4,7 +4,6 @@ import Container from '@material-ui/core/Container'
 import { Box } from "@material-ui/core"
 import Display from "../../components/AdminComponents/Staffs/Display"
 import Table from "../../components/AdminComponents/Staffs/Table"
-import NavBar from "../../components/NavBarComponents/NavBar"
 
 
 function AdminStaffDetailsPage(match){
@@ -12,7 +11,6 @@ function AdminStaffDetailsPage(match){
   return (
    
     <Box bgcolor="#eaeaea">
-      <NavBar />
       <CssBaseline />      
       <Container maxWidth="md">
         <Box bgcolor="white">

@@ -60,15 +60,17 @@ function presentIndex(pathname) {
 
 const useStyles = makeStyles(() => ({
   root: {
-    flexGrow: 1,
     backgroundColor: '#e0e0e0',
+    flexGrow: 1
     // theme.palette.grey.main
   },
+
   AppBar: {
-    background: "white",
+    background: "#f5f5f5",
   },
+
   Tab: {
-    color: 'black'
+    color: 'black',
   }
 
 }))
@@ -87,7 +89,7 @@ export default function SimpleTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.AppBar} elevation={0.5}>
+      <AppBar position="static" className={classes.AppBar} elevation={1}>
         <Tabs
           value={value}
           onChange={handleChange}

@@ -17,13 +17,14 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-  // bg: {
-  //   backgroundColor: '#eaeaea'
-  // },
+  bg: {
+    paddingBottom: '50px',
+    paddingTop: "30px",
+  },
   body: {
     backgroundColor: "white",
     minHeight: "85vh",
-    marginTop: "1vh",
+    padding: '100px',
   },
 }))
 

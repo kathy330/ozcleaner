@@ -95,12 +95,12 @@ const OrderCard = (props) => {
             <ListItemText secondary={displayDate} />
           </ListItem>
         </List>
-        <Avatar className="text-upperCase">{name[0]}</Avatar>
+        <Avatar className="text-uppercase">{name[0]}</Avatar>
       </Grid>
       <Typography
         variant="caption"
         component="p" 
-        className={`${classes.status} ${classes[classToUse]} text-upperCase`}
+        className={`${classes.status} ${classes[classToUse]} text-uppercase`}
       >
         {status}
       </Typography>

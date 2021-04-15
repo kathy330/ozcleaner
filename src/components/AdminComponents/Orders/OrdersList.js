@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { makeStyles, Grid, Typography, Box } from '@material-ui/core'
+import { makeStyles, Grid, Box } from '@material-ui/core'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { getAllOrersRequest, changeOrder } from '../../../store/actions'
 import OrderCard from './OrderCard'
@@ -74,7 +74,6 @@ function OrdersLists(props) {
   const [orderStatus, setOrderStatus] = React.useState(status) // current order's status
   const [sortValue, setsortValue] = React.useState('') // TODO current sort value?
   const listPayload = { page: urlPage, pageSize: pageSize, status: orderStatus, sort: sortValue }
-  
   const dispatch = useDispatch()
   const data = useSelector(state => state.order.order.result) // data get from saga
   const dataCount = useSelector(state => state.order.order.count) // number of orders
@@ -166,7 +165,6 @@ function OrdersLists(props) {
     listPayload.page = 1
     listPayload.status = (listType === 'admin') ? '' : 'confirmed'
     dispatch(getAllOrersRequest(listPayload))
-    setOrderStatus('')
     if (listType === 'admin'){
       history.push(`/admin/orders/`)
     } else {
@@ -231,7 +229,7 @@ function OrdersLists(props) {
       )}
       {!loading && data !== undefined && data.length === 0 &&
         <NoDataFound refreshPage={refreshPage} title="No order found!" />}
-      {!loading && error && <Typography variant="h4">{error}</Typography>}
+      {!loading && error && console.log(error) }
     </>
   )
 }

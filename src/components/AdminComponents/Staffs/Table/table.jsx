@@ -15,7 +15,7 @@ import{ Alert} from '@material-ui/lab'
 import date from 'date-and-time'
 import { Link } from 'react-router-dom'
 import TablePagination from '@material-ui/core/TablePagination'
-import {getSTAFFDETAILTABLERequest} from "../../../../store/actions"
+import {getSTAFFDETAILTABLERequest,updateRegularRequest} from "../../../../store/actions"
 import * as Status from '../../../UIComponents/Status'
 
 const useStyles = makeStyles(() => ({
@@ -35,14 +35,12 @@ const useStyles = makeStyles(() => ({
     display:"inline-block",
     margin:" 0 3%",
     minWidth:"120px",
-    background:"#007bf5",
     color:"white"
   },
   delete: {
     display:"inline-block",
     margin:" 0 3%",
     minWidth:"120px",
-    background:"#f35162",
     color:"white"
   },
   action:{
@@ -77,11 +75,46 @@ function isButton(words) {
   return <Status.GreyStatus>{words.status}</Status.GreyStatus>
 }
 
-function isCancel(words,classes) {
-  if(words.status==='confirmed') {
-    return  <Button variant="contained" className={classes.delete}>Cancel</Button>
+function isCancel(user,classes,handleCancelOrder,handleFinishOrder) {
+  const level = localStorage.getItem('authLevel')
+  if(user.status==='confirmed') {
+    return  (
+      <Button 
+        variant="contained"
+        color="secondary"
+        className={classes.delete}
+        id={user.type}
+        value={user._id}
+        onClick={handleCancelOrder}
+      >
+        Cancel
+      </Button>
+)
   }
-  return <Button variant="contained" className={classes.delete} disabled>Cancel</Button>
+  if(user.status==="in-progress"&&level!=="admin") {
+    return  (
+      <Button 
+        variant="contained"
+        color="secondary"
+        className={classes.delete}
+        id={user.type}
+        value={user._id}
+        onClick={handleFinishOrder}
+      >
+        Finish
+      </Button>
+)
+  }
+  return (
+    <Button 
+      variant="contained"
+      color="secondary"
+      className={classes.delete}
+      disabled
+    >
+      Cancel
+    </Button>
+)
   
 }
 
@@ -93,6 +126,7 @@ function isAuth(user,classes) {
         <Button 
           variant="contained"
           className={classes.check}
+          color="primary"
           component={Link} 
           to={`/admin/orders/${user._id}?type=${user.type}`}
         >
@@ -106,6 +140,7 @@ function isAuth(user,classes) {
       <Button 
         variant="contained"
         className={classes.check}
+        color="primary"
         component={Link} 
         to={`/order-detail/${user._id}?type=${user.type}`}
       >
@@ -145,6 +180,22 @@ const BasicTable=(props)=>{
     setPage(0)
   }
 
+  // cancel orders
+  const handleCancelOrder = (event) => {
+    if(event.target.value&&event.target.id){
+      const body={id:event.target.value,orderstatus:"cancelled",type:event.target.id}
+      dispatch(updateRegularRequest(body))
+    }
+  }
+
+  // finish orders
+  const handleFinishOrder = (event) => {
+    if(event.target.value&&event.target.id){
+      const body={id:event.target.value,orderstatus:"finished",type:event.target.id}
+      dispatch(updateRegularRequest(body))
+    }
+  }
+
 
   return (
     <>
@@ -180,7 +231,7 @@ const BasicTable=(props)=>{
                 <TableCell align="center">{displayTime(user.createdAt)}</TableCell>
                 <TableCell align="center" className={classes.action}>
                   {isAuth(user,classes)}
-                  {isCancel(user,classes)}
+                  {isCancel(user,classes,handleCancelOrder,handleFinishOrder)}
                 </TableCell>
               </TableRow>
             ))}

@@ -42,7 +42,7 @@ function ListTableRow(props) {
   return (
     <TableRow role="checkbox" tabIndex={-1} key={id}>
       <TableCell align="center">
-        <Avatar className={`${classes.avatar} text-upperCase`}>
+        <Avatar className={`${classes.avatar} text-uppercase`}>
           {firstName[0]}
         </Avatar>
       </TableCell>

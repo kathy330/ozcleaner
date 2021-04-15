@@ -14,7 +14,7 @@ import Grid from '@material-ui/core/Grid'
 // import Button from '@material-ui/core/Button'
 import date from 'date-and-time'
 import {useDispatch} from 'react-redux'
-import {payOrderRequest,postRegularRequest,postEndOfLeaseRequest } from '../../../store/actions'
+import {payOrderRequest, postOrderRequest } from '../../../store/actions'
 // import header from "../../../store/sagas/header"
 
 const cardStyle = {
@@ -190,18 +190,7 @@ export default function CheckoutForm({price,paystatus,data}) {
       userDetail:userObjectId
       // userDetail:'604cb4dfc875675915d0d0a5'
     }
-
-    // console.log('订单信息: ', newData)
-
-    if(otherdata.type === "RC") {
-      // 🌟dispatch一个action
-      // console.log('rcrc')
-      dispatch(postRegularRequest(newData)) // 在saga里控制跳转下一个页面
-    }
-    if(otherdata.type === "EC") {
-      // console.log('ecec')
-      dispatch(postEndOfLeaseRequest(newData)) // 在saga里控制跳转下一个页面
-    }
+    dispatch(postOrderRequest(newData)) // 在saga里控制跳转下一个页面
   }
 
 

@@ -221,7 +221,7 @@ function OrdersLists(props) {
               count={finalPage}
             />
           </Grid>
-          {!matches && (
+          {!matches && !loading && (
             <Grid item xs={12} sm={8} className={classes.right}>
               <OrderDetailComponent data={data[curCard]} key={curCard}/> 
             </Grid>

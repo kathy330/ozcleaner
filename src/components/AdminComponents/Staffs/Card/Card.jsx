@@ -3,7 +3,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {Paper,Grid,Typography,Box } from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating'
-import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import StarRoundedIcon from '@material-ui/icons/StarRounded'
 
 const useStyles = makeStyles((themes) => ({
   root: {

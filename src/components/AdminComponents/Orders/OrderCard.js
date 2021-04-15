@@ -7,7 +7,6 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Avatar,
 } from '@material-ui/core'
 import { LocationOn as LocationOnIcon, Today as TodayIcon } from '@material-ui/icons'
 
@@ -33,6 +32,14 @@ const useStyles = makeStyles(() => ({
   listIcon: {
     minWidth: 'auto',
     marginRight: '10px'
+  },
+  price: {
+    padding: '4px 10px 2px',
+    border: '2px solid #252525',
+    color: '#252525',
+    borderRadius: '5px',
+    fontSize: '1.3rem',
+    fontWeight: '500'
   },
   status: {
     marginTop: '5px',
@@ -66,7 +73,7 @@ function formatDate (date){
  */
 const OrderCard = (props) => {
   const classes = useStyles()
-  const { title, address, date, status, classToUse, name} = props
+  const { title, price, address, date, status, classToUse } = props
   const { suburb, state } = address
   const displayDate = formatDate(date)
   const displayAddress = `${suburb} ${state.toUpperCase()}`
@@ -95,7 +102,10 @@ const OrderCard = (props) => {
             <ListItemText secondary={displayDate} />
           </ListItem>
         </List>
-        <Avatar className="text-uppercase">{name[0]}</Avatar>
+        <Typography variant="h5" className={classes.price}>
+          $
+          {price}
+        </Typography>
       </Grid>
       <Typography
         variant="caption"

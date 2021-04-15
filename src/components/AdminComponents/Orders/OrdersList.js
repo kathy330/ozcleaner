@@ -204,6 +204,7 @@ function OrdersLists(props) {
                   >
                     <OrderCard 
                       title={row.title}
+                      price={row.price}
                       address={row.address}
                       date={row.startTime}
                       status={row.status}
@@ -222,7 +223,7 @@ function OrdersLists(props) {
           </Grid>
           {!matches && (
             <Grid item xs={12} sm={8} className={classes.right}>
-              <OrderDetailComponent data={data[curCard]}/> 
+              <OrderDetailComponent data={data[curCard]} key={curCard}/> 
             </Grid>
           )}
         </Grid>

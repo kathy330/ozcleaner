@@ -30,8 +30,15 @@ const styles = makeStyles((theme) => ({
     // fontSize: '20px',
   },
   text: {
-    marginLeft: 10
+    marginLeft: 10,
   },
+  textcolor:{
+    color:'#007bf5'
+  },
+  linkcolor:{
+    // color:'#67a9ff'
+    color:'black',
+  }
 }))
 
 export default function CreatBy(props) {
@@ -46,9 +53,9 @@ export default function CreatBy(props) {
         </Avatar>
       </Grid>
       <Grid item justify="center" xs={9} sm={10} className={classes.text}>
-        <Typography variant="subtitle2">CREATE BY</Typography>
+        <Typography className={classes.textcolor} variant="subtitle2">CREATE BY</Typography>
         <Grid container direction="row" justify="space-between">
-          <Link component={RouterLink} to={path} variant="subtitle2">
+          <Link className={classes.linkcolor} component={RouterLink} to={path} variant="subtitle2">
             {firstName[0].toUpperCase()}
             {firstName.slice(1)}
             {' '}

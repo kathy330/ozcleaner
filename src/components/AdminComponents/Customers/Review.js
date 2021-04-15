@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(1)
     }
   },
+  textcolor:{
+    color:'#007bf5'
+  },
 }))
 
 export default function Review(props) {
@@ -22,7 +25,7 @@ export default function Review(props) {
   return (
     <Grid container direction="column" className={classes.root}>
       <Grid item xs>
-        <Typography variant="subtitle2">
+        <Typography className={classes.textcolor} variant="subtitle2">
           Review From Customer
         </Typography>
       </Grid>

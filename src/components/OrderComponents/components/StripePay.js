@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 /* eslint-disable react/react-in-jsx-scope */
-
 import React, { useState, useEffect } from "react"
 import {
   CardElement,
@@ -9,13 +8,10 @@ import {
 } from "@stripe/react-stripe-js"
 import axios from 'axios'
 import {useHistory} from "react-router-dom"
-// import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
-// import Button from '@material-ui/core/Button'
 import date from 'date-and-time'
 import {useDispatch} from 'react-redux'
 import {payOrderRequest,postRegularRequest,postEndOfLeaseRequest } from '../../../store/actions'
-// import header from "../../../store/sagas/header"
 
 const cardStyle = {
   style: {
@@ -54,18 +50,12 @@ export default function CheckoutForm({price,paystatus,data}) {
     const paydata = {
       items: [{ id: "cleaning fee" }],
       // items: [{ type: "RC" }],
-
       // price:12800 // ¥128.00
       price:price
     }
     const level = localStorage.getItem('authLevel')
     const person = level === 'user' ? 'user':'employee'
     const {token} = JSON.parse(localStorage.getItem(`${person}Info`)).data
-    // const Header = {
-    //   'Accept': 'application/json',
-    //   'Content-Type': 'application/json',
-    //   'Authorization': token
-    // }
     const Header = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',

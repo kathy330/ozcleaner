@@ -25,7 +25,7 @@ function* updateOrder(action) {
   const updateApi = `http://localhost:8000/${model}/${id}`  // PUT方法更新regular
 
   try {
-    const regularData = yield call(axios.put, updateApi, update,header())
+    yield call(axios.put, updateApi, update,header())
     yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })
     // 这个data是返回对象reponse的data属性
   }

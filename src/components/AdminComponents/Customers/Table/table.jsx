@@ -16,7 +16,7 @@ import date from 'date-and-time'
 import { Link } from 'react-router-dom'
 import{ Alert} from '@material-ui/lab'
 import { amber } from '@material-ui/core/colors'
-import {getCUSDETAILTABLERequest,updateRegularRequest} from "../../../../store/actions"
+import {getCUSDETAILTABLERequest, updateOrderRequest} from "../../../../store/actions"
 import { GreenStatus ,RedStatus,
   YellowStatus,GreyStatus,BlueStatus} from '../../../UIComponents/Status'
 
@@ -213,7 +213,7 @@ const BasicTable=(props)=> {
   const handleCancelOrder = (event) => {
     if(event.target.value&&event.target.id){
       const body={id:event.target.value,orderstatus:"cancelled",type:event.target.id}
-      dispatch(updateRegularRequest(body))
+      dispatch(updateOrderRequest(body))
     }
   }
 

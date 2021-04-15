@@ -1,10 +1,13 @@
-// /* eslint-disable */
-import React from 'react'
-import { Grid, Container, Paper,  Box } from '@material-ui/core'
+/* eslint-disable */
+import React, { useEffect } from 'react'
+import { Grid, Container, Paper,  Box, makeStyles } from '@material-ui/core'
+import { useSelector, useDispatch } from 'react-redux'
 import Card from '../../components/AdminComponents/Dashboard/Card'
 import OrderTable from '../../components/AdminComponents/Dashboard/OrderTable'
 import UserAvatar from "../../components/AdminComponents/Dashboard/UserAvatar"
-
+import { getAllOrersRequest} from '../../store/actions/actionCreator'
+import LoadingIcon from '../../components/AdminComponents/LoadingIcon'
+import NoDataFound from '../../components/AdminComponents/NoDataFound'
 
 const columns = [
   { id: 'Order ID', label: 'Order ID', minWidth: 80, align: 'left' },
@@ -17,13 +20,13 @@ const columns = [
   },
   {
     id: 'Due Date',
-    label: 'Order Date',
+    label: 'Due Date',
     minWidth: 80,
     align: 'center',
   },
   {
-    id: 'Statues',
-    label: 'Statues',
+    id: 'Status',
+    label: 'Status',
     minWidth: 120,
     align: 'center',
   },
@@ -35,60 +38,7 @@ const columns = [
   },
 ]
 
-const UserData = [
-  {
-    OrderID: 1,
-    Type: "RC",
-    BedroomNum: 2,
-    BathroomNum: 3,
-    StartTime: "2020-01-01T12:00:00.000+00:00",
-    EndTime: "2020-01-01T12:00:00.000+00:00",
-    Status: "In Progress",
-    Assignee: "Jackson Seed"
-  },
-  {
-    OrderID: 124,
-    Type: "EC",
-    BedroomNum: 2,
-    BathroomNum: 3,
-    StartTime: "2020-01-01T12:00:00.000+00:00",
-    EndTime: "2020-01-01T12:00:00.000+00:00",
-    Status: "Unconfirmed",
-    Assignee: "Jackson Seed"
-  },
-  {
-    OrderID: 1,
-    Type: "RC",
-    BedroomNum: 2,
-    BathroomNum: 3,
-    StartTime: "2020-01-01T12:00:00.000+00:00",
-    EndTime: "2020-01-01T12:00:00.000+00:00",
-    Status: "In Progress",
-    Assignee: "Jackson Seed"
-  },
-  {
-    OrderID: 1,
-    Type: "RC",
-    BedroomNum: 2,
-    BathroomNum: 3,
-    StartTime: "2020-01-01T12:00:00.000+00:00",
-    EndTime: "2020-01-01T12:00:00.000+00:00",
-    Status: "Completed",
-    Assignee: "Jackson Seed"
-  },
-  {
-    OrderID: 1,
-    Type: "RC",
-    BedroomNum: 2,
-    BathroomNum: 3,
-    StartTime: "2020-01-01T12:00:00.000+00:00",
-    EndTime: "2020-01-01T12:00:00.000+00:00",
-    Status: "In Progress",
-    Assignee: "Jackson Seed"
-  },
-]
-
-const UserName = [
+let UserName = [
   {
     firstName: 'Hello',
     lastName: 'World'
@@ -107,68 +57,109 @@ const UserName = [
   }
 ]
 
+const useStyles = makeStyles((theme) => ({
+  body: {
+    paddingBottom: '100px',
+    paddingTop: "80px",
+  },
+  item: {
+    paddingLeft: "60px"
+  }
+}
+))
+
 
 export default function Overview() {
+  const classes = useStyles()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAllOrersRequest({page: 1, pageSize: 40, status: "", sort: "datedesc"}))
+  },[])
+
+  const data = useSelector(state => state.order.order.result)
+  const dataCount = useSelector(state => state.order.order.count) // number of orders
+  const loading = useSelector(state => state.order.loading) // loading status
+  const error = useSelector(state => state.order.error) // error message
+  if (!loading && dataCount) {
+    const count = []
+    UserName = []
+    for (const row of data) {
+      if (!count.includes(row.userDetail[0]._id)) {
+        count.push(row.userDetail[0]._id)
+        UserName.push(row.userDetail[0].name)
+      }
+      if (count.length === 4 ) break
+    }
+  }
 
 
   return (
-    <Container maxWidth="lg">
-      <Box fontWeight="fontWeightBold" mb={1} fontSize={35}>
-        Dashboard
-      </Box>
-      <Box fontWeight="fontWeightBold" mb={2} fontSize={30} color="#9e9e9e">
-        Welcome Back!
-      </Box>
-      <Box fontWeight="fontWeightBold" mb={2} fontSize={25}>
-        Quick status
-      </Box>
-      <Grid container spacing={6}>
+    <>
+      {loading && <LoadingIcon />}
+      {!loading && dataCount > 0 && (
+      <>
+        <Container maxWidth="lg" className={classes.body}>
+          <Box fontWeight="fontWeightBold" mb={1} fontSize={35}>
+            Dashboard
+          </Box>
+          <Box fontWeight="fontWeightBold" mb={2} fontSize={30} color="#9e9e9e">
+            Welcome Back!
+          </Box>
+          <Box fontWeight="fontWeightBold" mb={2} fontSize={25}>
+            Quick status
+          </Box>
+          <Grid container spacing={6}>
 
-        {[1, 2, 3, 4].map((x, i) =>
+            {[1, 2, 3, 4].map((x, i) =>
         (
           <Grid item>
             <Card key={x} other={i} />
           </Grid>
         )
         )}
-      </Grid>
-      <Paper elevation={0}>
-        <Box mt={10} pl={2} pb={5}>
-          <Box fontWeight="fontWeightBold" fontSize={25} ml={0.5} pt={3}>
-            Recent Order
-          </Box>
-          <OrderTable
-            columns={columns}
-            UserData={UserData}
-          />
-        </Box>
-      </Paper>
+          </Grid>
+          <Paper elevation={0}>
+            <Box mt={10} pl={2} pb={5}>
+              <Box fontWeight="fontWeightBold" fontSize={25} ml={1} pt={3} mb={2}>
+                Recent Order
+              </Box>
+              <OrderTable
+                columns={columns}
+                UserData={data.slice(0,5)}
+              />
+            </Box>
+          </Paper>
 
-      <Paper elevation={0}>
-        <Box mt={10} pl={2} pb={5}>
-          <Box fontWeight="fontWeightBold" fontSize={25} ml={0.5} pt={3} pb={5}>
-            Recent Customer
-          </Box>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-          >
-            {UserName.map((user) => (
+          <Paper elevation={0}>
+            <Box mt={10} pl={2} pb={5}>
+              <Box fontWeight="fontWeightBold" fontSize={25} ml={0.5} pt={3} pb={5}>
+                Recent Customer
+              </Box>
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+              >
+                {UserName.map((user) => (
               // <Grid container alignItems="center" direction="row">
-              <Grid item xs={3}>
-                <UserAvatar
-                  firstName={user.firstName}
-                  lastName={user.lastName}
-                />
-              </Grid>
+                  <Grid item xs={3} className={classes.item}>
+                    <UserAvatar 
+                      firstName={user.firstName}
+                      lastName={user.lastName}
+                    />
+                  </Grid>
               // </Grid>
             ))}
-          </Grid>
-        </Box>
-      </Paper>
-    </Container>
-
+              </Grid>
+            </Box>
+          </Paper>
+        </Container>
+      </>
+  )}
+      {!loading && data !== undefined && data.length === 0 &&
+      <NoDataFound title="No order found!" />} 
+      {!loading && error && console.log(error) }
+    </>
   )
 }

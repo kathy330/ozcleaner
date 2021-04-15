@@ -6,6 +6,7 @@ import {
     TableRow,
     TableCell,
     TableBody,
+    Typography,
     makeStyles
 } from '@material-ui/core'
 import OrderTableRow from './OrderTableRow'
@@ -43,22 +44,26 @@ function OrderTable(props) {
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
                   >
-                    {column.label}
+                    <Typography variant="h6">
+                      {column.label}
+                    </Typography>
                   </TableCell>
                             ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              {UserData.map((data) => (
+              {UserData.map((data, key) => (
                 <OrderTableRow
-                  OrderID={data.OrderID}
-                  Type={data.Type}
-                  BedroomNum={data.BedroomNum}
-                  BathroomNum={data.BathroomNum}
-                  StartTime={data.StartTime}
-                  EndTime={data.EndTime}
-                  Status={data.Status}
-                  Assignee={data.Assignee}
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={`card${key}`}
+                  taskID={data.taskID}
+                  type={data.type}
+                  bedroomNum={data.bedroomNum}
+                  bathroomNum={data.bathroomNum}
+                  startTime={data.startTime}
+                  endTime={data.endTime}
+                  status={data.status}
+                  employeeDetail={data.employeeDetail}
                 />
                         ))}
             </TableBody>

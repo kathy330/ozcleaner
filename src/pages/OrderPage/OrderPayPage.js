@@ -42,25 +42,6 @@ const useStyles = makeStyles((theme) => ({
     },
   }
 
-  // button: {
-  //   background: theme.palette.primary.main, // #007bf5
-  //   borderRadius: '12px',
-  //   color: theme.palette.primary.contrastText,
-  //   fontSize: '1.4rem',
-  //   paddingInline: '80px', // 太长，小屏幕装不下
-  //   [theme.breakpoints.down('sm')]: {
-  //     marginBottom: '5vh',
-  //     marginTop: '5vh',
-  //   },
-  //   [theme.breakpoints.up('md')]: {
-  //     marginTop: '14vh',
-  //   },
-
-  //   '&:hover': {
-  //     background: theme.palette.primary.hover, // #0050c1
-  //     boxShadow: '0px 2px 10px #888',
-  //   },
-  // }
 }))
 
 function OrderPay() {
@@ -116,16 +97,7 @@ function OrderPay() {
       // count += 1
       // console.log('2')
     }
-    // else if (loadingNumREGdata===1 && loadingNumENDdata===1) {
-    //   console.log('3')
-    //   document.location.href = '/'
-    // }
-    // 无效。。 如果直接进入这个页面，两个都是num = 1，直接跳转到error页面
-    // console.log(loadingNumREGdata,loadingNumENDdata)
-    // if (loadingNumREGdata===1 && loadingNumENDdata===1) {
-    //   console.log('no data, cant access')
-    //   error = true // true代表下面进入error页面
-    // }
+
   },[loadingNumREGdata,loadingNumENDdata])
 
 

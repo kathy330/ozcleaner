@@ -1,12 +1,12 @@
 /* eslint-disable */
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { makeStyles, Container, Grid } from '@material-ui/core'
-import { useSelector, useDispatch } from 'react-redux'
-import AdminCustomersLeft from "../../components/AdminComponents/AdminCustomersLeft"
-import AdminCustomersRight from "../../components/AdminComponents/AdminCustomersRight"
-import Footer from '../../components/FooterComponents/Footer'
-import { getOrderRequest, cancelRegularOrderRequest } from "../../store/actions"
-import LoadingIcon from '../../components/AdminComponents/LoadingIcon'
+import AdminCustomersLeft from "../AdminComponents/AdminCustomersLeft"
+import AdminCustomersRight from "../AdminComponents/AdminCustomersRight"
+import Footer from '../FooterComponents/Footer'
+import LoadingIcon from '../AdminComponents/LoadingIcon'
+import Header from '../NavBarComponents/NavBar'
+
 // style
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -123,59 +123,34 @@ function displayPage(repo) {
           orderStatus={status}
           typeOfOrder={type} />
       </Grid>
+       
     </>
   )
 }
 
-function AdminOrderPage(match) {
+function OrderDetailComponent(props) {
   const classes = useStyles()
-  // const data = { taskid: 1 }
-  // const objid = '60633937b175b8fccb933398'
-  // const testData = { _id: '60633a30bad120ff885aa99c' }
-  if (match.match) {
-    const objid = match.match.params.id;
-    const query = new URLSearchParams(match.location.search)
-    // console.log(query)
-    // console.log(match.location.search)
-    const getType = query.get('type')
-    const data = { _id: objid, type: getType }
-    const dispatch = useDispatch()
-    useEffect(() => {
-      dispatch(getOrderRequest(data))
-    }, [])
-  }
 
+  const {data} = props
   // let redux = useSelector(state => state.order)
   // let redux2 = useSelector(state => state.employee_in_reducer_index)
-  let redux = useSelector(state => state.order)
-  let repo = redux.order
-  let loading = redux.loading
+
   // console.log(redux, 'redux')
   // console.log(loading,)
 
 
   return (
-    <Grid className={classes.bg}>
-      {/* {endTime} */}
-      <Container maxWidth="md" className={classes.body}>
-        {(loading) && (<LoadingIcon />)}
-        {(!loading) && repo.status && displayPage(repo)}
-      </Container>
-      {/* <Container maxWidth="md" className={classes.body}>{repo.length}
-        <AdminCustomersTop />
-        <Grid container spacing={2}>
-          <AdminCustomersLeft dueDate={endTime}
-            orderTitle={title}
-            customerFirstName={firstName}
-            customerLastName={lastName}
-            location={Object.values(address).join(', ')}
-            rate={rating}
-            reviewText={review} />
-          <AdminCustomersRight orderPrice={price} />
-        </Grid>
-      </Container> */}
-    </Grid>
+  <>
+    {localStorage.getItem("authLevel") == "employee" && <Header />}
+      <Grid className={classes.bg}>
+        {/* {endTime} */}
+        <Container maxWidth="md" className={classes.body}>
+          {displayPage(data)}
+        </Container>
+      </Grid>
+    {localStorage.getItem("authLevel") == "employee" && <Footer /> }
+  </>
   )
 }
 
-export default AdminOrderPage
+export default OrderDetailComponent

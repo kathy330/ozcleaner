@@ -23,22 +23,15 @@ const initialState = {
   loadingNum: 1,
   error: null,
   payment: false,
-  order: {}, //repos_in_reducer_init: "init value",
-  orders: {
+  order: {
     'result': [],
     'count': 0
   },
   test:1,
   row: 0,
   completeinfo: {
-    info: localStorage.getItem('regularCleanOrder') ?
-      // JSON.parse(localStorage.getItem('regularCleanOrder')) : dongyuPostOrder
-      JSON.parse(localStorage.getItem('regularCleanOrder')) : ''
-  },
-  ECcompleteinfo: {
-    info: localStorage.getItem('endofleaseCleanOrder') ?
-      // JSON.parse(localStorage.getItem('endofleaseCleanOrder')) : dongyuPostOrder
-      JSON.parse(localStorage.getItem('endofleaseCleanOrder')) : ''
+    info: localStorage.getItem('Order') ?
+      JSON.parse(localStorage.getItem('Order')) : dongyuPostOrder
   },
   updateData: 'no update' // 更新by id,可以更新任何值，只要有正确名字
 }
@@ -54,17 +47,18 @@ function orderReducer(state = initialState, action) {
       }
 
     // 2/4 GET regular order --
-    case actionType.GET_ORDERr_REQUEST:
+    case actionType.GET_ORDER_REQUEST:
       return {
         ...state,
         loading: true,
       }
 
     case actionType.GET_ORDER_SUCCESS:
+      state.order.result = [action.repos]
       return {
         ...state,
         loading: false,
-        order: action.repos
+        row:0,
       }
 
     case actionType.GET_ORDER_FAILED:
@@ -76,26 +70,22 @@ function orderReducer(state = initialState, action) {
       }
 
     // 3/4 Update regular order - 
-    case actionType.UPDATE_REGULAR_REQUEST:
+    case actionType.UPDATE_ORDER_REQUEST:
       return {
         ...state,
         loading: true
       }
 
-    case actionType.UPDATE_REGULAR_SUCCESS:
-      let orders = state.orders.result
-      let order = { ...state.order, status: action.repos.status }
-      orders[state.row] = order
+    case actionType.UPDATE_ORDER_SUCCESS:
+      let order = {...state.order.result[state.row], ...action.repos}
+      state.order.result[state.row] = order
       return {
         ...state,
         loading: false,
         updateData: action.repos,
-        // order: action.postInSaga,
-        order: order,
-        orders: { ...state.orders, result: orders }
       }
 
-    case actionType.UPDATE_REGULAR_FAILED:
+    case actionType.UPDATE_ORDER_FAILED:
       return {
         ...state,
         loading: false,
@@ -104,14 +94,14 @@ function orderReducer(state = initialState, action) {
       }
 
     // 4/4 POST regular order --dongyu
-    case actionType.POST_REGULAR_REQUEST:
+    case actionType.POST_ORDER_REQUEST:
       return {
         ...state,
         loading: true,
         completeinfo: null
       }
 
-    case actionType.POST_REGULAR_SUCCESS:
+    case actionType.POST_ORDER_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -120,39 +110,13 @@ function orderReducer(state = initialState, action) {
         completeinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
       }
 
-    case actionType.POST_REGULAR_FAILED:
+    case actionType.POST_ORDER_FAILED:
       return {
         ...state,
         loading: false,
         order: [],
         error: action.errorInSaga,
       }
-
-    // 5/5 POST endoflease order --dongyu
-    case actionType.POST_ENDOFLEASE_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        ECcompleteinfo: null
-      }
-
-    case actionType.POST_ENDOFLEASE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        loadingNum: 2,
-        order: action.postInSaga,
-        ECcompleteinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
-      }
-
-    case actionType.POST_ENDOFLEASE_FAILED:
-      return {
-        ...state,
-        loading: false,
-        order: [],
-        error: action.errorInSaga,
-      }
-
 
     // 6/6
     case actionType.GET_ALL_ORDERS_REQUESTED:
@@ -164,7 +128,7 @@ function orderReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        orders: action.orders
+        order: action.orders
       }
     case actionType.GET_ALL_ORDERS_FAILED:
       return {
@@ -177,7 +141,6 @@ function orderReducer(state = initialState, action) {
     case actionType.CHANGE_ORDER:
       return {
         ...state,
-        order: state.orders.result[action.payload],
         row: action.payload
       }
 
@@ -192,8 +155,6 @@ function orderReducer(state = initialState, action) {
       let ordersa = state.orders.result
       let ordera = { ...state.order, review: action.repos.review, rating: action.repos.rating }
       ordersa[state.row] = ordera
-      console.log(action.repos.review)
-      console.log(action.repos.rating)
 
       return {
         ...state,
@@ -216,17 +177,11 @@ function orderReducer(state = initialState, action) {
         }
   
       case actionType.UPDATE_ASSIGN_SUCCESS:
-        // let orders = state.orders.result
-        // let order = { ...state.order, status: action.repos.status }
-        // orders[state.row] = order
         return {
           ...state,
           loading: false,
           test:2,
           updateData: {status:"in-progress"},
-          // order: action.postInSaga,
-          // order: order,
-          // orders: { ...state.orders, result: orders }
         }
   
       case actionType.UPDATE_ASSIGN_FAILED:
@@ -234,7 +189,6 @@ function orderReducer(state = initialState, action) {
           ...state,
           loading: false,
           error: action.payload
-          // error:action.data.err
         }
     default:
       return state

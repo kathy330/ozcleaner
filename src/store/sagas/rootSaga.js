@@ -11,7 +11,6 @@ import UsersSaga from './usersSaga'
 // // import testSaga from './userRegistrationSaga'
 import EmployeeSaga from './emplyeeDetail'
 import EmployeeCertificationSaga from './employeeSaga'
-import AllOrdersSaga from './allOrdersSaga'
 import forgetPasswordSaga from './forgetPasswordSaga'
 
 export default function* rootSaga() {
@@ -29,7 +28,6 @@ export default function* rootSaga() {
     EmployeeSaga(),
     UsersSaga(),
     EmployeeCertificationSaga(),
-    AllOrdersSaga(),
     forgetPasswordSaga()
   ])
   // 另外的写法：

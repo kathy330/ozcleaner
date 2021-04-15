@@ -43,7 +43,7 @@ export default function Review(props) {
         </Grid>
       </Grid>
       <Grid item xs>
-        <Typography variant="body2">
+        <Typography variant="h6">
           {review}
         </Typography>
       </Grid>

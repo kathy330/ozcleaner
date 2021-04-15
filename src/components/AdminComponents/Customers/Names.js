@@ -32,6 +32,9 @@ const styles = makeStyles((theme) => ({
   text: {
     marginLeft: 10
   },
+  textcolor:{
+    color:'#007bf5'
+  },
 }))
 
 export default function Names(props) {
@@ -43,7 +46,7 @@ export default function Names(props) {
         <AccountCircleIcon />
       </Grid>
       <Grid item justify="center" xs={9} sm={10} className={classes.text}>
-        <Typography variant="subtitle2">CONTACT</Typography>
+        <Typography className={classes.textcolor} variant="subtitle2">CONTACT</Typography>
         <Grid container direction="row" justify="space-between" space={5}>
           <Typography variant="body2">
             {firstName[0].toUpperCase()}

@@ -13,6 +13,9 @@ const useStyles = makeStyles(() => ({
   text: {
     marginLeft: 10
   },
+  textcolor:{
+    color:'#007bf5'
+  },
 }))
 
 export default function Location(props) {
@@ -24,7 +27,7 @@ export default function Location(props) {
         <LocationOn />
       </Grid>
       <Grid item justify="center" xs={10} sm={11} className={classes.text}>
-        <Typography variant="subtitle2">ADDRESS</Typography>
+        <Typography className={classes.textcolor} variant="subtitle2">ADDRESS</Typography>
         <Typography variant="body2">{address}</Typography>
       </Grid>
     </Box>

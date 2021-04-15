@@ -8,6 +8,9 @@ const useStyles = makeStyles({
     flexGrow: 1,
     paddingLeft: 10,
   },
+  textcolor:{
+    color:'#007bf5'
+  },
 })
 
 export default function Extra(props) {
@@ -36,7 +39,7 @@ export default function Extra(props) {
 
   return (
     <Grid container direction="column" className={classes.root}>
-      <Typography variant="subtitle2">
+      <Typography className={classes.textcolor} variant="subtitle2">
         Extra
       </Typography>
       <Typography variant="body2">

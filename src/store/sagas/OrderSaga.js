@@ -35,7 +35,7 @@ function* updateOrder(action) {
   }
 }
 
-// 1/3 post regular order --dongyu
+// 1/2 post order --dongyu
 function* postOrder(action) {
   let postApi = postRCApi
   if (action.payload.type === "EC") {
@@ -50,15 +50,12 @@ function* postOrder(action) {
   else {
     yield put({ type: 'POST_ORDER_SUCCESS', postInSaga: data })
 
-
     // 🔥数据存储到local storage里，可以直接用useSelector() 使用
     localStorage.setItem('Order', JSON.stringify(action.payload))
-
   }
 }
 
-
-// 3/3 PAY order --dongyu
+// 2/2 PAY order --dongyu
 function* payOrder() {
   yield put({ type: 'PAY_ORDER_SUCCESS', postInSaga: 'success!!' })
 }

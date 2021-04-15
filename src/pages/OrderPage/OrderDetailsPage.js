@@ -7,8 +7,6 @@ import { getOrderRequest } from "../../store/actions"
 import Footer from '../../components/FooterComponents/Footer'
 import Header from '../../components/NavBarComponents/NavBar'
 
-
-
 function OrderDetailsPage(match) {
 
   const objid = match.match.params.id;

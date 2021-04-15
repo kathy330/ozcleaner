@@ -56,15 +56,15 @@ export const payOrderSuccess = (obj) => ({
 })
 
 // 6/6 Update regular order -- 
-export const updateRegularRequest = (obj) => ({
+export const updateOrderRequest = (obj) => ({
   type: actionTypes.UPDATE_ORDER_REQUEST,
   payload: obj, // By convention, we put that information in a field called payload.
 })
-export const updateRegularSuccess = (obj) => ({
+export const updateOrderSuccess = (obj) => ({
   type: actionTypes.UPDATE_ORDER_SUCCESS,
   payload: obj,
 })
-export const updateRegularFaild = (obj) => ({
+export const updateOrderFaild = (obj) => ({
   type: actionTypes.UPDATE_ORDER_FAILED,
   payload: obj,
 })
@@ -223,18 +223,3 @@ export const changeOrder = num => ({
   payload: num
 })
 
-// Submit reviews from users
-export const submitReviewsRequest = (obj) => ({
-  type: actionTypes.SUBMIT_REVIEWS_REQUEST,
-  payload: obj, // By convention, we put that information in a field called payload.
-})
-export const submitReviewsSuccess = (obj) => ({
-  type: actionTypes.SUBMIT_REVIEWS_SUCCESS,
-  payload: obj,
-})
-export function submitReviewsFailed(obj) {
-  return {
-    type: actionTypes.SUBMIT_REVIEWS_FAILED,
-    payload: obj,
-  }
-}

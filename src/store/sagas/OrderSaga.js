@@ -19,11 +19,10 @@ function* getOrder(action) {
 }
 
 function* updateOrder(action) {
-  const { id, orderstatus, type } = action.payload
-  const update = { status: orderstatus }
+  const { id, update, type } = action.payload
+  // const update = { status: orderstatus }
   const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
   const updateApi = `http://localhost:8000/${model}/${id}`  // PUT方法更新regular
-
   try {
     yield call(axios.put, updateApi, update,header())
     yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })
@@ -57,7 +56,6 @@ function* postOrder(action) {
   }
 }
 
-
 // 3/3 PAY order --dongyu
 function* payOrder() {
   yield put({ type: 'PAY_ORDER_SUCCESS', postInSaga: 'success!!' })
@@ -71,41 +69,18 @@ function* fetchAllOrders(action) {
     const orders = yield call(axios.get, apiUrl,header())
     // console.log('data', orders)
     yield put({ type: 'GET_ALL_ORDERS_SUCCESS', orders: orders.data })
-    yield put({ type: 'CHANGE_ORDER', payload:0})
   } catch (e) {
     yield put({ type: 'GET_ALL_ORDERS_FAILED', message: e.message })
   }
 }
 
 
-// submit User Reviews --kangkang
-function* submitUserReviews(action) {
-  const { id, review, type, rate } = action.payload
-  const update = { review: review, rating: rate }
-  const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
-  const updateApi = `http://localhost:8000/${model}/${id}`  // PUT方法更新regular
-
-  try {
-    console.log('aaa')
-    const regularData = yield call(axios.put, updateApi, update,header())
-    console.log(regularData)
-    console.log(update)
-    yield put({ type: 'SUBMIT_REVIEWS_SUCCESS', repos: update })
-    // 这个data是返回对象reponse的data属性
-  }
-  catch (e) {
-    console.log(e)
-    yield put({ type: 'SUBMIT_REVIEWS_FAILED', payload: e })
-  }
-}
-
 function* assignToEmployee(action) {
-  const { type,id,orderstatus } = action.payload
+  const { type,id, update} = action.payload
   console.log(action.payload)
   const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
   const level = localStorage.getItem('authLevel') 
   const info = JSON.parse(localStorage.getItem(`${level}Info`))
-  const update = {status:orderstatus}
   console.log(info)
   const {ID,objectID} = info.data
   console.log(ID,objectID)
@@ -116,7 +91,7 @@ function* assignToEmployee(action) {
     const data = yield call(axios.put, updateAPI ,EmployeeData,header())
     console.log(data)
     yield put({type:'UPDATE_ASSIGN_SUCCESS',payload:data})
-    yield put({ type: 'UPDATE_REGULAR_SUCCESS', repos: update })
+    yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })
   }
   catch(e) {
     console.log(e)
@@ -138,7 +113,6 @@ function* RegularSaga() {
   yield takeEvery('UPDATE_ASSIGN_REQUEST', assignToEmployee)
   yield takeEvery('GET_ALL_ORDERS_REQUESTED', fetchAllOrders )
   yield takeEvery('PAY_ORDER_REQUEST', payOrder) // PAY
-  yield takeEvery('SUBMIT_REVIEWS_REQUEST', submitUserReviews)
 }
 
 export default RegularSaga

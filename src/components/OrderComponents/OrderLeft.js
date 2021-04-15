@@ -28,7 +28,7 @@ import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import Checkbox from '@material-ui/core/Checkbox'
 import PaymentIcon from '@material-ui/icons/Payment'
-import {postRegularRequest} from '../../store/actions'
+import {postOrderRequest} from '../../store/actions'
 import HomeComponentStyle from "../HomeComponents/styles/HomeComponentStyle"
 import { BookingButton } from "../UIComponents/Buttons"
 // import CardActions from '@material-ui/core/CardActions'
@@ -276,7 +276,7 @@ export default function OrderLeft() {
       console.log('new data: ',newData)
   
       // 🌟dispatch一个action
-      dispatch(postRegularRequest(newData)) // 发送saga请求
+      dispatch(postOrderRequest(newData)) // 发送saga请求
     }
     else{
       console.log('Must pick all the info')

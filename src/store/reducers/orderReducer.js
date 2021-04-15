@@ -144,32 +144,6 @@ function orderReducer(state = initialState, action) {
         row: action.payload
       }
 
-    // 8/8 Submit reviews from users -- kangkang
-    case actionType.SUBMIT_REVIEWS_REQUEST:
-      return {
-        ...state,
-        loading: true
-      }
-
-    case actionType.SUBMIT_REVIEWS_SUCCESS:
-      let ordersa = state.orders.result
-      let ordera = { ...state.order, review: action.repos.review, rating: action.repos.rating }
-      ordersa[state.row] = ordera
-
-      return {
-        ...state,
-        loading: false,
-        order: ordera,
-        orders: { ...state.orders, result: ordersa }
-      }
-
-    case actionType.SUBMIT_REVIEWS_FAILED:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      }
-
       case actionType.UPDATE_ASSIGN_REQUEST:
         return {
           ...state,

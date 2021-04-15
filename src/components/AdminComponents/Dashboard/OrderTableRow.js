@@ -3,7 +3,7 @@ import React from 'react'
 import { TableRow, TableCell, makeStyles, Typography, Box } from '@material-ui/core/'
 import date from 'date-and-time'
 import { KingBed, Bathtub } from '@material-ui/icons'
-import { GreenStatus, RedStatus, GreyStatus } from '../../UIComponents/Status'
+import { GreenStatus, RedStatus, GreyStatus, BlueStatus } from '../../UIComponents/Status'
 
 
 const useStyle = makeStyles(() => ({
@@ -26,12 +26,14 @@ const useStyle = makeStyles(() => ({
 
 // StatusResult() is to return different style status component
 function StatusResult(status) {
-    if (status === 'In Progress') {
-        return <GreenStatus>{status}</GreenStatus>
-    } if (status === "Unconfirmed") {
-        return <RedStatus>{status}</RedStatus>
-    }
-    return <GreyStatus>{status}</GreyStatus>
+    if (status === 'confirmed') {
+        return <GreenStatus>{status.toUpperCase()}</GreenStatus>
+    } if (status === "cancelled") {
+        return <RedStatus>{status.toUpperCase()}</RedStatus>
+    } if (status === "in-progress") {
+      return <BlueStatus>{status.toUpperCase()}</BlueStatus>
+  } 
+    return <GreyStatus>{status.toUpperCase()}</GreyStatus>
 }
 
 function displayTime(time) {
@@ -45,40 +47,44 @@ function displayTime(time) {
 
 function OrderTableRow(props) {
     const classes = useStyle()
-    const { OrderID, Type, BedroomNum, BathroomNum,
-        StartTime, EndTime, Status, Assignee } = props
-
+    const { taskID, type, bedroomNum, bathroomNum,
+        startTime, endTime, status, employeeDetail } = props
     return (
       <TableRow>
         <TableCell align="left">
-          <Box fontWeight="fontWeightBold">
-            {Type + OrderID}
-          </Box>
+          <Typography variant="h6">
+            {type + taskID}
+          </Typography>
         </TableCell>
         <TableCell align="center">
           <KingBed className={classes.bedIconSize} />
           <Typography className={classes.orderNumber}>
-            {`×${BedroomNum} `}
+            {`×${bedroomNum} `}
           </Typography>
           <Bathtub className={classes.bathIconSize} />
           <Typography className={classes.orderNumber}>
             ×
-            {BathroomNum}
+            {bathroomNum}
           </Typography>
         </TableCell>
         <TableCell align="center">
           <Typography variant="h6">
-            {displayTime(StartTime)}
+            {displayTime(startTime)}
           </Typography>
         </TableCell>
         <TableCell align="center">
-          {displayTime(EndTime)}
+          <Typography variant="h6">
+            {endTime == null? "Pending":displayTime(endTime)}
+          </Typography>
         </TableCell>
         <TableCell align="center">
-          {StatusResult(Status)}
+          {StatusResult(status)}
         </TableCell>
         <TableCell align="center">
-          {Assignee}
+          <Typography variant="h6">
+            {employeeDetail.length === 0 ? "Pending" :
+           `${employeeDetail[0].name.firstName  } ${  employeeDetail[0].name.lastName}`}
+          </Typography>
         </TableCell>
       </TableRow>
     )

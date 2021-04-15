@@ -90,7 +90,7 @@ export default function AutoGrid(props) {
                 </ul>
               </Grid>
               {arrayObj.map((card) => (
-                <Grid item xs={8} sm={3}>
+                <Grid item xs={8} sm={3} key={card}>
                   <ul>
                     {card.map((item) => (
                       <li key={item} className={classes.li}>

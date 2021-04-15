@@ -230,14 +230,14 @@ const BasicTable=(props)=> {
             <TableRow>
               <TableCell align="center">Order ID</TableCell>
               <TableCell align="center">Status</TableCell>
-              <TableCell align="center">Assignee</TableCell>
+              <TableCell align="center">Recevier</TableCell>
               <TableCell align="center">Created At</TableCell>
               <TableCell align="center">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user) => ( 
-              <TableRow key={user.taskID}>
+              <TableRow key={user._id}>
                 <TableCell align="center">{user.type+user.taskID}</TableCell>
                 <TableCell align="center">
                   {isButton(user)}      
@@ -249,7 +249,9 @@ const BasicTable=(props)=> {
                     {user.lastName}
                   </Typography>
                 </TableCell>
-                <TableCell align="center">{displayTime(user.createdAt)}</TableCell>
+                <TableCell align="center">
+                  {displayTime(user.createdAt)}
+                </TableCell>
                 <TableCell align="center" className={classes.action}>
                   {isComment(user,classes)}
                   {isCancel(user,classes,handleCancelOrder)}
@@ -262,7 +264,7 @@ const BasicTable=(props)=> {
         
      
         </Table>
-        <TablePagination
+        <TablePagination 
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
           count={users.length}

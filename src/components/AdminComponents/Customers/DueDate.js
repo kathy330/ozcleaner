@@ -14,6 +14,9 @@ const useStyles = makeStyles(() => ({
   text: {
     marginLeft: 10
   },
+  textcolor:{
+    color:'#007bf5'
+  },
 }))
 
 function displayTime(time) {
@@ -39,7 +42,7 @@ export default function DueDate(props) {
         <Today />
       </Grid>
       <Grid item justify="center" xs={10} sm={11} className={classes.text}>
-        <Typography variant="subtitle2">DUE DATE</Typography>
+        <Typography className={classes.textcolor} variant="subtitle2">DUE DATE</Typography>
         <Typography variant="body2">{displayTime(endTime)}</Typography>
       </Grid>
     </Box>

@@ -117,21 +117,3 @@ function* RegularSaga() {
 
 export default RegularSaga
 
-
-
-
-// function postToRegular (data) {
-//   // const {token} = JSON.parse(localStorage.getItem('userInfo')).data
-//   return fetch(postApi, {
-//     method:'POST',
-//     headers:{
-//       'Accept': 'application/json',
-//       'Content-Type': 'application/json',
-//       // 'Authorization': token
-//     },
-//     body:JSON.stringify(data)
-//   })
-//     .then(response => response.json())
-//     .catch(err=>console.log(err))
-// }
-// const result = yield call(postToRegular, action.payload)

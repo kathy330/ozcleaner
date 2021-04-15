@@ -28,7 +28,7 @@ export const getOrderFaild = (err) => ({
 })
 
 
-//  3/6 POST Regular order -- dongyu 
+//  2/6 POST order -- dongyu 
 export const postOrderRequest = (obj) => ({
   type: actionTypes.POST_ORDER_REQUEST,
   payload: obj, // By convention, we put that information in a field called payload.
@@ -44,8 +44,7 @@ export function postOrderFaild(obj) {
   }
 }
 
-
-//  5/6 PAY Regular order -- dongyu 
+//  3/6 PAY order -- dongyu 
 export const payOrderRequest = (obj) => ({
   type: actionTypes.PAY_ORDER_REQUEST,
   payload: obj,

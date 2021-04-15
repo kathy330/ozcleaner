@@ -216,7 +216,7 @@ const BasicTable=(props)=>{
           </TableHead>
           <TableBody>
             {users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user) => (
-              <TableRow key={user.taskID}>
+              <TableRow key={user._id}>
                 <TableCell align="center">{user.type+user.taskID}</TableCell>
                 <TableCell align="center">
                   {isButton(user)}      

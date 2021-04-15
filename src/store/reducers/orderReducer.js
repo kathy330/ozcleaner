@@ -2,20 +2,20 @@
 import actionType from '../actions/actionTypes'
 
 // 这不是init
-const dongyuPostOrder = {
-  bedroomNum: '',
-  bathroomNum: '',
-  type: '',
-  address: {
-    address1: '',
-    address2: '',
-    suburb: '',
-    state: '',
-    postcode: ''
-  },
-  startTime: '',
-  price: 0,
-}
+// const dongyuPostOrder = {
+//   bedroomNum: '',
+//   bathroomNum: '',
+//   type: '',
+//   address: {
+//     address1: '',
+//     address2: '',
+//     suburb: '',
+//     state: '',
+//     postcode: ''
+//   },
+//   startTime: '',
+//   price: 0,
+// }
 
 const initialState = {
   loading: false,
@@ -31,7 +31,8 @@ const initialState = {
   row: 0,
   completeinfo: {
     info: localStorage.getItem('Order') ?
-      JSON.parse(localStorage.getItem('Order')) : dongyuPostOrder
+      // JSON.parse(localStorage.getItem('Order')) : dongyuPostOrder
+      JSON.parse(localStorage.getItem('Order')) : ''
   },
   updateData: 'no update' // 更新by id,可以更新任何值，只要有正确名字
 }
@@ -93,7 +94,7 @@ function orderReducer(state = initialState, action) {
         // error:action.data.err
       }
 
-    // 4/4 POST regular order --dongyu
+    // 4/4 POST order --dongyu
     case actionType.POST_ORDER_REQUEST:
       return {
         ...state,
@@ -106,7 +107,7 @@ function orderReducer(state = initialState, action) {
         ...state,
         loading: false,
         loadingNum: 2,
-        order: action.postInSaga, // 发送给regular api
+        order: action.postInSaga, // 发送给post order api
         completeinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
       }
 

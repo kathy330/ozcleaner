@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     marginTop: 20,
     marginBottom: 50,
-    borderRadius: 40,
+    borderRadius: '5px',
     maxWidth: 200,
     // margin: 'auto',
   },

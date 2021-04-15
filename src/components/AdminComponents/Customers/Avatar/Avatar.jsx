@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 import React from 'react'
 import { makeStyles} from '@material-ui/core/styles'
@@ -37,13 +38,13 @@ export default function Avatars(props){
 
     <div className={classes.root}>
       {UserData.map((user)=>(
-        <Grid item xs container direction="column" spacing={2}>
+        <Grid key={user._id} item xs container direction="column" spacing={2}>
           <Grid item className={classes.img}>
-            <Avatar className={classes.large} key={user.name}>{user.name.firstName.slice(0,2).toUpperCase()}</Avatar>
+            <Avatar className={classes.large}>{user.name.firstName.slice(0,2).toUpperCase()}</Avatar>
           </Grid>
              
           <Grid item xs>
-            <Box textAlign="center" key={user.name} width="100%" fontWeight="bold" fontSize={25}>
+            <Box textAlign="center" width="100%" fontWeight="bold" fontSize={25}>
               {user.name.firstName}
               {' '}
               {user.name.lastName}

@@ -13,7 +13,7 @@ export default function OrderTitle(props) {
   const classes = useStyles()
   const { title } = props
   return (
-    <Typography variant="h4" className={classes.root}>
+    <Typography variant="h5" className={classes.root}>
       {title}
     </Typography>
   )

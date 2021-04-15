@@ -3,9 +3,8 @@ import React from "react"
 import { makeStyles, Container, Grid } from '@material-ui/core'
 import AdminCustomersLeft from "../AdminComponents/AdminCustomersLeft"
 import AdminCustomersRight from "../AdminComponents/AdminCustomersRight"
-import Footer from '../FooterComponents/Footer'
 import LoadingIcon from '../AdminComponents/LoadingIcon'
-import Header from '../NavBarComponents/NavBar'
+
 
 // style
 const useStyles = makeStyles((theme) => ({
@@ -141,14 +140,12 @@ function OrderDetailComponent(props) {
 
   return (
   <>
-    {localStorage.getItem("authLevel") == "employee" && <Header />}
       <Grid className={classes.bg}>
         {/* {endTime} */}
         <Container maxWidth="md" className={classes.body}>
           {displayPage(data)}
         </Container>
       </Grid>
-    {localStorage.getItem("authLevel") == "employee" && <Footer /> }
   </>
   )
 }

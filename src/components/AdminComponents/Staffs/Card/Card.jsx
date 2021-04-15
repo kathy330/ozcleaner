@@ -1,9 +1,10 @@
+
 /* eslint-disable max-len */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {Paper,Grid,Typography,Box } from '@material-ui/core'
 import Rating from '@material-ui/lab/Rating'
-import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import StarRoundedIcon from '@material-ui/icons/StarRounded'
 
 const useStyles = makeStyles((themes) => ({
   root: {
@@ -158,11 +159,12 @@ export default function AutoGrid(props) {
               </Grid>
   
               <Grid item xs={8} sm={3}>
-                <ul>
-                  {arrayObj[0].map((item, index) => (
-                     showCardInfo(UserData, arrayObj[0],index, UserData.employmentStatus === "available", classes)
-          ))}
-                </ul>
+                {arrayObj[0].map((item, index) => (
+                  <ul key={item}>    
+                    { showCardInfo(UserData, arrayObj[0],index, UserData.employmentStatus === "available", classes)}
+        
+                  </ul>
+                ))}
               </Grid>
  
             </Grid>

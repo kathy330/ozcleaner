@@ -12,7 +12,7 @@ function StaffDetailsPage(match){
   const{id}=match.match.params
   return (
    
-    <Box bgcolor="#eaeaea">
+    <Box bgcolor="#fafafa">
       <CssBaseline />  
       <NavBar />     
       <Container maxWidth="md">

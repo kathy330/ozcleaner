@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable */
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -34,23 +35,25 @@ const columns = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    background: '#fff',
     marginTop: '1px',
     padding: '45px 45px 0px',
-    background: '#fff',
     [theme.breakpoints.down('xs')]: {
       padding: '35px 20px',
     },
   },
+
   heading: {
     marginBottom: '20px',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '2rem'
+      fontSize: '2rem',
     }
   },
+
   listTable: {
-    minHeight: '80vh',
+    alignContent: 'space-between',
     justifyContent: 'center',
-    alignContent: 'space-between'
+    minHeight: '80vh',
   }
 }))
 

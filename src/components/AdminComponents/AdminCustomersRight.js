@@ -1,11 +1,7 @@
 /* eslint-disable */
 import React, { useEffect } from 'react'
 import { Grid, Typography, makeStyles, Card, CardContent, Divider, Button } from '@material-ui/core'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogTitle from '@material-ui/core/DialogTitle'
 import { useDispatch } from 'react-redux'
-import { updateRegularRequest } from "../../store/actions"
 import OrderActionButtons from './Customers/OrderActionButtons'
 
 
@@ -60,22 +56,13 @@ function AdminCustomersRight(props) {
   const { orderPrice, orderStatus, _id, typeOfOrder } = props
   const [open, setOpen] = React.useState(false)
   // const data = { taskid: ID, orderstatus: "in-progress" }
-  const data = { id: _id, orderstatus: "cancelled", type: typeOfOrder }
-  const toFinishData = { id: _id, orderstatus: "finished", type: typeOfOrder }
-  const toAcceptData = { id: _id, orderstatus: "in-progress", type: typeOfOrder }
+  const data = { id: _id, update:{status: "cancelled"}, type: typeOfOrder }
+  const toFinishData = { id: _id, update:{status: "finished"}, type: typeOfOrder }
+  const toAcceptData = { id: _id, update:{status: "in-progress"}, type: typeOfOrder }
   const [state] = React.useState({
     status: { orderStatus }
   })
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
-  const handleClose = () => {
-    setOpen(false)
-  }
-  const handleCancelOrder = () => {
-    setOpen(false)
-    dispatch(updateRegularRequest(data))
-  }
+
   useEffect(() => {
     console.log(state.status, 'state.status')
   }, [state])
@@ -119,7 +106,7 @@ function AdminCustomersRight(props) {
       <Grid container direction="row"
         justify="center"
         alignItems="center">
-        {(authLevel === 'admin') && (<OrderActionButtons cancel='cancel' finish='finish' accept='' cancelData={data}
+        {(authLevel === 'admin') && (<OrderActionButtons cancel={orderStatus === "in-progress" ? "cancel" : ""} finish={orderStatus === "in-progress" ? "finish" : ""} accept='' cancelData={data}
           finishData={toFinishData} acceptData={toAcceptData} />)}
         {(authLevel === 'user') && (<OrderActionButtons cancel='cancel' finish='' accept='' cancelData={data}
           finishData={toFinishData} acceptData={toAcceptData} />)}

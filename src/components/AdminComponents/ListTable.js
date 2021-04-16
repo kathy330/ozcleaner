@@ -31,7 +31,7 @@ function ListCustomerTable(props) {
   const usersCount = useSelector(state => state.userslist.users.count)
   const loading = useSelector(state => state.userslist.loading)
   const dataType = useSelector(state => state.userslist.dataType)
-  console.log(usersData)
+  // console.log(usersData)
   
   const error = useSelector(state => state.userslist.error)
   const path = dispatchRequest ? '/admin/customers' : '/admin/staffs'

@@ -225,7 +225,7 @@ export default function HeaderNavigation(props) {
               ''
             )}
 
-              {employeeInfo ? (
+              {employeeInfo && level==='employee' ? (
                 <>
                   <Box className={style.buttonsBox}>
                     <Button href='/employee-orders' className={style.bookingButton}>Browse Orders</Button>
@@ -255,6 +255,30 @@ export default function HeaderNavigation(props) {
               ''
             )}
 
+              {employeeInfo && level==='admin' ? (
+                <>
+                  <Box className={style.buttonsBox}>
+                    <Button href='/admin' className={style.bookingButton}>Admin Dashboard</Button>
+                    <Button
+                      onClick={employeesignoutHandler}
+                    >
+                      Sign Out
+                    </Button>
+                  </Box>
+                  <Drawer
+                    id="simple-menu"
+                    anchorel={anchor}
+                    keepMounted
+                    open={Boolean(anchor)}
+                    onClose={handleClose}
+                    anchor="right"
+                  >
+                    <MenuItem onClick={employeesignoutHandler}>Sign Out</MenuItem>
+                  </Drawer>
+                </>
+            ) : (
+              ''
+            )}
           
               {!employeeInfo && !userInfo ? (
                 <>

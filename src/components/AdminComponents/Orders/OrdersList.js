@@ -137,6 +137,7 @@ function OrdersLists(props) {
 
   const selectStatusChange = (event) =>{
     setOrderStatus(event.target.value)
+    setCurCard(0)
     listPayload.status = event.target.value
     listPayload.page = 1
     dispatch(getAllOrersRequest(listPayload))
@@ -204,6 +205,7 @@ function OrdersLists(props) {
                   >
                     <OrderCard 
                       title={row.title}
+                      price={row.price}
                       address={row.address}
                       date={row.startTime}
                       status={row.status}
@@ -220,9 +222,10 @@ function OrdersLists(props) {
               count={finalPage}
             />
           </Grid>
-          {!matches && (
+          {console.log(data)}
+          {!matches && data.length !== 0 && (
             <Grid item xs={12} sm={8} className={classes.right}>
-              <OrderDetailComponent data={data[curCard]}/> 
+              <OrderDetailComponent data={data[curCard]} key={curCard}/> 
             </Grid>
           )}
         </Grid>

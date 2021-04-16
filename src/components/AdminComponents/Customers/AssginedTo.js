@@ -29,7 +29,14 @@ const styles = makeStyles((theme) => ({
     // fontSize: '20px',
   },
   text: {
-    marginLeft: 10
+    marginLeft: 10,
+  },
+  textcolor:{
+    color:'#007bf5'
+  },
+  linkcolor:{
+    // color:'#67a9ff'
+    color:'black',
   },
   divider: {
     marginTop: 10,
@@ -50,7 +57,7 @@ export default function AssginedTo(props) {
         <Avatar className={classes.orange}>{employeeFirstName[0].toUpperCase()}</Avatar>
       </Grid>
       <Grid item justify="center" xs={9} sm={10} className={classes.text}>
-        <Typography variant="subtitle2">ASSIGNED TO</Typography>
+        <Typography className={classes.textcolor} variant="subtitle2">ASSIGNED TO</Typography>
         <Grid container direction="row" justify="space-between" space={5}>
           {(employeeFirstName === 'null'
             && employeeLastName === 'null')
@@ -60,7 +67,12 @@ export default function AssginedTo(props) {
               </>
             )}
           {(employeeFirstName !== 'null' || employeeLastName !== 'null') && (
-            <Link component={RouterLink} to={path} variant="subtitle2">
+            <Link 
+              className={classes.linkcolor}
+              component={RouterLink}
+              to={path}
+              variant="subtitle2"
+            >
               {employeeFirstName[0].toUpperCase()}
               {employeeFirstName.slice(1)}
               {' '}

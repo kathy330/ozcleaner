@@ -24,13 +24,16 @@ function ListCustomerTable(props) {
   const [deletedId, setDeletedId] = React.useState(0)
   const [deletedIndex, setdeletedIndex] = React.useState(0)
   const [open, setOpen] = React.useState(false)
+  const dispatchRequest = (tableType === 'customer') 
+  console.log(tableType)
   // get userdata from state
   const usersData = useSelector(state => state.userslist.users.result)
   // get total users number from state
   const usersCount = useSelector(state => state.userslist.users.count)
   const loading = useSelector(state => state.userslist.loading)
+  const dataType = useSelector(state => state.userslist.dataType)
+  
   const error = useSelector(state => state.userslist.error)
-  const dispatchRequest = (tableType === 'customer') 
   const path = dispatchRequest ? '/admin/customers' : '/admin/staffs'
   
   // eslint-disable-next-line no-shadow
@@ -87,9 +90,9 @@ function ListCustomerTable(props) {
   return (
     <>
       {/* if loading: show loading icon */}
-      {loading && <LoadingIcon />}
+      {(loading || dataType !== tableType) && <LoadingIcon />}
       {/* if user data is not empty show ListTable.  */}
-      {!loading && usersData.length > 0 && (
+      {!loading && dataType === tableType && usersData.length > 0 && (
         <>
           <TableContainer>
             <Table aria-label="simple table">

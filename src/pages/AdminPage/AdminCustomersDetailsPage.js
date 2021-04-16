@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react"
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
@@ -10,7 +11,7 @@ function AdminCustomersDetailsPage(match){
   const{id}=match.match.params
   return (
    
-    <Box bgcolor="#eaeaea">
+    <Box bgcolor="#fafafa">
       <CssBaseline />      
       <Container maxWidth="md">
         <Box bgcolor="white">

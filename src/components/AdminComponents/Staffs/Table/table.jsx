@@ -15,7 +15,7 @@ import{ Alert} from '@material-ui/lab'
 import date from 'date-and-time'
 import { Link } from 'react-router-dom'
 import TablePagination from '@material-ui/core/TablePagination'
-import {getSTAFFDETAILTABLERequest,updateRegularRequest} from "../../../../store/actions"
+import {getSTAFFDETAILTABLERequest, updateOrderRequest} from "../../../../store/actions"
 import * as Status from '../../../UIComponents/Status'
 
 const useStyles = makeStyles(() => ({
@@ -184,7 +184,7 @@ const BasicTable=(props)=>{
   const handleCancelOrder = (event) => {
     if(event.target.value&&event.target.id){
       const body={id:event.target.value,orderstatus:"cancelled",type:event.target.id}
-      dispatch(updateRegularRequest(body))
+      dispatch(updateOrderRequest(body))
     }
   }
 
@@ -192,7 +192,7 @@ const BasicTable=(props)=>{
   const handleFinishOrder = (event) => {
     if(event.target.value&&event.target.id){
       const body={id:event.target.value,orderstatus:"finished",type:event.target.id}
-      dispatch(updateRegularRequest(body))
+      dispatch(updateOrderRequest(body))
     }
   }
 
@@ -216,7 +216,7 @@ const BasicTable=(props)=>{
           </TableHead>
           <TableBody>
             {users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user) => (
-              <TableRow key={user.taskID}>
+              <TableRow key={user._id}>
                 <TableCell align="center">{user.type+user.taskID}</TableCell>
                 <TableCell align="center">
                   {isButton(user)}      

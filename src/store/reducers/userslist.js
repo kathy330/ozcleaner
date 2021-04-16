@@ -3,6 +3,7 @@ import actionTypes from '../actions/actionTypes'
 const initialState = {
   users: [],
   loading: true,
+  dataType: '',
   error: null,
 }
 
@@ -18,6 +19,7 @@ function users( state = initialState, action){
       return{
         ...state,
         loading: false,
+        dataType: 'customer',
         users: action.users
       }
     case actionTypes.GET_USERS_FAILED:
@@ -36,6 +38,7 @@ function users( state = initialState, action){
       return {
         ...state,
         loading: false,
+        dataType: 'staff',
         users: action.users
       }
     case actionTypes.GET_EMPLOYEES_FAILED:
@@ -55,13 +58,13 @@ function users( state = initialState, action){
         ...state,
         loading: false
       }
-    // delete employee
     case actionTypes.DELETED_CUSTOMER_FAILED:
       return{
         ...state,
         loading: false,
         error: action.message
       }
+    // delete employee
     case actionTypes.DELETED_EMPLOYEE_REQUEST:
       return {
         ...state,

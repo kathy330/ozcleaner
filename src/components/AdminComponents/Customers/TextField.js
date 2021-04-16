@@ -15,7 +15,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import StarIcon from '@material-ui/icons/Star'
 import { Rating } from '@material-ui/lab'
-import { submitReviewsRequest } from '../../../store/actions'
+import { updateOrderRequest } from '../../../store/actions'
 
 
 // style
@@ -95,8 +95,8 @@ export default function App(props) {
 
   const hadlesubmit =() => {
     setOpen(false)
-    const payload = { id: _id, type: type, review: reviews, rate: rateStar }
-    dispatch(submitReviewsRequest(payload))
+    const payload = { id: _id, type: type, update:{review: reviews, rating: rateStar, reviewStatus: true}}
+    dispatch(updateOrderRequest(payload))
   }
 
   return (

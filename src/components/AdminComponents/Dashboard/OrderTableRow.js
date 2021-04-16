@@ -1,4 +1,4 @@
-/* eslint-disable no-alert */
+/* eslint-disable */
 import React from 'react'
 import { TableRow, TableCell, makeStyles, Typography } from '@material-ui/core/'
 import date from 'date-and-time'

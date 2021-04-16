@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  makeStyles,
   Button,
   Dialog,
   DialogActions,
@@ -7,6 +8,12 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@material-ui/core'
+
+const useStyles = makeStyles(() => ({
+  action: {
+    padding: '10px 25px 25px'
+  },
+}))
 
 /**
  * DialogPopup() is a pagination components
@@ -16,6 +23,8 @@ import {
  */
 export default function DialogPopup (props) {
   const { open, handleAlertClose, handleAlertConfirm, userdata } = props
+  const classes = useStyles()
+
   return(
     <Dialog
       open={open}
@@ -29,7 +38,7 @@ export default function DialogPopup (props) {
           {userdata && `User: ${userdata.name.firstName}(${userdata.email})`}
         </DialogContentText>
       </DialogContent>
-      <DialogActions>
+      <DialogActions className={classes.action}>
         <Button onClick={handleAlertConfirm} variant="contained" color="secondary">
           Delete
         </Button>

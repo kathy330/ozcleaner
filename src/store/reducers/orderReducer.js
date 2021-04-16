@@ -79,6 +79,7 @@ function orderReducer(state = initialState, action) {
 
     case actionType.UPDATE_ORDER_SUCCESS:
       let order = {...state.order.result[state.row], ...action.repos}
+      console.log(order, 'test', 'state.row')
       state.order.result[state.row] = order
       return {
         ...state,

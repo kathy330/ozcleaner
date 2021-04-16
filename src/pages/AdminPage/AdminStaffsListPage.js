@@ -30,7 +30,7 @@ const columns = [
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: '1px',
-    padding: '45px',
+    padding: '45px 45px 0px',
     background: '#fff',
     [theme.breakpoints.down('xs')]: {
       padding: '35px 20px',
@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     marginBottom: '20px',
-    textShadow: '3px 3px 10px #a7a7a7',
     [theme.breakpoints.down('sm')]: {
       fontSize: '2rem'
     }

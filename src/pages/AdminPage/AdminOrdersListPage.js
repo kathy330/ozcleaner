@@ -6,7 +6,7 @@ import OrdersLists from '../../components/AdminComponents/Orders/OrdersList'
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: '1px',
-    padding: '11px 15px',
+    padding: '35px',
     [theme.breakpoints.down('xs')]: {
       padding: '25px 10px',
     },

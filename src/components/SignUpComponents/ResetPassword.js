@@ -22,7 +22,6 @@ export default function ResetPassword() {
   const {control ,handleSubmit} = useForm()
   const dispatch = useDispatch()
     const onSubmit = (data) =>{
-      console.log(data)
       dispatch(resetpassword(data))
       
     }
@@ -31,7 +30,6 @@ export default function ResetPassword() {
 
     const resetPassword = useSelector((state) => state.resetPassword)
     const { userInfo, loading, error } = resetPassword
-    console.log(resetPassword)
     const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
           textAlign:'center',
@@ -99,7 +97,7 @@ export default function ResetPassword() {
                   <TextField
                     className={classes.textField}
                     margin="dense"
-                    id="outlined-basic"
+                    id="outlined-basic-key"
                     label="resetPasswordToken"
                     type="resetPasswordToken"
                     variant="outlined"
@@ -124,7 +122,7 @@ export default function ResetPassword() {
                   <TextField
                     className={classes.textField}
                     margin="dense"
-                    id="outlined-basic"
+                    id="outlined"
                     label="password"
                     type="password"
                     variant="outlined"
@@ -149,7 +147,7 @@ export default function ResetPassword() {
                   <TextField
                     className={classes.textField}
                     margin="dense"
-                    id="outlined-basic"
+                    id="outlined-basic-confirm"
                     label="confirmationPassword"
                     type="password"
                     variant="outlined"

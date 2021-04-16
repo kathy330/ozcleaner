@@ -73,14 +73,15 @@ const useStyles = makeStyles((theme) => ({
   },
   divider:{
     fontWeight: 'bold',
-    fontSize:'12px',
+    fontSize:'10px',
   },
   agreement:{
     fontWeight: 'bold',
     fontSize:'12px',
     marginLeft:'34px',
     width:'100%',
-    marginBottom:'5px' 
+    marginBottom:'5px',
+    marginRight:'10%'
   },
   divide:{
     borderBottom: "1px solid black",
@@ -112,6 +113,7 @@ const useStyles = makeStyles((theme) => ({
 const classes = useStyles()
     return (
       <>
+      <Grid container justify="center">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container justify="center">
             <DialogTitle className="Dialog-title">
@@ -234,6 +236,7 @@ const classes = useStyles()
             </Grid>
           </Grid>
         </form>
+      </Grid>
       </>
     )
   }

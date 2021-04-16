@@ -35,7 +35,7 @@ export const buttonStyle = makeStyles((theme) => ({
     marginInline: '25px',
     paddingTop:'2.0%',
     paddingBottom:'2.0%',
-    width:'85%',
+    width:'100%',
     
     
     

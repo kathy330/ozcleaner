@@ -140,7 +140,7 @@ const classes = useStyles()
                   <TextField
                     className={classes.textField}
                     margin="dense"
-                    id="outlined-basic"
+                    id="outlined-basic-email"
                     label="Email"
                     type="Email"
                     variant="outlined"
@@ -166,7 +166,7 @@ const classes = useStyles()
                   <TextField
                     className={classes.textField}
                     margin="dense"
-                    id="outlined-basic"
+                    id="outlined-basic-password"
                     label="Password"
                     type="password"
                     variant="outlined"

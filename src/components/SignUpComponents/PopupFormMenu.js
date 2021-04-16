@@ -54,7 +54,7 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width:'100%',
+    width:"100%",
   },
 }))
 
@@ -88,8 +88,7 @@ export default function FormDialog() {
           open={open}
           onClose={handleClose}
           aria-labelledby="form-dialog-title"
-          fullWidth
-          maxWidth='xs'
+         
         >
           <div className={classes.root}>
             <AppBar position="static" color="default">

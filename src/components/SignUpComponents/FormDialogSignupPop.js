@@ -31,7 +31,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box div={2}>
+        <Box p={2}>
           <Grid>{children}</Grid>
         </Box>
       )}
@@ -62,11 +62,11 @@ const useStyles = makeStyles((theme) => ({
   [theme.breakpoints.up('md')]: {
     textAlign:'center',
   },
-  /*
+  
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 443,
-  },*/
+    width:347,
+  },
   login:{
     fontWeight: 'bold',
     color: '#007bf5',
@@ -109,8 +109,6 @@ export default function FormDialogSignupPop() {
           open={open}
           onClose={handleClose}
           aria-labelledby="form-dialog-title"
-          fullWidth
-          maxWidth='xs'
         >
           <div className={classes.root}>
             <AppBar position="static" color="default">

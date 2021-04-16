@@ -61,7 +61,7 @@ export default function RegistrationForm() {
     text:{
       fontWeight:'bold',
       width:'85%',
-      marginLeft:'8%'
+      marginLeft:'7%'
     },
     mention:{
       fontWeight: 'bold',
@@ -79,19 +79,20 @@ export default function RegistrationForm() {
     agreement:{
       fontWeight: 'bold',
       fontSize:'12px',
-      marginLeft:'34px',
+      marginLeft:'7%',
       width:'100%',
       marginBottom:'5px' 
     },
     divide:{
       borderBottom: "1px solid black",
       width:'85%',
-      marginBottom:10
+      marginBottom:10,
+      
     },
     account:{
       fontWeight: 'bold',
       fontSize:'12px',
-      marginLeft:'34px',
+      marginLeft:'7%',
       marginBottom:'-22px',
 
     },
@@ -115,88 +116,87 @@ export default function RegistrationForm() {
 const classes = useStyles()
     return (
       <> 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container justify="center">
+        <Grid container justify="center">
+          <form onSubmit={handleSubmit(onSubmit)}>
             <DialogTitle className="Dialog-title">
               <Typography
                 className={classes.title}
                 align="center"
-                // variant="h4"
-                
               >
                 Join us
               </Typography>
             </DialogTitle>
-          </Grid>
-          <Grid container justify="center">
-            {loading && <CircularProgress />}
-            {error && (
-            <Typography
-              color="error"
-              className={classes.text}
-            >
-              {error}
-            </Typography>
+            <Grid container justify="center">
+              {loading && <CircularProgress />}
+              {error && (
+              <Typography
+                color="error"
+                className={classes.text}
+              >
+                {error}
+              </Typography>
               )}
-            {userInfo && (
-            <Typography
-              color="primary"
-              className={classes.text}
-            >
-              Your registration successfully!
-            </Typography>
+              {userInfo && (
+              <Typography
+                color="primary"
+                className={classes.text}
+              >
+                Your registration successfully!
+              </Typography>
               )}
-          </Grid>
-          <Grid container>
+            </Grid>
             <Typography
               className={classes.text}
             >
               Email
             </Typography>
-          </Grid>
-          <Grid container justify="center">
-            <Controller
-              as={(
-                <TextField
-                  className={classes.textField}
-                  margin="dense"
-                  id="outlined"
-                  label="Email"
-                  type="Email"
-                  variant="outlined"
-                />
+        
+            <Grid container justify="center">
+              <Controller
+                as={(
+                  <TextField
+                    className={classes.textField}
+                    margin="dense"
+                    id="outlined"
+                    label="Email"
+                    type="Email"
+                    variant="outlined"
+                  />
                 )}
-              name="email"
-              control={control}
-              defaultValue=""
-            />
-          </Grid>
-          <Grid>
+                name="email"
+                control={control}
+                defaultValue=""
+              />
+            </Grid>
+           
+           
+          
             <Typography
               className={classes.text}
             >
               Password
             </Typography>
-          </Grid>
-          <Grid container justify="center">
-            <Controller
-              as={(
-                <TextField
-                  className={classes.textField}
-                  margin="dense"
-                  id="outlined-basic"
-                  label="Password"
-                  type="password"
-                  variant="outlined"
-                />
+            <Grid container justify="center">
+            
+              <Controller
+                as={(
+                  <TextField
+                    className={classes.textField}
+                    margin="dense"
+                    id="outlined-basic"
+                    label="Password"
+                    type="password"
+                    variant="outlined"
+                  />
                 )}
-              name="password"
-              control={control}
-              defaultValue=""
-            />
-          </Grid>
+                name="password"
+                control={control}
+                defaultValue=""
+              />
+            </Grid>
+         
         
-          <Grid>
+   
             <a href="/password">
               <Typography
                 className={classes.mention}
@@ -204,40 +204,41 @@ const classes = useStyles()
                 Forgot Password?
               </Typography>
             </a>
-          </Grid>
+ 
+            <Grid container justify="center">
+              <PopupButton 
+                type="submit"
+              />
+            </Grid>
             
-          <Grid container justify="center">
-            <PopupButton 
-              type="submit" 
-            />
-            
-          </Grid>
-
+   
            
         
-          <Grid container justify="center" item xs={12}>
-            <Typography
-              className={classes.agreement}
-            >
-              By signing up, I agree to terms & conditions.
-            </Typography>
+            <Grid container justify="center">
+              <Typography
+                className={classes.agreement}
+              >
+                By signing up, I agree to terms & conditions.
+              </Typography>
               
-          </Grid>
-          <Grid container justify="center" item xs={12}>
-            <Divider className={classes.divide} />
-          </Grid>
-        </form>
-        <Grid container direction="row">
-          <Grid container justify="flex-start">
-            <Typography className={classes.account}>
-              Do not have an account?
-            </Typography>
+            </Grid>
+            <Grid container justify="center">
+              <Divider className={classes.divide} />
+            </Grid>
+          
+            <Grid container direction="row">
+              <Grid container justify="flex-start">
+                <Typography className={classes.account}>
+                  Do not have an account?
+                </Typography>
               
-          </Grid>
+              </Grid>
            
-          <Grid container justify="flex-end">
-            <FormDialogLoginPop />
-          </Grid>
+              <Grid container justify="flex-end">
+                <FormDialogLoginPop />
+              </Grid>
+            </Grid>
+          </form>
         </Grid>
           
       </>

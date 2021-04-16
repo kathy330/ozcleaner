@@ -38,6 +38,7 @@ import { useForm,Controller } from "react-hook-form"
 import {useSelector} from 'react-redux'
 import KingBedIcon from '@material-ui/icons/KingBed'
 import BathtubIcon from '@material-ui/icons/Bathtub'
+import CreateIcon from '@material-ui/icons/Create'
 import RoomIcon from '@material-ui/icons/Room'
 import NoteIcon from '@material-ui/icons/Note'
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
@@ -153,11 +154,17 @@ const useStyles = makeStyles((theme) => ({
   pickerRoot: {
     marginBottom: '10px',
     marginTop: '5px',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: '15px',
+    },
   },
 
   inputRoot: {
     marginBottom: '10px',
     marginTop: '10px',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: '20px',
+    },
   },
 
   input: {
@@ -193,13 +200,19 @@ const useStyles = makeStyles((theme) => ({
 
   bookingButton: {
     margin: '30px 0',
-    textAlign: 'center'
+    textAlign: 'center',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: '15px',
+    }
     // padding: '30px',
   },
 
   actionArearoot: {
     marginBottom: '10px',
     marginTop: '10px',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: '15px',
+    },
   },
 
   pickerBackground: {
@@ -231,6 +244,7 @@ const useStyles = makeStyles((theme) => ({
 
   icon: {
     color: '#707070',
+    fontSize: '30px',
   },
 
   hover: {
@@ -575,15 +589,22 @@ function Order(props) {
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <Container maxWidth="lg">
                       <Grid item xs={12} sm={12}>
-                        <Typography id="back-to-top-anchor" variant='h4' align='left' className={classes.title}>
+                        {/* <Typography id="back-to-top-anchor" variant='h4' align='left' className={classes.title}>
                           Set up your cleaning service
-                        </Typography>
+                        </Typography> */}
 
                         {/* Picker  */}
                         <Box>
-                          <Typography variant='h5' align='left'>
-                            Please complete order information:
-                          </Typography>
+                          <Grid container alignItems="flex-end">
+                            <Grid item xs={2} sm={2} md={1}>
+                              <CreateIcon className={classes.extraIcon} />
+                            </Grid>
+                            <Grid item xs={10} sm={10} md={11}>
+                              <Typography variant='h5'>
+                                Set up your cleaning service
+                              </Typography>
+                            </Grid>
+                          </Grid>
         
                           <Grid container direction="row" spacing={2} className={classes.pickerRoot}>
 
@@ -749,7 +770,7 @@ function Order(props) {
                             </Grid>
                             <Grid item xs={10} sm={10} md={11}>
                               <Typography variant='h5'>
-                                Extra Service:
+                                Extra service
                               </Typography>
                             </Grid>
                           </Grid>
@@ -792,7 +813,7 @@ function Order(props) {
                                     </Grid>
                                   </CardActionArea>
                                   <Typography variant='h6' align='center'>
-                                    oven
+                                    Oven
                                   </Typography>
                                 </Card>
                               </Card>
@@ -829,7 +850,7 @@ function Order(props) {
                                     </Grid>
                                   </CardActionArea>
                                   <Typography variant='h6' align='center'>
-                                    fridge
+                                    Fridge
                                   </Typography>
                                 </Card>
                               </Card>
@@ -866,7 +887,7 @@ function Order(props) {
                                     </Grid>
                                   </CardActionArea>
                                   <Typography variant='h6' align='center'>
-                                    windows
+                                    Windows
                                   </Typography>
                                 </Card>
                               </Card>
@@ -903,7 +924,7 @@ function Order(props) {
                                     </Grid>
                                   </CardActionArea>
                                   <Typography variant='h6' align='center'>
-                                    cabinet
+                                    Cabinet
                                   </Typography>
                                 </Card>
                               </Card>     
@@ -925,7 +946,7 @@ function Order(props) {
                         {/* title  */}
                         <Grid item xs={10} sm={10} md={11}>
                           <Typography variant='h5'>
-                            Service Address:
+                            Service address
                           </Typography>
                         </Grid>
                         {/* Input box */}
@@ -1151,7 +1172,7 @@ function Order(props) {
                           {/* 12:00PM, Friday, 29 Jan 2021 */}
                           {/* <Typography variant='h6'>{totalDate}</Typography> */}
                           {haveDate? (
-                            <Typography variant='h6' className={classes.text}>
+                            <Typography className={classes.text}>
                               <Moment format="dddd HH:mm, DD MMM YYYY">{totalDate}</Moment>
                             </Typography>
                         )
@@ -1239,12 +1260,12 @@ function Order(props) {
                 <Container maxWidth="lg">
                   <Grid container direction="row" alignItems="flex-end" className={classes.priceArea}>
                     <Grid item xs={6} sm={6}>
-                      <Typography align="left" variant='h3'>
+                      <Typography align="left" variant='h4'>
                         Total
                       </Typography>
                     </Grid>
                     <Grid item xs={6} sm={6}>
-                      <Typography align="right" variant='h3' className={classes.price}>
+                      <Typography align="right" variant='h4' className={classes.price}>
                         $
                         {amount}
                       </Typography>
@@ -1272,9 +1293,9 @@ function Order(props) {
             </DialogTitle>
      
             <DialogContentText>
-              Success: 4242424242424242 Faild: 4000000000000002 
-              <br />
-              3D Identify:4000002760003184
+              Success: 4000000360000006 Faild: 4000000000000002 
+              {/* <br />
+              3D Identify:4000002760003184 */}
             </DialogContentText>
           </Container>
           

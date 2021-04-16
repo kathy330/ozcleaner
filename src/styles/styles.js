@@ -85,8 +85,9 @@ export const buttonStyle = makeStyles((theme) => ({
     background: theme.palette.primary.main, // #007bf5
     borderRadius: '12px',
     color: theme.palette.primary.contrastText,
-    marginInline: '20px',
-    paddingInline: '80px', // 太长，小屏幕装不下
+    // marginInline: '20px',
+    // paddingInline: '50px', // 太长，小屏幕装不下
+    padding:'8px 60px',
     '&:hover': {
       background: theme.palette.primary.hover, // #0050c1
       boxShadow: '0px 2px 10px #888',

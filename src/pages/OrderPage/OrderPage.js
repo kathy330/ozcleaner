@@ -432,8 +432,8 @@ function Order(props) {
   const bathNumber = watch("bathRoomNum",'')
   let typeOfClean = watch("type",'') 
 
-  let bedroomNumber = ''
-  let bathroomNumber = ''
+  let bedroomNumber = 'Bedrooms x 0'
+  let bathroomNumber = 'Bathrooms x 0'
   if(bedNumber !== '') {
     // bedroomNumber = 0
     bedroomNumber = `Bedrooms x ${bedNumber}`
@@ -448,6 +448,9 @@ function Order(props) {
   else if(typeOfClean === 'RC') {
     typeOfClean = 'Regular clean'
   }
+  else if(typeOfClean === '') {
+    typeOfClean = 'Please choose a type.'
+  }
   // console.log(bedNumber,bathNumber,typeOfClean)
   // 77---------------
 
@@ -456,10 +459,13 @@ function Order(props) {
   let address2 = watch("address2","")
   let suburb = watch("suburb","")
   let postcode = watch("postcode","")
+  let totalAddress = 'aaa'
   const addressState = watch("state","")
 
   if(address2!=="") {
     address2 += ", "
+  }else{
+    address2="Please input your address."
   }
   if(address1!=="") {
     address1 += ", "
@@ -471,7 +477,7 @@ function Order(props) {
     postcode += ', '
   }
   // {/* Unit 502, 18 Buchan Street, West End, 4101, QLD */}
-  const totalAddress = `${address2}${address1}${suburb}${postcode}${addressState}`
+  totalAddress = `${address2}${address1}${suburb}${postcode}${addressState}`
   // 88-----------------------------------------
 
   // 99计算右侧总金额
@@ -743,7 +749,7 @@ function Order(props) {
                             </Grid>
                             <Grid item xs={10} sm={10} md={11}>
                               <Typography variant='h5'>
-                                Extra Service
+                                Extra Service:
                               </Typography>
                             </Grid>
                           </Grid>
@@ -919,7 +925,7 @@ function Order(props) {
                         {/* title  */}
                         <Grid item xs={10} sm={10} md={11}>
                           <Typography variant='h5'>
-                            Service Address
+                            Service Address:
                           </Typography>
                         </Grid>
                         {/* Input box */}
@@ -1149,7 +1155,11 @@ function Order(props) {
                               <Moment format="dddd HH:mm, DD MMM YYYY">{totalDate}</Moment>
                             </Typography>
                         )
-                          :''}
+                          :(
+                            <Typography variant='h6' className={classes.text}>
+                              Please choose a date.
+                            </Typography>
+)}
                         </Grid>
                       </Grid>
                     </Grid>

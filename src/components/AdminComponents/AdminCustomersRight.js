@@ -21,9 +21,9 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     marginTop: 20,
     marginBottom: 50,
-    borderRadius: 40,
+    borderRadius: '5px',
     maxWidth: 200,
-    margin: 'auto',
+    // margin: 'auto',
   },
   text: {
     textAlign: 'center',
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   price: {
     color: '#007bf5',
     textAlign: 'center',
+    padding: '1px',
   },
   button: {
     margin: 'auto',
@@ -107,7 +108,7 @@ function AdminCustomersRight(props) {
           </Grid>
           <Divider />
           <Grid item xs={12}>
-            <Typography className={classes.price} variant="h3" color="textSecondary">
+            <Typography className={classes.price} variant="h4" color="textSecondary">
               $
               {orderPrice}
             </Typography>
@@ -115,13 +116,16 @@ function AdminCustomersRight(props) {
           <Divider />
         </CardContent>
       </Card>
-
-      {(authLevel === 'admin') && (<OrderActionButtons cancel='cancel' finish='finish' accept='' cancelData={data}
-        finishData={toFinishData} acceptData={toAcceptData} />)}
-      {(authLevel === 'user') && (<OrderActionButtons cancel='cancel' finish='' accept='' cancelData={data}
-        finishData={toFinishData} acceptData={toAcceptData} />)}
-      {(authLevel === 'employee') && (<OrderActionButtons cancel='' finish={orderStatus==="in-progress"?"finish":""} accept={orderStatus==="confirmed"?"accept":""}  cancelData={data}
-        finishData={toFinishData} acceptData={toAcceptData} />)}
+      <Grid container direction="row"
+        justify="center"
+        alignItems="center">
+        {(authLevel === 'admin') && (<OrderActionButtons cancel='cancel' finish='finish' accept='' cancelData={data}
+          finishData={toFinishData} acceptData={toAcceptData} />)}
+        {(authLevel === 'user') && (<OrderActionButtons cancel='cancel' finish='' accept='' cancelData={data}
+          finishData={toFinishData} acceptData={toAcceptData} />)}
+        {(authLevel === 'employee') && (<OrderActionButtons cancel='' finish={orderStatus === "in-progress" ? "finish" : ""} accept={orderStatus === "confirmed" ? "accept" : ""} cancelData={data}
+          finishData={toFinishData} acceptData={toAcceptData} />)}
+      </Grid>
     </Grid>
   )
 }

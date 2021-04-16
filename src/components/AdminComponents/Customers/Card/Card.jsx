@@ -45,8 +45,8 @@ export default function AutoGrid(props) {
                 <Typography>Total Orders</Typography>                       
               </Grid>
               {UserData.map((card)=>(
-                <Grid item key={card.totalOrder}>
-                  <Typography variant="h6">{card.totalOrder}</Typography>            
+                <Grid item key={card.numberOfOrderFinished}>
+                  <Typography variant="h6">{card.numberOfOrderFinished}</Typography>            
                 </Grid>
                 ))}
              

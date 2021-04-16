@@ -27,54 +27,24 @@ export const getOrderFaild = (err) => ({
   payload: err,
 })
 
-//  2/6 GET Endoflease order -- 
-export const getENDRequest = (datalist) => ({
-  type: actionTypes.GET_ENDOFLEASE_REQUEST,
-  payload: datalist,
-})
-export const getENDSuccess = (datalist) => ({
-  type: actionTypes.GET_ENDOFLEASE_SUCCESS,
-  payload: datalist,
-})
-export const getENDFaild = (err) => ({
-  type: actionTypes.GET_ENDOFLEASE_FAILED,
-  payload: err,
-})
 
-//  3/6 POST Regular order -- dongyu 
-export const postRegularRequest = (obj) => ({
-  type: actionTypes.POST_REGULAR_REQUEST,
+//  2/6 POST order -- dongyu 
+export const postOrderRequest = (obj) => ({
+  type: actionTypes.POST_ORDER_REQUEST,
   payload: obj, // By convention, we put that information in a field called payload.
 })
-export const postRegularSuccess = (obj) => ({
-  type: actionTypes.POST_REGULAR_SUCCESS,
+export const postOrderSuccess = (obj) => ({
+  type: actionTypes.POST_ORDER_SUCCESS,
   payload: obj,
 })
-export function postRegularFaild(obj) {
+export function postOrderFaild(obj) {
   return {
-    type: actionTypes.POST_REGULAR_FAILED,
+    type: actionTypes.POST_ORDER_FAILED,
     payload: obj,
   }
 }
 
-//  4/6 POST Endoflease order -- dongyu 
-export const postEndOfLeaseRequest = (obj) => ({
-  type: actionTypes.POST_ENDOFLEASE_REQUEST,
-  payload: obj, // By convention, we put that information in a field called payload.
-})
-export const postEndOfLeaseSuccess = (obj) => ({
-  type: actionTypes.POST_ENDOFLEASE_SUCCESS,
-  payload: obj,
-})
-export function postEndOfLeaseFaild(obj) {
-  return {
-    type: actionTypes.POST_ENDOFLEASE_FAILED,
-    payload: obj,
-  }
-}
-
-
-//  5/6 PAY Regular order -- dongyu 
+//  3/6 PAY order -- dongyu 
 export const payOrderRequest = (obj) => ({
   type: actionTypes.PAY_ORDER_REQUEST,
   payload: obj,
@@ -84,17 +54,17 @@ export const payOrderSuccess = (obj) => ({
   payload: obj,
 })
 
-// 6/6 Update regular order -- 
+// 4/6 Update regular order -- 
 export const updateRegularRequest = (obj) => ({
-  type: actionTypes.UPDATE_REGULAR_REQUEST,
+  type: actionTypes.UPDATE_ORDER_REQUEST,
   payload: obj, // By convention, we put that information in a field called payload.
 })
 export const updateRegularSuccess = (obj) => ({
-  type: actionTypes.UPDATE_REGULAR_SUCCESS,
+  type: actionTypes.UPDATE_ORDER_SUCCESS,
   payload: obj,
 })
 export const updateRegularFaild = (obj) => ({
-  type: actionTypes.UPDATE_REGULAR_FAILED,
+  type: actionTypes.UPDATE_ORDER_FAILED,
   payload: obj,
 })
 

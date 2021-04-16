@@ -67,7 +67,7 @@ function OrderTableRow(props) {
           </Typography>
         </TableCell>
         <TableCell align="center">
-          <Typography variant="h7">
+          <Typography variant="h6">
             {displayTime(StartTime)}
           </Typography>
         </TableCell>

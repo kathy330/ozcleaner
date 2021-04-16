@@ -12,7 +12,7 @@ import ProtectedRoute from "../../../router/ProtectedRoute"
 import AdminDashboardPage from '../../../pages/AdminPage/AdminDashboardPage'
 import AdminCustomersListPage from '../../../pages/AdminPage/AdminCustomersListPage'
 import AdminStaffsListPage from '../../../pages/AdminPage/AdminStaffsListPage'
-import AdminOrderPage from '../../../pages/AdminPage/AdminOrderPage'
+import OrderDetailsPage from '../../../pages/OrderPage/OrderDetailsPage'
 import AdminStaffsDetailsPage from "../../../pages/AdminPage/AdminStaffDetailsPage"
 import AdminCustomersDetailsPage from "../../../pages/AdminPage/AdminCustomersDetailsPage"
 import AdminOrdersListPage from "../../../pages/AdminPage/AdminOrdersListPage"
@@ -60,15 +60,17 @@ function presentIndex(pathname) {
 
 const useStyles = makeStyles(() => ({
   root: {
-    flexGrow: 1,
     backgroundColor: '#e0e0e0',
+    flexGrow: 1
     // theme.palette.grey.main
   },
+
   AppBar: {
-    background: "white",
+    background: "#f5f5f5",
   },
+
   Tab: {
-    color: 'black'
+    color: 'black',
   }
 
 }))
@@ -87,7 +89,7 @@ export default function SimpleTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.AppBar} elevation={0.5}>
+      <AppBar position="static" className={classes.AppBar} elevation={1}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -115,7 +117,7 @@ export default function SimpleTabs() {
           <ProtectedRoute path="/admin/staffs" exact component={AdminStaffsListPage} />
           <ProtectedRoute path="/admin/staffs/:id" exact component={AdminStaffsDetailsPage} />
           <ProtectedRoute path="/admin/customers/:id" exact component={AdminCustomersDetailsPage} />
-          <ProtectedRoute path="/admin/orders/:id" exact component={AdminOrderPage} />
+          <ProtectedRoute path="/admin/orders/:id" exact component={OrderDetailsPage} />
         </Switch>
       </ScrollToTop>
     </div>

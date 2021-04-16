@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import './App.css'
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router'
@@ -9,21 +8,13 @@ import HomePage from './pages/HomePage/HomePage'
 import UI from './pages/UI/UI'
 import Order from './pages/OrderPage/OrderPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
-// import EmployeeProfilePage from './pages/ProfilePage/EmployeeProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
 import OrderDetailsPage from './pages/OrderPage/OrderDetailsPage'
-// import OrderPay from "./pages/OrderPage/OrderPayPage"
-// import ProfilePage from './pages/ProfilePage/ProfilePage'
-// import AdminCustomersPage from './pages/AdminPage/AdminOrderPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 import theme from './styles/theme'
-// import AdminStaffDetailsPage from './pages/AdminPage/AdminStaffDetailsPage'
-// import AdminCustomersDetailsPage from './pages/AdminPage/AdminCustomersDetailsPage'
 import AdminIndexPage from "./pages/AdminPage/AdminIndexPage"
-// import AdminOrderPage from "./pages/AdminPage/AdminOrderPage"
 import OrderCusDetailPage from "./pages/OrderPage/CustomersDetails"
 import OrderStaffDetailPage from "./pages/OrderPage/StaffDetails"
-// import ....Page from ....
 import DongyuPage from './pages/zpractice/Dongyu/Dongyu'
 import KangkangPage from './pages/zpractice/Kangkang/Kangkang'
 import YanboPage from './pages/zpractice/Yanbo/Yanbo'
@@ -100,6 +91,7 @@ function App() {
 
     
 
+       
         <Route path="/ui" exact component={UI} />
         <Route path="/dongyu" exact component={DongyuPage} />
         <Route path="/Kangkang" exact component={KangkangPage} />
@@ -110,6 +102,9 @@ function App() {
         <Route path="/erik" exact component={ErikPage} />
         <Route path="/mengxuan" exact component={MengxuanPage} />
         <Route path="/Olivia" exact component={OliviaPage} />
+
+        {/* 11 Error page */}
+        <Route component={ErrorPage} />
       </Switch>
     </ThemeProvider>
   )

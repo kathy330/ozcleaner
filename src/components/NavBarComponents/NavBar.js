@@ -175,7 +175,7 @@ export default function HeaderNavigation(props) {
           <Grid item className={style.container}>
             <Toolbar>
               <Grid className={style.grow}>
-                <Button href='/'>
+                <Button href={level==='user'?'/':'/employee-orders'}>
                   <img
                     src={logo} 
                     className={style.logoimg}

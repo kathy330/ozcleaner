@@ -40,6 +40,7 @@ function* resetPassword(action) {
     yield call(axios.post,'http://localhost:8000/resetPassword', action.payload)
     // yield put({ type: 'USER_RESET_REQUEST', payload: userInfo })
     yield put({ type: 'USER_RESET_REQUEST_SUCCESS', payload: userInfo })
+    document.location.href = 'http://localhost:3000'
     // localStorage.setItem('userInfo', JSON.stringify(userInfo))
     // localStorage.setItem("authLevel", "user") // 给一个user权限
   
@@ -58,6 +59,8 @@ function* resetPasswordEmployee(action) {
     yield call(axios.post,'http://localhost:8000/employees/resetPassword', action.payload)
     // yield put({ type: 'USER_RESET_REQUEST', payload: userInfo })
     yield put({ type: 'EMPLOYEE_RESET_SUCCESS', payload: userInfo })
+    document.location.href = 'http://localhost:3000'
+    // 顺手给他登陆了？？
     // localStorage.setItem('userInfo', JSON.stringify(userInfo))
     // localStorage.setItem("authLevel", "employee") // 给一个user权限
   

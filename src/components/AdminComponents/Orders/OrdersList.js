@@ -2,11 +2,11 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { makeStyles, Grid, Typography, Box } from '@material-ui/core'
+import { makeStyles, Grid, Box } from '@material-ui/core'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { getAllOrersRequest, changeOrder } from '../../../store/actions'
 import OrderCard from './OrderCard'
-import AdminOrderPage from '../../../pages/AdminPage/AdminOrderPage'
+import OrderDetailComponent from '../../OrderComponents/OrderDetailComponent'
 import ListPagination from '../ListPagination'
 import LoadingIcon from '../LoadingIcon'
 import NoDataFound from '../NoDataFound'
@@ -69,15 +69,14 @@ function OrdersLists(props) {
   const { pageSize, urlPage, status, listType } = props
   const path = returnPath(listType)
   const history = useHistory()
-  const [curCard, setCurCard] = React.useState('default') // current
+  const [curCard, setCurCard] = React.useState(0) // current
   const [prevCard, setPrevCard] = React.useState('unset') // previous card
   const [orderStatus, setOrderStatus] = React.useState(status) // current order's status
   const [sortValue, setsortValue] = React.useState('') // TODO current sort value?
   const listPayload = { page: urlPage, pageSize: pageSize, status: orderStatus, sort: sortValue }
-  
   const dispatch = useDispatch()
-  const data = useSelector(state => state.order.orders.result) // data get from saga
-  const dataCount = useSelector(state => state.order.orders.count) // number of orders
+  const data = useSelector(state => state.order.order.result) // data get from saga
+  const dataCount = useSelector(state => state.order.order.count) // number of orders
   const loading = useSelector(state => state.order.loading) // loading status
   const error = useSelector(state => state.order.error) // error message
   const matches = useMediaQuery('(max-width:480px)') // media query breakpoint
@@ -164,9 +163,8 @@ function OrdersLists(props) {
 
   const refreshPage = () => {
     listPayload.page = 1
-    listPayload.status = ''
+    listPayload.status = (listType === 'admin') ? '' : 'confirmed'
     dispatch(getAllOrersRequest(listPayload))
-    setOrderStatus('')
     if (listType === 'admin'){
       history.push(`/admin/orders/`)
     } else {
@@ -224,14 +222,14 @@ function OrdersLists(props) {
           </Grid>
           {!matches && (
             <Grid item xs={12} sm={8} className={classes.right}>
-              <AdminOrderPage /> 
+              <OrderDetailComponent data={data[curCard]}/> 
             </Grid>
           )}
         </Grid>
       )}
       {!loading && data !== undefined && data.length === 0 &&
         <NoDataFound refreshPage={refreshPage} title="No order found!" />}
-      {!loading && error && <Typography variant="h4">{error}</Typography>}
+      {!loading && error && console.log(error) }
     </>
   )
 }

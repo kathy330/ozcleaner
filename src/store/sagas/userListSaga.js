@@ -19,7 +19,7 @@ function* deletedUsers(action) {
   const deletedId = action.payload
   const deletedApi = `http://localhost:8000/deletedUsers/${deletedId}`
   try {
-    yield call(axios.put, deletedApi,header())
+    yield call(axios.put, deletedApi,{},header())
     // console.log(users)
     yield put({ type: 'DELETED_CUSTOMER_SUCCESS'})
     yield put({ type: 'GET_USERS_REQUESTED', payload: action.listSize})

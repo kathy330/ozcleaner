@@ -99,10 +99,10 @@ function* assignToEmployee(action) {
 function* fetchOrdersByTarget(action) {
   try{
     const{id, type} = action.payload
-    console.log(type)
-    console.log(id)
+    // console.log(type)
+    // console.log(id)
     const apiUrl = `http://localhost:8000/${type === 'user'? 'users': 'employees'}/alltask/${id}`
-    console.log(apiUrl)
+    // console.log(apiUrl)
     const users = yield call(axios.get, apiUrl,header())
     yield put({type:'GET_ORDERSBYTARGET_SUCCESS',users:users.data})
   }

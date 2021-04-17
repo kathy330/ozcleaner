@@ -51,7 +51,7 @@ function OrderTableRow(props) {
         startTime, endTime, status, employeeDetail } = props
     return (
       <TableRow>
-        <TableCell align="left">
+        <TableCell align="center">
           <Typography>
             {type + taskID}
           </Typography>

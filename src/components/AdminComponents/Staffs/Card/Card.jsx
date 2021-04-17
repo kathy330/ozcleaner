@@ -90,7 +90,7 @@ export default function AutoGrid(props) {
               </Grid>
 
               <Grid item key={UserData.numberOfOrderFinished}>
-                <Typography variant="h6">{UserData.numberOfOrderFinished}</Typography>            
+                <Typography variant="h3">{UserData.numberOfOrderFinished}</Typography>            
               </Grid>
    
             </Grid>
@@ -108,7 +108,7 @@ export default function AutoGrid(props) {
               <Grid item container direction="row" spacing={2}>
       
                 <Grid item xs key={UserData.averageRating}>
-                  <Typography variant="h6">{UserData.averageRating}</Typography>
+                  <Typography variant="h3">{UserData.averageRating}</Typography>
                 </Grid> 
 
                 {/* Stars */}

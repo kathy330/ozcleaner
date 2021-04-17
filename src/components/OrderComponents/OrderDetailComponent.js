@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   bg: {
     // paddingBottom: '50px',
     // paddingTop: "0px",
-    padding: '70px',
+    // padding: '70px',
     [theme.breakpoints.down('sm')]: {
       padding: '0px',
     },

@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 20,
     marginBottom: 50,
     borderRadius: '5px',
-    width: '200px',
+    maxWidth: '200px',
     // height: '153px',
     padding: '20px 20px 40px',
   },

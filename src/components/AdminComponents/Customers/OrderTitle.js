@@ -7,14 +7,14 @@ const useStyles = makeStyles({
   root: {
     marginTop: '15px',
     marginBottom: '40px',
-    paddingLeft: '10px',
+    // paddingLeft: '10px',
   }
 })
 export default function OrderTitle(props) {
   const classes = useStyles()
   const { title } = props
   return (
-    <Typography variant="h4" className={classes.root}>
+    <Typography variant='h2' className={classes.root}>
       {title}
     </Typography>
   )

@@ -11,10 +11,11 @@ import Header from '../../components/NavBarComponents/NavBar'
 // style
 const useStyles = makeStyles((theme) => ({
   bg: {
+    // backgroundColor: 'red'
     // [theme.breakpoints.down('sm')]: {
     //   padding: '0px',
     // },
-    padding: '70px',
+    padding: '70px'
   },
 }))
 
@@ -34,14 +35,16 @@ function OrderDetailsPage(match) {
   let loading = redux.loading
   let repo = redux.order.result[0]
   return (
-    <div>
+    <>
       {(loading) && (<LoadingIcon />)}
       {(!loading) && redux.order.page === "order" && <>
         {(localStorage.getItem("authLevel") == "employee" || localStorage.getItem("authLevel") == "user") && <Header />}
-        <OrderDetailComponent data={repo} className={classes.bg} />
+        <div className={classes.bg}>
+          <OrderDetailComponent data={repo} />
+        </div>
         {(localStorage.getItem("authLevel") == "employee" || localStorage.getItem("authLevel") == "user") && <Footer />}
       </>}
-    </div>
+    </>
   )
 }
 

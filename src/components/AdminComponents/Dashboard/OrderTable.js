@@ -47,7 +47,7 @@ function OrderTable(props) {
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
                   >
-                    <Typography variant="h6">
+                    <Typography>
                       {column.label}
                     </Typography>
                   </TableCell>

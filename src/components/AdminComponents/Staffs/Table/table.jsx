@@ -15,7 +15,7 @@ import{ Alert} from '@material-ui/lab'
 import date from 'date-and-time'
 import { Link } from 'react-router-dom'
 import TablePagination from '@material-ui/core/TablePagination'
-import {getOrderByTargetRequest, updateOrderRequest} from "../../../../store/actions"
+import {getOrderByTargetRequest, updateOrderRequest, changeOrder} from "../../../../store/actions"
 import * as Status from '../../../UIComponents/Status'
 
 const useStyles = makeStyles(() => ({
@@ -64,7 +64,7 @@ function isButton(words) {
   return <Status.GreyStatus>{words.status}</Status.GreyStatus>
 }
 
-function isCancel(user,classes,handleCancelOrder,handleFinishOrder) {
+function isCancel(user,classes,handleAction, index) {
   const level = localStorage.getItem('authLevel')
   if(user.status==='confirmed') {
     return  (
@@ -74,7 +74,7 @@ function isCancel(user,classes,handleCancelOrder,handleFinishOrder) {
         className={classes.btn}
         id={user.type}
         value={user._id}
-        onClick={handleCancelOrder}
+        onClick={() => handleAction(user._id, user.type, "cancelled", index)}
       >
         Cancel
       </Button>
@@ -88,7 +88,7 @@ function isCancel(user,classes,handleCancelOrder,handleFinishOrder) {
         className={classes.btn}
         id={user.type}
         value={user._id}
-        onClick={handleFinishOrder}
+        onClick={() => handleAction(user._id, user.type, "finished", index)}
       >
         Finish
       </Button>
@@ -170,20 +170,13 @@ const BasicTable=(props)=>{
     setPage(0)
   }
 
-  // cancel orders
-  const handleCancelOrder = (event) => {
-    if(event.target.value&&event.target.id){
-      const body={id:event.target.value,orderstatus:"cancelled",type:event.target.id}
-      dispatch(updateOrderRequest(body))
-    }
-  }
-
   // finish orders
-  const handleFinishOrder = (event) => {
-    if(event.target.value&&event.target.id){
-      const body={id:event.target.value,orderstatus:"finished",type:event.target.id}
-      dispatch(updateOrderRequest(body))
-    }
+  const handleAction = (id, ordertype, status, index) => {
+    
+    dispatch(changeOrder(page * rowsPerPage + index))
+    const body={id:id, update:{status:status}, type:ordertype}
+    dispatch(updateOrderRequest(body))
+    
   }
 
 
@@ -204,7 +197,8 @@ const BasicTable=(props)=>{
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user) => (
+            {users.slice(page * rowsPerPage, 
+            page * rowsPerPage + rowsPerPage).map((user, index) => (
               <TableRow key={user._id}>
                 <TableCell align="center">{user.type+user.taskID}</TableCell>
                 <TableCell align="center">
@@ -220,7 +214,8 @@ const BasicTable=(props)=>{
                 <TableCell align="center">{displayTime(user.createdAt)}</TableCell>
                 <TableCell align="center">
                   {isAuth(user,classes)}
-                  {isCancel(user,classes,handleCancelOrder,handleFinishOrder)}
+                  {isCancel(user,classes,
+                    handleAction, index)}
                 </TableCell>
               </TableRow>
             ))}

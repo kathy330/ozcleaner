@@ -38,13 +38,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  heading: {
-    marginBottom: '20px',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '2rem',
-    }
-  },
-
   listTable: {
     alignContent: 'space-between',
     justifyContent: 'center',
@@ -60,7 +53,7 @@ function AdminCustomersListPage(match) {
   return (
     <>
       <Container maxWidth="lg" className={classes.root}>
-        <Typography variant="h3" component="h1" className={classes.heading}>
+        <Typography variant="h3" component="h1">
           Staffs List
         </Typography>
         <Grid container className={classes.listTable}>

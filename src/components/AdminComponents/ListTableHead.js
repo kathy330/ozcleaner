@@ -11,6 +11,7 @@ import {
  */
 function ListTableHead(props){ 
   const { columns } = props
+
   return(
     <TableHead>
       <TableRow>

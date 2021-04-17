@@ -16,7 +16,7 @@ import date from 'date-and-time'
 import { Link } from 'react-router-dom'
 import{ Alert} from '@material-ui/lab'
 import { amber } from '@material-ui/core/colors'
-import {getOrderByTargetRequest, updateOrderRequest} from "../../../../store/actions"
+import {getOrderByTargetRequest, updateOrderRequest, changeOrder} from "../../../../store/actions"
 import { GreenStatus ,RedStatus,
   YellowStatus,GreyStatus,BlueStatus} from '../../../UIComponents/Status'
 
@@ -78,7 +78,7 @@ function isButton(words) {
   return <GreyStatus>{words.status}</GreyStatus>
 }
 
-function isCancel(user,classes,handleCancelOrder) {
+function isCancel(user,classes,handleAction, index) {
   if(user.status==='confirmed') {
     return  (
       <Button 
@@ -87,7 +87,7 @@ function isCancel(user,classes,handleCancelOrder) {
         color="secondary"
         id={user.type}
         value={user._id}
-        onClick={handleCancelOrder}
+        onClick={() => handleAction(user._id, user.type, "cancelled", index)}
       >
         Cancel
       </Button>
@@ -191,13 +191,13 @@ const BasicTable=(props)=> {
   }
 
 // cancel orders
-  const handleCancelOrder = (event) => {
-    if(event.target.value&&event.target.id){
-      const body={id:event.target.value,orderstatus:"cancelled",type:event.target.id}
-      dispatch(updateOrderRequest(body))
-    }
-  }
-
+const handleAction = (id, ordertype, status, index) => {
+    
+  dispatch(changeOrder(page * rowsPerPage + index))
+  const body={id:id, update:{status:status}, type:ordertype}
+  dispatch(updateOrderRequest(body))
+  
+}
 
 
   return (
@@ -216,7 +216,8 @@ const BasicTable=(props)=> {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user) => ( 
+            {users.slice(page * rowsPerPage, 
+            page * rowsPerPage + rowsPerPage).map((user,index) => ( 
               <TableRow key={user._id}>
                 <TableCell align="center">{user.type+user.taskID}</TableCell>
                 <TableCell align="center">
@@ -234,7 +235,7 @@ const BasicTable=(props)=> {
                 </TableCell>
                 <TableCell align="center">
                   {isComment(user,classes)}
-                  {isCancel(user,classes,handleCancelOrder)}
+                  {isCancel(user,classes,handleAction, index)}
                 </TableCell>
 
               </TableRow>

@@ -52,7 +52,7 @@ function OrderTableRow(props) {
     return (
       <TableRow>
         <TableCell align="left">
-          <Typography variant="h6">
+          <Typography>
             {type + taskID}
           </Typography>
         </TableCell>
@@ -68,12 +68,12 @@ function OrderTableRow(props) {
           </Typography>
         </TableCell>
         <TableCell align="center">
-          <Typography variant="h6">
+          <Typography>
             {displayTime(startTime)}
           </Typography>
         </TableCell>
         <TableCell align="center">
-          <Typography variant="h6">
+          <Typography>
             {endTime == null? "Pending":displayTime(endTime)}
           </Typography>
         </TableCell>
@@ -81,7 +81,7 @@ function OrderTableRow(props) {
           {StatusResult(status)}
         </TableCell>
         <TableCell align="center">
-          <Typography variant="h6">
+          <Typography>
             {employeeDetail.length === 0 ? "Pending" :
            `${employeeDetail[0].name.firstName  } ${  employeeDetail[0].name.lastName}`}
           </Typography>

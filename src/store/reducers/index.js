@@ -6,7 +6,6 @@ import { combineReducers } from 'redux'
 // import regularReducer from './regularClean'
 import userslist from './userslist'
 import order from './orderReducer'
-import endofleaseReducer from './ECorderReducer'
 import CusDetails from "./customersDetail"
 import StaffDetails from './staffsDetail'
 import emplyeeReducer from './emplyeeDetail'
@@ -24,7 +23,6 @@ const rootReducer = combineReducers({
   cusDetails:CusDetails,
   staffDetails:StaffDetails,
   staffDetailsTable:staffDetailsTable,
-  endoflease_in_reducer_index: endofleaseReducer,
   userRegister: userRegisterReducer,
   userSignin: userSigninReducer,
   employee_in_reducer_index: emplyeeReducer,

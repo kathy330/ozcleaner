@@ -74,13 +74,19 @@ function OrdersLists(props) {
   const [orderStatus, setOrderStatus] = React.useState(status) // current order's status
   const [sortValue, setsortValue] = React.useState('') // TODO current sort value?
   const listPayload = { page: urlPage, pageSize: pageSize, status: orderStatus, sort: sortValue }
-  const dispatch = useDispatch()
-  const data = useSelector(state => state.order.order.result) // data get from saga
-  const dataCount = useSelector(state => state.order.order.count) // number of orders
-  const loading = useSelector(state => state.order.loading) // loading status
-  const error = useSelector(state => state.order.error) // error message
   const matches = useMediaQuery('(max-width:480px)') // media query breakpoint
+  const dispatch = useDispatch()
   
+  useEffect(() => {
+    dispatch(getAllOrersRequest(listPayload))
+  },[])
+
+  const redux = useSelector(state => state.order)
+  const loading =  redux.loading// loading status
+  const error = redux.error // error message
+  const data = redux.order.result // data get from saga
+  const dataCount = redux.order.count // number of orders
+
   const returnPage = (totalCount) => {
     if (totalCount < pageSize) {
       return 1
@@ -92,9 +98,7 @@ function OrdersLists(props) {
   }
   const finalPage = returnPage(dataCount) // final page number for the compoent
 
-  useEffect(() => {
-    dispatch(getAllOrersRequest(listPayload))
-  },[])
+
 
   function handleSelectOrderCard(row, id, type) {
     if (prevCard === 'unset'){
@@ -152,7 +156,6 @@ function OrdersLists(props) {
     listPayload.page = 1
     dispatch(getAllOrersRequest(listPayload))
     const path = formatPath(listPayload.sort, listPayload.status)
-    console.log(path)
     history.push(`/admin/orders/?sort=${listPayload.sort}`)
   }
 
@@ -173,11 +176,10 @@ function OrdersLists(props) {
     }
   }
 
-  
   return (
     <>
       {loading && <LoadingIcon />}
-      {!loading && dataCount > 0 && (
+      {!loading && redux.order.page === "orders" && (
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} className={classes.left}>
             <div>
@@ -222,7 +224,6 @@ function OrdersLists(props) {
               count={finalPage}
             />
           </Grid>
-          {console.log(data)}
           {!matches && data.length !== 0 && (
             <Grid item xs={12} sm={8} className={classes.right}>
               <OrderDetailComponent data={data[curCard]} key={curCard}/> 

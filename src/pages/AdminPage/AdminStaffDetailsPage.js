@@ -17,7 +17,7 @@ function AdminStaffDetailsPage(match){
           <Display data={id} />         
         </Box>
         <Box>
-          <Table data={id} />
+          <Table data={id} type='employee' />
         </Box>        
       </Container> 
     </Box>

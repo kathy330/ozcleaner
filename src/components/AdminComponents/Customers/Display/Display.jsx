@@ -50,7 +50,7 @@ const Displays=(props)=> {
       {users.length!==0&&(
         <div className={classes.root}>
           <Grid container direction="column">
-            <Grid container lg spacing={4}>
+            <Grid container item lg spacing={4}>
               <Grid item lg={4} style={{margin:"auto"}}>
                 <Avatars UserData={users} />
               </Grid>

@@ -8,7 +8,7 @@ import Card from '@material-ui/core/Card'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import {useSelector} from 'react-redux'
-// import {useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom"
 import Nav from '../../components/NavBarComponents/NavBar'
 import OrderRight from "../../components/OrderComponents/OrderRight"
 import Footer from '../../components/FooterComponents/Footer'
@@ -104,12 +104,14 @@ function OrderConfirm() {
   const {_id} = orderData
   const aa = orderData.type
   const orderUrl = `/order-detail/${_id}?type=${aa}`
+  const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
+  const history = useHistory()
+
   return (
     <>
-      {/* {(ordertype==='') && (document.location.href = '/') } */}
-      
-      <Nav />
       {load && <LoadingIcon />}
+      <Nav />
+      {employeeinfoo?history.push("/employee-orders"):''}
       {!load && (
       <Box className={classes.root}>
         <Container>

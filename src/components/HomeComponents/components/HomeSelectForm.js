@@ -164,11 +164,11 @@ export default function HomeSelectForm() {
   // 1/1结束登陆窗口函数：
 
 
+  const userinfoo = JSON.parse(localStorage.getItem('userInfo'))
+  const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
   // 首页处理order data存储到local sotrage
   const history = useHistory()
   const onSubmit = data => {
-    const userinfoo = JSON.parse(localStorage.getItem('userInfo'))
-    const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
     const newData = {
       // ...postData,
       bedroomNum:data.bedRoomNum,
@@ -295,6 +295,7 @@ export default function HomeSelectForm() {
               variant="contained"
               type="submit"
               id="back-to-top-anchor"
+              disabled={!!employeeinfoo}
             >
               Booking from $80
             </Button>

@@ -45,7 +45,7 @@ import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
 // import IconButton from '@material-ui/core/IconButton'
 // import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
 // import { Redirect } from "react-router-dom" // 负责页面跳转router，不会刷新reducer👍
-// import {useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom"
 import PropTypes from 'prop-types'
 import Dialog from '@material-ui/core/Dialog'
 // import DialogActions from '@material-ui/core/DialogActions'
@@ -383,6 +383,8 @@ function Order(props) {
   }
   // 44-----------------------------------------
 
+  const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
+
   // 取回home page已填信息localstorage
   const homeOrderData = localStorage.getItem('homeOrderData') ?
   JSON.parse(localStorage.getItem('homeOrderData')) :''
@@ -553,7 +555,7 @@ function Order(props) {
   // const loading = useSelector(astate => astate.order.loading)
   // console.log("loading parameter: ", loading)
   // const { submit } = extraState
-  // const history = useHistory()
+  const history = useHistory()
   // if (submit && !loading) {
     // return (<Redirect to="/order/pay" />)  // 不太好，附带 3XX状态
     // history.push("/order/confirm")
@@ -576,6 +578,7 @@ function Order(props) {
 
   return (
     <>
+      {employeeinfoo?history.push("/employee-orders"):''}
       <Box className={classes.root}>
         <HeaderNavigation />
         {/* <button type="submit" onClick={test}>test</button> */}
@@ -1132,6 +1135,7 @@ function Order(props) {
                         // href='/order/confirm'
                           type="submit"
                           className={buttonstyles.bookingButton}
+                          disabled={!!employeeinfoo}
                         >
                           Complete Booking
                           {/* Pay Now */}

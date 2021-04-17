@@ -169,16 +169,17 @@ export default function HomeSelectForm() {
   const onSubmit = data => {
     const userinfoo = JSON.parse(localStorage.getItem('userInfo'))
     const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
-    if(userinfoo){
-      const newData = {
-        // ...postData,
-        bedroomNum:data.bedRoomNum,
-        bathroomNum:data.bathRoomNum,
-        contact:data.number,
-        propertyType:data.propertyType,
-        postcode:data.postcode,
-      }
-      localStorage.setItem('homeOrderData',JSON.stringify(newData)) 
+    const newData = {
+      // ...postData,
+      bedroomNum:data.bedRoomNum,
+      bathroomNum:data.bathRoomNum,
+      contact:data.number,
+      propertyType:data.propertyType,
+      postcode:data.postcode,
+    }
+    localStorage.setItem('homeOrderData',JSON.stringify(newData)) 
+
+    if(userinfoo){     
       history.push("/order")
     }
     else if(employeeinfoo) {

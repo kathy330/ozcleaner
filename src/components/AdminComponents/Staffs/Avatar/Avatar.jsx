@@ -48,7 +48,7 @@ export default function Avatars2(props) {
         </Grid>
     
         <Grid item xs>
-          <Box color="white" bgcolor="#cc584e" p={1} borderRadius={15} fontWeight={700} textAlign="center">
+          <Box color="white" bgcolor="#cc584e" p={1} borderRadius={15} fontWeight={700} textAlign="center" maxWidth="20vh" margin="auto">
             Staff
           </Box>
           

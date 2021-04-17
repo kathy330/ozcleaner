@@ -43,31 +43,11 @@ const useStyles = makeStyles({
     color:"#007bf5"
 
   },
-  check: {
-    display:"inline-block",
-    margin:" 0 3%",
+  btn: {
+    margin:" 3% 6%",
     minWidth:"120px",
-    // background:"#007bf5",
     color:"white"
   },
-  delete: {
-    display:"inline-block",
-    margin:" 0 3%",
-    minWidth:"120px",
-    // background:"#f35162",
-    color:"white"
-  },
-  comment:{
-    display:"inline-block",
-    margin:" 0 3%",
-    minWidth:"120px",
-    // background:"#ffad33",
-    color:"white"
-  },
-  action:{
-    display:"flex",
-    flexDirection:"row"
-  }
 })
 
 function displayTime(time) {
@@ -102,7 +82,7 @@ function isCancel(user,classes,handleCancelOrder) {
     return  (
       <Button 
         variant="contained"
-        className={classes.delete}
+        className={classes.btn}
         color="secondary"
         id={user.type}
         value={user._id}
@@ -115,7 +95,7 @@ function isCancel(user,classes,handleCancelOrder) {
   return (
     <Button 
       variant="contained"
-      className={classes.delete}
+      className={classes.btn}
       color="secondary"
       disabled
     >
@@ -132,7 +112,7 @@ function isComment(user,classes) {
       return(
         <Button 
           variant="contained"
-          className={classes.check}
+          className={classes.btn}
           color="primary"
           component={Link} 
           to={`/admin/orders/${user._id}?type=${user.type}`}
@@ -142,21 +122,22 @@ function isComment(user,classes) {
       )
     }
     return(
-      <ColorButton 
+      <Button 
         variant="contained"
-        className={classes.comment}
+        className={classes.btn}
+        color="primary"
         component={Link} 
         to={`/admin/orders/${user._id}?type=${user.type}`}
       >
-        Review
-      </ColorButton>
-    )  
+        View
+      </Button>
+    )
   }
   if(user.reviewStatus||user.status!=="finished"){
     return(
       <Button 
         variant="contained"
-        className={classes.check}
+        className={classes.btn}
         color="primary"
         component={Link} 
         to={`/order-detail/${user._id}?type=${user.type}`}
@@ -168,7 +149,7 @@ function isComment(user,classes) {
   return(
     <ColorButton 
       variant="contained"
-      className={classes.comment}
+      className={classes.btn}
       component={Link} 
       to={`/order-detail/${user._id}?type=${user.type}`}
     >
@@ -252,7 +233,7 @@ const BasicTable=(props)=> {
                 <TableCell align="center">
                   {displayTime(user.createdAt)}
                 </TableCell>
-                <TableCell align="center" className={classes.action}>
+                <TableCell align="center">
                   {isComment(user,classes)}
                   {isCancel(user,classes,handleCancelOrder)}
                 </TableCell>

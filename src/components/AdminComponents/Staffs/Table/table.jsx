@@ -31,22 +31,11 @@ const useStyles = makeStyles(() => ({
     color:"#007bf5"
 
   },
-  check: {
-    display:"inline-block",
-    margin:" 0 3%",
+  btn: {
+    margin:" 3% 6%",
     minWidth:"120px",
     color:"white"
   },
-  delete: {
-    display:"inline-block",
-    margin:" 0 3%",
-    minWidth:"120px",
-    color:"white"
-  },
-  action:{
-    display:"flex",
-    flexDirection:"row"
-  }
 }))
 
 function displayTime(time) {
@@ -82,7 +71,7 @@ function isCancel(user,classes,handleCancelOrder,handleFinishOrder) {
       <Button 
         variant="contained"
         color="secondary"
-        className={classes.delete}
+        className={classes.btn}
         id={user.type}
         value={user._id}
         onClick={handleCancelOrder}
@@ -96,7 +85,7 @@ function isCancel(user,classes,handleCancelOrder,handleFinishOrder) {
       <Button 
         variant="contained"
         color="secondary"
-        className={classes.delete}
+        className={classes.btn}
         id={user.type}
         value={user._id}
         onClick={handleFinishOrder}
@@ -109,7 +98,7 @@ function isCancel(user,classes,handleCancelOrder,handleFinishOrder) {
     <Button 
       variant="contained"
       color="secondary"
-      className={classes.delete}
+      className={classes.btn}
       disabled
     >
       Cancel
@@ -125,7 +114,7 @@ function isAuth(user,classes) {
       return(
         <Button 
           variant="contained"
-          className={classes.check}
+          className={classes.btn}
           color="primary"
           component={Link} 
           to={`/admin/orders/${user._id}?type=${user.type}`}
@@ -139,7 +128,7 @@ function isAuth(user,classes) {
     return(
       <Button 
         variant="contained"
-        className={classes.check}
+        className={classes.btn}
         color="primary"
         component={Link} 
         to={`/order-detail/${user._id}?type=${user.type}`}
@@ -229,7 +218,7 @@ const BasicTable=(props)=>{
                   </Typography>
                 </TableCell>
                 <TableCell align="center">{displayTime(user.createdAt)}</TableCell>
-                <TableCell align="center" className={classes.action}>
+                <TableCell align="center">
                   {isAuth(user,classes)}
                   {isCancel(user,classes,handleCancelOrder,handleFinishOrder)}
                 </TableCell>

@@ -95,7 +95,7 @@ function AdminCustomersRight(props) {
         alignItems="center">
         {(authLevel === 'admin') && (<OrderActionButtons cancel={orderStatus === "in-progress" ? "cancel" : ""} finish={orderStatus === "in-progress" ? "finish" : ""} accept='' cancelData={data}
           finishData={toFinishData} acceptData={toAcceptData} />)}
-        {(authLevel === 'user') && (<OrderActionButtons cancel='cancel' finish='' accept='' cancelData={data}
+        {(authLevel === 'user') && (<OrderActionButtons cancel={orderStatus === "confirmed" ? "cancel" : ""} finish='' accept='' cancelData={data}
           finishData={toFinishData} acceptData={toAcceptData} />)}
         {(authLevel === 'employee') && (<OrderActionButtons cancel='' finish={orderStatus === "in-progress" ? "finish" : ""} accept={orderStatus === "confirmed" ? "accept" : ""} cancelData={data}
           finishData={toFinishData} acceptData={toAcceptData} />)}

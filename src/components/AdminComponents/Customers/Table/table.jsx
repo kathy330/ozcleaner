@@ -16,7 +16,7 @@ import date from 'date-and-time'
 import { Link } from 'react-router-dom'
 import{ Alert} from '@material-ui/lab'
 import { amber } from '@material-ui/core/colors'
-import {getCUSDETAILTABLERequest, updateOrderRequest} from "../../../../store/actions"
+import {getOrderByTargetRequest, updateOrderRequest} from "../../../../store/actions"
 import { GreenStatus ,RedStatus,
   YellowStatus,GreyStatus,BlueStatus} from '../../../UIComponents/Status'
 
@@ -51,6 +51,7 @@ const useStyles = makeStyles({
 })
 
 function displayTime(time) {
+  console.log(time)
   let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
   result = result.toString().split(" ")
   return `${date.transform(result[4], 'HH:mm:ss', 'hh:mmA')} 
@@ -161,17 +162,16 @@ function isComment(user,classes) {
 }
 
 const BasicTable=(props)=> {
-  const {data}=props
+  const {data, type}=props
+  
   const classes = useStyles()
   const dispatch=useDispatch()
-
-  const users =useSelector(state => state.cusDetailsTable.cusDetailsTable) 
-  const loading = useSelector(state => state.cusDetailsTable.loading)
-  // const error = useSelector(state => state.cusDetailsTable.error)
-
+  const redux = useSelector(state => state.order)
+  const users = redux.order.result
+  const {loading} = redux
 
   const dispatchRequested=()=>{
-    dispatch(getCUSDETAILTABLERequest(data))
+    dispatch(getOrderByTargetRequest({id:data, type:type}))
   }
 
   useEffect(()=>{
@@ -202,9 +202,8 @@ const BasicTable=(props)=> {
 
   return (
     <>
-      {users.loading&&<p>Loading...</p>}
-
-      {users.length!==0&&(
+      {loading&&<p>Loading...</p>}
+      {!loading && redux.order.page === "orderbytarget" && (
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>

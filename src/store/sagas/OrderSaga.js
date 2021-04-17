@@ -77,16 +77,13 @@ function* fetchAllOrders(action) {
 
 function* assignToEmployee(action) {
   const { type,id, update} = action.payload
-  console.log(action.payload)
   const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
   const level = localStorage.getItem('authLevel') 
   const info = JSON.parse(localStorage.getItem(`${level}Info`))
-  console.log(info)
   const {ID,objectID} = info.data
-  console.log(ID,objectID)
   const updateAPI=`http://localhost:8000/${model}/assign/${id}`
   const EmployeeData = {employeeID:ID,employeeDetail:objectID}
-  console.log(EmployeeData)
+
   try{
     const data = yield call(axios.put, updateAPI ,EmployeeData,header())
     console.log(data)
@@ -98,6 +95,22 @@ function* assignToEmployee(action) {
     yield put({type:'UPDATE_ASSIGN_FAILED',payload:e})
   }
 }
+
+function* fetchOrdersByTarget(action) {
+  try{
+    const{id, type} = action.payload
+    console.log(type)
+    console.log(id)
+    const apiUrl = `http://localhost:8000/${type === 'user'? 'users': 'employees'}/alltask/${id}`
+    console.log(apiUrl)
+    const users = yield call(axios.get, apiUrl,header())
+    yield put({type:'GET_ORDERSBYTARGET_SUCCESS',users:users.data})
+  }
+  catch(e) {
+    yield put({type:'GET_ORDERSBYTARGET_FAILED',message:e.message})
+  }
+}
+
 
 /*
   Alternatively you may use takeLatest.
@@ -113,6 +126,7 @@ function* RegularSaga() {
   yield takeEvery('UPDATE_ASSIGN_REQUEST', assignToEmployee)
   yield takeEvery('GET_ALL_ORDERS_REQUESTED', fetchAllOrders )
   yield takeEvery('PAY_ORDER_REQUEST', payOrder) // PAY
+  yield takeEvery('GET_ORDERSBYTARGET_REQUEST',fetchOrdersByTarget)
 }
 
 export default RegularSaga

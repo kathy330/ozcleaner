@@ -11,6 +11,7 @@ import Footer from '../../components/FooterComponents/Footer'
 
 function StaffDetailsPage(match){
   const{id}=match.match.params
+  console.log(id)
   return (
    
     <Box bgcolor="#fafafa">
@@ -21,7 +22,7 @@ function StaffDetailsPage(match){
           <Display data={id} />         
         </Box>
         <Box>
-          <Table data={id} />
+          <Table data={id} type='employee' />
         </Box>        
       </Container>
       <Footer />

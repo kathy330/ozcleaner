@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
       minWidth: 100,
     },
   },
+  tableRow: {
+    borderBottom: "none"
+  }
 }
 ))
 
@@ -37,7 +40,7 @@ function OrderTable(props) {
         <TableContainer>
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
-              <TableRow>
+              <TableRow className={classes.tableRow}>
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
@@ -53,9 +56,10 @@ function OrderTable(props) {
             </TableHead>
             <TableBody>
               {UserData.map((data, key) => (
-                <OrderTableRow
+                <OrderTableRow 
                   // eslint-disable-next-line react/no-array-index-key
                   key={`card${key}`}
+                  className={classes.tableRow}
                   taskID={data.taskID}
                   type={data.type}
                   bedroomNum={data.bedroomNum}

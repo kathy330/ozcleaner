@@ -15,7 +15,7 @@ import{ Alert} from '@material-ui/lab'
 import date from 'date-and-time'
 import { Link } from 'react-router-dom'
 import TablePagination from '@material-ui/core/TablePagination'
-import {getSTAFFDETAILTABLERequest, updateOrderRequest} from "../../../../store/actions"
+import {getOrderByTargetRequest, updateOrderRequest} from "../../../../store/actions"
 import * as Status from '../../../UIComponents/Status'
 
 const useStyles = makeStyles(() => ({
@@ -141,19 +141,20 @@ function isAuth(user,classes) {
  
 
 const BasicTable=(props)=>{
-  const {data}=props
+  const {data, type}=props
   const classes = useStyles()
   const dispatch=useDispatch()
 
-  const users =useSelector(state => state.staffDetailsTable.staffDetailsTable) 
-  const loading = useSelector(state => state.staffDetailsTable.loading)
-  // const error = useSelector(state => state.staffDetailsTable.error)
+  const redux = useSelector(state => state.order)
+  const users = redux.order.result
+  const {loading} = redux
 
   
   const dispatchRequested = () => {
-    dispatch(getSTAFFDETAILTABLERequest(data))
+    dispatch(getOrderByTargetRequest({id:data, type:type}))
   }
-    useEffect(()=>{
+  
+  useEffect(()=>{
       dispatchRequested()
   },[])
 
@@ -188,9 +189,8 @@ const BasicTable=(props)=>{
 
   return (
     <>
-      {users.loading&&<p>Loading...</p>}
-
-      {users.length!==0&&( 
+      {loading&&<p>Loading...</p>}
+      {!loading && redux.order.page === "orderbytarget" &&( 
 
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">

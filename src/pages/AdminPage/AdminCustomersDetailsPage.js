@@ -8,6 +8,7 @@ import Table from "../../components/AdminComponents/Customers/Table"
 
 
 function AdminCustomersDetailsPage(match){
+  console.log(match)
   const{id}=match.match.params
   return (
    
@@ -18,7 +19,7 @@ function AdminCustomersDetailsPage(match){
           <Display data={id} />         
         </Box>
         <Box>
-          <Table data={id} />
+          <Table data={id} type='user' />
         </Box>        
       </Container> 
     </Box>

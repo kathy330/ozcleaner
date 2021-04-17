@@ -144,8 +144,8 @@ export const getCUSDETAILRequest = (users) => ({
   payload: users,
 })
 
-export const getCUSDETAILTABLERequest = (users) => ({
-  type: actionTypes.GET_CUSDETAILTABLE_REQUEST,
+export const getOrderByTargetRequest = (users) => ({
+  type: actionTypes.GET_ORDERSBYTARGET_REQUEST,
   payload: users,
 })
 

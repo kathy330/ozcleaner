@@ -184,7 +184,7 @@ function OrdersLists(props) {
   return (
     <>
       {loading && <LoadingIcon />}
-      {!loading && redux.order.page === "orders" && (
+      {!loading && data !== undefined && data.length > 0 && redux.order.page === "orders" && (
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} className={classes.left}>
             <div>

@@ -6,7 +6,6 @@ import {
     TableRow,
     TableCell,
     TableBody,
-    Typography,
     makeStyles
 } from '@material-ui/core'
 import OrderTableRow from './OrderTableRow'

@@ -10,7 +10,7 @@ import LoadingIcon from '../../components/AdminComponents/LoadingIcon'
 import NoDataFound from '../../components/AdminComponents/NoDataFound'
 
 const columns = [
-  { id: 'Order ID', label: 'Order ID', minWidth: 80, align: 'left' },
+  { id: 'Order ID', label: 'Order ID', minWidth: 80, align: 'center' },
   { id: 'Feature', label: 'Feature', minWidth: 120, align: 'center' },
   {
     id: 'Order Date',

@@ -5,15 +5,16 @@ import { Typography, makeStyles } from '@material-ui/core'
 // style 
 const useStyles = makeStyles({
   root: {
-    marginBottom: 10,
-    paddingLeft: 10,
+    marginTop: '15px',
+    marginBottom: '40px',
+    paddingLeft: '10px',
   }
 })
 export default function OrderTitle(props) {
   const classes = useStyles()
   const { title } = props
   return (
-    <Typography variant="h5" className={classes.root}>
+    <Typography variant="h4" className={classes.root}>
       {title}
     </Typography>
   )

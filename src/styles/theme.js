@@ -47,11 +47,11 @@ const theme = createMuiTheme({
   },
 
   overrides: {
-    MuiDialog: {
+    MuiTableCell: {
       root: {
-        padding: '20px 20px 30px 20px',
+        borderBottom: 'none'
       },
-    },
+    }
   },
 })
 

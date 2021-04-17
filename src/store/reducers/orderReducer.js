@@ -24,8 +24,9 @@ const initialState = {
   error: null,
   payment: false,
   order: {
-    'result': [],
-    'count': 0
+    result: [],
+    count: 0,
+    page: ''
   },
   test:1,
   row: 0,
@@ -60,6 +61,7 @@ function orderReducer(state = initialState, action) {
         ...state,
         loading: false,
         row:0,
+        order: {result: [action.repos], count:1, page: 'order'}
       }
 
     case actionType.GET_ORDER_FAILED:
@@ -79,11 +81,13 @@ function orderReducer(state = initialState, action) {
 
     case actionType.UPDATE_ORDER_SUCCESS:
       let order = {...state.order.result[state.row], ...action.repos}
-      state.order.result[state.row] = order
+      let newResult = [...state.order.result]
+      newResult[state.row] = order
       return {
         ...state,
         loading: false,
         updateData: action.repos,
+        order:{...state.order, result: newResult}
       }
 
     case actionType.UPDATE_ORDER_FAILED:
@@ -129,7 +133,7 @@ function orderReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        order: action.orders
+        order: {...action.orders, page: "orders"}
       }
     case actionType.GET_ALL_ORDERS_FAILED:
       return {
@@ -145,26 +149,44 @@ function orderReducer(state = initialState, action) {
         row: action.payload
       }
 
-      case actionType.UPDATE_ASSIGN_REQUEST:
-        return {
-          ...state,
-          loading: true,
-        }
-  
-      case actionType.UPDATE_ASSIGN_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          test:2,
-          updateData: {status:"in-progress"},
-        }
-  
-      case actionType.UPDATE_ASSIGN_FAILED:
-        return {
-          ...state,
-          loading: false,
-          error: action.payload
-        }
+    case actionType.UPDATE_ASSIGN_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
+
+    case actionType.UPDATE_ASSIGN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      }
+
+    case actionType.UPDATE_ASSIGN_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      }
+
+    case actionType.GET_ORDERSBYTARGET_REQUEST:
+      return {
+        ...state,
+        loading:true
+    }
+
+    case actionType.GET_ORDERSBYTARGET_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        order:{result:action.users, count:action.users.length, page:"orderbytarget"}
+      }
+
+    case actionType.GET_ORDERSBYTARGET_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error:action.message,
+      }    
     default:
       return state
   }

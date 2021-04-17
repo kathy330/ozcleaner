@@ -13,12 +13,12 @@ function AdminStaffDetailsPage(match){
    
     <Box bgcolor="#fafafa">
       <CssBaseline />      
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Box bgcolor="white">
           <Display data={id} />         
         </Box>
         <Box>
-          <Table data={id} />
+          <Table data={id} type='employee' />
         </Box>        
       </Container> 
     </Box>

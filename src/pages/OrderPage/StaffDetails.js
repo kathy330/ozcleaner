@@ -11,17 +11,18 @@ import Footer from '../../components/FooterComponents/Footer'
 
 function StaffDetailsPage(match){
   const{id}=match.match.params
+  console.log(id)
   return (
    
     <Box bgcolor="#fafafa">
       <CssBaseline />  
       <NavBar />     
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Box bgcolor="white">
           <Display data={id} />         
         </Box>
         <Box>
-          <Table data={id} />
+          <Table data={id} type='employee' />
         </Box>        
       </Container>
       <Footer />

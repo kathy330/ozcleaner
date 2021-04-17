@@ -8,17 +8,18 @@ import Table from "../../components/AdminComponents/Customers/Table"
 
 
 function AdminCustomersDetailsPage(match){
+  console.log(match)
   const{id}=match.match.params
   return (
    
     <Box bgcolor="#fafafa">
       <CssBaseline />      
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Box bgcolor="white">
           <Display data={id} />         
         </Box>
         <Box>
-          <Table data={id} />
+          <Table data={id} type='user' />
         </Box>        
       </Container> 
     </Box>

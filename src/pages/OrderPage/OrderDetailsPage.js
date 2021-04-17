@@ -31,13 +31,12 @@ function OrderDetailsPage(match) {
   }, [])
 
   let redux = useSelector(state => state.order)
-  let repo = redux.order.result[0]
   let loading = redux.loading
-
+  let repo = redux.order.result[0]
   return (
     <div>
       {(loading) && (<LoadingIcon />)}
-      {(!loading) && repo && <>
+      {(!loading) && redux.order.page === "order" && <>
         {(localStorage.getItem("authLevel") == "employee" || localStorage.getItem("authLevel") == "user") && <Header />}
         <OrderDetailComponent data={repo} className={classes.bg} />
         {(localStorage.getItem("authLevel") == "employee" || localStorage.getItem("authLevel") == "user") && <Footer />}

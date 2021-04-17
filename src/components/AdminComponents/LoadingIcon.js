@@ -5,7 +5,7 @@ import loadingIcon from "../../assets/loadingIcon.svg"
 
 const useStyles = makeStyles({
   root: {
-    minHeight: '60vh',
+    minHeight: '81vh',
   },
 })
 

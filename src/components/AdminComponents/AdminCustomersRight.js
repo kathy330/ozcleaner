@@ -93,7 +93,7 @@ function AdminCustomersRight(props) {
       <Grid container direction="row"
         justify="center"
         alignItems="center">
-        {(authLevel === 'admin') && (<OrderActionButtons cancel='cancel' finish='finish' accept='' cancelData={data}
+        {(authLevel === 'admin') && (<OrderActionButtons cancel={orderStatus === "in-progress" ? "cancel" : ""} finish={orderStatus === "in-progress" ? "finish" : ""} accept='' cancelData={data}
           finishData={toFinishData} acceptData={toAcceptData} />)}
         {(authLevel === 'user') && (<OrderActionButtons cancel='cancel' finish='' accept='' cancelData={data}
           finishData={toFinishData} acceptData={toAcceptData} />)}

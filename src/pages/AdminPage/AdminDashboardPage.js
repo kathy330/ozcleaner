@@ -76,10 +76,12 @@ export default function Overview() {
     dispatch(getAllOrersRequest({page: 1, pageSize: 40, status: "", sort: "datedesc"}))
   },[])
 
-  const data = useSelector(state => state.order.order.result)
-  const dataCount = useSelector(state => state.order.order.count) // number of orders
-  const loading = useSelector(state => state.order.loading) // loading status
-  const error = useSelector(state => state.order.error) // error message
+  const redux = useSelector(state => state.order)
+  const loading = redux.loading // loading status
+  const data = redux.order.result
+  const dataCount = redux.order.count // number of orders
+  const error = redux.error // error message
+
   if (!loading && dataCount) {
     const count = []
     UserName = []
@@ -96,7 +98,7 @@ export default function Overview() {
   return (
     <>
       {loading && <LoadingIcon />}
-      {!loading && dataCount > 0 && (
+      {!loading && redux.order.page ==="orders" && (
       <>
         <Container maxWidth="lg" className={classes.body}>
           <Box fontWeight="fontWeightBold" mb={1} fontSize={35}>

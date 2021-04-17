@@ -17,13 +17,19 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   bg: {
-    paddingBottom: '50px',
-    paddingTop: "30px",
+    // paddingBottom: '50px',
+    // paddingTop: "0px",
+    // padding: '70px',
+    [theme.breakpoints.down('sm')]: {
+      padding: '0px',
+    },
+
   },
   body: {
     backgroundColor: "white",
-    minHeight: "85vh",
-    padding: '100px',
+    // minHeight: "85vh",
+    padding: '55px',
+    borderRadius: '5px',
   },
 }))
 
@@ -62,7 +68,7 @@ function displayPage(repo) {
 
   // need user objID & employee objID
   if (typeof (repo) === 'string') { return <LoadingIcon /> }
-  const { endTime, title, firstName, address, lastName,
+  const { startTime, title, firstName, address, lastName,
     cabinets, fridge, oven, interiorWindows, rating, review, price, status, type, phoneNumber, _id, userDetail, employeeDetail } = repo
   // console.log(_id)
   // let re = /{|}|":"|"address1|"address2|"suburb|"state|"postcode|":/g
@@ -98,7 +104,7 @@ function displayPage(repo) {
           userLastName={userLastName}
           employeeFirstName={employeeFirstName}
           employeeLastName={employeeLastName}
-          dueDate={endTime}
+          startTime={startTime}
           orderTitle={title}
           customerFirstName={firstName}
           customerLastName={lastName}
@@ -122,7 +128,7 @@ function displayPage(repo) {
           orderStatus={status}
           typeOfOrder={type} />
       </Grid>
-       
+
     </>
   )
 }
@@ -130,7 +136,7 @@ function displayPage(repo) {
 function OrderDetailComponent(props) {
   const classes = useStyles()
 
-  const {data} = props
+  const { data } = props
   // let redux = useSelector(state => state.order)
   // let redux2 = useSelector(state => state.employee_in_reducer_index)
 
@@ -139,14 +145,14 @@ function OrderDetailComponent(props) {
 
 
   return (
-  <>
+    <>
       <Grid className={classes.bg}>
         {/* {endTime} */}
         <Container maxWidth="md" className={classes.body}>
           {displayPage(data)}
         </Container>
       </Grid>
-  </>
+    </>
   )
 }
 

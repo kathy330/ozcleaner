@@ -6,7 +6,7 @@ import OrderTitle from './Customers/OrderTitle'
 import CreatedBy from './Customers/CreatedBy'
 import AssginedTo from './Customers/AssginedTo'
 import Location from './Customers/Location'
-import DueDate from './Customers/DueDate'
+import StartTime from './Customers/StartTime'
 import Extra from './Customers/Extra'
 import Review from './Customers/Review'
 import Status from './Customers/Status'
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
     flexDirection: 'column',
     display: 'flex',
-    minHeight: '85vh',
+    minHeight: '68vh',
     justifyContent: 'space-between'
 
   },
@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   divider: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 15,
+    marginBottom: 15,
     border: 'solid 1px #e8ebfa',
     maxWidth: '95%',
     marginLeft: 5,
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const AdminCustomersLeft = ({ dueDate, orderTitle,
+const AdminCustomersLeft = ({ startTime, orderTitle,
   customerFirstName, customerLastName, location, rate, cab, fri, ov, intWin, reviewText,
   orderStatus, typeOfOrder, phone, userObjectID, employeeObjectID, userFirstName,
   userLastName, employeeFirstName, employeeLastName, _id }) => {
@@ -76,7 +76,7 @@ const AdminCustomersLeft = ({ dueDate, orderTitle,
         <Divider className={classes.divider} />
         <PhoneNumber phoneNumber={phone} />
         <Divider className={classes.divider} />
-        <DueDate endTime={dueDate} />
+        <StartTime startTime={startTime} />
         <Divider className={classes.divider} />
         <Extra cabinets={cab} fridge={fri} oven={ov} interiorWindows={intWin} type={typeOfOrder} />
         <Divider className={classes.divider} />

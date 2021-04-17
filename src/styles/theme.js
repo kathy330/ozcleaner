@@ -14,6 +14,10 @@ const theme = createMuiTheme({
     h3: {
       fontWeight: 700,
     },
+    h2: {
+      fontWeight: 600,
+      fontSize: '1.8rem',
+    }
   },
 
   palette: {

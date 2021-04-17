@@ -39,10 +39,6 @@ const useStyles = makeStyles({
     color: "white",
     borderRadius: "25px",
   },
-  name:{
-    color:"#007bf5"
-
-  },
   btn: {
     margin:" 3% 6%",
     minWidth:"120px",
@@ -223,7 +219,7 @@ const BasicTable=(props)=> {
                   {isButton(user)}      
                 </TableCell>
                 <TableCell align="center">
-                  <Typography className={classes.name}>
+                  <Typography>
                     {user.firstName}
                     {' '}
                     {user.lastName}

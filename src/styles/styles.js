@@ -98,41 +98,41 @@ export const buttonStyle = makeStyles((theme) => ({
 export const statusStyle = makeStyles((theme) => ({
   green: {
     color: 'white',
-    minWidth:'120px',
+    minWidth:'135px',
     background: theme.palette.green.main,
-    borderRadius: '25px',
+    borderRadius: '20px',
     '&:disabled': {
       color: 'white',
     },
   },
   grey: {
     background: theme.palette.grey.main,
-    minWidth:'120px',
-    borderRadius: '25px',
+    minWidth:'135px',
+    borderRadius: '20px',
     '&:disabled': {
       color: 'white',
     },
   },
   red: {
     background: theme.palette.red.main,
-    minWidth:'120px',
-    borderRadius: '25px',
+    minWidth:'135px',
+    borderRadius: '20px',
     '&:disabled': {
       color: 'white',
     },
   },
   blue: {
     background: theme.palette.blue.main,
-    minWidth:'120px',
-    borderRadius: '25px',
+    minWidth:'135px',
+    borderRadius: '20px',
     '&:disabled': {
       color: 'white',
     },
   },
   yellow: {
     background: theme.palette.yellow.main,
-    minWidth:'120px',
-    borderRadius: '25px',
+    minWidth:'135px',
+    borderRadius: '20px',
     '&:disabled': {
       color: 'white',
     },

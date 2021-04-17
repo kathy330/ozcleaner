@@ -8,7 +8,8 @@ import { makeStyles ,useTheme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import Typography from '@material-ui/core/Typography'
+// import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import SwipeableViews from 'react-swipeable-views'
 import {MenuItem} from '@material-ui/core'
@@ -29,8 +30,8 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={2}>
-          <Typography>{children}</Typography>
+        <Box div={2}>
+          <Grid>{children}</Grid>
         </Box>
       )}
     </div>
@@ -53,7 +54,7 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width:'100%',
+    width:"100%",
   },
 }))
 
@@ -87,8 +88,7 @@ export default function FormDialog() {
           open={open}
           onClose={handleClose}
           aria-labelledby="form-dialog-title"
-          fullWidth
-          maxWidth='xs'
+         
         >
           <div className={classes.root}>
             <AppBar position="static" color="default">

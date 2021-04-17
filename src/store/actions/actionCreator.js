@@ -192,12 +192,26 @@ export const forgetpassword = (payload) => ({
   payload,
 })
 
+/* employee forget password- yanbo */
+export const forgetpasswordEmployee = (payload) => ({
+  type: actionTypes.EMPLOYEE_EMAIL_REQUEST,
+  payload,
+})
+
 /* reset password- yanbo */
 
 export const resetpassword = (payload) => ({
   type: actionTypes.USER_RESET_REQUEST,
   payload,
 })
+
+/* employee reset password- yanbo */
+
+export const resetpasswordEmployee = (payload) => ({
+  type: actionTypes.EMPLOYEE_RESET_REQUEST,
+  payload,
+})
+
 // * deleted a customer by customer's objID
 export const deletedCustomerRequest = (users, listSize) => ({
   type: actionTypes.DELETED_CUSTOMER_REQUEST,

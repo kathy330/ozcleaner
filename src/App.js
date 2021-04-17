@@ -27,6 +27,8 @@ import YanboForm from './pages/zpractice/Yanbo/YanboForm'
 import EmployeeOrderList from './pages/OrderPage/EmployeeOrderList'
 import ForgetPassword from "./components/SignUpComponents/ForgetPassword"
 import ResetPassword from './components/SignUpComponents/ResetPassword'
+import ForgetPasswordEmployee from './components/SignUpComponents/ForgetPasswordEmployee'
+import ResetPasswordEmployee from './components/SignUpComponents/ResetPasswordEmployee'
 
 function App() {
   // 使用theme方法：
@@ -60,6 +62,35 @@ function App() {
         {/* 10 找回密码页面 */}
         <Route path="/forgetpassword" exact component={ForgetPassword} />
         <Route path="/forgetpassword/resetpassword" exact component={ResetPassword} />
+        <Route path="/forgetpassword/employee" exact component={ForgetPasswordEmployee} />
+        <Route path="/resetpassword/employee" exact component={ResetPasswordEmployee} />
+        {/* 11 Error page */}
+        <Route component={ErrorPage} />
+
+        {/* myorder删除掉 */}
+        {/* <Route path="/myorder/:id" exact component={OrderDetailsPage} /> */}
+        {/* <ProtectedRoute path="/order/pay" exact component={OrderPay} /> */}
+        {/* <Route path="/profile/customer" exact component={CustomerProfilePage} /> */}
+        {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
+        {/* <Route path="/profile/employee" exact component={EmployeeProfilePage} /> */}
+        {/* <Route path="/profile" exact component={ProfilePage} /> */}
+
+        {/* <Route path="/admin/order" exact component={AdminOrderPage} />
+        <Route path="/admin/overview" exact component={AdminOverviewPage} />
+        <Route path="/admin/staff" exact component={AdminStaffPage} /> */}
+     
+        {/* <Route path="/admin/staffs/details" exact component={AdminStaffDetailsPage} />
+        <Route path="/admin/customers/details" exact component={AdminCustomersDetailsPage} /> */}
+
+  
+        {/* <Route path="/admin/customers/info" exact component={AdminStaffPage} /> */}
+        {/* <Route path="/admin/staffs/customers" exact component={AdminCustomersPage} /> */}
+        {/* <Route path="/order-detail/:id" exact component={OrderDetailsPage} /> */}
+        {/* <Route path="/userOrders/:id" exact component={AdminOrderPage} /> */}
+        {/* <Route path="/myorder/:id" exact component={AdminOrderPage} /> */}
+
+    
+
        
         <Route path="/ui" exact component={UI} />
         <Route path="/dongyu" exact component={DongyuPage} />

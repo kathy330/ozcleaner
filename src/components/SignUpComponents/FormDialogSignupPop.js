@@ -9,7 +9,8 @@ import { makeStyles ,useTheme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import Typography from '@material-ui/core/Typography'
+//import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import SwipeableViews from 'react-swipeable-views'
 import RegistrationForm from './RegistrationForm'
@@ -31,7 +32,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={2}>
-          <Typography>{children}</Typography>
+          <Grid>{children}</Grid>
         </Box>
       )}
     </div>
@@ -61,11 +62,11 @@ const useStyles = makeStyles((theme) => ({
   [theme.breakpoints.up('md')]: {
     textAlign:'center',
   },
-  /*
+  
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 443,
-  },*/
+    width:347,
+  },
   login:{
     fontWeight: 'bold',
     color: '#007bf5',
@@ -108,8 +109,6 @@ export default function FormDialogSignupPop() {
           open={open}
           onClose={handleClose}
           aria-labelledby="form-dialog-title"
-          fullWidth
-          maxWidth='xs'
         >
           <div className={classes.root}>
             <AppBar position="static" color="default">

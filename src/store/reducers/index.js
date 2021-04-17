@@ -14,7 +14,9 @@ import staffDetailsTable from './staffsDetailTable'
 // import { userRegisterReducer, userSigninReducer } from './userReducer'
 import { userRegisterReducer, userSigninReducer } from './userReducer'
 import {employeeRegisterReducer,employeeSigninReducer} from './employeeReducer'
-import{forgetPasswordReducer,resetPasswordReducer} from './forgetPassword'
+import{forgetPasswordReducer,
+resetPasswordReducer,forgetPasswordEmployeeReducer,
+resetPasswordEmployeeReducer} from './forgetPassword'
 
 // 🎉 rootReduce会被store/store.js使用
 const rootReducer = combineReducers({
@@ -32,7 +34,10 @@ const rootReducer = combineReducers({
   employeeRegister: employeeRegisterReducer,
   // allOrders,
   forgetPassword:forgetPasswordReducer,
-  resetPassword:resetPasswordReducer
+  resetPassword:resetPasswordReducer,
+  forgetpasswordEmployee:forgetPasswordEmployeeReducer,
+  resetpasswordEmployee: resetPasswordEmployeeReducer
+
 
 })
 export default rootReducer

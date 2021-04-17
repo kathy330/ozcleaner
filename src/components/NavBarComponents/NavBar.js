@@ -54,7 +54,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={2}>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>
@@ -112,6 +112,7 @@ export default function HeaderNavigation(props) {
   const userinfoo = JSON.parse(localStorage.getItem('userInfo'))
   const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
   const level = localStorage.getItem('authLevel')
+  // console.log(level)
   let id=''
   let role=''
 
@@ -320,8 +321,7 @@ export default function HeaderNavigation(props) {
         open={open}
         onClose={handleClose2}
         aria-labelledby="form-dialog-title"
-        fullWidth
-        maxWidth='xs'
+      
       >
         <div>
           <AppBar position="static" color="default">

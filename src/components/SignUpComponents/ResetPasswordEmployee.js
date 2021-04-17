@@ -10,25 +10,25 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import { useDispatch, useSelector } from 'react-redux'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import {resetpassword} from "../../store/actions/actionCreator"
+import {resetpasswordEmployee} from "../../store/actions/actionCreator"
 import {ConfirmButton} from './Button'
 
 
 
 
-export default function ResetPassword() {
+export default function ResetPasswordEmployee() {
   
   // const bull = <span className={classes.bullet}>•</span>
   const {control ,handleSubmit} = useForm()
   const dispatch = useDispatch()
     const onSubmit = (data) =>{
-      dispatch(resetpassword(data))
+      dispatch(resetpasswordEmployee(data))
       
     }
 
     
 
-    const resetPassword = useSelector((state) => state.resetPassword)
+    const resetPassword = useSelector((state) => state.resetpasswordEmployee)
     const { userInfo, loading, error } = resetPassword
     const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
@@ -122,7 +122,7 @@ export default function ResetPassword() {
                   <TextField
                     className={classes.textField}
                     margin="dense"
-                    id="outlined"
+                    id="outlined-basic-password"
                     label="password"
                     type="password"
                     variant="outlined"

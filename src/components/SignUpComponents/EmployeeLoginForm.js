@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '0px 30px',
     paddingTop: '2vh',
     fontWeight:'bold',
+    fontSize:'38px'
   },
   textField: {
     [`& fieldset`]: {
@@ -57,11 +58,7 @@ const useStyles = makeStyles((theme) => ({
   text:{
     fontWeight:'bold',
     width:'85%',
-    marginLeft:'8%',
-  },
-  response: {
-    fontWeight:'bold',
-    paddingBottom: '30px',
+    marginLeft:'8%'
   },
   mention:{
     fontWeight: 'bold',
@@ -74,14 +71,15 @@ const useStyles = makeStyles((theme) => ({
   },
   divider:{
     fontWeight: 'bold',
-    fontSize:'12px',
+    fontSize:'10px',
   },
   agreement:{
     fontWeight: 'bold',
     fontSize:'12px',
     marginLeft:'34px',
     width:'100%',
-    marginBottom:'5px' 
+    marginBottom:'5px',
+    marginRight:'10%'
   },
   divide:{
     borderBottom: "1px solid black",
@@ -100,32 +98,30 @@ const useStyles = makeStyles((theme) => ({
     // float: 'right',
     fontSize:'12px',
     textDecoration: 'none',
-    marginRight:'10%',
+    // marginRight:'10%',
     marginBottom:'30px'
   },
   loginColor:{
     textDecoration: 'none',
     color: '#007bf5',
   }
- 
-}))
 
+}))
 const classes = useStyles()
     return (
       <>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container direction="column">      
-            <Grid container justify="center">
+        
+        <Grid container justify="center">
+          <form onSubmit={handleSubmit(onSubmit)}>      
               <DialogTitle className="Dialog-title">
                 <Typography
                   className={classes.title}
                   align="center"
-                  variant="h4"
+              
                 >
                   Login
                 </Typography>
               </DialogTitle>
-            </Grid>
             <Grid container>
               <Typography
                 className={classes.text}
@@ -139,7 +135,7 @@ const classes = useStyles()
                   <TextField
                     className={classes.textField}
                     margin="dense"
-                    id="outlined-basic"
+                    id="outlined-basic-email"
                     label="Email"
                     type="Email"
                     variant="outlined"
@@ -165,7 +161,7 @@ const classes = useStyles()
                   <TextField
                     className={classes.textField}
                     margin="dense"
-                    id="outlined-basic"
+                    id="outlined-basic-password"
                     label="Password"
                     type="password"
                     variant="outlined"
@@ -179,7 +175,7 @@ const classes = useStyles()
 
 
             <Grid>
-              <a href="/password">
+              <a href="/forgetpassword/employee">
                 <Typography
                   className={classes.mention}
                 >
@@ -211,22 +207,6 @@ const classes = useStyles()
               <PopupLoginButton />
             </Grid>
             <Grid container justify="center">
-              <DividerWithText>
-                <Typography
-                  className={classes.divider}
-                >
-                  or login with
-                </Typography>
-              </DividerWithText>
-            </Grid>
-           
-            <Grid container justify="center" item xs={12}>
-              <FbButton />
-            </Grid>
-            <Grid container justify="center" item xs={12}>
-              <GoogleButton />
-            </Grid>
-            <Grid container justify="center" item xs={12}>
               <Typography
                 className={classes.agreement}
               >
@@ -234,7 +214,7 @@ const classes = useStyles()
               </Typography>
               
             </Grid>
-            <Grid container justify="center" item xs={12}>
+            <Grid container justify="center" >
               <Divider className={classes.divide} />
             </Grid>
             
@@ -247,14 +227,15 @@ const classes = useStyles()
               </Grid>
               <Grid container justify="flex-end">
                
-                <Typography className={classes.login}>
+         
                   <FormDialogSignupPop />
-                </Typography>
+            
                
               </Grid>
             </Grid>
-          </Grid>
-        </form>  
+          </form>  
+        </Grid>
+         
       </>
     )
   }

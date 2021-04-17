@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '0px 30px',
     paddingTop: '2vh',
     fontWeight:'bold',
+    fontSize:'38px'
   },
   textField: {
     [`& fieldset`]: {
@@ -72,14 +73,15 @@ const useStyles = makeStyles((theme) => ({
   },
   divider:{
     fontWeight: 'bold',
-    fontSize:'12px',
+    fontSize:'10px',
   },
   agreement:{
     fontWeight: 'bold',
     fontSize:'12px',
     marginLeft:'34px',
     width:'100%',
-    marginBottom:'5px' 
+    marginBottom:'5px',
+    marginRight:'10%'
   },
   divide:{
     borderBottom: "1px solid black",
@@ -111,13 +113,14 @@ const useStyles = makeStyles((theme) => ({
 const classes = useStyles()
     return (
       <>
+      <Grid container justify="center">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container justify="center">
             <DialogTitle className="Dialog-title">
               <Typography
                 className={classes.title}
                 align="center"
-                variant="h4"
+              
               >
                 Join us
               </Typography>
@@ -170,30 +173,6 @@ const classes = useStyles()
             <Typography
               className={classes.text}
             >
-              ABN:
-            </Typography>
-          </Grid>
-          <Grid container justify="center">
-            <Controller
-              as={(
-                <TextField
-                  className={classes.textField}
-                  margin="dense"
-                  id="outlined-basic"
-                  label="ABN"
-                  type="number"
-                  variant="outlined"
-                />
-                )}
-              name="ABN"
-              control={control}
-              defaultValue=""
-            />
-          </Grid> 
-          <Grid>
-            <Typography
-              className={classes.text}
-            >
               Password
             </Typography>
           </Grid>
@@ -203,7 +182,7 @@ const classes = useStyles()
                 <TextField
                   className={classes.textField}
                   margin="dense"
-                  id="outlined-basic"
+                  id="outlined"
                   label="Password"
                   type="password"
                   variant="outlined"
@@ -257,6 +236,7 @@ const classes = useStyles()
             </Grid>
           </Grid>
         </form>
+      </Grid>
       </>
     )
   }

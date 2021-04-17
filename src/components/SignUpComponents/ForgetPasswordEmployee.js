@@ -10,26 +10,27 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import { useDispatch, useSelector } from 'react-redux'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import {resetpassword} from "../../store/actions/actionCreator"
+import {forgetpasswordEmployee} from "../../store/actions/actionCreator"
 import {ConfirmButton} from './Button'
 
 
 
 
-export default function ResetPassword() {
+export default function ForgetPasswordEmployee() {
   
   // const bull = <span className={classes.bullet}>•</span>
   const {control ,handleSubmit} = useForm()
   const dispatch = useDispatch()
+  const forgetpasswordemployee = useSelector((state) => state.forgetpasswordEmployee)
+  const { userInfo, loading, error } = forgetpasswordemployee
     const onSubmit = (data) =>{
-      dispatch(resetpassword(data))
-      
+      dispatch(forgetpasswordEmployee(data))
+
     }
 
     
 
-    const resetPassword = useSelector((state) => state.resetPassword)
-    const { userInfo, loading, error } = resetPassword
+  
     const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
           textAlign:'center',
@@ -41,31 +42,25 @@ export default function ResetPassword() {
           textAlign:'center',
         },
         root: {
-            minWidth: '200%',
-            // minHeight: 300,
+            minWidth: "200%",
+            minHeight: "100%",
           },
           text:{
-            marginLeft:35,
-            marginRight:200,
             paddingTop:30,
-            paddingBottom:15,
+            paddingBottom:20,
+            marginRight:50,
+            marginLeft:40,
             fontWeight:'bold',
-            // width:'85%',
+            width:'120%',
             // marginRight:'15px',
           },
           textField: {
             width:'85%',
-            marginBottom:35,
-           // marginRight:200,
-           // marginLeft:200,
-
-            
+            marginBottom:45,
           },
           response: {
             fontWeight:'bold',
             paddingBottom: '30px',
-            fontSize:'15px',
-            width:'45%',
           },
         }))
     const classes = useStyles()
@@ -73,7 +68,7 @@ export default function ResetPassword() {
   return (
     <Grid
       container
-      spacing={0}
+      spacing={1}
       direction="row"
       alignItems="center"
       justify="center"
@@ -84,11 +79,11 @@ export default function ResetPassword() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid item xs={6}>
           <Card className={classes.root}>
-            <Grid container>
+            <Grid container justify="center">
               <Typography
                 className={classes.text}
               >
-                Enter your verfication key
+                Enter your Registration Email address 
               </Typography>
             </Grid>
             <Grid container justify="center">
@@ -97,63 +92,13 @@ export default function ResetPassword() {
                   <TextField
                     className={classes.textField}
                     margin="dense"
-                    id="outlined-basic-key"
-                    label="resetPasswordToken"
-                    type="resetPasswordToken"
+                    id="outlined-basic"
+                    label="Email"
+                    type="Email"
                     variant="outlined"
                   />
                     )}
-                name="resetPasswordToken"
-                control={control}
-                defaultValue=""
-              />
-                
-            </Grid>
-            <Grid container>
-              <Typography
-                className={classes.text}
-              >
-                Enter your new password
-              </Typography>
-            </Grid>
-            <Grid container justify="center">
-              <Controller
-                as={(
-                  <TextField
-                    className={classes.textField}
-                    margin="dense"
-                    id="outlined"
-                    label="password"
-                    type="password"
-                    variant="outlined"
-                  />
-                    )}
-                name="password"
-                control={control}
-                defaultValue=""
-              />
-                
-            </Grid>
-            <Grid container>
-              <Typography
-                className={classes.text}
-              >
-                Confirm your password
-              </Typography>
-            </Grid>
-            <Grid container justify="center">
-              <Controller
-                as={(
-                  <TextField
-                    className={classes.textField}
-                    margin="dense"
-                    id="outlined-basic-confirm"
-                    label="confirmationPassword"
-                    type="password"
-                    variant="outlined"
-                  />
-                    )}
-                name="confirmationPassword"
+                name="email"
                 control={control}
                 defaultValue=""
               />
@@ -176,7 +121,7 @@ export default function ResetPassword() {
                 className={classes.response}
                 align="center"
               >
-                Your password successfully updated
+                Sent successfully! Please check your email
               </Typography>
             )}
         

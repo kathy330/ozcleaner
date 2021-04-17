@@ -25,13 +25,13 @@ function ListCustomerTable(props) {
   const [deletedIndex, setdeletedIndex] = React.useState(0)
   const [open, setOpen] = React.useState(false)
   const dispatchRequest = (tableType === 'customer') 
-  console.log(tableType)
   // get userdata from state
   const usersData = useSelector(state => state.userslist.users.result)
   // get total users number from state
   const usersCount = useSelector(state => state.userslist.users.count)
   const loading = useSelector(state => state.userslist.loading)
   const dataType = useSelector(state => state.userslist.dataType)
+  // console.log(usersData)
   
   const error = useSelector(state => state.userslist.error)
   const path = dispatchRequest ? '/admin/customers' : '/admin/staffs'

@@ -1,6 +1,6 @@
-/* eslint-disable no-alert */
+/* eslint-disable */
 import React from 'react'
-import { TableRow, TableCell, makeStyles, Typography, Box } from '@material-ui/core/'
+import { TableRow, TableCell, makeStyles, Typography } from '@material-ui/core/'
 import date from 'date-and-time'
 import { KingBed, Bathtub } from '@material-ui/icons'
 import { GreenStatus, RedStatus, GreyStatus, BlueStatus } from '../../UIComponents/Status'

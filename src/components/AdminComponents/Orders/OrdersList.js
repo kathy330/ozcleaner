@@ -15,13 +15,14 @@ import OrderSelectBox from './OrderSelectBox'
 const useStyles = makeStyles(() => ({
   left: {
     display: 'flex',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     flexDirection: 'column',
     padding: '15px',
   },
   right: {
-    background: '#fff',
-    minHeight: '75vh'
+    marginTop: '30px',
+    minHeight: '65vh',
+    padding: 0,
   },
   card: {
     background: '#fff',
@@ -170,6 +171,7 @@ function OrdersLists(props) {
     listPayload.status = (listType === 'admin') ? '' : 'confirmed'
     dispatch(getAllOrersRequest(listPayload))
     if (listType === 'admin'){
+      setOrderStatus('')
       history.push(`/admin/orders/`)
     } else {
       history.push(`/employee-orders/`)

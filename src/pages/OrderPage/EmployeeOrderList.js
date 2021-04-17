@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container } from '@material-ui/core'
@@ -8,7 +9,7 @@ import NavBar from '../../components/NavBarComponents/NavBar'
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: '1px',
-    padding: '11px 15px',
+    padding: '35px',
     [theme.breakpoints.down('xs')]: {
       padding: '25px 10px',
     },

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid, Typography } from '@material-ui/core'
@@ -29,24 +30,25 @@ const columns = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: '1px',
-    padding: '45px',
     background: '#fff',
+    marginTop: '1px',
+    padding: '45px 45px 0px',
     [theme.breakpoints.down('xs')]: {
       padding: '35px 20px',
     },
   },
+
   heading: {
     marginBottom: '20px',
-    textShadow: '3px 3px 10px #a7a7a7',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '2rem'
+      fontSize: '2rem',
     }
   },
+
   listTable: {
-    minHeight: '80vh',
+    alignContent: 'space-between',
     justifyContent: 'center',
-    alignContent: 'space-between'
+    minHeight: '80vh',
   }
 }))
 

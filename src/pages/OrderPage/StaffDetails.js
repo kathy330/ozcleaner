@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react"
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Container from '@material-ui/core/Container'
@@ -16,7 +17,7 @@ function StaffDetailsPage(match){
     <Box bgcolor="#fafafa">
       <CssBaseline />  
       <NavBar />     
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Box bgcolor="white">
           <Display data={id} />         
         </Box>

@@ -20,7 +20,7 @@ function* deletedUsers(action) {
   const deletedId = action.payload
   const deletedApi = `http://localhost:8000/deletedEmployees/${deletedId}`
   try {
-    yield call(axios.put, deletedApi,header())
+    yield call(axios.put, deletedApi,{},header())
     // console.log(users)
     yield put({ type: 'DELETED_EMPLOYEE_SUCCESS' })
     yield put({ type: 'GET_EMPLOYEES_REQUESTED', payload: action.listSize })

@@ -19,10 +19,13 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     padding: '15px',
   },
-  right: {
-    marginTop: '30px',
-    minHeight: '65vh',
+  adminRight: {
+    marginTop: '60px',
     padding: 0,
+  },
+  staffRight:{
+    padding: 0,
+    marginTop: '10px'
   },
   card: {
     background: '#fff',
@@ -227,7 +230,7 @@ function OrdersLists(props) {
             />
           </Grid>
           {!matches && data.length !== 0 && (
-            <Grid item xs={12} sm={8} className={classes.right}>
+            <Grid item xs={12} sm={8} className={listType === 'admin' ? classes.adminRight : classes.staffRight}>
               <OrderDetailComponent data={data[curCard]} key={curCard}/> 
             </Grid>
           )}

@@ -32,11 +32,14 @@ import {updateProfileRequest} from "../../../store/actions/actionCreator"
 //   phoneNumber: '0400000000'
 // }
 const useStyles = makeStyles((theme) => ({
+ 
   center: {
-    // [theme.breakpoints.down('xs')]: {
-    //   textAlign: 'center',
-    // }
+    [theme.breakpoints.down('xs')]: {
+      textAlign: 'center',
+      marginLeft:'0px'
+    },
     textAlign: 'left',
+    marginLeft:'20px'
   },
 
   button: {
@@ -55,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
   formcenter: {
     // padding: '0 5vh',
-    width: '100%',
+    width: '70%',
   }
 }))
 
@@ -176,7 +179,6 @@ export default function TextForm() {
             name="address2"
             control={control}
             defaultValue=""
-            required
           />
         </Grid>
         <Grid item xs={12} sm={6}>

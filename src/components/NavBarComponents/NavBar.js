@@ -54,7 +54,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={2}>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>
@@ -321,8 +321,7 @@ export default function HeaderNavigation(props) {
         open={open}
         onClose={handleClose2}
         aria-labelledby="form-dialog-title"
-        fullWidth
-        maxWidth='xs'
+      
       >
         <div>
           <AppBar position="static" color="default">

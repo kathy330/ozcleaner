@@ -63,11 +63,11 @@ const useStyles = makeStyles((theme) => ({
   [theme.breakpoints.up('md')]: {
     textAlign:'center',
   },
-  /*
+  
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 443,
-  },*/
+    width: 347,
+  },
   login:{
     fontWeight: 'bold',
     color: '#007bf5',

@@ -89,8 +89,7 @@ export default function FormDialog() {
           open={open}
           onClose={handleClose}
           aria-labelledby="form-dialog-title"
-          fullWidth
-          maxWidth='xs'
+        
         >
           <div className={classes.root}>
             <AppBar position="static" color="default">
@@ -102,8 +101,8 @@ export default function FormDialog() {
                 variant="fullWidth"
                 aria-label="full width tabs example"
               >
-                <Tab label="Sign up as customer" {...a11yProps(0)} />
-                <Tab label="Sign up as employee" {...a11yProps(1)} />
+                <Tab label="Login as customer" {...a11yProps(0)} />
+                <Tab label="Login as employee" {...a11yProps(1)} />
               </Tabs>
             </AppBar>
             <SwipeableViews

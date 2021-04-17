@@ -61,7 +61,7 @@ export default function RegistrationForm() {
     text:{
       fontWeight:'bold',
       width:'85%',
-      marginLeft:'7%'
+      marginLeft:'8%'
     },
     mention:{
       fontWeight: 'bold',
@@ -74,27 +74,26 @@ export default function RegistrationForm() {
     },
     divider:{
       fontWeight: 'bold',
-      fontSize:'12px',
+      fontSize:'10px',
     },
     agreement:{
       fontWeight: 'bold',
       fontSize:'12px',
-      marginLeft:'7%',
+      marginLeft:'34px',
       width:'100%',
-      marginBottom:'5px' 
+      marginBottom:'5px',
+      marginRight:'10%'
     },
     divide:{
       borderBottom: "1px solid black",
       width:'85%',
-      marginBottom:10,
-      
+      marginBottom:10
     },
     account:{
       fontWeight: 'bold',
       fontSize:'12px',
-      marginLeft:'7%',
-      marginBottom:'-22px',
-
+      marginLeft:'34px',
+      marginBottom:'-22px'
     },
     login:{
       fontWeight: 'bold',
@@ -102,9 +101,8 @@ export default function RegistrationForm() {
       // float: 'right',
       fontSize:'12px',
       textDecoration: 'none',
-      marginRight:'10%',
-      marginBottom:'30px',
- 
+      // marginRight:'10%',
+      marginBottom:'30px'
     },
     loginColor:{
       textDecoration: 'none',

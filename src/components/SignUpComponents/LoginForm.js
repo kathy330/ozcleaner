@@ -16,6 +16,7 @@ import DividerWithText from './Divider'
 import {FbButton,GoogleButton,PopupLoginButton} from './Button'
 import {signin, signout} from "../../store/actions/actionCreator"
 import FormDialogSignupPop from "./FormDialogSignupPop"
+import FormDialogLoginPop from './FormDialogLoginPop'
 
 
 export default function LoginDetails() {
@@ -60,11 +61,7 @@ const useStyles = makeStyles((theme) => ({
   text:{
     fontWeight:'bold',
     width:'85%',
-    marginLeft:'8%',
-  },
-  response: {
-    fontWeight:'bold',
-    paddingBottom: '30px',
+    marginLeft:'8%'
   },
   mention:{
     fontWeight: 'bold',
@@ -77,14 +74,15 @@ const useStyles = makeStyles((theme) => ({
   },
   divider:{
     fontWeight: 'bold',
-    fontSize:'12px',
+    fontSize:'10px',
   },
   agreement:{
     fontWeight: 'bold',
     fontSize:'12px',
     marginLeft:'34px',
     width:'100%',
-    marginBottom:'5px' 
+    marginBottom:'5px',
+    marginRight:'10%'
   },
   divide:{
     borderBottom: "1px solid black",
@@ -103,22 +101,22 @@ const useStyles = makeStyles((theme) => ({
     // float: 'right',
     fontSize:'12px',
     textDecoration: 'none',
-    marginRight:'10%',
+    // marginRight:'10%',
     marginBottom:'30px'
   },
   loginColor:{
     textDecoration: 'none',
     color: '#007bf5',
   }
- 
+
 }))
 
 const classes = useStyles()
     return (
       <>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container direction="column">      
-            <Grid container justify="center">
+   
+        <Grid container justify="center">
+          <form onSubmit={handleSubmit(onSubmit)}>        
               <DialogTitle className="Dialog-title">
                 <Typography
                   className={classes.title}
@@ -128,14 +126,13 @@ const classes = useStyles()
                   Login
                 </Typography>
               </DialogTitle>
-            </Grid>
-            <Grid container>
-              <Typography
+         
+            <Typography
                 className={classes.text}
-              >
+            >
                 Email
-              </Typography>
-            </Grid>
+            </Typography>
+          
             <Grid container justify="center">
               <Controller
                 as={(
@@ -155,13 +152,13 @@ const classes = useStyles()
             
             </Grid>
 
-            <Grid>
-              <Typography
-                className={classes.text}
-              >
-                Password
-              </Typography>
-            </Grid>
+            
+            <Typography
+              className={classes.text}
+            >
+              Password
+            </Typography>
+           
             <Grid container justify="center">
               <Controller
                 as={(
@@ -181,15 +178,15 @@ const classes = useStyles()
             </Grid>
 
 
-            <Grid>
-              <a href="/forgetpassword">
-                <Typography
-                  className={classes.mention}
-                >
-                  Forgot Password?
-                </Typography>
-              </a>
-            </Grid>
+          
+            <a href="/forgetpassword">
+              <Typography
+                className={classes.mention}
+              >
+                Forgot Password?
+              </Typography>
+            </a>
+         
             
             <Grid container justify="center">
               {loading && <CircularProgress />}
@@ -213,7 +210,7 @@ const classes = useStyles()
             )}
               <PopupLoginButton />
             </Grid>
-            <Grid container justify="center" item xs={12}>
+            <Grid container justify="center">
               <Typography
                 className={classes.agreement}
               >
@@ -221,7 +218,7 @@ const classes = useStyles()
               </Typography>
               
             </Grid>
-            <Grid container justify="center" item xs={12}>
+            <Grid container justify="center">
               <Divider className={classes.divide} />
             </Grid>
             
@@ -234,12 +231,13 @@ const classes = useStyles()
               </Grid>
               <Grid container justify="flex-end">
                
-                <FormDialogSignupPop />
+                <FormDialogSignupPop/>
                
               </Grid>
             </Grid>
-          </Grid>
-        </form>  
+          </form>  
+        </Grid>
+      
       </>
     )
   }

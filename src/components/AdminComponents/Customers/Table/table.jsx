@@ -16,7 +16,7 @@ import date from 'date-and-time'
 import { Link } from 'react-router-dom'
 import{ Alert} from '@material-ui/lab'
 import { amber } from '@material-ui/core/colors'
-import {getCUSDETAILTABLERequest, updateOrderRequest} from "../../../../store/actions"
+import {getOrderByTargetRequest, updateOrderRequest, changeOrder} from "../../../../store/actions"
 import { GreenStatus ,RedStatus,
   YellowStatus,GreyStatus,BlueStatus} from '../../../UIComponents/Status'
 
@@ -39,38 +39,15 @@ const useStyles = makeStyles({
     color: "white",
     borderRadius: "25px",
   },
-  name:{
-    color:"#007bf5"
-
-  },
-  check: {
-    display:"inline-block",
-    margin:" 0 3%",
+  btn: {
+    margin:" 3% 6%",
     minWidth:"120px",
-    // background:"#007bf5",
     color:"white"
   },
-  delete: {
-    display:"inline-block",
-    margin:" 0 3%",
-    minWidth:"120px",
-    // background:"#f35162",
-    color:"white"
-  },
-  comment:{
-    display:"inline-block",
-    margin:" 0 3%",
-    minWidth:"120px",
-    // background:"#ffad33",
-    color:"white"
-  },
-  action:{
-    display:"flex",
-    flexDirection:"row"
-  }
 })
 
 function displayTime(time) {
+  console.log(time)
   let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
   result = result.toString().split(" ")
   return `${date.transform(result[4], 'HH:mm:ss', 'hh:mmA')} 
@@ -97,16 +74,16 @@ function isButton(words) {
   return <GreyStatus>{words.status}</GreyStatus>
 }
 
-function isCancel(user,classes,handleCancelOrder) {
+function isCancel(user,classes,handleAction, index) {
   if(user.status==='confirmed') {
     return  (
       <Button 
         variant="contained"
-        className={classes.delete}
+        className={classes.btn}
         color="secondary"
         id={user.type}
         value={user._id}
-        onClick={handleCancelOrder}
+        onClick={() => handleAction(user._id, user.type, "cancelled", index)}
       >
         Cancel
       </Button>
@@ -115,7 +92,7 @@ function isCancel(user,classes,handleCancelOrder) {
   return (
     <Button 
       variant="contained"
-      className={classes.delete}
+      className={classes.btn}
       color="secondary"
       disabled
     >
@@ -132,7 +109,7 @@ function isComment(user,classes) {
       return(
         <Button 
           variant="contained"
-          className={classes.check}
+          className={classes.btn}
           color="primary"
           component={Link} 
           to={`/admin/orders/${user._id}?type=${user.type}`}
@@ -142,21 +119,22 @@ function isComment(user,classes) {
       )
     }
     return(
-      <ColorButton 
+      <Button 
         variant="contained"
-        className={classes.comment}
+        className={classes.btn}
+        color="primary"
         component={Link} 
         to={`/admin/orders/${user._id}?type=${user.type}`}
       >
-        Review
-      </ColorButton>
-    )  
+        View
+      </Button>
+    )
   }
   if(user.reviewStatus||user.status!=="finished"){
     return(
       <Button 
         variant="contained"
-        className={classes.check}
+        className={classes.btn}
         color="primary"
         component={Link} 
         to={`/order-detail/${user._id}?type=${user.type}`}
@@ -168,7 +146,7 @@ function isComment(user,classes) {
   return(
     <ColorButton 
       variant="contained"
-      className={classes.comment}
+      className={classes.btn}
       component={Link} 
       to={`/order-detail/${user._id}?type=${user.type}`}
     >
@@ -180,17 +158,16 @@ function isComment(user,classes) {
 }
 
 const BasicTable=(props)=> {
-  const {data}=props
+  const {data, type}=props
+  
   const classes = useStyles()
   const dispatch=useDispatch()
-
-  const users =useSelector(state => state.cusDetailsTable.cusDetailsTable) 
-  const loading = useSelector(state => state.cusDetailsTable.loading)
-  // const error = useSelector(state => state.cusDetailsTable.error)
-
+  const redux = useSelector(state => state.order)
+  const users = redux.order.result
+  const {loading} = redux
 
   const dispatchRequested=()=>{
-    dispatch(getCUSDETAILTABLERequest(data))
+    dispatch(getOrderByTargetRequest({id:data, type:type}))
   }
 
   useEffect(()=>{
@@ -210,20 +187,19 @@ const BasicTable=(props)=> {
   }
 
 // cancel orders
-  const handleCancelOrder = (event) => {
-    if(event.target.value&&event.target.id){
-      const body={id:event.target.value,orderstatus:"cancelled",type:event.target.id}
-      dispatch(updateOrderRequest(body))
-    }
-  }
-
+const handleAction = (id, ordertype, status, index) => {
+    
+  dispatch(changeOrder(page * rowsPerPage + index))
+  const body={id:id, update:{status:status}, type:ordertype}
+  dispatch(updateOrderRequest(body))
+  
+}
 
 
   return (
     <>
-      {users.loading&&<p>Loading...</p>}
-
-      {users.length!==0&&(
+      {loading&&<p>Loading...</p>}
+      {!loading && redux.order.page === "orderbytarget" && (
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
@@ -236,14 +212,15 @@ const BasicTable=(props)=> {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user) => ( 
+            {users.slice(page * rowsPerPage, 
+            page * rowsPerPage + rowsPerPage).map((user,index) => ( 
               <TableRow key={user._id}>
                 <TableCell align="center">{user.type+user.taskID}</TableCell>
                 <TableCell align="center">
                   {isButton(user)}      
                 </TableCell>
                 <TableCell align="center">
-                  <Typography className={classes.name}>
+                  <Typography>
                     {user.firstName}
                     {' '}
                     {user.lastName}
@@ -252,9 +229,9 @@ const BasicTable=(props)=> {
                 <TableCell align="center">
                   {displayTime(user.createdAt)}
                 </TableCell>
-                <TableCell align="center" className={classes.action}>
+                <TableCell align="center">
                   {isComment(user,classes)}
-                  {isCancel(user,classes,handleCancelOrder)}
+                  {isCancel(user,classes,handleAction, index)}
                 </TableCell>
 
               </TableRow>

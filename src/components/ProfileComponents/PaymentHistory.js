@@ -82,7 +82,6 @@ return repo
 export default function BasicTable() {
   const classes = useStyles()
   const employees = GetList()
-  console.log(employees)
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
 
@@ -110,7 +109,7 @@ export default function BasicTable() {
         <TableBody>
           {employees.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).
           map((employee) => ( 
-            <TableRow key={employee.employeeID} vertical-align='middle'>
+            <TableRow key={employee._id} vertical-align='middle'>
               <TableCell align="center" className={classes.tableCell}>
                 {employee.type}
                 {employee.taskID}

@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    minHeight: '90vh',
+    minHeight: '81vh',
   },
   btn: {
     marginTop: '20px'

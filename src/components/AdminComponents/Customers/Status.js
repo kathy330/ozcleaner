@@ -28,13 +28,10 @@ export default function Status(props) {
       <Grid item xs={2} sm={1} className={classes.icon}>
         <AssessmentIcon />
       </Grid>
-      <Grid item justify="center" xs={10} sm={11} className={classes.text}>
-        {/* <Typography variant="subtitle2">STATUS</Typography> */}
+      <Grid item xs={10} sm={11} className={classes.text}>
         {(status === 'confirmed') && (<GreenStatus>{uppercaseStatus}</GreenStatus>)}
-        {(status === 'assigned') && (<GreenStatus>{uppercaseStatus}</GreenStatus>)}
         {(status === 'in-progress') && (<BlueStatus>{uppercaseStatus}</BlueStatus>)}
         {(status === 'finished') && (<GreyStatus>{uppercaseStatus}</GreyStatus>)}
-        {(status === 'reviewed') && (<YellowStatus>{uppercaseStatus}</YellowStatus>)}
         {(status === 'cancelled') && (<RedStatus>{uppercaseStatus}</RedStatus>)}
       </Grid>
     </Box>

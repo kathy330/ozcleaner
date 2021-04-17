@@ -248,12 +248,12 @@ export default function OrderRight({data}) {
         <Container maxWidth="lg" className={classes.totalprice}>
           <Grid container direction="row" alignItems="flex-end">
             <Grid item xs={6} sm={6}>
-              <Typography align="left" variant='h3'>
+              <Typography align="left" variant='h4'>
                 Total
               </Typography>
             </Grid>
             <Grid item xs={6} sm={6}>
-              <Typography align="right" variant='h3' className={classes.price}>
+              <Typography align="right" variant='h4' className={classes.price}>
                 $
                 {price}
               </Typography>

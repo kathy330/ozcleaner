@@ -14,8 +14,8 @@ const useStyles = makeStyles(() => ({
   text: {
     marginLeft: 10
   },
-  textcolor:{
-    color:'#007bf5'
+  textcolor: {
+    color: '#007bf5'
   },
 }))
 
@@ -33,17 +33,17 @@ function displayTime(time) {
 
 }
 
-export default function DueDate(props) {
+export default function StartTime(props) {
   const classes = useStyles()
-  const { endTime } = props
+  const { startTime } = props
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>
         <Today />
       </Grid>
-      <Grid item justify="center" xs={10} sm={11} className={classes.text}>
-        <Typography className={classes.textcolor} variant="subtitle2">DUE DATE</Typography>
-        <Typography variant="body2">{displayTime(endTime)}</Typography>
+      <Grid item xs={10} sm={11} className={classes.text}>
+        <Typography className={classes.textcolor} variant="subtitle2">START TIME</Typography>
+        <Typography variant="body2">{displayTime(startTime)}</Typography>
       </Grid>
     </Box>
   )

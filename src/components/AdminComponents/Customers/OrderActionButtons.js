@@ -12,15 +12,31 @@ import { updateOrderRequest, updateAssignRequest } from "../../../store/actions"
 const useStyles = makeStyles((theme) => ({
   button: {
     color: theme.palette.secondary.contrastText,
-    background: theme.palette.secondary.main,
     borderRadius: '25px',
     marginInline: '25px',
     margin: '15px',
     '&:hover': {
-      background: theme.palette.secondary.hover,
       boxShadow: '0px 2px 10px #888888',
     },
     minWidth: '120px',
+  },
+  cancel: {
+    background: '#F35162',
+    '&:hover': {
+      background: '#E55766',
+    },
+  },
+  accept: {
+    background: '#007bf5',
+    '&:hover': {
+      background: '#107CE6',
+    },
+  },
+  finish: {
+    background: '#89B153',
+    '&:hover': {
+      background: '#88AB59',
+    },
   }
 }))
 
@@ -87,13 +103,13 @@ export default function OrderActionButtons({ cancel, finish, accept, cancelData,
           </Button>
         </DialogActions>
       </Dialog>
-      {(cancel === 'cancel') && (<Button className={classes.button} onClick={handleCancel}>
+      {(cancel === 'cancel') && (<Button className={`${classes.button} ${classes.cancel}`} onClick={handleCancel}>
         CANCEL
       </Button>)}
-      {(finish === 'finish') && (<Button className={classes.button} onClick={handleFinish}>
+      {(finish === 'finish') && (<Button className={`${classes.button} ${classes.finish}`} onClick={handleFinish}>
         FINISH
       </Button>)}
-      {(accept === 'accept') && (<Button className={classes.button} onClick={handleAccept}>
+      {(accept === 'accept') && (<Button className={`${classes.button} ${classes.accept}`} onClick={handleAccept}>
         ACCEPT
       </Button>)}
     </>

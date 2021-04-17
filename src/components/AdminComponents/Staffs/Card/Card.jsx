@@ -44,7 +44,7 @@ const useStyles = makeStyles((themes) => ({
 
 
 function showCardInfo(card, array,index, isAvailable, classes) {
-  if (index.valueOf() === 5) {
+  if (index.valueOf() === 4) {
     return (
       <div className={`title ${isAvailable ? classes.status1 : classes.status2}`}>
         <li key={card.item}>
@@ -70,9 +70,9 @@ export default function AutoGrid(props) {
   const classes = useStyles()
   const {UserData }=props
   const {postcode}=UserData.address
-  const {email,phone,ABN,workingExperience,employmentStatus}=UserData
+  const {email,phone,workingExperience,employmentStatus}=UserData
   const arrayObj =[]
-  arrayObj.push([postcode,email,phone,ABN,workingExperience,employmentStatus])
+  arrayObj.push([postcode,email,phone,workingExperience,employmentStatus])
   // console.log(arrayObj[0])
 
   return (
@@ -90,7 +90,7 @@ export default function AutoGrid(props) {
               </Grid>
 
               <Grid item key={UserData.numberOfOrderFinished}>
-                <Typography variant="h6">{UserData.numberOfOrderFinished}</Typography>            
+                <Typography variant="h3">{UserData.numberOfOrderFinished}</Typography>            
               </Grid>
    
             </Grid>
@@ -108,7 +108,7 @@ export default function AutoGrid(props) {
               <Grid item container direction="row" spacing={2}>
       
                 <Grid item xs key={UserData.averageRating}>
-                  <Typography variant="h6">{UserData.averageRating}</Typography>
+                  <Typography variant="h3">{UserData.averageRating}</Typography>
                 </Grid> 
 
                 {/* Stars */}
@@ -145,9 +145,6 @@ export default function AutoGrid(props) {
                   </li>
                   <li className={classes.li}>
                     <Typography variant="subtitle2">Phone</Typography>
-                  </li>
-                  <li className={classes.li}>
-                    <Typography variant="subtitle2">ABN</Typography>
                   </li>
                   <li className={classes.li}>
                     <Typography variant="subtitle2">Experience</Typography> 

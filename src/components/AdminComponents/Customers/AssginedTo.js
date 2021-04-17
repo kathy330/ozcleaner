@@ -1,7 +1,8 @@
 import React from 'react'
-import { makeStyles, Box, Grid, Typography, Avatar, Link } from '@material-ui/core'
+import { makeStyles, Box, Grid, Typography, Link } from '@material-ui/core'
 import { deepPurple, deepOrange } from '@material-ui/core/colors'
 import { Link as RouterLink } from 'react-router-dom'
+import AssignmentTurnedInRoundedIcon from '@material-ui/icons/AssignmentTurnedInRounded'
 
 
 // styles
@@ -22,6 +23,9 @@ const styles = makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepOrange[500]),
     backgroundColor: deepOrange[500],
   },
+  black: {
+    backgroundColor: "#000a12",
+  },
   icon: {
     display: 'flex',
     justifyContent: 'center',
@@ -31,12 +35,12 @@ const styles = makeStyles((theme) => ({
   text: {
     marginLeft: 10,
   },
-  textcolor:{
-    color:'#007bf5'
+  textcolor: {
+    color: '#007bf5'
   },
-  linkcolor:{
+  linkcolor: {
     // color:'#67a9ff'
-    color:'black',
+    color: 'black',
   },
   divider: {
     marginTop: 10,
@@ -54,9 +58,10 @@ export default function AssginedTo(props) {
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>
-        <Avatar className={classes.orange}>{employeeFirstName[0].toUpperCase()}</Avatar>
+        {/* <Avatar className={classes.black}>{employeeFirstName[0].toUpperCase()}</Avatar> */}
+        <AssignmentTurnedInRoundedIcon />
       </Grid>
-      <Grid item justify="center" xs={9} sm={10} className={classes.text}>
+      <Grid item xs={9} sm={10} className={classes.text}>
         <Typography className={classes.textcolor} variant="subtitle2">ASSIGNED TO</Typography>
         <Grid container direction="row" justify="space-between" space={5}>
           {(employeeFirstName === 'null'
@@ -67,7 +72,7 @@ export default function AssginedTo(props) {
               </>
             )}
           {(employeeFirstName !== 'null' || employeeLastName !== 'null') && (
-            <Link 
+            <Link
               className={classes.linkcolor}
               component={RouterLink}
               to={path}

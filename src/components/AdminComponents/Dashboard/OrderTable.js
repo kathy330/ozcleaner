@@ -44,16 +44,16 @@ function OrderTable(props) {
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
                   >
-                    <Typography variant="h6">
-                      {column.label}
-                    </Typography>
+           
+                    {column.label}
+              
                   </TableCell>
                             ))}
               </TableRow>
             </TableHead>
             <TableBody>
               {UserData.map((data, key) => (
-                <OrderTableRow
+                <OrderTableRow 
                   // eslint-disable-next-line react/no-array-index-key
                   key={`card${key}`}
                   taskID={data.taskID}

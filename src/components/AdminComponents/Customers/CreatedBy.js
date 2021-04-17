@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles, Box, Grid, Typography, Link, Avatar } from '@material-ui/core'
+import { makeStyles, Box, Grid, Typography, Link } from '@material-ui/core'
 import { deepPurple, deepOrange } from '@material-ui/core/colors'
+import AssignmentIndRoundedIcon from '@material-ui/icons/AssignmentIndRounded'
 // import style from '../scss/Admin.module.scss'
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -23,6 +24,9 @@ const styles = makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepOrange[500]),
     backgroundColor: deepOrange[500],
   },
+  black: {
+    backgroundColor: "#000a12",
+  },
   icon: {
     display: 'flex',
     justifyContent: 'center',
@@ -32,12 +36,12 @@ const styles = makeStyles((theme) => ({
   text: {
     marginLeft: 10,
   },
-  textcolor:{
-    color:'#007bf5'
+  textcolor: {
+    color: '#007bf5'
   },
-  linkcolor:{
+  linkcolor: {
     // color:'#67a9ff'
-    color:'black',
+    color: 'black',
   }
 }))
 
@@ -48,11 +52,12 @@ export default function CreatBy(props) {
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>
-        <Avatar className={classes.purple}>
+        {/* <Avatar className={classes.black}>
           {firstName[0].toUpperCase()}
-        </Avatar>
+        </Avatar> */}
+        <AssignmentIndRoundedIcon />
       </Grid>
-      <Grid item justify="center" xs={9} sm={10} className={classes.text}>
+      <Grid item xs={9} sm={10} className={classes.text}>
         <Typography className={classes.textcolor} variant="subtitle2">CREATE BY</Typography>
         <Grid container direction="row" justify="space-between">
           <Link className={classes.linkcolor} component={RouterLink} to={path} variant="subtitle2">

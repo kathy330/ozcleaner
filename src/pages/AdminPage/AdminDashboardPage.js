@@ -1,11 +1,11 @@
 /* eslint-disable */
 import React, { useEffect } from 'react'
-import { Grid, Container, Paper,  Box, makeStyles } from '@material-ui/core'
+import { Grid, Container, Paper, Box, makeStyles } from '@material-ui/core'
 import { useSelector, useDispatch } from 'react-redux'
 import Card from '../../components/AdminComponents/Dashboard/Card'
 import OrderTable from '../../components/AdminComponents/Dashboard/OrderTable'
 import UserAvatar from "../../components/AdminComponents/Dashboard/UserAvatar"
-import { getAllOrersRequest} from '../../store/actions/actionCreator'
+import { getAllOrersRequest } from '../../store/actions/actionCreator'
 import LoadingIcon from '../../components/AdminComponents/LoadingIcon'
 import NoDataFound from '../../components/AdminComponents/NoDataFound'
 
@@ -63,7 +63,11 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "80px",
   },
   item: {
-    paddingLeft: "60px"
+    // paddingLeft: "60px"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 }
 ))
@@ -73,13 +77,15 @@ export default function Overview() {
   const classes = useStyles()
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getAllOrersRequest({page: 1, pageSize: 40, status: "", sort: "datedesc"}))
-  },[])
+    dispatch(getAllOrersRequest({ page: 1, pageSize: 40, status: "", sort: "datedesc" }))
+  }, [])
 
-  const data = useSelector(state => state.order.order.result)
-  const dataCount = useSelector(state => state.order.order.count) // number of orders
-  const loading = useSelector(state => state.order.loading) // loading status
-  const error = useSelector(state => state.order.error) // error message
+  const redux = useSelector(state => state.order)
+  const loading = redux.loading // loading status
+  const data = redux.order.result
+  const dataCount = redux.order.count // number of orders
+  const error = redux.error // error message
+
   if (!loading && dataCount) {
     const count = []
     UserName = []
@@ -88,7 +94,7 @@ export default function Overview() {
         count.push(row.userDetail[0]._id)
         UserName.push(row.userDetail[0].name)
       }
-      if (count.length === 4 ) break
+      if (count.length === 4) break
     }
   }
 
@@ -96,70 +102,70 @@ export default function Overview() {
   return (
     <>
       {loading && <LoadingIcon />}
-      {!loading && dataCount > 0 && (
-      <>
-        <Container maxWidth="lg" className={classes.body}>
-          <Box fontWeight="fontWeightBold" mb={1} fontSize={35}>
-            Dashboard
+      {!loading && redux.order.page === "orders" && (
+        <>
+          <Container maxWidth="lg" className={classes.body}>
+            <Box fontWeight="fontWeightBold" mb={1} fontSize={35}>
+              Dashboard
           </Box>
-          <Box fontWeight="fontWeightBold" mb={2} fontSize={30} color="#9e9e9e">
-            Welcome Back!
+            <Box fontWeight="fontWeightBold" mb={2} fontSize={30} color="#9e9e9e">
+              Welcome Back!
           </Box>
-          <Box fontWeight="fontWeightBold" mb={2} fontSize={25}>
-            Quick status
+            <Box fontWeight="fontWeightBold" mb={2} fontSize={25}>
+              Quick status
           </Box>
-          <Grid container spacing={6}>
+            <Grid container spacing={6}>
 
-            {[1, 2, 3, 4].map((x, i) =>
-        (
-          <Grid item>
-            <Card key={x} other={i} />
-          </Grid>
-        )
-        )}
-          </Grid>
-          <Paper elevation={0}>
-            <Box mt={10} pl={2} pb={5}>
-              <Box fontWeight="fontWeightBold" fontSize={25} ml={1} pt={3} mb={2}>
-                Recent Order
+              {[1, 2, 3, 4].map((x, i) =>
+              (
+                <Grid item>
+                  <Card key={x} other={i} />
+                </Grid>
+              )
+              )}
+            </Grid>
+            <Paper elevation={0}>
+              <Box mt={10} pl={2} pb={5}>
+                <Box fontWeight="fontWeightBold" fontSize={25} ml={1} pt={3} mb={2}>
+                  Recent Order
               </Box>
-              <OrderTable
-                columns={columns}
-                UserData={data.slice(0,5)}
-              />
-            </Box>
-          </Paper>
+                <OrderTable
+                  columns={columns}
+                  UserData={data.slice(0, 5)}
+                />
+              </Box>
+            </Paper>
 
-          <Paper elevation={0}>
-            <Box mt={10} pl={2} pb={5}>
-              <Box fontWeight="fontWeightBold" fontSize={25} ml={0.5} pt={3} pb={5}>
-                Recent Customer
+            <Paper elevation={0}>
+              <Box mt={10} pl={2} pb={5}>
+                <Box fontWeight="fontWeightBold" fontSize={25} ml={0.5} pt={3} pb={5}>
+                  Recent Customer
               </Box>
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-              >
-                {UserName.map((user) => (
-              // <Grid container alignItems="center" direction="row">
-                  <Grid item xs={3} className={classes.item}>
-                    <UserAvatar 
-                      firstName={user.firstName}
-                      lastName={user.lastName}
-                    />
-                  </Grid>
-              // </Grid>
-            ))}
-              </Grid>
-            </Box>
-          </Paper>
-        </Container>
-      </>
-  )}
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                >
+                  {UserName.map((user) => (
+                    // <Grid container alignItems="center" direction="row">
+                    <Grid item xs={3} className={classes.item}>
+                      <UserAvatar
+                        firstName={user.firstName}
+                        lastName={user.lastName}
+                      />
+                    </Grid>
+                    // </Grid>
+                  ))}
+                </Grid>
+              </Box>
+            </Paper>
+          </Container>
+        </>
+      )}
       {!loading && data !== undefined && data.length === 0 &&
-      <NoDataFound title="No order found!" />} 
-      {!loading && error && console.log(error) }
+        <NoDataFound title="No order found!" />}
+      {!loading && error && console.log(error)}
     </>
   )
 }

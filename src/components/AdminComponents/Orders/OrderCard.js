@@ -34,12 +34,10 @@ const useStyles = makeStyles(() => ({
     marginRight: '10px'
   },
   price: {
-    padding: '4px 10px 2px',
-    border: '2px solid #252525',
-    color: '#252525',
+    color: '#464646',
     borderRadius: '5px',
-    fontSize: '1.3rem',
-    fontWeight: '500'
+    fontSize: '1.2rem',
+    fontWeight: 700
   },
   status: {
     marginTop: '5px',
@@ -79,34 +77,34 @@ const OrderCard = (props) => {
   const displayAddress = `${suburb} ${state.toUpperCase()}`
   return(
     <>
-      <Typography variant="subtitle2" component="h3" className="text-capitalize">
-        {title}
-      </Typography>
       <Grid
         container
         justify="space-between"
         alignItems="center" 
         className={classes.infoCard}
       >
-        <List className={classes.list}>
-          <ListItem className={classes.listItem}>
-            <ListItemIcon className={classes.listIcon}>
-              <LocationOnIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText secondary={displayAddress} />
-          </ListItem>
-          <ListItem className={classes.listItem}>
-            <ListItemIcon className={classes.listIcon}>
-              <TodayIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText secondary={displayDate} />
-          </ListItem>
-        </List>
+        <Typography variant="subtitle2" component="h3" className={classes.price}>
+          {title}
+        </Typography>
         <Typography variant="h5" className={classes.price}>
           $
           {price}
         </Typography>
       </Grid>
+      <List className={classes.list}>
+        <ListItem className={classes.listItem}>
+          <ListItemIcon className={classes.listIcon}>
+            <LocationOnIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText secondary={displayAddress} />
+        </ListItem>
+        <ListItem className={classes.listItem}>
+          <ListItemIcon className={classes.listIcon}>
+            <TodayIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText secondary={displayDate} />
+        </ListItem>
+      </List>
       <Typography
         variant="caption"
         component="p" 

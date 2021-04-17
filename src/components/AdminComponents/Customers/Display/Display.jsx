@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box } from "@material-ui/core"
+import { Grid} from "@material-ui/core"
 import{ Alert} from '@material-ui/lab'
+import Typography from "@material-ui/core/Typography"
 import Card from "../Card"
 import Avatars from "../Avatar"
 import {getCUSDETAILRequest} from "../../../../store/actions"
@@ -14,21 +15,8 @@ const useStyles = makeStyles((theme) => ({
           margin: theme.spacing(1),
         },
     },
-    display:{
-      display:"flex",
-      flexDirection:"row",
-      justifyContent:"space-between",
-      flexWrap:"wrap"
-    },
     card:{
-      [theme.breakpoints.down("xs")]: {
-        width:"100%",
         margin:"5% auto"
-      },
-      [theme.breakpoints.up("sm")]: {
-        width:"60%",
-        margin:"5% auto"
-      },
     },
     title:{
       margin:"2% 2%",
@@ -61,17 +49,21 @@ const Displays=(props)=> {
 
       {users.length!==0&&(
         <div className={classes.root}>
-          <Box>
-            <Box className={classes.display}>
-              <Box margin="auto">
+          <Grid container direction="column">
+            <Grid container item lg spacing={4}>
+              <Grid item lg={4} style={{margin:"auto"}}>
                 <Avatars UserData={users} />
-              </Box>
-              <Box className={classes.card}>
+              </Grid>
+              <Grid item lg={8} className={classes.card}>
                 <Card UserData={users} /> 
-              </Box> 
-            </Box>
-            <Box className={classes.title}>Order History</Box> 
-          </Box>
+              </Grid> 
+            </Grid>
+            <Grid container style={{marginLeft:"2vh"}}>
+              <Typography variant="h6">Order History</Typography> 
+            </Grid>
+          </Grid>
+         
+ 
         </div>
     )}
       {users.length===0&&!loading&&(

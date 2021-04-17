@@ -39,6 +39,12 @@ import HomeComponentStyle from '../styles/HomeComponentStyle'
 
 
 const useStyles = makeStyles((theme) => ({
+  mobile: {
+    [theme.breakpoints.between('xs','sm')]: {
+      marginLeft: '10px',
+    },
+  },
+
   pickerPosition: {
     paddingTop: '4vh'
     // [theme.breakpoints.down('sm')]: {
@@ -57,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     [theme.breakpoints.down('sm')]: {
+      marginLeft: '30px',
       paddingTop: '15vh',
     },
     [theme.breakpoints.between('sm','md')]: {
@@ -160,48 +167,33 @@ export default function HomeSelectForm() {
   // 首页处理order data存储到local sotrage
   const history = useHistory()
   const onSubmit = data => {
-    // console.log(data)
-    // if(data.bedRoomNum!=="" && data.bathRoomNum!=="" && data.type!==""
-    //     &&data.postcode!=="" &&data.date!=="" &&data.time!==0) {
-      // 防止有人不选时间
-      // const pickDate = date.format(data.date, 'YYYY-MM-DD') 
-      // const pickTime = date.format(data.time, 'HH:mm:ss') 
-      // const totalDate = `${pickDate}T${pickTime}Z`
-  
+    const userinfoo = JSON.parse(localStorage.getItem('userInfo'))
+    const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
+    if(userinfoo){
       const newData = {
         // ...postData,
         bedroomNum:data.bedRoomNum,
         bathroomNum:data.bathRoomNum,
         contact:data.number,
         propertyType:data.propertyType,
-        // type:data.type,
-        // address:{
-          // ...postData.address,
         postcode:data.postcode,
-        // },
-        // startTime:totalDate,
-        // starDate:data.date,
-        // starTime:data.time,
-        // totalDate:totalDate
-        // endTime:totalDate, // endtime 什么时候设置？     
       }
-      // console.log(newData)
       localStorage.setItem('homeOrderData',JSON.stringify(newData)) 
       history.push("/order")
-
-      // 🌟dispatch一个action
-      // dispatch(postRegularRequest(newData)) // 发送saga请求
-    // }
-    // else{
-    //   console.log('Must pick all the info')
-    // }
+    }
+    else if(employeeinfoo) {
+      history.push("/employee-orders")
+    }
+    else{
+      handleClickOpen()
+    }
   } 
 
   return ( 
     <Box>
       <Container maxWidth="lg" className={classes.pickerPosition}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container spacing={3}>
+          <Grid container spacing={3} className={classes.mobile}>
             {/* 1. Bedroom */}
             <Grid item xs={12} md={3}>
               <FormControl className={cssstyle.Picker}>
@@ -296,27 +288,26 @@ export default function HomeSelectForm() {
 
           <Box className={classes.buttonPosition}>
             {/* 如果没有authLevel，弹出登陆，如果有，正常下单按钮submit属性 */}
-            {localStorage.getItem('authLevel')? (
-              <Button
-                className={buttonstyle.bookingButton}
-                variant="contained"
-                type="submit"
-                id="back-to-top-anchor"
-                // href="/order" // 跳转到order page
-              >
-                Booking from $80
-              </Button>
-          ) : (
+            {/* {localStorage.getItem('authLevel')? ( */}
             <Button
               className={buttonstyle.bookingButton}
               variant="contained"
-              // type="submit"
+              type="submit"
               id="back-to-top-anchor"
-              onClick={handleClickOpen}
             >
               Booking from $80
             </Button>
-          )}
+            {/* ) : (
+            <Button
+              className={buttonstyle.bookingButton}
+              variant="contained"
+              type="submit"
+              id="back-to-top-anchor"
+              // onClick={handleClickOpen}
+            >
+              Booking from $80
+            </Button>
+          )} */}
           </Box>
 
 

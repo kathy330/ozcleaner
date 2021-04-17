@@ -52,7 +52,7 @@ export default function Avatars(props){
           </Grid>
     
           <Grid item xs>
-            <Box color="white" bgcolor="#89b153" p={1} borderRadius={15} fontWeight={700} textAlign="center">
+            <Box color="white" bgcolor="#89b153" p={1} borderRadius={15} fontWeight={700} textAlign="center" maxWidth="20vh" margin="auto">
               Customer
             </Box>
           

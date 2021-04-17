@@ -15,7 +15,7 @@ import{ Alert} from '@material-ui/lab'
 import date from 'date-and-time'
 import { Link } from 'react-router-dom'
 import TablePagination from '@material-ui/core/TablePagination'
-import {getSTAFFDETAILTABLERequest, updateOrderRequest} from "../../../../store/actions"
+import {getOrderByTargetRequest, updateOrderRequest, changeOrder} from "../../../../store/actions"
 import * as Status from '../../../UIComponents/Status'
 
 const useStyles = makeStyles(() => ({
@@ -27,26 +27,15 @@ const useStyles = makeStyles(() => ({
     color: "white",
     borderRadius: "25px",
   },
-  name:{
-    color:"#007bf5"
+  // name:{
+  //   color:"#007bf5"
 
-  },
-  check: {
-    display:"inline-block",
-    margin:" 0 3%",
+  // },
+  btn: {
+    margin:" 3% 6%",
     minWidth:"120px",
     color:"white"
   },
-  delete: {
-    display:"inline-block",
-    margin:" 0 3%",
-    minWidth:"120px",
-    color:"white"
-  },
-  action:{
-    display:"flex",
-    flexDirection:"row"
-  }
 }))
 
 function displayTime(time) {
@@ -75,17 +64,17 @@ function isButton(words) {
   return <Status.GreyStatus>{words.status}</Status.GreyStatus>
 }
 
-function isCancel(user,classes,handleCancelOrder,handleFinishOrder) {
+function isCancel(user,classes,handleAction, index) {
   const level = localStorage.getItem('authLevel')
   if(user.status==='confirmed') {
     return  (
       <Button 
         variant="contained"
         color="secondary"
-        className={classes.delete}
+        className={classes.btn}
         id={user.type}
         value={user._id}
-        onClick={handleCancelOrder}
+        onClick={() => handleAction(user._id, user.type, "cancelled", index)}
       >
         Cancel
       </Button>
@@ -96,10 +85,10 @@ function isCancel(user,classes,handleCancelOrder,handleFinishOrder) {
       <Button 
         variant="contained"
         color="secondary"
-        className={classes.delete}
+        className={classes.btn}
         id={user.type}
         value={user._id}
-        onClick={handleFinishOrder}
+        onClick={() => handleAction(user._id, user.type, "finished", index)}
       >
         Finish
       </Button>
@@ -109,7 +98,7 @@ function isCancel(user,classes,handleCancelOrder,handleFinishOrder) {
     <Button 
       variant="contained"
       color="secondary"
-      className={classes.delete}
+      className={classes.btn}
       disabled
     >
       Cancel
@@ -125,7 +114,7 @@ function isAuth(user,classes) {
       return(
         <Button 
           variant="contained"
-          className={classes.check}
+          className={classes.btn}
           color="primary"
           component={Link} 
           to={`/admin/orders/${user._id}?type=${user.type}`}
@@ -139,7 +128,7 @@ function isAuth(user,classes) {
     return(
       <Button 
         variant="contained"
-        className={classes.check}
+        className={classes.btn}
         color="primary"
         component={Link} 
         to={`/order-detail/${user._id}?type=${user.type}`}
@@ -152,19 +141,20 @@ function isAuth(user,classes) {
  
 
 const BasicTable=(props)=>{
-  const {data}=props
+  const {data, type}=props
   const classes = useStyles()
   const dispatch=useDispatch()
 
-  const users =useSelector(state => state.staffDetailsTable.staffDetailsTable) 
-  const loading = useSelector(state => state.staffDetailsTable.loading)
-  // const error = useSelector(state => state.staffDetailsTable.error)
+  const redux = useSelector(state => state.order)
+  const users = redux.order.result
+  const {loading} = redux
 
   
   const dispatchRequested = () => {
-    dispatch(getSTAFFDETAILTABLERequest(data))
+    dispatch(getOrderByTargetRequest({id:data, type:type}))
   }
-    useEffect(()=>{
+  
+  useEffect(()=>{
       dispatchRequested()
   },[])
 
@@ -180,28 +170,20 @@ const BasicTable=(props)=>{
     setPage(0)
   }
 
-  // cancel orders
-  const handleCancelOrder = (event) => {
-    if(event.target.value&&event.target.id){
-      const body={id:event.target.value,orderstatus:"cancelled",type:event.target.id}
-      dispatch(updateOrderRequest(body))
-    }
-  }
-
   // finish orders
-  const handleFinishOrder = (event) => {
-    if(event.target.value&&event.target.id){
-      const body={id:event.target.value,orderstatus:"finished",type:event.target.id}
-      dispatch(updateOrderRequest(body))
-    }
+  const handleAction = (id, ordertype, status, index) => {
+    
+    dispatch(changeOrder(page * rowsPerPage + index))
+    const body={id:id, update:{status:status}, type:ordertype}
+    dispatch(updateOrderRequest(body))
+    
   }
 
 
   return (
     <>
-      {users.loading&&<p>Loading...</p>}
-
-      {users.length!==0&&( 
+      {loading&&<p>Loading...</p>}
+      {!loading && redux.order.page === "orderbytarget" &&( 
 
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
@@ -215,23 +197,25 @@ const BasicTable=(props)=>{
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user) => (
+            {users.slice(page * rowsPerPage, 
+            page * rowsPerPage + rowsPerPage).map((user, index) => (
               <TableRow key={user._id}>
                 <TableCell align="center">{user.type+user.taskID}</TableCell>
                 <TableCell align="center">
                   {isButton(user)}      
                 </TableCell>
                 <TableCell align="center">
-                  <Typography className={classes.name}> 
+                  <Typography> 
                     {user.firstName}
                     {' '}
                     {user.lastName}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">{displayTime(user.createdAt)}</TableCell>
-                <TableCell align="center" className={classes.action}>
+                <TableCell align="center">
                   {isAuth(user,classes)}
-                  {isCancel(user,classes,handleCancelOrder,handleFinishOrder)}
+                  {isCancel(user,classes,
+                    handleAction, index)}
                 </TableCell>
               </TableRow>
             ))}

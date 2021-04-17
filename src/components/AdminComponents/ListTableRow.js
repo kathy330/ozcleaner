@@ -10,6 +10,7 @@ const useStyle = makeStyles((theme) => ({
   },
   actionBtn: {
     margin: '0 10px',
+    width: '120px',
     [theme.breakpoints.down('xs')]: {
       margin: '0 5px',
     },

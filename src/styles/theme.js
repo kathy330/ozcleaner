@@ -1,6 +1,9 @@
 import { createMuiTheme } from '@material-ui/core/styles'
+import createBreakpoints from "@material-ui/core/styles/createBreakpoints"
 
+const breakpoints = createBreakpoints({})
 const theme = createMuiTheme({
+  breakpoints,
   typography: {
     fontFamily: 'museo-sans, sans-serif',
     fontSize: 15,
@@ -13,7 +16,15 @@ const theme = createMuiTheme({
     },
     h3: {
       fontWeight: 700,
+      marginBottom: '20px',
+      [breakpoints.down('xs')]: {
+        fontSize: '2rem',
+      }
     },
+    h2: {
+      fontWeight: 600,
+      fontSize: '1.8rem',
+    }
   },
 
   palette: {
@@ -47,11 +58,20 @@ const theme = createMuiTheme({
   },
 
   overrides: {
-    MuiDialog: {
+    MuiTableCell: {
       root: {
-        padding: '20px 20px 30px 20px',
+        borderBottom: 'none',
+        padding: '8px',
+        fontSize: '1rem',
       },
-    },
+      head: {
+        fontWeight: 700,
+        fontSize: '1.3rem',
+        [breakpoints.down('xs')]: {
+          fontSize: '1.1rem',
+        },
+      }
+    }
   },
 })
 

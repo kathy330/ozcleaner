@@ -7,8 +7,10 @@ import { makeStyles } from '@material-ui/core'
 const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+    marginBottom: '50px',
+    marginTop: 'auto',
+  },
 }))
 
 /**

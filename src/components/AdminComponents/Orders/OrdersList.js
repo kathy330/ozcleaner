@@ -15,13 +15,14 @@ import OrderSelectBox from './OrderSelectBox'
 const useStyles = makeStyles(() => ({
   left: {
     display: 'flex',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     flexDirection: 'column',
     padding: '15px',
   },
   right: {
-    background: '#fff',
-    minHeight: '75vh'
+    marginTop: '30px',
+    minHeight: '65vh',
+    padding: 0,
   },
   card: {
     background: '#fff',
@@ -80,7 +81,7 @@ function OrdersLists(props) {
   const loading = useSelector(state => state.order.loading) // loading status
   const error = useSelector(state => state.order.error) // error message
   const matches = useMediaQuery('(max-width:480px)') // media query breakpoint
-  
+  // console.log('test', data)
   const returnPage = (totalCount) => {
     if (totalCount < pageSize) {
       return 1
@@ -152,7 +153,7 @@ function OrdersLists(props) {
     listPayload.page = 1
     dispatch(getAllOrersRequest(listPayload))
     const path = formatPath(listPayload.sort, listPayload.status)
-    console.log(path)
+    // console.log(path)
     history.push(`/admin/orders/?sort=${listPayload.sort}`)
   }
 
@@ -167,6 +168,7 @@ function OrdersLists(props) {
     listPayload.status = (listType === 'admin') ? '' : 'confirmed'
     dispatch(getAllOrersRequest(listPayload))
     if (listType === 'admin'){
+      setOrderStatus('')
       history.push(`/admin/orders/`)
     } else {
       history.push(`/employee-orders/`)

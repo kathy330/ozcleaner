@@ -11,6 +11,18 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
+const SelectStyle = {
+  anchorOrigin: {
+    vertical: "bottom",
+    horizontal: "left"
+  },
+  transformOrigin: {
+    vertical: "top",
+    horizontal: "left"
+  },
+  getContentAnchorEl: null
+}
+
 /**
  * OrderSelectBox() is a pagination components
  * @param path: (string) route path based on the parent component's path
@@ -32,11 +44,12 @@ const OrderSelectBox = (props) => {
           displayEmpty
           onChange={(e) => selectStatusChange(e)}
           inputProps={{ 'aria-label': 'Without label' }}
+          MenuProps={SelectStyle}
         >
           <MenuItem value="">All Status</MenuItem>
           <MenuItem value="confirmed">Confirmed</MenuItem>
-          <MenuItem value="finished">Finished</MenuItem>
           <MenuItem value="in-progress">In Progress</MenuItem>
+          <MenuItem value="finished">Finished</MenuItem>
           <MenuItem value="cancelled">Cancelled</MenuItem>
         </Select>
       </Route>

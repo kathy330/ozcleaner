@@ -1172,7 +1172,7 @@ function Order(props) {
                           {/* 12:00PM, Friday, 29 Jan 2021 */}
                           {/* <Typography variant='h6'>{totalDate}</Typography> */}
                           {haveDate? (
-                            <Typography className={classes.text}>
+                            <Typography variant='h6' className={classes.text}>
                               <Moment format="dddd HH:mm, DD MMM YYYY">{totalDate}</Moment>
                             </Typography>
                         )

@@ -87,7 +87,7 @@ export const buttonStyle = makeStyles((theme) => ({
     color: theme.palette.primary.contrastText,
     // marginInline: '20px',
     // paddingInline: '50px', // 太长，小屏幕装不下
-    padding:'8px 60px',
+    padding: '8px 60px',
     '&:hover': {
       background: theme.palette.primary.hover, // #0050c1
       boxShadow: '0px 2px 10px #888',
@@ -98,9 +98,9 @@ export const buttonStyle = makeStyles((theme) => ({
 export const statusStyle = makeStyles((theme) => ({
   green: {
     color: 'white',
-    minWidth: '120px',
+    minWidth: '135px',
     background: theme.palette.green.main,
-    borderRadius: '25px',
+    borderRadius: '20px',
     '&:disabled': {
       color: 'white',
     },
@@ -108,8 +108,8 @@ export const statusStyle = makeStyles((theme) => ({
   },
   grey: {
     background: theme.palette.grey.main,
-    minWidth: '120px',
-    borderRadius: '25px',
+    minWidth: '135px',
+    borderRadius: '20px',
     '&:disabled': {
       color: 'white',
     },
@@ -117,16 +117,16 @@ export const statusStyle = makeStyles((theme) => ({
   },
   red: {
     background: theme.palette.red.main,
-    minWidth: '120px',
-    borderRadius: '25px',
+    minWidth: '135px',
+    borderRadius: '20px',
     '&:disabled': {
       color: 'white',
     },
   },
   blue: {
     background: theme.palette.blue.main,
-    minWidth: '120px',
-    borderRadius: '25px',
+    minWidth: '135px',
+    borderRadius: '20px',
     '&:disabled': {
       color: 'white',
     },
@@ -134,8 +134,8 @@ export const statusStyle = makeStyles((theme) => ({
   },
   yellow: {
     background: theme.palette.yellow.main,
-    minWidth: '120px',
-    borderRadius: '25px',
+    minWidth: '135px',
+    borderRadius: '20px',
     '&:disabled': {
       color: 'white',
     },

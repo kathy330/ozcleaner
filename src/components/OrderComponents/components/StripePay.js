@@ -155,6 +155,7 @@ export default function CheckoutForm({price,paystatus,data}) {
   
     const user = JSON.parse(localStorage.getItem('userInfo'))
     const userObjectId = user.data.objectID
+    const userid = user.data.ID
     // console.log(userObjectId)
     const postTitle = `${otherdata.type} Bedroom x ${otherdata.bedRoomNum} Bathroom x ${otherdata.bathRoomNum}`
     const newData = {
@@ -180,7 +181,8 @@ export default function CheckoutForm({price,paystatus,data}) {
       price:price,
       propertyType:propertyType,
       // userDetail:`ObjectId(${objectID})`
-      userDetail:userObjectId
+      userDetail:userObjectId,
+      userID:userid
       // userDetail:'604cb4dfc875675915d0d0a5'
     }
     dispatch(postOrderRequest(newData)) // 在saga里控制跳转下一个页面

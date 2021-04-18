@@ -86,9 +86,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # 首页 (Dongyu)
 
-1. 可以选择房间数然后选择 booking 跳转到 order 页面
+1. 可以选择房间数，type 和 postcode 不是必填。然后 booking 跳转到 order 页面
 2. 如果没登陆，点击 booking 会弹出登陆
-3. 如果下滑，也可以从 navbar 进入下单页面
+3. 如果下滑，也可以从 navbar 进入下单页面,右下角有返回顶部按钮
 4. mobile 移动端样式
 
 # Order (Dongyu)
@@ -96,7 +96,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 1. 如果是 employee 或者 admin 不能进入这个页面，会 history push 到他们自己的首页
 2. 右侧确认栏会随着浏览器下滑 自动下滑（sticky）
 3. 选中 regular 后可以添加删除 extra/选中 end 后，全部 extra 会选中并且不能取消
-4. 如果支付成功，可以 post order，如果卡号无效或者支付不成功，不会 post，但可以重新填正确的信息
+4. 如果支付成功，可以 post order，卡号无效或者支付不成功，不会 post，但可以重新填正确的信息
 5. 如果某项必填没有写，会有提示
 6. mobile 移动端样式
 
@@ -119,3 +119,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # Admin Customers (Kathy)
 
 # Admin Staffs (Kathy)
+
+# Footer (Kathy)

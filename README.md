@@ -71,30 +71,34 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # 登陆 (yanbo)
 
-# 注册
+# 注册 (yanbo)
 
-# 忘记密码
+# 忘记密码 (yanbo)
 
-# Navbar
+# Navbar (Dongyu)
 
 1. 不同身份 navbar 展示不一样，左侧 icon 点击去到不同身份的首页
+2. 首页 navbar 下滑自动显示，其他页面固定在顶部
+3.
 
-# Order
+# Order (Dongyu)
 
 1. 如果是 employee 或者 admin 不能进入这个页面，会 history push 到他们自己的首页
 2. 右侧确认栏会随着浏览器下滑 自动下滑（sticky）
-3.
+3. a
 
-# employee 接单大厅
+# employee 接单大厅 (Kathy)
 
-# My order
+# My order (Olivia)
 
-# My profile
+# Order details (Kangkang)
 
-# Admin Dashboard
+# My profile (Mengxuan)
 
-# Admin Order
+# Admin Dashboard (Wystan)
 
-# Admin Customers
+# Admin Order 左侧 (Kathy)
 
-# Admin Staffs
+# Admin Customers (Kathy)
+
+# Admin Staffs (Kathy)

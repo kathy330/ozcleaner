@@ -214,7 +214,7 @@ function OrdersLists(props) {
                       title={row.title}
                       price={row.price}
                       address={row.address}
-                      date={row.startTime}
+                      startDate={row.startTime}
                       status={row.status}
                       classToUse={classToUse}
                       name={row.firstName}

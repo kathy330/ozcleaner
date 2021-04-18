@@ -68,7 +68,7 @@ function displayPage(repo) {
 
   // need user objID & employee objID
   if (typeof (repo) === 'string') { return <LoadingIcon /> }
-  const { startTime, title, firstName, address, lastName,
+  const { startTime, endTime, title, firstName, address, lastName,
     cabinets, fridge, oven, interiorWindows, rating, review, price, status, type, phoneNumber, _id, userDetail, employeeDetail } = repo
   // console.log(_id)
   // let re = /{|}|":"|"address1|"address2|"suburb|"state|"postcode|":/g
@@ -105,6 +105,7 @@ function displayPage(repo) {
           employeeFirstName={employeeFirstName}
           employeeLastName={employeeLastName}
           startTime={startTime}
+          endTime={endTime}
           orderTitle={title}
           customerFirstName={firstName}
           customerLastName={lastName}

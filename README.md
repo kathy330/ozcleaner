@@ -1,10 +1,11 @@
 # Getting Started with Create React App
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
- 
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -68,16 +69,23 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-
 # 登陆 (yanbo)
 
 # 注册
 
 # 忘记密码
 
-# 下单
+# Navbar
 
-# employee接单大厅
+1. 不同身份 navbar 展示不一样，左侧 icon 点击去到不同身份的首页
+
+# Order
+
+1. 如果是 employee 或者 admin 不能进入这个页面，会 history push 到他们自己的首页
+2. 右侧确认栏会随着浏览器下滑 自动下滑（sticky）
+3.
+
+# employee 接单大厅
 
 # My order
 
@@ -85,15 +93,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # Admin Dashboard
 
-
 # Admin Order
-
 
 # Admin Customers
 
-
 # Admin Staffs
-
-
-
-

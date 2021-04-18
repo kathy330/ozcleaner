@@ -73,8 +73,7 @@ export default function TextForm() {
     &&data.postcode!=="" &&data.birthday!=="" 
     // &&data.email!==""&&data.password!==""
     &&data.firstName!=="" &&data.lastName!=="" &&data.phone!==""
-    &&data.address1!==""
-    &&data.address2!==""&&data.suburb!=="" &&data.state!==""
+    &&data.address1!==""&&data.suburb!=="" &&data.state!==""
     ) {
   const newData = {
     address:{

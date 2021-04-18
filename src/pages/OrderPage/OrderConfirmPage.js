@@ -110,8 +110,8 @@ function OrderConfirm() {
   return (
     <>
       {employeeinfoo?history.push("/employee-orders"):''}
-      {load && <LoadingIcon />}
       <Nav />
+      {load && <LoadingIcon />}
       {!load && (
       <Box className={classes.root}>
         <Container>

@@ -7,6 +7,7 @@ import CreatedBy from './Customers/CreatedBy'
 import AssginedTo from './Customers/AssginedTo'
 import Location from './Customers/Location'
 import StartTime from './Customers/StartTime'
+import EndTime from './Customers/EndTime'
 import Extra from './Customers/Extra'
 import Review from './Customers/Review'
 import Status from './Customers/Status'
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const AdminCustomersLeft = ({ startTime, orderTitle,
+const AdminCustomersLeft = ({ startTime, endTime, orderTitle,
   customerFirstName, customerLastName, location, rate, cab, fri, ov, intWin, reviewText,
   orderStatus, typeOfOrder, phone, userObjectID, employeeObjectID, userFirstName,
   userLastName, employeeFirstName, employeeLastName, _id }) => {
@@ -77,6 +78,8 @@ const AdminCustomersLeft = ({ startTime, orderTitle,
         <PhoneNumber phoneNumber={phone} />
         <Divider className={classes.divider} />
         <StartTime startTime={startTime} />
+        <Divider className={classes.divider} />
+        <EndTime endTime={endTime} />
         <Divider className={classes.divider} />
         <Extra cabinets={cab} fridge={fri} oven={ov} interiorWindows={intWin} type={typeOfOrder} />
         <Divider className={classes.divider} />

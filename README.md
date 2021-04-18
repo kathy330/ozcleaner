@@ -68,158 +68,31 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-olivia 7777777777777
 
-## 18/01/2021 kathy
+# 登陆 (yanbo)
 
-## Dongyu 2021.1.18
+# 注册
 
-## new kangkang 2021.1.18 20:19
+# 忘记密码
 
-Kathy 2021.1.18
-Dongyu 2021.1.18
-Mengxuan 2021.1.18
-kangkang 2021.1.18
-Erik 2021.1.18
+# 下单
 
-## 18/01/2021 yanbo 
-testing check
-Kathy new 2021.1.18
-20:54 new
-wystan 2021.1.18
+# employee接单大厅
 
-9:01 new by mengxuan
-12345678
+# My order
 
-------------------------
-dongyu 2021.1.19
+# My profile
 
-test - 1
-test - 2
-test - 3
-test - 5
-test - 6
-
-Mengxuan 1/19 so hot today
-
-kangkang add a conflict -- 15:18
-
-test - 7
-test - 8
-
-Kathy 21/01/2021
-Olivia This is a test.
-
-test - 9
+# Admin Dashboard
 
 
-Yanbo testing3
-1.22 mengxuan test
+# Admin Order
 
 
+# Admin Customers
 
 
-=======
-1.23 wystan
-1.23 Erik
-1.23 olivia
-1.23 mengxuan
-1.23 DOngyu
-1.23 kangkang
-1.23 Yanbo
-1.23 Kathy
-
-========1.24========
-1.24 Yanbo
-1.24 wystan
-1.24 mengxuan
-1.24 D0ngyu
-1.24 Kathy
-1.24 kangkang
-1.24 olivia
-1.24 Erik
-
-========1.25========
-1.25 wystan
-1.25 Kathy
-1.25 Yanbo
-1.25 kangkang
-1.25 olivia
-1.25 mengxuan
-1.25 dongyu
-1.25 Erik
-========1.26========
-1.26 Yanbo
-1.26 Kathy
-1.26 wystan
-1.26 mengxuan
-1.26 olivia
-1.26 dongyu
-1.26 kangkang
-1.26 Erik
-
-========1.27========
-1.27 mengxuan
-1.27 wystan
-1.27 yanbo
-1.27 dongyu
-1.27 kangkang
-1.27 Kathy
-1.27 olivia
-1.27 Erik
-1.27 I am ghost
-
-========1.28========
-1.28 wystan
-1.28 dongyu
-1.28 mengxuan
-1.28 olivia
-1.28 kangkang
-1.28 ghost again
-1.28 Yanbo
-1.28 Kathy
-1.28 conflict test
-1.28 Erik
-
-========1.29========
-1.29 wystan
-1.29 kangkang
-1.29 ghost1
-1.29 ghost2
-1.29 Erik
-777777788888899999
-1.29 dongyu
-1.29 conflict-test1
-testss
-1.29 olivia
-1.29 Yanbo
-1.29 conflict-test1
-1.29 mengxuan
-1.29 kathy
-eeeeeeeeeeeeee
-ssssssssssss
-1.29 conflict1
-1.29 conflict2
-1.29 conflict3
-1.29 sourcetree
-1.29 conflict4
-1.29 test
-========1.30========
-1.30 try some conflict
-1.30 wystan-1 This change
-1.30 Kathy
-1.30 try some conflict - cause problem - these is another problem
-1.30 wystan-1 This change should work
-1.30 mengxuan
-1.30 conflict
-1.30 olivia
-========1.31========
-1.31 kangkang
-1.31 this is conflict
-1.31 dongyu
-1.31 Erik
-
-1.31 yanbo
+# Admin Staffs
 
 
 

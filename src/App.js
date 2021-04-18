@@ -46,15 +46,15 @@ function App() {
         {/* 3 user下订单后展示 */}
         <ProtectedRoute path="/order/confirm" exact component={OrderConfirmPage} />
         {/* 4 user和employee的profile */}
-        <Route path="/profile" exact component={ProfilePage} />
+        <ProtectedRoute path="/profile" exact component={ProfilePage} />
         {/* 5 user的Navbar My order按钮 */}
-        <Route path="/users/:id" exact component={OrderCusDetailPage} />
+        <ProtectedRoute path="/users/:id" exact component={OrderCusDetailPage} />
         {/* 6 employee的Navbar My order按钮 */}
-        <Route path="/employees/:id" exact component={OrderStaffDetailPage} />
+        <ProtectedRoute path="/employees/:id" exact component={OrderStaffDetailPage} />
         {/* 7 employee接单大厅Browse Task */}
-        <Route path="/employee-orders" exact component={EmployeeOrderList} />
+        <ProtectedRoute path="/employee-orders" exact component={EmployeeOrderList} />
         {/* 8 user/employee myorder里面的子页链接 */}
-        <Route path="/order-detail/:id" exact component={OrderDetailsPage} />
+        <ProtectedRoute path="/order-detail/:id" exact component={OrderDetailsPage} />
      
         {/* 9 admin页面 */}
         <Redirect exact from="/admin" to="/admin/dashboard" />
@@ -65,7 +65,7 @@ function App() {
         <Route path="/forgetpassword/employee" exact component={ForgetPasswordEmployee} />
         <Route path="/resetpassword/employee" exact component={ResetPasswordEmployee} />
  
- 
+
         <Route path="/ui" exact component={UI} />
         <Route path="/dongyu" exact component={DongyuPage} />
         <Route path="/Kangkang" exact component={KangkangPage} />

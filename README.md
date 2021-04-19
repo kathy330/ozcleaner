@@ -71,27 +71,28 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ---
 
-# 登陆 (yanbo)
+# 登陆
 
-# 注册 (yanbo)
+# 注册
 
-# 忘记密码 (yanbo)
+# 忘记密码
 
-# Navbar (Dongyu)
+# Navbar
 
 1. 不同身份 navbar 展示不一样，左侧 icon 点击去到不同身份的首页，还有 protect router，不登陆不能进入首页之外的页面
 2. 首页 navbar 下滑自动显示，其他页面固定在顶部
 3. 如果没登陆，点击 navbar 的 booking 也会弹出登陆
 4. mobile 移动端样式
 
-# 首页 (Dongyu)
+# 首页
 
 1. 可以选择房间数，type 和 postcode 不是必填。然后 booking 跳转到 order 页面
 2. 如果没登陆，点击 booking 会弹出登陆
 3. 如果下滑，也可以从 navbar 进入下单页面,右下角有返回顶部按钮
-4. mobile 移动端样式
+4. Back to the top
+5. mobile 移动端样式
 
-# Order (Dongyu)
+# Order
 
 1. 如果是 employee 或者 admin 不能进入这个页面，会 history push 到他们自己的首页
 2. 右侧确认栏会随着浏览器下滑 自动下滑（sticky）
@@ -100,24 +101,24 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 5. 如果某项必填没有写，会有提示
 6. mobile 移动端样式
 
-# Order Confirm (Dongyu)
+# Order Confirm
 
 1. 下单成功后可以点击 view order 看刚才的订单，如果还没被接单，可以 cancel
 
-# employee 接单大厅 (Kathy)
+# employee 接单大厅
 
-# My order (Olivia)
+# My order
 
-# Order details (Kangkang)
+# Order details
 
-# My profile (Mengxuan)
+# My profile
 
-# Admin Dashboard (Wystan)
+# Admin Dashboard
 
-# Admin Order 左侧 (Kathy)
+# Admin Order 左侧
 
-# Admin Customers (Kathy)
+# Admin Customers
 
-# Admin Staffs (Kathy)
+# Admin Staffs
 
-# Footer (Kathy)
+# Footer

@@ -71,13 +71,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ---
 
-# 登陆 
+# 登陆
 
-# 注册 
+# 注册
 
-# 忘记密码 
+# 忘记密码
 
-# Navbar 
+# Navbar
 
 1. 不同身份 navbar 展示不一样，左侧 icon 点击去到不同身份的首页，还有 protect router，不登陆不能进入首页之外的页面
 2. 首页 navbar 下滑自动显示，其他页面固定在顶部
@@ -89,7 +89,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 1. 可以选择房间数，type 和 postcode 不是必填。然后 booking 跳转到 order 页面
 2. 如果没登陆，点击 booking 会弹出登陆
 3. 如果下滑，也可以从 navbar 进入下单页面,右下角有返回顶部按钮
-4. mobile 移动端样式
+4. Back to the top
+5. mobile 移动端样式
 
 # Order
 
@@ -108,16 +109,16 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # My order
 
-# Order details 
+# Order details
 
-# My profile 
+# My profile
 
-# Admin Dashboard 
+# Admin Dashboard
 
-# Admin Order 左侧 
+# Admin Order 左侧
 
-# Admin Customers 
+# Admin Customers
 
-# Admin Staffs 
+# Admin Staffs
 
-# Footer 
+# Footer

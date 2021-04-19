@@ -195,7 +195,7 @@ const classes = useStyles()
          
         
    
-            <a href="/password">
+            <a href="/forgetpassword">
               <Typography
                 className={classes.mention}
               >

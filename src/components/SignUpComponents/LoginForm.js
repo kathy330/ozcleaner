@@ -24,9 +24,10 @@ export default function LoginDetails() {
     const dispatch = useDispatch()
     const onSubmit = (data) =>{
       dispatch(signin(data))
-      console.log(data.email)
+      //dispatch(signoutAuto())
+      //console.log(data.email)
     }
-
+  
     const signoutHandler = () => {
       dispatch(signout())
     }
@@ -34,7 +35,7 @@ export default function LoginDetails() {
     const userSignin = useSelector((state) => state.userSignin)
     const { userInfo, loading, error } = userSignin
     
-  
+   
 const useStyles = makeStyles((theme) => ({
   [theme.breakpoints.down('sm')]: {
     textAlign:'center',
@@ -114,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
 const classes = useStyles()
     return (
       <>
-   
+        
         <Grid container justify="center">
           <form onSubmit={handleSubmit(onSubmit)}>        
               <DialogTitle className="Dialog-title">

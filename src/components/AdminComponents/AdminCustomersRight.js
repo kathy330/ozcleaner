@@ -64,9 +64,9 @@ function AdminCustomersRight(props) {
     status: { orderStatus }
   })
 
-  useEffect(() => {
-    console.log(state.status, 'state.status')
-  }, [state])
+  // useEffect(() => {
+  //   console.log(state.status, 'state.status')
+  // }, [state])
 
 
   const authLevel = localStorage.getItem('authLevel')

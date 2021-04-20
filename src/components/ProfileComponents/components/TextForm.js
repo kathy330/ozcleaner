@@ -89,11 +89,14 @@ export default function TextForm() {
       lastName:data.lastName,
     }
   } 
-    console.log(newData)
+    // console.log(newData)
     dispatch(updateProfileRequest(newData)) 
   }}
   const detail = useSelector(state => state.employee_in_reducer_index)
-  const handleClose = () =>{setOpen(false)}
+  const handleClose = () =>{
+    setOpen(false)
+    document.location.href = '/profile'
+  }
   const {profile}= detail
 
   return (

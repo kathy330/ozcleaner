@@ -18,10 +18,8 @@ function* fetchRegularUrl()   {
   getApi = `http://localhost:8000/${person}/alltask/${ID}`
   // getApi='http://localhost:8000/employees/alltask/606ae8d38985eb80d70f58e6'
   try{
-    // console.log(header())
     const data = yield call(axios.get, getApi,header())
     yield put({type:actionTypes.GET_HISTORY_SUCCESS,payload:data.data})
-    // console.log(test)
   }
   catch(e) {
     console.log(e)
@@ -37,8 +35,10 @@ function* updateEmployeeProfile(action) {
   updateAPI=`http://localhost:8000/${person}/${ID}`
   try{
     const data = yield call(axios.put, updateAPI ,action.payload,header())
-    // console.log(data)
     yield put({type:'UPDATE_PROFILE_SUCCESS',payload:data})
+    const {lastName} = JSON.parse(data.config.data).name
+    info.data.lastName = lastName
+    localStorage.setItem(`${level}Info`, JSON.stringify(info))
   }
   catch(e) {
     console.log(e)

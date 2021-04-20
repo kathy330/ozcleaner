@@ -3,15 +3,12 @@
 // 并返回新的状态：(state, action) => newState。
 // 您可以将reducer视为事件侦听器，该事件侦听器根据接收到的操作（事件）类型来处理事件。
 import { combineReducers } from 'redux'
-// import regularReducer from './regularClean'
 import userslist from './userslist'
 import order from './orderReducer'
 import CusDetails from "./customersDetail"
 import StaffDetails from './staffsDetail'
+import stats from "./stats"
 import emplyeeReducer from './emplyeeDetail'
-import staffDetailsTable from './staffsDetailTable'
-// import allOrders from './allOrders'
-// import { userRegisterReducer, userSigninReducer } from './userReducer'
 import { userRegisterReducer, userSigninReducer } from './userReducer'
 import {employeeRegisterReducer,employeeSigninReducer} from './employeeReducer'
 import{forgetPasswordReducer,
@@ -22,23 +19,18 @@ resetPasswordEmployeeReducer} from './forgetPassword'
 const rootReducer = combineReducers({
   order,
   userslist,
+  stats,
   cusDetails:CusDetails,
   staffDetails:StaffDetails,
-  staffDetailsTable:staffDetailsTable,
   userRegister: userRegisterReducer,
   userSignin: userSigninReducer,
   employee_in_reducer_index: emplyeeReducer,
-  // userSignin: userSigninReducer,
-  // userRegister: userRegisterReducer,
   employeeSignin: employeeSigninReducer,
   employeeRegister: employeeRegisterReducer,
-  // allOrders,
   forgetPassword:forgetPasswordReducer,
   resetPassword:resetPasswordReducer,
   forgetpasswordEmployee:forgetPasswordEmployeeReducer,
   resetpasswordEmployee: resetPasswordEmployeeReducer
-
-
 })
 export default rootReducer
 

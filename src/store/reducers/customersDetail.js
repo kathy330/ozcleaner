@@ -6,7 +6,7 @@ const initialState = {
   error:null
 }
 
-function CusDetailReducer(state = initialState,action) {
+function cusDetailReducer(state = initialState,action) {
   switch (action.type) {
 
     case actionType.GET_CUSDETAIL_REQUEST:
@@ -34,4 +34,4 @@ function CusDetailReducer(state = initialState,action) {
   }
 }
 
-export default CusDetailReducer
+export default cusDetailReducer

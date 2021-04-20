@@ -6,7 +6,7 @@ const initialState = {
   error:null
 }
 
-function StaffDetailReducer(state = initialState,action) {
+function staffDetailReducer(state = initialState,action) {
   switch (action.type) {
 
     case actionType.GET_STAFFDETAIL_REQUEST:
@@ -34,4 +34,4 @@ function StaffDetailReducer(state = initialState,action) {
   }
 }
 
-export default StaffDetailReducer
+export default staffDetailReducer

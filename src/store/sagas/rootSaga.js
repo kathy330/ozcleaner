@@ -1,30 +1,25 @@
 import {all} from 'redux-saga/effects'
 import OrderSaga from './OrderSaga'
-import EndofleaseSaga from './ECorderSaga'
 import UserListSaga from './userListSaga'
 import EmployeesListSaga from './employeesListSaga'
 import CusDetailSaga from './customersDetail'
-import CusDetailTableSaga from './customersDetailsTable'
 import StaffDetailSaga from './staffsDetail'
-import StaffDetailTableSaga from './staffsDetailsTable'
 import UsersSaga from './usersSaga'
 // // import testSaga from './userRegistrationSaga'
 import EmployeeSaga from './emplyeeDetail'
 import EmployeeCertificationSaga from './employeeSaga'
 import forgetPasswordSaga from './forgetPasswordSaga'
+import statsSaga from "./statsSaga"
 
 export default function* rootSaga() {
   // 如果有更多的放在这下面;
   yield all([
     OrderSaga(),
-    EndofleaseSaga(),
     UserListSaga(),
     EmployeesListSaga(),
     CusDetailSaga(),
-    CusDetailTableSaga(),
     StaffDetailSaga(),
-    StaffDetailTableSaga(),
-    // testSaga(),
+    statsSaga(),
     EmployeeSaga(),
     UsersSaga(),
     EmployeeCertificationSaga(),

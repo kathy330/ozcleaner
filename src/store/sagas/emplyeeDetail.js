@@ -37,7 +37,7 @@ function* updateEmployeeProfile(action) {
   updateAPI=`http://localhost:8000/${person}/${ID}`
   try{
     const data = yield call(axios.put, updateAPI ,action.payload,header())
-    console.log(data)
+    // console.log(data)
     yield put({type:'UPDATE_PROFILE_SUCCESS',payload:data})
   }
   catch(e) {

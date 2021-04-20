@@ -69,7 +69,7 @@ const ParseTextarea = ({ value = '', onChange }) => {
 
 export default function App(props) {
   const { _id, type } = props
-  console.log(props)
+  // console.log(props)
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const [rateStar, setRateStar] = useState(0.0)

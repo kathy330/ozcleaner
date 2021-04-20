@@ -12,7 +12,7 @@ import Footer from '../../components/FooterComponents/Footer'
 
 function CustomersDetailsPage(match){
     const{id}=match.match.params
-    console.log(id)
+    // console.log(id)
     return (
      
       <Box bgcolor="#fafafa">

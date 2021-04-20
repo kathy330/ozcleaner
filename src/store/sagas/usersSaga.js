@@ -7,7 +7,8 @@ function* userLogin(action) {
     const userInfo = 
     yield call(axios.post,'http://localhost:8000/users/login', action.payload)
     yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
-    localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    const info ={data: userInfo.data}
+    localStorage.setItem('userInfo', JSON.stringify(info))
 
     localStorage.setItem("authLevel", "user") // 可以进入order页面
     document.location.href = '/order'

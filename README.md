@@ -107,11 +107,24 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # employee 接单大厅
 
+
 # My order
+1. user和employee的 total orders（包括正在进行和已经完成的订单） 和 completed orders（已经完成的订单）的数目会根据实际订单的状态进行自动更新
 
 # Order details
+1. 根据订单的状态展示出不同的按钮.
+	(1)For employee :"confirmed" -> "accept" 
+					 "in-progress"-> "finish", 
+	(2)For user: "confirmed" -> "cancel"
+	(3)For admin: "in-progress"-> "cancel" AND "finish" admin可以进行cancel，然后订单状态会从”in-progress“变成“confirmed“,
+		相关的employee的信息会删除，其他的employee可以在用户大厅重新接单。admin”可以也有权利可以结束订单
+2. 在employee接完订单之后，只有在现在的时间大于start time的时候，employee才能结束订单，其他时候是结束不了的。结束了订单之后会把当前时间展示到
+	end time里。
 
 # My profile
+1. user和employee可以更新他们的个人信息，跟新完会pop up 更新成功对话框
+2. order history可以看到历史订单
+3. 支持mobile移动端样式
 
 # Admin Dashboard
 

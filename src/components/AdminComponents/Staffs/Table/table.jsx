@@ -192,7 +192,7 @@ const BasicTable=(props)=>{
               <TableCell align="center">Order ID</TableCell>
               <TableCell align="center">Status</TableCell>
               <TableCell align="center">Customer</TableCell>
-              <TableCell align="center">Created At</TableCell>
+              <TableCell align="center">StartTime</TableCell>
               <TableCell align="center">Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -211,7 +211,7 @@ const BasicTable=(props)=>{
                     {user.lastName}
                   </Typography>
                 </TableCell>
-                <TableCell align="center">{displayTime(user.createdAt)}</TableCell>
+                <TableCell align="center">{displayTime(user.startTime)}</TableCell>
                 <TableCell align="center">
                   {isAuth(user,classes)}
                   {isCancel(user,classes,

@@ -1,10 +1,11 @@
 # Getting Started with Create React App
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
- 
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -68,159 +69,56 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-olivia 7777777777777
+---
 
-## 18/01/2021 kathy
+# 登陆
 
-## Dongyu 2021.1.18
+# 注册
 
-## new kangkang 2021.1.18 20:19
+# 忘记密码
 
-Kathy 2021.1.18
-Dongyu 2021.1.18
-Mengxuan 2021.1.18
-kangkang 2021.1.18
-Erik 2021.1.18
+# Navbar
 
-## 18/01/2021 yanbo 
-testing check
-Kathy new 2021.1.18
-20:54 new
-wystan 2021.1.18
+1. 不同身份 navbar 展示不一样，左侧 icon 点击去到不同身份的首页，还有 protect router，不登陆不能进入首页之外的页面
+2. 首页 navbar 下滑自动显示，其他页面固定在顶部
+3. 如果没登陆，点击 navbar 的 booking 也会弹出登陆
+4. mobile 移动端样式
 
-9:01 new by mengxuan
-12345678
+# 首页
 
-------------------------
-dongyu 2021.1.19
+1. 可以选择房间数，type 和 postcode 不是必填。然后 booking 跳转到 order 页面
+2. 如果没登陆，点击 booking 会弹出登陆
+3. 如果下滑，也可以从 navbar 进入下单页面,右下角有返回顶部按钮
+4. Back to the top
+5. mobile 移动端样式
 
-test - 1
-test - 2
-test - 3
-test - 5
-test - 6
+# Order
 
-Mengxuan 1/19 so hot today
+1. 如果是 employee 或者 admin 不能进入这个页面，会 history push 到他们自己的首页
+2. 右侧确认栏会随着浏览器下滑 自动下滑（sticky）
+3. 选中 regular 后可以添加删除 extra/选中 end 后，全部 extra 会选中并且不能取消
+4. 如果支付成功，可以 post order，卡号无效或者支付不成功，不会 post，但可以重新填正确的信息
+5. 如果某项必填没有写，会有提示
+6. mobile 移动端样式
 
-kangkang add a conflict -- 15:18
+# Order Confirm
 
-test - 7
-test - 8
+1. 下单成功后可以点击 view order 看刚才的订单，如果还没被接单，可以 cancel
 
-Kathy 21/01/2021
-Olivia This is a test.
+# employee 接单大厅
 
-test - 9
+# My order
 
+# Order details
 
-Yanbo testing3
-1.22 mengxuan test
+# My profile
 
+# Admin Dashboard
 
+# Admin Order 左侧
 
+# Admin Customers
 
-=======
-1.23 wystan
-1.23 Erik
-1.23 olivia
-1.23 mengxuan
-1.23 DOngyu
-1.23 kangkang
-1.23 Yanbo
-1.23 Kathy
+# Admin Staffs
 
-========1.24========
-1.24 Yanbo
-1.24 wystan
-1.24 mengxuan
-1.24 D0ngyu
-1.24 Kathy
-1.24 kangkang
-1.24 olivia
-1.24 Erik
-
-========1.25========
-1.25 wystan
-1.25 Kathy
-1.25 Yanbo
-1.25 kangkang
-1.25 olivia
-1.25 mengxuan
-1.25 dongyu
-1.25 Erik
-========1.26========
-1.26 Yanbo
-1.26 Kathy
-1.26 wystan
-1.26 mengxuan
-1.26 olivia
-1.26 dongyu
-1.26 kangkang
-1.26 Erik
-
-========1.27========
-1.27 mengxuan
-1.27 wystan
-1.27 yanbo
-1.27 dongyu
-1.27 kangkang
-1.27 Kathy
-1.27 olivia
-1.27 Erik
-1.27 I am ghost
-
-========1.28========
-1.28 wystan
-1.28 dongyu
-1.28 mengxuan
-1.28 olivia
-1.28 kangkang
-1.28 ghost again
-1.28 Yanbo
-1.28 Kathy
-1.28 conflict test
-1.28 Erik
-
-========1.29========
-1.29 wystan
-1.29 kangkang
-1.29 ghost1
-1.29 ghost2
-1.29 Erik
-777777788888899999
-1.29 dongyu
-1.29 conflict-test1
-testss
-1.29 olivia
-1.29 Yanbo
-1.29 conflict-test1
-1.29 mengxuan
-1.29 kathy
-eeeeeeeeeeeeee
-ssssssssssss
-1.29 conflict1
-1.29 conflict2
-1.29 conflict3
-1.29 sourcetree
-1.29 conflict4
-1.29 test
-========1.30========
-1.30 try some conflict
-1.30 wystan-1 This change
-1.30 Kathy
-1.30 try some conflict - cause problem - these is another problem
-1.30 wystan-1 This change should work
-1.30 mengxuan
-1.30 conflict
-1.30 olivia
-========1.31========
-1.31 kangkang
-1.31 this is conflict
-1.31 dongyu
-1.31 Erik
-
-1.31 yanbo
-
-
-
-
+# Footer

@@ -8,6 +8,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@material-ui/core'
+import date from 'date-and-time'
 import { LocationOn as LocationOnIcon, Today as TodayIcon } from '@material-ui/icons'
 
 const useStyles = makeStyles(() => ({
@@ -55,25 +56,37 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-function formatDate (date){
+// function formatDate (date){
+//   try {
+//     let formatedDate = new Date(date) 
+//     formatedDate = formatedDate.toString().split(' ')
+//     const test = Date.parse(date)
+
+//     console.log(date, new Date(test))
+//     return `${formatedDate[0]}, ${formatedDate[2]} ${formatedDate[1]}`
+//   } catch {
+//     return 'Invalid Date Value.'
+//   }
+// }
+
+function formatDate(time) {
   try {
-    let formatedDate = new Date(date) 
-    formatedDate = formatedDate.toString().split(' ')
-    return `${formatedDate[0]}, ${formatedDate[2]} ${formatedDate[1]}`
+    let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
+    result = result.toString().split(" ")
+    return `${result[0]} ${result[2]} ${result[1]} ${result[3]}`
   } catch {
-    return 'Invalid Date Value.'
+    return "There's no exact time in this part. "
   }
 }
-
 /**
  * OrderCard() is for render an order detail in the order task page
  * @param props: (obj) store data that need to be rended in this component
  */
 const OrderCard = (props) => {
   const classes = useStyles()
-  const { title, price, address, date, status, classToUse } = props
+  const { title, price, address, startDate, status, classToUse } = props
   const { suburb, state } = address
-  const displayDate = formatDate(date)
+  const displayDate = formatDate(startDate)
   const displayAddress = `${suburb} ${state.toUpperCase()}`
   return(
     <>

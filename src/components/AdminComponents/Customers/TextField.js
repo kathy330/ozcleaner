@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import {
   makeStyles,
@@ -48,35 +48,35 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const ParseTextarea = ({ value = '', onChange }) => {
-  const [text, setText] = useState(value)
-  const classes = useStyles()
-  const handleChange = (err) => {
-    const {value} = err.target
-    setText(value)
-    onChange(value)
-  }
-  return (
-    <TextareaAutosize
-      onChange={handleChange}
-      value={text}
-      className={classes.text}
-      required
-      rowsMin={3}
-    />
-)
-}
+// const ParseTextarea = ({ value = '', onChange }) => {
+//   const [text, setText] = useState(value)
+//   const classes = useStyles()
+//   const handleChange = (err) => {
+//     const { value } = err.target
+//     setText(value)
+//     onChange(value)
+//   }
+//   return (
+//     <TextareaAutosize
+//       onChange={handleChange}
+//       value={text}
+//       className={classes.text}
+//       required
+//       rowsMin={3}
+//     />
+//   )
+// }
 
 export default function App(props) {
   const { _id, type } = props
-  console.log(props)
+  // console.log(props)
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const [rateStar, setRateStar] = useState(0.0)
   const [reviews, setReviews] = useState('')
   const { control, handleSubmit, register } = useForm()
   const classes = useStyles()
-  
+
   const onSubmit = data => {
     setOpen(true)
     setReviews(data.review)
@@ -93,9 +93,9 @@ export default function App(props) {
     setOpen(false)
   }
 
-  const hadlesubmit =() => {
+  const hadlesubmit = () => {
     setOpen(false)
-    const payload = { id: _id, type: type, update:{review: reviews, rating: rateStar, reviewStatus: true}}
+    const payload = { id: _id, type: type, update: { review: reviews, rating: rateStar, reviewStatus: true } }
     dispatch(updateOrderRequest(payload))
   }
 
@@ -107,7 +107,7 @@ export default function App(props) {
 
         <FormControlLabel control={(
           <>
-            <input name="rating" type="number" value={rateStar} ref={register} readOnly hidden />
+            <input name="rating" type="number" value={rateStar} readOnly hidden />
             <Rating
               name="rating"
               value={rateStar}
@@ -121,7 +121,24 @@ export default function App(props) {
           </>
         )}
         />
-        <Controller name="review" as={ParseTextarea} control={control} defaultValue='' required />
+        <Controller name="review" control={control} defaultValue='' required render={({ value = '', onChange }) => {
+          const [text, setText] = useState(value)
+          const classes = useStyles()
+          const handleChange = (err) => {
+            const { value } = err.target
+            setText(value)
+            onChange(value)
+          }
+          return (
+            <TextareaAutosize
+              onChange={handleChange}
+              value={text}
+              className={classes.text}
+              required
+              rowsMin={3}
+            />
+          )
+        }} />
         <br />
         <Button
           name="rating"

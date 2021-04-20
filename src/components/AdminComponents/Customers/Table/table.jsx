@@ -32,22 +32,24 @@ const ColorButton = withStyles((theme) => ({
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650
+    minWidth: 650,
   },
+
   status: {
     background: "green",
-    color: "white",
     borderRadius: "25px",
+    color: "white",
   },
+
   btn: {
-    margin:" 3% 6%",
-    minWidth:"120px",
-    color:"white"
+    color: "white",
+    margin: " 3% 6%",
+    minWidth: "120px",
   },
 })
 
 function displayTime(time) {
-  console.log(time)
+  // console.log(time)
   let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
   result = result.toString().split(" ")
   return `${date.transform(result[4], 'HH:mm:ss', 'hh:mmA')} 

@@ -236,3 +236,17 @@ export const changeOrder = num => ({
   payload: num
 })
 
+export const getStatsRequest = () => ({
+  type: actionTypes.GET_STATS_REQUEST,
+})
+
+export const getStatsSuccess = (data) => ({
+  type: actionTypes.GET_STATS_SUCCESS,
+  payload:data
+})
+
+export const getStatsFaild = (err) => ({
+  type: actionTypes.GET_STATS_FAILED,
+  payload: err,
+})
+

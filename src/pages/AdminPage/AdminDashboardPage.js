@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Card from '../../components/AdminComponents/Dashboard/Card'
 import OrderTable from '../../components/AdminComponents/Dashboard/OrderTable'
 import UserAvatar from "../../components/AdminComponents/Dashboard/UserAvatar"
-import { getAllOrersRequest } from '../../store/actions/actionCreator'
+import { getAllOrersRequest, getStatsRequest } from '../../store/actions/actionCreator'
 import LoadingIcon from '../../components/AdminComponents/LoadingIcon'
 import NoDataFound from '../../components/AdminComponents/NoDataFound'
 
@@ -78,18 +78,23 @@ export default function Overview() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getAllOrersRequest({ page: 1, pageSize: 40, status: "", sort: "datedesc" }))
+    dispatch(getStatsRequest())
   }, [])
 
-  const redux = useSelector(state => state.order)
-  const loading = redux.loading // loading status
-  const data = redux.order.result
-  const dataCount = redux.order.count // number of orders
-  const error = redux.error // error message
+  const reduxOrder = useSelector(state => state.order)
+  const loading1 = reduxOrder.loading // loading status
+  const orderData = reduxOrder.order.result
+  const dataCount = reduxOrder.order.count // number of orders
+  const error1 = reduxOrder.error // error message
+  const reduxStats = useSelector(state => state.stats)
+  const loading2 = reduxStats.loading
+  const stats = reduxStats.statsData
+  const error2 = reduxStats.error
 
-  if (!loading && dataCount) {
+  if (!loading1 && dataCount) {
     const count = []
     UserName = []
-    for (const row of data) {
+    for (const row of orderData) {
       if (!count.includes(row.userDetail[0]._id)) {
         count.push(row.userDetail[0]._id)
         UserName.push(row.userDetail[0].name)
@@ -101,8 +106,8 @@ export default function Overview() {
 
   return (
     <>
-      {loading && <LoadingIcon />}
-      {!loading && redux.order.page === "orders" && (
+      {(loading1 || loading2) && <LoadingIcon />}
+      {!loading1 && !loading2 && reduxOrder.order.page === "orders" && stats.length!=0 && (
         <>
           <Container maxWidth="lg" className={classes.body}>
             <Box fontWeight="fontWeightBold" mb={1} fontSize={35}>
@@ -111,15 +116,15 @@ export default function Overview() {
             <Box fontWeight="fontWeightBold" mb={2} fontSize={30} color="#9e9e9e">
               Welcome Back!
           </Box>
-            <Box fontWeight="fontWeightBold" mb={2} fontSize={25}>
+            <Box fontWeight="fontWeightBold" mb={5} fontSize={25}>
               Quick status
           </Box>
             <Grid container spacing={6}>
 
-              {[1, 2, 3, 4].map((x, i) =>
+              {Object.keys(stats).map((key, index) =>
               (
                 <Grid item>
-                  <Card key={x} other={i} />
+                  <Card key={key} item= {key} num={stats[key]}other={index} />
                 </Grid>
               )
               )}
@@ -131,7 +136,7 @@ export default function Overview() {
               </Box>
                 <OrderTable
                   columns={columns}
-                  UserData={data.slice(0, 5)}
+                  UserData={orderData.slice(0, 5)}
                 />
               </Box>
             </Paper>
@@ -163,9 +168,9 @@ export default function Overview() {
           </Container>
         </>
       )}
-      {!loading && data !== undefined && data.length === 0 &&
+      {!loading1 && !loading2 && orderData !== undefined && orderData.length === 0 &&
         <NoDataFound title="No order found!" />}
-      {!loading && error && console.log(error)}
+      {!loading1  && !loading2 && (error1 || error2) && console.log(error1, error2)}
     </>
   )
 }

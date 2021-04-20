@@ -6,38 +6,31 @@ import { Card, CardContent, Typography, Box } from "@material-ui/core"
 const useStyles = makeStyles({
   root: {
     maxWidth: 180,
-    minWidth: 180,
+    minWidth: 270,
     borderRadius: "8%"
   },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
-  },
   title: {
-    fontSize: 14
+    marginTop: "25px"
   },
-
+  content: {
+    marginBottom: "10px"
+  },
 })
 
-export default function DemoCard() {
+export default function DemoCard(props) {
+  console.log(props)
+  const {item, num} = props
   const classes = useStyles()
-
-
   return (
 
     <Card className={classes.root} elevation={0}>
       <CardContent>
-
-        <Typography color="textSecondary">
-          Total Orders
+        <Typography color="textSecondary" className={classes.title}>
+          {item}
         </Typography>
-        <Typography variant="h5" component="h2">
-          <Box fontWeight="fontWeightBold">
-            28,350
-          </Box>
+        <Typography variant="h3" className={classes.content}>
+          {num}
         </Typography>
-
       </CardContent>
 
     </Card>

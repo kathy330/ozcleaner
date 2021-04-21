@@ -201,7 +201,7 @@ const classes = useStyles()
                 className={classes.response}
                 align="center"
               >
-                You are now signed in!
+                
               </Typography>
             )}
               <PopupLoginButton />

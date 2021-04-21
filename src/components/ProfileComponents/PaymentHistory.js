@@ -13,12 +13,12 @@ import {getHistoryRequest} from "../../store/actions"
 const useStyles = makeStyles((theme) => ({
   tableCell:{
     padding:'8px',
-    [theme.breakpoints.down((1550))]:{
-      padding:'7px',
-    },
-    [theme.breakpoints.down((700))]:{
-      padding:'6px',
-    },
+    // [theme.breakpoints.down((1550))]:{
+    //   padding:'8px',
+    // },
+    // [theme.breakpoints.down((700))]:{
+    //   padding:'8px',
+    // },
   },
   table: {
     minWidth: 500,

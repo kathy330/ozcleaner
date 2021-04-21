@@ -172,7 +172,8 @@ export default function HeaderNavigation(props) {
           position={trigger === null || trigger === undefined ? 'relative' : 'fixed'}
           className={style.AppBar}
         >
-          <Grid item className={style.container}>
+          {/* <Grid item className={style.container}> */}
+          <Grid item>
             <Toolbar>
               <Grid className={style.grow}>
                 <Button href={level==='user'?'/':'/employee-orders'}>

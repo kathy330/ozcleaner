@@ -5,7 +5,7 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { useDispatch } from 'react-redux'
-import { updateOrderRequest, updateAssignRequest } from "../../../store/actions"
+import { updateOrderRequest} from "../../../store/actions"
 
 
 // styles
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function OrderActionButtons({ cancel, finish, accept, cancelData, finishData, acceptData }) {
+export default function OrderActionButtons({ cancel, finish, accept, id, type }) {
   const classes = useStyles()
   const dispatch = useDispatch()
 
@@ -55,30 +55,21 @@ export default function OrderActionButtons({ cancel, finish, accept, cancelData,
     setOpen(false)
     const { actionType } = status
     // console.log(actionType)
-    if (actionType === 'cancel') {
-      dispatch(updateOrderRequest(cancelData))
-      // alert('Your order has been set CANCELLED successfully! ')
-    }
 
-    else if (actionType === 'finish') {
-      dispatch(updateOrderRequest(finishData))
-      // alert('Your order has been set FINISHED successfully! ')
+    let data = { id: id, update: { status: actionType === 'accept' ? "in-progress" : actionType }, type: type }
+    if (actionType === 'cancelled' && localStorage.getItem('authLevel') === "admin") {
+      data ={ id: id, update: { status: "confirmed" }, type: type, cancelByAdmin: true }
     }
-    else if (actionType === 'accept') {
-      console.log(acceptData);
-      dispatch(updateAssignRequest(acceptData))
-      // alert('You ACCEPT this order successfully! ')
-    }
-
+    dispatch(updateOrderRequest(data))
 
   }
   const handleCancel = () => {
     setOpen(true)
-    setStatus({ actionType: 'cancel' })
+    setStatus({ actionType: 'cancelled' })
   }
   const handleFinish = () => {
     setOpen(true)
-    setStatus({ actionType: 'finish' })
+    setStatus({ actionType: 'finished' })
   }
   const handleAccept = () => {
     setOpen(true)

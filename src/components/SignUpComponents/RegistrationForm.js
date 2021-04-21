@@ -55,13 +55,13 @@ export default function RegistrationForm() {
       [`& fieldset`]: {
         borderRadius: '30px',
       },
-      width:'85%',
+      width:'92%',
       marginBottom:10,
     },
     text:{
       fontWeight:'bold',
       width:'85%',
-      marginLeft:'8%'
+      marginLeft:'6%'
     },
     mention:{
       fontWeight: 'bold',
@@ -72,35 +72,36 @@ export default function RegistrationForm() {
       marginRight:'8%',
       marginBottom:'15px'
     },
-    divider:{
-     
+    button:{
+      width:'100%',
     },
     agreement:{
       fontWeight: 'bold',
-      fontSize:'12px',
-      marginLeft:'28px',
+      fontSize:'11px',
+      marginLeft:'16px',
       width:'100%',
       marginBottom:'5px',
       marginRight:'10%'
     },
     divide:{
       borderBottom: "1px solid black",
-      width:'82%',
+      width:'90%',
       marginBottom:10
     },
     account:{
       fontWeight: 'bold',
-      fontSize:'12px',
-      marginLeft:'28px',
-      marginBottom:'-22px'
+      fontSize:'11px',
+      marginLeft:'16px',
+      marginBottom:'-25px'
     },
     login:{
       fontWeight: 'bold',
       color: '#007bf5',
       // float: 'right',
-      fontSize:'12px',
+      fontSize:'11px',
       textDecoration: 'none',
-      paddingLeft:45
+      // paddingTop:-20,
+      paddingLeft:80
     
     },
     loginColor:{
@@ -202,8 +203,8 @@ const classes = useStyles()
               </Typography>
             </a>
  
-            <Grid container justify="center">
-              <PopupButton 
+            <Grid container justify="center" className={classes.button}>
+              <PopupButton
                 type="submit"
               />
             </Grid>
@@ -228,9 +229,7 @@ const classes = useStyles()
                 <Typography className={classes.account}>
                   Do not have an account?
                 </Typography>
-              
               </Grid>
-           
               <Grid container className={classes.login} justify="flex-end">
                 <FormDialogLoginPop />
               </Grid>

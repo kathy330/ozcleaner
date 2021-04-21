@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 const AdminCustomersLeft = ({ startTime, endTime, orderTitle,
   customerFirstName, customerLastName, location, rate, cab, fri, ov, intWin, reviewText,
   orderStatus, typeOfOrder, phone, userObjectID, employeeObjectID, userFirstName,
-  userLastName, employeeFirstName, employeeLastName, _id }) => {
+  userLastName, employeeFirstName, employeeLastName, _id, reviewStatus }) => {
   const classes = useStyles()
   const authLevel = localStorage.getItem('authLevel')
 
@@ -86,7 +86,7 @@ const AdminCustomersLeft = ({ startTime, endTime, orderTitle,
         <Review rating={rate} review={reviewText} />
       </div>
       <div>
-        {(authLevel === 'user' && orderStatus === 'finished') && (
+        {(authLevel === 'user' && orderStatus === 'finished' && reviewStatus === false) && (
           <>
             <Divider className={classes.divider} />
             <TextField _id={_id} type={typeOfOrder} review={reviewText} />

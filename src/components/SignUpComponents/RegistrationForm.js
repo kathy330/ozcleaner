@@ -27,7 +27,7 @@ export default function RegistrationForm() {
   const {control ,handleSubmit} = useForm()
   const dispatch = useDispatch()
   const onSubmit = (data) =>{
-    console.log(data)
+    // console.log(data)
     dispatch(register(data)) // 发送saga请求
   }
   const userRegister = useSelector((state) => state.userRegister)
@@ -46,10 +46,10 @@ export default function RegistrationForm() {
       textAlign:'center',
     },
     title:{
-      padding: '0px 30px',
-      paddingTop: '2vh',
+      padding: '0px, 0px, 0px, 25px',
+      paddingTop: '1vh',
       fontWeight:'bold',
-      fontSize:'38px'
+      fontSize:'30px'
     },
     textField: {
       [`& fieldset`]: {
@@ -73,26 +73,25 @@ export default function RegistrationForm() {
       marginBottom:'15px'
     },
     divider:{
-      fontWeight: 'bold',
-      fontSize:'10px',
+     
     },
     agreement:{
       fontWeight: 'bold',
       fontSize:'12px',
-      marginLeft:'34px',
+      marginLeft:'28px',
       width:'100%',
       marginBottom:'5px',
       marginRight:'10%'
     },
     divide:{
       borderBottom: "1px solid black",
-      width:'85%',
+      width:'82%',
       marginBottom:10
     },
     account:{
       fontWeight: 'bold',
       fontSize:'12px',
-      marginLeft:'34px',
+      marginLeft:'28px',
       marginBottom:'-22px'
     },
     login:{
@@ -101,8 +100,8 @@ export default function RegistrationForm() {
       // float: 'right',
       fontSize:'12px',
       textDecoration: 'none',
-      // marginRight:'10%',
-      marginBottom:'30px'
+      paddingLeft:45
+    
     },
     loginColor:{
       textDecoration: 'none',
@@ -232,7 +231,7 @@ const classes = useStyles()
               
               </Grid>
            
-              <Grid container justify="flex-end">
+              <Grid container className={classes.login} justify="flex-end">
                 <FormDialogLoginPop />
               </Grid>
             </Grid>

@@ -1,16 +1,22 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React,{useState} from "react"
+
 // import ReactDOM from "react-dom"
 // import Select from "react-select";
 // import { Redirect } from "react-router-dom" 
 import Dialog from '@material-ui/core/Dialog'
+import Divider from '@material-ui/core/Divider'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import DialogContent from '@material-ui/core/DialogContent'
 import {useDispatch,useSelector} from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
+// import MuiDialogContent from "@material-ui/core/DialogContent"
+// import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
 import { TextField,Typography,Grid,Button } from "@material-ui/core"
-import { makeStyles } from '@material-ui/core/styles'
+
+import { makeStyles,withStyles } from '@material-ui/core/styles'
 import SaveIcon from '@material-ui/icons/Save'
 import {updateProfileRequest} from "../../../store/actions/actionCreator"
 
@@ -59,6 +65,21 @@ const useStyles = makeStyles((theme) => ({
   formcenter: {
     // padding: '0 5vh',
     width: '70%',
+  },
+  button1:{
+      // alignContent: 'center',
+      background: theme.palette.primary.main, // #007bf5
+      color: theme.palette.primary.contrastText,
+      fontSize: '1rem',
+      marginTop: '2rem',
+      paddingInline: '50px', // 太长，小屏幕装不下
+      boxShadow:'0px 2px 6px #888',
+      '&:hover': {
+        background: theme.palette.primary.hover, // #0050c1
+        boxShadow: '0px 2px 10px #888',},
+  },
+  dialog:{
+    padding:"4vh 2vh"
   }
 }))
 
@@ -272,14 +293,29 @@ export default function TextForm() {
 
       </Grid>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle className={classes.dialog}>
+        {/* <DialogTitle className={classes.dialog}>
           Update profile successfully!
-        </DialogTitle>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            OK
-          </Button>
-        </DialogActions>
+        </DialogTitle> */}
+        <Dialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}
+        >
+          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+            Updated
+          </DialogTitle>
+          <Divider />
+          <DialogContent>
+            <Typography dividers>
+              Congratulations! Your information has been updated successfully!
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={handleClose} color="primary" className={classes.button1}>
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Dialog>
     </form>
   )

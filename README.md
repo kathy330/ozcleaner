@@ -71,6 +71,26 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ---
 
+v0.3
+我们一共有三种角色 用户，员工，admin
+
+我先展示首页，
+Protect router 功能如果不登陆是不能进入到 order/admin/employee-order 页面的
+
+然后展示三种登陆，和 user 的 email 找回密码功能（yanbo），
+然后 user 和 employee 的 myprofile（mengxuan）
+然后后端验证 token 的功能（mengxuan）
+4000000360000006
+然后下单，和 order detail
+然后 user 的 myorder，和 order detail（展示 cancel 和 review 功能）
+如果 user 去接单页面，会自动重定向到下单
+
+然后 employee 接单，
+employee 的 myorder，和 order detail（展示 finish 功能）
+如果 employee 去 order 页面，会自动重定向到接单页面
+
+然后去 admin，介绍四个页面，还有删除一个 employee 账户
+
 # 登陆
 
 # 注册
@@ -107,24 +127,26 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # employee 接单大厅
 
-
 # My order
-1. user和employee的 total orders（包括正在进行和已经完成的订单） 和 completed orders（已经完成的订单）的数目会根据实际订单的状态进行自动更新
+
+1. user 和 employee 的 total orders（包括正在进行和已经完成的订单） 和 completed orders（已经完成的订单）的数目会根据实际订单的状态进行自动更新
 
 # Order details
+
 1. 根据订单的状态展示出不同的按钮.
-	(1)For employee :"confirmed" -> "accept" 
-					 "in-progress"-> "finish", 
-	(2)For user: "confirmed" -> "cancel"
-	(3)For admin: "in-progress"-> "cancel" AND "finish" admin可以进行cancel，然后订单状态会从”in-progress“变成“confirmed“,
-		相关的employee的信息会删除，其他的employee可以在用户大厅重新接单。admin”可以也有权利可以结束订单
-2. 在employee接完订单之后，只有在现在的时间大于start time的时候，employee才能结束订单，其他时候是结束不了的。结束了订单之后会把当前时间展示到
-	end time里。
+   (1)For employee :"confirmed" -> "accept"
+   "in-progress"-> "finish",
+   (2)For user: "confirmed" -> "cancel"
+   (3)For admin: "in-progress"-> "cancel" AND "finish" admin 可以进行 cancel，然后订单状态会从”in-progress“变成“confirmed“,
+   相关的 employee 的信息会删除，其他的 employee 可以在用户大厅重新接单。admin”可以也有权利可以结束订单
+2. 在 employee 接完订单之后，只有在现在的时间大于 start time 的时候，employee 才能结束订单，其他时候是结束不了的。结束了订单之后会把当前时间展示到
+   end time 里。
 
 # My profile
-1. user和employee可以更新他们的个人信息，跟新完会pop up 更新成功对话框
-2. order history可以看到历史订单
-3. 支持mobile移动端样式
+
+1. user 和 employee 可以更新他们的个人信息，跟新完会 pop up 更新成功对话框
+2. order history 可以看到历史订单
+3. 支持 mobile 移动端样式
 
 # Admin Dashboard
 

@@ -803,15 +803,20 @@ function Order(props) {
                                           // value={!!oven}
                                         />
                                       </Grid>
-
-                                      <Grid item xs={12} sm={12}>
-                                        <Icon>
-                                          <img 
-                                            className={classes.actionAreaimageIcon}
-                                            src={ovenIcon}
-                                            alt="oven"
-                                          />
-                                        </Icon>
+                                      <Grid
+                                        container
+                                        justify="center"
+                                        alignItems="center"
+                                      >
+                                        <Grid item xs={6} sm={6}>
+                                          <Icon>
+                                            <img 
+                                              className={classes.actionAreaimageIcon}
+                                              src={ovenIcon}
+                                              alt="oven"
+                                            />
+                                          </Icon>
+                                        </Grid>
                                       </Grid>
                                     </Grid>
                                   </CardActionArea>
@@ -841,14 +846,20 @@ function Order(props) {
                                           className={classes.check}
                                         />
                                       </Grid>
-                                      <Grid item xs={12} sm={12}>
-                                        <Icon>
-                                          <img 
-                                            className={classes.actionAreaimageIcon} 
-                                            src={fridgeIcon} 
-                                            alt="fridge"
-                                          />
-                                        </Icon>
+                                      <Grid
+                                        container
+                                        justify="center"
+                                        alignItems="center"
+                                      >
+                                        <Grid item xs={6} sm={6}>
+                                          <Icon>
+                                            <img 
+                                              className={classes.actionAreaimageIcon} 
+                                              src={fridgeIcon} 
+                                              alt="fridge"
+                                            />
+                                          </Icon>
+                                        </Grid>
                                       </Grid>
                                     </Grid>
                                   </CardActionArea>
@@ -878,14 +889,20 @@ function Order(props) {
                                           className={classes.check}
                                         />
                                       </Grid>
-                                      <Grid item xs={12} sm={12}>
-                                        <Icon>
-                                          <img 
-                                            className={classes.actionAreaimageIcon} 
-                                            src={windowIcon} 
-                                            alt="windows"
-                                          />
-                                        </Icon>
+                                      <Grid
+                                        container
+                                        justify="center"
+                                        alignItems="center"
+                                      >
+                                        <Grid item xs={6} sm={6}>
+                                          <Icon>
+                                            <img 
+                                              className={classes.actionAreaimageIcon} 
+                                              src={windowIcon} 
+                                              alt="windows"
+                                            />
+                                          </Icon>
+                                        </Grid>
                                       </Grid>
                                     </Grid>
                                   </CardActionArea>
@@ -915,14 +932,20 @@ function Order(props) {
                                           className={classes.check}
                                         />
                                       </Grid>
-                                      <Grid item xs={12} sm={12}>
-                                        <Icon>
-                                          <img 
-                                            className={classes.actionAreaimageIcon} 
-                                            src={cabinetIcon} 
-                                            alt="cabinet"
-                                          />
-                                        </Icon>
+                                      <Grid
+                                        container
+                                        justify="center"
+                                        alignItems="center"
+                                      >
+                                        <Grid item xs={6} sm={6}>
+                                          <Icon>
+                                            <img 
+                                              className={classes.actionAreaimageIcon} 
+                                              src={cabinetIcon} 
+                                              alt="cabinet"
+                                            />
+                                          </Icon>
+                                        </Grid>
                                       </Grid>
                                     </Grid>
                                   </CardActionArea>
@@ -1297,7 +1320,7 @@ function Order(props) {
             </DialogTitle>
      
             <DialogContentText>
-              Success: 4000000360000006 Faild: 4000000000000002 
+              {/* Success: 4000000360000006 Faild: 4000000000000002  */}
               {/* <br />
               3D Identify:4000002760003184 */}
             </DialogContentText>

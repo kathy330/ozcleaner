@@ -42,6 +42,11 @@ const useStyles = makeStyles((theme) => ({
 
   signout: {
     width: '100%',
+  },
+
+  logoimg: {
+    height: '5vh',
+    marginLeft: '18px',
   }
 }))
 
@@ -65,7 +70,8 @@ export default function AdminHeaderNavigation() {
             <Button href='/admin'>
               <img
                 src={admin2} 
-                className={style.logoimg}
+                // className={style.logoimg}
+                className={classes.logoimg}
                 alt="admin icon"
               />
             </Button>

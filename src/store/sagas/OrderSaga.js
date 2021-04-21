@@ -42,7 +42,6 @@ function* postOrder(action) {
   }
   const result = yield call(axios.post, postApi, action.payload, header())
   const { data } = result
-  // console.log('return from backend: ', data)
   if (result.errors) {
     yield put({ type: 'POST_ORDER_FAILED', errorInSaga: result.errors })
   }

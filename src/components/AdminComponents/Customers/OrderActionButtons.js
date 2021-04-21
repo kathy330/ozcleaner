@@ -65,7 +65,7 @@ export default function OrderActionButtons({ cancel, finish, accept, cancelData,
       // alert('Your order has been set FINISHED successfully! ')
     }
     else if (actionType === 'accept') {
-      console.log(acceptData);
+      // console.log(acceptData);
       dispatch(updateAssignRequest(acceptData))
       // alert('You ACCEPT this order successfully! ')
     }

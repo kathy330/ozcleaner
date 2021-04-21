@@ -82,7 +82,7 @@ export default function CheckoutForm({price,paystatus,data}) {
   }
 
   const paySubmit = async (event) => {
-    console.log('pay now...')
+    // console.log('pay now...')
     event.preventDefault()
     setProcessing(true)
 

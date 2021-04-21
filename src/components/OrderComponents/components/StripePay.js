@@ -156,7 +156,6 @@ export default function CheckoutForm({price,paystatus,data}) {
     const user = JSON.parse(localStorage.getItem('userInfo'))
     const userObjectId = user.data.objectID
     const userid = user.data.ID
-    // console.log(userObjectId)
     const postTitle = `${otherdata.type} Bedroom x ${otherdata.bedRoomNum} Bathroom x ${otherdata.bathRoomNum}`
     const newData = {
       ...postData,
@@ -174,7 +173,6 @@ export default function CheckoutForm({price,paystatus,data}) {
       },
       title:postTitle,
       startTime:datedate,
-      // endTime:datedate, // endtime 什么时候设置？  
       firstName:otherdata.firstName,
       lastName:otherdata.lastName,
       phoneNumber:otherdata.phoneNumber,
@@ -191,7 +189,6 @@ export default function CheckoutForm({price,paystatus,data}) {
 
   const history = useHistory()
   if(paystatus) {
-    // console.log('post success')
     history.push("/order/confirm")
   }
 

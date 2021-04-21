@@ -54,10 +54,10 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 // import OrderPay from "./OrderPayPage"
 // import ProtectedRoute from '../../router/ProtectedRoute'
-import cabinetIcon from "../../assets/cabinet.svg"
-import windowIcon from "../../assets/window.svg"
-import fridgeIcon from "../../assets/fridge.svg"
-import ovenIcon from "../../assets/oven.svg"
+import cabinetIcon from "../../assets/cabinet2.svg"
+import windowIcon from "../../assets/window2.svg"
+import fridgeIcon from "../../assets/fridge2.svg"
+import ovenIcon from "../../assets/oven2.svg"
 // import { BookingButton } from "../../components/UIComponents/Buttons"
 import { buttonStyle } from '../../styles/styles'
 // import {postRegularRequest,postEndOfLeaseRequest,payOrderRequest } from '../../store/actions'
@@ -216,7 +216,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
   pickerBackground: {
-    background: 'lightgrey' // 最外层灰色背景
+    // background: 'lightgrey' // 最外层灰色背景
+    background: '#e3f2fd' // 最外层灰色背景
+  },
+
+  pickernotchoose: {
+    background: '#fafafa',
   },
 
   picker: {
@@ -225,7 +230,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   actionArea: {
-    padding: '0 12px' // 白色区域间距
+    padding: '0 5px' // 白色区域间距
   },
 
   actionAreaimageIcon: {
@@ -269,6 +274,10 @@ const useStyles = makeStyles((theme) => ({
     // height: '30vh',
     marginBottom: '30px'
     // paddingTop: '20px',
+  },
+
+  extratxt: {
+    color: '#616161',
   }
 
 }))
@@ -781,8 +790,8 @@ function Order(props) {
                           {/* <ExtraPicker /> */}
                           <Grid container direction="row" spacing={1} className={classes.actionArearoot}>
                             <Grid item xs={6} sm={3}>
-                              <Card className={classes.pickerBackground}>
-                                <Card className={classes.picker} elevation={2}>
+                              <Card className={oven?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                <Card className={classes.picker} elevation={0}>
                         
                                   <CardActionArea
                                     className={classes.actionArea} 
@@ -820,7 +829,7 @@ function Order(props) {
                                       </Grid>
                                     </Grid>
                                   </CardActionArea>
-                                  <Typography variant='h6' align='center'>
+                                  <Typography className={classes.extratxt} variant='h6' align='center'>
                                     Oven
                                   </Typography>
                                 </Card>
@@ -828,8 +837,8 @@ function Order(props) {
                             </Grid>
                 
                             <Grid item xs={6} sm={3}>
-                              <Card className={classes.pickerBackground}>
-                                <Card className={classes.picker} elevation={2}>
+                              <Card className={fridge?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                <Card className={classes.picker} elevation={0}>
                                   <CardActionArea
                                     className={classes.actionArea} 
                                     name="fridge"
@@ -863,7 +872,7 @@ function Order(props) {
                                       </Grid>
                                     </Grid>
                                   </CardActionArea>
-                                  <Typography variant='h6' align='center'>
+                                  <Typography className={classes.extratxt} variant='h6' align='center'>
                                     Fridge
                                   </Typography>
                                 </Card>
@@ -871,8 +880,8 @@ function Order(props) {
                             </Grid>
 
                             <Grid item xs={6} sm={3}>
-                              <Card className={classes.pickerBackground}>
-                                <Card className={classes.picker} elevation={2}>
+                              <Card className={windows?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                <Card className={classes.picker} elevation={0}>
                                   <CardActionArea
                                     className={classes.actionArea} 
                                     name="windows"
@@ -906,7 +915,7 @@ function Order(props) {
                                       </Grid>
                                     </Grid>
                                   </CardActionArea>
-                                  <Typography variant='h6' align='center'>
+                                  <Typography className={classes.extratxt} variant='h6' align='center'>
                                     Windows
                                   </Typography>
                                 </Card>
@@ -914,8 +923,8 @@ function Order(props) {
                             </Grid>
       
                             <Grid item xs={6} sm={3}>
-                              <Card className={classes.pickerBackground}>
-                                <Card className={classes.picker} elevation={2}>
+                              <Card className={cabinet?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                <Card className={classes.picker} elevation={0}>
                                   <CardActionArea
                                     className={classes.actionArea} 
                                     name="cabinet"
@@ -949,7 +958,7 @@ function Order(props) {
                                       </Grid>
                                     </Grid>
                                   </CardActionArea>
-                                  <Typography variant='h6' align='center'>
+                                  <Typography className={classes.extratxt} variant='h6' align='center'>
                                     Cabinet
                                   </Typography>
                                 </Card>

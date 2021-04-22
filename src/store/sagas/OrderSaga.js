@@ -45,7 +45,6 @@ function* postOrder(action) {
   }
   const result = yield call(axios.post, postApi, action.payload, header())
   const { data } = result
-  // console.log('return from backend: ', data)
   if (result.errors) {
     yield put({ type: 'POST_ORDER_FAILED', errorInSaga: result.errors })
   }
@@ -89,7 +88,7 @@ function* assignToEmployee(action) {
 
   try{
     const data = yield call(axios.put, updateAPI ,EmployeeData,header())
-    console.log(data)
+    // console.log(data)
     yield put({type:'UPDATE_ASSIGN_SUCCESS',payload:data})
     yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })
   }

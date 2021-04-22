@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 })
 
 export default function DemoCard(props) {
-  console.log(props)
+  // console.log(props)
   const {item, num} = props
   const classes = useStyles()
   return (

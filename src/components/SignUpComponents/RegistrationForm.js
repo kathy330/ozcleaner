@@ -27,7 +27,7 @@ export default function RegistrationForm() {
   const {control ,handleSubmit} = useForm()
   const dispatch = useDispatch()
   const onSubmit = (data) =>{
-    console.log(data)
+    // console.log(data)
     dispatch(register(data)) // 发送saga请求
   }
   const userRegister = useSelector((state) => state.userRegister)
@@ -46,22 +46,22 @@ export default function RegistrationForm() {
       textAlign:'center',
     },
     title:{
-      padding: '0px 30px',
-      paddingTop: '2vh',
+      padding: '0px, 0px, 0px, 25px',
+      paddingTop: '1vh',
       fontWeight:'bold',
-      fontSize:'38px'
+      fontSize:'30px'
     },
     textField: {
       [`& fieldset`]: {
         borderRadius: '30px',
       },
-      width:'85%',
+      width:'92%',
       marginBottom:10,
     },
     text:{
       fontWeight:'bold',
       width:'85%',
-      marginLeft:'8%'
+      marginLeft:'6%'
     },
     mention:{
       fontWeight: 'bold',
@@ -72,37 +72,37 @@ export default function RegistrationForm() {
       marginRight:'8%',
       marginBottom:'15px'
     },
-    divider:{
-      fontWeight: 'bold',
-      fontSize:'10px',
+    button:{
+      width:'100%',
     },
     agreement:{
       fontWeight: 'bold',
-      fontSize:'12px',
-      marginLeft:'34px',
+      fontSize:'11px',
+      marginLeft:'16px',
       width:'100%',
       marginBottom:'5px',
       marginRight:'10%'
     },
     divide:{
       borderBottom: "1px solid black",
-      width:'85%',
+      width:'90%',
       marginBottom:10
     },
     account:{
       fontWeight: 'bold',
-      fontSize:'12px',
-      marginLeft:'34px',
-      marginBottom:'-22px'
+      fontSize:'11px',
+      marginLeft:'16px',
+      marginBottom:'-25px'
     },
     login:{
       fontWeight: 'bold',
       color: '#007bf5',
       // float: 'right',
-      fontSize:'12px',
+      fontSize:'11px',
       textDecoration: 'none',
-      // marginRight:'10%',
-      marginBottom:'30px'
+      // paddingTop:-20,
+      paddingLeft:80
+    
     },
     loginColor:{
       textDecoration: 'none',
@@ -195,7 +195,7 @@ const classes = useStyles()
          
         
    
-            <a href="/password">
+            <a href="/forgetpassword">
               <Typography
                 className={classes.mention}
               >
@@ -203,8 +203,8 @@ const classes = useStyles()
               </Typography>
             </a>
  
-            <Grid container justify="center">
-              <PopupButton 
+            <Grid container justify="center" className={classes.button}>
+              <PopupButton
                 type="submit"
               />
             </Grid>
@@ -229,10 +229,8 @@ const classes = useStyles()
                 <Typography className={classes.account}>
                   Do not have an account?
                 </Typography>
-              
               </Grid>
-           
-              <Grid container justify="flex-end">
+              <Grid container className={classes.login} justify="flex-end">
                 <FormDialogLoginPop />
               </Grid>
             </Grid>

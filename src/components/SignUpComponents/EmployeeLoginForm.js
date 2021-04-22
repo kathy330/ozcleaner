@@ -1,4 +1,5 @@
-/* eslint-disable */
+/* eslint no-unused-vars: "error" */
+/* eslint import/no-cycle: [2, { maxDepth: 1 }] *///
 import React from 'react'
 // import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
@@ -12,9 +13,8 @@ import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import {useForm,Controller } from 'react-hook-form'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import DividerWithText from './Divider'
-import {FbButton,GoogleButton,PopupLoginButton} from './Button'
-import {signinEmployee, signoutEmployee} from "../../store/actions/actionCreator"
+import {PopupLoginButton} from './Button'
+import {signinEmployee} from "../../store/actions/actionCreator"
 import FormDialogSignupPop from "./FormDialogSignupPop"
 
 
@@ -25,10 +25,11 @@ export default function EmployeeLoginDetails() {
       dispatch(signinEmployee(data))
     }
 
+    /*
     const signoutHandler = () => {
       dispatch(signoutEmployee())
     }
-
+    */
     const employeeSignin = useSelector((state) => state.employeeSignin)
     const { userInfo, loading, error } = employeeSignin
   
@@ -43,22 +44,22 @@ const useStyles = makeStyles((theme) => ({
     textAlign:'center',
   },
   title:{
-    padding: '0px 30px',
-    paddingTop: '2vh',
+    padding: '0px, 0px, 0px, 25px',
+    paddingTop: '1vh',
     fontWeight:'bold',
-    fontSize:'38px'
+    fontSize:'30px'
   },
   textField: {
     [`& fieldset`]: {
       borderRadius: '30px',
     },
-    width:'85%',
+    width:'92%',
     marginBottom:10,
   },
   text:{
     fontWeight:'bold',
     width:'85%',
-    marginLeft:'8%'
+    marginLeft:'6%'
   },
   mention:{
     fontWeight: 'bold',
@@ -69,37 +70,37 @@ const useStyles = makeStyles((theme) => ({
     marginRight:'8%',
     marginBottom:'15px'
   },
-  divider:{
-    fontWeight: 'bold',
-    fontSize:'10px',
+  button:{
+    width:'100%',
   },
   agreement:{
     fontWeight: 'bold',
-    fontSize:'12px',
-    marginLeft:'34px',
+    fontSize:'11px',
+    marginLeft:'16px',
     width:'100%',
     marginBottom:'5px',
     marginRight:'10%'
   },
   divide:{
     borderBottom: "1px solid black",
-    width:'85%',
+    width:'90%',
     marginBottom:10
   },
   account:{
     fontWeight: 'bold',
-    fontSize:'12px',
-    marginLeft:'34px',
-    marginBottom:'-22px'
+    fontSize:'11px',
+    marginLeft:'16px',
+    marginBottom:'-25px'
   },
   login:{
     fontWeight: 'bold',
     color: '#007bf5',
     // float: 'right',
-    fontSize:'12px',
+    fontSize:'11px',
     textDecoration: 'none',
-    // marginRight:'10%',
-    marginBottom:'30px'
+    // paddingTop:-20,
+    paddingLeft:80
+  
   },
   loginColor:{
     textDecoration: 'none',
@@ -113,15 +114,14 @@ const classes = useStyles()
         
         <Grid container justify="center">
           <form onSubmit={handleSubmit(onSubmit)}>      
-              <DialogTitle className="Dialog-title">
-                <Typography
-                  className={classes.title}
-                  align="center"
-              
-                >
-                  Login
-                </Typography>
-              </DialogTitle>
+            <DialogTitle className="Dialog-title">
+              <Typography
+                className={classes.title}
+                align="center"
+              >
+                Login
+              </Typography>
+            </DialogTitle>
             <Grid container>
               <Typography
                 className={classes.text}
@@ -200,9 +200,7 @@ const classes = useStyles()
                 color="primary"
                 className={classes.response}
                 align="center"
-              >
-                You are now signed in!
-              </Typography>
+              />
             )}
               <PopupLoginButton />
             </Grid>
@@ -214,7 +212,7 @@ const classes = useStyles()
               </Typography>
               
             </Grid>
-            <Grid container justify="center" >
+            <Grid container justify="center">
               <Divider className={classes.divide} />
             </Grid>
             
@@ -225,10 +223,10 @@ const classes = useStyles()
                 </Typography>
               
               </Grid>
-              <Grid container justify="flex-end">
+              <Grid container className={classes.login} justify="flex-end">
                
          
-                  <FormDialogSignupPop />
+                <FormDialogSignupPop />
             
                
               </Grid>

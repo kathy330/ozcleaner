@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   card: {
-    border: '1px solid',
+    // border: '1px solid',
     marginTop: 20,
     marginBottom: 50,
     borderRadius: '5px',
@@ -64,9 +64,9 @@ function AdminCustomersRight(props) {
     status: { orderStatus }
   })
 
-  useEffect(() => {
-    console.log(state.status, 'state.status')
-  }, [state])
+  // useEffect(() => {
+  //   console.log(state.status, 'state.status')
+  // }, [state])
 
 
   const authLevel = localStorage.getItem('authLevel')
@@ -87,7 +87,7 @@ function AdminCustomersRight(props) {
               {orderPrice}
         </Typography>
         {/* </Grid> */}
-        <Divider />
+        {/* <Divider /> */}
         {/* </CardContent> */}
       </div>
       <Grid container direction="row"

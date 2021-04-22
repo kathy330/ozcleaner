@@ -32,19 +32,11 @@ export const buttonStyle = makeStyles((theme) => ({
     color: theme.palette.primary.contrastText,
     background: theme.palette.primary.main,
     borderRadius: '30px',
-    marginInline: '25px',
+    marginInline: '12px',
     paddingTop:'2.0%',
     paddingBottom:'2.0%',
     width:'100%',
-    
-    
-    
-    // marginTop:'-5px',
     marginBottom:'15px',
-      // marginLeft:'40px',
-      // marginRight:'40px',
-      // paddingInline: '130px',
-      // marginRight:'40px',
   
       "&:hover": {
         background: theme.palette.primary.dark, // #0050c1

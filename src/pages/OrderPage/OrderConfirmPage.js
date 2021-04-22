@@ -51,30 +51,20 @@ const useStyles = makeStyles((theme) => ({
       background: theme.palette.primary.hover, // #0050c1
       boxShadow: '0px 2px 10px #888',
     },
+  },
+
+  rightradius: {
+    borderRadius: '14px',
   }
 }))
 
 function OrderConfirm() {
   const classes = useStyles()
-  // const buttonstyle = buttonStyle()
-
-  // const [type, setType] = useState({
-  //   ordertype:''
-  // })
-
-  // 1/2 直接从regular reducer取值回来
+  // 1 直接从order reducer取值回来
   // const loadingREGdata = useSelector(state => state.regular_in_reducer_index.loading)  
   // const loadingNumREGdata = useSelector(state => state.order.loadingNum)  
   const orderData = useSelector(state => state.order.order)  
   // console.log('order data from redex: ',orderData)
-
-  // 2/2 直接从end reducer取值回来
-  // const loadingENDdata = useSelector(state => state.regular_in_reducer_index.loading)  
-  // const loadingNumENDdata = useSelector(state => state.endoflease_in_reducer_index.loadingNum)  
-  // const ENDdata = useSelector(state => state.endoflease_in_reducer_index.repos_in_reducer_init)  
-  // console.log('end redex method: ',ENDdata)
-  // console.log(loadingNumREGdata,loadingNumENDdata)
-
 
   // 设置传参的data值
   let data = {
@@ -106,7 +96,11 @@ function OrderConfirm() {
   const orderUrl = `/order-detail/${_id}?type=${aa}`
   const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
   const history = useHistory()
-
+  // 🔥 离开该页面，清除home page 的 local storage 🔥
+  window.onbeforeunload = () => {
+    localStorage.removeItem('Order')
+    // return '' //没有return的话，离开该页面就不会有弹窗提示
+  }
   return (
     <>
       {employeeinfoo?history.push("/employee-orders"):''}
@@ -149,7 +143,7 @@ function OrderConfirm() {
             <Grid item xs={false} sm={1} />
 
             <Grid item xs={12} sm={5}>
-              <Card>
+              <Card className={classes.rightradius}>
                 <OrderRight data={data} />
               </Card>
             </Grid>

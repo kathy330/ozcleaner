@@ -110,8 +110,7 @@ export default function FormDialogSignupPop() {
           open={open}
           onClose={handleClose}
           aria-labelledby="form-dialog-title"
-          fullWidth
-          maxWidth='xs'
+      
         >
           <div className={classes.root}>
             <AppBar position="static" color="default">

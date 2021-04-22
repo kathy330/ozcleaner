@@ -11,13 +11,14 @@ function* employeeLogin(action) {
     const userInfo = 
     yield call(axios.post, postAPI, action.payload)
     yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload: userInfo })
+    const info ={data: userInfo.data}
     if(JSON.parse(userInfo.config.data).email === "admin@oz.com"){
-      localStorage.setItem('employeeInfo', JSON.stringify(userInfo))
+      localStorage.setItem('employeeInfo', JSON.stringify(info))
       localStorage.setItem("authLevel", "admin") // 暂时把employee当成admin
       document.location.href = '/admin'
     }
     else{
-      localStorage.setItem('employeeInfo', JSON.stringify(userInfo))
+      localStorage.setItem('employeeInfo', JSON.stringify(info))
       localStorage.setItem("authLevel", "employee") // 暂时把employee当成admin
       document.location.href = '/employee-orders'
     }

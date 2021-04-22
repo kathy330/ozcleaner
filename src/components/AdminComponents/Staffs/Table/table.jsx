@@ -66,7 +66,7 @@ function isButton(words) {
 
 function isCancel(user,classes,handleAction, index) {
   const level = localStorage.getItem('authLevel')
-  if(user.status==='confirmed') {
+  if(user.status==='confirmed' || user.status==='in-progress') {
     return  (
       <Button 
         variant="contained"
@@ -74,7 +74,7 @@ function isCancel(user,classes,handleAction, index) {
         className={classes.btn}
         id={user.type}
         value={user._id}
-        onClick={() => handleAction(user._id, user.type, "cancelled", index)}
+        onClick={() => handleAction(user._id, user.type, "cancelled", index, user.status)}
       >
         Cancel
       </Button>
@@ -88,7 +88,7 @@ function isCancel(user,classes,handleAction, index) {
         className={classes.btn}
         id={user.type}
         value={user._id}
-        onClick={() => handleAction(user._id, user.type, "finished", index)}
+        onClick={() => handleAction(user._id, user.type, "finished", index, user.status)}
       >
         Finish
       </Button>
@@ -171,10 +171,15 @@ const BasicTable=(props)=>{
   }
 
   // finish orders
-  const handleAction = (id, ordertype, status, index) => {
+  const handleAction = (id, ordertype, status, index, presentStatus) => {
     
     dispatch(changeOrder(page * rowsPerPage + index))
     const body={id:id, update:{status:status}, type:ordertype}
+    if (status === 'cancelled' && presentStatus === 'in-progress' 
+    && localStorage.getItem('authLevel') === "admin") {
+      body.update={ status: "confirmed" }
+      body.cancelByAdmin = true
+    }
     dispatch(updateOrderRequest(body))
     
   }

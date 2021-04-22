@@ -6,7 +6,7 @@ import { deepOrange, deepPurple } from '@material-ui/core/colors'
 import { navBarStyle } from '../../../styles/styles'
 // import PopDetails from '../../SignUpComponents/PopupDetails'
 // import adminLogo from "../../../assets/adminLogo.svg" 
-import admin1 from "../../../assets/admin1.svg" 
+import admin2 from "../../../assets/admin2.svg" 
 
 
 
@@ -42,6 +42,11 @@ const useStyles = makeStyles((theme) => ({
 
   signout: {
     width: '100%',
+  },
+
+  logoimg: {
+    height: '5vh',
+    marginLeft: '18px',
   }
 }))
 
@@ -64,8 +69,9 @@ export default function AdminHeaderNavigation() {
           <Grid item className={style.grow} xs={6} md={9}>
             <Button href='/admin'>
               <img
-                src={admin1} 
-                className={style.logoimg}
+                src={admin2} 
+                // className={style.logoimg}
+                className={classes.logoimg}
                 alt="admin icon"
               />
             </Button>

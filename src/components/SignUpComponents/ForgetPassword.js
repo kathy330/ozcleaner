@@ -23,7 +23,7 @@ export default function ForgetPassword() {
   const dispatch = useDispatch()
     const onSubmit = (data) =>{
       dispatch(forgetpassword(data))
-      console.log(data.email)
+      // console.log(data.email)
     }
 
     

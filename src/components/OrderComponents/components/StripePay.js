@@ -12,8 +12,7 @@ import Grid from '@material-ui/core/Grid'
 import date from 'date-and-time'
 import {useDispatch} from 'react-redux'
 import {payOrderRequest, postOrderRequest } from '../../../store/actions'
-// import OrderTitle from "../../AdminComponents/Customers/OrderTitle"
-// import header from "../../../store/sagas/header"
+
 
 const cardStyle = {
   style: {
@@ -65,12 +64,9 @@ export default function CheckoutForm({price,paystatus,data}) {
     }
     const res = await axios.post(postApi,paydata,{headers:Header})
     await setClientSecret(res.data.clientSecret) // 🌟必须有这个
-    // console.log('付款已创建: ',res)
-    // console.log('付款安全码: ',res.data)
   }
   
   useEffect(() => {
-    // 进入这个页面后，自动在Stripe生成订单价格
     payapi()
   }, [])
 
@@ -82,7 +78,6 @@ export default function CheckoutForm({price,paystatus,data}) {
   }
 
   const paySubmit = async (event) => {
-    console.log('pay now...')
     event.preventDefault()
     setProcessing(true)
 
@@ -135,16 +130,13 @@ export default function CheckoutForm({price,paystatus,data}) {
     // userDetail:'604cb4dfc875675915d0d0a5'
   }
 
-  // console.log('pay success? ', paystatus)
   if(paystatus === true) {
     const{otherdata} = data
     const{extra} = data
-    // console.log(otherdata,extra)
 
     const pickDate = date.format(otherdata.date, 'YYYY-MM-DD') 
     const pickTime = date.format(otherdata.time, 'HH:mm:ss') 
     const datedate = `${pickDate}T${pickTime}Z`
-    // console.log(pickDate,pickTime,datedate)
     
     let propertyType = ''
     if(otherdata.propertyType === '') {
@@ -156,7 +148,6 @@ export default function CheckoutForm({price,paystatus,data}) {
     const user = JSON.parse(localStorage.getItem('userInfo'))
     const userObjectId = user.data.objectID
     const userid = user.data.ID
-    // console.log(userObjectId)
     const postTitle = `${otherdata.type} Bedroom x ${otherdata.bedRoomNum} Bathroom x ${otherdata.bathRoomNum}`
     const newData = {
       ...postData,
@@ -174,7 +165,6 @@ export default function CheckoutForm({price,paystatus,data}) {
       },
       title:postTitle,
       startTime:datedate,
-      // endTime:datedate, // endtime 什么时候设置？  
       firstName:otherdata.firstName,
       lastName:otherdata.lastName,
       phoneNumber:otherdata.phoneNumber,
@@ -191,7 +181,6 @@ export default function CheckoutForm({price,paystatus,data}) {
 
   const history = useHistory()
   if(paystatus) {
-    // console.log('post success')
     history.push("/order/confirm")
   }
 

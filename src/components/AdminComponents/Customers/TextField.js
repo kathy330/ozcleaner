@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import {
   makeStyles,
@@ -7,7 +7,8 @@ import {
   TextareaAutosize,
   Grid,
   Typography,
-  FormControlLabel
+  FormControlLabel,
+  Divider,
 } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 import Dialog from '@material-ui/core/Dialog'
@@ -38,45 +39,52 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     marginBottom: "10px",
-    width: '85%',
-    maxWidth: '100%'
+    minWidth: '85%',
+    maxWidth: '100%',
   },
   stars: {
     marginLeft: '7px',
     marginBottom: '10px'
-
-  }
+  },
+  dialog: {
+    padding: '10px 40px 40px 40px',
+  },
+  confirm: {
+    backgroundColor: '#3399ff',
+    color: 'white',
+    boxShadow: '2px 2px 2px 2px lightblue',
+  },
 }))
 
-const ParseTextarea = ({ value = '', onChange }) => {
-  const [text, setText] = useState(value)
-  const classes = useStyles()
-  const handleChange = (err) => {
-    const {value} = err.target
-    setText(value)
-    onChange(value)
-  }
-  return (
-    <TextareaAutosize
-      onChange={handleChange}
-      value={text}
-      className={classes.text}
-      required
-      rowsMin={3}
-    />
-)
-}
+// const ParseTextarea = ({ value = '', onChange }) => {
+//   const [text, setText] = useState(value)
+//   const classes = useStyles()
+//   const handleChange = (err) => {
+//     const { value } = err.target
+//     setText(value)
+//     onChange(value)
+//   }
+//   return (
+//     <TextareaAutosize
+//       onChange={handleChange}
+//       value={text}
+//       className={classes.text}
+//       required
+//       rowsMin={3}
+//     />
+//   )
+// }
 
 export default function App(props) {
   const { _id, type } = props
-  console.log(props)
+  // console.log(props)
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const [rateStar, setRateStar] = useState(0.0)
   const [reviews, setReviews] = useState('')
   const { control, handleSubmit, register } = useForm()
   const classes = useStyles()
-  
+
   const onSubmit = data => {
     setOpen(true)
     setReviews(data.review)
@@ -93,9 +101,9 @@ export default function App(props) {
     setOpen(false)
   }
 
-  const hadlesubmit =() => {
+  const hadlesubmit = () => {
     setOpen(false)
-    const payload = { id: _id, type: type, update:{review: reviews, rating: rateStar, reviewStatus: true}}
+    const payload = { id: _id, type: type, update: { review: reviews, rating: rateStar, reviewStatus: true } }
     dispatch(updateOrderRequest(payload))
   }
 
@@ -107,7 +115,7 @@ export default function App(props) {
 
         <FormControlLabel control={(
           <>
-            <input name="rating" type="number" value={rateStar} ref={register} readOnly hidden />
+            <input name="rating" type="number" value={rateStar} readOnly hidden />
             <Rating
               name="rating"
               value={rateStar}
@@ -121,7 +129,24 @@ export default function App(props) {
           </>
         )}
         />
-        <Controller name="review" as={ParseTextarea} control={control} defaultValue='' required />
+        <Controller name="review" control={control} defaultValue='' required render={({ value = '', onChange }) => {
+          const [text, setText] = useState(value)
+          const classes = useStyles()
+          const handleChange = (err) => {
+            const { value } = err.target
+            setText(value)
+            onChange(value)
+          }
+          return (
+            <TextareaAutosize
+              onChange={handleChange}
+              value={text}
+              className={classes.text}
+              required
+              rowsMin={10}
+            />
+          )
+        }} />
         <br />
         <Button
           name="rating"
@@ -135,14 +160,18 @@ export default function App(props) {
       </form>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle className={classes.dialog}>
-          Do you want to upload this review?
+        <DialogTitle>
+          Edit Confirmation
         </DialogTitle>
+        <Divider />
+        <Typography className={classes.dialog}>
+          Do you want to upload this review?
+        </Typography>
         <DialogActions>
-          <Button onClick={hadlesubmit} color="primary">
+          <Button onClick={hadlesubmit} className={classes.confirm}>
             YES
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} className={classes.confirm}>
             NO
           </Button>
         </DialogActions>

@@ -1,6 +1,6 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import { Card, CardContent, Typography } from "@material-ui/core"
+import { Card, CardContent, Typography} from "@material-ui/core"
 
 
 const useStyles = makeStyles({
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 })
 
 export default function DemoCard(props) {
-  console.log(props)
+  // console.log(props)
   const {item, num} = props
   const classes = useStyles()
   return (

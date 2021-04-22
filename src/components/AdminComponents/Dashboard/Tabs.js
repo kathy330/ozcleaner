@@ -79,7 +79,7 @@ export default function SimpleTabs() {
 
   const { pathname } = useLocation()
   const index = presentIndex(pathname)
-  console.log(index)
+  // console.log(index)
   const classes = useStyles()
   const [value, setValue] = React.useState(index)
 

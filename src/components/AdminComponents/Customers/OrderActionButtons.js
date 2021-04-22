@@ -1,12 +1,11 @@
 /* eslint-disable */
 import React from 'react'
-import { Button, makeStyles } from '@material-ui/core'
+import { Button, makeStyles, Typography, Divider } from '@material-ui/core'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { useDispatch } from 'react-redux'
-import { updateOrderRequest, updateAssignRequest } from "../../../store/actions"
-
+import { updateOrderRequest} from "../../../store/actions"
 
 // styles
 const useStyles = makeStyles((theme) => ({
@@ -37,48 +36,45 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       background: '#88AB59',
     },
-  }
+  },
+  dialog: {
+    padding: '10px 40px 40px 40px',
+  },
+  confirm: {
+    backgroundColor: '#3399ff',
+    color: 'white',
+    boxShadow: '2px 2px 2px 2px lightblue',
+  },
 }))
 
-export default function OrderActionButtons({ cancel, finish, accept, cancelData, finishData, acceptData }) {
+export default function OrderActionButtons({ cancel, finish, accept, id, type }) {
   const classes = useStyles()
   const dispatch = useDispatch()
-
   const [open, setOpen] = React.useState(false)
   const [status, setStatus] = React.useState({
     actionType: 'No actions',
   })
   const { actionType } = status
-  // console.log(actionType)
 
   const handleCancelOrder = () => {
     setOpen(false)
     const { actionType } = status
     // console.log(actionType)
-    if (actionType === 'cancel') {
-      dispatch(updateOrderRequest(cancelData))
-      // alert('Your order has been set CANCELLED successfully! ')
-    }
 
-    else if (actionType === 'finish') {
-      dispatch(updateOrderRequest(finishData))
-      // alert('Your order has been set FINISHED successfully! ')
+    let data = { id: id, update: { status: actionType === 'accept' ? "in-progress" : actionType }, type: type }
+    if (actionType === 'cancelled' && localStorage.getItem('authLevel') === "admin") {
+      data ={ id: id, update: { status: "confirmed" }, type: type, cancelByAdmin: true }
     }
-    else if (actionType === 'accept') {
-      console.log(acceptData);
-      dispatch(updateAssignRequest(acceptData))
-      // alert('You ACCEPT this order successfully! ')
-    }
-
+    dispatch(updateOrderRequest(data))
 
   }
   const handleCancel = () => {
     setOpen(true)
-    setStatus({ actionType: 'cancel' })
+    setStatus({ actionType: 'cancelled' })
   }
   const handleFinish = () => {
     setOpen(true)
-    setStatus({ actionType: 'finish' })
+    setStatus({ actionType: 'finished' })
   }
   const handleAccept = () => {
     setOpen(true)
@@ -91,14 +87,18 @@ export default function OrderActionButtons({ cancel, finish, accept, cancelData,
   return (
     <>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle className={classes.dialog}>
-          Do you want to {actionType} this order?
+        <DialogTitle>
+          Edit Confirmation
         </DialogTitle>
+        <Divider />
+        <Typography className={classes.dialog}>
+          Do you want to {actionType} this order?
+        </Typography>
         <DialogActions>
-          <Button onClick={handleCancelOrder} color="primary">
+          <Button onClick={handleCancelOrder} className={classes.confirm}>
             YES
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button onClick={handleClose} className={classes.confirm} autoFocus>
             NO
           </Button>
         </DialogActions>
@@ -115,4 +115,3 @@ export default function OrderActionButtons({ cancel, finish, accept, cancelData,
     </>
   )
 }
-

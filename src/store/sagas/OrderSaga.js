@@ -19,10 +19,13 @@ function* getOrder(action) {
 }
 
 function* updateOrder(action) {
-  const { id, update, type } = action.payload
-  // const update = { status: orderstatus }
+  const { id, update, type, cancelByAdmin } = action.payload
+  console.log(id, update, type, cancelByAdmin)
   const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
-  const updateApi = `http://localhost:8000/${model}/${id}`  // PUT方法更新regular
+  // eslint-disable-next-line no-nested-ternary
+  const field = update.reviewStatus? '/comments': cancelByAdmin ? '/cancel':''
+  const updateApi = `http://localhost:8000/${model}${field}/${id}`  // PUT方法更新regular
+  console.log(updateApi)
   try {
     yield call(axios.put, updateApi, update,header())
     yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })
@@ -42,7 +45,6 @@ function* postOrder(action) {
   }
   const result = yield call(axios.post, postApi, action.payload, header())
   const { data } = result
-  // console.log('return from backend: ', data)
   if (result.errors) {
     yield put({ type: 'POST_ORDER_FAILED', errorInSaga: result.errors })
   }
@@ -86,7 +88,7 @@ function* assignToEmployee(action) {
 
   try{
     const data = yield call(axios.put, updateAPI ,EmployeeData,header())
-    console.log(data)
+    // console.log(data)
     yield put({type:'UPDATE_ASSIGN_SUCCESS',payload:data})
     yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })
   }
@@ -118,7 +120,7 @@ function* fetchOrdersByTarget(action) {
   dispatched while a fetch is already pending, that pending fetch is cancelled
   and only the latest one will be run.
 */
-function* RegularSaga() {
+function* OrderSaga() {
   // yield takeLatest('GET_REGULAR_REQUEST',fetchRegularUrl)
   yield takeEvery('GET_ORDER_REQUEST', getOrder) // GEt 全部 ORDER
   yield takeEvery('POST_ORDER_REQUEST', postOrder) // POST to regular order
@@ -129,5 +131,5 @@ function* RegularSaga() {
   yield takeEvery('GET_ORDERSBYTARGET_REQUEST',fetchOrdersByTarget)
 }
 
-export default RegularSaga
+export default OrderSaga
 

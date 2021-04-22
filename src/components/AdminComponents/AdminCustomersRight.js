@@ -57,9 +57,9 @@ function AdminCustomersRight(props) {
   const classes = useStyles()
   const { orderPrice, orderStatus, _id, typeOfOrder } = props
   // const data = { taskid: ID, orderstatus: "in-progress" }
-  const data = { id: _id, update: { status: "cancelled" }, type: typeOfOrder }
-  const toFinishData = { id: _id, update: { status: "finished" }, type: typeOfOrder }
-  const toAcceptData = { id: _id, update: { status: "in-progress" }, type: typeOfOrder }
+  // const data = { id: _id, update: { status: "cancelled" }, type: typeOfOrder }
+  // const toFinishData = { id: _id, update: { status: "finished" }, type: typeOfOrder }
+  // const toAcceptData = { id: _id, update: { status: "in-progress" }, type: typeOfOrder }
   const [state] = React.useState({
     status: { orderStatus }
   })
@@ -93,12 +93,9 @@ function AdminCustomersRight(props) {
       <Grid container direction="row"
         justify="center"
         alignItems="center">
-        {(authLevel === 'admin') && (<OrderActionButtons cancel={orderStatus === "in-progress" ? "cancel" : ""} finish={orderStatus === "in-progress" ? "finish" : ""} accept='' cancelData={data}
-          finishData={toFinishData} acceptData={toAcceptData} />)}
-        {(authLevel === 'user') && (<OrderActionButtons cancel={orderStatus === "confirmed" ? "cancel" : ""} finish='' accept='' cancelData={data}
-          finishData={toFinishData} acceptData={toAcceptData} />)}
-        {(authLevel === 'employee') && (<OrderActionButtons cancel='' finish={orderStatus === "in-progress" ? "finish" : ""} accept={orderStatus === "confirmed" ? "accept" : ""} cancelData={data}
-          finishData={toFinishData} acceptData={toAcceptData} />)}
+        {(authLevel === 'admin') && (<OrderActionButtons cancel={orderStatus === "in-progress" ? "cancel" : ""} finish={orderStatus === "in-progress" ? "finish" : ""} accept='' id={_id} type ={typeOfOrder} />)}
+        {(authLevel === 'user') && (<OrderActionButtons cancel={orderStatus === "confirmed" ? "cancel" : ""} finish='' accept='' id={_id} type={typeOfOrder} />)}
+        {(authLevel === 'employee') && (<OrderActionButtons cancel='' finish={orderStatus === "in-progress" ? "finish" : ""} accept={orderStatus === "confirmed" ? "accept" : ""} id={_id} type={typeOfOrder} />)}
       </Grid>
     </Grid>
   )

@@ -5,7 +5,7 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { useDispatch } from 'react-redux'
-import { updateOrderRequest, updateAssignRequest } from "../../../store/actions"
+import { updateOrderRequest} from "../../../store/actions"
 
 // styles
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function OrderActionButtons({ cancel, finish, accept, cancelData, finishData, acceptData }) {
+export default function OrderActionButtons({ cancel, finish, accept, id, type }) {
   const classes = useStyles()
   const dispatch = useDispatch()
   const [open, setOpen] = React.useState(false)
@@ -59,23 +59,22 @@ export default function OrderActionButtons({ cancel, finish, accept, cancelData,
   const handleCancelOrder = () => {
     setOpen(false)
     const { actionType } = status
-    if (actionType === 'cancel') {
-      dispatch(updateOrderRequest(cancelData))
+    // console.log(actionType)
+
+    let data = { id: id, update: { status: actionType === 'accept' ? "in-progress" : actionType }, type: type }
+    if (actionType === 'cancelled' && localStorage.getItem('authLevel') === "admin") {
+      data ={ id: id, update: { status: "confirmed" }, type: type, cancelByAdmin: true }
     }
-    else if (actionType === 'finish') {
-      dispatch(updateOrderRequest(finishData))
-    }
-    else if (actionType === 'accept') {
-      dispatch(updateAssignRequest(acceptData))
-    }
+    dispatch(updateOrderRequest(data))
+
   }
   const handleCancel = () => {
     setOpen(true)
-    setStatus({ actionType: 'cancel' })
+    setStatus({ actionType: 'cancelled' })
   }
   const handleFinish = () => {
     setOpen(true)
-    setStatus({ actionType: 'finish' })
+    setStatus({ actionType: 'finished' })
   }
   const handleAccept = () => {
     setOpen(true)

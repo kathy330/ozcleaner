@@ -85,7 +85,7 @@ function isCancel(user,classes,handleAction, index) {
         color="secondary"
         id={user.type}
         value={user._id}
-        onClick={() => handleAction(user._id, user.type, "cancelled", index)}
+        onClick={() => handleAction(user._id, user.type, "cancelled", index, user.status)}
       >
         Cancel
       </Button>

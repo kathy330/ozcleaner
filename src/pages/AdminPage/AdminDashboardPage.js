@@ -152,12 +152,13 @@ export default function Overview() {
                   justify="center"
                   alignItems="center"
                 >
-                  {UserName.map((user) => (
+                  {UserName.map((user, index) => (
                     // <Grid container alignItems="center" direction="row">
-                    <Grid item xs={3} className={classes.item}>
+                    <Grid item xs={3} className={classes.item} key={`grid${index}`}>
                       <UserAvatar
                         firstName={user.firstName}
                         lastName={user.lastName}
+                        key={`avatar${index}`}
                       />
                     </Grid>
                     // </Grid>

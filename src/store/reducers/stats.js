@@ -10,14 +10,12 @@ function statsReducer(state = initialState, action) {
     switch (action.type) {
   
       case actionType.GET_STATS_REQUEST:
-        console.log("test")
         return {
           ...state,
           loading:true
         }
   
       case actionType.GET_STATS_SUCCESS:
-        console.log(action)
         return {
           ...state,
           loading: false,

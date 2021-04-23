@@ -24,23 +24,22 @@ const useStyles = makeStyles((themes) => ({
     },
   },
 
-  status1: {
+  status1:{
     backgroundColor: "#89b153",
-    borderRadius: "100px",
-    color: "white",
-    cssFloat: "left",
-    listStyleType: "none",
+    float: "left",
     padding: "2px 25px",
+    listStyleType: "none",
+    borderRadius: "100px",
+    color:"white",
   },
-
-  status2: {
+  status2:{
 
     backgroundColor: "#cc584e",
-    borderRadius: "100px",
-    color: "white",
-    cssFloat: "left",
-    listStyleType: "none",
+    float: "left",
     padding: "2px 25px",
+    listStyleType: "none",
+    borderRadius: "100px",
+    color:"white",
 
   }
 }))

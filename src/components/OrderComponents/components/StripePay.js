@@ -133,6 +133,9 @@ export default function CheckoutForm({price,paystatus,data}) {
   if(paystatus === true) {
     const{otherdata} = data
     const{extra} = data
+    const{bedRoomNum} = data
+    const{bathRoomNum} = data
+    const{type} = data
 
     const pickDate = date.format(otherdata.date, 'YYYY-MM-DD') 
     const pickTime = date.format(otherdata.time, 'HH:mm:ss') 
@@ -152,9 +155,11 @@ export default function CheckoutForm({price,paystatus,data}) {
     const newData = {
       ...postData,
       ...extra,
-      bedroomNum:otherdata.bedRoomNum,
-      bathroomNum:otherdata.bathRoomNum,
-      type:otherdata.type,
+      // bedroomNum:otherdata.bedRoomNum,
+      // bathroomNum:otherdata.bathRoomNum,
+      bedroomNum:bedRoomNum,
+      bathroomNum:bathRoomNum,
+      type:type,
       address:{
         ...postData.address,
         postcode:otherdata.postcode,

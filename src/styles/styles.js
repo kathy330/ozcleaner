@@ -93,6 +93,39 @@ export const buttonStyle = makeStyles((theme) => ({
       boxShadow: '0px 2px 10px #888',
     },
   },
+  previousButton:{
+    background: '#b3e5fc', // #007bf5
+    borderRadius: '8px',
+    padding: '8px 30px',
+    margin:'30px 0',
+    color: theme.palette.primary.contrastText,
+    '&:hover': {
+      background: '#29b6f6', // #0050c1
+      boxShadow: '0px 2px 10px #888',
+    }
+  },
+  nextButton:{
+    background: '#b3e5fc', // #007bf5
+    borderRadius: '8px',
+    padding: '8px 30px',
+    margin:'30px 0',
+    color: theme.palette.primary.contrastText,
+    '&:hover': {
+      background: '#29b6f6', // #0050c1
+      boxShadow: '0px 2px 10px #888',
+    }
+  },
+  finalBookingButton:{
+    background: '#b3e5fc', // #007bf5
+    borderRadius: '8px',
+    padding: '8px 30px',
+    margin:'30px 0',
+    color: theme.palette.primary.contrastText,
+    '&:hover': {
+      background: '#29b6f6', // #0050c1
+      boxShadow: '0px 2px 10px #888',
+    },
+  }
 }))
 
 export const statusStyle = makeStyles((theme) => ({

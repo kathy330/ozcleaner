@@ -43,7 +43,8 @@ const useStyles = makeStyles(() => ({
   },
 
   price: {
-    color: '#007bf5',
+    // color: '#007bf5',
+    color: '#29b6f6',
   },
 
   // totalText: {

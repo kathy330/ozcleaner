@@ -1523,7 +1523,7 @@ function Order(props) {
                             </Button>
                           </Grid>
 
-                          <Grid item xs={2} sm={5}>
+                          <Grid item xs={6} sm={5}>
                             <ScrollTop {...props}>
                               <Button 
                                 type="submit"

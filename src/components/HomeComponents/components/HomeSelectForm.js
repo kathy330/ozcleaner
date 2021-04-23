@@ -210,7 +210,7 @@ export default function HomeSelectForm() {
                       <MenuItem className={classes.selected} value="2">2</MenuItem>
                       <MenuItem className={classes.selected} value="3">3</MenuItem>
                       <MenuItem className={classes.selected} value="4">4</MenuItem>
-                      <MenuItem className={classes.selected} value="5">5</MenuItem>
+                      {/* <MenuItem className={classes.selected} value="5">5</MenuItem> */}
                     </Select>
                 )}
                   name="bedRoomNum"
@@ -236,7 +236,7 @@ export default function HomeSelectForm() {
                       <MenuItem className={classes.selected} value="2">2</MenuItem>
                       <MenuItem className={classes.selected} value="3">3</MenuItem>
                       <MenuItem className={classes.selected} value="4">4</MenuItem>
-                      <MenuItem className={classes.selected} value="5">5</MenuItem>
+                      {/* <MenuItem className={classes.selected} value="5">5</MenuItem> */}
                     </Select>
                 )}
                   name="bathRoomNum"

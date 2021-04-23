@@ -2,10 +2,10 @@
 /* eslint-disable max-len */
 import React from 'react'
 import { makeStyles} from '@material-ui/core/styles'
-import Avatar from '@material-ui/core/Avatar'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
-import image1 from "../../../../assets/avatars/avatar1.jpeg"
+import GetAvatar from '../../../Avatar/AvatarLargeSize'
+
 
 
 const useStyles = makeStyles((themes) => ({
@@ -14,15 +14,6 @@ const useStyles = makeStyles((themes) => ({
     '& > *': {
       margin: themes.spacing(1),
     },
-  },
-  small: {
-    width: themes.spacing(3),
-    height: themes.spacing(3),
-  },
-  large: {
-    width: themes.spacing(26),
-    height: themes.spacing(26),
-    fontSize:50,
   },
   img:{
     margin:"auto",
@@ -33,7 +24,6 @@ export default function Avatars(props){
 
   const classes = useStyles()
   const {UserData}=props
-  // console.log(UserData)
 
   return (
 
@@ -41,8 +31,7 @@ export default function Avatars(props){
       {UserData.map((user)=>(
         <Grid key={user._id} item xs container direction="column" spacing={2}>
           <Grid item className={classes.img}>
-            {/* <Avatar className={classes.large}>{user.name.firstName.slice(0,2).toUpperCase()}</Avatar> */}
-            <Avatar className={classes.large} src={image1} />
+            <GetAvatar />
           </Grid>
              
           <Grid item xs>                                                                                                                                                                   

@@ -151,7 +151,7 @@ export default function CheckoutForm({price,paystatus,data}) {
     const user = JSON.parse(localStorage.getItem('userInfo'))
     const userObjectId = user.data.objectID
     const userid = user.data.ID
-    const postTitle = `${otherdata.type} Bedroom x ${otherdata.bedRoomNum} Bathroom x ${otherdata.bathRoomNum}`
+    const postTitle = `${type} Bedroom x ${bedRoomNum} Bathroom x ${bathRoomNum}`
     const newData = {
       ...postData,
       ...extra,

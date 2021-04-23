@@ -13,12 +13,6 @@ import {getHistoryRequest} from "../../store/actions"
 const useStyles = makeStyles((theme) => ({
   tableCell:{
     padding:'8px',
-    // [theme.breakpoints.down((1550))]:{
-    //   padding:'8px',
-    // },
-    // [theme.breakpoints.down((700))]:{
-    //   padding:'8px',
-    // },
   },
   table: {
     minWidth: 500,
@@ -59,11 +53,7 @@ const useStyles = makeStyles((theme) => ({
 }
 ))
 
-// function createData(orderId, numOfBedrooms, numOfBathrooms, date, price, action) {
-//   return { orderId, numOfBedrooms, numOfBathrooms, date, price, action }
-// }
 function displayTime(time) {
-  // 2020-01-01T12:00:00.000+00:00
   let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
   result = result.toString().split(" ")
   return `${date.transform(result[4], 'HH:mm:ss', 'hh:mmA')} 

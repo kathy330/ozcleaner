@@ -1,29 +1,29 @@
-/* eslint-disable */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid, Typography } from '@material-ui/core'
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd'
 import ListTable from '../../components/AdminComponents/ListTable'
 
 const columns = [
-  { id: 'avatar', label: 'Avatar', minWidth: 60, align: 'center' },
-  { id: 'name', label: 'Name', minWidth: 100, align: 'center' },
+  { id: 'name', label: 'Name', minWidth: 160, align: 'center' },
+  { id: 'email', label: 'Email', minWidth: 100, align: 'center' },
   { id: 'status', label: 'Status', minWidth: 120, align: 'center' },
   {
     id: 'ongoingOrders',
-    label: 'Ongoing Orders',
-    minWidth: 70,
+    label: 'Ongoing',
+    minWidth: 50,
     align: 'center',
   },
   {
     id: 'completedOrders',
-    label: 'Completed Orders',
-    minWidth: 70,
+    label: 'Completed',
+    minWidth: 50,
     align: 'center',
   },
   {
     id: 'actions',
     label: 'Actions',
-    minWidth: 240,
+    minWidth: 100,
     align: 'center',
   },
 ]
@@ -37,7 +37,14 @@ const useStyles = makeStyles((theme) => ({
       padding: '35px 20px',
     },
   },
-
+  listIcon: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  icon: {
+    fontSize: '3rem',
+    marginRight: '10px'
+  },
   listTable: {
     alignContent: 'space-between',
     justifyContent: 'center',
@@ -53,7 +60,8 @@ function AdminCustomersListPage(match) {
   return (
     <>
       <Container maxWidth="lg" className={classes.root}>
-        <Typography variant="h3" component="h1">
+        <Typography variant="h3" component="h1" className={classes.listIcon}>
+          <AssignmentIndIcon className={classes.icon} /> 
           Staffs List
         </Typography>
         <Grid container className={classes.listTable}>

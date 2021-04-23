@@ -13,12 +13,6 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-/**
- * ListPagination() is a pagination components
- * @param path: (string) route path based on the parent component's path
- * @param getPaginationPage: (func) a callback function
- * @param count: (num) number of the pages
- */
 function ListPagination(props){
   const classes = useStyles()
   const { path, getPaginationPage, count } = props
@@ -38,8 +32,9 @@ function ListPagination(props){
           renderItem={(item) => (
             <PaginationItem
               component={Link}
-              // eslint-disable-next-line max-len
-              to={`${path}${status ? `?status=${status}&` : ''}${status ? '' : '?'}${item.page === 1 ? `` : `page=${item.page}`}`}
+              to={`${path}${status ? 
+                    `?status=${status}&` 
+                    : ''}${status ? '' : '?'}${item.page === 1 ? `` : `page=${item.page}`}`}
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...item}
               onClick={() => getPaginationPage(item.page)}

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react"
 import { makeStyles, Box, Container, Typography, IconButton, Link } from '@material-ui/core'
 import MailOutlineIcon from '@material-ui/icons/MailOutline'
@@ -28,7 +27,7 @@ function Footer(){
 
   return (
     <Box component="footer" className={classes.footer}>
-      <Container maxWidth="xl" className={classes.warpper}>
+      <Container maxWidth="lg" className={classes.warpper}>
         <Typography variant="subtitle2" color="inherit">
           Copyright © OzCleaner 2021.
         </Typography>

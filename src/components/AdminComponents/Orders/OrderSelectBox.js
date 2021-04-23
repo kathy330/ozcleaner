@@ -23,12 +23,6 @@ const SelectStyle = {
   getContentAnchorEl: null
 }
 
-/**
- * OrderSelectBox() is a pagination components
- * @param path: (string) route path based on the parent component's path
- * @param orderStatus: (string) select value
- * @param selectStatusChange: (func) a callback func
- */
 const OrderSelectBox = (props) => {
   const classes = useStyles()
   const { path, orderStatus, selectStatusChange } = props

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { TableContainer, Table, TableBody } from '@material-ui/core'
+import { makeStyles, TableContainer, Table, TableBody } from '@material-ui/core'
 import { getAllUserListRequest, getAllEmployeeListRequest,
   deletedCustomerRequest, deletedEmployeeRequest } from '../../store/actions'
 import ListTableHead from './ListTableHead'
@@ -10,13 +10,14 @@ import ListPagination from './ListPagination'
 import NoDataFound from './NoDataFound'
 import DialogPopup from './DialogPopup'
 
-/**
- * ListTable() is for displaying the user list(user/employee)
- * @param columns: (obj) table head
- * @param urlpage: (str) is the url page number
- * @param tableType: (str) is to distinguish between customer list and staff list
- */
+const useStyle = makeStyles(() => ({
+  root: {
+    marginBottom: '20px'
+  },
+}))
+
 function ListCustomerTable(props) {
+  const classes = useStyle()
   const { columns, urlpage, tableType } = props
   const pageSize = 15
   const listSize = { page: urlpage, pageSize: pageSize}
@@ -25,28 +26,25 @@ function ListCustomerTable(props) {
   const [deletedIndex, setdeletedIndex] = React.useState(0)
   const [open, setOpen] = React.useState(false)
   const dispatchRequest = (tableType === 'customer') 
-  // get userdata from state
   const usersData = useSelector(state => state.userslist.users.result)
-  // get total users number from state
   const usersCount = useSelector(state => state.userslist.users.count)
   const loading = useSelector(state => state.userslist.loading)
   const dataType = useSelector(state => state.userslist.dataType)
-  // console.log(usersData)
-  
   const error = useSelector(state => state.userslist.error)
   const path = dispatchRequest ? '/admin/customers' : '/admin/staffs'
   
-  // eslint-disable-next-line no-shadow
-  const returnPage = (usersCount) => {
-    if (usersCount < pageSize) {
+  const returnPage = (usersCountNum) => {
+    if (usersCountNum < pageSize) {
       return 1
     } 
-    if (usersCount % pageSize !== 0) {
-      return Math.floor(usersCount / listSize.pageSize) + 1
+    if (usersCountNum % pageSize !== 0) {
+      return Math.floor(usersCountNum / listSize.pageSize) + 1
     } 
-    return Math.floor(usersCount / listSize.pageSize)
+    return Math.floor(usersCountNum / listSize.pageSize)
   }
+
   const finalPage = returnPage(usersCount)
+
   const dispatchRequested = () => {
     if (dispatchRequest) {
       dispatch(getAllUserListRequest(listSize))
@@ -54,6 +52,7 @@ function ListCustomerTable(props) {
       dispatch(getAllEmployeeListRequest(listSize))
     }
   }
+
   useEffect(() => {
     dispatchRequested()
   }, [])
@@ -89,30 +88,31 @@ function ListCustomerTable(props) {
 
   return (
     <>
-      {/* if loading: show loading icon */}
       {(loading || dataType !== tableType) && <LoadingIcon />}
-      {/* if user data is not empty show ListTable.  */}
       {!loading && dataType === tableType && usersData.length > 0 && (
         <>
-          <TableContainer>
+          <TableContainer className={classes.root}>
             <Table aria-label="simple table">
               <ListTableHead columns={columns} />
               <TableBody>
-                {usersData.map((row,index) => (
-                  <ListTableRow
-                    key={row.ID}
-                    index={index}
-                    // eslint-disable-next-line no-underscore-dangle
-                    id={row._id}
-                    firstName={row.name.firstName}
-                    lastName={row.name.lastName}
-                    status={row.employmentStatus}
-                    ongoingOrder={row.numberOfOnGoingOrder}
-                    completedOrder={row.numberOfOrderFinished}
-                    tableType={tableType}
-                    openDeletedModal={openDeletedModal}
-                  />
-                  ))}
+                {usersData.map((row,index) => {
+                  const { _id: userObjId } = row
+                  return(
+                    <ListTableRow
+                      key={row.ID}
+                      index={index}
+                      id={userObjId}
+                      firstName={row.name.firstName}
+                      lastName={row.name.lastName}
+                      email={row.email}
+                      status={row.employmentStatus}
+                      ongoingOrder={row.numberOfOnGoingOrder}
+                      completedOrder={row.numberOfOrderFinished}
+                      tableType={tableType}
+                      openDeletedModal={openDeletedModal}
+                    />
+                  )
+                })}
               </TableBody>
             </Table>
           </TableContainer>
@@ -129,11 +129,9 @@ function ListCustomerTable(props) {
           />
         </>
       )}
-      {/* if not loading && user data is empty: show no user available */}
       {usersData !== undefined && usersData.length === 0 &&
         !loading &&
         <NoDataFound refreshPage={refreshPage} title={`No ${tableType} found!`} />}
-      {/* display any error below */}
       {error && !loading && console.log(error)}
     </>
   )

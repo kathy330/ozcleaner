@@ -56,19 +56,6 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-// function formatDate (date){
-//   try {
-//     let formatedDate = new Date(date) 
-//     formatedDate = formatedDate.toString().split(' ')
-//     const test = Date.parse(date)
-
-//     console.log(date, new Date(test))
-//     return `${formatedDate[0]}, ${formatedDate[2]} ${formatedDate[1]}`
-//   } catch {
-//     return 'Invalid Date Value.'
-//   }
-// }
-
 function formatDate(time) {
   try {
     let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
@@ -78,10 +65,7 @@ function formatDate(time) {
     return "There's no exact time in this part. "
   }
 }
-/**
- * OrderCard() is for render an order detail in the order task page
- * @param props: (obj) store data that need to be rended in this component
- */
+
 const OrderCard = (props) => {
   const classes = useStyles()
   const { title, price, address, startDate, status, classToUse } = props

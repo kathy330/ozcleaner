@@ -2,10 +2,8 @@ import React from 'react'
 import { makeStyles, Box, Grid, Typography } from '@material-ui/core'
 import { deepPurple, deepOrange } from '@material-ui/core/colors'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-// import style from '../scss/Admin.module.scss'
 
 
-// styles
 const styles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -27,7 +25,6 @@ const styles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    // fontSize: '20px',
   },
   text: {
     marginLeft: 10
@@ -55,7 +52,6 @@ export default function Names(props) {
             {lastName[0].toUpperCase()}
             {lastName.slice(1)}
           </Typography>
-          {/* <Typography variant="subtitle2">23 hours ago</Typography> */}
         </Grid>
       </Grid>
     </Box>

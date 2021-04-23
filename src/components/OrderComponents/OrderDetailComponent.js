@@ -6,7 +6,6 @@ import AdminCustomersRight from "../AdminComponents/AdminCustomersRight"
 import LoadingIcon from '../AdminComponents/LoadingIcon'
 
 
-// style
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -17,9 +16,6 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   bg: {
-    // paddingBottom: '50px',
-    // paddingTop: "0px",
-    // padding: '70px',
     [theme.breakpoints.down('sm')]: {
       padding: '0px',
     },
@@ -27,13 +23,11 @@ const useStyles = makeStyles((theme) => ({
   },
   body: {
     backgroundColor: "white",
-    // minHeight: "85vh",
     padding: '55px',
     borderRadius: '5px',
   },
 }))
 
-// 暂定一个初始order数据，下面更改
 const data = {
   taskID: "3",
   address: {
@@ -66,22 +60,14 @@ const data = {
 
 function displayPage(repo) {
 
-  // need user objID & employee objID
   if (typeof (repo) === 'string') { return <LoadingIcon /> }
   const { startTime, endTime, title, firstName, address, lastName,
     cabinets, fridge, oven, interiorWindows, rating, review, price, status, type, phoneNumber, _id, userDetail, employeeDetail, reviewStatus } = repo
-  // console.log(_id)
-  // let re = /{|}|":"|"address1|"address2|"suburb|"state|"postcode|":/g
-  // console.log(JSON.stringify(repo.address).replace(re, ''))
-  // let re2 = /",/g
-  // console.log(JSON.stringify(repo.address).replace(re, '').replace(re2, ', '))
-  // console.log(JSON.stringify(address).replace(/{|}|":"|"address1|"address2|"suburb|"state|"postcode|":/g, '').replace(/",/g, ', '))
 
   let employeeFirstName, employeeLastName, employeeObjID = null
   const userFirstName = userDetail[0].name.firstName
   const userLastName = userDetail[0].name.lastName
   const userObjID = userDetail[0]._id
-  // console.log(userDetail[0].name)
   if (employeeDetail[0] == null) {
     employeeFirstName = 'null'
     employeeLastName = 'null'
@@ -91,11 +77,6 @@ function displayPage(repo) {
     employeeLastName = employeeDetail[0].name.lastName
     employeeObjID = employeeDetail[0]._id
   }
-  // const userFirstName = userDetail[0].name.firstName
-  // const userLastName = userDetail[0].name.lastName
-  // const employeeFirstName = employeeDetail[0].name.firstName
-  // const employeeLastName = employeeDetail[0].name.lastName
-  // console.log(userFirstName, userLastName, employeeFirstName, employeeLastName)
   return (
     <>
       <Grid container spacing={2}>
@@ -111,7 +92,6 @@ function displayPage(repo) {
           customerLastName={lastName}
           orderStatus={status}
           phone={phoneNumber}
-          // location={Object.values(address).join(', ')}
           location={JSON.stringify(address).replace(/{|}|":"|"address1|"address2|"suburb|"state|"postcode|":/g, '').replace(/",/g, ', ')}
           cab={cabinets}
           fri={fridge}
@@ -137,19 +117,11 @@ function displayPage(repo) {
 
 function OrderDetailComponent(props) {
   const classes = useStyles()
-
   const { data } = props
-  // let redux = useSelector(state => state.order)
-  // let redux2 = useSelector(state => state.employee_in_reducer_index)
-
-  // console.log(redux, 'redux')
-  // console.log(loading,)
-
 
   return (
     <>
       <Grid className={classes.bg}>
-        {/* {endTime} */}
         <Container maxWidth="md" className={classes.body}>
           {displayPage(data)}
         </Container>

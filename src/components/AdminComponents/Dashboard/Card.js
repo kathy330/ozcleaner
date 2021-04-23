@@ -5,20 +5,21 @@ import { Card, CardContent, Typography} from "@material-ui/core"
 
 const useStyles = makeStyles({
   root: {
+    borderRadius: "4%",
     maxWidth: 180,
     minWidth: 270,
-    borderRadius: "4%"
   },
+
   title: {
-    marginTop: "25px"
+    marginTop: "25px",
   },
+
   content: {
-    marginBottom: "10px"
+    marginBottom: "10px",
   },
 })
 
 export default function DemoCard(props) {
-  // console.log(props)
   const {item, num} = props
   const classes = useStyles()
   return (

@@ -4,19 +4,16 @@ import axios from 'axios'
 import actionTypes from "../actions/actionTypes"
 import header from "./header"
 
-// import API from our API folder, this just is a example
 
 let getApi = ''
 let updateAPI =''
 
 function* fetchRegularUrl()   {
-  // console.log(url)
   const level = localStorage.getItem('authLevel') 
   const info = JSON.parse(localStorage.getItem(`${level}Info`))
   const ID = info.data.objectID
   const person = level === 'user'? 'users' : 'employees'
   getApi = `http://localhost:8000/${person}/alltask/${ID}`
-  // getApi='http://localhost:8000/employees/alltask/606ae8d38985eb80d70f58e6'
   try{
     const data = yield call(axios.get, getApi,header())
     yield put({type:actionTypes.GET_HISTORY_SUCCESS,payload:data.data})

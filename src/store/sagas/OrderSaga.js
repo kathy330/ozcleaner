@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
 import header from "./header"
-// const gitApi = 'http://localhost:8000/regular/task/1'
+
 const postRCApi = 'http://localhost:8000/regular'
 const postECApi = 'http://localhost:8000/endOfLease/'
 
@@ -29,7 +29,6 @@ function* updateOrder(action) {
   try {
     yield call(axios.put, updateApi, update,header())
     yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })
-    // 这个data是返回对象reponse的data属性
   }
   catch (e) {
     console.log(e)
@@ -37,7 +36,6 @@ function* updateOrder(action) {
   }
 }
 
-// 1/3 post regular order --dongyu
 function* postOrder(action) {
   let postApi = postRCApi
   if (action.payload.type === "EC") {
@@ -50,15 +48,11 @@ function* postOrder(action) {
   }
   else {
     yield put({ type: 'POST_ORDER_SUCCESS', postInSaga: data })
-
-
-    // 🔥数据存储到local storage里，可以直接用useSelector() 使用
     localStorage.setItem('Order', JSON.stringify(action.payload))
 
   }
 }
 
-// 3/3 PAY order --dongyu
 function* payOrder() {
   yield put({ type: 'PAY_ORDER_SUCCESS', postInSaga: 'success!!' })
 }
@@ -69,7 +63,6 @@ function* fetchAllOrders(action) {
     // eslint-disable-next-line max-len
     const apiUrl = `http://localhost:8000/sortedOrder?page=${page}&pageSize=${pageSize}&status=${status}`
     const orders = yield call(axios.get, apiUrl,header())
-    // console.log('data', orders)
     yield put({ type: 'GET_ALL_ORDERS_SUCCESS', orders: orders.data })
   } catch (e) {
     yield put({ type: 'GET_ALL_ORDERS_FAILED', message: e.message })
@@ -88,7 +81,6 @@ function* assignToEmployee(action) {
 
   try{
     const data = yield call(axios.put, updateAPI ,EmployeeData,header())
-    // console.log(data)
     yield put({type:'UPDATE_ASSIGN_SUCCESS',payload:data})
     yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })
   }
@@ -101,10 +93,7 @@ function* assignToEmployee(action) {
 function* fetchOrdersByTarget(action) {
   try{
     const{id, type} = action.payload
-    // console.log(type)
-    // console.log(id)
     const apiUrl = `http://localhost:8000/${type === 'user'? 'users': 'employees'}/alltask/${id}`
-    // console.log(apiUrl)
     const users = yield call(axios.get, apiUrl,header())
     yield put({type:'GET_ORDERSBYTARGET_SUCCESS',users:users.data})
   }
@@ -114,20 +103,13 @@ function* fetchOrdersByTarget(action) {
 }
 
 
-/*
-  Alternatively you may use takeLatest.
-  Does not allow concurrent fetches of user. If "USER_FETCH_REQUESTED" gets
-  dispatched while a fetch is already pending, that pending fetch is cancelled
-  and only the latest one will be run.
-*/
 function* OrderSaga() {
-  // yield takeLatest('GET_REGULAR_REQUEST',fetchRegularUrl)
-  yield takeEvery('GET_ORDER_REQUEST', getOrder) // GEt 全部 ORDER
-  yield takeEvery('POST_ORDER_REQUEST', postOrder) // POST to regular order
-  yield takeEvery('UPDATE_ORDER_REQUEST', updateOrder) // UPDATE regular order
+  yield takeEvery('GET_ORDER_REQUEST', getOrder) 
+  yield takeEvery('POST_ORDER_REQUEST', postOrder) 
+  yield takeEvery('UPDATE_ORDER_REQUEST', updateOrder) 
   yield takeEvery('UPDATE_ASSIGN_REQUEST', assignToEmployee)
   yield takeEvery('GET_ALL_ORDERS_REQUESTED', fetchAllOrders )
-  yield takeEvery('PAY_ORDER_REQUEST', payOrder) // PAY
+  yield takeEvery('PAY_ORDER_REQUEST', payOrder) 
   yield takeEvery('GET_ORDERSBYTARGET_REQUEST',fetchOrdersByTarget)
 }
 

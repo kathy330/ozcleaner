@@ -4,7 +4,6 @@ import { Grid, Typography, makeStyles, Card, CardContent, Divider } from '@mater
 import OrderActionButtons from './Customers/OrderActionButtons'
 
 
-// style
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -16,16 +15,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   card: {
-    // border: '1px solid',
     marginTop: 20,
     marginBottom: 50,
     borderRadius: '5px',
     maxWidth: '200px',
-    // height: '153px',
     padding: '20px 20px 40px',
   },
   text: {
-    // textAlign: 'center',
   },
   price: {
     color: '#007bf5',
@@ -56,17 +52,10 @@ const useStyles = makeStyles((theme) => ({
 function AdminCustomersRight(props) {
   const classes = useStyles()
   const { orderPrice, orderStatus, _id, typeOfOrder } = props
-  // const data = { taskid: ID, orderstatus: "in-progress" }
-  // const data = { id: _id, update: { status: "cancelled" }, type: typeOfOrder }
-  // const toFinishData = { id: _id, update: { status: "finished" }, type: typeOfOrder }
-  // const toAcceptData = { id: _id, update: { status: "in-progress" }, type: typeOfOrder }
   const [state] = React.useState({
     status: { orderStatus }
   })
 
-  // useEffect(() => {
-  //   console.log(state.status, 'state.status')
-  // }, [state])
 
 
   const authLevel = localStorage.getItem('authLevel')
@@ -74,21 +63,14 @@ function AdminCustomersRight(props) {
   return (
     <Grid item xs={12} sm={3} className={classes.root} >
       <div className={classes.card} >
-        {/* <CardContent> */}
-        {/* <Grid item xs={12}> */}
         <Typography className={classes.text} variant="subtitle2" gutterBottom>
           PRICE
             </Typography>
-        {/* </Grid> */}
         <Divider />
-        {/* <Grid item xs={12}> */}
         <Typography className={classes.price} variant="h4" color="textSecondary">
           $
               {orderPrice}
         </Typography>
-        {/* </Grid> */}
-        {/* <Divider /> */}
-        {/* </CardContent> */}
       </div>
       <Grid container direction="row"
         justify="center"

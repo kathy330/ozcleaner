@@ -9,13 +9,8 @@ function AdminIndexPage(){
   
     return (
       <div>
-        {/* <NavBar /> */}
-  
-        {/* <AdminCustomersLeft /> */}
         <AdminHeaderNavigation />
         <AdminTabs />
-        {/* <footer /> */}
-
         <Footer />
       </div>
     )

@@ -1,6 +1,4 @@
 import React from "react"
-// import {useSelector} from 'react-redux'
-// import { Redirect } from "react-router-dom" // 负责页面跳转router，不会刷新reducer👍
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -12,26 +10,8 @@ import BathtubIcon from '@material-ui/icons/Bathtub'
 import RoomIcon from '@material-ui/icons/Room'
 import NoteIcon from '@material-ui/icons/Note'
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
-// import IconButton from '@material-ui/core/IconButton'
-// import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
 import Divider from '@material-ui/core/Divider'
-// import date from 'date-and-time'
 import Moment from 'react-moment'
-// import { useForm } from "react-hook-form"
-// import LoadingIcon from "../AdminComponents/LoadingIcon"
-// import {getENDRequest,getREGULARRequest} from "../../store/actions"
-
-
-// 🔥local storage用法：(sessionStorage也可以用)
-// 1/4setter
-// localStorage.setItem('myData', data);
-// 2/4getter
-// localStorage.getItem('myData');
-// 3/4remove
-// localStorage.removeItem('myData');
-// 4/4remove all
-// localStorage.clear();
-
 
 const useStyles = makeStyles(() => ({
   icon: {
@@ -43,13 +23,8 @@ const useStyles = makeStyles(() => ({
   },
 
   price: {
-    // color: '#007bf5',
     color: '#29b6f6',
   },
-
-  // totalText: {
-  //   paddingTop: '10px',
-  // },
 
   rightTop: {
     marginBottom: '30px',
@@ -61,7 +36,6 @@ const useStyles = makeStyles(() => ({
   },
 
   textbottom: {
-    // backgroundColor: 'white',
     paddingBottom: '30px',
   },
 
@@ -73,44 +47,7 @@ const useStyles = makeStyles(() => ({
 export default function OrderRight({data}) {
   const classes = useStyles()
 
-  // 1/1get order  from mongoDB
-  // const dispatch = useDispatch()
-  // useEffect(()=>{
-  //   dispatch(getREGULARRequest())
-  //   dispatch(getENDRequest())
-  // },[])
-  // const test1 = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)  
-  // console.log("test: get regular order: ",test1)
 
-  // const test2 = useSelector(state => state.endoflease_in_reducer_index.repos_in_reducer_init)  
-  // console.log("test: get end of lease order: ",test2)
-  // -------------
-
-
-  // 1/4 直接从regular reducer取值回来
-  // const loadingNumREGdata = useSelector(state => state.regular_in_reducer_index.loadingNum)  
-  // const REGdata = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)  
-  // console.log('regular redex method: ',REGdata)
-
-  // 2/4 直接从end reducer取值回来
-  // const loadingNumENDdata = useSelector(state => state.endoflease_in_reducer_index.loadingNum)  
-  // const ENDdata = useSelector(state => state.endoflease_in_reducer_index.repos_in_reducer_init)  
-  // console.log('end redex method: ',ENDdata)
-
-  // // 3/4 从 regular localstorage取值回来
-  // const data1 = useSelector(state => state.regular_in_reducer_index.completeinfo.info)  
-  // console.log("regular by local Storage : ",data1)
-  // // 4/4 从 endlease localstorage取值回来
-  // const data2 = useSelector(state => state.endoflease_in_reducer_index.completeinfo.info)  
-  // console.log("end by local Storage : ",data2)
-  
-  // // 如果直接进入这个页面，会一直加载转圈,不过现在在confirmPage会判断，所以不会走到这里
-  // if (loadingNumREGdata!==2 && loadingNumENDdata!==2) {
-  //   return <LoadingIcon />
-  // } 
-
-
-  // 处理取回的数据部分
   let {bedroomNum} = data
   let {bathroomNum} = data
   if(bedroomNum !== '') {
@@ -143,7 +80,7 @@ export default function OrderRight({data}) {
   }
   const totalAddress = `${address2}${address1}${suburb}${postcode}${state}`
 
-  let {startTime} = data // 做成1976-04-19T12:59,在orderpage是1976-04-19 12:59
+  let {startTime} = data 
   let timeDisplay = false
   if(startTime !== null && startTime !== '') {
     startTime = startTime.split(':',3)
@@ -160,12 +97,10 @@ export default function OrderRight({data}) {
     type = 'End lease Clean'
   }
   
-  // 🔥 离开该页面，清除local storage 🔥
   window.onbeforeunload = () => {
     localStorage.removeItem('homeOrderData')
     localStorage.removeItem('regularCleanOrder')
     localStorage.removeItem('endofleaseCleanOrder')
-  //   // return '' //没有return的话，离开该页面就不会有弹窗提示
   }
 
   return (
@@ -173,11 +108,9 @@ export default function OrderRight({data}) {
       <Box className={classes.rightTop}>
         <Container maxWidth="lg" className={classes.textbottom}>
           <Grid container direction="column">
-            {/* <Container maxWidth="sm"> */}
             <Grid item xs={12} sm={12}>
               <Grid container direction="row">
                 <Grid item xs={1} sm={1}>
-                  {/* <KingBedIcon fontSize="large" className={classes.icon}  /> */}
                   <KingBedIcon fontSize="large" className={classes.icon} />
                 </Grid>
                 <Grid item xs={11} sm={11}>
@@ -218,7 +151,6 @@ export default function OrderRight({data}) {
                 <Grid item xs={11} sm={11}>
                   <Hidden xsUp={timeDisplay}>
                     <Typography variant='h6' className={classes.text}>
-                      {/* 12:00PM, Friday, 29 Jan 2021 */}
                       <Moment format="dddd HH:mm, DD MMM YYYY">{startTime}</Moment>
                     </Typography>
                   </Hidden>
@@ -232,7 +164,6 @@ export default function OrderRight({data}) {
                 </Grid>
                 <Grid item xs={11} sm={11}>
                   <Typography variant='h6' className={classes.text}>
-                    {/* Unit 502, 18 Buchan Street, West End, 4101, QLD */}
                     {totalAddress}
                   </Typography>
                 </Grid>
@@ -240,7 +171,6 @@ export default function OrderRight({data}) {
             </Grid>
             
             
-            {/* </Container> */}
           </Grid>
         </Container>
 
@@ -262,7 +192,6 @@ export default function OrderRight({data}) {
           </Grid>
         </Container>
       </Box>
-      {/* )} */}
     </>
   )
 }

@@ -9,10 +9,9 @@ import scssStyle from './scss/HomeContent.module.scss'
 
 const useStyles = makeStyles((theme) => ({
   title: {
-    // height: '47vh',
-    // paddingTop: '45vh',
+
     [theme.breakpoints.down('sm')]: {
-      fontSize: '2.1rem', // font字体先按照zeplin调了
+      fontSize: '2.1rem',
       fontWeight: 'bold',
       padding: '0px 10px',
       paddingTop: '15vh',
@@ -32,9 +31,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   subtitle: {
-    // height: '6vh',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '1.3rem', // font字体先按照zeplin调了
+      fontSize: '1.3rem',
       fontWeight: 'bold',
       padding: '0px 8px',
       paddingTop: '1vh',
@@ -46,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: '0.5vh',
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '2rem', // font字体先按照zeplin调了
+      fontSize: '2rem',
       fontWeight: 'bold',
       padding: '0px 30px',
       paddingTop: '1vh',
@@ -61,16 +59,12 @@ const HomeTitle = () => {
     <Box className={scssStyle.background}> 
       <Grid
         container
-        // direction="column" //因为设置了paddingTop: '45vh'，所以这个不用也可以布局
-        // justify="center"
-        // alignItems="center"
         spacing={0}
       >
         <Grid item xs={12}>
           <Typography
-            // variant="h3"
             align="center"
-            component="h3" // 用于根节点的组件。使用HTML元素的字符串或组件。
+            component="h3" 
             className={classes.title}
           >
             We Clean. You Relax.
@@ -79,7 +73,6 @@ const HomeTitle = () => {
 
         <Grid item xs={12}>
           <Typography
-            // variant="h5"
             align="center"
             component="h5"
             className={classes.subtitle}

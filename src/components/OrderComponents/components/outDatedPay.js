@@ -30,8 +30,7 @@ export default function PaymentInfo({error,CardNumberText,DateText,CVCText}) {
             <TextField
               id=""
               label={CardNumberText}
-              // type="number"
-              InputLabelProps={{ // label在输入框顶部固定
+              InputLabelProps={{ 
                 shrink: true,
               }}
               variant="outlined"

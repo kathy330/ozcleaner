@@ -29,8 +29,7 @@ export default function AddressInfo() {
           <TextField
             id=""
             label="First Name"
-              // type="number"
-            InputLabelProps={{ // label在输入框顶部固定
+            InputLabelProps={{ 
                 shrink: true,
               }}
             variant="outlined"

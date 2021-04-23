@@ -3,11 +3,7 @@ import React from 'react'
 import { Grid, makeStyles, Box } from '@material-ui/core'
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import { GreenStatus, GreyStatus, RedStatus, YellowStatus, BlueStatus } from '../../UIComponents/Status'
-// import {
-//   RedStatus, BlueStatusSquare, YellowStatusSquare, GreenStatusSquare, GreyStatusSquare, RedStatusSquare
-// } from '../../UIComponents/Status'
 
-// style
 const useStyles = makeStyles(() => ({
   icon: {
     display: 'flex',

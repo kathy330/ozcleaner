@@ -82,10 +82,10 @@ export default function Overview() {
   }, [])
 
   const reduxOrder = useSelector(state => state.order)
-  const loading1 = reduxOrder.loading // loading status
+  const loading1 = reduxOrder.loading 
   const orderData = reduxOrder.order.result
-  const dataCount = reduxOrder.order.count // number of orders
-  const error1 = reduxOrder.error // error message
+  const dataCount = reduxOrder.order.count 
+  const error1 = reduxOrder.error
   const reduxStats = useSelector(state => state.stats)
   const loading2 = reduxStats.loading
   const stats = reduxStats.statsData
@@ -153,7 +153,6 @@ export default function Overview() {
                   alignItems="center"
                 >
                   {UserName.map((user, index) => (
-                    // <Grid container alignItems="center" direction="row">
                     <Grid item xs={3} className={classes.item} key={`grid${index}`}>
                       <UserAvatar
                         firstName={user.firstName}
@@ -161,7 +160,6 @@ export default function Overview() {
                         key={`avatar${index}`}
                       />
                     </Grid>
-                    // </Grid>
                   ))}
                 </Grid>
               </Box>

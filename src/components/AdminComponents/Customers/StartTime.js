@@ -4,7 +4,6 @@ import React from 'react'
 import date from 'date-and-time'
 import { Today } from '@material-ui/icons'
 
-// style
 const useStyles = makeStyles(() => ({
   icon: {
     display: 'flex',
@@ -20,7 +19,6 @@ const useStyles = makeStyles(() => ({
 }))
 
 function displayTime(time) {
-  // 2020-01-01T12:00:00.000+00:00
   try {
     let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
     result = result.toString().split(" ")

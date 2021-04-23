@@ -16,23 +16,20 @@ const initialState = {
   row: 0,
   completeinfo: {
     info: localStorage.getItem('Order') ?
-      // JSON.parse(localStorage.getItem('Order')) : dongyuPostOrder
       JSON.parse(localStorage.getItem('Order')) : ''
   },
-  updateData: 'no update' // 更新by id,可以更新任何值，只要有正确名字
+  updateData: 'no update'
 }
 
 function orderReducer(state = initialState, action) {
   switch (action.type) {
 
-    // 1/4 Pay order --dongyu
     case actionType.PAY_ORDER_SUCCESS:
       return {
         ...state,
         payment: true
       }
 
-    // 2/4 GET regular order --
     case actionType.GET_ORDER_REQUEST:
       return {
         ...state,
@@ -53,10 +50,8 @@ function orderReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload
-        // error:action.data.err
       }
 
-    // 3/4 Update regular order - 
     case actionType.UPDATE_ORDER_REQUEST:
       return {
         ...state,
@@ -65,7 +60,6 @@ function orderReducer(state = initialState, action) {
 
     case actionType.UPDATE_ORDER_SUCCESS:
       let order = {...state.order.result[state.row], ...action.repos}
-      // console.log(action.repos)
       let newResult = [...state.order.result]
       newResult[state.row] = order
       return {
@@ -80,10 +74,8 @@ function orderReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload
-        // error:action.data.err
       }
 
-    // 4/4 POST order --dongyu
     case actionType.POST_ORDER_REQUEST:
       return {
         ...state,
@@ -96,8 +88,8 @@ function orderReducer(state = initialState, action) {
         ...state,
         loading: false,
         loadingNum: 2,
-        order: action.postInSaga, // 发送给post order api
-        completeinfo: action.postInSaga // 🔥存储到localstrage，被其他页面使用了
+        order: action.postInSaga, 
+        completeinfo: action.postInSaga 
       }
 
     case actionType.POST_ORDER_FAILED:
@@ -108,7 +100,6 @@ function orderReducer(state = initialState, action) {
         error: action.errorInSaga,
       }
 
-    // 6/6
     case actionType.GET_ALL_ORDERS_REQUESTED:
       return {
         ...state,
@@ -127,7 +118,6 @@ function orderReducer(state = initialState, action) {
         error: action.message
       }
 
-    //7/7
     case actionType.CHANGE_ORDER:
       return {
         ...state,

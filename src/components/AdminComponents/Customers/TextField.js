@@ -19,7 +19,6 @@ import { Rating } from '@material-ui/lab'
 import { updateOrderRequest } from '../../../store/actions'
 
 
-// style
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingLeft: 10,
@@ -56,28 +55,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-// const ParseTextarea = ({ value = '', onChange }) => {
-//   const [text, setText] = useState(value)
-//   const classes = useStyles()
-//   const handleChange = (err) => {
-//     const { value } = err.target
-//     setText(value)
-//     onChange(value)
-//   }
-//   return (
-//     <TextareaAutosize
-//       onChange={handleChange}
-//       value={text}
-//       className={classes.text}
-//       required
-//       rowsMin={3}
-//     />
-//   )
-// }
-
 export default function App(props) {
   const { _id, type } = props
-  // console.log(props)
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const [rateStar, setRateStar] = useState(0.0)
@@ -88,13 +67,6 @@ export default function App(props) {
   const onSubmit = data => {
     setOpen(true)
     setReviews(data.review)
-    // console.log(data)
-    // payload = { id: _id, type: type, review: data.review, rate: rateStar }
-    // console.log(payload)
-    // dispatch
-    // dispatch(updateProfileRequest(data)) 
-    // dispatch(submitReviewsRequest(payload))
-    // alert('Your review has been uploaded successfully! ')
   }
 
   const handleClose = () => {

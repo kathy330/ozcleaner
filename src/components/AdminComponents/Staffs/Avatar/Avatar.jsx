@@ -8,12 +8,14 @@ import GetAvatar from '../../../Avatar/AvatarLargeSize'
 const useStyles = makeStyles((themes) => ({
   root: {
     display: 'flex',
+
     '& > *': {
       margin: themes.spacing(1),
     },
   },
-  img:{
-    margin:"auto",
+
+  img: {
+    margin: "auto",
   }
 }))
 

@@ -11,7 +11,6 @@ import Footer from '../../components/FooterComponents/Footer'
 
 function StaffDetailsPage(match){
   const{id}=match.match.params
-  // console.log(id)
   return (
    
     <Box bgcolor="#fafafa">

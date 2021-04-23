@@ -19,56 +19,66 @@ import scssStyle from "../scss/Profile.module.scss"
 
 const useStyles = makeStyles((theme) => ({
   input: {
-    color: 'white'
-},
-  actionAreaimageIcon:{
-    width:'60%'
+    color: 'white',
   },
+
+  actionAreaimageIcon: {
+    width: '60%',
+  },
+
   button: {
-    background: theme.palette.primary.main, 
+    background: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
     fontSize: '1rem',
+    marginLeft: '10px',
     marginTop: '2rem',
-    marginLeft:'10px',
-    paddingInline: '50px', 
+    paddingInline: '50px',
     textalign: 'left',
+
     '&:hover': {
-      background: theme.palette.primary.hover, 
+      background: theme.palette.primary.hover,
       boxShadow: '0px 2px 10px #888',},
   },
+
   formcenter: {
+    paddingBottom: '10px',
     width: '100%',
-    paddingBottom:'10px'
   },
-  button1:{
-      justifyContent:"left",
-      background: theme.palette.primary.main, 
-      color: theme.palette.primary.contrastText,
-      fontSize: '1rem',
-      marginTop: '2rem',
-      paddingInline: '50px', 
-      boxShadow:'0px 2px 6px #888',
-      '&:hover': {
-        background: theme.palette.primary.hover, 
-        boxShadow: '0px 2px 10px #888',},
+
+  button1: {
+    background: theme.palette.primary.main,
+    boxShadow: '0px 2px 6px #888',
+    color: theme.palette.primary.contrastText,
+    fontSize: '1rem',
+    justifyContent: "left",
+    marginTop: '2rem',
+    paddingInline: '50px',
+
+    '&:hover': {
+      background: theme.palette.primary.hover,
+      boxShadow: '0px 2px 10px #888',},
   },
-  buttonCancel:{
-    marginLeft:'10px',
+
+  buttonCancel: {
     background: theme.palette.secondary.main,
     color: theme.palette.secondary.contrastText,
     fontSize: '1rem',
+    marginLeft: '10px',
     marginTop: '2rem',
-    paddingInline: '50px', 
+    paddingInline: '50px',
     textalign: 'left',
+
     '&:hover': {
-      background: theme.palette.primary.hover, 
+      background: theme.palette.secondary.main,
       boxShadow: '0px 2px 10px #888',},
   },
-  dialog:{
-    padding:"4vh 2vh"
+
+  dialog: {
+    padding: "4vh 2vh",
   },
-  margintop:{
-    marginTop:'30px'
+
+  margintop: {
+    marginTop: '30px',
   }
 }))
 
@@ -105,7 +115,6 @@ export default function TextForm() {
     setOpen(false)
     document.location.href = '/profile'
   }
-  const {profile}= detail
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

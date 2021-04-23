@@ -1,15 +1,12 @@
 /* eslint-disable max-len */
 /* eslint-disable no-empty */
-// /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React,{useEffect,useState} from 'react'
-// import { Redirect, Route, Switch } from 'react-router'
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
-// import { BookingButton } from '../../components/UIComponents/Buttons'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import FormControl from '@material-ui/core/FormControl'
@@ -31,9 +28,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import Button from '@material-ui/core/Button'
 import { loadStripe } from "@stripe/stripe-js"
 import { Elements } from "@stripe/react-stripe-js"
-// import PaymentIcon from '@material-ui/icons/Payment'
 import Icon from '@material-ui/core/Icon'
-// import Link from '@material-ui/core/Link'
 import { useForm,Controller } from "react-hook-form"
 import {useSelector} from 'react-redux'
 import KingBedIcon from '@material-ui/icons/KingBed'
@@ -43,18 +38,11 @@ import CreateIcon from '@material-ui/icons/Create'
 import RoomIcon from '@material-ui/icons/Room'
 import NoteIcon from '@material-ui/icons/Note'
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
-// import IconButton from '@material-ui/core/IconButton'
-// import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox'
-// import { Redirect } from "react-router-dom" // 负责页面跳转router，不会刷新reducer👍
 import {useHistory} from "react-router-dom"
 import PropTypes from 'prop-types'
 import Dialog from '@material-ui/core/Dialog'
-// import DialogActions from '@material-ui/core/DialogActions'
-// import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-// import OrderPay from "./OrderPayPage"
-// import ProtectedRoute from '../../router/ProtectedRoute'
 import cabinetIcon from "../../assets/cabinet3.svg"
 import windowIcon from "../../assets/window3.svg"
 import fridgeIcon from "../../assets/fridge3.svg"
@@ -65,13 +53,8 @@ import N1 from "../../assets/1.svg"
 import N2 from "../../assets/2.svg"
 import N3 from "../../assets/3.svg"
 import N4 from "../../assets/4.svg"
-// import { BookingButton } from "../../components/UIComponents/Buttons"
 import { buttonStyle } from '../../styles/styles'
-// import {postRegularRequest,postEndOfLeaseRequest,payOrderRequest } from '../../store/actions'
-// import outDatePay from '../../components/OrderComponents/components/outDatePay'
 import HeaderNavigation from '../../components/NavBarComponents/NavBar'
-// import OrderLeft from '../../components/OrderComponents/OrderLeft'
-// import OrderRight from '../../components/OrderComponents/OrderRight'
 import Footer from '../../components/FooterComponents/Footer'
 import HomeComponentStyle from "../../components/HomeComponents/styles/HomeComponentStyle"
 import CheckoutForm from "../../components/OrderComponents/components/StripePay"
@@ -80,15 +63,13 @@ import './order.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: '#e3f2fd'
-    // background: '#29b6f6',
+    background: '#e3f2fd',
   },
 
   content: {
     marginTop: '11vh',
   },
 
-  // 下拉样式
   selected: {
     '&$selected': {
       backgroundColor: 'white',
@@ -108,18 +89,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'center',
-    // marginTop: '20vh',
     width: '100%',
     
   },
 
   right: {
     borderRadius: '5px',
-    // bottom: 20,
     boxShadow: '1px 1px 5px #888',
     position: 'sticky',
     top: 20,
-    // zIndex: 5,
     [theme.breakpoints.down('sm')]: {
       background: 'white',
       height: '100%',
@@ -131,9 +109,8 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: '11vh',
     },
     [theme.breakpoints.up('md')]: {
-      // background: '#a8f3ff',
       background: 'white',
-      height: '100%' // 右侧白框设置高度，否则跟左侧一样长
+      height: '100%', 
     },
   },
 
@@ -143,24 +120,19 @@ const useStyles = makeStyles((theme) => ({
    
     [theme.breakpoints.down('sm')]: {
       background: 'white',
-      // height: '100%',
       marginBottom: '11vh',
     },
     [theme.breakpoints.between('sm', 'md')]: {
       background: 'white',
-      // height: '100%',
       marginBottom: '11vh',
     },
     [theme.breakpoints.up('md')]: {
-      // background: 'lightblue',
       background: 'white',
-      // height: '100%',
       marginBottom: '30vh',
       
     },
   },
 
-  // 左侧组件style：
   pickerRoot: {
     marginBottom: '10px',
     marginTop: '5px',
@@ -214,7 +186,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       marginLeft: '15px',
     }
-    // padding: '30px',
   },
 
   actionArearoot: {
@@ -226,9 +197,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   pickerBackground: {
-    // background: 'lightgrey' // 最外层灰色背景
-    // background: '#e3f2fd' // 最外层灰色背景
-    background: '#48cae4' // 最外层灰色背景
+    background: '#48cae4', 
   },
 
   pickernotchoose: {
@@ -236,17 +205,16 @@ const useStyles = makeStyles((theme) => ({
   },
 
   picker: {
-    margin: '4px' // 最外层灰色间距
-    // "&:hover": { transform: "scale3d(1.05, 1.05, 1)", }, //hover放大效果
+    margin: '4px',
   },
 
   actionArea: {
-    padding: '0 5px' // 白色区域间距
+    padding: '0 5px', 
   },
 
   actionArea2: {
     height: '100px',
-    padding: '0 5px' // 白色区域间距
+    padding: '0 5px', 
   },
 
   actionAreaimageIcon: {
@@ -254,10 +222,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   check: {
-    padding: '0px' // 让hover效果消失
+    padding: '0px', 
   },
 
-  // 右侧组件style：
 
   text: {
     paddingLeft: '10px',
@@ -287,9 +254,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   details: {
-    // height: '30vh',
-    marginBottom: '30px'
-    // paddingTop: '20px',
+    marginBottom: '30px',
   },
 
   extratxt: {
@@ -299,8 +264,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const SelectStyle = { 
-  // 设置点开选项后的下拉样式
-  // 弹出效果API： https://material-ui.com/zh/api/popover/
   anchorOrigin: {
     vertical: "bottom",
     horizontal: "left"
@@ -310,19 +273,16 @@ const SelectStyle = {
     horizontal: "left"
   },
   getContentAnchorEl: null
-  // getContentAnchorEl:'null | undefined'
 }
 
 
-// 提交后，自动返回页面顶部
 function ScrollTop(props) {
   const { children } = props
 
   const handleClick = (event) => {
     const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor')
-    // 这个按钮会跳转到id为这个的组件上(设置的是home button为此id)
     if (anchor) {
-      anchor.scrollIntoView({ behavior: 'smooth', block: 'end' }) // start,center,end为滑动到该元素的哪个位置
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'end' })
     }
   }
 
@@ -345,7 +305,6 @@ function Order(props) {
 
   const promise = loadStripe("pk_test_51IcU7EIhWqpXGeJaSNSsYJNlyh302mKpZUWBQBl7nZU1ISbLPKnCPHnCqjqdQV2iubeJs17bKXSHp8p95r9aigNQ00fTIv8f3f")
   const { handleSubmit, control, watch,reset } = useForm()
-  // const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
 
   const [extraState, setExtraState] = useState({
@@ -377,60 +336,38 @@ function Order(props) {
   })
 
   
-  // 11这是checkbox右上角自己属性变化的函数
   const handleChange = (event) => {
     setExtraState({ ...extraState, [event.target.name]: event.target.checked })
-    // console.log(event.target.name,':',event.target.checked)
   }
-  // 11-----------------------------------------
 
-  // 22这里是点击CardActionArea也会触发checkbox属性变化的函数
   const areaClickChange = (event) => { 
-    // console.log(event.target.name,'or',event.target.alt)
-    // 点击icon上面，就会有alt属性，点击actionArea上面，就会有name属性  
     const key = event.target.name || event.target.alt
     const newState = !extraState[key]
     setExtraState({...extraState,[key]:newState})
-    // console.log(key,extraState)
   }
-  // 2/4 bedroom num
   const areaClickChange2 = (event) => { 
     const key = event.target.name || event.target.alt
     const newState = !bedroompick[key]
     setbedroompick({[key]:newState})
-    // console.log(key,bedroompick)
   }
-  // 3/4 bathroom num
   const areaClickChange3 = (event) => { 
     const key = event.target.name || event.target.alt
     const newState = !bathroompick[key]
     setbathroompick({[key]:newState})
-    // console.log(key,bathroompick)
   }
 
-  // 4/4 bathroom num
   const areaClickChange4 = (event) => { 
     const key = event.target.name || event.target.alt
     const newState = !cleantypes[key]
     setcleantypes({[key]:newState})
-    // console.log(key,cleantypes)
   }
 
   let{bedA,bedB,bedC,bedD} = bedroompick
   let{bathA,bathB,bathC,bathD} = bathroompick
   const{regulartype,endtype} = cleantypes
-  // 22-----------------------------------------
 
-  // 33这里是判断选中EC还是RC的extra picker部分的效果
-  const {extradisable} = extraState // 给下面disable={extradisable}用的，如果选中EC，这个变为true传给下面
-  // const type = watch("type","")
+  const {extradisable} = extraState 
   useEffect(()=>{
-    // if(type === 'RC') {
-    //   setExtraState({oven:false,fridge:false,windows:false,cabinet:false,extradisable:false})
-    // }
-    // else if(type === 'EC') {
-    //   setExtraState({oven:true,fridge:true,windows:true,cabinet:true,extradisable:true}) 
-    // }
     if(regulartype) {
       setExtraState({oven:false,fridge:false,windows:false,cabinet:false,extradisable:false})
     }
@@ -438,9 +375,7 @@ function Order(props) {
       setExtraState({oven:true,fridge:true,windows:true,cabinet:true,extradisable:true}) 
     }
   },[regulartype,endtype])
-  // 33-----------------------------------------
  
-  // 44判断选中了哪个extra,那个值就为true，返回值给下面onSubmite提交时更改
   const { oven,fridge, windows,cabinet } = extraState
   const anyExtra = () => {
     const list = {ovennum:0,fridgenum:0,interiorWindowsnum:0,cabinetsnum:0}
@@ -458,7 +393,6 @@ function Order(props) {
     }
     return list
   }
-  // 44-----------------------------------------
 
   const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
   let disablebooking = false
@@ -474,18 +408,11 @@ function Order(props) {
   if(!bathA && !bathB && !bathC && !bathD) {
     disablebooking = true
   }
-  // 取回home page已填信息localstorage
   const homeOrderData = localStorage.getItem('homeOrderData') ?
   JSON.parse(localStorage.getItem('homeOrderData')) :''
-  // console.log(homeOrderData.bedroomNum)
-  // let bedroom = ''
-  // let bathroom = ''
   let homePostcode = ''
-  // let contactNumber = ''
   let propertyType = ''
   if(homeOrderData!=='') {
-    // bedroom = homeOrderData.bedroomNum
-    // bathroom = homeOrderData.bathroomNum
     if(homeOrderData.bedroomNum === '0'){
       bedA = false
       bedB = false
@@ -557,25 +484,18 @@ function Order(props) {
       bathD = true
       disablebooking = false
     }
- 
-    
-
     homePostcode = homeOrderData.postcode
     propertyType = homeOrderData.propertyType
   }
 
-  // 66这里是想左边输入时间，右边实时更新
   let startDate = watch("date",'')
   let startTime = watch("time",'')
-  let totalDate = '' // 2021-04-08 00:52
-
+  let totalDate = '' 
   const today = new Date()
   const dd = String(today.getDate()).padStart(2, '0')
-  const mm = String(today.getMonth() + 1).padStart(2, '0') // January is 0!
+  const mm = String(today.getMonth() + 1).padStart(2, '0') 
   const yyyy = today.getFullYear()
 
-  // today = `${mm}/${dd}/${yyyy}`
-  // console.log(today)
   try {
     startDate = date.format(startDate, 'YYYY-MM-DD') 
     const year = startDate.slice(0,4)
@@ -583,77 +503,50 @@ function Order(props) {
     const mon = startDate.slice(5,7)
     const da = startDate.slice(8,10)
     if(year<=yyyy&&mon<=mm&&da<dd) {
-      reset() // 日期不符，重制所有watch
-      // console.log('small!!')
-      // startDate = `${yyyy}-${mm}-${dd}`
-      // console.log(startDate)
+      reset() 
     }
 
   }catch (e) {
   }
   try {
     startTime = date.format(startTime, 'HH:mm') 
-    // console.log(startTime)
   }catch(e){
   }
   let haveDate = false
   if(startDate !==null &&startDate !=='' && startTime !==null && startTime !=='') {
     haveDate = true
-    // 做成1976-04-19 12:59,在orderRight是1976-04-19T12:59
     totalDate = `${startDate}T${startTime}`
-    // console.log(totalDate)
   }
-  // 66---------------
-
-  // 77这里是想左边输入房间数，右边实时更新
-  // const bedNumber = watch("bedRoomNum",'')
-  // const bathNumber = watch("bathRoomNum",'')
   let typeOfClean = watch("type",'') 
 
   let bedroomNumber = 'Bedrooms x 0'
   let bathroomNumber = 'Bathrooms x 0'
   if(bedA) {
-    // bedroomNumber = 0
     bedroomNumber = `Bedrooms x 1`
   }
   else if(bedB) {
-    // bedroomNumber = 0
     bedroomNumber = `Bedrooms x 2`
   }
   else if(bedC) {
-    // bedroomNumber = 0
     bedroomNumber = `Bedrooms x 3`
   }
   else if(bedD) {
-    // bedroomNumber = 0
     bedroomNumber = `Bedrooms x 4`
   }
 
   if(bathA) {
-    // bathroomNumber = 0
     bathroomNumber = `Bathrooms x 1`
   }
   else if(bathB) {
-    // bedroomNumber = 0
     bathroomNumber = `Bathrooms x 2`
   }
   else if(bathC) {
-    // bedroomNumber = 0
     bathroomNumber = `Bathrooms x 3`
   }
   else if(bathD) {
-    // bedroomNumber = 0
     bathroomNumber = `Bathrooms x 4`
   }
-  // if(typeOfClean ==='EC') {
-  //   typeOfClean = 'End lease clean'
-  // }
-  // else if(typeOfClean === 'RC') {
-  //   typeOfClean = 'Regular clean'
-  // }
-  // else if(typeOfClean === '') {
-  //   typeOfClean = 'Please choose a type.'
-  // }
+
   let picktype = ''
   if(endtype) {
     typeOfClean = 'End lease clean'
@@ -667,12 +560,8 @@ function Order(props) {
     typeOfClean = 'Please choose a type.'
     picktype = ''
   }
- 
-  // console.log(bedNumber,bathNumber,typeOfClean)
-  // 77---------------
 
-  // 88这里是想左边输入地址，右边实时更新
-  let address1 = watch("address1","") // 第二个参数为初始值
+  let address1 = watch("address1","") 
   let address2 = watch("address2","")
   let suburb = watch("suburb","")
   let postcode = watch("postcode","")
@@ -693,14 +582,11 @@ function Order(props) {
   if(postcode!=="") {
     postcode += ', '
   }
-  // {/* Unit 502, 18 Buchan Street, West End, 4101, QLD */}
   totalAddress = `${address2}${address1}${suburb}${postcode}${addressState}`
-  // 88-----------------------------------------
 
-  // 99计算右侧总金额
   let amount = 0
   if (typeOfClean === 'End of lease clean') {
-    amount = 50 // 初始金额
+    amount = 50 
     amount += Number(bedroomNumber[11]) * 30
     amount += Number(bathroomNumber[12]) * 20
   }else {
@@ -720,13 +606,9 @@ function Order(props) {
       amount += 15
     }
   }
-  // console.log('一共：',amount)
-  // 99
 
   const payment = useSelector(astate => astate.order.payment)
-  // console.log("pay::", payment)
 
-  // 55点击提交按钮后，post请求
   const [orderData, setorderData] = useState('')
   const onSubmit = data => {
 
@@ -737,7 +619,7 @@ function Order(props) {
     setOpen(true)
     const newdata = {
       extra:{
-        oven:anyExtra().ovennum, // 判断是否选了extra，传值给这里
+        oven:anyExtra().ovennum, 
         fridge:anyExtra().fridgenum,
         interiorWindows:anyExtra().interiorWindowsnum,
         cabinets:anyExtra().cabinetsnum,
@@ -747,48 +629,25 @@ function Order(props) {
       bathRoomNum:bathroomNumber[12],
       type:picktype
     }
-    // console.log(newdata)
     setorderData(newdata)
-    // console.log('submit')
   }
     
-// // setExtraState({submit:true}) // 更改submit为true，下面即可跳转confirm页面
-// 55-----------------------------------------
-
-
-  // 1010 判断是否正确提交，提交后，用<Redirect /> 跳转页面
-  // const loading = useSelector(astate => astate.order.loading)
-  // console.log("loading parameter: ", loading)
-  // const { submit } = extraState
   const history = useHistory()
-  // if (submit && !loading) {
-    // return (<Redirect to="/order/pay" />)  // 不太好，附带 3XX状态
-    // history.push("/order/confirm")
-    // document.location.href = '/order/pay'
-  // }
-  // 1010
 
-  // 🔥 离开该页面，清除home page 的 local storage 🔥
   window.onbeforeunload = () => {
     localStorage.removeItem('homeOrderData')
-    // return '' //没有return的话，离开该页面就不会有弹窗提示
   }
 
-  // const handleClickOpen = () => {
-  //   setOpen(true)
-  // }
   const handleClose = () => {
     setOpen(false)
   }
 
-  // 上下翻页按钮
   const [nextpage, setnextpage] = useState({
     next1: false,
     next2: true,
     next3:true
   })
 
-  // true 代表不显示
   const nextClick = () => {
     setnextpage({next1:true,next2:false,next3:true})
   }
@@ -809,13 +668,10 @@ function Order(props) {
     <>
       {employeeinfoo?history.push("/employee-orders"):''}
       <Box className={classes.root}>
-        {/* <Box className="background"> */}
         <HeaderNavigation />
-        {/* <button type="submit" onClick={test}>test</button> */}
         <Container maxWidth="lg" className={classes.content}>
           <Grid container spacing={0}>
 
-            {/* 1/3 Order Left */}
             <Grid item xs={12} sm={6} className={classes.left}>
               <Box className={classes.top}>
                 <Grid container direction="column">          
@@ -824,10 +680,8 @@ function Order(props) {
                       <Grid item xs={12} sm={12}>
                         <Box>
                           <Box className={next1?"display-none":"display"}>
-                            {/* 1/4 Bedroom num */}
                             <Grid container alignItems="flex-end">
                               <Grid item xs={2} sm={2} md={1}>
-                                {/* <CreateIcon className={classes.extraIcon} /> */}
                                 <KingBedIcon className={classes.extraIcon}  />
                               </Grid>
                               <Grid item xs={10} sm={10} md={11}>
@@ -967,10 +821,8 @@ function Order(props) {
                               </Grid>
                             </Grid>
                         
-                            {/* 2/4 Bathroom num */}
                             <Grid container alignItems="flex-end">
                               <Grid item xs={2} sm={2} md={1}>
-                                {/* <CreateIcon className={classes.extraIcon} /> */}
                                 <BathtubIcon className={classes.extraIcon} />
                               </Grid>
                               <Grid item xs={10} sm={10} md={11}>
@@ -1109,13 +961,8 @@ function Order(props) {
                               </Grid>
                             </Grid>
 
-                            {/* next previous button */}
                             <Grid container direction="row" justify="space-between" spacing={1}>
-                              <Grid item xs={3} sm={3}>
-                                {/* <Button onClick={previousClick} type="button" className={buttonstyles.previousButton}>
-                                  Previous
-                                </Button> */}
-                              </Grid>
+                              <Grid item xs={3} sm={3} />
 
                               <Grid item xs={2} sm={2}>
                                 <Button onClick={nextClick} type="button" className={buttonstyles.nextButton}>
@@ -1127,10 +974,8 @@ function Order(props) {
                           </Box>
 
                           <Box className={next2?"display-none":"display"}>
-                            {/* 3/4 Clean type */}
                             <Grid container alignItems="flex-end">
                               <Grid item xs={2} sm={2} md={1}>
-                                {/* <CreateIcon className={classes.extraIcon} /> */}
                                 <HelpIcon className={classes.extraIcon} />
                               </Grid>
                               <Grid item xs={10} sm={10} md={11}>
@@ -1211,7 +1056,6 @@ function Order(props) {
 
                             </Grid>
 
-                            {/* 4/4 ExtraPicker */}
                             <Grid container alignItems="flex-end">
                               <Grid item xs={2} sm={2} md={1}>
                                 <PostAddIcon className={classes.extraIcon} />
@@ -1399,7 +1243,6 @@ function Order(props) {
                               </Grid>
                             </Grid>
 
-                            {/* next previous button */}
                             <Grid container direction="row" justify="space-between" spacing={1}>
                               <Grid item xs={3} sm={3}>
                                 <Button onClick={previousClick2} type="button" className={buttonstyles.previousButton}>
@@ -1419,10 +1262,6 @@ function Order(props) {
                     </Container>
 
 
-                    {/* <Divider /> */}
-
-                    {/* Service address */}  
-                    {/* Picker  */}
                     <Box className={next3?"display-none":"display"}>
 
                       <Container maxWidth="lg">
@@ -1440,27 +1279,23 @@ function Order(props) {
         
                           <Grid container direction="row" spacing={2} className={classes.pickerRoot}>
 
-                            {/* date */}
                             <Grid item xs={12} sm={6}>
                               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <Controller
                                   name="date"
                                   control={control}
-                                // initialFocusedDate={datetime || null}
-                                // defaultValue={datetime || null} 
-                                  initialFocusedDate={null} // 初始化没有日期
-                                  defaultValue={null} // 初始化没有日期
+                                  initialFocusedDate={null} 
+                                  defaultValue={null}
                                   render={({ ref, ...rest }) => (
                                     <KeyboardDatePicker
                                       className={cssstyle.datePicker}
                                       format="MM/dd/yyyy"
                                       label='Date'
                                       required
-                                      // shouldDisableDate={()=>'2020-4-12'}
-                                      helperText="" // 关闭报错文字，会挤开下面样子
-                                      disablePast // 禁用过去日期
+                                      helperText="" 
+                                      disablePast
                                       KeyboardButtonProps={{"aria-label": "change date"}}
-                                      keyboardIcon={(<DateRangeIcon />)} // 重新定义右侧icon
+                                      keyboardIcon={(<DateRangeIcon />)} 
                                       {...rest}
                                     />
                                 )}
@@ -1468,22 +1303,21 @@ function Order(props) {
                               </MuiPickersUtilsProvider>
                             </Grid>
 
-                            {/* time */}
                             <Grid item xs={12} sm={6}>
                               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <Controller
                                   name="time"
                                   control={control}
-                                  initialFocusedDate={null} // 初始化没有日期
-                                  defaultValue={null} // 初始化没有日期
+                                  initialFocusedDate={null} 
+                                  defaultValue={null}
                                   render={({ ref, ...rest }) => (
                                     <KeyboardTimePicker
                                       className={cssstyle.datePicker}
                                       label='Time'
                                       required
-                                      helperText="" // 关闭报错文字，会挤开下面样子
+                                      helperText=""
                                       KeyboardButtonProps={{'aria-label': 'change time',}}
-                                      keyboardIcon={(<AccessTimeIcon />)} // 重新定义右侧icon
+                                      keyboardIcon={(<AccessTimeIcon />)} 
                                       {...rest}
                                     />
                                 )}
@@ -1491,7 +1325,6 @@ function Order(props) {
                               </MuiPickersUtilsProvider>
                             </Grid>
                                                        
-                            {/* roomTpye */}
                             <Grid item xs={12} sm={6}>
                               <FormControl className={cssstyle.Picker}>
                                 <InputLabel className={cssstyle.Picker}>
@@ -1507,8 +1340,6 @@ function Order(props) {
                                     </Select>
                                 )}
                                   name="propertyType"
-                                // required
-                                // disabled={!!homeOrderData} // {homeOrderData?true:false}
                                   control={control}
                                   defaultValue={propertyType}
                                 />
@@ -1519,21 +1350,17 @@ function Order(props) {
                         </Box>
                         
                         <Grid container alignItems="flex-end">
-                          {/* home icon */}
                           <Grid item xs={2} sm={2} md={1}>
                             <HomeIcon className={classes.extraIcon} />
                           </Grid>
-                          {/* title  */}
                           <Grid item xs={10} sm={10} md={11}>
                             <Typography variant='h5'>
                               Service address
                             </Typography>
                           </Grid>
-                          {/* Input box */}
                           <Grid item xs={12} sm={12}>
                             <Box className={classes.inputRoot}>
                               <Grid container direction="row" spacing={2}>
-                                {/* First Name */}
                                 <Grid item xs={6} sm={6}>
                                   <Controller
                                     as={(
@@ -1541,7 +1368,6 @@ function Order(props) {
                                         id=""
                                         label="First Name"
                                         required
-                                    // label在输入框顶部固定
                                         InputLabelProps={{ shrink: true,}}
                                         variant="outlined"
                                         className={classes.input}
@@ -1552,7 +1378,6 @@ function Order(props) {
                                     defaultValue=""
                                   />
                                 </Grid>
-                                {/* Last Name */}
                                 <Grid item xs={6} sm={6}>
                                   <Controller
                                     as={(
@@ -1574,7 +1399,6 @@ function Order(props) {
                               </Grid>
 
                               <Grid container direction="row" spacing={2}>
-                                {/* Address1 */}
                                 <Grid item xs={6} sm={6}>
                                   <Controller
                                     as={(
@@ -1592,7 +1416,6 @@ function Order(props) {
                                     defaultValue=""
                                   />
                                 </Grid>
-                                {/* Address2(APT) */}
                                 <Grid item xs={6} sm={6}>
                                   <Controller
                                     as={(
@@ -1612,7 +1435,6 @@ function Order(props) {
                               </Grid>
       
                               <Grid container direction="row" spacing={2}>
-                                {/* Suburb */}
                                 <Grid item xs={6} sm={6}>
                                   <Controller
                                     as={(
@@ -1630,7 +1452,6 @@ function Order(props) {
                                     defaultValue=""
                                   />
                                 </Grid>
-                                {/* State */}
                                 <Grid item xs={6} sm={6}>
                                   <Controller
                                     as={(
@@ -1651,7 +1472,6 @@ function Order(props) {
                               </Grid>
 
                               <Grid container direction="row" spacing={2}>
-                                {/* contact number */}
                                 <Grid item xs={6} sm={6}>
                                   <Controller
                                     as={(
@@ -1669,11 +1489,7 @@ function Order(props) {
                                     defaultValue=''
                                   />
                                 </Grid>
-                      
-                                {/* 空白 占位 */}
-                                {/* <Grid item xs={6} sm={6} /> */}
 
-                                {/* Postcode */}
                                 <Grid item xs={6} sm={6}>
                                   <Controller
                                     as={(
@@ -1698,10 +1514,8 @@ function Order(props) {
                         </Grid>
                       </Container>
 
-                      {/* <Divider /> */}
                   
                       <Container maxWidth="lg" className={classes.bookingButton}>
-                        {/* next previous button */}
                         <Grid container direction="row" justify="space-between" spacing={1}>
                           <Grid item xs={3} sm={3}>
                             <Button onClick={previousClick3} type="button" className={buttonstyles.previousButton}>
@@ -1712,15 +1526,11 @@ function Order(props) {
                           <Grid item xs={2} sm={5}>
                             <ScrollTop {...props}>
                               <Button 
-                        // disabled
-                        // href='/order/confirm'
                                 type="submit"
                                 className={buttonstyles.finalBookingButton}
-                          // disabled={!!employeeinfoo}
                                 disabled={disablebooking}
                               >
                                 Complete Booking
-                                {/* Pay Now */}
                               </Button>
                             </ScrollTop>
                           </Grid>
@@ -1730,27 +1540,17 @@ function Order(props) {
                     </Box>
                   </form>
                   
-                  {/* Payment */}
-                  {/* <Container maxWidth="lg">
-                    <Grid container alignItems="flex-end">
-                      <CheckoutForm />
-                    </Grid>
-                  </Container> */}
                 </Grid>
               </Box>
             </Grid>
           
-            {/* 2/3 这是中间的灰色间隔 */}
             <Grid item xs={12} sm={1} />
           
-            {/* 3/3 Order Right */}
             <Grid item xs={12} sm={5} className={classes.right}>
               <Box className={classes.rightTop}>
                 <Container maxWidth="lg" className={classes.details}>
                   <Grid container direction="column" spacing={1}>
-                    {/* <Container maxWidth="sm"> */}
                     
-                    {/* 1/5Bedroom number */}
                     <Grid item xs={12} sm={12}>
                       <Grid container direction="row">
                         <Grid item xs={1} sm={1}>
@@ -1760,16 +1560,12 @@ function Order(props) {
                         </Grid>
                         <Grid item xs={11} sm={11}>
                           <Typography variant='h6' className={classes.text}>
-                            {/* {bedroomNumber} */}
-                            {/* {(homeOrderData)&&(`Bedrooms x ${bedroom}`)}
-                            {(!homeOrderData)&&(bedroomNumber)} */}
                             {bedroomNumber}
                           </Typography>
                         </Grid>
                       </Grid>
                     </Grid>
 
-                    {/* 2/5 Bathroom number */}
                     <Grid item xs={12} sm={12}>
                       <Grid container direction="row">
                         <Grid item xs={1} sm={1}>
@@ -1780,14 +1576,11 @@ function Order(props) {
                         <Grid item xs={11} sm={11}>
                           <Typography variant='h6' className={classes.text}>
                             {bathroomNumber}
-                            {/* {(homeOrderData)&&(`Bathrooms x ${bathroom}`)}
-                            {(!homeOrderData)&&(bathroomNumber)} */}
                           </Typography>
                         </Grid>
                       </Grid>
                     </Grid>
 
-                    {/* 3/5 type of clean */}
                     <Grid item xs={12} sm={12}>
                       <Grid container direction="row">
                         <Grid item xs={1} sm={1}>
@@ -1801,7 +1594,6 @@ function Order(props) {
                       </Grid>
                     </Grid>
                     
-                    {/* 4/5 time info */}  
                     <Grid item xs={12} sm={12}>
                       <Grid container direction="row">
                         <Grid item xs={1} sm={1}>
@@ -1810,8 +1602,6 @@ function Order(props) {
                           </Grid>
                         </Grid>
                         <Grid item xs={11} sm={11}>
-                          {/* 12:00PM, Friday, 29 Jan 2021 */}
-                          {/* <Typography variant='h6'>{totalDate}</Typography> */}
                           {haveDate? (
                             <Typography variant='h6' className={classes.text}>
                               <Moment format="dddd HH:mm, DD MMM YYYY">{totalDate}</Moment>
@@ -1826,7 +1616,6 @@ function Order(props) {
                       </Grid>
                     </Grid>
 
-                    {/* 5/5 address info */}
                     <Grid item xs={12} sm={12}>
                       <Grid container direction="row">
                         <Grid item xs={1} sm={1}>
@@ -1841,13 +1630,11 @@ function Order(props) {
                         </Grid>
                       </Grid>
                     </Grid>                    
-                    {/* </Container> */}
                   </Grid>
                 </Container>
 
                 <Divider />
 
-                {/* Total amount */}
                 <Container maxWidth="lg">
                   <Grid container direction="row" alignItems="flex-end" className={classes.priceArea}>
                     <Grid item xs={6} sm={6}>
@@ -1883,11 +1670,7 @@ function Order(props) {
               {amount}
             </DialogTitle>
      
-            <DialogContentText>
-              {/* Success: 4000000360000006 Faild: 4000000000000002  */}
-              {/* <br />
-              3D Identify:4000002760003184 */}
-            </DialogContentText>
+            <DialogContentText />
           </Container>
           
           <Container>

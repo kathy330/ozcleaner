@@ -14,13 +14,9 @@ import Status from './Customers/Status'
 import Names from './Customers/Names'
 import PhoneNumber from './Customers/PhoneNumber'
 import TextField from './Customers/TextField'
-// import user1 from '../../assets/user1.jpg'
 
-// style
 const useStyles = makeStyles((theme) => ({
   root: {
-    // flexGrow: 1,
-    // backgroundColor: 'lightgreen',
     marginBottom: 20,
     [theme.breakpoints.down('xs')]: {
       order: 2,
@@ -92,8 +88,6 @@ const AdminCustomersLeft = ({ startTime, endTime, orderTitle,
             <TextField _id={_id} type={typeOfOrder} review={reviewText} />
           </>
         )}
-        {/* <Divider className={classes.divider} />
-        <TextField _id={_id} type={typeOfOrder} review={reviewText} /> */}
       </div>
     </Grid>
   )

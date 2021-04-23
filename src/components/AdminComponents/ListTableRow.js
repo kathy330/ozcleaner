@@ -1,12 +1,19 @@
-/* eslint-disable no-alert */
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { TableRow, TableCell, Button, Avatar, makeStyles } from '@material-ui/core/'
-import { GreenStatus, RedStatus } from '../UIComponents/Status'
+import { TableRow, TableCell, IconButton, Avatar, makeStyles } from '@material-ui/core/'
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 
 const useStyle = makeStyles((theme) => ({
+  root: {
+    borderBottom: '1px solid #cacaca',
+    '&:nth-of-type(even)': {
+      backgroundColor: "#f0f0f0",
+    },
+  },
   avatar: {
-    margin: 'auto',
+    margin: '0 20px 0 10px' 
   },
   actionBtn: {
     margin: '0 10px',
@@ -15,46 +22,80 @@ const useStyle = makeStyles((theme) => ({
       margin: '0 5px',
     },
   },
+  nameBox: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingLeft: '18%',
+    [theme.breakpoints.down('xs')]: {
+      paddingLeft: '10px',
+    },
+  },
+  redBg: {
+    fontSize: '15px',
+    marginRight: '8px',
+    color: '#C5554B'
+  },
+  greenBg:{
+    fontSize: '15px',
+    marginRight: '8px',
+    color: '#89B153'
+  },
+  viewIcon: {
+    '&::after': {
+      height: '28px',
+      position: 'absolute',
+      width: '1px',
+      background: '#bbbbbb',
+      content: '""',
+      right: 0
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding: '8px',
+    },
+  },
 }))
 
-/**
- * ListTableRow() is for displaying the user display in the user/employee list
- * @param tableType: (string) type of the table
- * @param status: (string) employee status
- */
-function StatusDisplay(tableType, status) {
+function StatusDisplay(tableType, status, classes) {
   if (tableType === 'customer') {
     return null
   }
   return (status === 'available') ? 
-    (<TableCell align="center"><GreenStatus>Available</GreenStatus></TableCell>) : 
-    (<TableCell align="center"><RedStatus>Unavailable</RedStatus></TableCell>)
+    (
+      <TableCell align="center" className={classes.status}>
+        <FiberManualRecordIcon className={classes.redBg} />
+        Available
+      </TableCell>
+  ) : 
+    (
+      <TableCell align="center" className={classes.status}>
+        <FiberManualRecordIcon className={classes.greenBg} />
+        Unavailable
+      </TableCell>
+  )
 }
 
-/**
- * ListTableRow() is for rendering the user info in the user/employee list
- * @param props: (obj) user information 
- */
 function ListTableRow(props) {
   const classes = useStyle()
-  // eslint-disable-next-line max-len
-  const { index, id, firstName, lastName, status, ongoingOrder, completedOrder, tableType, openDeletedModal } = props
+  const { index, id, firstName, lastName, email, status } = props
+  const { ongoingOrder, completedOrder, tableType, openDeletedModal } = props
   const path = `/admin/${tableType}s/${id}`
   return (
-    <TableRow role="checkbox" tabIndex={-1} key={id}>
+    <TableRow role="checkbox" tabIndex={-1} key={id} className={classes.root}>
       <TableCell align="center">
-        <Avatar className={`${classes.avatar} text-uppercase`}>
-          {firstName[0]}
-        </Avatar>
+        <div className={classes.nameBox}>
+          <Avatar className={`${classes.avatar} text-uppercase`}>
+            {firstName[0]} 
+          </Avatar>
+          {firstName}
+          {' '}
+          {lastName}
+        </div>
       </TableCell>
-      <TableCell align="center" className="text-capitalize">
-        {firstName}
-        {' '}
-        {lastName}
+      <TableCell align="center">
+        {email}
       </TableCell>
-      
-      {StatusDisplay(tableType, status)}
-      
+      {StatusDisplay(tableType, status, classes)}
       <TableCell align="center">
         {ongoingOrder}
         {' '}
@@ -66,23 +107,23 @@ function ListTableRow(props) {
         Order(s)
       </TableCell>
       <TableCell align="center">
-        <Button
-          variant="contained"
+        <IconButton 
+          className={classes.viewIcon}
           color="primary"
-          className={classes.actionBtn}
-          component={Link} 
+          component={Link}
           to={path}
+          aria-label="View"
         >
-          View
-        </Button>
-        <Button
-          variant="contained"
+          <VisibilityIcon />
+        </IconButton>
+        <IconButton 
+          className={classes.deleteIcon}
           color="secondary"
-          className={classes.actionBtn}
           onClick={() => openDeletedModal(id, index)}
+          aria-label="Deleted"
         >
-          Delete
-        </Button>
+          <DeleteOutlineIcon />
+        </IconButton>
       </TableCell>
     </TableRow>
   )

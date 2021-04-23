@@ -9,7 +9,6 @@ const initialState = {
 
 function users( state = initialState, action){
   switch(action.type){
-    // get user list
     case actionTypes.GET_USERS_REQUESTED:
       return{
         ...state,
@@ -28,7 +27,6 @@ function users( state = initialState, action){
         loading: false,
         error: action.message
       }
-    // get employee list
     case actionTypes.GET_EMPLOYEES_REQUESTED:
       return {
         ...state,
@@ -47,7 +45,6 @@ function users( state = initialState, action){
         loading: false,
         error: action.message
       }
-    // delete customer
     case actionTypes.DELETED_CUSTOMER_REQUEST:
       return{
         ...state,
@@ -64,7 +61,6 @@ function users( state = initialState, action){
         loading: false,
         error: action.message
       }
-    // delete employee
     case actionTypes.DELETED_EMPLOYEE_REQUEST:
       return {
         ...state,

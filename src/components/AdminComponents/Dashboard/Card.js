@@ -7,7 +7,7 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 180,
     minWidth: 270,
-    borderRadius: "8%"
+    borderRadius: "4%"
   },
   title: {
     marginTop: "25px"

@@ -115,6 +115,10 @@ export const buttonStyle = makeStyles((theme) => ({
       background: '#29b6f6', 
       boxShadow: '0px 2px 10px #888',
     },
+    [theme.breakpoints.down('sm')]: {
+      minWidth:'150px',
+      padding: '8px 0px',
+    },
   }
 }))
 

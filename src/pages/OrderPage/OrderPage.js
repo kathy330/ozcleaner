@@ -821,14 +821,6 @@ function Order(props) {
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <Container maxWidth="lg">
                       <Grid item xs={12} sm={12}>
-                        {/* <Typography id="back-to-top-anchor" variant='h4' align='left' className={classes.title}>
-                          Set up your cleaning service
-                        </Typography> */}
-
-                  
-
-                        {/* Extra */}
-                        {/* <Box className={picktype!==''?"display":""}> */}
                         <Box>
                           <Box className={next1?"display-none":"display"}>
                             {/* 1/4 Bedroom num */}
@@ -853,6 +845,7 @@ function Order(props) {
                                       className={classes.actionArea2} 
                                       name="bedA"
                                       onClick={areaClickChange2}
+                                      disabled={homeOrderData!==''&&bedA===false}
                                     >
                                       <Grid container direction='column' alignItems="flex-end">
                                         <Grid
@@ -885,6 +878,7 @@ function Order(props) {
                                       className={classes.actionArea2} 
                                       name="bedB"
                                       onClick={areaClickChange2}
+                                      disabled={homeOrderData!==''&&bedB===false}
                                     >
                                       <Grid container direction='column' alignItems="flex-end">
                                         <Grid
@@ -915,6 +909,7 @@ function Order(props) {
                                       className={classes.actionArea2} 
                                       name="bedC"
                                       onClick={areaClickChange2}
+                                      disabled={homeOrderData!==''&&bedC===false}
                                     >
                                       <Grid container direction='column' alignItems="flex-end">
                                         <Grid
@@ -945,6 +940,7 @@ function Order(props) {
                                       className={classes.actionArea2} 
                                       name="bedD"
                                       onClick={areaClickChange2}
+                                      disabled={homeOrderData!==''&&bedD===false}
                                     >
                                       <Grid container direction='column' alignItems="flex-end">
                                         <Grid
@@ -992,6 +988,7 @@ function Order(props) {
                                       className={classes.actionArea2} 
                                       name="bathA"
                                       onClick={areaClickChange3}
+                                      disabled={homeOrderData!==''&&bathA===false}
                                     >
                                       <Grid container direction='column' alignItems="flex-end">
                                         <Grid
@@ -1022,6 +1019,7 @@ function Order(props) {
                                       className={classes.actionArea2} 
                                       name="bathB"
                                       onClick={areaClickChange3}
+                                      disabled={homeOrderData!==''&&bathB===false}
                                     >
                                       <Grid container direction='column' alignItems="flex-end">
                                         <Grid
@@ -1052,6 +1050,7 @@ function Order(props) {
                                       className={classes.actionArea2} 
                                       name="bathC"
                                       onClick={areaClickChange3}
+                                      disabled={homeOrderData!==''&&bathC===false}
                                     >
                                       <Grid container direction='column' alignItems="flex-end">
                                         <Grid
@@ -1083,6 +1082,7 @@ function Order(props) {
                                       className={classes.actionArea2} 
                                       name="bathD"
                                       onClick={areaClickChange3}
+                                      disabled={homeOrderData!==''&&bathD===false}
                                     >
                                       <Grid container direction='column' alignItems="flex-end">
                                         <Grid

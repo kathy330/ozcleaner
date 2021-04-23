@@ -4,6 +4,7 @@ import { makeStyles} from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
+import img2 from '../../../../assets/avaters/avatar2.jpeg'
 
 const useStyles = makeStyles((themes) => ({
   root: {
@@ -17,8 +18,8 @@ const useStyles = makeStyles((themes) => ({
     height: themes.spacing(3),
   },
   large: {
-    width: themes.spacing(16),
-    height: themes.spacing(16),
+    width: themes.spacing(26),
+    height: themes.spacing(26),
     fontSize:50,
   },
   img:{
@@ -26,7 +27,7 @@ const useStyles = makeStyles((themes) => ({
   }
 }))
 
-export default function Avatars2(props) {
+export default function Avatars(props) {
   const classes = useStyles()
   const {UserData}=props
 
@@ -36,7 +37,7 @@ export default function Avatars2(props) {
 
       <Grid item xs container direction="column" spacing={2}>
         <Grid item className={classes.img}>
-          <Avatar className={classes.large} key={UserData.name}>{UserData.name.firstName.slice(0,2).toUpperCase()}</Avatar>
+          <Avatar className={classes.large} key={UserData.name} src={img2} />
         </Grid>
              
         <Grid item xs>

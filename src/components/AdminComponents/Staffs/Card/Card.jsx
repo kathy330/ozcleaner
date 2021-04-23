@@ -114,7 +114,7 @@ export default function AutoGrid(props) {
                 {/* Stars */}
 
                 <Grid item xs>
-                  <Box component="fieldset" mb={0.5} borderColor="transparent" key={UserData.averageRating}>
+                  <Box component="fieldset" mb={0.5} borderColor="transparent" key={UserData.averageRating} margin="10% auto">
                     <Rating 
                       name="half-rating-read"
                       defaultValue={UserData.averageRating}
@@ -134,7 +134,7 @@ export default function AutoGrid(props) {
         {/* Personal Infomation */}
         <Grid item xs={12} sm={12}>
           <Paper className={classes.paper}>
-            <Grid container spacing={4} justify="space-evenly">
+            <Grid container spacing={2} justify="space-evenly">
               <Grid item xs={4} sm={3}>
                 <ul>
                   <li className={classes.li}>

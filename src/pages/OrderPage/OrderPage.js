@@ -38,6 +38,7 @@ import { useForm,Controller } from "react-hook-form"
 import {useSelector} from 'react-redux'
 import KingBedIcon from '@material-ui/icons/KingBed'
 import BathtubIcon from '@material-ui/icons/Bathtub'
+import HelpIcon from '@material-ui/icons/Help'
 import CreateIcon from '@material-ui/icons/Create'
 import RoomIcon from '@material-ui/icons/Room'
 import NoteIcon from '@material-ui/icons/Note'
@@ -54,10 +55,16 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 // import OrderPay from "./OrderPayPage"
 // import ProtectedRoute from '../../router/ProtectedRoute'
-import cabinetIcon from "../../assets/cabinet2.svg"
-import windowIcon from "../../assets/window2.svg"
-import fridgeIcon from "../../assets/fridge2.svg"
-import ovenIcon from "../../assets/oven2.svg"
+import cabinetIcon from "../../assets/cabinet3.svg"
+import windowIcon from "../../assets/window3.svg"
+import fridgeIcon from "../../assets/fridge3.svg"
+import ovenIcon from "../../assets/oven3.svg"
+import regularIcon from "../../assets/regular.svg"
+import endleaseIcon from "../../assets/endoflease.svg"
+import N1 from "../../assets/1.svg"
+import N2 from "../../assets/2.svg"
+import N3 from "../../assets/3.svg"
+import N4 from "../../assets/4.svg"
 // import { BookingButton } from "../../components/UIComponents/Buttons"
 import { buttonStyle } from '../../styles/styles'
 // import {postRegularRequest,postEndOfLeaseRequest,payOrderRequest } from '../../store/actions'
@@ -69,12 +76,11 @@ import Footer from '../../components/FooterComponents/Footer'
 import HomeComponentStyle from "../../components/HomeComponents/styles/HomeComponentStyle"
 import CheckoutForm from "../../components/OrderComponents/components/StripePay"
 import "../../components/OrderComponents/components/pay.css"
-
+import './order.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // background: 'lightgray'
-    background: '#e3f2fd',
+  // background: '#e3f2fd',
   },
 
   content: {
@@ -91,6 +97,10 @@ const useStyles = makeStyles((theme) => ({
 
       }
     },
+  },
+
+  extratxt2: {
+    fontSize: '35px',
   },
 
   dialog: {
@@ -129,22 +139,21 @@ const useStyles = makeStyles((theme) => ({
   left: {
     borderRadius: '5px',
     boxShadow: '1px 1px 5px #888',
+   
     [theme.breakpoints.down('sm')]: {
-      // background: 'red',
       background: 'white',
-      height: '100%',
+      // height: '100%',
       marginBottom: '11vh',
     },
     [theme.breakpoints.between('sm', 'md')]: {
-      // background: 'grey',
       background: 'white',
-      height: '100%',
+      // height: '100%',
       marginBottom: '11vh',
     },
     [theme.breakpoints.up('md')]: {
       // background: 'lightblue',
       background: 'white',
-      height: '100%',
+      // height: '100%',
       marginBottom: '11vh',
       
     },
@@ -217,7 +226,8 @@ const useStyles = makeStyles((theme) => ({
 
   pickerBackground: {
     // background: 'lightgrey' // 最外层灰色背景
-    background: '#e3f2fd' // 最外层灰色背景
+    // background: '#e3f2fd' // 最外层灰色背景
+    background: '#48cae4' // 最外层灰色背景
   },
 
   pickernotchoose: {
@@ -225,11 +235,16 @@ const useStyles = makeStyles((theme) => ({
   },
 
   picker: {
-    margin: '3px' // 最外层灰色间距
+    margin: '4px' // 最外层灰色间距
     // "&:hover": { transform: "scale3d(1.05, 1.05, 1)", }, //hover放大效果
   },
 
   actionArea: {
+    padding: '0 5px' // 白色区域间距
+  },
+
+  actionArea2: {
+    height: '100px',
     padding: '0 5px' // 白色区域间距
   },
 
@@ -257,7 +272,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   price: {
-    color: '#007bf5',
+    color: '#29b6f6',
   },
 
   priceArea: {
@@ -340,6 +355,26 @@ function Order(props) {
     extradisable:false,
     submit:false
   })
+
+  const [bedroompick, setbedroompick] = useState({
+    bedA: false,
+    bedB: false,
+    bedC: false,
+    bedD:false,
+  })
+
+  const [bathroompick, setbathroompick] = useState({
+    bathA: false,
+    bathB: false,
+    bathC: false,
+    bathD: false,
+  })
+
+  const [cleantypes, setcleantypes] = useState({
+    regulartype: false,
+    endtype: false,
+  })
+
   
   // 11这是checkbox右上角自己属性变化的函数
   const handleChange = (event) => {
@@ -355,21 +390,53 @@ function Order(props) {
     const key = event.target.name || event.target.alt
     const newState = !extraState[key]
     setExtraState({...extraState,[key]:newState})
+    // console.log(key,extraState)
   }
+  // 2/4 bedroom num
+  const areaClickChange2 = (event) => { 
+    const key = event.target.name || event.target.alt
+    const newState = !bedroompick[key]
+    setbedroompick({[key]:newState})
+    // console.log(key,bedroompick)
+  }
+  // 3/4 bathroom num
+  const areaClickChange3 = (event) => { 
+    const key = event.target.name || event.target.alt
+    const newState = !bathroompick[key]
+    setbathroompick({[key]:newState})
+    // console.log(key,bathroompick)
+  }
+
+  // 4/4 bathroom num
+  const areaClickChange4 = (event) => { 
+    const key = event.target.name || event.target.alt
+    const newState = !cleantypes[key]
+    setcleantypes({[key]:newState})
+    // console.log(key,cleantypes)
+  }
+
+  let{bedA,bedB,bedC,bedD} = bedroompick
+  let{bathA,bathB,bathC,bathD} = bathroompick
+  const{regulartype,endtype} = cleantypes
   // 22-----------------------------------------
 
   // 33这里是判断选中EC还是RC的extra picker部分的效果
   const {extradisable} = extraState // 给下面disable={extradisable}用的，如果选中EC，这个变为true传给下面
-  const type = watch("type","")
+  // const type = watch("type","")
   useEffect(()=>{
-    // console.log (type)
-    if(type === 'RC') {
+    // if(type === 'RC') {
+    //   setExtraState({oven:false,fridge:false,windows:false,cabinet:false,extradisable:false})
+    // }
+    // else if(type === 'EC') {
+    //   setExtraState({oven:true,fridge:true,windows:true,cabinet:true,extradisable:true}) 
+    // }
+    if(regulartype) {
       setExtraState({oven:false,fridge:false,windows:false,cabinet:false,extradisable:false})
     }
-    else if(type === 'EC') {
+    else if(endtype) {
       setExtraState({oven:true,fridge:true,windows:true,cabinet:true,extradisable:true}) 
     }
-  },[type])
+  },[regulartype,endtype])
   // 33-----------------------------------------
  
   // 44判断选中了哪个extra,那个值就为true，返回值给下面onSubmite提交时更改
@@ -393,21 +460,106 @@ function Order(props) {
   // 44-----------------------------------------
 
   const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
-
+  let disablebooking = false
+  if(!regulartype&&!endtype) {
+    disablebooking = true
+  }
+  if(employeeinfoo) {
+    disablebooking = true
+  }
+  if(!bedA && !bedB && !bedC && !bedD) {
+    disablebooking = true
+  }
+  if(!bathA && !bathB && !bathC && !bathD) {
+    disablebooking = true
+  }
   // 取回home page已填信息localstorage
   const homeOrderData = localStorage.getItem('homeOrderData') ?
   JSON.parse(localStorage.getItem('homeOrderData')) :''
   // console.log(homeOrderData.bedroomNum)
-  let bedroom = ''
-  let bathroom = ''
+  // let bedroom = ''
+  // let bathroom = ''
   let homePostcode = ''
   // let contactNumber = ''
   let propertyType = ''
   if(homeOrderData!=='') {
-    bedroom = homeOrderData.bedroomNum
-    bathroom = homeOrderData.bathroomNum
+    // bedroom = homeOrderData.bedroomNum
+    // bathroom = homeOrderData.bathroomNum
+    if(homeOrderData.bedroomNum === '0'){
+      bedA = false
+      bedB = false
+      bedC = false
+      bedD = false
+      disablebooking = false
+    }
+    else if(homeOrderData.bedroomNum === '1'){
+      bedA = true
+      bedB = false
+      bedC = false
+      bedD = false
+      disablebooking = false
+    }
+    else if(homeOrderData.bedroomNum === '2'){
+      bedA = false
+      bedB = true
+      bedC = false
+      bedD = false
+      disablebooking = false
+    }
+    else if(homeOrderData.bedroomNum === '3'){
+      bedA = false
+      bedB = false
+      bedC = true
+      bedD = false
+      disablebooking = false
+    }
+    else if(homeOrderData.bedroomNum === '4'){
+      bedA = false
+      bedB = false
+      bedC = false
+      bedD = true
+      disablebooking = false
+    }
+
+    if(homeOrderData.bathroomNum === '0'){
+      bathA = false
+      bathB = false
+      bathC = false
+      bathD = false
+      disablebooking = false
+    }
+    else if(homeOrderData.bathroomNum === '1'){
+      bathA = true
+      bathB = false
+      bathC = false
+      bathD = false
+      disablebooking = false
+    }
+    else if(homeOrderData.bathroomNum === '2'){
+      bathA = false
+      bathB = true
+      bathC = false
+      bathD = false
+      disablebooking = false
+    }
+    else if(homeOrderData.bathroomNum === '3'){
+      bathA = false
+      bathB = false
+      bathC = true
+      bathD = false
+      disablebooking = false
+    }
+    else if(homeOrderData.bathroomNum === '4'){
+      bathA = false
+      bathB = false
+      bathC = false
+      bathD = true
+      disablebooking = false
+    }
+ 
+    
+
     homePostcode = homeOrderData.postcode
-    // contactNumber = homeOrderData.contact
     propertyType = homeOrderData.propertyType
   }
 
@@ -453,29 +605,68 @@ function Order(props) {
   // 66---------------
 
   // 77这里是想左边输入房间数，右边实时更新
-  const bedNumber = watch("bedRoomNum",'')
-  const bathNumber = watch("bathRoomNum",'')
+  // const bedNumber = watch("bedRoomNum",'')
+  // const bathNumber = watch("bathRoomNum",'')
   let typeOfClean = watch("type",'') 
 
   let bedroomNumber = 'Bedrooms x 0'
   let bathroomNumber = 'Bathrooms x 0'
-  if(bedNumber !== '') {
+  if(bedA) {
     // bedroomNumber = 0
-    bedroomNumber = `Bedrooms x ${bedNumber}`
+    bedroomNumber = `Bedrooms x 1`
   }
-  if(bathNumber !== '') {
+  else if(bedB) {
+    // bedroomNumber = 0
+    bedroomNumber = `Bedrooms x 2`
+  }
+  else if(bedC) {
+    // bedroomNumber = 0
+    bedroomNumber = `Bedrooms x 3`
+  }
+  else if(bedD) {
+    // bedroomNumber = 0
+    bedroomNumber = `Bedrooms x 4`
+  }
+
+  if(bathA) {
     // bathroomNumber = 0
-    bathroomNumber = `Bathrooms x ${bathNumber}`
+    bathroomNumber = `Bathrooms x 1`
   }
-  if(typeOfClean ==='EC') {
+  else if(bathB) {
+    // bedroomNumber = 0
+    bathroomNumber = `Bathrooms x 2`
+  }
+  else if(bathC) {
+    // bedroomNumber = 0
+    bathroomNumber = `Bathrooms x 3`
+  }
+  else if(bathD) {
+    // bedroomNumber = 0
+    bathroomNumber = `Bathrooms x 4`
+  }
+  // if(typeOfClean ==='EC') {
+  //   typeOfClean = 'End lease clean'
+  // }
+  // else if(typeOfClean === 'RC') {
+  //   typeOfClean = 'Regular clean'
+  // }
+  // else if(typeOfClean === '') {
+  //   typeOfClean = 'Please choose a type.'
+  // }
+  let picktype = ''
+  if(endtype) {
     typeOfClean = 'End lease clean'
+    picktype = 'EC'
   }
-  else if(typeOfClean === 'RC') {
+  else if(regulartype) {
     typeOfClean = 'Regular clean'
+    picktype = 'RC'
   }
-  else if(typeOfClean === '') {
+  else {
     typeOfClean = 'Please choose a type.'
+    picktype = ''
   }
+ 
   // console.log(bedNumber,bathNumber,typeOfClean)
   // 77---------------
 
@@ -509,12 +700,12 @@ function Order(props) {
   let amount = 0
   if (typeOfClean === 'End of lease clean') {
     amount = 50 // 初始金额
-    amount += Number(bedNumber) * 30
-    amount += Number(bathNumber) * 20
+    amount += Number(bedroomNumber[11]) * 30
+    amount += Number(bathroomNumber[12]) * 20
   }else {
     amount = 0
-    amount += Number(bedNumber) * 30
-    amount += Number(bathNumber) * 20
+    amount += Number(bedroomNumber[11]) * 30
+    amount += Number(bathroomNumber[12]) * 20
     if(oven === true ) {
       amount += 15
     }
@@ -550,8 +741,12 @@ function Order(props) {
         interiorWindows:anyExtra().interiorWindowsnum,
         cabinets:anyExtra().cabinetsnum,
       },
-      otherdata:data
+      otherdata:data,
+      bedRoomNum:bedroomNumber[11],
+      bathRoomNum:bathroomNumber[12],
+      type:picktype
     }
+    // console.log(newdata)
     setorderData(newdata)
     // console.log('submit')
   }
@@ -585,10 +780,35 @@ function Order(props) {
     setOpen(false)
   }
 
+  // 上下翻页按钮
+  const [nextpage, setnextpage] = useState({
+    next1: false,
+    next2: true,
+    next3:true
+  })
+
+  // true 代表不显示
+  const nextClick = () => {
+    setnextpage({next1:true,next2:false,next3:true})
+  }
+  const nextClick2 = () => {
+    setnextpage({next1:true,next2:true,next3:false})
+  }
+
+  const previousClick2 = () => {
+    setnextpage({next1:false,next2:true,next3:true})
+  }
+
+  const previousClick3 = () => {
+    setnextpage({next1:true,next2:false,next3:true})
+  }
+
+  const {next1,next2,next3} = nextpage
   return (
     <>
       {employeeinfoo?history.push("/employee-orders"):''}
-      <Box className={classes.root}>
+      {/* <Box className={classes.root}> */}
+      <Box className="background">
         <HeaderNavigation />
         {/* <button type="submit" onClick={test}>test</button> */}
         <Container maxWidth="lg" className={classes.content}>
@@ -605,7 +825,606 @@ function Order(props) {
                           Set up your cleaning service
                         </Typography> */}
 
-                        {/* Picker  */}
+                  
+
+                        {/* Extra */}
+                        {/* <Box className={picktype!==''?"display":""}> */}
+                        <Box>
+                          <Box className={next1?"display-none":"display"}>
+                            {/* 1/4 Bedroom num */}
+                            <Grid container alignItems="flex-end">
+                              <Grid item xs={2} sm={2} md={1}>
+                                {/* <CreateIcon className={classes.extraIcon} /> */}
+                                <KingBedIcon className={classes.extraIcon}  />
+                              </Grid>
+                              <Grid item xs={10} sm={10} md={11}>
+                                <Typography variant='h5'>
+                                  How many bedrooms do you have?
+                                </Typography>
+                              </Grid>
+                            </Grid>
+                            
+                            <Grid container direction="row" spacing={5} className={classes.actionArearoot}>
+                              <Grid item xs={6} sm={3}>
+                                <Card className={bedA?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                        
+                                    <CardActionArea
+                                      className={classes.actionArea2} 
+                                      name="bedA"
+                                      onClick={areaClickChange2}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={N1} 
+                                                alt="bedA"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                  
+                                    </CardActionArea>
+                          
+                                  </Card>
+                                </Card>
+                              </Grid>
+                
+                              <Grid item xs={6} sm={3}>
+                                <Card className={bedB?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                                    <CardActionArea
+                                      className={classes.actionArea2} 
+                                      name="bedB"
+                                      onClick={areaClickChange2}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={N2} 
+                                                alt="bedB"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                                  </Card>
+                                </Card>
+                              </Grid>
+
+                              <Grid item xs={6} sm={3}>
+                                <Card className={bedC?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                                    <CardActionArea
+                                      className={classes.actionArea2} 
+                                      name="bedC"
+                                      onClick={areaClickChange2}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={N3} 
+                                                alt="bedC"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                                  </Card>
+                                </Card>
+                              </Grid>
+      
+                              <Grid item xs={6} sm={3}>
+                                <Card className={bedD?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                                    <CardActionArea
+                                      className={classes.actionArea2} 
+                                      name="bedD"
+                                      onClick={areaClickChange2}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={N4} 
+                                                alt="bedD"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                             
+                                  </Card>
+                                </Card>     
+                              </Grid>
+                            </Grid>
+                        
+                            {/* 2/4 Bathroom num */}
+                            <Grid container alignItems="flex-end">
+                              <Grid item xs={2} sm={2} md={1}>
+                                {/* <CreateIcon className={classes.extraIcon} /> */}
+                                <BathtubIcon className={classes.extraIcon} />
+                              </Grid>
+                              <Grid item xs={10} sm={10} md={11}>
+                                <Typography variant='h5'>
+                                  How many bathrooms do you have?
+                                </Typography>
+                              </Grid>
+                            </Grid>
+                            
+                            <Grid container direction="row" spacing={5} className={classes.actionArearoot}>
+                              <Grid item xs={6} sm={3}>
+                                <Card className={bathA?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                        
+                                    <CardActionArea
+                                      className={classes.actionArea2} 
+                                      name="bathA"
+                                      onClick={areaClickChange3}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={N1} 
+                                                alt="bathA"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                                  </Card>
+                                </Card>
+                              </Grid>
+                
+                              <Grid item xs={6} sm={3}>
+                                <Card className={bathB?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                                    <CardActionArea
+                                      className={classes.actionArea2} 
+                                      name="bathB"
+                                      onClick={areaClickChange3}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={N2} 
+                                                alt="bathB"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                                  </Card>
+                                </Card>
+                              </Grid>
+
+                              <Grid item xs={6} sm={3}>
+                                <Card className={bathC?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                                    <CardActionArea
+                                      className={classes.actionArea2} 
+                                      name="bathC"
+                                      onClick={areaClickChange3}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={N3} 
+                                                alt="bathC"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                                  </Card>
+                                </Card>
+                              </Grid>
+      
+                              <Grid item xs={6} sm={3}>
+                                <Card className={bathD?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+
+                                    <CardActionArea
+                                      className={classes.actionArea2} 
+                                      name="bathD"
+                                      onClick={areaClickChange3}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={N4} 
+                                                alt="bathD"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                             
+                                  </Card>
+                                </Card>     
+                              </Grid>
+                            </Grid>
+
+                            {/* next previous button */}
+                            <Grid container direction="row" justify="space-between" spacing={1}>
+                              <Grid item xs={3} sm={3}>
+                                {/* <Button onClick={previousClick} type="button" className={buttonstyles.previousButton}>
+                                  Previous
+                                </Button> */}
+                              </Grid>
+
+                              <Grid item xs={2} sm={2}>
+                                <Button onClick={nextClick} type="button" className={buttonstyles.nextButton}>
+                                  Next
+                                </Button>
+                              </Grid>
+                            </Grid>
+
+                          </Box>
+
+                          <Box className={next2?"display-none":"display"}>
+                            {/* 3/4 Clean type */}
+                            <Grid container alignItems="flex-end">
+                              <Grid item xs={2} sm={2} md={1}>
+                                {/* <CreateIcon className={classes.extraIcon} /> */}
+                                <HelpIcon className={classes.extraIcon} />
+                              </Grid>
+                              <Grid item xs={10} sm={10} md={11}>
+                                <Typography variant='h5'>
+                                  Which kind of clean do you want?
+                                </Typography>
+                              </Grid>
+                            </Grid>
+                            
+                            <Grid container direction="row" spacing={5} className={classes.actionArearoot}>
+                            
+                              <Grid item xs={7} sm={4}>
+                                <Card className={regulartype?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                        
+                                    <CardActionArea
+                                      className={classes.actionArea2} 
+                                      name="regulartype"
+                                      onClick={areaClickChange4}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={regularIcon} 
+                                                alt="regulartype"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                                    <Typography className={classes.extratxt} variant='h6' align='center'>
+                                      Regular
+                                    </Typography>
+                                  </Card>
+                                </Card>
+                              </Grid>
+                
+                              <Grid item xs={7} sm={4}>
+                                <Card className={endtype?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                                    <CardActionArea
+                                      className={classes.actionArea2} 
+                                      name="endtype"
+                                      onClick={areaClickChange4}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={endleaseIcon} 
+                                                alt="endtype"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                                    <Typography className={classes.extratxt} variant='h6' align='center'>
+                                      End of lease
+                                    </Typography>
+                                  </Card>
+                                </Card>
+                              </Grid>
+
+                            </Grid>
+
+                            {/* 4/4 ExtraPicker */}
+                            <Grid container alignItems="flex-end">
+                              <Grid item xs={2} sm={2} md={1}>
+                                <PostAddIcon className={classes.extraIcon} />
+                              </Grid>
+                              <Grid item xs={10} sm={10} md={11}>
+                                <Typography variant='h5'>
+                                  Extra service
+                                </Typography>
+                              </Grid>
+                            </Grid>           
+                          
+                            <Grid container direction="row" spacing={1} className={classes.actionArearoot}>
+                              <Grid item xs={6} sm={3}>
+                                <Card className={oven?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                        
+                                    <CardActionArea
+                                      className={classes.actionArea} 
+                                      name="oven"
+                                      onClick={areaClickChange}
+                                      disabled={extradisable}
+                                    >
+
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid item xs={12} sm={12}>
+                                          <Checkbox
+                                            color="primary"
+                                            checked={oven}
+                                            name="oven"
+                                            onChange={handleChange}
+                                            className={classes.check}
+                                          />
+                                        </Grid>
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon}
+                                                src={ovenIcon}
+                                                alt="oven"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                                    <Typography className={classes.extratxt} variant='h6' align='center'>
+                                      Oven
+                                    </Typography>
+                                  </Card>
+                                </Card>
+                              </Grid>
+                
+                              <Grid item xs={6} sm={3}>
+                                <Card className={fridge?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                                    <CardActionArea
+                                      className={classes.actionArea} 
+                                      name="fridge"
+                                      onClick={areaClickChange}
+                                      disabled={extradisable}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid item xs={12} sm={12}>
+                                          <Checkbox
+                                            color="primary"
+                                            checked={fridge}
+                                            name="fridge"
+                                            onChange={handleChange}
+                                            className={classes.check}
+                                          />
+                                        </Grid>
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={fridgeIcon} 
+                                                alt="fridge"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                                    <Typography className={classes.extratxt} variant='h6' align='center'>
+                                      Fridge
+                                    </Typography>
+                                  </Card>
+                                </Card>
+                              </Grid>
+
+                              <Grid item xs={6} sm={3}>
+                                <Card className={windows?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                                    <CardActionArea
+                                      className={classes.actionArea} 
+                                      name="windows"
+                                      onClick={areaClickChange}
+                                      disabled={extradisable}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid item xs={12} sm={12}>
+                                          <Checkbox
+                                            color="primary"
+                                            checked={windows}
+                                            name="windows"
+                                            onChange={handleChange}
+                                            className={classes.check}
+                                          />
+                                        </Grid>
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={windowIcon} 
+                                                alt="windows"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                                    <Typography className={classes.extratxt} variant='h6' align='center'>
+                                      Windows
+                                    </Typography>
+                                  </Card>
+                                </Card>
+                              </Grid>
+      
+                              <Grid item xs={6} sm={3}>
+                                <Card className={cabinet?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
+                                  <Card className={classes.picker} elevation={0}>
+                                    <CardActionArea
+                                      className={classes.actionArea} 
+                                      name="cabinet"
+                                      onClick={areaClickChange}
+                                      disabled={extradisable}
+                                    >
+                                      <Grid container direction='column' alignItems="flex-end">
+                                        <Grid item xs={12} sm={12}>
+                                          <Checkbox
+                                            color="primary"
+                                            checked={cabinet}
+                                            name="cabinet"
+                                            onChange={handleChange}
+                                            className={classes.check}
+                                          />
+                                        </Grid>
+                                        <Grid
+                                          container
+                                          justify="center"
+                                          alignItems="center"
+                                        >
+                                          <Grid item xs={6} sm={6}>
+                                            <Icon>
+                                              <img 
+                                                className={classes.actionAreaimageIcon} 
+                                                src={cabinetIcon} 
+                                                alt="cabinet"
+                                              />
+                                            </Icon>
+                                          </Grid>
+                                        </Grid>
+                                      </Grid>
+                                    </CardActionArea>
+                                    <Typography className={classes.extratxt} variant='h6' align='center'>
+                                      Cabinet
+                                    </Typography>
+                                  </Card>
+                                </Card>     
+                              </Grid>
+                            </Grid>
+
+                            {/* next previous button */}
+                            <Grid container direction="row" justify="space-between" spacing={1}>
+                              <Grid item xs={3} sm={3}>
+                                <Button onClick={previousClick2} type="button" className={buttonstyles.previousButton}>
+                                  Previous
+                                </Button>
+                              </Grid>
+
+                              <Grid item xs={2} sm={2}>
+                                <Button onClick={nextClick2} type="button" className={buttonstyles.nextButton}>
+                                  Next
+                                </Button>
+                              </Grid>
+                            </Grid>
+                          </Box>
+                        </Box>
+                      </Grid>
+                    </Container>
+
+
+                    {/* <Divider /> */}
+
+                    {/* Service address */}  
+                    {/* Picker  */}
+                    <Box className={next3?"display-none":"display"}>
+
+                      <Container maxWidth="lg">
                         <Box>
                           <Grid container alignItems="flex-end">
                             <Grid item xs={2} sm={2} md={1}>
@@ -670,82 +1489,7 @@ function Order(props) {
                                 />
                               </MuiPickersUtilsProvider>
                             </Grid>
-                            
-                            {/* Bedroom num */}
-                            <Grid item xs={12} sm={6}>
-                              <FormControl className={cssstyle.Picker}>
-                                <InputLabel className={cssstyle.Picker}>
-                                  Bedroom*
-                                </InputLabel>
-
-                                <Controller
-                                  as={(
-                                    <Select MenuProps={SelectStyle}>
-                                      <MenuItem className={classes.selected} value="0">0</MenuItem>
-                                      <MenuItem className={classes.selected} value="1">1</MenuItem>
-                                      <MenuItem className={classes.selected} value="2">2</MenuItem>
-                                      <MenuItem className={classes.selected} value="3">3</MenuItem>
-                                      <MenuItem className={classes.selected} value="4">4</MenuItem>
-                                      <MenuItem className={classes.selected} value="5">5</MenuItem>
-                                    </Select>
-                                  )}
-                                  name="bedRoomNum"
-                                  required
-                                  disabled={!!homeOrderData} // {homeOrderData?true:false}
-                                  control={control}
-                                  defaultValue={bedroom}
-                                />
-                              </FormControl>
-                            </Grid>
-                            {/* Bathroom num */}
-                            <Grid item xs={12} sm={6}>
-                              <FormControl className={cssstyle.Picker}>
-                                <InputLabel className={cssstyle.Picker}>
-                                  Bathroom*
-                                </InputLabel>
-
-                                <Controller
-                                  as={(
-                                    <Select MenuProps={SelectStyle}>
-                                      <MenuItem className={classes.selected} value="0">0</MenuItem>
-                                      <MenuItem className={classes.selected} value="1">1</MenuItem>
-                                      <MenuItem className={classes.selected} value="2">2</MenuItem>
-                                      <MenuItem className={classes.selected} value="3">3</MenuItem>
-                                      <MenuItem className={classes.selected} value="4">4</MenuItem>
-                                      <MenuItem className={classes.selected} value="5">5</MenuItem>
-                                    </Select>
-                                )}
-                                  name="bathRoomNum"
-                                  required
-                                  disabled={!!homeOrderData} // {homeOrderData?true:false}
-                                  control={control}
-                                  defaultValue={bathroom}
-                                />
-                              </FormControl>
-                            </Grid>
-                         
-                            {/* clean Type */}
-                            <Grid item xs={12} sm={6}>
-                              <FormControl className={cssstyle.Picker}>
-                                <InputLabel className={cssstyle.Picker}>
-                                  Clean type*
-                                </InputLabel>
-
-                                <Controller
-                                  as={(
-                                    <Select MenuProps={SelectStyle}>
-                                      <MenuItem className={classes.selected} value="RC">Regular clean</MenuItem>
-                                      <MenuItem className={classes.selected} value="EC">End lease clean</MenuItem>
-                                    </Select>
-                                )}
-                                  name="type"
-                                  required
-                                  control={control}
-                                  defaultValue=''
-                                />
-                              </FormControl>
-                            </Grid>
-
+                                                       
                             {/* roomTpye */}
                             <Grid item xs={12} sm={6}>
                               <FormControl className={cssstyle.Picker}>
@@ -770,410 +1514,219 @@ function Order(props) {
                               </FormControl>
                             </Grid>
                           
-            
                           </Grid>
                         </Box>
-
-                        {/* Extra */}
-                        <Box>
-                          <Grid container alignItems="flex-end">
-                            <Grid item xs={2} sm={2} md={1}>
-                              <PostAddIcon className={classes.extraIcon} />
-                            </Grid>
-                            <Grid item xs={10} sm={10} md={11}>
-                              <Typography variant='h5'>
-                                Extra service
-                              </Typography>
-                            </Grid>
-                          </Grid>
-            
-                          {/* <ExtraPicker /> */}
-                          <Grid container direction="row" spacing={1} className={classes.actionArearoot}>
-                            <Grid item xs={6} sm={3}>
-                              <Card className={oven?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
-                                <Card className={classes.picker} elevation={0}>
                         
-                                  <CardActionArea
-                                    className={classes.actionArea} 
-                                    name="oven"
-                                    onClick={areaClickChange}
-                                    disabled={extradisable}
-                                    // value={!!oven}
-                                  >
-
-                                    <Grid container direction='column' alignItems="flex-end">
-                                      <Grid item xs={12} sm={12}>
-                                        <Checkbox
-                                          color="primary"
-                                          checked={oven}
-                                          name="oven"
-                                          onChange={handleChange}
-                                          className={classes.check}
-                                          // value={!!oven}
-                                        />
-                                      </Grid>
-                                      <Grid
-                                        container
-                                        justify="center"
-                                        alignItems="center"
-                                      >
-                                        <Grid item xs={6} sm={6}>
-                                          <Icon>
-                                            <img 
-                                              className={classes.actionAreaimageIcon}
-                                              src={ovenIcon}
-                                              alt="oven"
-                                            />
-                                          </Icon>
-                                        </Grid>
-                                      </Grid>
-                                    </Grid>
-                                  </CardActionArea>
-                                  <Typography className={classes.extratxt} variant='h6' align='center'>
-                                    Oven
-                                  </Typography>
-                                </Card>
-                              </Card>
-                            </Grid>
-                
-                            <Grid item xs={6} sm={3}>
-                              <Card className={fridge?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
-                                <Card className={classes.picker} elevation={0}>
-                                  <CardActionArea
-                                    className={classes.actionArea} 
-                                    name="fridge"
-                                    onClick={areaClickChange}
-                                    disabled={extradisable}
-                                  >
-                                    <Grid container direction='column' alignItems="flex-end">
-                                      <Grid item xs={12} sm={12}>
-                                        <Checkbox
-                                          color="primary"
-                                          checked={fridge}
-                                          name="fridge"
-                                          onChange={handleChange}
-                                          className={classes.check}
-                                        />
-                                      </Grid>
-                                      <Grid
-                                        container
-                                        justify="center"
-                                        alignItems="center"
-                                      >
-                                        <Grid item xs={6} sm={6}>
-                                          <Icon>
-                                            <img 
-                                              className={classes.actionAreaimageIcon} 
-                                              src={fridgeIcon} 
-                                              alt="fridge"
-                                            />
-                                          </Icon>
-                                        </Grid>
-                                      </Grid>
-                                    </Grid>
-                                  </CardActionArea>
-                                  <Typography className={classes.extratxt} variant='h6' align='center'>
-                                    Fridge
-                                  </Typography>
-                                </Card>
-                              </Card>
-                            </Grid>
-
-                            <Grid item xs={6} sm={3}>
-                              <Card className={windows?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
-                                <Card className={classes.picker} elevation={0}>
-                                  <CardActionArea
-                                    className={classes.actionArea} 
-                                    name="windows"
-                                    onClick={areaClickChange}
-                                    disabled={extradisable}
-                                  >
-                                    <Grid container direction='column' alignItems="flex-end">
-                                      <Grid item xs={12} sm={12}>
-                                        <Checkbox
-                                          color="primary"
-                                          checked={windows}
-                                          name="windows"
-                                          onChange={handleChange}
-                                          className={classes.check}
-                                        />
-                                      </Grid>
-                                      <Grid
-                                        container
-                                        justify="center"
-                                        alignItems="center"
-                                      >
-                                        <Grid item xs={6} sm={6}>
-                                          <Icon>
-                                            <img 
-                                              className={classes.actionAreaimageIcon} 
-                                              src={windowIcon} 
-                                              alt="windows"
-                                            />
-                                          </Icon>
-                                        </Grid>
-                                      </Grid>
-                                    </Grid>
-                                  </CardActionArea>
-                                  <Typography className={classes.extratxt} variant='h6' align='center'>
-                                    Windows
-                                  </Typography>
-                                </Card>
-                              </Card>
-                            </Grid>
-      
-                            <Grid item xs={6} sm={3}>
-                              <Card className={cabinet?classes.pickerBackground:classes.pickernotchoose} elevation={0}>
-                                <Card className={classes.picker} elevation={0}>
-                                  <CardActionArea
-                                    className={classes.actionArea} 
-                                    name="cabinet"
-                                    onClick={areaClickChange}
-                                    disabled={extradisable}
-                                  >
-                                    <Grid container direction='column' alignItems="flex-end">
-                                      <Grid item xs={12} sm={12}>
-                                        <Checkbox
-                                          color="primary"
-                                          checked={cabinet}
-                                          name="cabinet"
-                                          onChange={handleChange}
-                                          className={classes.check}
-                                        />
-                                      </Grid>
-                                      <Grid
-                                        container
-                                        justify="center"
-                                        alignItems="center"
-                                      >
-                                        <Grid item xs={6} sm={6}>
-                                          <Icon>
-                                            <img 
-                                              className={classes.actionAreaimageIcon} 
-                                              src={cabinetIcon} 
-                                              alt="cabinet"
-                                            />
-                                          </Icon>
-                                        </Grid>
-                                      </Grid>
-                                    </Grid>
-                                  </CardActionArea>
-                                  <Typography className={classes.extratxt} variant='h6' align='center'>
-                                    Cabinet
-                                  </Typography>
-                                </Card>
-                              </Card>     
-                            </Grid>
+                        <Grid container alignItems="flex-end">
+                          {/* home icon */}
+                          <Grid item xs={2} sm={2} md={1}>
+                            <HomeIcon className={classes.extraIcon} />
                           </Grid>
-                        </Box>
-                      </Grid>
-                    </Container>
-
-                    <Divider />
-
-                    {/* Service address */}
-                    <Container maxWidth="lg">
-                      <Grid container alignItems="flex-end">
-                        {/* home icon */}
-                        <Grid item xs={2} sm={2} md={1}>
-                          <HomeIcon className={classes.extraIcon} />
-                        </Grid>
-                        {/* title  */}
-                        <Grid item xs={10} sm={10} md={11}>
-                          <Typography variant='h5'>
-                            Service address
-                          </Typography>
-                        </Grid>
-                        {/* Input box */}
-                        <Grid item xs={12} sm={12}>
-                          <Box className={classes.inputRoot}>
-                            <Grid container direction="row" spacing={2}>
-                              {/* First Name */}
-                              <Grid item xs={6} sm={6}>
-                                <Controller
-                                  as={(
-                                    <TextField
-                                      id=""
-                                      label="First Name"
-                                      required
+                          {/* title  */}
+                          <Grid item xs={10} sm={10} md={11}>
+                            <Typography variant='h5'>
+                              Service address
+                            </Typography>
+                          </Grid>
+                          {/* Input box */}
+                          <Grid item xs={12} sm={12}>
+                            <Box className={classes.inputRoot}>
+                              <Grid container direction="row" spacing={2}>
+                                {/* First Name */}
+                                <Grid item xs={6} sm={6}>
+                                  <Controller
+                                    as={(
+                                      <TextField
+                                        id=""
+                                        label="First Name"
+                                        required
                                     // label在输入框顶部固定
-                                      InputLabelProps={{ shrink: true,}}
-                                      variant="outlined"
-                                      className={classes.input}
-                                    />
+                                        InputLabelProps={{ shrink: true,}}
+                                        variant="outlined"
+                                        className={classes.input}
+                                      />
                         )}
-                                  name="firstName"
-                                  control={control}
-                                  defaultValue=""
-                                />
-                              </Grid>
-                              {/* Last Name */}
-                              <Grid item xs={6} sm={6}>
-                                <Controller
-                                  as={(
-                                    <TextField
-                                      id=""
-                                      label="Last Name"
-                                      required
-                                      InputLabelProps={{shrink: true}}
-                                      variant="outlined"
-                                      className={classes.input}
-                                    />
+                                    name="firstName"
+                                    control={control}
+                                    defaultValue=""
+                                  />
+                                </Grid>
+                                {/* Last Name */}
+                                <Grid item xs={6} sm={6}>
+                                  <Controller
+                                    as={(
+                                      <TextField
+                                        id=""
+                                        label="Last Name"
+                                        required
+                                        InputLabelProps={{shrink: true}}
+                                        variant="outlined"
+                                        className={classes.input}
+                                      />
                         )}
-                                  name="lastName"
-                                  control={control}
-                                  defaultValue=""
-                                />
+                                    name="lastName"
+                                    control={control}
+                                    defaultValue=""
+                                  />
                 
+                                </Grid>
                               </Grid>
-                            </Grid>
 
-                            <Grid container direction="row" spacing={2}>
-                              {/* Address1 */}
-                              <Grid item xs={6} sm={6}>
-                                <Controller
-                                  as={(
-                                    <TextField
-                                      id=""
-                                      label="Street Address"
-                                      required
-                                      InputLabelProps={{shrink: true,}}
-                                      variant="outlined"
-                                      className={classes.input}
-                                    />
+                              <Grid container direction="row" spacing={2}>
+                                {/* Address1 */}
+                                <Grid item xs={6} sm={6}>
+                                  <Controller
+                                    as={(
+                                      <TextField
+                                        id=""
+                                        label="Street Address"
+                                        required
+                                        InputLabelProps={{shrink: true,}}
+                                        variant="outlined"
+                                        className={classes.input}
+                                      />
                         )}
-                                  name="address1"
-                                  control={control}
-                                  defaultValue=""
-                                />
-                              </Grid>
-                              {/* Address2(APT) */}
-                              <Grid item xs={6} sm={6}>
-                                <Controller
-                                  as={(
-                                    <TextField
-                                      id=""
-                                      label="Apt # (optional)"
-                                      InputLabelProps={{shrink: true,}}
-                                      variant="outlined"
-                                      className={classes.input}
-                                    />
+                                    name="address1"
+                                    control={control}
+                                    defaultValue=""
+                                  />
+                                </Grid>
+                                {/* Address2(APT) */}
+                                <Grid item xs={6} sm={6}>
+                                  <Controller
+                                    as={(
+                                      <TextField
+                                        id=""
+                                        label="Apt # (optional)"
+                                        InputLabelProps={{shrink: true,}}
+                                        variant="outlined"
+                                        className={classes.input}
+                                      />
                         )}
-                                  name="address2"
-                                  control={control}
-                                  defaultValue=""
-                                />
+                                    name="address2"
+                                    control={control}
+                                    defaultValue=""
+                                  />
+                                </Grid>
                               </Grid>
-                            </Grid>
       
-                            <Grid container direction="row" spacing={2}>
-                              {/* Suburb */}
-                              <Grid item xs={6} sm={6}>
-                                <Controller
-                                  as={(
-                                    <TextField
-                                      id=""
-                                      label="Suburb"
-                                      required
-                                      InputLabelProps={{shrink: true,}}
-                                      variant="outlined"
-                                      className={classes.input}
-                                    />
+                              <Grid container direction="row" spacing={2}>
+                                {/* Suburb */}
+                                <Grid item xs={6} sm={6}>
+                                  <Controller
+                                    as={(
+                                      <TextField
+                                        id=""
+                                        label="Suburb"
+                                        required
+                                        InputLabelProps={{shrink: true,}}
+                                        variant="outlined"
+                                        className={classes.input}
+                                      />
                         )}
-                                  name="suburb"
-                                  control={control}
-                                  defaultValue=""
-                                />
-                              </Grid>
-                              {/* State */}
-                              <Grid item xs={6} sm={6}>
-                                <Controller
-                                  as={(
-                                    <TextField
-                                      id=""
-                                      label="State"
-                                      required
-                                      InputLabelProps={{ shrink: true,}}
-                                      variant="outlined"
-                                      className={classes.input}
-                                    />
+                                    name="suburb"
+                                    control={control}
+                                    defaultValue=""
+                                  />
+                                </Grid>
+                                {/* State */}
+                                <Grid item xs={6} sm={6}>
+                                  <Controller
+                                    as={(
+                                      <TextField
+                                        id=""
+                                        label="State"
+                                        required
+                                        InputLabelProps={{ shrink: true,}}
+                                        variant="outlined"
+                                        className={classes.input}
+                                      />
                         )}
-                                  name="state"
-                                  control={control}
-                                  defaultValue=""
-                                />
+                                    name="state"
+                                    control={control}
+                                    defaultValue=""
+                                  />
+                                </Grid>
                               </Grid>
-                            </Grid>
 
-                            <Grid container direction="row" spacing={2}>
-                              {/* contact number */}
-                              <Grid item xs={6} sm={6}>
-                                <Controller
-                                  as={(
-                                    <TextField
-                                      id=""
-                                      label="Contact Number"
-                                      required
-                                      InputLabelProps={{shrink: true,}}
-                                      variant="outlined"
-                                      className={classes.input}
-                                    />
+                              <Grid container direction="row" spacing={2}>
+                                {/* contact number */}
+                                <Grid item xs={6} sm={6}>
+                                  <Controller
+                                    as={(
+                                      <TextField
+                                        id=""
+                                        label="Contact Number"
+                                        required
+                                        InputLabelProps={{shrink: true,}}
+                                        variant="outlined"
+                                        className={classes.input}
+                                      />
                         )}
-                                  name="phoneNumber"
-                                  control={control}
-                                  defaultValue=''
-                                />
-                              </Grid>
+                                    name="phoneNumber"
+                                    control={control}
+                                    defaultValue=''
+                                  />
+                                </Grid>
                       
-                              {/* 空白 占位 */}
-                              {/* <Grid item xs={6} sm={6} /> */}
+                                {/* 空白 占位 */}
+                                {/* <Grid item xs={6} sm={6} /> */}
 
-                              {/* Postcode */}
-                              <Grid item xs={6} sm={6}>
-                                <Controller
-                                  as={(
-                                    <TextField
-                                      id=""
-                                      label="Post Code"
-                                      required
-                                      InputLabelProps={{shrink: true,}}
-                                      variant="outlined"
-                                      className={classes.input}
-                                    />
+                                {/* Postcode */}
+                                <Grid item xs={6} sm={6}>
+                                  <Controller
+                                    as={(
+                                      <TextField
+                                        id=""
+                                        label="Post Code"
+                                        required
+                                        InputLabelProps={{shrink: true,}}
+                                        variant="outlined"
+                                        className={classes.input}
+                                      />
                         )}
-                                  name="postcode"
-                                  control={control}
-                                  defaultValue={homePostcode}
-                                />
+                                    name="postcode"
+                                    control={control}
+                                    defaultValue={homePostcode}
+                                  />
+                                </Grid>
+
                               </Grid>
-
-                            </Grid>
-                          </Box>
+                            </Box>
+                          </Grid>
                         </Grid>
-                      </Grid>
-                    </Container>
+                      </Container>
 
-                    {/* <Divider /> */}
-                    {/* Payment */}
-                    {/* <Container maxWidth="lg">
-                    <Grid container alignItems="flex-end"> */}
-                    {/* </Grid>
-                    </Container> */}
+                      {/* <Divider /> */}
                   
-                    <Container maxWidth="lg" className={classes.bookingButton}>
-                      <ScrollTop {...props}>
-                        <Button 
+                      <Container maxWidth="lg" className={classes.bookingButton}>
+                        {/* next previous button */}
+                        <Grid container direction="row" justify="space-between" spacing={1}>
+                          <Grid item xs={3} sm={3}>
+                            <Button onClick={previousClick3} type="button" className={buttonstyles.previousButton}>
+                              Previous
+                            </Button>
+                          </Grid>
+
+                          <Grid item xs={2} sm={5}>
+                            <ScrollTop {...props}>
+                              <Button 
                         // disabled
                         // href='/order/confirm'
-                          type="submit"
-                          className={buttonstyles.bookingButton}
-                          disabled={!!employeeinfoo}
-                        >
-                          Complete Booking
-                          {/* Pay Now */}
-                        </Button>
-                      </ScrollTop>
-                    </Container>
+                                type="submit"
+                                className={buttonstyles.finalBookingButton}
+                          // disabled={!!employeeinfoo}
+                                disabled={disablebooking}
+                              >
+                                Complete Booking
+                                {/* Pay Now */}
+                              </Button>
+                            </ScrollTop>
+                          </Grid>
+                        </Grid>
+                      
+                      </Container>
+                    </Box>
                   </form>
                   
                   {/* Payment */}
@@ -1195,6 +1748,57 @@ function Order(props) {
                 <Container maxWidth="lg" className={classes.details}>
                   <Grid container direction="column" spacing={1}>
                     {/* <Container maxWidth="sm"> */}
+                    
+                    {/* 1/5Bedroom number */}
+                    <Grid item xs={12} sm={12}>
+                      <Grid container direction="row">
+                        <Grid item xs={1} sm={1}>
+                          <Grid container justify="center">
+                            <KingBedIcon fontSize="large" className={classes.icon}  />
+                          </Grid>
+                        </Grid>
+                        <Grid item xs={11} sm={11}>
+                          <Typography variant='h6' className={classes.text}>
+                            {/* {bedroomNumber} */}
+                            {/* {(homeOrderData)&&(`Bedrooms x ${bedroom}`)}
+                            {(!homeOrderData)&&(bedroomNumber)} */}
+                            {bedroomNumber}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+
+                    {/* 2/5 Bathroom number */}
+                    <Grid item xs={12} sm={12}>
+                      <Grid container direction="row">
+                        <Grid item xs={1} sm={1}>
+                          <Grid container justify="center">
+                            <BathtubIcon fontSize="large" className={classes.icon} />
+                          </Grid>
+                        </Grid>
+                        <Grid item xs={11} sm={11}>
+                          <Typography variant='h6' className={classes.text}>
+                            {bathroomNumber}
+                            {/* {(homeOrderData)&&(`Bathrooms x ${bathroom}`)}
+                            {(!homeOrderData)&&(bathroomNumber)} */}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+
+                    {/* 3/5 type of clean */}
+                    <Grid item xs={12} sm={12}>
+                      <Grid container direction="row">
+                        <Grid item xs={1} sm={1}>
+                          <Grid container justify="center">
+                            <NoteIcon fontSize="large" className={classes.icon} />
+                          </Grid>
+                        </Grid>
+                        <Grid item xs={11} sm={11} className={classes.text}>
+                          <Typography variant='h6'>{typeOfClean}</Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
                     
                     {/* 4/5 time info */}  
                     <Grid item xs={12} sm={12}>
@@ -1221,56 +1825,6 @@ function Order(props) {
                       </Grid>
                     </Grid>
 
-                    {/* 1/5Bedroom number */}
-                    <Grid item xs={12} sm={12}>
-                      <Grid container direction="row">
-                        <Grid item xs={1} sm={1}>
-                          <Grid container justify="center">
-                            <KingBedIcon fontSize="large" className={classes.icon}  />
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={11} sm={11}>
-                          <Typography variant='h6' className={classes.text}>
-                            {/* {bedroomNumber} */}
-                            {(homeOrderData)&&(`Bedrooms x ${bedroom}`)}
-                            {(!homeOrderData)&&(bedroomNumber)}
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-
-                    {/* 2/5 Bathroom number */}
-                    <Grid item xs={12} sm={12}>
-                      <Grid container direction="row">
-                        <Grid item xs={1} sm={1}>
-                          <Grid container justify="center">
-                            <BathtubIcon fontSize="large" className={classes.icon} />
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={11} sm={11}>
-                          <Typography variant='h6' className={classes.text}>
-                            {/* {bathroomNumber} */}
-                            {(homeOrderData)&&(`Bathrooms x ${bathroom}`)}
-                            {(!homeOrderData)&&(bathroomNumber)}
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-
-                    {/* 3/5 type of clean */}
-                    <Grid item xs={12} sm={12}>
-                      <Grid container direction="row">
-                        <Grid item xs={1} sm={1}>
-                          <Grid container justify="center">
-                            <NoteIcon fontSize="large" className={classes.icon} />
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={11} sm={11} className={classes.text}>
-                          <Typography variant='h6'>{typeOfClean}</Typography>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                    
                     {/* 5/5 address info */}
                     <Grid item xs={12} sm={12}>
                       <Grid container direction="row">

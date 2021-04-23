@@ -5,7 +5,6 @@ import { Link as RouterLink } from 'react-router-dom'
 import AssignmentTurnedInRoundedIcon from '@material-ui/icons/AssignmentTurnedInRounded'
 
 
-// styles
 const styles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -30,7 +29,6 @@ const styles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    // fontSize: '20px',
   },
   text: {
     marginLeft: 10,
@@ -39,7 +37,6 @@ const styles = makeStyles((theme) => ({
     color: '#007bf5'
   },
   linkcolor: {
-    // color:'#67a9ff'
     color: 'black',
   },
   divider: {
@@ -51,14 +48,11 @@ const styles = makeStyles((theme) => ({
 
 export default function AssginedTo(props) {
   const classes = styles()
-  // where can I find these names?
   const { employeeFirstName, employeeLastName, employeeObjectID } = props
   const path = `/admin/staffs/${employeeObjectID}`
-  // const path = `/admin/users.`
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>
-        {/* <Avatar className={classes.black}>{employeeFirstName[0].toUpperCase()}</Avatar> */}
         <AssignmentTurnedInRoundedIcon />
       </Grid>
       <Grid item xs={9} sm={10} className={classes.text}>
@@ -85,7 +79,6 @@ export default function AssginedTo(props) {
               {employeeLastName.slice(1)}
             </Link>
           )}
-          {/* <Typography variant="subtitle2">21 hours ago</Typography> */}
         </Grid>
       </Grid>
     </Box>

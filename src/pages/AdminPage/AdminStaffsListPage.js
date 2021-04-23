@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid, Typography } from '@material-ui/core'
@@ -37,14 +38,17 @@ const useStyles = makeStyles((theme) => ({
       padding: '35px 20px',
     },
   },
+
   listIcon: {
+    alignItems: 'center',
     display: 'flex',
-    alignItems: 'center'
   },
+
   icon: {
     fontSize: '3rem',
-    marginRight: '10px'
+    marginRight: '10px',
   },
+
   listTable: {
     alignContent: 'space-between',
     justifyContent: 'center',

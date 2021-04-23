@@ -1,9 +1,7 @@
 import React from 'react'
 import { makeStyles, Grid, Typography, Box } from '@material-ui/core'
 import PostAddIcon from '@material-ui/icons/PostAdd'
-// import style from '../scss/Admin.module.scss'
 
-// style
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,

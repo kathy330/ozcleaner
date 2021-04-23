@@ -4,8 +4,6 @@ import axios from 'axios'
 
 const postAPI = "http://localhost:8000/employees/login"
  
-// employeeLogin.use(cors()) // Use this after the variable declaration
-
 function* employeeLogin(action) {
   try {
     const userInfo = 
@@ -14,12 +12,12 @@ function* employeeLogin(action) {
     const info ={data: userInfo.data}
     if(JSON.parse(userInfo.config.data).email === "admin@oz.com"){
       localStorage.setItem('employeeInfo', JSON.stringify(info))
-      localStorage.setItem("authLevel", "admin") // 暂时把employee当成admin
+      localStorage.setItem("authLevel", "admin") 
       document.location.href = '/admin'
     }
     else{
       localStorage.setItem('employeeInfo', JSON.stringify(info))
-      localStorage.setItem("authLevel", "employee") // 暂时把employee当成admin
+      localStorage.setItem("authLevel", "employee") 
       document.location.href = '/employee-orders'
     }
     
@@ -40,7 +38,7 @@ function* employeeRegister(action) {
     if(JSON.parse(userInfo.config.data).email === "admin@oz.com"){
       yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload:userInfo  })
       localStorage.setItem('employeeInfo', JSON.stringify(userInfo))
-      localStorage.setItem("authLevel", "admin") // 暂时把employee当成admin
+      localStorage.setItem("authLevel", "admin") 
       document.location.href = '/admin'
     }
     else{
@@ -48,14 +46,13 @@ function* employeeRegister(action) {
         yield call(axios.post, "http://localhost:8000/employees/login", action.payload)
       yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload:userloginInfo  })// 按照employee进行login操作
       localStorage.setItem('employeeInfo', JSON.stringify(userloginInfo))
-      localStorage.setItem("authLevel", "employee") // 暂时把employee当成admin
+      localStorage.setItem("authLevel", "employee") 
       document.location.href = '/employee-orders'
     }
     
   } catch (e) {
     yield put({ type: 'EMPLOYEE_REGISTER_FAIL', 
     payload: e.response.data[Object.keys(e.response.data)[0]]})
-    // console.log(e.response.data)
   }
 }
 

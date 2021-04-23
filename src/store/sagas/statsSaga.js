@@ -6,7 +6,6 @@ function* fetchStats() {
   try{
     const apiUrl = `http://localhost:8000/getInfoNum`
     const data = yield call(axios.get, apiUrl,header())
-    // console.log(data)
     yield put({type:'GET_STATS_SUCCESS',data:data.data})
   }
   catch(e) {

@@ -1,5 +1,4 @@
 import React  from "react"
-// import { Redirect } from "react-router-dom" // 负责页面跳转router，不会刷新reducer👍
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
@@ -12,7 +11,6 @@ import {useHistory} from "react-router-dom"
 import Nav from '../../components/NavBarComponents/NavBar'
 import OrderRight from "../../components/OrderComponents/OrderRight"
 import Footer from '../../components/FooterComponents/Footer'
-// import {buttonStyle} from '../../styles/styles'
 import LoadingIcon from "../../components/AdminComponents/LoadingIcon"
 
 const useStyles = makeStyles((theme) => ({
@@ -24,8 +22,7 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: '10vh',
     },
     [theme.breakpoints.between('sm', 'md')]: {
-      // paddingBottom: '15vh',
-      // paddingTop: '30vh',
+
     },
     [theme.breakpoints.up('md')]: {
       paddingBottom: '25vh',
@@ -34,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
   },
 
   button: {
-    background: theme.palette.primary.main, // #007bf5
+    background: theme.palette.primary.main,
     borderRadius: '12px',
     color: theme.palette.primary.contrastText,
     fontSize: '1.4rem',
-    paddingInline: '80px', // 太长，小屏幕装不下
+    paddingInline: '80px',
     [theme.breakpoints.down('sm')]: {
       marginBottom: '5vh',
       marginTop: '5vh',
@@ -48,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     '&:hover': {
-      background: theme.palette.primary.hover, // #0050c1
+      background: theme.palette.primary.hover,
       boxShadow: '0px 2px 10px #888',
     },
   },
@@ -60,13 +57,8 @@ const useStyles = makeStyles((theme) => ({
 
 function OrderConfirm() {
   const classes = useStyles()
-  // 1 直接从order reducer取值回来
-  // const loadingREGdata = useSelector(state => state.regular_in_reducer_index.loading)  
-  // const loadingNumREGdata = useSelector(state => state.order.loadingNum)  
   const orderData = useSelector(state => state.order.order)  
-  // console.log('order data from redex: ',orderData)
 
-  // 设置传参的data值
   let data = {
     bedroomNum:'',
     bathroomNum:'',
@@ -83,23 +75,19 @@ function OrderConfirm() {
   }
 
 
-  let load = true // 没有数据，展示转圈  
+  let load = true 
   if(orderData.type === 'RC' || orderData.type === 'EC') {
     data = orderData
     load = false 
-    // document.location.href = '/'
   }
 
-  // const objid = '60633a30bad120ff885aa99c'
   const {_id} = orderData
   const aa = orderData.type
   const orderUrl = `/order-detail/${_id}?type=${aa}`
   const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
   const history = useHistory()
-  // 🔥 离开该页面，清除home page 的 local storage 🔥
   window.onbeforeunload = () => {
     localStorage.removeItem('Order')
-    // return '' //没有return的话，离开该页面就不会有弹窗提示
   }
   return (
     <>
@@ -117,13 +105,11 @@ function OrderConfirm() {
                     <Typography variant="h4">
                       Your Order has been recieved. 
                       <br />
-                      {/* We will email you once confirmed! */}
                       Thank you!
                     </Typography>
                   </Grid>
 
                   <Grid item>
-                    {/* <form onSubmit={handleSubmit()}> */}
                     <Button
                       variant="contained"
                       color="primary"
@@ -132,9 +118,7 @@ function OrderConfirm() {
                       href={orderUrl}
                     >
                       View Order
-                      {/* Pay Now */}
                     </Button>
-                    {/* </form> */}
                   </Grid>
                 </Grid>
               </Container>

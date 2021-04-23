@@ -15,9 +15,6 @@ import SwipeableViews from 'react-swipeable-views'
 import RegistrationForm from './RegistrationForm'
 import EmployeeRegistrationForm from './Employee'
 
-// import AppBar from '@material-ui/core/AppBar'
-// import Tabs from '@material-ui/core/Tabs'
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props
 
@@ -54,7 +51,7 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width:350,
+    width: 350,
   },
 }))
 

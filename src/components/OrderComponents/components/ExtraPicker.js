@@ -2,24 +2,17 @@ import React from "react"
 import Grid from '@material-ui/core/Grid'
 import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core/styles'
-// import { Container } from "@material-ui/core"
 import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import Checkbox from '@material-ui/core/Checkbox'
-// import CardActions from '@material-ui/core/CardActions'
-// import CardContent from '@material-ui/core/CardContent'
+
 
 import ovenIcon from "../../../assets/oven.svg"
 import fridgeIcon from "../../../assets/fridge.svg"
 import windowIcon from "../../../assets/window.svg"
 import cabinetIcon from "../../../assets/cabinet.svg"
 
-// https://www.svgrepo.com/svg/188867/cabinets-storage
-// https://www.svgrepo.com/svg/281951/cabinet
-// https://www.svgrepo.com/svg/26346/window
-// https://www.svgrepo.com/svg/81856/fridge
-// https://www.svgrepo.com/svg/209863/oven
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -28,16 +21,15 @@ const useStyles = makeStyles(() => ({
   },
 
   pickerBackground: {
-    background: 'lightgrey' // 最外层灰色背景
+    background: 'lightgrey',
   },
 
   picker: {
-    margin: '3px' // 最外层灰色间距
-    // "&:hover": { transform: "scale3d(1.05, 1.05, 1)", }, //hover放大效果
+    margin: '3px', 
   },
 
   actionArea: {
-    padding: '0 12px' // 白色区域间距
+    padding: '0 12px', 
   },
 
   imageIcon: {
@@ -45,13 +37,9 @@ const useStyles = makeStyles(() => ({
   },
 
   check: {
-    padding: '0px' // 让hover效果消失
+    padding: '0px', 
   }
 
-  // extraText: {
-  //   marginRight: '30px',
-  //   width: '100%',
-  // }
 }))
 
 export default function ExtraPicker() {
@@ -64,36 +52,14 @@ export default function ExtraPicker() {
     cabinet:false
   })
 
-  // 法1 每一条单独写，单独改:
-  // const [oven, setOven] = useState(false)
-  // const [fridge, setOven] = useState(false)
-  // const [windows, setOven] = useState(false)
-  // const [cabinet, setOven] = useState(false)
-  // 然后每个改变的时候使用 setState({'oven':newState}) ，一共要写四个
-
-  // 法2 写在一整个对象里，使用...state,xxx 改变具体一个属性:
-  // const defaultValue = {
-    // oven: false,
-    // fridge: false,
-    // windows: false,
-    // cabinet:false  
-  // }
-  // setState({
-  // ...state, 'oven': true
-  // })
-
-  
-  // 这是checkbox自己属性变化的函数
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked })
     console.log(event.target.name,':',event.target.checked)
   }
 
-  // 这里是点击CardActionArea也会触发checkbox属性变化的函数
   const areaClickChange = (event) => { 
     console.log(event.target)
 
-    // 点击icon上面，就会有alt属性，点击actionArea上面，就会有name属性  
     const key = event.target.name || event.target.alt
     const newState = !state[key]
     setState({...state,[key]:newState})
@@ -109,7 +75,6 @@ export default function ExtraPicker() {
               className={classes.actionArea} 
               name="oven"
               onClick={areaClickChange}
-              // onClick={() =>setState({'oven':state})}
             >
               <Grid container direction='column' alignItems="flex-end">
                 <Grid item xs={6} sm={12}>

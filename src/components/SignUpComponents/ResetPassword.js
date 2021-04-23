@@ -1,9 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
-// import CardActions from '@material-ui/core/CardActions'
-// import CardContent from '@material-ui/core/CardContent'
-// import Button from '@material-ui/core/Button'
 import {useForm,Controller } from 'react-hook-form'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
@@ -18,7 +15,6 @@ import {ConfirmButton} from './Button'
 
 export default function ResetPassword() {
   
-  // const bull = <span className={classes.bullet}>•</span>
   const {control ,handleSubmit} = useForm()
   const dispatch = useDispatch()
     const onSubmit = (data) =>{
@@ -31,41 +27,38 @@ export default function ResetPassword() {
     const resetPassword = useSelector((state) => state.resetPassword)
     const { userInfo, loading, error } = resetPassword
     const useStyles = makeStyles((theme) => ({
-        [theme.breakpoints.down('sm')]: {
-          textAlign:'center',
-        },
-        [theme.breakpoints.between('sm','md')]: {
-          textAlign:'center',
-        },
-        [theme.breakpoints.up('md')]: {
-          textAlign:'center',
-        },
-        root: {
-            minWidth: '200%',
-            // minHeight: 300,
+          [theme.breakpoints.down('sm')]: {
+            textAlign: 'center',
           },
-          text:{
-            marginLeft:35,
-            marginRight:200,
-            paddingTop:30,
-            paddingBottom:15,
-            fontWeight:'bold',
-            // width:'85%',
-            // marginRight:'15px',
+          [theme.breakpoints.between('sm','md')]: {
+            textAlign: 'center',
           },
-          textField: {
-            width:'85%',
-            marginBottom:35,
-           // marginRight:200,
-           // marginLeft:200,
+          [theme.breakpoints.up('md')]: {
+            textAlign: 'center',
+          },
 
-            
+          root: {
+            minWidth: '200%',
           },
+
+          text: {
+            fontWeight: 'bold',
+            marginLeft: 35,
+            marginRight: 200,
+            paddingBottom: 15,
+            paddingTop: 30,
+          },
+
+          textField: {
+            marginBottom: 35,
+            width: '85%',
+          },
+
           response: {
-            fontWeight:'bold',
+            fontSize: '15px',
+            fontWeight: 'bold',
             paddingBottom: '30px',
-            fontSize:'15px',
-            width:'45%',
+            width: '45%',
           },
         }))
     const classes = useStyles()

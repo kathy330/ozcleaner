@@ -49,7 +49,6 @@ const useStyles = makeStyles({
 })
 
 function displayTime(time) {
-  // console.log(time)
   let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
   result = result.toString().split(" ")
   return `${date.transform(result[4], 'HH:mm:ss', 'hh:mmA')} 
@@ -188,7 +187,6 @@ const BasicTable=(props)=> {
     setPage(0)
   }
 
-// cancel orders
 const handleAction = (id, ordertype, status, index) => {
     
   dispatch(changeOrder(page * rowsPerPage + index))
@@ -258,14 +256,6 @@ const handleAction = (id, ordertype, status, index) => {
       {users.length===0&&!loading&&( 
       <Alert severity="info">No orders available! — check it out!</Alert>
 )}
-      {/* {error&&!loading&&
-        ( 
-          <Alert severity="error"> 
-            <AlertTitle>{error}</AlertTitle>
-            It&apos;s been a while since you&apos;ve signed in to Ozcleaner. 
-            Please refresh your browser and try again.
-          </Alert>
-)} */}
     </>
   )
 }

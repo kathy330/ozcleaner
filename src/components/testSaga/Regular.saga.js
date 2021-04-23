@@ -10,19 +10,14 @@ const RegularTest = () => {
   const { register, handleSubmit } = useForm()
 
   const dispatch = useDispatch()
-  // lifeStyle 初始渲染,一般取数据用useEffect()
   useEffect(()=>{
     dispatch(getREGULARRequest())
   },[])
 
-  // regular_in_reducer_index. 是Reducer里面的index.js定义的名字
-  // .repos_in_reducer_init 是Reducer里面的init值的名字
-  // 🌟取数据
   const repo = useSelector(state => state.regular_in_reducer_index.repos_in_reducer_init)  
   console.log("init reducer info: ",repo)
 
 
-  // 暂定一个初始order数据，下面更改
   const postData = {      
     address: {
       address1: "a",
@@ -52,11 +47,8 @@ const RegularTest = () => {
     lastName: "a",
     'phoneNumber': 12222202100220200202020202020
   }
-  // 🌟发数据
   const onSubmit = data => {
-    // console.log("before pick, data is: ",data)
-    const startTime = `${data.date }T${ data.startTime}:00Z` // 这个Z必须有，否则识别不出时间
-    // console.log(startTime)  // 2021-02-16T13:00:00Z
+    const startTime = `${data.date }T${ data.startTime}:00Z` 
    
     const newData = {
       ...postData,
@@ -67,8 +59,7 @@ const RegularTest = () => {
     }
     console.log('after pick, new data is: ',newData)
 
-    // 🌟发数据需要 dispatch一个request action
-    dispatch(postRegularRequest(newData)) // 发送saga请求
+    dispatch(postRegularRequest(newData))
   }
 
   const onErrors = () => {
@@ -81,7 +72,6 @@ const RegularTest = () => {
 
   return(
     <>
-      {/* 1. 发数据 */}
       <div>
         <p>POST to regular order</p>
         <form onSubmit={handleSubmit(onSubmit,onErrors)}>
@@ -145,33 +135,7 @@ const RegularTest = () => {
           <br />
           <button type='submit'>POST REGULAR ORDER</button>
         </form>
-      </div>
-    
-      
-      {/* 2. 取数据 */}
-      {/* <div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>GET regular order from backend</p>
-        <ul>
-          {repo.map((item)=>
-          (
-            <p>
-              {item.status}
-              :
-              {item.startTime}
-              :
-              {item.taskID}
-            </p>
-          )
-          )}
-        </ul>
-      </div> */}
-    
+      </div> 
     </>
   )
 }

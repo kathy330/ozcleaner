@@ -43,6 +43,4 @@ const AvatarFinder = (avatarID) => (
     20: avatar20,
   }[avatarID]
 )
-// console.log(999, AvatarFinder('1'))
-
 export default AvatarFinder

@@ -7,7 +7,6 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import { useDispatch } from 'react-redux'
 import { updateOrderRequest} from "../../../store/actions"
 
-// styles
 const useStyles = makeStyles((theme) => ({
   button: {
     color: theme.palette.secondary.contrastText,
@@ -59,7 +58,6 @@ export default function OrderActionButtons({ cancel, finish, accept, id, type })
   const handleCancelOrder = () => {
     setOpen(false)
     const { actionType } = status
-    // console.log(actionType)
 
     let data = { id: id, update: { status: actionType === 'accept' ? "in-progress" : actionType }, type: type }
     if (actionType === 'cancelled' && localStorage.getItem('authLevel') === "admin") {

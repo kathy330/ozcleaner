@@ -5,7 +5,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { AppBar, Box, Tabs, Tab, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-// import Card from './card'
 import { Switch } from 'react-router'
 import { Link, useLocation } from 'react-router-dom'
 import ProtectedRoute from "../../../router/ProtectedRoute"
@@ -61,8 +60,7 @@ function presentIndex(pathname) {
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#e0e0e0',
-    flexGrow: 1
-    // theme.palette.grey.main
+    flexGrow: 1,
   },
 
   AppBar: {
@@ -79,7 +77,6 @@ export default function SimpleTabs() {
 
   const { pathname } = useLocation()
   const index = presentIndex(pathname)
-  // console.log(index)
   const classes = useStyles()
   const [value, setValue] = React.useState(index)
 

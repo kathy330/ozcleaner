@@ -8,7 +8,6 @@ const header=()=>{
       'Content-Type': 'application/json',
       'Authorization': token
     }
-    // console.log(Header)
     return {headers:Header}
     }
 export default header

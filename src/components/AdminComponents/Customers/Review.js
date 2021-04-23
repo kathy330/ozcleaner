@@ -57,10 +57,6 @@ export default function Review(props) {
             readOnly
             className={classes.icon}
           />
-          {/* <Typography variant="subtitle1" className={classes.rating}>
-            {!rating && (0)}
-            {rating && (rating)}
-          </Typography> */}
         </Grid>
         {review && (
           <Typography variant="body1" className={classes.comment}>

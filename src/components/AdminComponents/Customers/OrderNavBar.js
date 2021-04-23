@@ -1,9 +1,7 @@
 import React from 'react'
 import { Grid, makeStyles, Container } from '@material-ui/core'
-// import { GreenStatus, GreyStatus, RedStatus } from '../../UIComponents/Status'
 import { RedStatus } from '../../UIComponents/Status'
 
-// styles
 const navBarStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -18,7 +16,6 @@ const navBarStyles = makeStyles((theme) => ({
   },
 }))
 
-// navbars
 export default function ContainedButtons() {
   const classes = navBarStyles()
   return (
@@ -26,15 +23,6 @@ export default function ContainedButtons() {
       <Container>
         <RedStatus>UNASSGINED</RedStatus>
       </Container>
-      {/* <Box mr={3}>
-        <GreenStatus>CONFIRMED</GreenStatus>
-      </Box>
-      <Box mr={3}>
-        <GreyStatus>COMPLETED</GreyStatus>
-      </Box>
-      <Box mr={3}>
-        <GreyStatus>CANCELLED</GreyStatus>
-      </Box> */}
     </Grid>
   )
 }

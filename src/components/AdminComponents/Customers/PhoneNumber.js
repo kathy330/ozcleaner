@@ -1,9 +1,7 @@
 import { Grid, Box, Typography, makeStyles } from '@material-ui/core'
 import React from 'react'
 import PhoneIcon from '@material-ui/icons/Phone'
-// import style from '../scss/Admin.module.scss'
 
-// style
 const useStyles = makeStyles(() => ({
   icon: {
     display: 'flex',

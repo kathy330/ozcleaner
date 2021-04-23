@@ -10,12 +10,9 @@ function UpdateTesta () {
   const { register, handleSubmit,control } = useForm()
   const dispatch = useDispatch()
 
-  // // 🌟更新数据
   const onSubmit = data => {
     console.log(data)
-    // const{status,taskid} = data
-    // 🌟发数据需要 dispatch一个request action
-    dispatch(updateRegularRequest(data)) // 发送saga请求
+    dispatch(updateRegularRequest(data))
   }
 
   return(

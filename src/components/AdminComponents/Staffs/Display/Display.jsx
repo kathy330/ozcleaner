@@ -11,18 +11,21 @@ import {getSTAFFDETAILRequest} from "../../../../store/actions"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
-        '& > *': {
-          margin: theme.spacing(1),
-        },
+      display: 'flex',
+
+      '& > *': {
+        margin: theme.spacing(1),
+      },
     },
-    card:{
-        margin:"5% auto"
+
+    card: {
+      margin: "5% auto",
     },
-    title:{
-      margin:"2% 2%",
-      fontWeight:"bold",
-      fontSize:"2vh"
+
+    title: {
+      fontSize: "2vh",
+      fontWeight: "bold",
+      margin: "2%",
     }
   }))
   
@@ -33,7 +36,6 @@ const Displays=(props)=> {
 
   const staff =useSelector(state => state.staffDetails.staffDetails) 
   const loading = useSelector(state => state.staffDetails.loading)
-  // const error = useSelector(state => state.staffDetails.error)
 
   const dispatchRequested=()=>{
     dispatch(getSTAFFDETAILRequest(data))
@@ -51,14 +53,14 @@ const Displays=(props)=> {
       <div className={classes.root}>
         <Grid container direction="column">
           <Grid container item lg spacing={4}>
-            <Grid item lg={4} style={{margin:"auto"}}>
+            <Grid item lg={4} style={{margin: "auto"}}>
               <Avatars UserData={staff} />
             </Grid>
             <Grid item lg={8} className={classes.card}>
               <Card UserData={staff} /> 
             </Grid> 
           </Grid>
-          <Grid container style={{marginLeft:"2vh"}}>
+          <Grid container style={{marginLeft: "2vh"}}>
             <Typography variant="h6">Order History</Typography> 
           </Grid>
         </Grid>
@@ -67,14 +69,6 @@ const Displays=(props)=> {
        
       {staff.length===0&&!loading&&
       (<Alert severity="info">No users available! — check it out!</Alert>)}
-      {/* {error&&!loading&&
-        ( 
-          <Alert severity="error"> 
-            <AlertTitle>{error}</AlertTitle>
-            It&apos;s been a while since you&apos;ve signed in to Ozcleaner. 
-            Please refresh your browser and try again.
-          </Alert>
-)} */}
     </>  
 
   )

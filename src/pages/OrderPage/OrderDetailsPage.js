@@ -8,13 +8,8 @@ import { getOrderRequest } from "../../store/actions"
 import Footer from '../../components/FooterComponents/Footer'
 import Header from '../../components/NavBarComponents/NavBar'
 
-// style
 const useStyles = makeStyles((theme) => ({
   bg: {
-    // backgroundColor: 'red'
-    // [theme.breakpoints.down('sm')]: {
-    //   padding: '0px',
-    // },
     padding: '70px'
   },
 }))

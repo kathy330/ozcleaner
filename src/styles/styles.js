@@ -94,7 +94,7 @@ export const buttonStyle = makeStyles((theme) => ({
     },
   },
   previousButton:{
-    background: '#b3e5fc', // #007bf5
+    background: '#29b6f6', // #007bf5
     borderRadius: '8px',
     padding: '8px 30px',
     margin:'30px 0',
@@ -105,7 +105,7 @@ export const buttonStyle = makeStyles((theme) => ({
     }
   },
   nextButton:{
-    background: '#b3e5fc', // #007bf5
+    background: '#29b6f6', // #007bf5
     borderRadius: '8px',
     padding: '8px 30px',
     margin:'30px 0',
@@ -116,7 +116,7 @@ export const buttonStyle = makeStyles((theme) => ({
     }
   },
   finalBookingButton:{
-    background: '#b3e5fc', // #007bf5
+    background: '#29b6f6', // #007bf5
     borderRadius: '8px',
     padding: '8px 30px',
     margin:'30px 0',

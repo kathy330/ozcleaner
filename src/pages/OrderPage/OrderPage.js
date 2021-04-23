@@ -80,7 +80,8 @@ import './order.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-  // background: '#e3f2fd',
+    background: '#e3f2fd'
+    // background: '#29b6f6',
   },
 
   content: {
@@ -154,7 +155,7 @@ const useStyles = makeStyles((theme) => ({
       // background: 'lightblue',
       background: 'white',
       // height: '100%',
-      marginBottom: '11vh',
+      marginBottom: '30vh',
       
     },
   },
@@ -807,8 +808,8 @@ function Order(props) {
   return (
     <>
       {employeeinfoo?history.push("/employee-orders"):''}
-      {/* <Box className={classes.root}> */}
-      <Box className="background">
+      <Box className={classes.root}>
+        {/* <Box className="background"> */}
         <HeaderNavigation />
         {/* <button type="submit" onClick={test}>test</button> */}
         <Container maxWidth="lg" className={classes.content}>

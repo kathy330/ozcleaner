@@ -5,7 +5,6 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import ProtectedRoute from './router/ProtectedRoute'
 import HomePage from './pages/HomePage/HomePage'
-import UI from './pages/UI/UI'
 import Order from './pages/OrderPage/OrderPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import OrderConfirmPage from './pages/OrderPage/OrderConfirmPage'
@@ -15,15 +14,6 @@ import theme from './styles/theme'
 import AdminIndexPage from "./pages/AdminPage/AdminIndexPage"
 import OrderCusDetailPage from "./pages/OrderPage/CustomersDetails"
 import OrderStaffDetailPage from "./pages/OrderPage/StaffDetails"
-import DongyuPage from './pages/zpractice/Dongyu/Dongyu'
-import KangkangPage from './pages/zpractice/Kangkang/Kangkang'
-import YanboPage from './pages/zpractice/Yanbo/Yanbo'
-import WystanPage from './pages/zpractice/Wystan/Wystan'
-import KathyPage from './pages/zpractice/Kathy/Kathy'
-import ErikPage from './pages/zpractice/Erik/Erik'
-import OliviaPage from './pages/zpractice/Olivia/Olivia'
-import MengxuanPage from './pages/zpractice/Mengxuan/Mengxuan'
-import YanboForm from './pages/zpractice/Yanbo/YanboForm'
 import EmployeeOrderList from './pages/OrderPage/EmployeeOrderList'
 import ForgetPassword from "./components/SignUpComponents/ForgetPassword"
 import ResetPassword from './components/SignUpComponents/ResetPassword'
@@ -51,19 +41,6 @@ function App() {
         <Route path="/forgetpassword/resetpassword" exact component={ResetPassword} />
         <Route path="/forgetpassword/employee" exact component={ForgetPasswordEmployee} />
         <Route path="/resetpassword/employee" exact component={ResetPasswordEmployee} />
- 
-
-        <Route path="/ui" exact component={UI} />
-        <Route path="/dongyu" exact component={DongyuPage} />
-        <Route path="/Kangkang" exact component={KangkangPage} />
-        <Route path="/Yanbo" exact component={YanboPage} />
-        <Route path="/Yanbo/form" exact component={YanboForm} />
-        <Route path="/wystan" exact component={WystanPage} />
-        <Route path="/admin/customers/:id" exact component={KathyPage} />
-        <Route path="/erik" exact component={ErikPage} />
-        <Route path="/mengxuan" exact component={MengxuanPage} />
-        <Route path="/Olivia" exact component={OliviaPage} />
-
         <Route component={ErrorPage} />
       </Switch>
     </ThemeProvider>

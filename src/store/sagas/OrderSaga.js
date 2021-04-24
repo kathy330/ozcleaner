@@ -60,12 +60,8 @@ function* payOrder() {
 function* fetchAllOrders(action) {
   try {
     const { page, pageSize, status } = action.payload
-<<<<<<< HEAD
     // eslint-disable-next-line max-len
     const apiUrl = `http://${url}/sortedOrder?page=${page}&pageSize=${pageSize}&status=${status}`
-=======
-    const apiUrl = `http://localhost:8000/sortedOrder?page=${page}&pageSize=${pageSize}&status=${status}`
->>>>>>> a75cd25774299190186785d3ca7d95bcca1921bb
     const orders = yield call(axios.get, apiUrl,header())
     yield put({ type: 'GET_ALL_ORDERS_SUCCESS', orders: orders.data })
   } catch (e) {

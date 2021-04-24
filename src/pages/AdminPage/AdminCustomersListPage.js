@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable */
-import React, { useEffect } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Container,
@@ -36,7 +36,7 @@ const columns = [
 const useStyles = makeStyles((theme) => ({
   root: {
     background: '#fff',
-    marginTop: '1px',
+    marginTop: '47px',
     padding: '45px 45px 0px',
     [theme.breakpoints.down('xs')]: {
       padding: '35px 20px',

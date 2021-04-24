@@ -51,7 +51,7 @@ export default function ResetPassword() {
 
           textField: {
             marginBottom: 35,
-            width: '85%',
+            width: '92%',
           },
 
           response: {

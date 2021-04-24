@@ -80,7 +80,6 @@ function* assignToEmployee(action) {
   const EmployeeData = {employeeID:ID,employeeDetail:objectID}
   try{
     const data = yield call(axios.put, updateAPI ,EmployeeData,header())
-    console.log(data)
     yield put({type:'UPDATE_ASSIGN_SUCCESS',payload:data})
     yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })
   }

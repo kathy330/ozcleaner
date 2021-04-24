@@ -1,11 +1,12 @@
 import {call,put,takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
 import header from "./header"
+import url from "../../api/api"
 
 function* fetchCusDetailUrl(action) {
 
   try{
-    const apiUrl = `http://localhost:8000/users/${action.payload}`
+    const apiUrl = `http://${url}/users/${action.payload}`
     const users = yield call(axios.get, apiUrl,header())
 
     yield put({type:'GET_CUSDETAIL_SUCCESS',users:users.data})

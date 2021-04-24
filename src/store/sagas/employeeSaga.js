@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { put, call, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
+import url from "../../api/api"
 
-const postAPI = "http://localhost:8000/employees/login"
+const postAPI = `http://${url}/employees/login`
  
 function* employeeLogin(action) {
   try {
@@ -32,7 +33,7 @@ function* employeeRegister(action) {
  
   try {
     const userInfo = 
-      yield call(axios.post, "http://localhost:8000/employees/registration", action.payload)
+      yield call(axios.post, `http://${url}/employees/registration`, action.payload)
     yield put({ type: 'EMPLOYEE_REGISTER_SUCCESS', payload:userInfo })
 
     if(JSON.parse(userInfo.config.data).email === "admin@oz.com"){
@@ -43,7 +44,7 @@ function* employeeRegister(action) {
     }
     else{
       const userloginInfo = 
-        yield call(axios.post, "http://localhost:8000/employees/login", action.payload)
+        yield call(axios.post, `http://${url}/employees/login`, action.payload)
       yield put({ type: 'EMPLOYEE_SIGNIN_SUCCESS', payload:userloginInfo  })// 按照employee进行login操作
       localStorage.setItem('employeeInfo', JSON.stringify(userloginInfo))
       localStorage.setItem("authLevel", "employee") 

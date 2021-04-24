@@ -2,15 +2,16 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
 import header from "./header"
+import url from "../../api/api"
 
-const postRCApi = 'http://localhost:8000/regular'
-const postECApi = 'http://localhost:8000/endOfLease/'
+const postRCApi = `http://${url}/regular`
+const postECApi = `http://${url}/endOfLease/`
 
 function* getOrder(action) {
   try {
     const { _id, type } = action.payload
     const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
-    const getApi = `http://localhost:8000/${model}/${_id}`
+    const getApi = `http://${url}/${model}/${_id}`
     const data = yield call(axios.get, getApi,header())
     yield put({ type: 'GET_ORDER_SUCCESS', repos: data.data })
   } catch (e) {
@@ -26,7 +27,7 @@ function* updateOrder(action) {
   const {ID,objectID} = JSON.parse(localStorage.getItem(`${level==="admin"?"employee":""}Info`)).data
   const field = update.reviewStatus? '/comments': cancelByAdmin ?
    '/cancel':update.status==='confirmed'?'/assign':''
-  const updateApi = `http://localhost:8000/${model}${field}/${id}`
+  const updateApi = `http://${url}/${model}${field}/${id}`  
   try {
     yield call(axios.put, updateApi, {...update, employeeID:ID, employeeDetail:objectID},header())
     yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })
@@ -61,7 +62,8 @@ function* payOrder() {
 function* fetchAllOrders(action) {
   try {
     const { page, pageSize, status } = action.payload
-    const apiUrl = `http://localhost:8000/sortedOrder?page=${page}&pageSize=${pageSize}&status=${status}`
+    // eslint-disable-next-line max-len
+    const apiUrl = `http://${url}/sortedOrder?page=${page}&pageSize=${pageSize}&status=${status}`
     const orders = yield call(axios.get, apiUrl,header())
     yield put({ type: 'GET_ALL_ORDERS_SUCCESS', orders: orders.data })
   } catch (e) {
@@ -76,7 +78,7 @@ function* assignToEmployee(action) {
   const level = localStorage.getItem('authLevel') 
   const info = JSON.parse(localStorage.getItem(`${level}Info`))
   const {ID,objectID} = info.data
-  const updateAPI=`http://localhost:8000/${model}/assign/${id}`
+  const updateAPI=`http://${url}/${model}/assign/${id}`
   const EmployeeData = {employeeID:ID,employeeDetail:objectID}
   try{
     const data = yield call(axios.put, updateAPI ,EmployeeData,header())
@@ -92,7 +94,7 @@ function* assignToEmployee(action) {
 function* fetchOrdersByTarget(action) {
   try{
     const{id, type} = action.payload
-    const apiUrl = `http://localhost:8000/${type === 'user'? 'users': 'employees'}/alltask/${id}`
+    const apiUrl = `http://${url}/${type === 'user'? 'users': 'employees'}/alltask/${id}`
     const users = yield call(axios.get, apiUrl,header())
     yield put({type:'GET_ORDERSBYTARGET_SUCCESS',users:users.data})
   }

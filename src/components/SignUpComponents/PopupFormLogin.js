@@ -51,7 +51,7 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width:347,
+    width: 347,
   },
 }))
 
@@ -83,21 +83,6 @@ export default function FormDialogLogin() {
 
     return (
       <>
-        {/* <Button onClick={handleClickOpen}>
-          Login
-        </Button>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="form-dialog-title"
-          fullWidth
-          maxWidth='xs'
-        >
-          <LoginDetails />
-        </Dialog> */}
-        {/* <MenuItem onClick={handleClickOpen}>
-          Login
-        </MenuItem>  */}
         <Button onClick={handleClickOpen}>
           Login
         </Button>

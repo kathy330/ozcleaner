@@ -1,9 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
-// import CardActions from '@material-ui/core/CardActions'
-// import CardContent from '@material-ui/core/CardContent'
-// import Button from '@material-ui/core/Button'
 import {useForm,Controller } from 'react-hook-form'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
@@ -18,7 +15,6 @@ import {ConfirmButton} from './Button'
 
 export default function ForgetPasswordEmployee() {
   
-  // const bull = <span className={classes.bullet}>•</span>
   const {control ,handleSubmit} = useForm()
   const dispatch = useDispatch()
   const forgetpasswordemployee = useSelector((state) => state.forgetpasswordEmployee)
@@ -28,38 +24,38 @@ export default function ForgetPasswordEmployee() {
 
     }
 
-    
-
-  
     const useStyles = makeStyles((theme) => ({
-        [theme.breakpoints.down('sm')]: {
-          textAlign:'center',
-        },
-        [theme.breakpoints.between('sm','md')]: {
-          textAlign:'center',
-        },
-        [theme.breakpoints.up('md')]: {
-          textAlign:'center',
-        },
-        root: {
-            minWidth: "200%",
+          [theme.breakpoints.down('sm')]: {
+            textAlign: 'center',
+          },
+          [theme.breakpoints.between('sm','md')]: {
+            textAlign: 'center',
+          },
+          [theme.breakpoints.up('md')]: {
+            textAlign: 'center',
+          },
+
+          root: {
             minHeight: "100%",
+            minWidth: "200%",
           },
-          text:{
-            paddingTop:30,
-            paddingBottom:20,
-            marginRight:50,
-            marginLeft:40,
-            fontWeight:'bold',
-            width:'120%',
-            // marginRight:'15px',
+
+          text: {
+            fontWeight: 'bold',
+            marginLeft: 40,
+            marginRight: 50,
+            paddingBottom: 20,
+            paddingTop: 30,
+            width: '120%',
           },
+
           textField: {
-            width:'85%',
-            marginBottom:45,
+            marginBottom: 45,
+            width: '85%',
           },
+
           response: {
-            fontWeight:'bold',
+            fontWeight: 'bold',
             paddingBottom: '30px',
           },
         }))

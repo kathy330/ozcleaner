@@ -10,7 +10,7 @@ function* userLogin(action) {
     const info ={data: userInfo.data}
     localStorage.setItem('userInfo', JSON.stringify(info))
 
-    localStorage.setItem("authLevel", "user") // 可以进入order页面
+    localStorage.setItem("authLevel", "user") 
     document.location.href = '/order'
   } catch (e) {
     yield put({ type: 'USER_SIGNIN_FAIL', payload: e.response.data.error })
@@ -28,12 +28,11 @@ function* userRegister(action) {
       yield call(axios.post,'http://localhost:8000/users/login', action.payload)
     yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userloginInfo })
     localStorage.setItem('userInfo', JSON.stringify(userloginInfo))
-    localStorage.setItem("authLevel", "user") // 可以进入order页面
+    localStorage.setItem("authLevel", "user") 
     document.location.href = '/order'
   } catch (e) {
     yield put({ type: 'USER_REGISTER_FAIL', 
     payload: e.response.data.error})
-    // console.log(e.response.data.email)
   }
 }
 

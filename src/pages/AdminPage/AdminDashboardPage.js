@@ -81,10 +81,10 @@ export default function Overview() {
   }, [])
 
   const reduxOrder = useSelector(state => state.order)
-  const loading1 = reduxOrder.loading // loading status
+  const loading1 = reduxOrder.loading 
   const orderData = reduxOrder.order.result
-  const dataCount = reduxOrder.order.count // number of orders
-  const error1 = reduxOrder.error // error message
+  const dataCount = reduxOrder.order.count 
+  const error1 = reduxOrder.error
   const reduxStats = useSelector(state => state.stats)
   const loading2 = reduxStats.loading
   const stats = reduxStats.statsData

@@ -2,11 +2,9 @@ import React from 'react'
 import { makeStyles, Box, Grid, Typography, Link } from '@material-ui/core'
 import { deepPurple, deepOrange } from '@material-ui/core/colors'
 import AssignmentIndRoundedIcon from '@material-ui/icons/AssignmentIndRounded'
-// import style from '../scss/Admin.module.scss'
 import { Link as RouterLink } from 'react-router-dom'
 
 
-// styles
 const styles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -31,7 +29,6 @@ const styles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    // fontSize: '20px',
   },
   text: {
     marginLeft: 10,
@@ -40,7 +37,6 @@ const styles = makeStyles((theme) => ({
     color: '#007bf5'
   },
   linkcolor: {
-    // color:'#67a9ff'
     color: 'black',
   }
 }))
@@ -52,9 +48,6 @@ export default function CreatBy(props) {
   return (
     <Box display="flex" flexDirection="row">
       <Grid item xs={2} sm={1} className={classes.icon}>
-        {/* <Avatar className={classes.black}>
-          {firstName[0].toUpperCase()}
-        </Avatar> */}
         <AssignmentIndRoundedIcon />
       </Grid>
       <Grid item xs={9} sm={10} className={classes.text}>
@@ -67,7 +60,6 @@ export default function CreatBy(props) {
             {lastName[0].toUpperCase()}
             {lastName.slice(1)}
           </Link>
-          {/* <Typography variant="subtitle2">23 hours ago</Typography> */}
         </Grid>
       </Grid>
     </Box>

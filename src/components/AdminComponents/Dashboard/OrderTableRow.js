@@ -24,7 +24,6 @@ const useStyle = makeStyles(() => ({
 }))
 
 
-// StatusResult() is to return different style status component
 function StatusResult(status) {
     if (status === 'confirmed') {
         return <GreenStatus>{status.toUpperCase()}</GreenStatus>
@@ -37,7 +36,6 @@ function StatusResult(status) {
 }
 
 function displayTime(time) {
-    // 2020-01-01T12:00:00.000+00:00
 
     let result = date.parse(time.split('.')[0], 'YYYY-MM-DD hh:mm:ss')
     result = result.toString().split(" ")

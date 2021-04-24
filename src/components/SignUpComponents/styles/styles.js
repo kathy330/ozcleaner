@@ -1,7 +1,4 @@
 import { makeStyles } from "@material-ui/core"
-// 🌟这个文件的style只负责material UI 组件的 配色和字体和样式（从theme引用），不负责位置
-// 🌟位置需要给组件加上<div calssName=""></div>，并在scss中定义
-
 
 export const navBarStyle = makeStyles((theme) => ({
     AppBar: {
@@ -16,7 +13,7 @@ export const navBarStyle = makeStyles((theme) => ({
     },
     bookingButton: {
       color: theme.palette.primary.white,
-      background: theme.palette.primary.main, // #007bf5
+      background: theme.palette.primary.main, 
       borderRadius: "25px",
       marginInline: "20px",
       "&:hover": {
@@ -27,7 +24,6 @@ export const navBarStyle = makeStyles((theme) => ({
 }))
 
 export const buttonStyle = makeStyles((theme) => ({
-  // 🔥这个名字 改成navbar booking button？
   homeBookingButton: {
     color: theme.palette.primary.contrastText,
     background: theme.palette.primary.main,
@@ -39,12 +35,12 @@ export const buttonStyle = makeStyles((theme) => ({
     marginBottom:'15px',
   
       "&:hover": {
-        background: theme.palette.primary.dark, // #0050c1
+        background: theme.palette.primary.dark, 
         boxShadow: "0px 2px 10px #888",
       }
     },
   faceBookButton: {
-      background: theme.palette.secondary.darkBlue, // #007bf5
+      background: theme.palette.secondary.darkBlue, 
       borderRadius: '30px',
       marginInline: '25px',
       paddingTop:'2.0%',
@@ -58,13 +54,13 @@ export const buttonStyle = makeStyles((theme) => ({
       
       
      "&:hover": {
-        background: theme.palette.primary.dark, // #0050c1
+        background: theme.palette.primary.dark, 
         boxShadow: "0px 2px 10px #888",
       }
     },
 
     googleButton: {
-      background: theme.palette.primary.contrastText, // #007bf5theme.palette.primary.white
+      background: theme.palette.primary.contrastText, 
       borderRadius: '30px',
       marginInline: '25px',
       paddingTop:'2.0%',
@@ -75,7 +71,7 @@ export const buttonStyle = makeStyles((theme) => ({
       color: theme.palette.secondary.black,
      
       "&:hover": {
-        background: theme.palette.primary.dark, // #0050c1
+        background: theme.palette.primary.dark, 
         boxShadow: "0px 2px 10px #888",
       }
     }

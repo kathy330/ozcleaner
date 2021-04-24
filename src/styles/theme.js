@@ -24,7 +24,15 @@ const theme = createMuiTheme({
     h2: {
       fontWeight: 600,
       fontSize: '1.8rem',
-    }
+    },
+    h1: {
+      fontWeight: 600,
+      fontSize: '3rem',
+    },
+    subtitle1:{
+      fontWeight: 600,
+      fontSize: '2rem',
+    },
   },
 
   palette: {
@@ -35,8 +43,8 @@ const theme = createMuiTheme({
     secondary: {
       main: '#F35162',
       hover: '#E55766',
-      darkBlue: '#405592', // popUp facrbook登录按钮
-      black: '#131523', // 黑色字体色
+      darkBlue: '#405592', 
+      black: '#131523', 
     },
     green: {
       main: '#89B153',

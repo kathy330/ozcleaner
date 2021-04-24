@@ -23,7 +23,6 @@ const EmployeeOrderList = (match) => {
   const page = parseInt(query.get('page') || '1', 10)
   const listType = 'employee'
 
-  // 如果是user权限，不能进入这个页面
   const userinfoo = JSON.parse(localStorage.getItem('userInfo'))
   const history = useHistory()
 

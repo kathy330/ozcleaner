@@ -1,10 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React,{useState} from "react"
-
-// import ReactDOM from "react-dom"
-// import Select from "react-select";
-// import { Redirect } from "react-router-dom" 
+import Icon from '@material-ui/core/Icon'
 import Dialog from '@material-ui/core/Dialog'
 import Divider from '@material-ui/core/Divider'
 import DialogActions from '@material-ui/core/DialogActions'
@@ -12,74 +9,76 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import {useDispatch,useSelector} from 'react-redux'
 import { useForm, Controller } from "react-hook-form"
-// import MuiDialogContent from "@material-ui/core/DialogContent"
-// import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
-import { TextField,Typography,Grid,Button } from "@material-ui/core"
-
-import { makeStyles,withStyles } from '@material-ui/core/styles'
+import { TextField,Typography,Grid,Button} from "@material-ui/core"
+import { makeStyles } from '@material-ui/core/styles'
 import SaveIcon from '@material-ui/icons/Save'
 import {updateProfileRequest} from "../../../store/actions/actionCreator"
+import security from "../../../assets/security.svg"
+import scssStyle from "../scss/Profile.module.scss"
 
 
-// const postData = {      
-  // address: {
-  //   address1: "king street",
-  //   address2: "",
-  //   suburb: "",
-  //   state: "QLD",
-  //   postcode: "4102"
-  // },
-  // startTime: "2020-01-01T00:00:00",
-  // endTime: "",
-  // userID: "",
-//   employeeID: 2222,
-//   firstName: "Ervin",
-//   lastName: "Howell",
-//   phoneNumber: '0400000000'
-// }
 const useStyles = makeStyles((theme) => ({
- 
-  center: {
-    [theme.breakpoints.down('xs')]: {
-      textAlign: 'center',
-      marginLeft:'0px'
-    },
-    textAlign: 'left',
-    marginLeft:'20px'
+  input: {
+    color: 'white',
+  },
+
+  actionAreaimageIcon: {
+    width: '60%',
   },
 
   button: {
-    // alignContent: 'center',
-    background: theme.palette.primary.main, // #007bf5
+    background: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
     fontSize: '1rem',
+    marginLeft: '10px',
     marginTop: '2rem',
-    paddingInline: '50px', // 太长，小屏幕装不下
-    // textalign: 'center',
+    paddingInline: '50px',
+    textalign: 'left',
 
     '&:hover': {
-      background: theme.palette.primary.hover, // #0050c1
+      background: theme.palette.primary.hover,
       boxShadow: '0px 2px 10px #888',},
   },
 
   formcenter: {
-    // padding: '0 5vh',
-    width: '70%',
+    paddingBottom: '10px',
+    width: '100%',
   },
-  button1:{
-      // alignContent: 'center',
-      background: theme.palette.primary.main, // #007bf5
-      color: theme.palette.primary.contrastText,
-      fontSize: '1rem',
-      marginTop: '2rem',
-      paddingInline: '50px', // 太长，小屏幕装不下
-      boxShadow:'0px 2px 6px #888',
-      '&:hover': {
-        background: theme.palette.primary.hover, // #0050c1
-        boxShadow: '0px 2px 10px #888',},
+
+  button1: {
+    background: theme.palette.primary.main,
+    boxShadow: '0px 2px 6px #888',
+    color: theme.palette.primary.contrastText,
+    fontSize: '1rem',
+    justifyContent: "left",
+    marginTop: '2rem',
+    paddingInline: '50px',
+
+    '&:hover': {
+      background: theme.palette.primary.hover,
+      boxShadow: '0px 2px 10px #888',},
   },
-  dialog:{
-    padding:"4vh 2vh"
+
+  buttonCancel: {
+    background: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText,
+    fontSize: '1rem',
+    marginLeft: '10px',
+    marginTop: '2rem',
+    paddingInline: '50px',
+    textalign: 'left',
+
+    '&:hover': {
+      background: theme.palette.secondary.main,
+      boxShadow: '0px 2px 10px #888',},
+  },
+
+  dialog: {
+    padding: "4vh 2vh",
+  },
+
+  margintop: {
+    marginTop: '30px',
   }
 }))
 
@@ -92,7 +91,6 @@ export default function TextForm() {
     setOpen(true)
     if(data.type!==""
     &&data.postcode!=="" &&data.birthday!=="" 
-    // &&data.email!==""&&data.password!==""
     &&data.firstName!=="" &&data.lastName!=="" &&data.phone!==""
     &&data.address1!==""&&data.suburb!=="" &&data.state!==""
     ) {
@@ -110,7 +108,6 @@ export default function TextForm() {
       lastName:data.lastName,
     }
   } 
-    // console.log(newData)
     dispatch(updateProfileRequest(newData)) 
   }}
   const detail = useSelector(state => state.employee_in_reducer_index)
@@ -118,7 +115,6 @@ export default function TextForm() {
     setOpen(false)
     document.location.href = '/profile'
   }
-  const {profile}= detail
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -131,16 +127,40 @@ export default function TextForm() {
         alignContent="center"
         className={classes.center}
       >
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6"> First name</Typography> 
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          className={scssStyle.backgroundHeader}
+        >
+          <Grid item xs={1} sm={1} />
+          <Grid item xs={5} sm={2}>
+            <Icon>
+              <img 
+                className={classes.actionAreaimageIcon} 
+                src={security} 
+                alt="security"
+              />
+            </Icon>
+          </Grid>
+          <Grid item xs={6} sm={9}>
+            <Typography variant='subtitle1'>
+              Personal information
+            </Typography>
+          </Grid>
+          <Grid item xs={6} sm={3} />
+        </Grid>
+        <Grid item xs={12} sm={6} className={classes.margintop}>
           <Controller
             className={classes.formcenter}
             as={(
               <TextField
-                id="firstName"
-            // label="First name"
+                id="outlined-firstName-input"
+                label="First Name"
+                type="firstName"
+                autoComplete="current-firstName"
                 variant="outlined"
-                size="small"
               />
 )}
             name="firstName"
@@ -149,16 +169,17 @@ export default function TextForm() {
             required
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6"> Last name</Typography> 
+        <Grid item xs={12} sm={6} className={classes.margintop}>
           <Controller
             className={classes.formcenter}
             as={(
               <TextField
-                id="lastName"
-            // label="First name"
+                id="outlined-lastName-input"
+                label="Last Name"
+                type="lastName"
+                background="aliceblue"
+                autoComplete="current-lastName"
                 variant="outlined"
-                size="small"
               />
  )}
             name="lastName"
@@ -167,18 +188,16 @@ export default function TextForm() {
             required
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6">
-            Street  Address
-          </Typography> 
+        <Grid item xs={12} sm={12}>
           <Controller
             className={classes.formcenter}
             as={(
               <TextField
-                id="address1"
-            // label="First name"
+                id="outlined-address1-input"
+                label="Address"
+                type="address1"
+                autoComplete="current-address1"
                 variant="outlined"
-                size="small"
               />
  )}
             name="address1"
@@ -188,15 +207,15 @@ export default function TextForm() {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h6"> Apt  #(optional) </Typography> 
           <Controller
             className={classes.formcenter}
             as={(
               <TextField
-                id="address2"
-            // label="First name"
+                id="outlined-address2-input"
+                label="Address(Option)"
+                type="address2"
+                autoComplete="current-address2"
                 variant="outlined"
-                size="small"
               />
  )}
             name="address2"
@@ -205,65 +224,15 @@ export default function TextForm() {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h6"> Suburb </Typography> 
           <Controller
             className={classes.formcenter}
             as={(
               <TextField
-                id="suburb"
+                id="outlined-phone-input"
+                label="Phone"
+                type="phone"
+                autoComplete="current-phone"
                 variant="outlined"
-                size="small"
-              />
- )}
-            name="suburb"
-            control={control}
-            defaultValue=""
-            required
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6"> State </Typography> 
-          <Controller
-            className={classes.formcenter}
-            as={(
-              <TextField
-                id="state"
-                variant="outlined"
-                size="small"
-              />
- )}
-            name="state"
-            control={control}
-            defaultValue=""
-            required
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6"> Postcode </Typography> 
-          <Controller
-            className={classes.formcenter}
-            as={(
-              <TextField
-                id="postcode"
-                variant="outlined"
-                size="small"
-              />
- )}
-            name="postcode"
-            control={control}
-            defaultValue=""
-            required
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6"> Phone </Typography> 
-          <Controller
-            className={classes.formcenter}
-            as={(
-              <TextField
-                id="phone"
-                variant="outlined"
-                size="small"
               />
  )}
             name="phone"
@@ -272,13 +241,66 @@ export default function TextForm() {
             required
           />
         </Grid>
+        <Grid item xs={12} sm={4}>
+          <Controller
+            className={classes.formcenter}
+            as={(
+              <TextField
+                id="outlined-suburb-input"
+                label="Suburb"
+                type="suburb"
+                autoComplete="current-suburb"
+                variant="outlined"
+              />
+ )}
+            name="suburb"
+            control={control}
+            defaultValue=""
+            required
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Controller
+            className={classes.formcenter}
+            as={(
+              <TextField
+                id="outlined-state-input"
+                label="State"
+                type="state"
+                autoComplete="current-state"
+                variant="outlined"
+              />
+ )}
+            name="state"
+            control={control}
+            defaultValue=""
+            required
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Controller
+            className={classes.formcenter}
+            as={(
+              <TextField
+                id="outlined-postcode-input"
+                label="Postcode"
+                type="postcode"
+                autoComplete="current-postcode"
+                variant="outlined"
+              />
+ )}
+            name="postcode"
+            control={control}
+            defaultValue=""
+            required
+          />
+        </Grid>
         <Grid
           container
           direction="row"
-          justify="center"
           alignItems="center"
         >
-          <Grid item xs={6} sm={4}>
+          <Grid item xs={6} sm={3}>
             <Button 
               type="submit"
               variant="contained"
@@ -289,13 +311,22 @@ export default function TextForm() {
               SAVE
             </Button> 
           </Grid>
+          <Grid item xs={6} sm={3}>
+            <Button 
+              type="submit"
+              variant="contained"
+              size="medium"
+              className={classes.buttonCancel}
+            >
+              Cancel
+            </Button> 
+          </Grid>
         </Grid>
-
       </Grid>
       <Dialog open={open} onClose={handleClose}>
-        {/* <DialogTitle className={classes.dialog}>
+        <DialogTitle className={classes.dialog}>
           Update profile successfully!
-        </DialogTitle> */}
+        </DialogTitle>
         <Dialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"

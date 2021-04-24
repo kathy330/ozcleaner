@@ -33,7 +33,6 @@ const cardStyle = {
 }
 
 export default function CheckoutForm({price,paystatus,data}) {
-  // const classes = useStyles()
   const dispatch = useDispatch()
   const stripe = useStripe()
   const elements = useElements()
@@ -47,11 +46,8 @@ export default function CheckoutForm({price,paystatus,data}) {
 
 
   const payapi = async() => {
-    // Create PaymentIntent as soon as the page loads window.
     const paydata = {
       items: [{ id: "cleaning fee" }],
-      // items: [{ type: "RC" }],
-      // price:12800 // ¥128.00
       price:price
     }
     const level = localStorage.getItem('authLevel')
@@ -71,8 +67,6 @@ export default function CheckoutForm({price,paystatus,data}) {
   }, [])
 
   const handleChange = async (event) => {
-    // Listen for changes in the CardElement
-    // and display any errors as the customer types their card details
     setDisabled(event.empty)
     setError(event.error ? event.error.message : "")
   }
@@ -88,14 +82,13 @@ export default function CheckoutForm({price,paystatus,data}) {
     })
  
     if (payload.error) {
-      // setError(`Payment failed ${payload.error.message}`)
       setError(`${payload.error.message}`)
       setProcessing(false)
     } else {
       setError(null)
       setProcessing(false)
       setSucceeded(true)
-      dispatch(payOrderRequest()) // 下订单
+      dispatch(payOrderRequest()) 
     }
   }
 
@@ -120,19 +113,21 @@ export default function CheckoutForm({price,paystatus,data}) {
     bedroomNum: 0,
     bathroomNum: 0,
     price: 0,
-    startTime: "", // 2020-01-01T00:00:00
+    startTime: "", 
     endTime: "",
     userID: "",
     employeeID: "",
     firstName: "",
     lastName: "",
     phoneNumber: '',
-    // userDetail:'604cb4dfc875675915d0d0a5'
   }
 
   if(paystatus === true) {
     const{otherdata} = data
     const{extra} = data
+    const{bedRoomNum} = data
+    const{bathRoomNum} = data
+    const{type} = data
 
     const pickDate = date.format(otherdata.date, 'YYYY-MM-DD') 
     const pickTime = date.format(otherdata.time, 'HH:mm:ss') 
@@ -148,13 +143,13 @@ export default function CheckoutForm({price,paystatus,data}) {
     const user = JSON.parse(localStorage.getItem('userInfo'))
     const userObjectId = user.data.objectID
     const userid = user.data.ID
-    const postTitle = `${otherdata.type} Bedroom x ${otherdata.bedRoomNum} Bathroom x ${otherdata.bathRoomNum}`
+    const postTitle = `${type} Bedroom x ${bedRoomNum} Bathroom x ${bathRoomNum}`
     const newData = {
       ...postData,
       ...extra,
-      bedroomNum:otherdata.bedRoomNum,
-      bathroomNum:otherdata.bathRoomNum,
-      type:otherdata.type,
+      bedroomNum:bedRoomNum,
+      bathroomNum:bathRoomNum,
+      type:type,
       address:{
         ...postData.address,
         postcode:otherdata.postcode,
@@ -170,12 +165,10 @@ export default function CheckoutForm({price,paystatus,data}) {
       phoneNumber:otherdata.phoneNumber,
       price:price,
       propertyType:propertyType,
-      // userDetail:`ObjectId(${objectID})`
       userDetail:userObjectId,
       userID:userid
-      // userDetail:'604cb4dfc875675915d0d0a5'
     }
-    dispatch(postOrderRequest(newData)) // 在saga里控制跳转下一个页面
+    dispatch(postOrderRequest(newData)) 
   }
 
 
@@ -212,7 +205,6 @@ export default function CheckoutForm({price,paystatus,data}) {
               </span>
             </button>
             
-            {/* Show any error that happens when processing the payment */}
             {error && (
             <div className="card-error" role="alert">
               {error}
@@ -220,7 +212,6 @@ export default function CheckoutForm({price,paystatus,data}) {
             )}
 
 
-            {/* Show a success message upon completion */}
             <p className={succeeded ? "result-message" : "result-message hidden"}>
               Payment succeeded
             </p>

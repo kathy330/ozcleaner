@@ -13,7 +13,6 @@ export const loadOrdersFailed = err => ({
 })
 
 
-//  1/6 GET Regular order -- 
 export const getOrderRequest = (datalist) => ({
   type: actionTypes.GET_ORDER_REQUEST,
   payload: datalist,
@@ -28,10 +27,9 @@ export const getOrderFaild = (err) => ({
 })
 
 
-//  2/6 POST order -- dongyu 
 export const postOrderRequest = (obj) => ({
   type: actionTypes.POST_ORDER_REQUEST,
-  payload: obj, // By convention, we put that information in a field called payload.
+  payload: obj, 
 })
 export const postOrderSuccess = (obj) => ({
   type: actionTypes.POST_ORDER_SUCCESS,
@@ -44,7 +42,6 @@ export function postOrderFaild(obj) {
   }
 }
 
-//  3/6 PAY order -- dongyu 
 export const payOrderRequest = (obj) => ({
   type: actionTypes.PAY_ORDER_REQUEST,
   payload: obj,
@@ -54,10 +51,9 @@ export const payOrderSuccess = (obj) => ({
   payload: obj,
 })
 
-// 6/6 Update regular order -- 
 export const updateOrderRequest = (obj) => ({
   type: actionTypes.UPDATE_ORDER_REQUEST,
-  payload: obj, // By convention, we put that information in a field called payload.
+  payload: obj, 
 })
 export const updateOrderSuccess = (obj) => ({
   type: actionTypes.UPDATE_ORDER_SUCCESS,
@@ -68,10 +64,9 @@ export const updateOrderFaild = (obj) => ({
   payload: obj,
 })
 
-// assignToEmployee
 export const updateAssignRequest = (obj) => ({
   type: actionTypes.UPDATE_ASSIGN_REQUEST,
-  payload: obj, // By convention, we put that information in a field called payload.
+  payload: obj, 
 })
 export const updateAssignSuccess = (obj) => ({
   type: actionTypes.UPDATE_ASSIGN_SUCCESS,
@@ -82,13 +77,11 @@ export const updateAssignFaild = (obj) => ({
   payload: obj,
 })
 
-// * getAllUserListRequest() is for get all users from userTable -- kathy
 export const getAllUserListRequest = users => ({
   type: actionTypes.GET_USERS_REQUESTED,
   payload: users,
 })
 
-// * getAllEmployeeListRequest() is for get all users from userTable -- kathy
 export const getAllEmployeeListRequest = employees => ({
   type: actionTypes.GET_EMPLOYEES_REQUESTED,
   payload: employees,
@@ -96,7 +89,6 @@ export const getAllEmployeeListRequest = employees => ({
 
 
 
-// * get history
 export const getHistoryRequest = (datalist) => ({
   type: actionTypes.GET_HISTORY_REQUEST,
   payload: datalist,
@@ -111,7 +103,6 @@ export const getHistoryFailed = (err) => ({
   payload: err,
 })
 
-//  update profile 
 export const updateProfileRequest = (datalist) => ({
   type: actionTypes.UPDATE_PROFILE_REQUEST,
   payload: datalist,
@@ -127,7 +118,6 @@ export const updateProfileFailed = (err) => ({
 })
 
 
-// staff details page 
 export const getSTAFFDETAILRequest = (users) => ({
   type: actionTypes.GET_STAFFDETAIL_REQUEST,
   payload: users,
@@ -138,7 +128,6 @@ export const getSTAFFDETAILTABLERequest = (users) => ({
   payload: users,
 })
 
-// customer details page
 export const getCUSDETAILRequest = (users) => ({
   type: actionTypes.GET_CUSDETAIL_REQUEST,
   payload: users,
@@ -179,47 +168,39 @@ export const signoutEmployee = () => ({
   type: actionTypes.EMPLOYEE_SIGNOUT_REQUEST,
 })
 
-// * getAllOrdersRequest() is for  get all order
-// * includes regular clean & end of lease clear -- kathy
 export const getAllOrersRequest = orders => ({
   type: actionTypes.GET_ALL_ORDERS_REQUESTED,
   payload: orders
 })
 
-/* forget password- yanbo */
 export const forgetpassword = (payload) => ({
   type: actionTypes.USER_EMAIL_REQUEST,
   payload,
 })
 
-/* employee forget password- yanbo */
 export const forgetpasswordEmployee = (payload) => ({
   type: actionTypes.EMPLOYEE_EMAIL_REQUEST,
   payload,
 })
 
-/* reset password- yanbo */
 
 export const resetpassword = (payload) => ({
   type: actionTypes.USER_RESET_REQUEST,
   payload,
 })
 
-/* employee reset password- yanbo */
 
 export const resetpasswordEmployee = (payload) => ({
   type: actionTypes.EMPLOYEE_RESET_REQUEST,
   payload,
 })
 
-// * deleted a customer by customer's objID
 export const deletedCustomerRequest = (users, listSize) => ({
   type: actionTypes.DELETED_CUSTOMER_REQUEST,
   payload: users,
   listSize: listSize
 })
 
-// * deleted an employee by employee's objID
 export const deletedEmployeeRequest = (users, listSize) => ({
   type: actionTypes.DELETED_EMPLOYEE_REQUEST,
   payload: users,

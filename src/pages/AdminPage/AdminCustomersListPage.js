@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
@@ -7,28 +6,28 @@ import {
   Typography,
   Grid,
 } from '@material-ui/core'
-
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import ListTable from '../../components/AdminComponents/ListTable'
 
 const columns = [
-  { id: 'avatar', label: 'Avatar', minWidth: 80, align: 'center' },
-  { id: 'name', label: 'Name', minWidth: 120, align: 'center' },
+  { id: 'name', label: 'Name', minWidth: 160, align: 'center' },
+  { id: 'email', label: 'Email', minWidth: 120, align: 'center' },
   {
     id: 'ongoingOrders',
-    label: 'Ongoing Orders',
-    minWidth: 80,
+    label: 'Ongoing',
+    minWidth: 50,
     align: 'center',
   },
   {
     id: 'completedOrders',
-    label: 'Completed Orders',
-    minWidth: 80,
+    label: 'Completed',
+    minWidth: 50,
     align: 'center',
   },
   {
     id: 'actions',
     label: 'Actions',
-    minWidth: 240,
+    minWidth: 120,
     align: 'center',
   },
 ]
@@ -41,6 +40,16 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       padding: '35px 20px',
     },
+  },
+
+  listIcon: {
+    alignItems: 'center',
+    display: 'flex',
+  },
+
+  icon: {
+    fontSize: '3rem',
+    marginRight: '10px',
   },
 
   listTable: {
@@ -59,7 +68,8 @@ const AdminCustomersListPage = (match) => {
   return (
     <>
       <Container maxWidth="lg" className={classes.root}>
-        <Typography variant="h3" component="h1">
+        <Typography variant="h3" component="h1" className={classes.listIcon}>
+          <AccountCircleIcon className={classes.icon} /> 
           Customer List
         </Typography>
         <Grid container className={classes.listTable}>

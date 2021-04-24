@@ -12,9 +12,7 @@ import {
   Toolbar,
   IconButton,
   Box,
-  Menu,
   MenuItem,
-  Typography,
   Slide,
   Drawer,
 } from '@material-ui/core'
@@ -37,10 +35,6 @@ import LoginDetails from '../SignUpComponents/LoginForm'
 import EmployeeLoginDetails from '../SignUpComponents/EmployeeLoginForm'
 
 
-// https://www.flaticon.com/free-icon/broom_2731291
-
-
-// 登陆弹窗 1/3
 function TabPanel(props) {
   const { children, value, index, ...other } = props
 
@@ -60,13 +54,11 @@ function TabPanel(props) {
     </div>
   )
 }
-// 登陆弹窗 2/3
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
 }
-// 登陆弹窗 3/3
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
@@ -78,7 +70,6 @@ export default function HeaderNavigation(props) {
   const { trigger } = props
   const dispatch = useDispatch()
 
-  // 1/1开始登陆窗口函数：
   const theme = useTheme()
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState(0)
@@ -94,7 +85,6 @@ export default function HeaderNavigation(props) {
   const handleChangeIndex = (index) => {
     setValue(index)
   }
-  // 1/1结束登陆窗口函数：
 
   const userSignin = useSelector((state) => state.userSignin)
   const {userInfo} = userSignin
@@ -112,23 +102,13 @@ export default function HeaderNavigation(props) {
   const userinfoo = JSON.parse(localStorage.getItem('userInfo'))
   const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
   const level = localStorage.getItem('authLevel')
-  // console.log(level)
   let id=''
   let role=''
 
   if(userinfoo){
  
     id = userinfoo.data.objectID 
-    // role = level === 'user'? 'users' : 'employees'
-    // if(level==='user'){
       role = 'users'
-    // }
-    // else if(level==='employee'){
-    //   role = 'employees'
-    // }
-    // else {
-    //   role = 'admin'
-    // }
   }
 
   if(employeeinfoo){
@@ -136,7 +116,6 @@ export default function HeaderNavigation(props) {
     id = employeeinfoo.data.objectID 
 
   }
-  // const ii = '6072ad2147e3bc290251987a'
 
   const signoutHandler = () => {
     dispatch(signout())
@@ -172,7 +151,6 @@ export default function HeaderNavigation(props) {
           position={trigger === null || trigger === undefined ? 'relative' : 'fixed'}
           className={style.AppBar}
         >
-          {/* <Grid item className={style.container}> */}
           <Grid item>
             <Toolbar>
               <Grid className={style.grow}>
@@ -182,9 +160,7 @@ export default function HeaderNavigation(props) {
                     className={style.logoimg}
                     alt="Logo icon"
                   />
-                  {/* Home */}
                 </Button>
-                {/* Logo */}
               </Grid>
               <IconButton
                 className={style.menuButton}
@@ -199,7 +175,6 @@ export default function HeaderNavigation(props) {
                 <>
                   <Box className={style.buttonsBox}>
                     <Button href='/order' className={style.bookingButton}>Booking Now</Button>
-                    {/* <Button href=''>My Order</Button> */}
                     <Button href={`/${role}/${id}`}>My Order</Button>
                     <Button href='/profile'>My Profile</Button>
                     <Button
@@ -317,7 +292,6 @@ export default function HeaderNavigation(props) {
         </AppBar>
       </Slide>
 
-      {/* 登陆弹窗样式 */}
       <Dialog
         open={open}
         onClose={handleClose2}

@@ -1,36 +1,7 @@
-/* #root {
-  align-items: center;
-  display: flex;
-} */
-
-/* .App body {
-  align-content: center;
-  display: flex;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  height: 100vh;
-  justify-content: center;
-  width: 100vw;
-} */
-/* .App input {
-  background: white;
-  border: 1px solid rgba(50, 50, 93, 0.1);
-  border-radius: 6px;
-  box-sizing: border-box;
-  font-size: 16px;
-  margin-bottom: 6px;
-  max-height: 44px;
-  padding: 12px;
-  width: 100%;
-} */
-
 #payment-form {
   align-self: center;
   border-radius: 7px;
   height: 20vh;
-  /* box-shadow: 0 0 0 0.5px rgba(50, 50, 93, 0.1), 0 2px 5px 0 rgba(50, 50, 93, 0.1),
-    0 1px 1.5px 0 rgba(0, 0, 0, 0.07); */
   padding: 20px 0;
   width: 100%;
 }
@@ -92,8 +63,6 @@
   margin-bottom: 32px;
 }
 
-/* Buttons and links */
-
 .paybutton:hover {
   filter: contrast(115%);
 }
@@ -103,7 +72,6 @@
   opacity: 0.5;
 }
 
-/* spinner/processing state, errors */
 .spinner,
 .spinner::before,
 .spinner::after {

@@ -9,15 +9,11 @@ import { makeStyles ,useTheme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-//import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import SwipeableViews from 'react-swipeable-views'
 import RegistrationForm from './RegistrationForm'
 import EmployeeRegistrationForm from './Employee'
-
-// import AppBar from '@material-ui/core/AppBar'
-// import Tabs from '@material-ui/core/Tabs'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -54,28 +50,28 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   [theme.breakpoints.down('sm')]: {
-    textAlign:'center',
+    textAlign: 'center',
   },
   [theme.breakpoints.between('sm','md')]: {
-    textAlign:'center',
+    textAlign: 'center',
   },
   [theme.breakpoints.up('md')]: {
-    textAlign:'center',
+    textAlign: 'center',
   },
   
   root: {
     backgroundColor: theme.palette.background.paper,
-    width:347,
+    width: 347,
   },
-  login:{
-    fontWeight: 'bold',
+
+  login: {
     color: '#007bf5',
-    // float: 'right',
-    fontSize:'12px',
+    fontSize: '12px',
+    fontWeight: 'bold',
+    marginBottom: '20px',
+    marginRight: '20px',
+    marginTop: '-6px',
     textDecoration: 'none',
-    marginRight:'20px',
-    marginTop:'-6px',
-    marginBottom:'20px'
   },
 }))
 

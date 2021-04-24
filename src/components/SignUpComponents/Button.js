@@ -1,12 +1,9 @@
 import React from "react"
 import Button from '@material-ui/core/Button'
-// 使用顺序：HomeButton组件使用styles里export的 {buttonStyle} ->
-// -> style 使用的 theme里的配色字体方案
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import {buttonStyle} from './styles/styles'
 import './styles/Style.scss'
-// import GoogleLogo from './resource/google.png'
 
 
 
@@ -16,7 +13,6 @@ export function PopupButton() {
     <>
       <Button
         className={classes.homeBookingButton}
-        // variant="contained"
         type="submit"
       >
         Sign Up
@@ -30,7 +26,6 @@ export function PopupLoginButton() {
     <>
       <Button
         className={classes.homeBookingButton}
-        // variant="contained"
         type="submit"
       >
         Login
@@ -63,7 +58,6 @@ export function ConfirmButton() {
     <>
       <Button
         className={classes.homeBookingButton}
-        // variant="contained"
         type="submit"
       >
         Confirm

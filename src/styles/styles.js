@@ -1,11 +1,4 @@
 import { makeStyles } from '@material-ui/core'
-// 🌟这个文件的style只负责material UI 组件的 配色和字体和样式（从theme引用），不负责位置
-// 🌟位置需要给组件加上<div calssName=""></div>，并在scss中定义
-
-// 三种星星：
-// import StarIcon from '@material-ui/icons/Star';
-// import StarBorderIcon from '@material-ui/icons/StarBorder';
-// import StarHalfIcon from '@material-ui/icons/StarHalf';
 
 export const navBarStyle = makeStyles((theme) => ({
   AppBar: {
@@ -24,10 +17,9 @@ export const navBarStyle = makeStyles((theme) => ({
     height: '5vh'
   },
   bookingButton: {
-    // fontSize:'1rem',
     color: 'white',
     background: theme.palette.primary.main,
-    borderRadius: '12px', // 跟首页下面booking button一样尺寸
+    borderRadius: '12px', 
     marginInline: '20px',
     paddingLeft: '25px',
     paddingRight: '25px',
@@ -82,17 +74,52 @@ export const buttonStyle = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       fontSize: '1.4rem',
     },
-    background: theme.palette.primary.main, // #007bf5
+    background: theme.palette.primary.main, 
     borderRadius: '12px',
     color: theme.palette.primary.contrastText,
-    // marginInline: '20px',
-    // paddingInline: '50px', // 太长，小屏幕装不下
     padding: '8px 60px',
     '&:hover': {
-      background: theme.palette.primary.hover, // #0050c1
+      background: theme.palette.primary.hover, 
       boxShadow: '0px 2px 10px #888',
     },
   },
+  previousButton:{
+    background: '#29b6f6', 
+    borderRadius: '8px',
+    padding: '8px 30px',
+    margin:'30px 0',
+    color: theme.palette.primary.contrastText,
+    '&:hover': {
+      background: '#29b6f6',
+      boxShadow: '0px 2px 10px #888',
+    }
+  },
+  nextButton:{
+    background: '#29b6f6', 
+    borderRadius: '8px',
+    padding: '8px 30px',
+    margin:'30px 0',
+    color: theme.palette.primary.contrastText,
+    '&:hover': {
+      background: '#29b6f6', 
+      boxShadow: '0px 2px 10px #888',
+    }
+  },
+  finalBookingButton:{
+    background: '#29b6f6', 
+    borderRadius: '8px',
+    padding: '8px 30px',
+    margin:'30px 0',
+    color: theme.palette.primary.contrastText,
+    '&:hover': {
+      background: '#29b6f6', 
+      boxShadow: '0px 2px 10px #888',
+    },
+    [theme.breakpoints.down('sm')]: {
+      minWidth:'150px',
+      padding: '8px 0px',
+    },
+  }
 }))
 
 export const statusStyle = makeStyles((theme) => ({

@@ -7,10 +7,6 @@ import Grid from '@material-ui/core/Grid'
 import { Container , Box } from '@material-ui/core'
 import { makeStyles,useTheme } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
-// import DateFnsUtils from '@date-io/date-fns'
-// import {MuiPickersUtilsProvider,KeyboardDatePicker,KeyboardTimePicker} 
-// from "@material-ui/pickers"
-// import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
 import InputLabel from '@material-ui/core/InputLabel'
@@ -21,22 +17,13 @@ import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-// import Typography from '@material-ui/core/Typography'
 import SwipeableViews from 'react-swipeable-views'
-// import DateRangeIcon from '@material-ui/icons/DateRange'
-// import date from 'date-and-time'
 import {useHistory} from "react-router-dom"
-// import {useDispatch} from 'react-redux'
-// import {postRegularRequest} from '../../../store/actions'
 import LoginDetails from '../../SignUpComponents/LoginForm'
 import EmployeeLoginDetails from '../../SignUpComponents/EmployeeLoginForm'
 
 import {buttonStyle} from '../../../styles/styles'
 import HomeComponentStyle from '../styles/HomeComponentStyle'
-// 官方文档diy的方式在TimePicker,style/HomeComponentStyle.js里有三种
-// scss Module/material style的引用方法 className={styles.position}
-// material的本页面设置diy的引用方法 style={diyStyle.button}
-
 
 const useStyles = makeStyles((theme) => ({
   mobile: {
@@ -46,20 +33,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   pickerPosition: {
-    paddingTop: '4vh'
-    // [theme.breakpoints.down('sm')]: {
-    //   paddingTop: '2vh',
-    // },
-    // [theme.breakpoints.between('sm','md')]: {
-    //   paddingTop: '2vh',
-    // },
-    // [theme.breakpoints.up('md')]: {
-    //   paddingTop: '2vh',
-    // }
+    paddingTop: '4vh',
   },
 
   buttonPosition: {
-    // paddingTop: '8vh',
     display: 'flex',
     justifyContent: 'center',
     [theme.breakpoints.down('sm')]: {
@@ -123,8 +100,6 @@ function a11yProps(index) {
 
 
 const SelectStyle = { 
-  // 设置点开选项后的下拉样式
-  // 弹出效果API： https://material-ui.com/zh/api/popover/
   anchorOrigin: {
     vertical: "bottom",
     horizontal: "left"
@@ -143,9 +118,7 @@ export default function HomeSelectForm() {
   const cssstyle = HomeComponentStyle()
   const buttonstyle = buttonStyle()
   const {  handleSubmit,control } = useForm()
-  // const dispatch = useDispatch()
 
-  // 1/1开始登陆窗口函数：
   const theme = useTheme()
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState(0)
@@ -161,16 +134,13 @@ export default function HomeSelectForm() {
   const handleChangeIndex = (index) => {
     setValue(index)
   }
-  // 1/1结束登陆窗口函数：
 
 
   const userinfoo = JSON.parse(localStorage.getItem('userInfo'))
   const employeeinfoo = JSON.parse(localStorage.getItem('employeeInfo'))
-  // 首页处理order data存储到local sotrage
   const history = useHistory()
   const onSubmit = data => {
     const newData = {
-      // ...postData,
       bedroomNum:data.bedRoomNum,
       bathroomNum:data.bathRoomNum,
       contact:data.number,
@@ -195,7 +165,6 @@ export default function HomeSelectForm() {
       <Container maxWidth="lg" className={classes.pickerPosition}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3} className={classes.mobile}>
-            {/* 1. Bedroom */}
             <Grid item xs={12} md={3}>
               <FormControl className={cssstyle.Picker}>
                 <InputLabel className={cssstyle.Picker}>
@@ -210,7 +179,6 @@ export default function HomeSelectForm() {
                       <MenuItem className={classes.selected} value="2">2</MenuItem>
                       <MenuItem className={classes.selected} value="3">3</MenuItem>
                       <MenuItem className={classes.selected} value="4">4</MenuItem>
-                      <MenuItem className={classes.selected} value="5">5</MenuItem>
                     </Select>
                 )}
                   name="bedRoomNum"
@@ -221,7 +189,6 @@ export default function HomeSelectForm() {
               </FormControl>
             </Grid> 
 
-            {/* 2. Bathroom */}
             <Grid item xs={12} md={3}>
               <FormControl className={cssstyle.Picker}>
                 <InputLabel className={cssstyle.Picker}>
@@ -236,7 +203,6 @@ export default function HomeSelectForm() {
                       <MenuItem className={classes.selected} value="2">2</MenuItem>
                       <MenuItem className={classes.selected} value="3">3</MenuItem>
                       <MenuItem className={classes.selected} value="4">4</MenuItem>
-                      <MenuItem className={classes.selected} value="5">5</MenuItem>
                     </Select>
                 )}
                   name="bathRoomNum"
@@ -247,7 +213,6 @@ export default function HomeSelectForm() {
               </FormControl>
             </Grid>
 
-            {/* . property type */}
             <Grid item xs={12} md={3}>
               <FormControl className={cssstyle.Picker}>
                 <InputLabel className={cssstyle.Picker}>
@@ -264,14 +229,12 @@ export default function HomeSelectForm() {
                     </Select>
                 )}
                   name="propertyType"
-                  // required
                   control={control}
                   defaultValue=''
                 />
               </FormControl>
             </Grid>
 
-            {/* 4. PostCode */}
             <Grid item xs={12} md={3}>
               <FormControl className={cssstyle.Picker}>
                 <Controller
@@ -279,7 +242,6 @@ export default function HomeSelectForm() {
                     <TextField label="Post Code" className={classes.postCodeLength} />
                 )}
                   name="postcode"
-                  // required
                   control={control}
                   defaultValue=""
                 />
@@ -288,8 +250,6 @@ export default function HomeSelectForm() {
           </Grid>
 
           <Box className={classes.buttonPosition}>
-            {/* 如果没有authLevel，弹出登陆，如果有，正常下单按钮submit属性 */}
-            {/* {localStorage.getItem('authLevel')? ( */}
             <Button
               className={buttonstyle.bookingButton}
               variant="contained"
@@ -299,21 +259,9 @@ export default function HomeSelectForm() {
             >
               Booking from $80
             </Button>
-            {/* ) : (
-            <Button
-              className={buttonstyle.bookingButton}
-              variant="contained"
-              type="submit"
-              id="back-to-top-anchor"
-              // onClick={handleClickOpen}
-            >
-              Booking from $80
-            </Button>
-          )} */}
           </Box>
 
 
-          {/* 登陆弹窗样式 */}
           <Dialog
             open={open}
             onClose={handleClose}

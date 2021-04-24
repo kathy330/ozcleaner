@@ -7,15 +7,17 @@ const useStyles = makeStyles((themes) => ({
   root: {
     flexGrow: 1,
   },
+
   paper: {
     padding: themes.spacing(4),
   },
+
   li: {
     [themes.breakpoints.down("xs")]: {
-      margin:"2%"
+      margin: "2%",
     },
     [themes.breakpoints.up("sm")]: {
-      margin:"10%"
+      margin: "10%",
     },
  
   },
@@ -34,8 +36,6 @@ export default function AutoGrid(props) {
   return (
     <Box className={classes.root}>
       <Grid container spacing={5}>
-        {/* Total Orders */}
-
         <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
 
@@ -55,7 +55,6 @@ export default function AutoGrid(props) {
           </Paper>
         </Grid>
 
-        {/* Reviews */}
         <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
             <Grid item xs sm container direction="column" spacing={2}>
@@ -72,7 +71,6 @@ export default function AutoGrid(props) {
         </Grid>
 
 
-        {/* Personal Infomation */}
         <Grid item xs={12} sm={12}>
           <Paper className={classes.paper}>
             <Grid container justify="space-evenly">

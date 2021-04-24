@@ -20,21 +20,19 @@ import * as Status from '../../../UIComponents/Status'
 
 const useStyles = makeStyles(() => ({
   table: {
-    minWidth: 650
+    minWidth: 650,
   },
+
   status: {
     background: "green",
-    color: "white",
     borderRadius: "25px",
+    color: "white",
   },
-  // name:{
-  //   color:"#007bf5"
 
-  // },
   btn: {
-    margin:" 3% 6%",
-    minWidth:"120px",
-    color:"white"
+    color: "white",
+    margin: " 3% 6%",
+    minWidth: "120px",
   },
 }))
 
@@ -170,7 +168,6 @@ const BasicTable=(props)=>{
     setPage(0)
   }
 
-  // finish orders
   const handleAction = (id, ordertype, status, index, presentStatus) => {
     
     dispatch(changeOrder(page * rowsPerPage + index))
@@ -242,14 +239,6 @@ const BasicTable=(props)=>{
       {users.length===0&&!loading&&( 
         <Alert severity="info">No orders available! — check it out!</Alert>
 )}
-      {/* {error&&!loading&&
-        ( 
-          <Alert severity="error"> 
-            <AlertTitle>{error}</AlertTitle>
-            It&apos;s been a while since you&apos;ve signed in to Ozcleaner. 
-            Please refresh your browser and try again.
-          </Alert>
-)} */}
 
     </>
   

@@ -10,18 +10,20 @@ const useStyles = makeStyles((themes) => ({
   root: {
     flexGrow: 1,
   },
+
   paper: {
     padding: themes.spacing(3),
   },
  
   li: {
     [themes.breakpoints.down("xs")]: {
-      margin:"auto"
+      margin: "auto",
     },
     [themes.breakpoints.up("sm")]: {
-      margin:"10%"
+      margin: "10%",
     },
   },
+
   status1:{
     backgroundColor: "#89b153",
     float: "left",
@@ -73,12 +75,10 @@ export default function AutoGrid(props) {
   const {email,phone,workingExperience,employmentStatus}=UserData
   const arrayObj =[]
   arrayObj.push([postcode,email,phone,workingExperience,employmentStatus])
-  // console.log(arrayObj[0])
 
   return (
     <Box className={classes.root}>
       <Grid container spacing={5}>
-        {/* Total Orders */}
 
         <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
@@ -98,7 +98,6 @@ export default function AutoGrid(props) {
           </Paper>
         </Grid>
 
-        {/* Reviews */}
         <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
             <Grid item xs sm container direction="column" spacing={2}>
@@ -111,10 +110,8 @@ export default function AutoGrid(props) {
                   <Typography variant="h3">{UserData.averageRating}</Typography>
                 </Grid> 
 
-                {/* Stars */}
-
                 <Grid item xs>
-                  <Box component="fieldset" mb={0.5} borderColor="transparent" key={UserData.averageRating}>
+                  <Box component="fieldset" mb={0.5} borderColor="transparent" key={UserData.averageRating} margin="10% auto">
                     <Rating 
                       name="half-rating-read"
                       defaultValue={UserData.averageRating}
@@ -131,10 +128,9 @@ export default function AutoGrid(props) {
         </Grid>
 
 
-        {/* Personal Infomation */}
         <Grid item xs={12} sm={12}>
           <Paper className={classes.paper}>
-            <Grid container spacing={4} justify="space-evenly">
+            <Grid container spacing={2} justify="space-evenly">
               <Grid item xs={4} sm={3}>
                 <ul>
                   <li className={classes.li}>

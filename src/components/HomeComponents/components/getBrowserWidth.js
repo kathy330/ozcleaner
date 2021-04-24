@@ -1,4 +1,3 @@
-// 获取当前浏览器尺寸（xs,sm,md,lg,xl)
 import React from 'react'
 import withWidth from '@material-ui/core/withWidth'
 

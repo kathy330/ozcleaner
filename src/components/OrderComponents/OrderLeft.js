@@ -15,15 +15,12 @@ import DateRangeIcon from '@material-ui/icons/DateRange'
 import DateFnsUtils from '@date-io/date-fns'
 import TextField from '@material-ui/core/TextField'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
-
 import date from 'date-and-time'
 import { useForm,Controller } from "react-hook-form"
 import {useDispatch} from 'react-redux'
 import HomeIcon from '@material-ui/icons/Home'
 import PostAddIcon from '@material-ui/icons/PostAdd'
-
 import Icon from '@material-ui/core/Icon'
-// import { Container } from "@material-ui/core"
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -31,25 +28,11 @@ import PaymentIcon from '@material-ui/icons/Payment'
 import {postOrderRequest} from '../../store/actions'
 import HomeComponentStyle from "../HomeComponents/styles/HomeComponentStyle"
 import { BookingButton } from "../UIComponents/Buttons"
-// import CardActions from '@material-ui/core/CardActions'
-// import CardContent from '@material-ui/core/CardContent'
-
 import ovenIcon from "../../assets/oven.svg"
 import fridgeIcon from "../../assets/fridge.svg"
 import windowIcon from "../../assets/window.svg"
 import cabinetIcon from "../../assets/cabinet.svg"
-// https://www.svgrepo.com/svg/188867/cabinets-storage
-// https://www.svgrepo.com/svg/281951/cabinet
-// https://www.svgrepo.com/svg/26346/window
-// https://www.svgrepo.com/svg/81856/fridge
-// https://www.svgrepo.com/svg/209863/oven
-// import Hidden from '@material-ui/core/Hidden'
-
-// import DetailInfo from './components/DetailInfo'
-// import ExtraPicker from './components/ExtraPicker'
-// import AddressInfo from './components/AddressInfo'
-import PaymentInfo from './components/PaymentInfo'
-// import Icon from '@material-ui/core/Icon'
+// import PaymentInfo from './components/PaymentInfo'
 
 
 const useStyles = makeStyles(() => ({
@@ -96,8 +79,7 @@ const useStyles = makeStyles(() => ({
 
   bookingButton: {
     margin: '30px 0',
-    textAlign: 'center'
-    // padding: '30px',
+    textAlign: 'center',
   },
 
   actionArearoot: {
@@ -106,16 +88,15 @@ const useStyles = makeStyles(() => ({
   },
 
   pickerBackground: {
-    background: 'lightgrey' // 最外层灰色背景
+    background: 'lightgrey', 
   },
 
   picker: {
-    margin: '3px' // 最外层灰色间距
-    // "&:hover": { transform: "scale3d(1.05, 1.05, 1)", }, //hover放大效果
+    margin: '3px', 
   },
 
   actionArea: {
-    padding: '0 12px' // 白色区域间距
+    padding: '0 12px', 
   },
 
   actionAreaimageIcon: {
@@ -123,14 +104,12 @@ const useStyles = makeStyles(() => ({
   },
 
   check: {
-    padding: '0px' // 让hover效果消失
+    padding: '0px', 
   }
 
 }))
 
 const SelectStyle = { 
-  // 设置点开选项后的下拉样式
-  // 弹出效果API： https://material-ui.com/zh/api/popover/
   anchorOrigin: {
     vertical: "bottom",
     horizontal: "left"
@@ -156,25 +135,16 @@ export default function OrderLeft() {
     disable:false
   })
   
-  // 11这是checkbox右上角自己属性变化的函数
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked })
-    // console.log(event.target.name,':',event.target.checked)
   }
-  // 11-----------------------------------------
 
-  // 22这里是点击CardActionArea也会触发checkbox属性变化的函数
   const areaClickChange = (event) => { 
-    // console.log(event.target.name,'or',event.target.alt)
-    // 点击icon上面，就会有alt属性，点击actionArea上面，就会有name属性  
     const key = event.target.name || event.target.alt
     const newState = !state[key]
     setState({...state,[key]:newState})
   }
-  // 22-----------------------------------------
-
-  // 33这里是判断选中EC还是RC的extra picker部分的效果
-  const {disable} = state // 给下面disable={disable}用的，如果选中EC，这个变为true传给下面
+  const {disable} = state 
   const type = watch("type","")
   useEffect(()=>{
     console.log(type)
@@ -185,7 +155,6 @@ export default function OrderLeft() {
       setState({oven:true,fridge:true,windows:true,cabinet:true,disable:true}) 
     }
   },[type])
-  // 33-----------------------------------------
  
   const postData = {      
     address: {
@@ -217,7 +186,6 @@ export default function OrderLeft() {
     phoneNumber: '0400000000'
   }
 
-  // 44判断选中了哪个extra,那个值就为true，返回值给下面onSubmite提交时更改
   const { oven,fridge, windows,cabinet } = state
   const anyExtra = () => {
     const list = {ovennum:0,fridgenum:0,interiorWindowsnum:0,cabinetsnum:0}
@@ -235,17 +203,12 @@ export default function OrderLeft() {
     }
     return list
   }
-  // 44-----------------------------------------
 
-  // 55点击提交按钮后，post请求
   const onSubmit = data => {
-    // console.log('init data: ',data)
-    // anyExtra() // 判断是否选了extra，传值给下面
     if(data.bedRoomNum!=="" && data.bathRoomNum!=="" && data.type!==""
         &&data.postcode!=="" &&data.date!=="" &&data.time!==""
         &&data.firstName!=="" &&data.lastName!=="" &&data.phoneNumber!==""
         &&data.address1!=="" &&data.suburb!=="" &&data.state!=="") {
-      // 防止有人不选时间
       const pickDate = date.format(data.date, 'YYYY-MM-DD') 
       const pickTime = date.format(data.time, 'HH:mm:ss') 
       const totalDate = `${pickDate}T${pickTime}Z`
@@ -264,8 +227,7 @@ export default function OrderLeft() {
           state:data.state,
         },
         startTime:totalDate,
-        // endTime:totalDate, // endtime 什么时候设置？  
-        oven:anyExtra().oven, // 判断是否选了extra，传值给这里
+        oven:anyExtra().oven, 
         fridge:anyExtra().fridgenum,
         interiorWindows:anyExtra().interiorWindowsnum,
         cabinets:anyExtra().cabinetsnum,
@@ -275,55 +237,34 @@ export default function OrderLeft() {
       }
       console.log('new data: ',newData)
   
-      // 🌟dispatch一个action
-      dispatch(postOrderRequest(newData)) // 发送saga请求
+      dispatch(postOrderRequest(newData)) 
     }
     else{
       console.log('Must pick all the info')
     }
   } 
-  // 55-----------------------------------------
 
   const onErrors = () => {
     console.log("ERROR!")
   }
 
-  // 66这里是想左边输入信息，右边实时更新
-  const address1 = watch("address1","") // 第二个参数为初始值
+  const address1 = watch("address1","") 
   const address2 = watch("address2","")
   const postcode = watch("postcode","")
   const suburb = watch("suburb","")
   const addressState = watch("state","")
-
-  // if(address2!=="") {
-  //   address2 += ","
-  // }
-
-  // if(address1!=="") {
-  //   address1 += ","
-  // }
-
-  // if(postcode!=="") {
-  //   postcode += ','
-  // }
-
-  // if(suburb!=="") {
-  //   suburb += ','
-  // }
 
   const totalAddress = `${address2}${address1}${suburb}${postcode}${addressState}`
   
   useEffect(()=>{
     console.log(totalAddress)
   },[totalAddress])
-  // 66-----------------------------------------
 
 
   
   return(
     <Box className={classes.top}>
       <Grid container direction="column">
-        {/* <p>{totalAddress}</p> */}
         <form onSubmit={handleSubmit(onSubmit,onErrors)}>
           <Container maxWidth="lg">
             <Grid item xs={12} sm={12}>
@@ -331,14 +272,12 @@ export default function OrderLeft() {
                 Set up your cleaning service
               </Typography>
 
-              {/* Picker  */}
               <Box>
                 <Typography variant='h5' align='left'>
                   Please complete order information:
                 </Typography>
         
                 <Grid container direction="row" spacing={2} className={classes.pickerRoot}>
-                  {/* Bedroom num */}
                   <Grid item xs={12} sm={6}>
                     <FormControl className={cssstyle.Picker}>
                       <InputLabel className={cssstyle.Picker}>
@@ -362,7 +301,6 @@ export default function OrderLeft() {
                       />
                     </FormControl>
                   </Grid>
-                  {/* Bathroom num */}
                   <Grid item xs={12} sm={6}>
                     <FormControl className={cssstyle.Picker}>
                       <InputLabel className={cssstyle.Picker}>
@@ -386,7 +324,6 @@ export default function OrderLeft() {
                       />
                     </FormControl>
                   </Grid>
-                  {/* Type */}
                   <Grid item xs={12} sm={6}>
                     <FormControl className={cssstyle.Picker}>
                       <InputLabel className={cssstyle.Picker}>
@@ -406,7 +343,6 @@ export default function OrderLeft() {
                       />
                     </FormControl>
                   </Grid>
-                  {/* Postcode */}
                   <Grid item xs={12} sm={6}>
                     <FormControl className={cssstyle.Picker}>
                       <Controller
@@ -422,44 +358,42 @@ export default function OrderLeft() {
                       />
                     </FormControl>
                   </Grid>
-                  {/* date */}
                   <Grid item xs={12} sm={6}>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                       <Controller
                         name="date"
                         control={control}
-                        initialFocusedDate={null} // 初始化没有日期
-                        defaultValue={null} // 初始化没有日期
+                        initialFocusedDate={null} 
+                        defaultValue={null} 
                         render={({ ref, ...rest }) => (
                           <KeyboardDatePicker
                             className={cssstyle.datePicker}
                             format="MM/dd/yyyy"
                             label='Date'
-                            helperText="" // 关闭报错文字，会挤开下面样子
-                            disablePast // 禁用过去日期
+                            helperText="" 
+                            disablePast 
                             KeyboardButtonProps={{"aria-label": "change date"}}
-                            keyboardIcon={(<DateRangeIcon />)} // 重新定义右侧icon
+                            keyboardIcon={(<DateRangeIcon />)} 
                             {...rest}
                           />
                   )}
                       />
                     </MuiPickersUtilsProvider>
                   </Grid>
-                  {/* time */}
                   <Grid item xs={12} sm={6}>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                       <Controller
                         name="time"
                         control={control}
-                        initialFocusedDate={null} // 初始化没有日期
-                        defaultValue={null} // 初始化没有日期
+                        initialFocusedDate={null} 
+                        defaultValue={null} 
                         render={({ ref, ...rest }) => (
                           <KeyboardTimePicker
                             className={cssstyle.datePicker}
                             label='Time'
-                            helperText="" // 关闭报错文字，会挤开下面样子
+                            helperText="" 
                             KeyboardButtonProps={{'aria-label': 'change time',}}
-                            keyboardIcon={(<AccessTimeIcon />)} // 重新定义右侧icon
+                            keyboardIcon={(<AccessTimeIcon />)}
                             {...rest}
                           />
                   )}
@@ -469,7 +403,6 @@ export default function OrderLeft() {
                 </Grid>
               </Box>
 
-              {/* Extra */}
               <Box>
                 <Grid container alignItems="flex-end">
                   <Grid item xs={6} sm={1}>
@@ -482,7 +415,6 @@ export default function OrderLeft() {
                   </Grid>
                 </Grid>
             
-                {/* <ExtraPicker /> */}
                 <Grid container direction="row" spacing={1} className={classes.actionArearoot}>
                   <Grid item xs={6} sm={3}>
                     <Card className={classes.pickerBackground}>
@@ -492,7 +424,7 @@ export default function OrderLeft() {
                           className={classes.actionArea} 
                           name="oven"
                           onClick={areaClickChange}
-                          disabled={disable} // 如果选中EC，上面setState disable为true，这里就不能取消了
+                          disabled={disable} 
                         >
 
                           <Grid container direction='column' alignItems="flex-end">
@@ -531,7 +463,7 @@ export default function OrderLeft() {
                           className={classes.actionArea} 
                           name="fridge"
                           onClick={areaClickChange}
-                          disabled={disable} // 如果选中EC，上面setState disable为true，这里就不能取消了
+                          disabled={disable} 
                         >
                           <Grid container direction='column' alignItems="flex-end">
                             <Grid item xs={6} sm={12}>
@@ -568,7 +500,7 @@ export default function OrderLeft() {
                           className={classes.actionArea} 
                           name="windows"
                           onClick={areaClickChange}
-                          disabled={disable} // 如果选中EC，上面setState disable为true，这里就不能取消了
+                          disabled={disable} 
                         >
                           <Grid container direction='column' alignItems="flex-end">
                             <Grid item xs={6} sm={12}>
@@ -605,7 +537,7 @@ export default function OrderLeft() {
                           className={classes.actionArea} 
                           name="cabinet"
                           onClick={areaClickChange}
-                          disabled={disable} // 如果选中EC，上面setState disable为true，这里就不能取消了
+                          disabled={disable} 
                         >
                           <Grid container direction='column' alignItems="flex-end">
                             <Grid item xs={6} sm={12}>
@@ -641,31 +573,25 @@ export default function OrderLeft() {
 
           <Divider />
 
-          {/* Service address */}
           <Container maxWidth="lg">
             <Grid container alignItems="flex-end">
-              {/* home icon */}
               <Grid item xs={2} sm={1}>
                 <HomeIcon className={classes.extraIcon} />
               </Grid>
-              {/* title  */}
               <Grid item xs={10} sm={11}>
                 <Typography variant='h5'>
                   Service Address
                 </Typography>
               </Grid>
-              {/* Input box */}
               <Grid item xs={12} sm={12}>
                 <Box className={classes.inputRoot}>
                   <Grid container direction="row" spacing={2}>
-                    {/* First Name */}
                     <Grid item xs={6} sm={6}>
                       <Controller
                         as={(
                           <TextField
                             id=""
                             label="First Name"
-                            // label在输入框顶部固定
                             InputLabelProps={{ shrink: true,}}
                             variant="outlined"
                             className={classes.input}
@@ -676,7 +602,6 @@ export default function OrderLeft() {
                         defaultValue=""
                       />
                     </Grid>
-                    {/* Last Name */}
                     <Grid item xs={6} sm={6}>
                       <Controller
                         as={(
@@ -697,7 +622,6 @@ export default function OrderLeft() {
                   </Grid>
 
                   <Grid container direction="row" spacing={2}>
-                    {/* Address1 */}
                     <Grid item xs={6} sm={6}>
                       <Controller
                         as={(
@@ -714,7 +638,6 @@ export default function OrderLeft() {
                         defaultValue=""
                       />
                     </Grid>
-                    {/* Address2(APT) */}
                     <Grid item xs={6} sm={6}>
                       <Controller
                         as={(
@@ -734,14 +657,12 @@ export default function OrderLeft() {
                   </Grid>
       
                   <Grid container direction="row" spacing={2}>
-                    {/* Suburb */}
                     <Grid item xs={6} sm={6}>
                       <Controller
                         as={(
                           <TextField
                             id=""
                             label="Suburb"
-                            // error
                             InputLabelProps={{shrink: true,}}
                             variant="outlined"
                             className={classes.input}
@@ -752,7 +673,6 @@ export default function OrderLeft() {
                         defaultValue=""
                       />
                     </Grid>
-                    {/* State */}
                     <Grid item xs={6} sm={6}>
                       <Controller
                         as={(
@@ -772,7 +692,6 @@ export default function OrderLeft() {
                   </Grid>
 
                   <Grid container direction="row" spacing={2}>
-                    {/* phone number */}
                     <Grid item xs={6} sm={6}>
                       <Controller
                         as={(
@@ -790,7 +709,6 @@ export default function OrderLeft() {
                       />
                     </Grid>
                       
-                    {/* 空白 占位 */}
                     <Grid item xs={6} sm={6} />
                   </Grid>
                 </Box>
@@ -800,7 +718,6 @@ export default function OrderLeft() {
 
           <Divider />
           
-          {/* Payment */}
           <Container maxWidth="lg">
             <Grid container alignItems="flex-end">
               <Grid item xs={2} sm={1}>
@@ -813,16 +730,7 @@ export default function OrderLeft() {
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={12}>
-                <PaymentInfo 
-                // error={false}代表信息无误
-                // error={false}
-                  error
-                  CardNumberText="Invalid Credit Card Number *"
-                  DateText="Invalid Expiry Date *"
-                  CVCText="Invalid Card Security Code *"
-                />
-              </Grid>
+              <Grid item xs={12} sm={12} />
             </Grid>
           </Container>
         

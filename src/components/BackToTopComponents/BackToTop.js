@@ -21,15 +21,14 @@ function ScrollTop(props) {
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     disableHysteresis: true,
-    threshold: 200, // 当垂直滚动超过（但不包括）此阈值时，触发
+    threshold: 200, 
   })
 
   const handleClick = (event) => {
     const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor')
-    // 这个按钮会跳转到id为这个的组件上(设置的是home button为此id)
 
     if (anchor) {
-      anchor.scrollIntoView({ behavior: 'smooth', block: 'end' }) // start,center,end为滑动到该元素的哪个位置
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'end' })
     }
   }
 

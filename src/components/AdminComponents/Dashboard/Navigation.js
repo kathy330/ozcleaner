@@ -4,13 +4,10 @@ import { Grid, Button, AppBar} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { deepOrange, deepPurple } from '@material-ui/core/colors'
 import { navBarStyle } from '../../../styles/styles'
-// import PopDetails from '../../SignUpComponents/PopupDetails'
-// import adminLogo from "../../../assets/adminLogo.svg" 
 import admin2 from "../../../assets/admin2.svg" 
 
 
 
-// styles
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -35,9 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   Avatar: {
-    alignItems: "center"
-    // flexDirection: "row"
-    // margin: "1%",
+    alignItems: "center",
   },
 
   signout: {
@@ -55,7 +50,6 @@ export default function AdminHeaderNavigation() {
     const classes = useStyles()
 
     const signoutHandler = () => {
-      // dispatch(signout())
       console.log('admin sign out')
       localStorage.removeItem('authLevel')
       localStorage.removeItem('employeeInfo')
@@ -64,13 +58,11 @@ export default function AdminHeaderNavigation() {
 
     return (
       <div>
-        {/* <Grid item className={style.container}> */}
         <AppBar className={`${style.AppBar} ${classes.AppBar}`} position="static" elevation={1}>
           <Grid item className={style.grow} xs={6} md={9}>
             <Button href='/admin'>
               <img
                 src={admin2} 
-                // className={style.logoimg}
                 className={classes.logoimg}
                 alt="admin icon"
               />
@@ -82,13 +74,9 @@ export default function AdminHeaderNavigation() {
             <Grid item xs={6} md={3}>
               <Button className={classes.signout} onClick={signoutHandler}>Sign Out</Button>
             </Grid>
-            {/* <Grid item xs={3}>
-              <PopDetails/>
-            </Grid> */}
           </Grid>
           
         </AppBar>
-        {/* </Grid> */}
       </div>
     )
 }

@@ -8,7 +8,6 @@ import Table from "../../components/AdminComponents/Customers/Table"
 
 
 function AdminCustomersDetailsPage(match){
-  console.log(match)
   const{id}=match.match.params
   return (
    

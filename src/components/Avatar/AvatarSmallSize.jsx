@@ -21,7 +21,7 @@ export default function getAvatar() {
       {avatarID ? (
         <Avatar src={AvatarFinder(avatarID)} alt="avatar" className={classes.small} />
       ) : (
-        <Avatar src="/broken-image.jpg" />
+        <Avatar src="/broken-image.jpg" className={classes.small} />
       )}
     </>
   )

@@ -81,7 +81,7 @@ export default function AutoGrid(props) {
       <Grid container spacing={5}>
 
         <Grid item xs={12} sm={6}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paper} variant="outlined">
 
             <Grid item xs container direction="column" spacing={2}>
      
@@ -99,7 +99,7 @@ export default function AutoGrid(props) {
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paper} variant="outlined">
             <Grid item xs sm container direction="column" spacing={2}>
               <Grid item>
                 <Typography>Reviews</Typography>
@@ -129,7 +129,7 @@ export default function AutoGrid(props) {
 
 
         <Grid item xs={12} sm={12}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paper} variant="outlined">
             <Grid container spacing={2} justify="space-evenly">
               <Grid item xs={4} sm={3}>
                 <ul>

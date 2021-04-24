@@ -3,6 +3,7 @@ import {call,put,takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
 import actionTypes from "../actions/actionTypes"
 import header from "./header"
+import url from "../../api/api"
 
 
 let getApi = ''
@@ -13,7 +14,7 @@ function* fetchRegularUrl()   {
   const info = JSON.parse(localStorage.getItem(`${level}Info`))
   const ID = info.data.objectID
   const person = level === 'user'? 'users' : 'employees'
-  getApi = `http://localhost:8000/${person}/alltask/${ID}`
+  getApi = `http://${url}/${person}/alltask/${ID}`
   try{
     const data = yield call(axios.get, getApi,header())
     yield put({type:actionTypes.GET_HISTORY_SUCCESS,payload:data.data})
@@ -29,7 +30,7 @@ function* updateEmployeeProfile(action) {
   const info = JSON.parse(localStorage.getItem(`${level}Info`))
   const ID = info.data.objectID
   const person = level === 'user'? 'users' : 'employees'
-  updateAPI=`http://localhost:8000/${person}/${ID}`
+  updateAPI=`http://${url}/${person}/${ID}`
   try{
     const data = yield call(axios.put, updateAPI ,action.payload,header())
     yield put({type:'UPDATE_PROFILE_SUCCESS',payload:data})

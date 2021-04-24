@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { put, call, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
+import url from "../../api/api"
 
 function* forgetPassword(action) {
   try {
     const userInfo = 
-    yield call(axios.post,'http://localhost:8000/recover', action.payload)
+    yield call(axios.post,`http://${url}/recover`, action.payload)
     yield put({ type: 'USER_EMAIL_REQUEST_SUCCESS', payload: userInfo })
   } catch (e) {
     yield put({ type: 'USER_EMAIL_REQUEST_FAILED', payload: e.response.data.error })
@@ -14,7 +15,7 @@ function* forgetPassword(action) {
 function* forgetPasswordEmployee(action) {
   try {
     const userInfo = 
-    yield call(axios.post,'http://localhost:8000/employees/recover', action.payload)
+    yield call(axios.post,`http://${url}/employees/recover`, action.payload)
     yield put({ type: 'EMPLOYEE_EMAIL_REQUEST_SUCCESS', payload: userInfo })
   } catch (e) {
     yield put({ type: 'EMPLOYEE_EMAIL_REQUEST_FAILED', payload: e.response.data.error })
@@ -25,9 +26,9 @@ function* resetPassword(action) {
   
   try {
     const userInfo = 
-    yield call(axios.post,'http://localhost:8000/resetPassword', action.payload)
+    yield call(axios.post,`http://${url}/resetPassword`, action.payload)
     yield put({ type: 'USER_RESET_REQUEST_SUCCESS', payload: userInfo })
-    document.location.href = 'http://localhost:3000'
+    document.location.href = 'http://ozcleaner.com'
 
 
   } catch (e) {
@@ -40,9 +41,9 @@ function* resetPasswordEmployee(action) {
   
   try {
     const userInfo = 
-    yield call(axios.post,'http://localhost:8000/employees/resetPassword', action.payload)
+    yield call(axios.post,`http://${url}/employees/resetPassword`, action.payload)
     yield put({ type: 'EMPLOYEE_RESET_SUCCESS', payload: userInfo })
-    document.location.href = 'http://localhost:3000'
+    document.location.href = 'http://ozcleaner.com'
 
   } catch (e) {
     yield put({ type: 'EMPLOYEE_RESET_FAILED', payload: e.response.data.error})

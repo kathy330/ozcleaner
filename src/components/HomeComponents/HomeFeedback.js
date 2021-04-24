@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     marginTop: '95px',
     textAlign: "right",
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '0px',
+    },
   },
 
   button: {

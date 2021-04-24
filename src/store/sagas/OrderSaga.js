@@ -23,9 +23,11 @@ function* getOrder(action) {
 function* updateOrder(action) {
   const { id, update, type, cancelByAdmin } = action.payload
   const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
-  const field = update.reviewStatus? '/comments': cancelByAdmin ? '/cancel':''
+  const level = localStorage.getItem('authLevel') 
+  const {ID,objectID} = JSON.parse(localStorage.getItem(`${level==="admin"?"employee":""}Info`)).data
+  const field = update.reviewStatus? '/comments': cancelByAdmin ?
+   '/cancel':update.status==='confirmed'?'/assign':''
   const updateApi = `http://${url}/${model}${field}/${id}`  
-  console.log(updateApi)
   try {
     yield call(axios.put, updateApi, {...update, employeeID:ID, employeeDetail:objectID},header())
     yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })

@@ -54,11 +54,9 @@ export default function ExtraPicker() {
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked })
-    console.log(event.target.name,':',event.target.checked)
   }
 
   const areaClickChange = (event) => { 
-    console.log(event.target)
 
     const key = event.target.name || event.target.alt
     const newState = !state[key]

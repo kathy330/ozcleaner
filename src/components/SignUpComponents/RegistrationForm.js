@@ -1,10 +1,8 @@
 /* eslint no-unused-vars: "error" */
 /* eslint import/no-cycle: [2, { maxDepth: 1 }] *///
 import {React} from 'react'
-// import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
-// import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Divider from '@material-ui/core/Divider'
 import {makeStyles} from '@material-ui/core/styles'
@@ -12,14 +10,9 @@ import Typography from '@material-ui/core/Typography'
 import {useForm,Controller } from 'react-hook-form'
 import {useDispatch,useSelector } from 'react-redux'
 import CircularProgress from '@material-ui/core/CircularProgress'
-// import { ErrorOutline } from '@material-ui/icons'
-// import DividerWithText from './Divider'
 import {PopupButton} from './Button'
-// import {postRegularRequest} from '../../store/actions'
 import {register} from "../../store/actions/actionCreator"
-// import FormDialogLogin from "./PopupFormLogin"
 import FormDialogLoginPop from './FormDialogLoginPop'
-// import PopupFormLogin from './PopupFormLogin'
 
 
 
@@ -27,8 +20,7 @@ export default function RegistrationForm() {
   const {control ,handleSubmit} = useForm()
   const dispatch = useDispatch()
   const onSubmit = (data) =>{
-    // console.log(data)
-    dispatch(register(data)) // 发送saga请求
+    dispatch(register(data))
   }
   const userRegister = useSelector((state) => state.userRegister)
   const { userInfo, loading, error } = userRegister
@@ -97,10 +89,8 @@ export default function RegistrationForm() {
     login:{
       fontWeight: 'bold',
       color: '#007bf5',
-      // float: 'right',
       fontSize:'11px',
       textDecoration: 'none',
-      // paddingTop:-20,
       paddingLeft:80
     
     },

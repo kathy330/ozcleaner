@@ -10,8 +10,13 @@ import Header from '../../components/NavBarComponents/NavBar'
 
 const useStyles = makeStyles((theme) => ({
   bg: {
-    padding: '70px'
+    padding: '70px',
+    // backgroundColor: 'green'
+    [theme.breakpoints.down('xs')]: {
+      padding: '25px',
+    },
   },
+
 }))
 
 function OrderDetailsPage(match) {

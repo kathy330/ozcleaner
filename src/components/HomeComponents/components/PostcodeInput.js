@@ -8,7 +8,6 @@ export default function BasicTextFields() {
 
   const changeHandler = (event) => {
     setPostcode(event.target.value)
-    console.log(event.target.value)
   }
 
   const submitHandler = (e) => {

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { TableRow, TableCell, IconButton, Avatar, makeStyles } from '@material-ui/core/'
+import { TableRow, TableCell, IconButton,makeStyles } from '@material-ui/core/'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
+import GetAvatar from "../Avatar/AvatarSmallSize"
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -84,9 +85,7 @@ function ListTableRow(props) {
     <TableRow role="checkbox" tabIndex={-1} key={id} className={classes.root}>
       <TableCell align="center">
         <div className={classes.nameBox}>
-          <Avatar className={`${classes.avatar} text-uppercase`}>
-            {firstName[0]} 
-          </Avatar>
+          <GetAvatar />
           {firstName}
           {' '}
           {lastName}

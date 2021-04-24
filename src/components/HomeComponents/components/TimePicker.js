@@ -14,7 +14,6 @@ export default function MaterialUIPickers() {
 
   const changeHandler = (date) => {
     setSelectedTime(date)
-    console.log(date)
   }
 
   return (

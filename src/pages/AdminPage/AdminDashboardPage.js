@@ -167,7 +167,7 @@ export default function Overview() {
       )}
       {!loading1 && !loading2 && orderData !== undefined && orderData.length === 0 &&
         <NoDataFound title="No order found!" />}
-      {!loading1  && !loading2 && (error1 || error2) && console.log(error1, error2)}
+      {!loading1  && !loading2 && (error1 || error2) }
     </>
   )
 }

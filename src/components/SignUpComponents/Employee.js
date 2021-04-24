@@ -1,10 +1,8 @@
 /* eslint no-unused-vars: "error" */
 /* eslint import/no-cycle: [2, { maxDepth: 1 }] *///
 import React from 'react'
-// import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
-// import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Divider from '@material-ui/core/Divider'
 import {useDispatch,useSelector } from 'react-redux'
@@ -12,13 +10,10 @@ import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import {useForm,Controller } from 'react-hook-form'
 import CircularProgress from '@material-ui/core/CircularProgress'
-// import { ErrorOutline } from '@material-ui/icons'
 import {PopupButton} from './Button'
 import FormDialogLoginPop from './FormDialogLoginPop'
-// import PopupFormLogin from './PopupFormLogin'
 import {registerEmployee} from "../../store/actions/actionCreator"
-// import FormDialogLogin from "./PopupFormLogin"
-// import PopupFormLogin from './PopupFormLogin'
+
 
 
 
@@ -27,8 +22,7 @@ export default function EmployeeRegistrationForm() {
   const {control ,handleSubmit} = useForm()
   const dispatch = useDispatch()
   const onSubmit = (data) =>{
-    // console.log(data)
-    dispatch(registerEmployee(data)) // 发送saga请求
+    dispatch(registerEmployee(data))
   }
   const employeeRegister = useSelector((state) => state.employeeRegister)
   const { userInfo, loading, error } = employeeRegister
@@ -97,10 +91,8 @@ const useStyles = makeStyles((theme) => ({
   login:{
     fontWeight: 'bold',
     color: '#007bf5',
-    // float: 'right',
     fontSize:'11px',
     textDecoration: 'none',
-    // paddingTop:-20,
     paddingLeft:80
   
   },

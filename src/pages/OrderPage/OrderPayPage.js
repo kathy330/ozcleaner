@@ -66,11 +66,9 @@ function OrderPay() {
 
   useEffect(()=>{
     if (loadingNumREGdata===2 && loadingNumENDdata===1) {
-      console.log('rc')
       setType({ordertype:'RC'}) 
     }
     else if (loadingNumREGdata===1 && loadingNumENDdata===2) {
-      console.log('ec')
       setType({ordertype:'EC'})
     }
 

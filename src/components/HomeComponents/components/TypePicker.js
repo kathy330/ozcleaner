@@ -14,7 +14,6 @@ export default function TypePicker() {
 
   const changeHandler = (event) => {
     setType(event.target.value)
-    console.log(event.target.value)
   }
 
   const submitHandler = (e) => {

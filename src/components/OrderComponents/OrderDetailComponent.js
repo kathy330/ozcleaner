@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     padding: '55px',
     borderRadius: '5px',
+    [theme.breakpoints.down('xs')]: {
+      padding: '20px',
+    },
   },
 }))
 

@@ -1,14 +1,11 @@
 /* eslint no-unused-vars: "error" */
 /* eslint import/no-cycle: [2, { maxDepth: 1 }] *///
 import React from 'react'
-// import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import { useDispatch, useSelector } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
-// import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Divider from '@material-ui/core/Divider'
-// import { Link } from 'react-router-dom'
 import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import {useForm,Controller } from 'react-hook-form'
@@ -24,12 +21,6 @@ export default function EmployeeLoginDetails() {
     const onSubmit = (data) =>{
       dispatch(signinEmployee(data))
     }
-
-    /*
-    const signoutHandler = () => {
-      dispatch(signoutEmployee())
-    }
-    */
     const employeeSignin = useSelector((state) => state.employeeSignin)
     const { userInfo, loading, error } = employeeSignin
   
@@ -95,10 +86,8 @@ const useStyles = makeStyles((theme) => ({
   login:{
     fontWeight: 'bold',
     color: '#007bf5',
-    // float: 'right',
     fontSize:'11px',
     textDecoration: 'none',
-    // paddingTop:-20,
     paddingLeft:80
   
   },

@@ -51,7 +51,7 @@ export default function ForgetPasswordEmployee() {
 
           textField: {
             marginBottom: 45,
-            width: '85%',
+            width: '92%',
           },
 
           response: {

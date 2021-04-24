@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
 import header from "./header"
@@ -21,14 +22,12 @@ function* getOrder(action) {
 
 function* updateOrder(action) {
   const { id, update, type, cancelByAdmin } = action.payload
-  console.log(id, update, type, cancelByAdmin)
   const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
-  // eslint-disable-next-line no-nested-ternary
   const field = update.reviewStatus? '/comments': cancelByAdmin ? '/cancel':''
-  const updateApi = `http://${url}/${model}${field}/${id}`  // PUT方法更新regular
+  const updateApi = `http://${url}/${model}${field}/${id}`  
   console.log(updateApi)
   try {
-    yield call(axios.put, updateApi, update,header())
+    yield call(axios.put, updateApi, {...update, employeeID:ID, employeeDetail:objectID},header())
     yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })
   }
   catch (e) {
@@ -61,8 +60,12 @@ function* payOrder() {
 function* fetchAllOrders(action) {
   try {
     const { page, pageSize, status } = action.payload
+<<<<<<< HEAD
     // eslint-disable-next-line max-len
     const apiUrl = `http://${url}/sortedOrder?page=${page}&pageSize=${pageSize}&status=${status}`
+=======
+    const apiUrl = `http://localhost:8000/sortedOrder?page=${page}&pageSize=${pageSize}&status=${status}`
+>>>>>>> a75cd25774299190186785d3ca7d95bcca1921bb
     const orders = yield call(axios.get, apiUrl,header())
     yield put({ type: 'GET_ALL_ORDERS_SUCCESS', orders: orders.data })
   } catch (e) {
@@ -79,7 +82,6 @@ function* assignToEmployee(action) {
   const {ID,objectID} = info.data
   const updateAPI=`http://${url}/${model}/assign/${id}`
   const EmployeeData = {employeeID:ID,employeeDetail:objectID}
-
   try{
     const data = yield call(axios.put, updateAPI ,EmployeeData,header())
     yield put({type:'UPDATE_ASSIGN_SUCCESS',payload:data})

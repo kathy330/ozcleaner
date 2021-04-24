@@ -15,8 +15,9 @@ import LoadingIcon from "../../components/AdminComponents/LoadingIcon"
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: 'white',
-    height: '100%',
+    // background: 'white',
+    background: '#e3f2fd',
+    height: '95vh',
     [theme.breakpoints.down('sm')]: {
       paddingBottom: '5vh',
       paddingTop: '10vh',

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -17,13 +18,10 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     padding: '15px',
   },
-  adminRight: {
-    marginTop: '60px',
+  right: {
+    marginTop: '30px',
+    minHeight: '65vh',
     padding: 0,
-  },
-  staffRight:{
-    padding: 0,
-    marginTop: '10px'
   },
   card: {
     background: '#fff',
@@ -59,16 +57,24 @@ function returnPath(listType){
   return '/employee-orders'
 }
 
+/**
+ * OrdersLists() is a pagination components
+ * @param pageSize: (num) numbers of orders display on the list 
+ * @param urlPage: (num) current page location
+ * @param status: (string) get the status from the url
+ * @param listType: (string) admin or employee
+ */
 function OrdersLists(props) {
   const classes = useStyles()
   const { pageSize, urlPage, status, listType } = props
   const path = returnPath(listType)
   const history = useHistory()
-  const [curCard, setCurCard] = React.useState(0) 
-  const [prevCard, setPrevCard] = React.useState('unset')
+  const [curCard, setCurCard] = React.useState(0)
+  const [prevCard, setPrevCard] = React.useState('unset') 
   const [orderStatus, setOrderStatus] = React.useState(status) 
-  const listPayload = { page: urlPage, pageSize: pageSize, status: orderStatus }
-  const matches = useMediaQuery('(max-width:480px)')
+  const [sortValue, setsortValue] = React.useState('') 
+  const listPayload = { page: urlPage, pageSize: pageSize, status: orderStatus, sort: sortValue }
+  const matches = useMediaQuery('(max-width:480px)') 
   const dispatch = useDispatch()
   
   useEffect(() => {
@@ -76,10 +82,11 @@ function OrdersLists(props) {
   },[])
 
   const redux = useSelector(state => state.order)
-  const {loading} = redux
-  const {error} = redux 
+  const loading =  redux.loading
+  const error = redux.error
   const data = redux.order.result
   const dataCount = redux.order.count
+
   const returnPage = (totalCount) => {
     if (totalCount < pageSize) {
       return 1
@@ -90,6 +97,8 @@ function OrdersLists(props) {
     return Math.floor(totalCount / listPayload.pageSize)
   }
   const finalPage = returnPage(dataCount)
+
+
 
   function handleSelectOrderCard(row, id, type) {
     if (prevCard === 'unset'){
@@ -110,8 +119,8 @@ function OrdersLists(props) {
     } 
   }
 
-  function switchCardStyle(cardStatus) {
-    switch (cardStatus){
+  function switchCardStyle(status) {
+    switch (status){
       case 'in-progress':
         return 'styleProgress'
       case 'cancelled':
@@ -122,6 +131,13 @@ function OrdersLists(props) {
         return ''
     }
   }
+  
+
+  const formatPath = (sort, status) => {
+    if (!status){
+      return `/admin/orders`
+    }
+  }
 
   const selectStatusChange = (event) =>{
     setOrderStatus(event.target.value)
@@ -129,7 +145,17 @@ function OrdersLists(props) {
     listPayload.status = event.target.value
     listPayload.page = 1
     dispatch(getAllOrersRequest(listPayload))
+    const path = formatPath(listPayload.sort, listPayload.status)
     history.push(`/admin/orders/?status=${listPayload.status}`)
+  }
+
+  const selectSortChange = (event) => {
+    setsortValue(event.target.value)
+    listPayload.sort = event.target.value
+    listPayload.page = 1
+    dispatch(getAllOrersRequest(listPayload))
+    const path = formatPath(listPayload.sort, listPayload.status)
+    history.push(`/admin/orders/?sort=${listPayload.sort}`)
   }
 
   const getPaginationPage = (page) => {
@@ -153,7 +179,7 @@ function OrdersLists(props) {
   return (
     <>
       {loading && <LoadingIcon />}
-      {!loading && data !== undefined && data.length > 0 && redux.order.page === "orders" && (
+      {!loading && redux.order.page === "orders" && (
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} className={classes.left}>
             <div>
@@ -172,8 +198,7 @@ function OrdersLists(props) {
                 return(
                   <Box 
                     id={idName}
-                    key={idName}
-                    // eslint-disable-next-line no-underscore-dangle
+                    key={idName}             
                     onClick={() => handleSelectOrderCard(index, row._id, row.type)}
                     className={`${classes.card} ${classes[classToUse]}`}
                     aria-hidden="true"
@@ -182,7 +207,7 @@ function OrdersLists(props) {
                       title={row.title}
                       price={row.price}
                       address={row.address}
-                      startDate={row.startTime}
+                      date={row.startTime}
                       status={row.status}
                       classToUse={classToUse}
                       name={row.firstName}
@@ -198,13 +223,8 @@ function OrdersLists(props) {
             />
           </Grid>
           {!matches && data.length !== 0 && (
-            <Grid 
-              item
-              xs={12}
-              sm={8}
-              className={listType === 'admin' ? classes.adminRight : classes.staffRight}
-            >
-              <OrderDetailComponent data={data[curCard]} key={curCard} /> 
+            <Grid item xs={12} sm={8} className={classes.right}>
+              <OrderDetailComponent data={data[curCard]} key={curCard}/> 
             </Grid>
           )}
         </Grid>

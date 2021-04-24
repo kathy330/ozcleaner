@@ -1,11 +1,12 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
 import header from "./header"
+import url from "../../api/api"
 
 function* fetchEmployees(action) {
   try {
     const { page, pageSize } = action.payload
-    const apiUrl = `http://localhost:8000/employeeslist?page=${page}&pageSize=${pageSize}`
+    const apiUrl = `http://${url}/employeeslist?page=${page}&pageSize=${pageSize}`
     const users = yield call(axios.get, apiUrl,header())
     yield put({ type: "GET_EMPLOYEES_SUCCESS", users: users.data })
   } catch (e) {
@@ -15,7 +16,7 @@ function* fetchEmployees(action) {
 
 function* deletedUsers(action) {
   const deletedId = action.payload
-  const deletedApi = `http://localhost:8000/deletedEmployees/${deletedId}`
+  const deletedApi = `http://${url}/deletedEmployees/${deletedId}`
   try {
     yield call(axios.put, deletedApi,{},header())
     yield put({ type: 'DELETED_EMPLOYEE_SUCCESS' })

@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid'
 import date from 'date-and-time'
 import {useDispatch} from 'react-redux'
 import {payOrderRequest, postOrderRequest } from '../../../store/actions'
+import url from '../../../api/api'
 
 
 const cardStyle = {
@@ -42,7 +43,7 @@ export default function CheckoutForm({price,paystatus,data}) {
   const [processing, setProcessing] = useState('')
   const [disabled, setDisabled] = useState(true)
   const [clientSecret, setClientSecret] = useState('')
-  const postApi = 'http://localhost:8000/pay'
+  const postApi = `http://${url}/pay`
 
 
   const payapi = async() => {

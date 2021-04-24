@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { put, call, takeEvery } from 'redux-saga/effects'
 import axios from 'axios'
+import url from "../../api/api"
 
 function* userLogin(action) {
   try {
     const userInfo = 
-    yield call(axios.post,'http://localhost:8000/users/login', action.payload)
+    yield call(axios.post,`http://${url}/users/login`, action.payload)
     yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userInfo })
     const info ={data: userInfo.data}
     localStorage.setItem('userInfo', JSON.stringify(info))
@@ -21,11 +22,11 @@ function* userRegister(action) {
   
   try {
     const userInfo = 
-      yield call(axios.post,'http://localhost:8000/users/registration', action.payload)
+      yield call(axios.post,`http://${url}/users/registration`, action.payload)
     yield put({ type: 'USER_REGISTER_SUCCESS', payload: userInfo })
     
     const userloginInfo = 
-      yield call(axios.post,'http://localhost:8000/users/login', action.payload)
+      yield call(axios.post,`http://${url}/users/login`, action.payload)
     yield put({ type: 'USER_SIGNIN_SUCCESS', payload: userloginInfo })
     localStorage.setItem('userInfo', JSON.stringify(userloginInfo))
     localStorage.setItem("authLevel", "user") 

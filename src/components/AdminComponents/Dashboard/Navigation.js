@@ -50,7 +50,6 @@ export default function AdminHeaderNavigation() {
     const classes = useStyles()
 
     const signoutHandler = () => {
-      console.log('admin sign out')
       localStorage.removeItem('authLevel')
       localStorage.removeItem('employeeInfo')
       document.location.href = '/'

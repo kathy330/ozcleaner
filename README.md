@@ -80,35 +80,41 @@ Protect router 功能如果不登陆是不能进入到 order/admin/employee-orde
 然后展示三种登陆，和 user 的 email 找回密码功能（yanbo），
 然后 user 和 employee 的 myprofile（mengxuan）
 然后后端验证 token 的功能（mengxuan）
+
 4000000360000006
-然后下单，和 order detail
-然后 user 的 myorder，和 order detail（展示 cancel 和 review 功能）
+然后首页下单，下单页下单，
+和 order detail（lingjie)
+
+然后 user 的 myorder(olivia)
 如果 user 去接单页面，会自动重定向到下单
 
 然后 employee 接单，
-employee 的 myorder，和 order detail（展示 finish 功能）
+employee 的 myorder(olivia)
+因为 employee 的 myprofile 功能逻辑跟 user 一样，我们就不再讲了
 如果 employee 去 order 页面，会自动重定向到接单页面
 
 然后去 admin，介绍四个页面，还有删除一个 employee 账户
 
 # 登陆
-1. 可以自由转换作为用户登录，或者作为employee登录
+
+1. 可以自由转换作为用户登录，或者作为 employee 登录
 2. 登录的时候会有不同的报错，分为：账号密码不匹配报错，邮箱没注册报错等
-3. 登陆时，会根据不同的身份，在local storage富裕不同的权限，分别为，user,employee,admin
+3. 登陆时，会根据不同的身份，在 local storage 富裕不同的权限，分别为，user,employee,admin
 4. 在首页可以展示一下右边的快捷切换登录注册
 
 # 注册
-1. 可以自由转换作为用户注册，或者作为employee注册
+
+1. 可以自由转换作为用户注册，或者作为 employee 注册
 2. 注册时，报错信息也是齐全的
 3. 注册时，根据用户的不同身份，发送到后台不同的接口
 4. 注册后立刻跳转到登录页面
 
 # 忘记密码
+
 1. 忘记密码后，跳转到忘记密码页面，用户可以输入自己的账号，等待收到验证码
 2. 用户可以进入到自己的邮箱，查看验证码
 3. 点击邮箱中的链接，进入到下一页，然后使用验证码修改密码
 4. 密码修改后自动跳转会首页
-
 
 # Navbar
 

@@ -132,7 +132,7 @@ function ListCustomerTable(props) {
       {usersData !== undefined && usersData.length === 0 &&
         !loading &&
         <NoDataFound refreshPage={refreshPage} title={`No ${tableType} found!`} />}
-      {error && !loading && console.log(error)}
+      {error && !loading}
     </>
   )
 }

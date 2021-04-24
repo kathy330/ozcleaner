@@ -20,12 +20,10 @@ function* getOrder(action) {
 
 function* updateOrder(action) {
   const { id, update, type, cancelByAdmin } = action.payload
-  console.log(id, update, type, cancelByAdmin)
   const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
   // eslint-disable-next-line no-nested-ternary
   const field = update.reviewStatus? '/comments': cancelByAdmin ? '/cancel':''
   const updateApi = `http://localhost:8000/${model}${field}/${id}`  // PUT方法更新regular
-  console.log(updateApi)
   try {
     yield call(axios.put, updateApi, update,header())
     yield put({ type: 'UPDATE_ORDER_SUCCESS', repos: update })

@@ -147,7 +147,6 @@ export default function OrderLeft() {
   const {disable} = state 
   const type = watch("type","")
   useEffect(()=>{
-    console.log(type)
     if(type === 'RC') {
       setState({oven:false,fridge:false,windows:false,cabinet:false,disable:false})
     }
@@ -235,30 +234,17 @@ export default function OrderLeft() {
         lastName:data.lastName,
         phoneNumber:data.phoneNumber
       }
-      console.log('new data: ',newData)
   
       dispatch(postOrderRequest(newData)) 
     }
-    else{
-      console.log('Must pick all the info')
-    }
+
   } 
 
   const onErrors = () => {
     console.log("ERROR!")
   }
 
-  const address1 = watch("address1","") 
-  const address2 = watch("address2","")
-  const postcode = watch("postcode","")
-  const suburb = watch("suburb","")
-  const addressState = watch("state","")
 
-  const totalAddress = `${address2}${address1}${suburb}${postcode}${addressState}`
-  
-  useEffect(()=>{
-    console.log(totalAddress)
-  },[totalAddress])
 
 
   

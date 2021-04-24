@@ -211,7 +211,7 @@ function OrdersLists(props) {
       )}
       {!loading && data !== undefined && data.length === 0 &&
         <NoDataFound refreshPage={refreshPage} title="No order found!" />}
-      {!loading && error && console.log(error) }
+      {!loading && error}
     </>
   )
 }

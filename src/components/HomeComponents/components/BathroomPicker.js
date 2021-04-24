@@ -14,7 +14,6 @@ export default function BathroomPicker() {
 
   const changeHandler = (event) => {
     setBathRoomNum(event.target.value)
-    console.log(event.target.value)
   }
 
   const submitHandler = (e) => {

@@ -24,7 +24,6 @@ export default function ForgetPassword() {
 
     const forgetPassword = useSelector((state) => state.forgetPassword)
     const { userInfo, loading, error } = forgetPassword
-    console.log(forgetPassword)
     const useStyles = makeStyles((theme) => ({
           [theme.breakpoints.down('sm')]: {
             textAlign: 'center',
@@ -52,7 +51,7 @@ export default function ForgetPassword() {
 
           textField: {
             marginBottom: 45,
-            width: '85%',
+            width: '92%',
           },
 
           response: {

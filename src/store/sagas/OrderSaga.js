@@ -23,7 +23,7 @@ function* updateOrder(action) {
   const { id, update, type, cancelByAdmin } = action.payload
   const model = type.toUpperCase() === "RC" ? 'regular' : 'endOfLease'
   const level = localStorage.getItem('authLevel') 
-  const {ID,objectID} = JSON.parse(localStorage.getItem(`${level}Info`)).data
+  const {ID,objectID} = JSON.parse(localStorage.getItem(`${level==="admin"?"employee":""}Info`)).data
   const field = update.reviewStatus? '/comments': cancelByAdmin ?
    '/cancel':update.status==='confirmed'?'/assign':''
   const updateApi = `http://localhost:8000/${model}${field}/${id}`

@@ -63,13 +63,13 @@ function StatusDisplay(tableType, status, classes) {
   return (status === 'available') ? 
     (
       <TableCell align="center" className={classes.status}>
-        <FiberManualRecordIcon className={classes.redBg} />
+        <FiberManualRecordIcon className={classes.greenBg} />
         Available
       </TableCell>
   ) : 
     (
       <TableCell align="center" className={classes.status}>
-        <FiberManualRecordIcon className={classes.greenBg} />
+        <FiberManualRecordIcon className={classes.redBg} />
         Unavailable
       </TableCell>
   )

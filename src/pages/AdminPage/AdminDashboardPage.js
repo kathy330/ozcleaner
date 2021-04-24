@@ -60,10 +60,9 @@ let UserName = [
 const useStyles = makeStyles((theme) => ({
   body: {
     paddingBottom: '100px',
-    paddingTop: "80px",
+    paddingTop: "47px",
   },
   item: {
-    // paddingLeft: "60px"
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -120,11 +119,10 @@ export default function Overview() {
               Quick status
           </Box>
             <Grid container spacing={6}>
-
               {Object.keys(stats).map((key, index) =>
               (
-                <Grid item>
-                  <Card key={key} item= {key} num={stats[key]}other={index} />
+                <Grid item key={`grid${index}`}>
+                  <Card key={key} item= {key} num={stats[key]} other={index} />
                 </Grid>
               )
               )}

@@ -32,7 +32,7 @@ const columns = [
 const useStyles = makeStyles((theme) => ({
   root: {
     background: '#fff',
-    marginTop: '1px',
+    marginTop: '47px',
     padding: '45px 45px 0px',
     [theme.breakpoints.down('xs')]: {
       padding: '35px 20px',

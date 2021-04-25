@@ -98,12 +98,15 @@ export const buttonStyle = makeStyles((theme) => ({
     background: '#29b6f6', 
     borderRadius: '8px',
     padding: '8px 30px',
-    margin:'30px 0',
+    margin:'30px -15px',
     color: theme.palette.primary.contrastText,
     '&:hover': {
       background: '#29b6f6', 
       boxShadow: '0px 2px 10px #888',
-    }
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin:'30px -10px',
+    },
   },
   finalBookingButton:{
     background: '#29b6f6', 

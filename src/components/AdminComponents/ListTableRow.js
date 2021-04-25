@@ -14,7 +14,7 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   avatar: {
-    margin: '0 10px 0 10px' 
+    margin: '0 10px' 
   },
   actionBtn: {
     margin: '0 10px',

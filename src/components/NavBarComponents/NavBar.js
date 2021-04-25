@@ -16,7 +16,7 @@ import {
   Slide,
   Drawer,
 } from '@material-ui/core'
-import {useHistory} from "react-router-dom"
+import {useHistory, Link} from "react-router-dom"
 import MenuIcon from '@material-ui/icons/Menu'
 import Dialog from '@material-ui/core/Dialog'
 import PropTypes from 'prop-types'
@@ -130,6 +130,18 @@ export default function HeaderNavigation(props) {
 
   const history = useHistory()
   
+  const pushHome = () => {
+    history.push("/")
+  }
+
+  const pushEmpolyee = () => {
+    history.push("/employee-orders")
+  }
+
+  const pushAdmin = () => {
+    history.push("/admin")
+  }
+
   const pushOrder = () => {
     history.push("/order")
   }
@@ -154,7 +166,7 @@ export default function HeaderNavigation(props) {
           <Grid item>
             <Toolbar>
               <Grid className={style.grow}>
-                <Button href={level==='user'?'/':'/employee-orders'}>
+                <Button onClick={level==='user'? pushHome: pushEmpolyee}>
                   <img
                     src={logo} 
                     className={style.logoimg}
@@ -174,9 +186,9 @@ export default function HeaderNavigation(props) {
               {userInfo ? (
                 <>
                   <Box className={style.buttonsBox}>
-                    <Button href='/order' className={style.bookingButton}>Booking Now</Button>
-                    <Button href={`/${role}/${id}`}>My Order</Button>
-                    <Button href='/profile'>My Profile</Button>
+                    <Button onClick={pushOrder} className={style.bookingButton}>Booking Now</Button>
+                    <Button onClick={pushMyOrder}>My Order</Button>
+                    <Button onClick={pushMyProfile}>My Profile</Button>
                     <Button
                       onClick={signoutHandler}
                     >
@@ -204,9 +216,9 @@ export default function HeaderNavigation(props) {
               {employeeInfo && level==='employee' ? (
                 <>
                   <Box className={style.buttonsBox}>
-                    <Button href='/employee-orders' className={style.bookingButton}>Browse Orders</Button>
-                    <Button href={`/${role}/${id}`}>My Order</Button>
-                    <Button href='/profile'>My Profile</Button>
+                    <Button onClick={pushEmpolyee} className={style.bookingButton}>Browse Orders</Button>
+                    <Button onClick={pushMyOrder}>My Order</Button>
+                    <Button onClick={pushMyProfile}>My Profile</Button>
                     <Button
                       onClick={employeesignoutHandler}
                     >
@@ -234,7 +246,7 @@ export default function HeaderNavigation(props) {
               {employeeInfo && level==='admin' ? (
                 <>
                   <Box className={style.buttonsBox}>
-                    <Button href='/admin' className={style.bookingButton}>Admin Dashboard</Button>
+                    <Button component={Link} to='/admin' className={style.bookingButton}>Admin Dashboard</Button>
                     <Button
                       onClick={employeesignoutHandler}
                     >

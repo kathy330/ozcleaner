@@ -1,5 +1,6 @@
 // /* eslint-disable */
 import React from 'react'
+import {useHistory, Link} from "react-router-dom"
 import { Grid, Button, AppBar} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { deepOrange, deepPurple } from '@material-ui/core/colors'
@@ -48,18 +49,18 @@ const useStyles = makeStyles((theme) => ({
 export default function AdminHeaderNavigation() {
     const style = navBarStyle()
     const classes = useStyles()
-
+    const history = useHistory()
     const signoutHandler = () => {
       localStorage.removeItem('authLevel')
       localStorage.removeItem('employeeInfo')
-      document.location.href = '/'
+      history.push("/")
     }
 
     return (
       <div>
         <AppBar className={`${style.AppBar} ${classes.AppBar}`} position="static" elevation={1}>
           <Grid item className={style.grow} xs={6} md={9}>
-            <Button href='/admin'>
+            <Button component={Link} to='/admin'>
               <img
                 src={admin2} 
                 className={classes.logoimg}

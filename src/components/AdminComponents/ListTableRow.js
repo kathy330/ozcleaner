@@ -14,7 +14,7 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   avatar: {
-    margin: '0 20px 0 10px' 
+    margin: '0 10px 0 10px' 
   },
   actionBtn: {
     margin: '0 10px',
@@ -85,7 +85,9 @@ function ListTableRow(props) {
     <TableRow role="checkbox" tabIndex={-1} key={id} className={classes.root}>
       <TableCell align="center">
         <div className={classes.nameBox}>
-          <GetAvatar />
+          <div className={classes.avatar}>
+            <GetAvatar />
+          </div>
           {firstName}
           {' '}
           {lastName}

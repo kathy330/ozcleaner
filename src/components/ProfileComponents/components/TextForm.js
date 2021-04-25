@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.secondary.main,
     color: theme.palette.secondary.contrastText,
     fontSize: '1rem',
-    marginLeft: '10px',
+    marginLeft: '3vh',
     marginTop: '2rem',
     paddingInline: '50px',
     textalign: 'left',
@@ -79,6 +79,9 @@ const useStyles = makeStyles((theme) => ({
 
   margintop: {
     marginTop: '30px',
+    [theme.breakpoints.down(('xs'))]:{
+      marginTop: "0px",
+    },
   }
 }))
 
@@ -311,7 +314,7 @@ export default function TextForm() {
               SAVE
             </Button> 
           </Grid>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={6} sm={4}>
             <Button 
               type="submit"
               variant="contained"

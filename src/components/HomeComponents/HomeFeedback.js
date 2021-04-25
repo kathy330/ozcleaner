@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '95px',
     textAlign: "right",
     [theme.breakpoints.down('sm')]: {
+      height: '0vh',
       marginTop: '0px',
     },
   },
